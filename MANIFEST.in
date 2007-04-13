@@ -1,0 +1,9 @@
+include umit nmap-os-db nmap-os-fingerprints nmap-services umit_version README COPYING COPYING_HIGWIDGETS
+include os_classification.dump
+recursive-include share/pixmaps *.png *.svg umit.opf umit.opt
+recursive-include share/locale/po *.mo *.po *.pot
+recursive-include umitCore *.py
+recursive-include umitGUI *.py
+recursive-include higwidgets/higwidgets *.py
+recursive-include config *.xml *.conf *.usp *.txt *.db *.dmp
+exclude runWeb.py

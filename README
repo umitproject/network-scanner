@@ -1,0 +1,100 @@
+Introduction
+
+   UMIT is the nmap frontend.
+
+   UMIT is developed in the Python programming language, and its
+   interface is built with the GTK Toolkit. It's also worth to mention
+   that the initial development is sponsored by Google's Summer of Code.
+
+   The project goal is to develop a nmap frontend that is really useful
+   for advanced users and easy to be used by newbies. With UMIT, a
+   network admin can create scan profiles for faster and easier network
+   scanning and even compare scan results to easily see any changes. New
+   users can also construct powerful scans with UMIT command creator
+   wizard.
+
+Installation
+
+   UMIT is available for multiple platforms. It has been successfully
+   tested on the following platforms/flavors:
+     * Ubuntu 5.04 Hoary Hedgeog
+     * Red Hat Enterprise Linux 4
+     * OpenBSD 3.7
+     * Microsoft Windows 2000
+     * Microsoft Windows XP
+     * Apple MacOS X 10.4 (Tiger)
+
+   The installation instructions are somewhat different for each
+   platform.
+
+Default (source) Installation
+
+   The UMIT's source package are provided in such a way that, if you have
+   all the required software, it will run 'out-of-the-tarball'.
+
+   The list of required software follows:
+     * [1]Python 2.4 or higher
+     * [2]GTK+ 2.6 or higher
+     * [3]PyGTK 2.6 or higher
+     * [4]nmap itself and its requirements
+     * [5]PySQLite2
+     * [10]Psyco (optional)
+
+   After unpacking the source distribution do one of the following:
+     * Double click the umit file
+     * Call the Python interpreter on the umit file
+
+GNU/Linux Installation
+
+   Unpack the source package, and get inside the extracted directory.
+
+   # Extracting  gziped tarball
+   $ tar xvzf umit-0.9.1.tar.gz
+
+   # Extracting bziped tarball
+   $ tar xvjf umit-0.9.1.tar.gz
+
+   # Extracting ziped source
+   $ unzip umit-0.9.1.zip
+
+
+   After extracting the sources, get inside the extracted dir:
+   $ cd umit-0.9.1
+
+   And then, run the command bellow as root:
+   # python setup.py install
+
+
+   This should be enough to get Umit installed.
+   To run Umit:
+   $ umit
+
+   
+   If you want to define the path where Umit should be installed, do:
+   $ python setup.py install --prefix /path/to/umit_dir
+
+   After that, put the /path/to/umit_dir/bin directory created in your PATH:
+   $ export PATH=$PATH:/path/to/umit_dir/bin
+
+   Or, put line above inside your ~/.bash_profile or ~/.bashrc and this will get executed
+   everytime you login. After putting the bin directory in the PATH, execute Umit:
+   $ umit.pyw
+
+
+Microsoft Windows Installation
+
+   For the Microsoft Windows platform, ready to run installers are
+   available. Download them from the [6]SourceForge project page.
+
+
+Links:
+
+[1] Python official website - http://www.python.org
+[2] GTK official website - http://www.gtk.org
+[3] PyGTK official website - http://www.pygtk.org
+[4] Nmap official website - http://www.insecure.org/nmap
+[5] PySQLite2 official website - http://initd.org/tracker/pysqlite
+[6] Umit sourceforge project page - http://www.sourceforge.net/projects/umit
+[7] Umit website - http://umit.sourceforge.net
+[9] Umit blog - http://umitproject.blogspot.com
+[10] Pysco website - http://psyco.sourceforge.net

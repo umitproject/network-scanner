@@ -1,0 +1,24 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook v4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+
+<article>
+  <artheader>
+    <title>Searching</title>
+    <author>
+      <firstname>Adriano</firstname>
+      <surname>Marques</surname>
+      <copyright>
+        <year>2006</year>
+	<holder>Adriano Monteiro Marques</holder>
+      </copyright>
+    </author>
+  </artheader>
+
+  <section>
+    <title>Topics</title>
+    <para>
+        *Introduction
+    </para>
+
+  </section>
+</article>
