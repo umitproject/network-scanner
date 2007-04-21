@@ -127,7 +127,8 @@ data_files = [ (pixmaps_dir, svg + glob(os.path.join('share', 'pixmaps', '*.png'
                                       glob(os.path.join('share', 'pixmaps', 'umit.o*'))),
                (config_dir, [os.path.join('config', 'umit.conf')] +
                                      [os.path.join('config', 'scan_profile.usp')] +
-                                     [os.path.join('config', 'umit_version')] + 
+                                     [os.path.join('config', 'umit_version')] +
+                                     [os.path.join('config', 'umit.db')] + 
                                      glob(os.path.join('config', '*.xml'))+
                                      glob(os.path.join('config', '*.txt'))),
                (misc_dir, glob(os.path.join('misc', '*.dmp'))), 
