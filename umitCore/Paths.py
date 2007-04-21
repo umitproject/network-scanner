@@ -78,7 +78,7 @@ class Paths(object):
             result = create_user_dir(umit_conf, HOME)
             config_file = result['config_file']
             self.config_parser.read(config_file)
-            [self.__set_it(opt, result[opt]) for opt in result]
+            [self.__setattr__(opt, result[opt]) for opt in result]
             log.debug(">>> Using recently created config files in user home: %s" % config_file)
             
         else:
