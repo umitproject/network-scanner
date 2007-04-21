@@ -21,7 +21,7 @@ import cPickle
 import os.path
 
 def create_services_dump(services, services_dump):
-    services_dump = os.path.join("config", services_dump)
+    services_dump = os.path.join("misc", services_dump)
 
     services_dict = {}
     serv_file = open(services, 'r')

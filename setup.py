@@ -48,20 +48,15 @@ if os.name == 'nt':
 # Main Variables
 
 # Directories
-pixmaps_dir = os.path.join('share', 'pixmaps', 'umit')
-icons_dir = os.path.join('share', 'icons', 'umit')
-locale_dir = os.path.join('share', 'locale')
-umit_version = os.path.join("config", "umit_version")
+pixmaps_dir = os.path.join('share', 'umit', 'pixmaps')
+icons_dir = os.path.join('share', 'umit', 'icons')
+locale_dir = os.path.join('share', 'umit', 'locale')
+config_dir = os.path.join('share', 'umit', 'config')
+docs_dir = os.path.join('share', 'umit', 'docs')
+misc_dir = os.path.join('share', 'umit', 'misc')
 
-config_dir = os.path.join('config', 'umit')
 dist_config_dir = os.path.join('dist', config_dir)
 dist_umit_conf = os.path.join(dist_config_dir, "umit.conf")
-
-umit_core = os.path.join("umitCore")
-paths_file = os.path.join(umit_core, "Paths.py")
-backup_paths_file = os.path.join(umit_core, "Backup_Paths.py")
-
-
 
 user_dir = '.umit'
 
@@ -70,7 +65,7 @@ user_dir = '.umit'
 # Main Functions
 
 def umit_version():
-    return open("umit_version").readlines()[0]
+    return open(os.path.join("config", "umit_version")).readlines()[0]
 
 def check_dependencies():
     '''Tries to check all dependencies, and abort instalation if something is missing
@@ -129,14 +124,21 @@ if sys.platform == 'linux2':
 
 
 data_files = [ (pixmaps_dir, svg + glob(os.path.join('share', 'pixmaps', '*.png')) +
-                             glob(os.path.join('share', 'pixmaps', 'umit.o*'))),
+                                      glob(os.path.join('share', 'pixmaps', 'umit.o*'))),
                (config_dir, [os.path.join('config', 'umit.conf')] +
-                            [os.path.join('config', 'scan_profile.usp')] +
-                            ['umit_version'] + 
-                            glob(os.path.join('config', '*.xml'))+
-                            glob(os.path.join('config', '*.txt')) +
-                            glob(os.path.join('config', '*.dmp'))), 
-               (icons_dir, glob(os.path.join('share', 'icons', '*.ico')))]
+                                     [os.path.join('config', 'scan_profile.usp')] +
+                                     [os.path.join('config', 'umit_version')] + 
+                                     glob(os.path.join('config', '*.xml'))+
+                                     glob(os.path.join('config', '*.txt'))),
+               (misc_dir, glob(os.path.join('misc', '*.dmp'))), 
+               (icons_dir, glob(os.path.join('share', 'icons', '*.ico'))),
+               (docs_dir, glob(os.path.join('docs', '*.html'))+
+                          glob(os.path.join('docs', 'comparing_results', '*.xml'))+
+                          glob(os.path.join('docs', 'profile_editor', '*.xml'))+
+                          glob(os.path.join('docs', 'scanning', '*.xml'))+
+                          glob(os.path.join('docs', 'searching', '*.xml'))+
+                          glob(os.path.join('docs', 'wizard', '*.xml'))+
+                          glob(os.path.join('docs', 'screenshots', '*.png')))]
 
 # Add i18n files to data_files list
 os.path.walk(locale_dir, mo_find, data_files)
@@ -154,9 +156,10 @@ class umit_install(install):
 
         self.create_uninstaller()
         self.adequate_umit_conf()
-        self.adequate_paths()
+        self.adequate_source_code()
 
         self.finish_banner()
+    
 
     def create_uninstaller(self):
         uninstaller_filename = os.path.join(self.install_scripts, "uninstall_umit")
@@ -195,49 +198,49 @@ print
 
     def adequate_umit_conf(self):
         install_config_dir = os.path.join(self.install_data, config_dir)
+        config_file = os.path.join(install_config_dir, "umit.conf")
+
+        parser = ConfigParser()
+
+        cf = open(config_file, "r")
+        parser.readfp(cf)
+        cf.close()
+
+        sec = "paths"
+        parser.set(sec, "config_file", config_file)
+        parser.set(sec, "config_dir", install_config_dir)
+        parser.set(sec, "docs_dir", os.path.join(install_config_dir, docs_dir))
+        parser.set(sec, "pixmaps_dir", os.path.join(self.install_data, pixmaps_dir))
+        parser.set(sec, "icons_dir", os.path.join(self.install_data, icons_dir))
+        parser.set(sec, "locale_dir", os.path.join(self.install_data, locale_dir))
+        parser.set(sec, "umit_icon", self.get_file("umit_48.ico"))
+        parser.set(sec, "nmap_command_path", "nmap")
+        parser.set(sec, "misc_dir", os.path.join(self.install_data, misc_dir))
+
+        cf = open(config_file, "w")
+        parser.write(cf)
+        cf.close()
+
+    def adequate_source_code(self):
+        umit = os.path.join(self.install_scripts, "umit")
         
-        config = dict(config_file = os.path.join(install_config_dir, 'umit.conf'),
-                      scan_profile = os.path.join(install_config_dir, 'scan_profile.usp'),
-                      wizard = os.path.join(install_config_dir, 'wizard.xml'),
-                      pixmaps_dir = os.path.join(self.install_data, pixmaps_dir),
-                      profile_editor = os.path.join(install_config_dir, 'profile_editor.xml'),
-                      options = os.path.join(install_config_dir, 'options.xml'),
-                      i18n_dir = os.path.join(self.install_data, locale_dir),
-                      umit_op = self.get_file("umit.op"),
-                      umit_opi = self.get_file("umit.opi"),
-                      umit_opt = self.get_file("umit.opt"),
-                      umit_opf = self.get_file("umit.opf"),
-                      services_dump = self.get_file("services.dmp"),
-                      os_dump = self.get_file("os_db.dmp"),
-                      umit_version = self.get_file("umit_version"),
-                      os_classification = self.get_file("os_classification.dmp"),
-                      umit_icon = self.get_file("umit_48.ico"))
+        umit_file = open(umit, "r")
+        content = umit_file.read()
+        umit_file.close()
 
-        umit_conf_file = open(config['config_file'], 'r')
-        umit_conf = umit_conf_file.read()
-        umit_conf_file.close()
+        subs_pattern = re.compile("Path\.set_umit_conf\(join\(split\(__file__\)\[0\],\
+ 'config', 'umit\.conf'\)\)")
+        content = subs_pattern.sub("Path.set_umit_conf('%s')" % \
+                                       os.path.join(self.install_data, config_dir, "umit.conf"),
+                                   content)
 
-        # Putting the paths informations inside umit.conf
-        umit_conf %= config
-        
-        umit_conf_file = open(config['config_file'], 'w')
-        umit_conf_file.write(umit_conf)
-        umit_conf_file.close()
+        subs_pattern = re.compile("import sys")
+        content = subs_pattern.sub("import sys\nsys.path.insert(0, '%s')" % self.install_lib,
+                                   content)
 
-    def adequate_paths(self):
-        paths_file = self.get_file("Paths.py")
-        umit_conf = self.get_file("umit.conf")
-        umit_conf_dir = os.path.split(umit_conf)[0]
-
-        if not paths_file or not umit_conf:
-            print "Error while trying to adequate Umit configurations! Aborting..."
-            sys.exit(1)
-
-        paths_content = open(paths_file, 'r').read()
-        paths_content = re.sub('umit_conf_dir = ".*"',
-                               'umit_conf_dir = "%s"' % umit_conf_dir, paths_content)
-
-        open(paths_file, 'w').write(paths_content)
+        umit_file = open(umit, "w")
+        umit_file.write(content)
+        umit_file.close()
 
     def get_file(self, filename):
         for output in self.get_outputs():
@@ -273,41 +276,29 @@ class umit_py2exe(build_exe):
     def run(self):
         check_dependencies()
 
-        # Make a backup of Paths, and then, adequate it for compilation process
-        self.backup_paths()
-        self.adequate_paths()
-
         build_exe.run(self)
 
         # Adequate installed umit.conf
         self.adequate_umit_conf()
-        self.get_paths_back()
     
         self.finish_banner()
 
     def adequate_umit_conf(self):
-        install_config_dir = os.path.join("config", "umit")
-        install_pixmaps_dir = os.path.join("share", "pixmaps", "umit")
-        install_icon_dir = os.path.join("share", "icons", "umit")
-        install_i18n_dir = os.path.join("share", "locale")
+        install_config_dir = os.path.join("config")
+        install_pixmaps_dir = os.path.join("share", "pixmaps")
+        install_icons_dir = os.path.join("share", "icons")
+        install_locale_dir = os.path.join("share", "locale")
+        install_docs_dir = os.path.join("docs")
 
         config = dict(config_file = os.path.join(install_config_dir, 'umit.conf'),
-                      scan_profile = os.path.join(install_config_dir, 'scan_profile.usp'),
-                      wizard = os.path.join(install_config_dir, 'wizard.xml'),
+                      config_dir = install_config_dir,
+                      user_dir = os.path.join(os.path.expanduser("~"), user_dir),
+                      docs_dir = install_docs_dir,
                       pixmaps_dir = install_pixmaps_dir,
-                      profile_editor = os.path.join(install_config_dir, 'profile_editor.xml'),
-                      options = os.path.join(install_config_dir, 'options.xml'),
-                      i18n_dir = install_i18n_dir,
-                      umit_op = os.path.join(install_pixmaps_dir, "umit.op"),
-                      umit_opi = os.path.join(install_pixmaps_dir, "umit.opi"),
-                      umit_opt = os.path.join(install_pixmaps_dir, "umit.opt"),
-                      umit_opf = os.path.join(install_pixmaps_dir, "umit.opf"),
-                      umitdb = os.path.join(install_config_dir, "umit.db"),
-                      services_dump = os.path.join(install_config_dir, "services.dmp"),
-                      os_dump = os.path.join(install_config_dir, "os_db.dmp"),
-                      umit_version = os.path.join(install_config_dir, "umit_version"),
-                      os_classification = os.path.join(install_config_dir, "os_classification.dmp"),
-                      umit_icon = os.path.join(install_icon_dir, "umit_48.ico"))
+                      icons_dir = install_icons_dir,
+                      locale_dir = install_locale_dir,
+                      umit_icon = os.path.join(install_icon_dir, "umit_48.ico"),
+                      nmap_command_path = "nmap")
 
         umit_conf_file = open(dist_umit_conf, 'r')
         umit_conf = umit_conf_file.read()
@@ -317,25 +308,6 @@ class umit_py2exe(build_exe):
         umit_conf_file = open(dist_umit_conf, 'w')
         umit_conf_file.write(umit_conf)
         umit_conf_file.close()
-
-    def adequate_paths(self):
-        paths_content = open(paths_file, 'r').read()
-        paths_content = re.sub('umit_conf_dir = "config"', 
-                               'umit_conf_dir = "%s"' % os.path.join("config", "umit"), paths_content)
-
-        open(paths_file, 'w').write(paths_content)
-
-    def backup_paths(self):
-        try: os.remove(backup_paths_file)
-        except: pass
-
-        copy_file(paths_file, backup_paths_file)
-
-    def get_paths_back(self):
-        try: os.remove(paths_file)
-        except: pass
-
-        copy_file(backup_paths_file, paths_file)
 
     def finish_banner(self):
         print 
@@ -376,5 +348,15 @@ powerful scans with UMIT command creator wizards.""",
       options = {"py2exe":{"compressed":1,
                            "optimize":2,
                            "packages":"encodings",
-                           "includes" : "pango,atk,gobject,pickle,bz2,encodings,\
-encodings.*,cairo,pangocairo,atk,psyco,pysqlite2"}})
+                           "includes" : "pango,\
+atk,\
+gobject,\
+pickle,\
+bz2,\
+encodings,\
+encodings.*,\
+cairo,\
+pangocairo,\
+atk,\
+psyco,\
+pysqlite2"}})

@@ -31,7 +31,7 @@ from higwidgets.higbuttons import HIGButton
 from umitCore.Diff import Diff
 from umitCore.UmitConf import UmitConf, DiffColors
 from umitCore.NmapParser import NmapParser, HostInfo
-from umitCore.Paths import Search
+from umitCore.Paths import check_access
 from umitCore.Logging import log
 from umitCore.I18N import _
 
@@ -140,7 +140,7 @@ class ScanChooser(HIGVBox):
         file_chosen = file_chooser.get_filename()
         file_chooser.destroy()
 
-        if Search.check_access(file_chosen, os.R_OK):
+        if check_access(file_chosen, os.R_OK):
             try:
                 parser = NmapParser(file_chosen)
                 parser.parse()

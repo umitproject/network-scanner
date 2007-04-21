@@ -22,7 +22,6 @@ import os
 import os.path
 import sys
 import optparse
-import imp
 
 import gtk
 import gobject
@@ -36,10 +35,14 @@ from umitCore.Logging import log
 
 
 # Script found at http://www.py2exe.org/index.cgi/HowToDetermineIfRunningFromExe
+import imp
+frozen = (hasattr(sys, "frozen") or # new py2exe
+          hasattr(sys, "importers") # old py2exe
+          or imp.is_frozen("__main__")) # tools/freeze
+del(imp)
+
 def main_is_frozen():
-    return (hasattr(sys, "frozen") or # new py2exe
-            hasattr(sys, "importers") # old py2exe
-            or imp.is_frozen("__main__")) # tools/freeze
+    return frozen
 
 
 class App:
@@ -48,7 +51,6 @@ class App:
 
     def __create_option_parser(self):
         self.option_parser = optparse.OptionParser()
-
         self.options, self.args = self.option_parser.parse_args()
 
     def __parse_cmd_line(self):
@@ -59,7 +61,6 @@ class App:
         self.main_window.show_all()
 
     def run(self):
-
         # Try to load psyco module, saving this information
         # if we care to use it later (such as in a About Dialog)
         try:
@@ -72,7 +73,6 @@ class App:
 application. It is not a requirement, and Umit runs perfectly well with or without it, \
 but you're encourajed to install it to have a better speed experience. Download it \
 at http://psyco.sf.net/"""))
-
             self.using_psyco = False
 
         pixmap_d = Path.pixmaps_dir

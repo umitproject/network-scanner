@@ -42,7 +42,7 @@ from umitCore.Paths import Path
 from umitCore.Logging import log
 from umitCore.I18N import _
 
-icon_dir = Path.get_pixmaps_dir()
+icon_dir = Path.pixmaps_dir
 
 class PageStatus(object):
     """

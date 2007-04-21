@@ -20,12 +20,20 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
+import sys
+from os.path import join, split
+
+######################################
+# Setting the umit home directory
+
+from umitCore.Paths import Path
+Path.set_umit_conf(join(split(__file__)[0], 'config', 'umit.conf'))
+######################################
+
 from umitGUI.App import App
 
+#1/0 # Fazer exception hook!
+
 if __name__ == '__main__':
-    
-    # It seens that the line bellow is unused! So I commented it out to remove later
-    #os.environ["PATH"] += ":%s" % os.path.join(os.getcwd(), "gtk", "lib")
-    
     umit_app = App()
     umit_app.run()
