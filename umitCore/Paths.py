@@ -151,6 +151,16 @@ def create_user_dir(main_config, user_home):
         log.warning(">>> No permissions to create user dir!")
         return False
 
+    main_dir = os.path.split(main_config)[0]
+    copy_config_file("options.xml", main_dir, user_dir)
+    copy_config_file("profile_editor.xml", main_dir, user_dir)
+    copy_config_file("recent_scans.txt", main_dir, user_dir)
+    copy_config_file("scan_profile.usp", main_dir, user_dir)
+    copy_config_file("target_list.txt", main_dir, user_dir)
+    copy_config_file("umit_version", main_dir, user_dir)
+    copy_config_file("umit.db", main_dir, user_dir)
+    copy_config_file("wizard.xml", main_dir, user_dir)
+
     return dict(user_dir = user_dir,
                 config_dir = user_dir,
                 config_file = copy_config_file("umit.conf", os.path.split(main_config)[0], user_dir))
