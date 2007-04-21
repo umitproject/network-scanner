@@ -26,7 +26,7 @@ print ">>> Adding the version number to splash screen"
 
 splash = Image.open(os.path.join("utils", "images", "splash.png"))
 font = ImageFont.truetype(os.path.join("utils", "fonts", "FreeSansBold.ttf"), 30)
-umit_version = open("umit_version").readlines()[0]
+umit_version = open(os.path.join("config", "umit_version")).readlines()[0]
 
 edit_splash = ImageDraw.Draw(splash)
 edit_splash.text((450, 165), umit_version, font=font, fill="#000")
