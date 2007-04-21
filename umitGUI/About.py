@@ -206,7 +206,7 @@ Cleber Rodrigues Rosa Junior <cleber.gnu@gmail.com>""")
         
         b = self.design_text.get_buffer()
         b.set_text("""Takeshi Alexandre Gondo <sinistrofumanchu@yahoo.com.br>
-Virgílio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>""")
+Virgilio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>""")
         
         b = self.translation_text.get_buffer()
         b.set_text("""Adriano Monteiro Marques <py.adriano@gmail.com>""")
