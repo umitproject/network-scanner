@@ -32,7 +32,95 @@ Path.set_umit_conf(join(split(__file__)[0], 'config', 'umit.conf'))
 
 from umitGUI.App import App
 
-#1/0 # Fazer exception hook!
+DEVELOPMENT = False
+if not DEVELOPMENT:
+    from tempfile import mktemp
+
+    # Generating temporary files names
+    stdout_output = mktemp()
+    stderr_output = mktemp()
+
+    # Just creating the files that are going to be used to receive the output
+    _stdout_handler = open(stdout_output, "w+")
+    _stderr_handler = open(stderr_output, "w+")
+
+    print ">>> STDOUT FILE:", stdout_output
+    print ">>> STDERR FILE:", stderr_output
+
+    old_stdout = sys.stdout
+    old_stderr = sys.stderr
+    
+    sys.stdout = _stdout_handler
+    sys.stderr = _stderr_handler
+
+    def crash_window(message):
+        import gtk # need to import gtk again to run another mainloop for it
+
+        d = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
+                              buttons=gtk.BUTTONS_CLOSE,
+                              message_format=message)
+        response = d.run()
+        d.destroy()
+        del(d)
+
+
+    # This will catch exceptions and send them to bugzilla
+    def excepthook(type, value, tb):
+        import traceback
+        import webbrowser
+        from umitCore.BugRegister import BugRegister, sf_bug_tracker_page
+
+        traceback.print_tb(tb)
+
+        sys.stdout.close()
+        sys.stderr.close()
+
+        sys.stdout = old_stdout
+        sys.stderr = old_stderr
+
+        hook = "Type: %s\nValue: %s\n" % (type, value)
+        outputs = "CRASH REPORTED:\n\n\
+%s\nSTDOUT\n%s\n\n\
+%s\nSTDERR\n%s\n\nHOOK:\n%s" % \
+                       ("-"*80,
+                        open(stdout_output).read(),
+                        "-"*80,
+                        open(stderr_output).read(),
+                        hook)
+
+        report_result = False
+        try:
+            bug = BugRegister()
+            bug.summary = "Umit Crash - STDOUT and STDERR"
+            bug.details = outputs
+            report_result = bug.report()
+        except:
+            crash_window("""A critical error occourried during Umit execution,
+and it was not properly reported to our bug tracker. Please,
+copy the error message bellow and report it on our bug tracker at
+this address: %s
+
+The following error message was NOT reported:
+%s""" % (sf_bug_tracker_page, outputs))
+        else:
+            crash_window("""A critical error occourried during Umit execution!
+This bug was reported, and soon the project developers will
+be fixing it and releasing an update.
+
+The following error message was reported:
+%s""" % outputs)
+
+
+        # Showing a message on the terminal
+        old_stdout.write("Bug reported!")
+        old_stdout.write("\n")
+
+
+        # Calling a browser to open the result from bug tracker
+        if report_result:
+            webbrowser.open("file://%s" % report_result)
+    
+    sys.excepthook = excepthook
 
 if __name__ == '__main__':
     umit_app = App()
