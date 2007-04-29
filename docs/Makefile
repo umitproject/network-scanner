@@ -28,6 +28,11 @@ html:
 	  /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl \
 	  profile_editor/profile_editor.xml
 
+	# NSE facilitator
+	xsltproc --output nse_facilitator.html \
+	  /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl \
+	  nse_facilitator/nse_facilitator.xml
+
 	# Scanning article
 	xsltproc --output scanning.html \
 	  /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl \
