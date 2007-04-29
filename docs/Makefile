@@ -15,35 +15,30 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#
+# 30 April 2007 -- More generic structure
+#                  Maxim Gavrilov <lovelymax@gmail.com>
 
+VPATH = comparing_results \
+	profile_editor \
+	nse_facilitator \
+	scanning \
+	searching \
+	wizard
 
-html:
-	# Comparing Results article
-	xsltproc --output comparing_results.html \
-	  /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl \
-	  comparing_results/comparing_results.xml
+OUTDIR = .
+XSL = /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl
 
-	# Profile Editor article
-	xsltproc --output profile_editor.html \
-	  /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl \
-	  profile_editor/profile_editor.xml
+OUTPUTS = $(addsuffix .html, $(VPATH))
 
-	# NSE facilitator
-	xsltproc --output nse_facilitator.html \
-	  /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl \
-	  nse_facilitator/nse_facilitator.xml
+%.html : %.xml
+	xsltproc -o $(OUTDIR)/$@ $(XSL) $<
 
-	# Scanning article
-	xsltproc --output scanning.html \
-	  /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl \
-	  scanning/scanning.xml
+all: create-dir $(OUTPUTS)
 
-	# Searching article
-	xsltproc --output searching.html \
-	  /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl \
-	  searching/searching.xml
+create-dir:
+	@mkdir -p $(OUTDIR)
 
-	# Wizard article
-	xsltproc --output wizard.html \
-	  /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl \
-	  wizard/wizard.xml
+clean:
+	@rm -f $(OUTDIR)/*.html
+
