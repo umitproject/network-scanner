@@ -31,7 +31,7 @@ Path.set_umit_conf(join(split(__file__)[0], 'config', 'umit.conf'))
 
 from umitGUI.App import App
 
-DEVELOPMENT = False
+DEVELOPMENT = True
 if not DEVELOPMENT:
     from tempfile import mktemp
 
@@ -107,8 +107,6 @@ The following error message was NOT reported:
                 webbrowser.open("file://%s" % report_result)
     
     sys.excepthook = excepthook
-
-    1/0
 
 if __name__ == '__main__':
     umit_app = App()
