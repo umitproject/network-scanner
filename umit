@@ -31,7 +31,7 @@ Path.set_umit_conf(join(split(__file__)[0], 'config', 'umit.conf'))
 
 from umitGUI.App import App
 
-DEVELOPMENT = True
+DEVELOPMENT = False
 if not DEVELOPMENT:
     from tempfile import mktemp
 
@@ -97,16 +97,18 @@ The following error message was NOT reported:
 %s""") % (outputs))
             d.run()
             d.destroy()
+        else:
+            # Showing a message on the terminal
+            old_stdout.write("Bug reported!")
+            old_stdout.write("\n")
 
-        # Showing a message on the terminal
-        old_stdout.write("Bug reported!")
-        old_stdout.write("\n")
-
-        # Calling a browser to open the result from bug tracker
-        if report_result:
-            webbrowser.open("file://%s" % report_result)
+            # Calling a browser to open the result from bug tracker
+            if report_result:
+                webbrowser.open("file://%s" % report_result)
     
     sys.excepthook = excepthook
+
+    1/0
 
 if __name__ == '__main__':
     umit_app = App()
