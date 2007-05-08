@@ -32,7 +32,7 @@ Path.set_umit_conf(join(split(__file__)[0], 'config', 'umit.conf'))
 
 from umitGUI.App import App
 
-DEVELOPMENT = False
+DEVELOPMENT = True
 if not DEVELOPMENT:
     from tempfile import mktemp
 
