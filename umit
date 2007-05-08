@@ -53,22 +53,15 @@ if not DEVELOPMENT:
     sys.stdout = _stdout_handler
     sys.stderr = _stderr_handler
 
-    def crash_window(message):
-        import gtk # need to import gtk again to run another mainloop for it
-
-        d = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
-                              buttons=gtk.BUTTONS_CLOSE,
-                              message_format=message)
-        response = d.run()
-        d.destroy()
-        del(d)
-
-
     # This will catch exceptions and send them to bugzilla
+
     def excepthook(type, value, tb):
         import traceback
-        import webbrowser
-        from umitCore.BugRegister import BugRegister, sf_bug_tracker_page
+        import gtk
+        
+        from umitCore.I18N import _
+        from higwidgets.higdialogs import HIGAlertDialog
+        from umitGUI.CrashReport import CrashReport
 
         traceback.print_tb(tb)
 
@@ -90,31 +83,25 @@ if not DEVELOPMENT:
 
         report_result = False
         try:
-            bug = BugRegister()
-            bug.summary = "Umit Crash - STDOUT and STDERR"
-            bug.details = outputs
-            report_result = bug.report()
+            old_stdout.write("Bug reported!")
+            c = CrashReport("Umit Crash - STDOUT and STDERR", outputs)
+            c.show_all()
+            gtk.main()
         except:
-            crash_window("""A critical error occourried during Umit execution,
+            d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
+                               message_format=_("Bug not reported"),
+                               secondary_text=_("""A critical error occourried during Umit execution,
 and it was not properly reported to our bug tracker. Please,
-copy the error message bellow and report it on our bug tracker at
-this address: %s
+copy the error message bellow and report it on our bug tracker.
 
 The following error message was NOT reported:
-%s""" % (sf_bug_tracker_page, outputs))
-        else:
-            crash_window("""A critical error occourried during Umit execution!
-This bug was reported, and soon the project developers will
-be fixing it and releasing an update.
-
-The following error message was reported:
-%s""" % outputs)
-
+%s""") % (outputs))
+            d.run()
+            d.destroy()
 
         # Showing a message on the terminal
         old_stdout.write("Bug reported!")
         old_stdout.write("\n")
-
 
         # Calling a browser to open the result from bug tracker
         if report_result:
