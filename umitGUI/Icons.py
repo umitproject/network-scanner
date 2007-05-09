@@ -24,8 +24,14 @@ import sys
 import os.path
 
 from umitCore.Paths import Path
+from umitCore.UmitConf import is_maemo
 from umitCore.Logging import log
 
+######################
+# Platform recognition
+PLATFORM = sys.platform
+if is_maemo():
+    PLATFORM = "maemo"
 
 icons = []
 
@@ -52,9 +58,10 @@ icon_names = (\
     'vl_5')
 
 
+
 pixmap_path = Path.pixmaps_dir
 if pixmap_path:
-    if sys.platform == 'linux2':
+    if PLATFORM == 'linux2':
         # FIXME: This naming scheme should be more consistent
         # All icon or all logo, and not mixed up
         for icon_name in icon_names[0:12]:
@@ -100,7 +107,7 @@ def get_os_icon(os_match):
     return get_os(os_match, 'icon')
 
 def get_os_logo(os_match):
-    if sys.platform != 'linux2':
+    if PLATFORM != 'linux2':
         return get_os(os_match, 'logo')
     return get_os(os_match, 'icon')
 

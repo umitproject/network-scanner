@@ -18,8 +18,12 @@
 
 from umitCore.Logging import log
 
-import locale
-LC_ALL = locale.setlocale(locale.LC_ALL, '')
+LC_ALL = ""
+try:
+    import locale
+    LC_ALL = locale.setlocale(locale.LC_ALL, '')
+except:
+    pass
 
 try:
     import gettext

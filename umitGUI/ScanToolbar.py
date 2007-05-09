@@ -55,7 +55,7 @@ class ScanToolbar(HIGHBox):
         self._create_target()
         self._create_profile()
         
-        self.scan_button = gtk.Button(_("Start Scan"))
+        self.scan_button = gtk.Button(_("Scan"))
 
         self._pack_noexpand_nofill(self.target_label)
         self._pack_expand_fill(self.target_entry)

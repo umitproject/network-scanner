@@ -36,7 +36,7 @@ from umitGUI.Icons import get_os_icon, get_os_logo, get_vulnerability_logo
 
 from umitCore.NmapCommand import NmapCommand
 from umitCore.NmapCommand import CommandConstructor
-from umitCore.UmitConf import CommandProfile, ProfileNotFound
+from umitCore.UmitConf import CommandProfile, ProfileNotFound, is_maemo
 from umitCore.NmapParser import NmapParser
 from umitCore.Paths import Path
 from umitCore.Logging import log
@@ -261,6 +261,12 @@ class ScanNotebook(HIGNotebook):
 class ScanNotebookPage(HIGVBox):
     def __init__(self):
         HIGVBox.__init__(self)
+
+        # The borders are consuming too much space on Maemo. Setting it to
+        # 0 pixels while on Maemo
+        if is_maemo():
+            self.set_border_width(0)
+        
         self.set_spacing(0)
         self.status = PageStatus()
         self.status.set_empty()

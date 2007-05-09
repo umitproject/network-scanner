@@ -18,7 +18,7 @@
 
 from logging import Logger, StreamHandler, Formatter
 
-LOGLEVEL = 0
+LOGLEVEL = 40
 
 class Log(Logger, object):
     def __init__(self, name, level=0):

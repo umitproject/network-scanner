@@ -46,26 +46,48 @@ from umitGUI.BugReport import BugReport
 from umitCore.Paths import Path
 from umitCore.Logging import log
 from umitCore.I18N import _
-from umitCore.UmitConf import SearchConfig
+from umitCore.UmitConf import SearchConfig, is_maemo
 from umitCore.UmitDB import Scans, UmitDB
 
 root = False
 try:
     if sys.platform == 'win32': root = True
+    elif is_maemo(): root = True
     elif os.getuid() == 0: root = True
 except: pass
 
-class MainWindow(HIGMainWindow):
+
+UmitMainWindow = None
+hildon = None
+
+if is_maemo():
+    import hildon
+    class UmitMainWindow(hildon.Window):
+        def __init__(self):
+            hildon.Window.__init__(self)
+            self.set_resizable(False)
+            self.set_border_width(0)
+            self.vbox = gtk.VBox()
+            self.vbox.set_border_width(0)
+            self.vbox.set_spacing(0)
+
+else:
+    class UmitMainWindow(HIGMainWindow):
+        def __init__(self):
+            HIGMainWindow.__init__(self)
+            self.vbox = gtk.VBox()
+
+
+class MainWindow(UmitMainWindow):
     def __init__(self):
-        HIGMainWindow.__init__(self)
-        self.set_title(_(":: Umit ; the nmap frontend ::"))
+        UmitMainWindow.__init__(self)
+        self.set_title(_("Umit"))
 
         self._icontheme = gtk.IconTheme()
         self.main_accel_group = gtk.AccelGroup()
         
         self.add_accel_group(self.main_accel_group)
         
-        self.vbox = gtk.VBox()
         self.add(self.vbox)
         
         self.connect ('delete-event', self._exit_cb)
@@ -117,7 +139,7 @@ class MainWindow(HIGMainWindow):
         
         self.main_actions = [ \
             # Top level
-            ('File', None, _('_File'), None), 
+            ('Scan', None, _('Sc_an'), None), 
             
             ('Wizard',
                 gtk.STOCK_CONVERT,
@@ -242,7 +264,7 @@ class MainWindow(HIGMainWindow):
         
         # This is the default, minimal UI
         self.default_ui = """<menubar>
-        <menu action='File'>
+        <menu action='Scan'>
             <menuitem action='New Scan'/>
             <menuitem action='Close Scan'/>
             <menuitem action='Wizard'/>
@@ -497,19 +519,45 @@ Scan Tab?'),
     
     def _create_menubar(self):
         # Get and pack the menubar
-        self.menubar = self.ui_manager.get_widget('/menubar')
+        menubar = self.ui_manager.get_widget('/menubar')
+        
+        if is_maemo():
+            menu = gtk.Menu()
+            for child in menubar.get_children():
+                child.reparent(menu)
+            self.set_menu(menu)
+            menubar.destroy()
+            self.menubar = menu
+        else:
+            self.menubar = menubar
+            self.vbox.pack_start(self.menubar, False, False, 0)
+
         self.menubar.show_all()
-        self.vbox.pack_start(self.menubar, False, False, 0)
 
     def _create_toolbar(self):
-        self.toolbar = self.ui_manager.get_widget('/toolbar')
+        toolbar = self.ui_manager.get_widget('/toolbar')
+        
+        if is_maemo():
+            tb = gtk.Toolbar()
+            for child in toolbar.get_children():
+                child.reparent(tb)
+            self.add_toolbar(tb)
+            self.toolbar = tb
+            toolbar.destroy()
+        else:
+            self.toolbar = toolbar
+            self.vbox.pack_start(self.toolbar, False, False, 0)
+
         self.toolbar.show_all()
-        self.vbox.pack_start(self.toolbar, False, False, 0)
 
     def _create_scan_notebook(self):
         self.scan_notebook = ScanNotebook()
         self.scan_notebook.show_all()
-        self.vbox.pack_start(self.scan_notebook, True, True, 4)
+        if is_maemo():
+            # No padding. We need space!
+            self.vbox.pack_start(self.scan_notebook, True, True, 0)
+        else:
+            self.vbox.pack_start(self.scan_notebook, True, True, 4)
 
     def _create_statusbar(self):
         self.statusbar = gtk.Statusbar()
@@ -798,7 +846,7 @@ Wait until the scan is finished and then try to save it again.'))
     def _alert_with_action_name_cb(self, p):
         d = HIGAlertDialog(parent=self,
                            message_format=p.get_name(),
-                           secondary_text="The text above is this action's name")
+                           secondary_text=_("The text above is this action's name"))
         d.run()
         d.destroy()
 
@@ -849,7 +897,7 @@ Some nmap options need root privileges to work.''')
         
         HIGAlertDialog.__init__(self, message_format=_('Non root user'),
                                 secondary_text=warning_text)
-        
+
         self.run()
         self.destroy()
 

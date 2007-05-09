@@ -21,15 +21,29 @@ import gtk
 from umitGUI.SearchGUI import SearchGUI
 
 from umitCore.I18N import _
+from umitCore.UmitConf import is_maemo
 
 from higwidgets.higboxes import HIGVBox
 from higwidgets.higbuttons import HIGButton
 
-class SearchWindow(gtk.Window, object):
+BaseSearchWindow = None
+hildon = None
+
+if is_maemo():
+    import hildon
+    class BaseSearchWindow(hildon.Window):
+        def __init__(self):
+            hildon.Window.__init__(self)
+else:
+    class BaseSearchWindow(gtk.Window):
+        def __init__(self):
+            gtk.Window.__init__(self)
+            self.set_title(_("Search Window"))
+            self.set_position(gtk.WIN_POS_CENTER)
+
+class SearchWindow(BaseSearchWindow, object):
     def __init__(self, load_method):
-        gtk.Window.__init__(self)
-        self.set_title(_("Search Window"))
-        self.set_position(gtk.WIN_POS_CENTER)
+        BaseSearchWindow.__init__(self)
 
         self.load_method = load_method
 

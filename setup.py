@@ -42,18 +42,26 @@ if os.name == 'nt':
         from py2exe.build_exe import py2exe as build_exe
     except ImportError:
         pass
+
+PLATFORM = None
+try:
+    import hildon
+    PLATFORM = "maemo"
+except:
+    PLATFORM = sys.platform
         
 
 ##################################################################################
 # Main Variables
 
 # Directories
-pixmaps_dir = os.path.join('share', 'umit', 'pixmaps')
-icons_dir = os.path.join('share', 'umit', 'icons')
+pixmaps_dir = os.path.join('share', 'pixmaps')
+icons_dir = os.path.join('share', 'icons')
 locale_dir = os.path.join('share', 'umit', 'locale')
 config_dir = os.path.join('share', 'umit', 'config')
 docs_dir = os.path.join('share', 'umit', 'docs')
 misc_dir = os.path.join('share', 'umit', 'misc')
+maemo_dir = os.path.join("maemo")
 
 dist_config_dir = os.path.join('dist', config_dir)
 dist_umit_conf = os.path.join(dist_config_dir, "umit.conf")
@@ -119,7 +127,7 @@ def mo_find(result, dirname, fnames):
 
 # SVG files are used only in Linux, so there is no need to copy them in othe platforms
 svg = []
-if sys.platform == 'linux2':
+if PLATFORM == 'linux2':
     svg = glob(os.path.join('share', 'pixmaps', '*.svg'))
 
 
@@ -132,7 +140,8 @@ data_files = [ (pixmaps_dir, svg + glob(os.path.join('share', 'pixmaps', '*.png'
                                      glob(os.path.join('config', '*.xml'))+
                                      glob(os.path.join('config', '*.txt'))),
                (misc_dir, glob(os.path.join('misc', '*.dmp'))), 
-               (icons_dir, glob(os.path.join('share', 'icons', '*.ico'))),
+               (icons_dir, glob(os.path.join('share', 'icons', '*.ico'))+
+                           glob(os.path.join('share', 'icons', '*.png'))),
                (docs_dir, glob(os.path.join('docs', '*.html'))+
                           glob(os.path.join('docs', 'comparing_results', '*.xml'))+
                           glob(os.path.join('docs', 'profile_editor', '*.xml'))+
@@ -140,6 +149,12 @@ data_files = [ (pixmaps_dir, svg + glob(os.path.join('share', 'pixmaps', '*.png'
                           glob(os.path.join('docs', 'searching', '*.xml'))+
                           glob(os.path.join('docs', 'wizard', '*.xml'))+
                           glob(os.path.join('docs', 'screenshots', '*.png')))]
+
+# Installing maemo specific desktop entries
+if PLATFORM == "maemo":
+    data_files += [("share/pixmaps", [os.path.join("share", "icons", "umit_26.png")]),
+                   ("share/applications/hildon", [os.path.join(maemo_dir, "umit.desktop")]),
+                   ("share/dbus-1/services", [os.path.join(maemo_dir, "umit.service")])]
 
 # Add i18n files to data_files list
 os.path.walk(locale_dir, mo_find, data_files)

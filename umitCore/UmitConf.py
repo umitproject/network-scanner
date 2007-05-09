@@ -36,6 +36,18 @@ scan_profile = Path.scan_profile
 def umit_version():
     return open(Path.umit_version).read()
 
+
+# Check if running on Maemo
+MAEMO = False
+try:
+    import hildon
+    MAEMO = True
+except ImportError:
+    pass
+
+def is_maemo():
+    return MAEMO
+
 class UmitConf(UmitConfigParser, object):
     def __init__(self, *args):
         UmitConfigParser.__init__(self, *args)
