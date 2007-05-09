@@ -36,8 +36,9 @@ option_xml = Path.options
 shell_state = (sys.platform == "win32")
 
 nmap_command_path = "nmap"
-if sys.platform == "win32":
-   nmap_command_path = os.path.join(os.path.split(os.path.abspath(sys.executable))[0], "Nmap", "nmap.exe")
+# Don't need the line below anymore
+#if sys.platform == "win32":
+#   nmap_command_path = os.path.join(os.path.split(os.path.abspath(sys.executable))[0], "Nmap", "nmap.exe")
 
 log.debug(">>> Platform: %s" % sys.platform)
 log.debug(">>> Nmap command path: %s" % nmap_command_path)
