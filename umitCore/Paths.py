@@ -60,6 +60,7 @@ class Paths(object):
     
     other_settings = ["nmap_command_path"]
 
+    config_file_set = False
     
     def set_umit_conf(self, umit_conf):
         self.using_main = False
@@ -72,7 +73,7 @@ class Paths(object):
                and check_access(supposed_user_conf, os.R_OK):
             self.config_parser.read(config_file)
             log.debug(">>> Using config files in user home directory: %s" % config_file)
-            
+
         elif not os.path.exists(supposed_user_conf)\
                  and not check_access(base_paths['user_dir'], os.R_OK and os.W_OK):
             result = create_user_dir(umit_conf, HOME)
@@ -80,7 +81,7 @@ class Paths(object):
             self.config_parser.read(config_file)
             [self.__setattr__(opt, result[opt]) for opt in result]
             log.debug(">>> Using recently created config files in user home: %s" % config_file)
-            
+
         else:
             self.using_main = True
             config_file = umit_conf
@@ -89,6 +90,7 @@ class Paths(object):
 
         # Should make the following only after reading the umit.conf file
         self.config_file = config_file
+        self.config_file_set = True
 
         log.debug(">>> Config file: %s" % config_file)
 
@@ -106,22 +108,25 @@ class Paths(object):
 
 
     def __getattr__(self, name):
-        if name in self.directories_list or name in self.other_settings:
-            return return_if_exists(self.config_parser.get(self.paths_section, name))
-        elif name in self.config_files_list:
-            return return_if_exists(os.path.join(self.config_parser.get(self.paths_section, "config_dir"),
-                                                 base_paths[name]))
-        elif name in self.share_files_list:
-            return return_if_exists(os.path.join(self.config_parser.get(self.paths_section, "pixmaps_dir"),
-                                                 base_paths[name]))
-        elif name in self.misc_files_list:
-            return return_if_exists(os.path.join(self.config_parser.get(self.paths_section, "misc_dir"),
-                                                 base_paths[name]))
+        if self.config_file_set:
+            if name in self.directories_list or name in self.other_settings:
+                return return_if_exists(self.config_parser.get(self.paths_section, name))
+            elif name in self.config_files_list:
+                return return_if_exists(os.path.join(self.config_parser.get(self.paths_section, "config_dir"),
+                                                     base_paths[name]))
+            elif name in self.share_files_list:
+                return return_if_exists(os.path.join(self.config_parser.get(self.paths_section, "pixmaps_dir"),
+                                                     base_paths[name]))
+            elif name in self.misc_files_list:
+                return return_if_exists(os.path.join(self.config_parser.get(self.paths_section, "misc_dir"),
+                                                     base_paths[name]))
         
-        try:
-            return self.__dict__[name]
-        except:
-            raise NameError(name)
+            try:
+                return self.__dict__[name]
+            except:
+                raise NameError(name)
+        else:
+            raise Exception("Must set config file location first")
 
     def __setattr__(self, name, value):
         if name in self.directories_list or name in self.other_settings:    

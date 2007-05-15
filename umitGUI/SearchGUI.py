@@ -222,9 +222,10 @@ latter search"))
 
         ## Search Notebook
         self.search_vbox._pack_expand_fill(self.search_notebook)
-        self.search_vbox._pack_noexpand_nofill(self.search_button)
-        
-        self.search_notebook.set_border_width(12)
+        self.search_vbox._pack_expand_fill(self.search_button)
+
+        self.search_notebook.set_border_width(1)
+        self.search_vbox.set_border_width(12)
         
         # General page
         self.general_vbox.set_border_width(12)

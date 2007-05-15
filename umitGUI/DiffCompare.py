@@ -16,6 +16,15 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
+#########################################################################
+# Work arround warning!
+# Must remove this before commiting! (I know I'll forget this though...)
+#import os.path
+#from umitCore.Paths import Path
+#Path.set_umit_conf(os.path.join("config", "umit.conf"))
+#########################################################################
+
+
 import gtk
 import pango
 import os
@@ -225,10 +234,17 @@ class DiffWindow(gtk.Window):
         # Initial Size Request
         self.initial_size = self.size_request()
 
+    def _alert_help_not_implemented(self, action):
+        d = HIGAlertDialog(parent=self,
+                           message_format=_("Help not implemented"),
+                           secondary_text=_("Umit help is not implemented yet."))
+        d.run()
+        d.destroy()
+
 
     def _create_widgets(self):
         self.main_vbox = HIGVBox()
-        self.hbox_mode = gtk.HBox()
+        self.hbox_mode = HIGHBox()
         self.hbox_settings = HIGHBox()
         self.hbox_buttons = HIGHBox()
         self.hbox_result = HIGHBox()
@@ -247,11 +263,13 @@ class DiffWindow(gtk.Window):
         self.scan_buffer2 = self.scan_chooser2.get_buffer()
 
     def _pack_widgets(self):
+        self.main_vbox.set_border_width(6)
+        
         self.vpaned.pack1(self.hpaned, True, False)
         self.vpaned.pack2(self.hbox_result)
         self.hpaned.pack1(self.scan_chooser1, True, False)
         self.hpaned.pack2(self.scan_chooser2, True, False)
-        
+
         self.hbox_buttons._pack_expand_fill(self.btn_help)
         self.hbox_buttons._pack_expand_fill(self.btn_legend)
         self.hbox_buttons._pack_expand_fill(self.btn_open_browser)
@@ -273,6 +291,7 @@ class DiffWindow(gtk.Window):
     def _connect_widgets(self):
         self.connect("delete-event", self.close)
         self.btn_legend.connect("clicked", self.show_legend_window)
+        self.btn_help.connect("clicked", self._alert_help_not_implemented)
         self.btn_close.connect("clicked", self.close)
         self.btn_open_browser.connect("clicked", self.open_browser)
         self.check_color.connect("toggled", self._set_color)
@@ -1050,10 +1069,10 @@ def diff_state(prop1, prop2):
 if __name__ == "__main__":
     from umitCore.NmapParser import NmapParser
 
-    parsed1 = NmapParser("test/diff1.usr")
-    parsed2 = NmapParser("test/diff2.usr")
-    parsed3 = NmapParser("test/diff3.usr")
-    parsed4 = NmapParser("test/diff4.usr")
+    parsed1 = NmapParser("test/xml_test1.xml")
+    parsed2 = NmapParser("test/xml_test2.xml")
+    parsed3 = NmapParser("test/xml_test3.xml")
+    parsed4 = NmapParser("test/xml_test4.xml")
 
     parsed1.parse()
     parsed2.parse()

@@ -34,12 +34,18 @@ if is_maemo():
     class BaseSearchWindow(hildon.Window):
         def __init__(self):
             hildon.Window.__init__(self)
+
+        def _pack_widgets(self):
+            pass
 else:
     class BaseSearchWindow(gtk.Window):
         def __init__(self):
             gtk.Window.__init__(self)
             self.set_title(_("Search Window"))
             self.set_position(gtk.WIN_POS_CENTER)
+
+        def _pack_widgets(self):
+            self.vbox.set_border_width(6)
 
 class SearchWindow(BaseSearchWindow, object):
     def __init__(self, load_method):
@@ -59,6 +65,7 @@ class SearchWindow(BaseSearchWindow, object):
         self.search_gui = SearchGUI()
 
     def _pack_widgets(self):
+        BaseSearchWindow._pack_widgets(self)        
         self.vbox.pack_start(self.search_gui)
         self.vbox.pack_start(self.btn_box)
 
@@ -94,6 +101,6 @@ class SearchWindow(BaseSearchWindow, object):
 
 
 if __name__ == "__main__":
-    search = SearchWindow()
+    search = SearchWindow(lambda x: gtk.main_quit())
     search.show_all()
     gtk.main()
