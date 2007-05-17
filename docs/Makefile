@@ -18,13 +18,15 @@
 #
 # 30 April 2007 -- More generic structure
 #                  Maxim Gavrilov <lovelymax@gmail.com>
+# 16 May 2007 -- Removing specific files at clean to avoid removing help.html
+#                Adriano Monteiro Marques <py.adriano@gmail.com>
 
 VPATH = comparing_results \
 	profile_editor \
 	nse_facilitator \
 	scanning \
 	searching \
-	wizard
+	wizard 
 
 OUTDIR = .
 XSL = /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl
@@ -40,5 +42,11 @@ create-dir:
 	@mkdir -p $(OUTDIR)
 
 clean:
-	@rm -f $(OUTDIR)/*.html
+	@rm -f $(OUTDIR)/comparing_results.html
+	@rm -f $(OUTDIR)/profile_editor.html
+	@rm -f $(OUTDIR)/nse_facilitator.html
+	@rm -f $(OUTDIR)/scanning.html
+	@rm -f $(OUTDIR)/searching.html
+	@rm -f $(OUTDIR)/wizard.html
+
 

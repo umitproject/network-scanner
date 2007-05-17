@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (C) 2005 Insecure.Com LLC.
 #
 # Author: Adriano Monteiro Marques   <py.adriano@gmail.com>
@@ -143,21 +144,18 @@ class Credits(HIGWindow):
         
         self.design_scroll = HIGScrolledWindow()
         self.design_text = HIGTextView()
+
+        self.soc2007_scroll = HIGScrolledWindow()
+        self.soc2007_text = HIGTextView()
+
+        self.contributors_scroll = HIGScrolledWindow()
+        self.contributors_text = HIGTextView()
         
         self.translation_scroll = HIGScrolledWindow()
         self.translation_text = HIGTextView()
-        
-        self.sponsor_scroll = HIGScrolledWindow()
-        self.sponsor_text = HIGTextView()
-        
-        self.support_scroll = HIGScrolledWindow()
-        self.support_text = HIGTextView()
 
         self.nokia_scroll = HIGScrolledWindow()
         self.nokia_text = HIGTextView()
-
-        self.testers_scroll = HIGScrolledWindow()
-        self.testers_text = HIGTextView()
 
     def __packing(self):
         self.add(self.vbox)
@@ -169,63 +167,95 @@ class Credits(HIGWindow):
         self.hbox._pack_noexpand_nofill(self.btn_close)
         
         self.notebook.append_page(self.written_by_scroll, gtk.Label(_("Written by")))
-        self.notebook.append_page(self.design_scroll, gtk.Label(_("Logo and Icons")))
+        self.notebook.append_page(self.design_scroll, gtk.Label(_("Design")))
+        self.notebook.append_page(self.soc2007_scroll, gtk.Label(_("SoC 2007")))
+        self.notebook.append_page(self.contributors_scroll, gtk.Label(_("Contributors")))
         self.notebook.append_page(self.translation_scroll, gtk.Label(_("Translation")))
-        self.notebook.append_page(self.sponsor_scroll, gtk.Label(_("Sponsor")))
-        self.notebook.append_page(self.support_scroll, gtk.Label(_("Supporters")))
-        self.notebook.append_page(self.nokia_scroll, gtk.Label(_("Nokia 770")))
-        self.notebook.append_page(self.testers_scroll, gtk.Label(_("Testers")))
+        self.notebook.append_page(self.nokia_scroll, gtk.Label(_("Maemo")))
         
         self.written_by_scroll.add(self.written_by_text)
         self.written_by_text.set_wrap_mode(gtk.WRAP_NONE)
         
         self.design_scroll.add(self.design_text)
         self.design_text.set_wrap_mode(gtk.WRAP_NONE)
+
+        self.soc2007_scroll.add(self.soc2007_text)
+        self.soc2007_text.set_wrap_mode(gtk.WRAP_NONE)
+
+        self.contributors_scroll.add(self.contributors_text)
+        self.contributors_text.set_wrap_mode(gtk.WRAP_NONE)
         
         self.translation_scroll.add(self.translation_text)
         self.translation_text.set_wrap_mode(gtk.WRAP_NONE)
         
-        self.sponsor_scroll.add(self.sponsor_text)
-        self.sponsor_text.set_wrap_mode(gtk.WRAP_NONE)
-        
-        self.support_scroll.add(self.support_text)
-        self.support_text.set_wrap_mode(gtk.WRAP_NONE)
-        
         self.nokia_scroll.add(self.nokia_text)
         self.nokia_text.set_wrap_mode(gtk.WRAP_NONE)
 
-        self.testers_scroll.add(self.testers_text)
-        self.testers_text.set_wrap_mode(gtk.WRAP_NONE)
-        
         self.btn_close.connect('clicked', lambda x,y=None:self.destroy())
     
     def set_text(self):
         b = self.written_by_text.get_buffer()
-        b.set_text("""Adriano Monteiro Marques <py.adriano@gmail.com>
-Cleber Rodrigues Rosa Junior <cleber.gnu@gmail.com>""")
-        
-        b = self.design_text.get_buffer()
-        b.set_text("""Takeshi Alexandre Gondo <sinistrofumanchu@yahoo.com.br>
-Virgilio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>""")
-        
-        b = self.translation_text.get_buffer()
         b.set_text("""Adriano Monteiro Marques <py.adriano@gmail.com>""")
         
-        b = self.sponsor_text.get_buffer()
-        b.set_text("""Google <code.summer@gmail.com>""")
-        
-        b = self.support_text.get_buffer()
-        b.set_text("""Fyodor <fyodor@insecure.org>\n"""+\
-_("State University of Goias - Brazil")+" <http://www.ueg.br>" )
+        b = self.design_text.get_buffer()
+        b.set_text("""Operating System and Vulnerability Icons:
+Takeshi Alexandre Gondo <sinistrofumanchu@yahoo.com.br>
 
-        b = self.nokia_text.get_buffer()
-        b.set_text("""Adriano Monteiro Marques <py.adriano@gmail.com>
-Osvaldo Santana Neto <osantana@gmail.com>""")
+Logo, Application Icons and Splash screen:
+Virgílio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>""")
 
-        b = self.testers_text.get_buffer()
-        b.set_text("""Drew Miller <securitygeek@fribble.org>
+        b = self.soc2007_text.get_buffer()
+        b.set_text("""Independent Features:
+Adriano Monteiro Marques <py.adriano@gmail.com>
+Frederico Silva Ribeiro <fredegart@gmail.com>
+
+Network Inventory:
+Guilherme Henrique Polo Gonçalves <ggpolo@gmail.com>
+
+Umit Radial Mapper:
+João Paulo de Souza Medeiros <ignotus21@gmail.com>
+
+Profile/Wizard interface editor:
+Luis Antonio Bastião Silva <luis.kop@gmail.com>
+
+NSE Facilitator:
+Maxim I. Gavrilov <lovelymax@gmail.com>
+
+Nmap Python Wrapper:
+Pavel Klemenkov <parser@cs.msu.su>
+
+Umit Web:
+Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>
+
+Summer of Code's projects Design:
+Virgílio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>""")
+
+        b = self.contributors_text.get_buffer()
+        b.set_text("""Sponsored by (SoC 2005, 2006 and 2007):
+Google <code.summer@gmail.com>
+
+Mentor of SoC 2005 and 2006:
+Fyodor <fyodor@insecure.org>
+
+Initial development:
+Adriano Monteiro Marques <py.adriano@gmail.com>
+Cleber Rodrigues Rosa Junior <cleber.gnu@gmail.com>
+
+Beta testers:
+Drew Miller <securitygeek@fribble.org>
 Regis Kuramoto Dias <kuramotobm@gmail.com>
-Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>""")
+Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>
+
+Initial attempt on Maemo port:
+Adriano Monteiro Marques <py.adriano@gmail.com>
+Osvaldo Santana Neto <osantana@gmail.com>""")
+        
+        b = self.translation_text.get_buffer()
+        b.set_text("""Brazilian Portuguese:
+Adriano Monteiro Marques <py.adriano@gmail.com>""")
+        
+        b = self.nokia_text.get_buffer()
+        b.set_text("""Adriano Monteiro Marques <py.adriano@gmail.com>""")
 
 
 if __name__ == '__main__':

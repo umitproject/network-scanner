@@ -37,7 +37,8 @@ class Paths(object):
     directories_list = ["locale_dir",
                         "pixmaps_dir",
                         "config_dir",
-                        "misc_dir"]
+                        "misc_dir",
+                        "docs_dir"]
     
     config_files_list = ["config_file",
                          "target_list",
@@ -186,7 +187,7 @@ def check_access(path, permission):
 
 def return_if_exists(path):
     if os.path.exists(path):
-        return path
+        return os.path.abspath(path)
     raise Exception("File '%s' does not exist or could not be found!" % path)
 
 #########

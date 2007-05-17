@@ -16,15 +16,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-#########################################################################
-# Work arround warning!
-# Must remove this before commiting! (I know I'll forget this though...)
-#import os.path
-#from umitCore.Paths import Path
-#Path.set_umit_conf(os.path.join("config", "umit.conf"))
-#########################################################################
-
-
 import gtk
 import pango
 import os
@@ -234,13 +225,8 @@ class DiffWindow(gtk.Window):
         # Initial Size Request
         self.initial_size = self.size_request()
 
-    def _alert_help_not_implemented(self, action):
-        d = HIGAlertDialog(parent=self,
-                           message_format=_("Help not implemented"),
-                           secondary_text=_("Umit help is not implemented yet."))
-        d.run()
-        d.destroy()
-
+    def _show_help(self, action):
+        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "help.html"), new=2)
 
     def _create_widgets(self):
         self.main_vbox = HIGVBox()
@@ -291,7 +277,7 @@ class DiffWindow(gtk.Window):
     def _connect_widgets(self):
         self.connect("delete-event", self.close)
         self.btn_legend.connect("clicked", self.show_legend_window)
-        self.btn_help.connect("clicked", self._alert_help_not_implemented)
+        self.btn_help.connect("clicked", self._show_help)
         self.btn_close.connect("clicked", self.close)
         self.btn_open_browser.connect("clicked", self.open_browser)
         self.check_color.connect("toggled", self._set_color)

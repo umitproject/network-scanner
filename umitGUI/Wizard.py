@@ -99,7 +99,7 @@ class Wizard(HIGWindow):
     def __create_steps(self, step_name, back_step, next_step, step_description, content):
         step = CommandPage(step_description, content, self)
         step.bar.cancel.connect('clicked', self.close_wizard)
-        step.bar.help.connect('clicked', self.show_help)
+        step.bar.help.connect('clicked', self._show_help)
         step.bar.back.connect('clicked', self.switch_page, step_name, back_step)
         step.bar.forward.connect('clicked', self.switch_page, step_name, next_step)
         
@@ -170,7 +170,7 @@ class Wizard(HIGWindow):
     def start_page(self):
         start = StartPage()
         start.bar.cancel.connect('clicked', self.close_wizard)
-        start.bar.help.connect('clicked', self.show_help)
+        start.bar.help.connect('clicked', self._show_help)
         start.bar.forward.connect('clicked', self.start_forward)
         
         return start
@@ -189,17 +189,14 @@ class Wizard(HIGWindow):
             
             self.close_wizard()
     
-    def show_help(self, widget=None):
-        d = HIGAlertDialog(parent=self,
-                           message_format=_("Help not implemented"),
-                           secondary_text=_("Umit help is not implemented yet."))
-        d.run()
-        d.destroy()
+    def _show_help(self, widget=None):
+        import webbrowser
+        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "help.html"), new=2)
     
     def choose_page(self):
         choose = ChoosePage()
         choose.bar.cancel.connect('clicked', self.close_wizard)
-        choose.bar.help.connect('clicked', self.show_help)
+        choose.bar.help.connect('clicked', self._show_help)
         choose.bar.back.connect('clicked', self.switch_page, 'Choose', 'Start')
         choose.bar.forward.connect('clicked', self.choose_forward)
         
@@ -241,7 +238,7 @@ to be scanned.'))
     def profile_page(self):
         profile = ProfilePage()
         profile.bar.cancel.connect('clicked', self.close_wizard)
-        profile.bar.help.connect('clicked', self.show_help)
+        profile.bar.help.connect('clicked', self._show_help)
         profile.bar.back.connect('clicked', self.switch_page,'Profile','Choose')
         profile.bar.forward.connect('clicked', self.profile_forward)
         
@@ -274,7 +271,7 @@ for this profile.'))
     def finish_page(self):
         finish = FinishPage()
         finish.bar.cancel.connect('clicked', self.close_wizard)
-        finish.bar.help.connect('clicked', self.show_help)
+        finish.bar.help.connect('clicked', self._show_help)
         finish.bar.back.connect('clicked', self.finish_back, finish, self.options.groups[-1])
         finish.bar.apply.connect('clicked', self.save_profile)
         

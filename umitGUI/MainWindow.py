@@ -163,7 +163,7 @@ class MainWindow(UmitMainWindow):
                 self._load_scan_results_cb),
                     
             
-            ('Scan', None, _('_Scan'), None), 
+            ('Tools', None, _('_Tools'), None), 
             
             ('New Scan',
                 gtk.STOCK_NEW,
@@ -250,7 +250,7 @@ class MainWindow(UmitMainWindow):
                 _('_Help'),
                 None,
                 _('Shows the application help'),
-                self._alert_help_not_implemented),
+                self._show_help),
             ]
         
         # See info on UIManager at:
@@ -267,16 +267,17 @@ class MainWindow(UmitMainWindow):
         <menu action='Scan'>
             <menuitem action='New Scan'/>
             <menuitem action='Close Scan'/>
-            <menuitem action='Wizard'/>
             <menuitem action='Save Scan'/>
             <menuitem action='Open Scan'/>
-            <separator />
-            <menuitem action='Search Scan'/>
-            <menuitem action='Compare Results'/>
-            <separator />
-            %s
+             %s
             <menuitem action='Quit'/>
         </menu>
+
+        <menu action='Tools'>
+            <menuitem action='Wizard'/>
+            <menuitem action='Compare Results'/>
+            <menuitem action='Search Scan'/>
+         </menu>
         
         <menu action='Profile'>
             <menuitem action='New Profile'/>
@@ -297,13 +298,6 @@ class MainWindow(UmitMainWindow):
             <toolitem action='Wizard'/>
             <toolitem action='Save Scan'/>
             <toolitem action='Open Scan'/>
-            <separator/>
-            <toolitem action='Search Scan'/>
-            <toolitem action='Compare Results'/>
-            <separator/>
-            <toolitem action='New Profile'/>
-            <toolitem action='New Profile with Selected'/>
-            <toolitem action='Edit Profile'/>
             <separator/>
             <toolitem action='Report a bug'/>
             <toolitem action='Show Help'/>
@@ -453,7 +447,7 @@ running at the background.\nWhat do you want to do?'))
                 page.kill_scan()
             elif response == gtk.RESPONSE_CANCEL:
                 return False
-        else:
+        elif not page.status.empty:
             alert = HIGAlertDialog(message_format=_('Closing current Scan Tab'),
                                    secondary_text=_('Are you sure you want to close current \
 Scan Tab?'),
@@ -850,13 +844,10 @@ Wait until the scan is finished and then try to save it again.'))
         d.run()
         d.destroy()
 
-    def _alert_help_not_implemented(self, action):
-        d = HIGAlertDialog(parent=self,
-                           message_format=_("Help not implemented"),
-                           secondary_text=_("Umit help is not implemented yet."))
-        d.run()
-        d.destroy()
-    
+    def _show_help(self, action):
+        import webbrowser
+        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "help.html"), new=2)
+
     def _exit_cb (self, widget=None, extra=None):
         for page in [self.scan_notebook.get_nth_page(n)\
                      for n in xrange(self.scan_notebook.get_n_pages(), 0, -1)]:

@@ -15,6 +15,15 @@
   </artheader>
 
   <section>
+    <title>Warning</title>
+    <para>
+      This documentation is not finished! Part or all of it's content may be missing 
+      or inaccurate. As Umit is under constant development and improvement, expect
+      changes in this documentation at upcoming releases.
+    </para>
+  </section>
+
+  <section>
     <title>Introduction</title>
 
     <para><application>Umit</application> was designed to accomodate and run more than one
