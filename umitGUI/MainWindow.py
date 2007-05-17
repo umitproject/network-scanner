@@ -312,23 +312,6 @@ class MainWindow(UmitMainWindow):
             action.set_accel_group(self.main_accel_group)
             action.connect_accelerator()
         
-        view_action_group = (
-            # Top Level
-            ('View', None, _('_View'), None),
-            
-            ('View Scan Summary',
-                None,
-                _('View Scan _Summary'),
-                None,
-                _('Shows the results summary of the current scan'),
-                self._alert_with_action_name_cb),
-            )
-        
-        self.view_ui = """
-        <menu action='View'>
-            <menuitem action='View Scan Summary'/>
-        </menu>"""
-        
         self.ui_manager.insert_action_group(self.main_action_group, 0)
         self.ui_manager.add_ui_from_string(self.default_ui)
 

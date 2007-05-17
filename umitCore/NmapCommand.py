@@ -23,7 +23,7 @@ import threading
 
 from tempfile import mktemp
 from types import StringTypes
-from subprocess import Popen, PIPE, TerminateProcess
+from subprocess import Popen, PIPE
 
 from umitCore.NmapOptions import NmapOptions
 from umitCore.Paths import Path
@@ -155,6 +155,7 @@ class NmapCommand(object):
 		# subprocess's method to see how it works.
 		# In the meantime, this should not raise any exception because
 		# we don't care if it killed the process as it never killed it anyway.
+                from subprocess import TerminateProcess
 		TerminateProcess(self.command_process._handle, 0)
 	    except:
 		pass
