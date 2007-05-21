@@ -36,7 +36,6 @@ CREATE TABLE scan (
     debugging         INTEGER
 );
 
-
 CREATE TABLE scaninfo (
     pk           INTEGER NOT NULL PRIMARY KEY,   
     numservices  INTEGER,
@@ -48,7 +47,6 @@ CREATE TABLE scaninfo (
     fk_protocol  INTEGER NOT NULL CONSTRAINT fk_protocol
                     REFERENCES protocol(pk)
 );
-
 
 CREATE TABLE _scan_scaninfo (
     fk_scan      INTEGER NOT NULL CONSTRAINT fk_scan
@@ -139,6 +137,7 @@ CREATE TABLE _host_port (
 CREATE TABLE port (
     pk             INTEGER NOT NULL PRIMARY KEY,
     portid         INTEGER,
+    version        TEXT,
     conf           INTEGER,
     method         INTEGER,
     fk_service     INTEGER NOT NULL CONSTRAINT fk_service

@@ -3,8 +3,7 @@ import sys
 from umitCore.NmapParser import NmapParser
 
 def print_parsed(npsax):
-    print npsax.nmap["scaninfo"]
-    return
+    #print npsax.nmap["scaninfo"]
 
     print "SCAN"
     print "Args:", npsax.nmap["nmaprun"]["args"]
