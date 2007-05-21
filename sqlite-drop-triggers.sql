@@ -21,9 +21,11 @@
 -------------------
 -- Drop Triggers
 -------------------
-DROP TRIGGER scan_insert_bad_scanner;
-DROP TRIGGER scan_insert_bad_scan_type;
-DROP TRIGGER scan_insert_bad_protocol;
+DROP TRIGGER scaninfo_insert_bad_scanner;
+DROP TRIGGER scaninfo_insert_bad_scan_type;
+DROP TRIGGER scaninfo_insert_bad_protocol;
+DROP TRIGGER _scan_scaninfo_insert_bad_scan;
+DROP TRIGGER _scan_scaninfo_insert_bad_scaninfo;
 DROP TRIGGER _scan_host_insert_bad_scan;
 DROP TRIGGER _scan_host_insert_bad_host;
 DROP TRIGGER host_insert_bad_host_state;
@@ -41,9 +43,12 @@ DROP TRIGGER extraports_insert_bad_port_state;
 DROP TRIGGER _inventory_scan_insert_bad_scan;
 DROP TRIGGER _inventory_scan_insert_bad_inventory;
 
-DROP TRIGGER scan_update_bad_scanner;
-DROP TRIGGER scan_update_bad_scan_type;
-DROP TRIGGER scan_update_bad_protocol;
+
+DROP TRIGGER scaninfo_update_bad_scanner;
+DROP TRIGGER scaninfo_update_bad_scan_type;
+DROP TRIGGER scaninfo_update_bad_protocol;
+DROP TRIGGER _scan_scaninfo_update_bad_scan;
+DROP TRIGGER _scan_scaninfo_update_bad_scaninfo;
 DROP TRIGGER _scan_host_update_bad_scan;
 DROP TRIGGER _scan_host_update_bad_host;
 DROP TRIGGER host_update_bad_host_state;

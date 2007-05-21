@@ -33,15 +33,28 @@ CREATE TABLE scan (
     xmloutputversion  TEXT,
     xmloutput         TEXT,
     verbose           INTEGER,
-    debugging         INTEGER,
-    numservices       INTEGER,
-    services          TEXT,
-    fk_scanner        INTEGER NOT NULL CONSTRAINT fk_scanner
-                         REFERENCES scanner(pk),
-    fk_type           INTEGER NOT NULL CONSTRAINT fk_type
-                         REFERENCES scan_type(pk),
-    fk_protocol       INTEGER NOT NULL CONSTRAINT fk_protocol
-                         REFERENCES protocol(pk)
+    debugging         INTEGER
+);
+
+
+CREATE TABLE scaninfo (
+    pk           INTEGER NOT NULL PRIMARY KEY,   
+    numservices  INTEGER,
+    services     TEXT,
+    fk_scanner   INTEGER NOT NULL CONSTRAINT fk_scanner
+                    REFERENCES scanner(pk),
+    fk_type      INTEGER NOT NULL CONSTRAINT fk_type
+                    REFERENCES scan_type(pk),
+    fk_protocol  INTEGER NOT NULL CONSTRAINT fk_protocol
+                    REFERENCES protocol(pk)
+);
+
+
+CREATE TABLE _scan_scaninfo (
+    fk_scan      INTEGER NOT NULL CONSTRAINT fk_scan
+                    REFERENCES scan(pk),
+    fk_scaninfo  INTEGER NOT NULL CONSTRAINT fk_scaninfo
+                    REFERENCES scaninfo(pk)
 );
 
 CREATE TABLE _scan_host (

@@ -22,26 +22,41 @@
 -- Scan Triggers
 -------------------
 
--- Triggers for preventing bad update on scan
-CREATE TRIGGER scan_update_bad_scanner
-    BEFORE UPDATE ON scan
+-- Triggers for preventing bad update on scaninfo
+CREATE TRIGGER scaninfo_update_bad_scanner
+    BEFORE UPDATE ON scaninfo
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK,"'Bad UPDATE on table 'scan',  invalid fk_scanner especified")
+        SELECT RAISE(ROLLBACK,"'Bad UPDATE on table 'scaninfo',  invalid fk_scanner especified")
         WHERE (SELECT pk FROM scanner WHERE pk = NEW.fk_scanner) IS NULL;
     END;
 
-CREATE TRIGGER scan_update_bad_scan_type
-    BEFORE UPDATE ON scan
+CREATE TRIGGER scaninfo_update_bad_scan_type
+    BEFORE UPDATE ON scaninfo
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'scan', invalid fk_type especified")
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'scaninfo', invalid fk_type especified")
         WHERE (SELECT pk FROM scan_type WHERE pk = NEW.fk_type) IS NULL;
     END;
 
-CREATE TRIGGER scan_update_bad_protocol
-    BEFORE UPDATE ON scan
+CREATE TRIGGER scaninfo_update_bad_protocol
+    BEFORE UPDATE ON scaninfo
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'scan', invalid fk_protocol especified")
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'scaninfo', invalid fk_protocol especified")
         WHERE (SELECT pk FROM protocol WHERE pk = NEW.fk_protocol) IS NULL;
+    END;
+
+-- Triggers for preventing bad update on _scan_scaninfo
+CREATE TRIGGER _scan_scaninfo_update_bad_scan
+    BEFORE UPDATE ON _scan_scaninfo
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table '_scan_scaninfo', invalid fk_scan especified")
+        WHERE (SELECT pk FROM scan WHERE pk = NEW.fk_scan) IS NULL;
+    END;
+
+CREATE TRIGGER _scan_scaninfo_update_bad_scaninfo
+    BEFORE UPDATE ON _scan_scaninfo
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table '_scan_scaninfo', invalid fk_scaninfo especified")
+        WHERE (SELECT pk FROM scaninfo WHERE pk = NEW.fk_scaninfo) IS NULL;
     END;
 
 -- Triggers for preventing bad update on _scan_host

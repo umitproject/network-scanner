@@ -22,26 +22,41 @@
 -- Scan Triggers
 -------------------
 
--- Triggers for preventing bad insertion on scan
-CREATE TRIGGER scan_insert_bad_scanner
-    BEFORE INSERT ON scan
+-- Triggers for preventing bad insertion on scaninfo
+CREATE TRIGGER scaninfo_insert_bad_scanner
+    BEFORE INSERT ON scaninfo
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'scan', invalid fk_scanner especified")
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'scaninfo', invalid fk_scanner especified")
         WHERE (SELECT pk FROM scanner WHERE pk = NEW.fk_scanner) IS NULL;
     END;
 
-CREATE TRIGGER scan_insert_bad_scan_type
-    BEFORE INSERT ON scan
+CREATE TRIGGER scaninfo_insert_bad_scan_type
+    BEFORE INSERT ON scaninfo
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'scan', invalid fk_type especified")
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'scaninfo', invalid fk_type especified")
         WHERE (SELECT pk FROM scan_type WHERE pk = NEW.fk_type) IS NULL;
     END;
 
-CREATE TRIGGER scan_insert_bad_protocol
+CREATE TRIGGER scaninfo_insert_bad_protocol
     BEFORE INSERT ON scan
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'scan', invalid fk_protocol especified")
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'scaninfo', invalid fk_protocol especified")
         WHERE (SELECT pk FROM protocol WHERE pk = NEW.fk_protocol) IS NULL;
+    END;
+
+-- Triggers for preventing bad insertion on _scan_scaninfo
+CREATE TRIGGER _scan_scaninfo_insert_bad_scan
+    BEFORE INSERT ON _scan_scaninfo
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table '_scan_scaninfo', invalid fk_scan especified")
+        WHERE (SELECT pk FROM scan WHERE pk = NEW.fk_scan) IS NULL;
+    END;
+    
+CREATE TRIGGER _scan_scaninfo_insert_bad_scaninfo
+    BEFORE INSERT ON _scan_scaninfo
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table '_scan_scaninfo', invalid fk_scaninfo especified")
+        WHERE (SELECT pk FROM scaninfo WHERE pk = NEW.fk_scaninfo) IS NULL;
     END;
 
 -- Triggers for preventing bad insertion on _scan_host

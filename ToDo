@@ -1,9 +1,4 @@
-- Implement latest diagram !*!
 - Continue tests creation for this sqlite schema
 - Finish triggers
 - Create some tool to do xml -> db -> xml (xml -> db may be done using
   NmapParser)
-****************
-- Rethink about scan table -> Reason: One scan may generate more than one
-  <scaninfo ...
-****************
