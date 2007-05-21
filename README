@@ -1,1 +1,23 @@
-Ready to Rock! Enjoy ;-)
+###### About files
+#
+# sql
+sqlite-schema.sql           -> Conforms to umitdb.png.
+sqlite-insert-triggers.sql  -> Triggers for garanting foreign key integrity 
+                                for INSERT statements.
+sqlite-update-triggers.sql  -> Triggers for garanting foreign key integrity
+                                for UPDATE statements.
+sqlite-drop-triggers.sql    -> Delete triggers from database.
+
+# schema diagram
+umitdb.png
+umitdb.dia
+
+###### Testing
+#
+# To create everything you need to run tests, just run the script run_all.sh
+
+./run_all.sh
+
+# Then dir to tests/ and run run_tests.py
+
+python run_tests.py
