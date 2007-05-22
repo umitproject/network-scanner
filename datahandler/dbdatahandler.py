@@ -30,6 +30,10 @@ import os
 from umitCore.NmapParser import NmapParser
 from _sqlite import sqlite
 
+def empty():
+    #return None
+    return 'Empty'
+
 class DBDataHandler:
     """
     This handles all operations possible in umit database.
@@ -60,13 +64,15 @@ class DBDataHandler:
         except OSError, e:
             print "OSError: %s" % e
             return None
-
+        
+        print "Inserting file %s" % xml_file
         self.store_original = store_original
         self.xml_file = xml_file
         self.parsed = self.parse(xml_file)
         self.scan = self.scan_from_xml()
         self.scaninfo = self.scaninfo_from_xml()
         self.hosts = self.hosts_from_xml()
+        print "%s inserted into database (hopefully)." % xml_file
 
 
     def hosts_from_xml(self):
@@ -89,22 +95,15 @@ class DBDataHandler:
             tcp_ts_sequence = host.tcptssequence
             ip_id_sequence = host.ipidsequence
 
-            if tcp_sequence:
-                temp_d["fk_tcp_sequence"] = self.get_tcpsequence_id_from_db(tcp_sequence)
-            else:
-                temp_d["fk_tcp_sequence"] = 'Empty'
-
-            if tcp_ts_sequence:
-                temp_d["fk_tcp_ts_sequence"] = self.get_tcptssequence_id_from_db(tcp_ts_sequence)
-            else:
-                temp_d["fk_tcp_ts_sequence"] = 'Empty'
-
-            if ip_id_sequence:
-                temp_d["fk_ip_id_sequence"] = self.get_ipidsequence_id_from_db(ip_id_sequence)
-            else:
-                temp_d["fk_ip_id_sequence"] = 'Empty'
+            temp_d["fk_tcp_sequence"] = tcp_sequence and \
+                self.get_tcpsequence_id_from_db(tcp_sequence) or empty()
+            temp_d["fk_tcp_ts_sequence"] = tcp_ts_sequence and \
+                self.get_tcptssequence_id_from_db(tcp_ts_sequence) or empty()
+            temp_d["fk_ip_id_sequence"] = ip_id_sequence and \
+                self.get_ipidsequence_id_from_db(ip_id_sequence) or empty()
 
             self.__normalize(temp_d)
+
             # insert host
             self.insert_host_db(temp_d)
 
@@ -137,6 +136,7 @@ class DBDataHandler:
             
             # insert ports
             self.insert_ports_db(temp_d["pk"], host.ports[0]["port"])
+
 
         return hosts_l
 
@@ -319,7 +319,7 @@ class DBDataHandler:
         """
         Create new record in host with data from host dict.
         """
-        if host["fk_tcp_sequence"]:
+        if host["fk_tcp_sequence"] != empty():
             self.cursor.execute("INSERT INTO host (distance, uptime, \
                     lastboot, fk_scan, fk_host_state, fk_tcp_sequence, \
                     fk_tcp_ts_sequence, fk_ip_id_sequence) VALUES \
@@ -833,5 +833,24 @@ class DBDataHandler:
 
 # demo
 if __name__ == "__main__":
+    import time
+    import timing
+
+    timing.start()
+
+    print "Start time:", time.ctime(), '\n'
+
+    test_data = "../tests/data"
+    files = ["xml_test1.xml", "%s/xml_test2.xml" % test_data,
+             "%s/xml_test3.xml" % test_data, "%s/xml_test.xml" % test_data,
+             "%s/xml_test4.xml" % test_data]
+
+
     a = DBDataHandler("schema-testing.db")
-    a.insert_xml("../tests/data/xml_test3.xml", store_original=False)
+    for test in files:
+        a.insert_xml(test, store_original=False)
+
+    timing.finish()
+
+    print "\nFinish time:", time.ctime()
+    print "Duration (miliseconds):", timing.milli()
