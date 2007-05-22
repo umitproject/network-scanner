@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="/usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 4.20 scan initiated Sat May 19 21:55:42 2007 as: nmap -sV -sU -sS -p80,22 -oX xml_a.xml 192.168.254.1 -->
+<nmaprun scanner="nmap" args="nmap -sV -sU -sS -p80,22 -oX xml_a.xml 192.168.254.1" start="1179622542" startstr="Sat May 19 21:55:42 2007" version="4.20" xmloutputversion="1.01">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80" />
+<scaninfo type="udp" protocol="udp" numservices="2" services="22,80" />
+<verbose level="0" />
+<debugging level="0" />
+<host><status state="up" />
+<address addr="192.168.254.1" addrtype="ipv4" />
+<hostnames />
+<ports><port protocol="tcp" portid="22"><state state="closed" /><service name="ssh" method="table" conf="3" /></port>
+<port protocol="tcp" portid="80"><state state="open" /><service name="http" product="Apache httpd" version="2.0.55" extrainfo="(Ubuntu) mod_python/3.2.8 Python/2.4.4c1 PHP/5.1.6" method="probed" conf="10" /></port>
+<port protocol="udp" portid="22"><state state="closed" /><service name="ssh" method="table" conf="3" /></port>
+<port protocol="udp" portid="80"><state state="closed" /><service name="http" method="table" conf="3" /></port>
+</ports>
+</host>
+<runstats><finished time="1179622561" timestr="Sat May 19 21:56:01 2007"/><hosts up="1" down="0" total="1" />
+<!-- Nmap run completed at Sat May 19 21:56:01 2007; 1 IP address (1 host up) scanned in 19.207 seconds -->
+</runstats></nmaprun>
