@@ -1,6 +1,6 @@
 -- Copyright (C) 2007 Insecure.Com LLC.
 --
--- Authors: Guilherme Polo <ggpolo@gmail.com>
+-- Author: Guilherme Polo <ggpolo@gmail.com>
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -22,12 +22,20 @@
 -- Scan Triggers
 -------------------
 
+-- Triggers for preventing bad insertion on scan
+CREATE TRIGGER scan_insert_bad_scanner
+    BEFORE INSERT ON scan
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'scan', invalid fk_scanner especified")
+        WHERE (SELECT pk FROM scanner WHERE pk = NEW.fk_scanner) IS NULL;
+    END;
+
 -- Triggers for preventing bad insertion on scaninfo
-CREATE TRIGGER scaninfo_insert_bad_scanner
+CREATE TRIGGER scaninfo_insert_bad_scan
     BEFORE INSERT ON scaninfo
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'scaninfo', invalid fk_scanner especified")
-        WHERE (SELECT pk FROM scanner WHERE pk = NEW.fk_scanner) IS NULL;
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'scaninfo', invalid fk_scan especified")
+        WHERE (SELECT pk FROM scan WHERE pk = NEW.fk_scan) IS NULL;
     END;
 
 CREATE TRIGGER scaninfo_insert_bad_scan_type
@@ -44,47 +52,45 @@ CREATE TRIGGER scaninfo_insert_bad_protocol
         WHERE (SELECT pk FROM protocol WHERE pk = NEW.fk_protocol) IS NULL;
     END;
 
--- Triggers for preventing bad insertion on _scan_scaninfo
-CREATE TRIGGER _scan_scaninfo_insert_bad_scan
-    BEFORE INSERT ON _scan_scaninfo
-    FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table '_scan_scaninfo', invalid fk_scan especified")
-        WHERE (SELECT pk FROM scan WHERE pk = NEW.fk_scan) IS NULL;
-    END;
-    
-CREATE TRIGGER _scan_scaninfo_insert_bad_scaninfo
-    BEFORE INSERT ON _scan_scaninfo
-    FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table '_scan_scaninfo', invalid fk_scaninfo especified")
-        WHERE (SELECT pk FROM scaninfo WHERE pk = NEW.fk_scaninfo) IS NULL;
-    END;
-
--- Triggers for preventing bad insertion on _scan_host
-CREATE TRIGGER _scan_host_insert_bad_scan
-    BEFORE INSERT ON _scan_host
-    FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table '_scan_host', invalid fk_scan especified")
-        WHERE (SELECT pk FROM scan WHERE pk = NEW.fk_scan) IS NULL;
-    END;
-    
-CREATE TRIGGER _scan_host_insert_bad_host
-    BEFORE INSERT ON _scan_host
-    FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table '_scan_host', invalid fk_host especified")
-        WHERE (SELECT pk FROM host WHERE pk = NEW.fk_host) IS NULL;
-    END;
-
 
 -------------------
 -- Host Triggers
 -------------------
 
 -- Trigger for preventing bad insertion on host
+CREATE TRIGGER host_insert_bad_scan
+    BEFORE INSERT ON host
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'host', invalid fk_scan especified")
+        WHERE (SELECT pk from scan WHERE pk = NEW.fk_scan) IS NULL;
+    END;
+
 CREATE TRIGGER host_insert_bad_host_state
     BEFORE INSERT ON host
     FOR EACH ROW BEGIN
         SELECT RAISE(ROLLBACK, "Bad INSERT on table 'host', invalid fk_host_state especified")
         WHERE (SELECT pk FROM host_state WHERE pk = NEW.fk_host_state) IS NULL;
+    END;
+
+CREATE TRIGGER host_insert_bad_tcp_sequence
+    BEFORE INSERT ON host
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'host', invalid fk_tcp_sequence especified")
+        WHERE (SELECT pk from tcp_sequence WHERE pk = NEW.fk_tcp_sequence) IS NULL;
+    END;
+
+CREATE TRIGGER host_insert_bad_tcp_ts_sequence
+    BEFORE INSERT ON host
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'host', invalid fk_tcp_ts_sequence especified")
+        WHERE (SELECT pk from tcp_ts_sequence WHERE pk = NEW.fk_tcp_ts_sequence) IS NULL;
+    END;
+
+CREATE TRIGGER host_insert_bad_ip_id_sequence
+    BEFORE INSERT ON host
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'host', invalid fk_ip_id_sequence especified")
+        WHERE (SELECT pk from ip_id_sequence WHERE pk = NEW.fk_ip_id_sequence) IS NULL;
     END;
 
 -- Trigger for preventing bad insertion on address
@@ -140,16 +146,84 @@ CREATE TRIGGER _host_port_insert_bad_port
         WHERE (SELECT pk FROM port WHERE pk = NEW.fk_port) IS NULL;
     END;
 
+-- Trigger for preventing bad insertion on osmatch
+CREATE TRIGGER osmatch_insert_bad_host
+    BEFORE INSERT ON osmatch
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'osmatch', invalid fk_host especified")
+        WHERE (SELECT pk FROM host WHERE pk = NEW.fk_host) IS NULL;
+    END;
+
+-- Triggers for preventing bad insertion on osclass
+CREATE TRIGGER osclass_insert_bad_osgen
+    BEFORE INSERT ON osclass
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'osclass', invalid fk_osgen especified")
+        WHERE (SELECT pk FROM osgen WHERE pk = NEW.fk_osgen) IS NULL;
+    END;
+
+CREATE TRIGGER osclass_insert_bad_osfamily
+    BEFORE INSERT ON osclass
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'osclass', invalid fk_osfamily especified")
+        WHERE (SELECT pk FROM osfamily WHERE pk = NEW.fk_osfamily) IS NULL;
+    END;
+
+CREATE TRIGGER osclass_insert_bad_osvendor
+    BEFORE INSERT ON osclass
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'osclass', invalid fk_osvendor especified")
+        WHERE (SELECT pk FROM osvendor WHERE pk = NEW.fk_osvendor) IS NULL;
+    END;
+
+CREATE TRIGGER osclass_insert_bad_ostype
+    BEFORE INSERT ON osclass
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'osclass', invalid fk_ostype especified")
+        WHERE (SELECT pk FROM ostype WHERE pk = NEW.fk_ostype) IS NULL;
+    END;
+
+CREATE TRIGGER osclass_insert_bad_host
+    BEFORE INSERT ON osclass
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'osclass', invalid fk_host especified")
+        WHERE (SELECT pk FROM host WHERE pk = NEW.fk_host) IS NULL;
+    END;
+
+
+-- Triggers for preventing bad insertion on portused
+CREATE TRIGGER portused_insert_bad_protocol
+    BEFORE INSERT ON portused
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'portused', invalid fk_protocol especified")
+        WHERE (SELECT pk FROM protocol WHERE pk = NEW.fk_protocol) IS NULL;
+    END;
+
+CREATE TRIGGER portused_insert_bad_port_state
+    BEFORE INSERT ON portused
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'portused', invalid fk_port_state especified")
+        WHERE (SELECT pk FROM port_state WHERE pk = NEW.fk_port_state) IS NULL;
+    END;
+
+CREATE TRIGGER portused_insert_bad_host
+    BEFORE INSERT ON portused
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'portused', invalid fk_host especified")
+        WHERE (SELECT pk FROM host WHERE pk = NEW.fk_host) IS NULL;
+    END;
+
+
 -------------------
 -- Port Triggers
 -------------------
 
 -- Triggers for preventing bad insertion on port
-CREATE TRIGGER port_insert_bad_service
+CREATE TRIGGER port_insert_bad_service_info
     BEFORE INSERT ON port
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'port', invalid fk_service especified")
-        WHERE (SELECT pk FROM service WHERE pk = NEW.fk_service) IS NULL;
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'port', invalid fk_service_info especified")
+        WHERE (SELECT pk FROM service_info WHERE pk = NEW.fk_service_info) IS NULL;
     END;
     
 CREATE TRIGGER port_insert_bad_protocol
@@ -167,11 +241,33 @@ CREATE TRIGGER port_insert_bad_port_state
     END;
     
 -- Trigger for preventing bad insertion on extraports
+CREATE TRIGGER extraports_insert_bad_host
+    BEFORE INSERT ON extraport
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'extraports', invalid fk_host especified")
+        WHERE (SELECT pk from host WHERE pk = NEW.fk_host) IS NULL;
+    END;
+
 CREATE TRIGGER extraports_insert_bad_port_state
     BEFORE INSERT ON extraports
     FOR EACH ROW BEGIN
         SELECT RAISE(ROLLBACK, "Bad INSERT on table 'extraport', invalid fk_port_state especified")
         WHERE (SELECT pk FROM port_state WHERE pk = NEW.fk_port_state) IS NULL;
+    END;
+
+-- Trigger for preventing bad insertion on service_info
+CREATE TRIGGER service_info_insert_bad_service_name
+    BEFORE INSERT ON service_info
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'service_info', invalid fk_service_name especified")
+        WHERE (SELECT pk FROM service_name WHERE pk = NEW.fk_service_name) IS NULL;
+    END;
+
+CREATE TRIGGER service_info_insert_bad_ostype
+    BEFORE INSERT ON service_info
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'service_info', invalid fk_ostype especified")
+        WHERE (SELECT pk FROM ostype WHERE pk = NEW.fk_ostype) IS NULL;
     END;
 
 
@@ -193,3 +289,25 @@ CREATE TRIGGER _inventory_scan_insert_bad_inventory
         SELECT RAISE(ROLLBACK, "Bad INSERT on table '_inventory_scan', invalid fk_inventory especified")
         WHERE (SELECT pk FROM inventory WHERE pk = NEW.fk_inventory) IS NULL;
     END;
+
+
+-------------------
+-- Traceroute Triggers
+-------------------
+
+-- Trigger for preventing bad insertion on trace
+CREATE TRIGGER trace_insert_bad_protocol
+    BEFORE INSERT ON trace
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'trace', invalid fk_protocol especified")
+        WHERE (SELECT pk FROM protocol WHERE pk = NEW.fk_protocol) IS NULL;
+    END;
+
+-- Trigger for preventing bad insertion on hop
+CREATE TRIGGER hop_insert_bad_trace
+    BEFORE INSERT ON hop
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'hop', invalid fk_trace especified")
+        WHERE (SELECT pk FROM trace WHERE pk = NEW.fk_trace) IS NULL;
+    END;
+
