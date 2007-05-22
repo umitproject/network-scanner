@@ -36,8 +36,8 @@ CREATE TABLE scan
     finishstr CHAR(24) NOT NULL,
     xmloutputversion VARCHAR,
     xmloutput TEXT,
-    verbose INTEGER NOT NULL,
-    debugging INTEGER NOT NULL,
+    verbose_level INTEGER NOT NULL,
+    debugging_level INTEGER NOT NULL,
     hosts_up INTEGER NOT NULL,
     hosts_down INTEGER NOT NULL,
     fk_scanner INTEGER NOT NULL
@@ -120,7 +120,7 @@ ALTER TABLE protocol ADD CONSTRAINT protocol_pk PRIMARY KEY (pk);
 CREATE TABLE hostname
 (
     pk INTEGER NOT NULL,
-    type ENUM NOT NULL,
+    type INTEGER NOT NULL,
     name VARCHAR NOT NULL
 );
 
@@ -147,7 +147,7 @@ CREATE TABLE address
 (
     pk INTEGER NOT NULL,
     address VARCHAR NOT NULL,
-    type ENUM NOT NULL,
+    type INTEGER NOT NULL,
     fk_vendor INTEGER
 );
 
@@ -215,8 +215,8 @@ CREATE TABLE service_info
     product VARCHAR,
     version VARCHAR,
     extrainfo VARCHAR,
-    method ENUM NOT NULL,
-    conf ENUM NOT NULL,
+    method INTEGER NOT NULL,
+    conf INTEGER NOT NULL,
     fk_ostype INTEGER,
     fk_service INTEGER NOT NULL
 );
@@ -285,7 +285,7 @@ CREATE TABLE scaninfo
     numservices INTEGER NOT NULL,
     services VARCHAR NOT NULL,
     fk_scan INTEGER NOT NULL,
-    fk_type INTEGER NOT NULL,
+    fk_scan_type INTEGER NOT NULL,
     fk_protocol INTEGER NOT NULL
 );
 
@@ -299,8 +299,8 @@ CREATE TABLE tcp_sequence
 (
     pk INTEGER NOT NULL,
     tcp_index INTEGER NOT NULL,
-    class ENUM NOT NULL,
-    difficulty ENUM NOT NULL,
+    class INTEGER NOT NULL,
+    difficulty INTEGER NOT NULL,
     tcp_values VARCHAR NOT NULL
 );
 
@@ -313,7 +313,7 @@ ALTER TABLE tcp_sequence ADD CONSTRAINT tcp_sequence_pk PRIMARY KEY (pk);
 CREATE TABLE ip_id_sequence
 (
     pk INTEGER NOT NULL,
-    class ENUM NOT NULL,
+    class INTEGER NOT NULL,
     ip_id_values VARCHAR NOT NULL
 );
 
@@ -326,7 +326,7 @@ ALTER TABLE ip_id_sequence ADD CONSTRAINT ip_id_sequence_pk PRIMARY KEY (pk);
 CREATE TABLE tcp_ts_sequence
 (
     pk INTEGER NOT NULL,
-    class ENUM NOT NULL,
+    class INTEGER NOT NULL,
     tcp_ts_values VARCHAR NOT NULL
 );
 
@@ -562,7 +562,7 @@ ALTER TABLE scaninfo ADD CONSTRAINT scaninfo_scan_fk
     FOREIGN KEY (fk_scan) REFERENCES scan (pk);
 
 ALTER TABLE scaninfo ADD CONSTRAINT scaninfo_type_fk
-    FOREIGN KEY (fk_type) REFERENCES type (pk);
+    FOREIGN KEY (fk_scan_type) REFERENCES scan_type (pk);
 
 ALTER TABLE scaninfo ADD CONSTRAINT scaninfo_protocol_fk
     FOREIGN KEY (fk_protocol) REFERENCES protocol (pk);
