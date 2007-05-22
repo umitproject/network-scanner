@@ -256,6 +256,8 @@ CREATE TABLE service_info (
     extrainfo        TEXT,
     method           INTEGER,
     conf             INTEGER,
+    fk_ostype        INTEGER CONSTRAINT fk_ostype
+                        REFERENCES ostype(pk),
     fk_service_name  INTEGER NOT NULL CONSTRAINT fk_service_name
                         REFERENCES service_name(pk)
 );

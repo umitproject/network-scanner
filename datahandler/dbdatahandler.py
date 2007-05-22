@@ -1,3 +1,22 @@
+# Copyright (C) 2007 Insecure.Com LLC.
+#
+# Author:  Guilherme Polo <ggpolo@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 
+# USA
+
 import os
 from umitCore.NmapParser import NmapParser
 from _sqlite import sqlite
@@ -39,25 +58,11 @@ class DBDataHandler:
         self.scaninfo = self.scaninfo_from_xml()
         self.hosts = self.hosts_from_xml()
 
-        """
-            ########
-            #print "Extra Ports:", host.ports[0]["extraports"]
-            #print "Ports: ", host.ports[0]["port"]
-
-            #print "OS Match:", host.osmatch
-            #print "Ports used:", host.ports_used
-            #print "OS Class:", host.osclasses
-            ##
-            #######
-        """
-
-
 
     def hosts_from_xml(self):
         """
         Builds a list of dicts compatible with database schema for host.
         """
-
         hosts_l = [ ]
         for host in self.parsed.nmap["hosts"]:
             temp_d = { }
@@ -90,7 +95,9 @@ class DBDataHandler:
                 temp_d["fk_ip_id_sequence"] = None
 
             self.__normalize(temp_d)
+            # insert host
             self.insert_host_db(temp_d)
+
             hosts_l.append(temp_d)
 
             # insert hostname
@@ -108,10 +115,23 @@ class DBDataHandler:
                 self.__normalize(host.mac)
                 self.insert_host_address_db(temp_d["pk"], host.mac)
 
+            # insert host os match
+            if host.osmatch:
+                self.insert_osmatch_db(temp_d["pk"], host.osmatch)
+                self.insert_osclass_db(temp_d["pk"], host.osclasses)
+                self.insert_ports_used_db(temp_d["pk"], host.ports_used)
+
+            # insert extraports
+            self.insert_extraports_db(temp_d["pk"], 
+                                      host.ports[0]["extraports"])
+            
+            # insert ports
+            self.insert_ports_db(host.ports[0]["port"])
+            #print "Ports: ", host.ports[0]["port"]
 
         return hosts_l
 
-        
+ 
     def scaninfo_from_xml(self):
         """
         Builds a list of dicts compatible with database schema for scaninfo.
@@ -195,10 +215,75 @@ class DBDataHandler:
                         scaninfo["type"], scaninfo["protocol"]))
             self.conn.commit()
 
-    
+
+    def insert_ports_db(self, ports):
+        for port in ports:
+            protocol_id = self.get_protocol_id_from_db(port["protocol"])
+            port_state_id = self.get_port_state_id_from_db(port["port_state"])
+            #service_info_id = self.get_service_info_id_from_db(port)
+            print port
+            # FINISH THIS!
+
+
+    def insert_extraports_db(self, host, extraports):
+        """
+        Creates new records in extraports with data from extraports list.
+        """
+        for extraport in extraports:
+            port_state_id = self.get_port_state_id_from_db(extraport["state"])
+
+            self.cursor.execute("INSERT INTO extraports (count, fk_host, \
+                            fk_port_state) VALUES (?, ?, ?)",
+                            (extraport["count"], host, port_state_id))
+            self.conn.commit()
+
+
+    def insert_ports_used_db(self, host, ports_used):
+        """
+        Create new records in portused with data from ports_used list.
+        """
+        for port in ports_used:
+            port_state_id = self.get_port_state_id_from_db(port["state"])
+            port_protocol_id = self.get_protocol_id_from_db(port["proto"])
+
+            self.cursor.execute("INSERT INTO portused (portid, fk_port_state, \
+                        fk_protocol, fk_host) VALUES (?, ?, ?, ?)",
+                        (port["portid"], port_state_id, port_protocol_id,
+                         host))
+            self.conn.commit()
+
+
+    def insert_osclass_db(self, host, osclasses):
+        """
+        Create new record in osgen with data from osclasses list
+        """
+        for osclass in osclasses:
+            osgen_id = self.get_osgen_id_from_db(osclass["osgen"])
+            osfamily_id = self.get_osfamily_id_from_db(osclass["osfamily"])
+            osvendor_id = self.get_osvendor_id_from_db(osclass["vendor"])
+            ostype_id = self.get_ostype_id_from_db(osclass["type"])
+
+            self.cursor.execute("INSERT INTO osclass (accuracy, fk_osgen, \
+                        fk_osfamily, fk_osvendor, fk_ostype, fk_host) VALUES \
+                        (?, ?, ?, ?, ?, ?)", (osclass["accuracy"], osgen_id,
+                        osfamily_id, osvendor_id, ostype_id, host))
+            self.conn.commit()
+
+   
+    def insert_osmatch_db(self, host, osmatch):
+        """
+        Create new record in osmatch with data from osmatch dict.
+        """
+        osmatch["line"] = None # check this, it seems parser isnt storing this
+        self.cursor.execute("INSERT INTO osmatch (name, accuracy, line, \
+                    fk_host) VALUES (?, ?, ?, ?)", (osmatch["name"], 
+                    osmatch["accuracy"], osmatch["line"], host))
+        self.conn.commit()
+        
+
     def insert_host_db(self, host):
         """
-        Create new record in host with data from host dict
+        Create new record in host with data from host dict.
         """
         if host["fk_tcp_sequence"]:
             self.cursor.execute("INSERT INTO host (distance, uptime, \
@@ -250,8 +335,10 @@ class DBDataHandler:
         Return hostname id from database based on type and name,
         if hostname isn't in database, a new record is created.
         """
+
         hostname = hostname[0] # verify if one host can have more than one
                                # hostname in nmap xml output
+                               # Rev 2: yes it can, fix this later.
        
         id = self.cursor.execute("SELECT pk FROM hostname WHERE \
                              type = ? AND name = ?", (hostname["hostname_type"],
@@ -406,6 +493,23 @@ class DBDataHandler:
         return id[0]
 
 
+    def get_port_state_id_from_db(self, state):
+        """
+        Return port_state id from database based on state, if state
+        name isn't in database, a new record is created.
+        """
+        id = self.cursor.execute("SELECT pk FROM port_state WHERE state = ?",
+                                (state, )).fetchone()
+
+        if not id: # state is not in database yet
+            self.cursor.execute("INSERT INTO port_state (state) VALUES \
+                                (?)", (state, ))
+            self.conn.commit()
+            id = self.get_id_for("port_state")
+
+        return id[0]
+
+
     def get_protocol_id_from_db(self, name):
         """
         Return protocol id from database based on name, if protocol name
@@ -441,6 +545,78 @@ class DBDataHandler:
             self.conn.commit()
 
             id = self.get_id_for("scanner")
+
+        return id[0]
+
+
+    def get_osgen_id_from_db(self, osgen):
+        """
+        Get id from osgen table for osgen if it exists, otherwise create new 
+        record in osgen and return it.
+        """
+        id = self.cursor.execute("SELECT pk FROM osgen WHERE gen = ?", 
+            (osgen, )).fetchone()
+
+        if not id: # osgen not in database yet.
+            self.cursor.execute("INSERT INTO osgen (gen) VALUES (?)", (osgen, ))
+            self.conn.commit()
+
+            id = self.get_id_for("osgen")
+
+        return id[0]
+        
+
+    def get_osfamily_id_from_db(self, osfamily):
+        """
+        Get id from osfamily table for osfamily if it exists, otherwise 
+        create new record in osfamily and return it.
+        """
+        id = self.cursor.execute("SELECT pk FROM osfamily WHERE family = ?",
+                        (osfamily, )).fetchone()
+
+        if not id: # osfamily not in database yet.
+            self.cursor.execute("INSERT INTO osfamily (family) VALUES (?)", 
+                        (osfamily, ))
+            self.conn.commit()
+
+            id = self.get_id_for("osfamily")
+
+        return id[0]
+
+
+    def get_osvendor_id_from_db(self, osvendor):
+        """
+        Get id from osvendor table for osvendor if it exists, otherwise 
+        create new record in osvendor and return it.
+        """
+        id = self.cursor.execute("SELECT pk FROM osvendor WHERE vendor = ?",
+                        (osvendor, )).fetchone()
+
+        if not id: # osvendor not in database yet.
+            self.cursor.execute("INSERT INTO osvendor (vendor) VALUES (?)", 
+                        (osvendor, ))
+            self.conn.commit()
+
+            id = self.get_id_for("osvendor")
+
+        return id[0]
+
+
+    def get_ostype_id_from_db(self, ostype):
+        """
+        Get id from ostype table for ostype if it exists, otherwise 
+        create new record in ostype and return it.
+        """
+        id = self.cursor.execute("SELECT pk FROM ostype WHERE type = ?",
+                        (ostype, )).fetchone()
+
+        if not id: # osfamily not in database yet.
+            self.cursor.execute("INSERT INTO ostype (type) VALUES (?)", 
+                        (ostype, ))
+            self.conn.commit()
+
+            id = self.get_id_for("ostype")
+
 
         return id[0]
 
@@ -556,4 +732,4 @@ class DBDataHandler:
 # demo
 if __name__ == "__main__":
     a = DBDataHandler("schema-testing.db")
-    a.insert_xml("xml_test.xml")
+    a.insert_xml("xml_test3.xml")

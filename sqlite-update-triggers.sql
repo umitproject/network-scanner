@@ -267,7 +267,7 @@ CREATE TRIGGER service_info_update_bad_ostype
     BEFORE UPDATE ON service_info
     FOR EACH ROW BEGIN
         SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'service_info', invalid fk_ostype especified")
-        WHERE (SELECT pk FROM ostype WHERE pk = NEW.fk_ostype) IS NULL;
+        WHERE NEW.fk_ostype IS NOT NULL AND (SELECT pk FROM ostype WHERE pk = NEW.fk_ostype) IS NULL;
     END;
 
 
