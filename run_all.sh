@@ -3,5 +3,4 @@
 
 sh remove_dbs.sh
 sh create_valid_db.sh
-sh populate_db.sh
 sh copy_db_to_tests.sh

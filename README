@@ -8,6 +8,8 @@ sqlite-update-triggers.sql  -> Triggers for garanting foreign key integrity
                                 for UPDATE statements.
 sqlite-drop-triggers.sql    -> Delete triggers from database.
 
+umidb.sql                   -> PostgreSQL schema.
+
 # schema diagram
 umitdb.png
 umitdb.dia

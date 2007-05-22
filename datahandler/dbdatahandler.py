@@ -51,7 +51,7 @@ class DBDataHandler:
         self.conn.close()
 
 
-    def insert_xml(self, xml_file):
+    def insert_xml(self, xml_file, store_original):
         """
         Inserts an nmap xml output into database.
         """
@@ -61,6 +61,7 @@ class DBDataHandler:
             print "OSError: %s" % e
             return None
 
+        self.store_original = store_original
         self.xml_file = xml_file
         self.parsed = self.parse(xml_file)
         self.scan = self.scan_from_xml()
@@ -179,12 +180,21 @@ class DBDataHandler:
         scan_d["finish"] = parsedsax.nmap["runstats"]["finished_time"]
         scan_d["finishstr"] = 'Empty'
         scan_d["xmloutputversion"] = parsedsax.nmap["nmaprun"]["xmloutputversion"]
-        scan_d["xmloutput"] = '\n'.join(open(self.xml_file, 'r').readlines())
+        if self.store_original:
+            scan_d["xmloutput"] = '\n'.join(open(self.xml_file, 
+                                                 'r').readlines())
+        else:
+            scan_d["xmloutput"] = 'Empty'
+
         scan_d["verbose"] = parsedsax.nmap["verbose"]
         scan_d["debugging"] = parsedsax.nmap["debugging"]
         scan_d["hosts_up"] = parsedsax.nmap["runstats"]["hosts_up"]
         scan_d["hosts_down"] = parsedsax.nmap["runstats"]["hosts_down"]
-        scan_d["scanner"] = self.get_scanner_id_from_db()
+
+        scanner_name = parsedsax.nmap["nmaprun"]["scanner"]
+        scanner_version = parsedsax.nmap["nmaprun"]["version"]
+        scan_d["scanner"] = self.get_scanner_id_from_db(scanner_name,
+                                                        scanner_version)
 
         self.insert_scan_db(scan_d)
 
@@ -233,7 +243,7 @@ class DBDataHandler:
             protocol_id = self.get_protocol_id_from_db(port["protocol"])
             port_state_id = self.get_port_state_id_from_db(port["port_state"])
             service_info_id = self.get_service_info_id_from_db(port)
-            
+           
             # insert new port
             self.cursor.execute("INSERT INTO port (portid, fk_service_info, \
                     fk_protocol, fk_port_state) VALUES (?, ?, ?, ?)",
@@ -354,7 +364,7 @@ class DBDataHandler:
         self.conn.commit()
 
 
-    def get_service_info_id_from_db(self, info):
+    def get_service_info_id_from_db(self, info, create_on_nonexist=True):
         """
         Get service_info id based on data from info, if there is no
         corresponding service_info, create a new one for storing data.
@@ -369,13 +379,12 @@ class DBDataHandler:
                 info["service_extrainfo"], info["service_method"],
                 info["service_conf"], service_name_id)
         
-        id = self.cursor.execute("SELECT product, version, extrainfo, method, \
-                    conf, fk_service_name FROM service_info WHERE \
+        id = self.cursor.execute("SELECT pk FROM service_info WHERE \
                     product = ? AND version = ? AND extrainfo = ? AND \
                     method = ? AND conf = ? AND fk_service_name = ?",
                     data).fetchone()
 
-        if not id: # info not in database yet
+        if not id and create_on_nonexist: # info not in database yet
             self.cursor.execute("INSERT INTO service_info (product, version, \
                     extrainfo, method, conf, fk_service_name) VALUES (?, ?, ?,\
                     ?, ?, ?)", data)
@@ -386,7 +395,8 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_service_name_id_from_db(self, service_name):
+    def get_service_name_id_from_db(self, service_name, 
+                                    create_on_nonexist=True):
         """
         Get id from service_name for service_name if it exists, otherwise,
         create new record for service_name and return its id.
@@ -394,7 +404,7 @@ class DBDataHandler:
         id = self.cursor.execute("SELECT pk FROM service_name WHERE name = ?",
                             (service_name, )).fetchone()
 
-        if not id: # service_name not in database yet.
+        if not id and create_on_nonexist: # service_name not in database yet.
             self.cursor.execute("INSERT INTO service_name (name) VALUES \
                             (?)", (service_name, ))
             self.conn.commit()
@@ -404,7 +414,7 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_hostname_id_from_db(self, hostname):
+    def get_hostname_id_from_db(self, hostname, create_on_nonexist=True):
         """
         Return hostname id from database based on type and name,
         if hostname isn't in database, a new record is created.
@@ -418,7 +428,7 @@ class DBDataHandler:
                              type = ? AND name = ?", (hostname["hostname_type"],
                              hostname["hostname"])).fetchone()
         
-        if not id: # hostname is not in database yet
+        if not id and create_on_nonexist: # hostname is not in database yet
             self.cursor.execute("INSERT INTO hostname (type, name) VALUES \
                                  (?, ?)", (hostname["hostname_type"], 
                                            hostname["hostname"]))
@@ -428,7 +438,7 @@ class DBDataHandler:
         return id[0]
     
 
-    def get_address_id_from_db(self, address):
+    def get_address_id_from_db(self, address, create_on_nonexist=True):
         """
         Return address id from database based on address, type and vendor.
         If address isn't in database, a new record is created.
@@ -445,7 +455,7 @@ class DBDataHandler:
                            (address["addr"], address["type"], 
                            fk_vendor)).fetchone()
 
-        if not id: # address isn't in database yet
+        if not id and create_on_nonexist: # address isn't in database yet
             self.cursor.execute("INSERT INTO address (address, type, \
                         fk_vendor) VALUES (?, ?, ?)", (address["addr"],
                         address["type"], fk_vendor))
@@ -456,7 +466,7 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_vendor_id_from_db(self, name):
+    def get_vendor_id_from_db(self, name, create_on_nonexist=True):
         """
         Return vendor id from database based on name. If name isn't
         in database, a new record is created.
@@ -464,7 +474,7 @@ class DBDataHandler:
         id = self.cursor.execute("SELECT pk FROM vendor WHERE \
                         name = ?", (name, )).fetchone()
         
-        if not id: # vendor name is not in database yet
+        if not id and create_on_nonexist: # vendor name is not in database yet
             self.cursor.execute("INSERT INTO vendor (name) \
                         VALUES (?)", (name, ))
             self.conn.commit()
@@ -474,7 +484,7 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_hoststate_id_from_db(self, state):
+    def get_hoststate_id_from_db(self, state, create_on_nonexist=True):
         """
         Return state id from database based on state description,
         if state isn't in database, a new record is created.
@@ -482,7 +492,7 @@ class DBDataHandler:
         id = self.cursor.execute("SELECT pk FROM host_state WHERE \
                     state = ?", (state, )).fetchone()
 
-        if not id: # state is not in database yet
+        if not id and create_on_nonexist: # state is not in database yet
             self.cursor.execute("INSERT INTO host_state (state) \
                         VALUES (?)", (state, ))
             self.conn.commit()
@@ -492,7 +502,7 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_tcpsequence_id_from_db(self, tcpseq_dict):
+    def get_tcpsequence_id_from_db(self, tcpseq_dict, create_on_nonexist=True):
         """
         Return tcp_sequence id from database based on tcpsequence values, 
         if tcpsequence values isn't in database, a new record is created.
@@ -500,7 +510,7 @@ class DBDataHandler:
         id = self.cursor.execute("SELECT pk FROM tcp_sequence WHERE \
                     tcp_values = ?", (tcpseq_dict["values"], )).fetchone()
         
-        if not id: # tcp_sequence is not in database yet
+        if not id and create_on_nonexist: # tcp_sequence is not in database yet
             self.cursor.execute("INSERT INTO tcp_sequence (tcp_index, \
                         class, difficulty, tcp_values) VALUES (?, ?, ?, ?)", (
                         tcpseq_dict["index"], tcpseq_dict["class"], 
@@ -512,7 +522,8 @@ class DBDataHandler:
         return id[0] 
 
 
-    def get_tcptssequence_id_from_db(self, tcptsseq_dict):
+    def get_tcptssequence_id_from_db(self, tcptsseq_dict, 
+                                    create_on_nonexist=True):
         """
         Return tcp_sequence id from database based on tcpsequence values, 
         if tcpsequence values isn't in database, a new record is created.
@@ -520,7 +531,7 @@ class DBDataHandler:
         id = self.cursor.execute("SELECT pk FROM tcp_ts_sequence WHERE \
                     tcp_ts_values = ?", (tcptsseq_dict["values"], )).fetchone()
         
-        if not id: # tcp_sequence is not in database yet
+        if not id and create_on_nonexist: # tcp_sequence is not in database yet
             self.cursor.execute("INSERT INTO tcp_ts_sequence (class, \
                       tcp_ts_values)  VALUES (?, ?)", (tcptsseq_dict["class"], 
                       tcptsseq_dict["values"]))
@@ -531,7 +542,8 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_ipidsequence_id_from_db(self, ipidseq_dict):
+    def get_ipidsequence_id_from_db(self, ipidseq_dict, 
+                                    create_on_nonexist=True):
         """
         Return ip_id_sequence id from database based on tcpsequence values, 
         if tcpsequence values isn't in database, a new record is created.
@@ -539,7 +551,7 @@ class DBDataHandler:
         id = self.cursor.execute("SELECT pk FROM ip_id_sequence WHERE \
                     ip_id_values = ?", (ipidseq_dict["values"], )).fetchone()
         
-        if not id: # ip_id_sequence is not in database yet
+        if not id and create_on_nonexist: # ip_id_sequence isn't in database yet
             self.cursor.execute("INSERT INTO ip_id_sequence (class, \
                       ip_id_values)  VALUES (?, ?)", (ipidseq_dict["class"], 
                       ipidseq_dict["values"]))
@@ -550,14 +562,14 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_scan_type_id_from_db(self, name):
+    def get_scan_type_id_from_db(self, name, create_on_nonexist=True):
         """
         Return scan_type id from database based on name, if scan_type name
         isn't in database, a new record is created.
         """
         id = self.cursor.execute("SELECT pk FROM scan_type WHERE name = ?",
                                   (name, )).fetchone()
-        if not id: # scan_type is not in database yet
+        if not id and create_on_nonexist: # scan_type is not in database yet
             self.cursor.execute("INSERT INTO scan_type (name) VALUES \
                                  (?)", (name, ))
             self.conn.commit()
@@ -567,7 +579,7 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_port_state_id_from_db(self, state):
+    def get_port_state_id_from_db(self, state, create_on_nonexist=True):
         """
         Return port_state id from database based on state, if state
         name isn't in database, a new record is created.
@@ -575,7 +587,7 @@ class DBDataHandler:
         id = self.cursor.execute("SELECT pk FROM port_state WHERE state = ?",
                                 (state, )).fetchone()
 
-        if not id: # state is not in database yet
+        if not id and create_on_nonexist: # state is not in database yet
             self.cursor.execute("INSERT INTO port_state (state) VALUES \
                                 (?)", (state, ))
             self.conn.commit()
@@ -584,14 +596,14 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_protocol_id_from_db(self, name):
+    def get_protocol_id_from_db(self, name, create_on_nonexist=True):
         """
         Return protocol id from database based on name, if protocol name
         isn't in database, a new record is created.
         """
         id = self.cursor.execute("SELECT pk FROM protocol WHERE name = ?",
                                   (name, )).fetchone()
-        if not id: # protocol is not in database yet
+        if not id and create_on_nonexist: # protocol is not in database yet
             self.cursor.execute("INSERT INTO protocol (name) VALUES \
                                  (?)", (name, ))
             self.conn.commit()
@@ -601,19 +613,18 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_scanner_id_from_db(self):
+#    def get_scanner_id_from_db(self, create_on_nonexist=True):
+    def get_scanner_id_from_db(self, name, version, create_on_nonexist=True):
         """
         Return scanner id from database based on scanner name and version,
         if scanner name and version isn't in database, a new record is created.
         """
-        parsedsax = self.parsed
-        name = parsedsax.nmap["nmaprun"]["scanner"]
-        version = parsedsax.nmap["nmaprun"]["version"]
+        #parsedsax = self.parsed
         
         id = self.cursor.execute("SELECT pk FROM scanner WHERE name = ? AND \
                              version = ? LIMIT 1", (name, version)).fetchone()
        
-        if not id: # scanner is not in database yet
+        if not id and create_on_nonexist: # scanner is not in database yet
             self.cursor.execute("INSERT INTO scanner (name, version) VALUES \
                                  (?, ?)", (name, version))
             self.conn.commit()
@@ -623,7 +634,7 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_osgen_id_from_db(self, osgen):
+    def get_osgen_id_from_db(self, osgen, create_on_nonexist=True):
         """
         Get id from osgen table for osgen if it exists, otherwise create new 
         record in osgen and return it.
@@ -631,7 +642,7 @@ class DBDataHandler:
         id = self.cursor.execute("SELECT pk FROM osgen WHERE gen = ?", 
             (osgen, )).fetchone()
 
-        if not id: # osgen not in database yet.
+        if not id and create_on_nonexist: # osgen not in database yet.
             self.cursor.execute("INSERT INTO osgen (gen) VALUES (?)", (osgen, ))
             self.conn.commit()
 
@@ -640,7 +651,7 @@ class DBDataHandler:
         return id[0]
         
 
-    def get_osfamily_id_from_db(self, osfamily):
+    def get_osfamily_id_from_db(self, osfamily, create_on_nonexist=True):
         """
         Get id from osfamily table for osfamily if it exists, otherwise 
         create new record in osfamily and return it.
@@ -648,7 +659,7 @@ class DBDataHandler:
         id = self.cursor.execute("SELECT pk FROM osfamily WHERE family = ?",
                         (osfamily, )).fetchone()
 
-        if not id: # osfamily not in database yet.
+        if not id and create_on_nonexist: # osfamily not in database yet.
             self.cursor.execute("INSERT INTO osfamily (family) VALUES (?)", 
                         (osfamily, ))
             self.conn.commit()
@@ -658,7 +669,7 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_osvendor_id_from_db(self, osvendor):
+    def get_osvendor_id_from_db(self, osvendor, create_on_nonexist=True):
         """
         Get id from osvendor table for osvendor if it exists, otherwise 
         create new record in osvendor and return it.
@@ -666,7 +677,7 @@ class DBDataHandler:
         id = self.cursor.execute("SELECT pk FROM osvendor WHERE vendor = ?",
                         (osvendor, )).fetchone()
 
-        if not id: # osvendor not in database yet.
+        if not id and create_on_nonexist: # osvendor not in database yet.
             self.cursor.execute("INSERT INTO osvendor (vendor) VALUES (?)", 
                         (osvendor, ))
             self.conn.commit()
@@ -676,7 +687,7 @@ class DBDataHandler:
         return id[0]
 
 
-    def get_ostype_id_from_db(self, ostype):
+    def get_ostype_id_from_db(self, ostype, create_on_nonexist=True):
         """
         Get id from ostype table for ostype if it exists, otherwise 
         create new record in ostype and return it.
@@ -684,7 +695,7 @@ class DBDataHandler:
         id = self.cursor.execute("SELECT pk FROM ostype WHERE type = ?",
                         (ostype, )).fetchone()
 
-        if not id: # osfamily not in database yet.
+        if not id and create_on_nonexist: # osfamily not in database yet.
             self.cursor.execute("INSERT INTO ostype (type) VALUES (?)", 
                         (ostype, ))
             self.conn.commit()
@@ -701,6 +712,21 @@ class DBDataHandler:
         """
         return self.cursor.execute("SELECT last_insert_rowid() \
                 FROM %s" % table_name).fetchone()
+
+
+    def get_store_orig(self):
+        """
+        Returns True if it was requested to store original xml file into
+        database, otherwise, returns False.
+        """
+        return self._store_orig
+
+
+    def set_store_orig(self, store_orig):
+        """
+        Sets to store or not the original xml file into database.
+        """
+        self._store_orig = store_original
 
 
     def get_xml_file(self):
@@ -785,7 +811,7 @@ class DBDataHandler:
 
     def __normalize(self, dictun):
         """
-        Call this to normalize a dict, what it does: any empty value 
+        Call this to normalize a dict. What it does: any empty value 
         will be changed to 'Empty'.
         """
         # normalize hosts
@@ -797,6 +823,7 @@ class DBDataHandler:
 
 
     # Properties
+    store_original = (get_store_orig, set_store_orig)
     xml_file = (get_xml_file, set_xml_file)
     parsed = (get_parsed, set_parsed)
     scan = (get_scan, set_scan)
@@ -807,4 +834,4 @@ class DBDataHandler:
 # demo
 if __name__ == "__main__":
     a = DBDataHandler("schema-testing.db")
-    a.insert_xml("xml_test3.xml")
+    a.insert_xml("../tests/data/xml_test3.xml", store_original=False)
