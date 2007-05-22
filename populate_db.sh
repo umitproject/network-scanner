@@ -21,9 +21,9 @@ $command $database "INSERT INTO port_state (state) VALUES ('closed')"
 $command $database "INSERT INTO port_state (state) VALUES ('open')"
 $command $database "INSERT INTO port_state (state) VALUES ('filtered')"
 
-$command $database "INSERT INTO service (name) VALUES ('ftp')"
-$command $database "INSERT INTO service (name) VALUES ('http')"
-$command $database "INSERT INTO service (name) VALUES ('squid-http')"
+$command $database "INSERT INTO service_name (name) VALUES ('ftp')"
+$command $database "INSERT INTO service_name (name) VALUES ('http')"
+$command $database "INSERT INTO service_name (name) VALUES ('squid-http')"
 
 $command $database "INSERT INTO vendor (name) VALUES ('Apple')"
 $command $database "INSERT INTO vendor (name) VALUES ('Cisco')"

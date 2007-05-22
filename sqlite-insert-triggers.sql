@@ -242,7 +242,7 @@ CREATE TRIGGER port_insert_bad_port_state
     
 -- Trigger for preventing bad insertion on extraports
 CREATE TRIGGER extraports_insert_bad_host
-    BEFORE INSERT ON extraport
+    BEFORE INSERT ON extraports
     FOR EACH ROW BEGIN
         SELECT RAISE(ROLLBACK, "Bad INSERT on table 'extraports', invalid fk_host especified")
         WHERE (SELECT pk from host WHERE pk = NEW.fk_host) IS NULL;

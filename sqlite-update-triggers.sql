@@ -1,6 +1,6 @@
 -- Copyright (C) 2007 Insecure.Com LLC.
 --
--- Authors: Guilherme Polo <ggpolo@gmail.com>
+-- Author: Guilherme Polo <ggpolo@gmail.com>
 --
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -22,12 +22,20 @@
 -- Scan Triggers
 -------------------
 
+-- Triggers for preventing bad update on scan 
+CREATE TRIGGER scan_update_bad_scanner
+    BEFORE UPDATE ON scan
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'scan', invalid fk_scanner especified")
+        WHERE (SELECT pk FROM scanner WHERE pk = NEW.fk_scanner) IS NULL;
+    END;
+
 -- Triggers for preventing bad update on scaninfo
-CREATE TRIGGER scaninfo_update_bad_scanner
+CREATE TRIGGER scaninfo_update_bad_scan
     BEFORE UPDATE ON scaninfo
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK,"'Bad UPDATE on table 'scaninfo',  invalid fk_scanner especified")
-        WHERE (SELECT pk FROM scanner WHERE pk = NEW.fk_scanner) IS NULL;
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'scaninfo', invalid fk_scan especified")
+        WHERE (SELECT pk FROM scan WHERE pk = NEW.fk_scan) IS NULL;
     END;
 
 CREATE TRIGGER scaninfo_update_bad_scan_type
@@ -44,47 +52,45 @@ CREATE TRIGGER scaninfo_update_bad_protocol
         WHERE (SELECT pk FROM protocol WHERE pk = NEW.fk_protocol) IS NULL;
     END;
 
--- Triggers for preventing bad update on _scan_scaninfo
-CREATE TRIGGER _scan_scaninfo_update_bad_scan
-    BEFORE UPDATE ON _scan_scaninfo
-    FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad UPDATE on table '_scan_scaninfo', invalid fk_scan especified")
-        WHERE (SELECT pk FROM scan WHERE pk = NEW.fk_scan) IS NULL;
-    END;
-
-CREATE TRIGGER _scan_scaninfo_update_bad_scaninfo
-    BEFORE UPDATE ON _scan_scaninfo
-    FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad UPDATE on table '_scan_scaninfo', invalid fk_scaninfo especified")
-        WHERE (SELECT pk FROM scaninfo WHERE pk = NEW.fk_scaninfo) IS NULL;
-    END;
-
--- Triggers for preventing bad update on _scan_host
-CREATE TRIGGER _scan_host_update_bad_scan
-    BEFORE UPDATE ON _scan_host
-    FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad UPDATE on table '_scan_host', invalid fk_scan especified")
-        WHERE (SELECT pk FROM scan WHERE pk = NEW.fk_scan) IS NULL;
-    END;
-    
-CREATE TRIGGER _scan_host_update_bad_host
-    BEFORE UPDATE ON _scan_host
-    FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad UPDATE on table '_scan_host', invalid fk_host especified")
-        WHERE (SELECT pk FROM host WHERE pk = NEW.fk_host) IS NULL;
-    END;
-
 
 -------------------
 -- Host Triggers
 -------------------
 
 -- Trigger for preventing bad update on host
+CREATE TRIGGER host_update_bad_scan
+    BEFORE UPDATE ON host
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'host', invalid fk_scan especified")
+        WHERE (SELECT pk FROM scan WHERE pk = NEW.fk_scan) IS NULL;
+    END;
+
 CREATE TRIGGER host_update_bad_host_state
     BEFORE UPDATE ON host
     FOR EACH ROW BEGIN
         SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'host', invalid fk_host_state especified")
         WHERE (SELECT pk FROM host_state WHERE pk = NEW.fk_host_state) IS NULL;
+    END;
+
+CREATE TRIGGER host_update_bad_tcp_sequence
+    BEFORE UPDATE ON host
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'host', invalid fk_tcp_sequence especified")
+        WHERE (SELECT pk from tcp_sequence WHERE pk = NEW.fk_tcp_sequence) IS NULL;
+    END;
+
+CREATE TRIGGER host_update_bad_tcp_ts_sequence
+    BEFORE UPDATE ON host
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'host', invalid fk_tcp_ts_sequence especified")
+        WHERE (SELECT pk from tcp_ts_sequence WHERE pk = NEW.fk_tcp_ts_sequence) IS NULL;
+    END;
+
+CREATE TRIGGER host_update_bad_ip_id_sequence
+    BEFORE UPDATE ON host
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'host', invalid fk_ip_id_sequence especified")
+        WHERE (SELECT pk from ip_id_sequence WHERE pk = NEW.fk_ip_id_sequence) IS NULL;
     END;
 
 -- Trigger for preventing bad update on address
@@ -140,12 +146,80 @@ CREATE TRIGGER _host_port_update_bad_port
         WHERE (SELECT pk FROM port WHERE pk = NEW.fk_port) IS NULL;
     END;
 
+-- Trigger for preventing bad update on osmatch
+CREATE TRIGGER osmatch_update_bad_host
+    BEFORE UPDATE ON osmatch
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'osmatch', invalid fk_host especified")
+        WHERE (SELECT pk FROM host WHERE pk = NEW.fk_host) IS NULL;
+    END;
+
+-- Triggers for preventing bad update on osclass
+CREATE TRIGGER osclass_update_bad_osgen
+    BEFORE UPDATE ON osclass
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'osclass', invalid fk_osgen especified")
+        WHERE (SELECT pk FROM osgen WHERE pk = NEW.fk_osgen) IS NULL;
+    END;
+
+CREATE TRIGGER osclass_update_bad_osfamily
+    BEFORE UPDATE ON osclass
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'osclass', invalid fk_osfamily especified")
+        WHERE (SELECT pk FROM osfamily WHERE pk = NEW.fk_osfamily) IS NULL;
+    END;
+
+CREATE TRIGGER osclass_update_bad_osvendor
+    BEFORE UPDATE ON osclass
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'osclass', invalid fk_osvendor especified")
+        WHERE (SELECT pk FROM osvendor WHERE pk = NEW.fk_osvendor) IS NULL;
+    END;
+
+CREATE TRIGGER osclass_update_bad_ostype
+    BEFORE UPDATE ON osclass
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'osclass', invalid fk_ostype especified")
+        WHERE (SELECT pk FROM ostype WHERE pk = NEW.fk_ostype) IS NULL;
+    END;
+
+CREATE TRIGGER osclass_update_bad_host
+    BEFORE UPDATE ON osclass
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'osclass', invalid fk_host especified")
+        WHERE (SELECT pk FROM host WHERE pk = NEW.fk_host) IS NULL;
+    END;
+
+
+-- Triggers for preventing bad update on portused
+CREATE TRIGGER portused_update_bad_protocol
+    BEFORE UPDATE ON portused
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'portused', invalid fk_protocol especified")
+        WHERE (SELECT pk FROM protocol WHERE pk = NEW.fk_protocol) IS NULL;
+    END;
+
+CREATE TRIGGER portused_update_bad_port_state
+    BEFORE UPDATE ON portused
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'portused', invalid fk_port_state especified")
+        WHERE (SELECT pk FROM port_state WHERE pk = NEW.fk_port_state) IS NULL;
+    END;
+
+CREATE TRIGGER portused_update_bad_host
+    BEFORE UPDATE ON portused
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'portused', invalid fk_host especified")
+        WHERE (SELECT pk FROM host WHERE pk = NEW.fk_host) IS NULL;
+    END;
+
+
 -------------------
 -- Port Triggers
 -------------------
 
 -- Triggers for preventing bad update on port
-CREATE TRIGGER port_update_bad_service
+CREATE TRIGGER port_update_bad_service_info
     BEFORE UPDATE ON port
     FOR EACH ROW BEGIN
         SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'port', invalid fk_service especified")
@@ -167,11 +241,33 @@ CREATE TRIGGER port_update_bad_port_state
     END;
     
 -- Trigger for preventing bad update on extraports
+CREATE TRIGGER extraports_update_bad_host
+    BEFORE UPDATE ON extraports
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'extraports', invalid fk_host especified")
+        WHERE (SELECT pk from host WHERE pk = NEW.fk_host) IS NULL;
+    END;
+
 CREATE TRIGGER extraports_update_bad_port_state
     BEFORE UPDATE ON extraports
     FOR EACH ROW BEGIN
         SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'extraport', invalid fk_port_state especified")
         WHERE (SELECT pk FROM port_state WHERE pk = NEW.fk_port_state) IS NULL;
+    END;
+
+-- Trigger for preventing bad update on service_info
+CREATE TRIGGER service_info_update_bad_service_name
+    BEFORE UPDATE ON service_info
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'service_info', invalid fk_service_name especified")
+        WHERE (SELECT pk FROM service_name WHERE pk = NEW.fk_service_name) IS NULL;
+    END;
+
+CREATE TRIGGER service_info_update_bad_ostype
+    BEFORE UPDATE ON service_info
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'service_info', invalid fk_ostype especified")
+        WHERE (SELECT pk FROM ostype WHERE pk = NEW.fk_ostype) IS NULL;
     END;
 
 
@@ -194,3 +290,23 @@ CREATE TRIGGER _inventory_scan_update_bad_inventory
         WHERE (SELECT pk FROM inventory WHERE pk = NEW.fk_inventory) IS NULL;
     END;
 
+
+-------------------
+-- Traceroute Triggers
+-------------------
+
+-- Trigger for preventing bad update on trace
+CREATE TRIGGER trace_update_bad_protocol
+    BEFORE UPDATE ON trace
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'trace', invalid fk_protocol especified")
+        WHERE (SELECT pk FROM protocol WHERE pk = NEW.fk_protocol) IS NULL;
+    END;
+
+-- Trigger for preventing bad update on hop
+CREATE TRIGGER hop_update_bad_trace
+    BEFORE UPDATE ON hop
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'hop', invalid fk_trace especified")
+        WHERE (SELECT pk FROM trace WHERE pk = NEW.fk_trace) IS NULL;
+    END;
