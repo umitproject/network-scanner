@@ -41,15 +41,15 @@ CREATE TABLE scan (
 );
 
 CREATE TABLE scaninfo (
-    pk           INTEGER NOT NULL PRIMARY KEY,   
-    numservices  INTEGER,
-    services     TEXT,
-    fk_scan      INTEGER NOT NULL CONSTRAINT fk_scan
-                    REFERENCES scan(pk),
-    fk_type      INTEGER NOT NULL CONSTRAINT fk_type
-                    REFERENCES scan_type(pk),
-    fk_protocol  INTEGER NOT NULL CONSTRAINT fk_protocol
-                    REFERENCES protocol(pk)
+    pk            INTEGER NOT NULL PRIMARY KEY,   
+    numservices   INTEGER,
+    services      TEXT,
+    fk_scan       INTEGER NOT NULL CONSTRAINT fk_scan
+                     REFERENCES scan(pk),
+    fk_scan_type  INTEGER NOT NULL CONSTRAINT fk_type
+                     REFERENCES scan_type(pk),
+    fk_protocol   INTEGER NOT NULL CONSTRAINT fk_protocol
+                     REFERENCES protocol(pk)
 );
 
 CREATE TABLE scan_type (
@@ -77,11 +77,11 @@ CREATE TABLE host (
                            REFERENCES scan(pk),
     fk_host_state       INTEGER NOT NULL CONSTRAINT fk_host_state
                            REFERENCES host_state(pk),
-    fk_tcp_sequence     INTEGER NOT NULL CONSTRAINT fk_tcp_sequence
+    fk_tcp_sequence     INTEGER CONSTRAINT fk_tcp_sequence
                            REFERENCES tcp_sequence(pk),
-    fk_tcp_ts_sequence  INTEGER NOT NULL CONSTRAINT fk_tcp_ts_sequence
+    fk_tcp_ts_sequence  INTEGER CONSTRAINT fk_tcp_ts_sequence
                            REFERENCES tcp_ts_sequence(pk),
-    fk_ip_id_sequence   INTEGER NOT NULL CONSTRAINT fk_ip_id_sequence
+    fk_ip_id_sequence   INTEGER CONSTRAINT fk_ip_id_sequence
                            REFERENCES ip_id_sequence(pk)
 );
 
@@ -196,6 +196,7 @@ CREATE TABLE hostname (
 );
 
 CREATE TABLE _host_hostname (
+    pk           INTEGER NOT NULL PRIMARY KEY,
     fk_host      INTEGER NOT NULL CONSTRAINT fk_host
                     REFERENCES host(pk),
     fk_hostname  INTEGER NOT NULL CONSTRAINT fk_hostname
@@ -203,6 +204,7 @@ CREATE TABLE _host_hostname (
 );
 
 CREATE TABLE _host_address (
+    pk          INTEGER NOT NULL PRIMARY KEY,
     fk_host     INTEGER NOT NULL CONSTRAINT fk_host
                    REFERENCES host(pk),
     fk_address  INTEGER NOT NULL CONSTRAINT fk_address

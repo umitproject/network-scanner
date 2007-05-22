@@ -41,8 +41,8 @@ CREATE TRIGGER scaninfo_update_bad_scan
 CREATE TRIGGER scaninfo_update_bad_scan_type
     BEFORE UPDATE ON scaninfo
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'scaninfo', invalid fk_type especified")
-        WHERE (SELECT pk FROM scan_type WHERE pk = NEW.fk_type) IS NULL;
+        SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'scaninfo', invalid fk_scan_type especified")
+        WHERE (SELECT pk FROM scan_type WHERE pk = NEW.fk_scan_type) IS NULL;
     END;
 
 CREATE TRIGGER scaninfo_update_bad_protocol
@@ -76,21 +76,21 @@ CREATE TRIGGER host_update_bad_tcp_sequence
     BEFORE UPDATE ON host
     FOR EACH ROW BEGIN
         SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'host', invalid fk_tcp_sequence especified")
-        WHERE (SELECT pk from tcp_sequence WHERE pk = NEW.fk_tcp_sequence) IS NULL;
+        WHERE NEW.fk_tcp_sequence IS NOT NULL AND (SELECT pk FROM tcp_sequence WHERE pk = NEW.fk_tcp_sequence) IS NULL;
     END;
 
 CREATE TRIGGER host_update_bad_tcp_ts_sequence
     BEFORE UPDATE ON host
     FOR EACH ROW BEGIN
         SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'host', invalid fk_tcp_ts_sequence especified")
-        WHERE (SELECT pk from tcp_ts_sequence WHERE pk = NEW.fk_tcp_ts_sequence) IS NULL;
+        WHERE NEW.fk_tcp_ts_sequence IS NOT NULL AND (SELECT pk FROM tcp_ts_sequence WHERE pk = NEW.fk_tcp_ts_sequence) IS NULL;
     END;
 
 CREATE TRIGGER host_update_bad_ip_id_sequence
     BEFORE UPDATE ON host
     FOR EACH ROW BEGIN
         SELECT RAISE(ROLLBACK, "Bad UPDATE on table 'host', invalid fk_ip_id_sequence especified")
-        WHERE (SELECT pk from ip_id_sequence WHERE pk = NEW.fk_ip_id_sequence) IS NULL;
+        WHERE NEW.fk_ip_id_sequence IS NOT NULL AND (SELECT pk FROM ip_id_sequence WHERE pk = NEW.fk_ip_id_sequence) IS NULL;
     END;
 
 -- Trigger for preventing bad update on address
