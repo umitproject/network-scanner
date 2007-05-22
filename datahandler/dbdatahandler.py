@@ -23,6 +23,7 @@ What is missing in this:
     for now.
   - Everything related to pop data, right now it is just inserting on
     database.
+  - And more..
 """
 
 import os
