@@ -17,6 +17,14 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 
 # USA
 
+"""
+What is missing in this:
+  - If you have a xml file with traceroute, traceroute info isn't being added
+    for now.
+  - Everything related to pop data, right now it is just inserting on
+    database.
+"""
+
 import os
 from umitCore.NmapParser import NmapParser
 from _sqlite import sqlite
@@ -68,7 +76,7 @@ class DBDataHandler:
             temp_d = { }
 
             #print "Comment:", host.comment
-            temp_d["distance"] = None
+            temp_d["distance"] = 'Empty'
             temp_d["uptime"] = host.uptime["seconds"]
             temp_d["lastboot"] = host.uptime["lastboot"]
             temp_d["fk_scan"] = self.scan["pk"]
@@ -82,17 +90,17 @@ class DBDataHandler:
             if tcp_sequence:
                 temp_d["fk_tcp_sequence"] = self.get_tcpsequence_id_from_db(tcp_sequence)
             else:
-                temp_d["fk_tcp_sequence"] = None
+                temp_d["fk_tcp_sequence"] = 'Empty'
 
             if tcp_ts_sequence:
                 temp_d["fk_tcp_ts_sequence"] = self.get_tcptssequence_id_from_db(tcp_ts_sequence)
             else:
-                temp_d["fk_tcp_ts_sequence"] = None
+                temp_d["fk_tcp_ts_sequence"] = 'Empty'
 
             if ip_id_sequence:
                 temp_d["fk_ip_id_sequence"] = self.get_ipidsequence_id_from_db(ip_id_sequence)
             else:
-                temp_d["fk_ip_id_sequence"] = None
+                temp_d["fk_ip_id_sequence"] = 'Empty'
 
             self.__normalize(temp_d)
             # insert host
@@ -119,15 +127,14 @@ class DBDataHandler:
             if host.osmatch:
                 self.insert_osmatch_db(temp_d["pk"], host.osmatch)
                 self.insert_osclass_db(temp_d["pk"], host.osclasses)
-                self.insert_ports_used_db(temp_d["pk"], host.ports_used)
+                self.insert_portsused_db(temp_d["pk"], host.ports_used)
 
             # insert extraports
             self.insert_extraports_db(temp_d["pk"], 
                                       host.ports[0]["extraports"])
             
             # insert ports
-            self.insert_ports_db(host.ports[0]["port"])
-            #print "Ports: ", host.ports[0]["port"]
+            self.insert_ports_db(temp_d["pk"], host.ports[0]["port"])
 
         return hosts_l
 
@@ -167,9 +174,9 @@ class DBDataHandler:
         scan_d = { }
         scan_d["args"] = parsedsax.nmap["nmaprun"]["args"]
         scan_d["start"] = parsedsax.nmap["nmaprun"]["start"]
-        scan_d["startstr"] = None
+        scan_d["startstr"] = 'Empty'
         scan_d["finish"] = parsedsax.nmap["runstats"]["finished_time"]
-        scan_d["finishstr"] = None
+        scan_d["finishstr"] = 'Empty'
         scan_d["xmloutputversion"] = parsedsax.nmap["nmaprun"]["xmloutputversion"]
         scan_d["xmloutput"] = '\n'.join(open(self.xml_file, 'r').readlines())
         scan_d["verbose"] = parsedsax.nmap["verbose"]
@@ -216,14 +223,30 @@ class DBDataHandler:
             self.conn.commit()
 
 
-    def insert_ports_db(self, ports):
+    def insert_ports_db(self, host, ports):
+        """
+        Creates new records in port, _host_port and possibly on service_name
+        and service_info based on data from ports.
+        """
         for port in ports:
             protocol_id = self.get_protocol_id_from_db(port["protocol"])
             port_state_id = self.get_port_state_id_from_db(port["port_state"])
-            #service_info_id = self.get_service_info_id_from_db(port)
-            print port
-            # FINISH THIS!
+            service_info_id = self.get_service_info_id_from_db(port)
+            
+            # insert new port
+            self.cursor.execute("INSERT INTO port (portid, fk_service_info, \
+                    fk_protocol, fk_port_state) VALUES (?, ?, ?, ?)",
+                    (port["portid"], service_info_id, protocol_id,
+                    port_state_id))
+            self.conn.commit()
 
+            id = self.get_id_for("port")
+
+            # insert new port id in _host_port
+            self.cursor.execute("INSERT INTO _host_port (fk_host, fk_port) \
+                    VALUES (?, ?)", (host, id[0]))
+            self.conn.commit()
+        
 
     def insert_extraports_db(self, host, extraports):
         """
@@ -238,7 +261,7 @@ class DBDataHandler:
             self.conn.commit()
 
 
-    def insert_ports_used_db(self, host, ports_used):
+    def insert_portsused_db(self, host, ports_used):
         """
         Create new records in portused with data from ports_used list.
         """
@@ -274,7 +297,7 @@ class DBDataHandler:
         """
         Create new record in osmatch with data from osmatch dict.
         """
-        osmatch["line"] = None # check this, it seems parser isnt storing this
+        osmatch["line"] = 'Empty' # check this, it seems parser isnt storing this
         self.cursor.execute("INSERT INTO osmatch (name, accuracy, line, \
                     fk_host) VALUES (?, ?, ?, ?)", (osmatch["name"], 
                     osmatch["accuracy"], osmatch["line"], host))
@@ -328,6 +351,56 @@ class DBDataHandler:
         self.cursor.execute("INSERT INTO _host_hostname (fk_host, fk_hostname) \
                              VALUES (?, ?)", (fk_host, fk_hostname))
         self.conn.commit()
+
+
+    def get_service_info_id_from_db(self, info):
+        """
+        Get service_info id based on data from info, if there is no
+        corresponding service_info, create a new one for storing data.
+        """
+        self.__normalize(info)
+
+        service_name_id = self.get_service_name_id_from_db(info["service_name"])
+        # NOT USING ostype FOR NOW
+        info["ostype"] = 'Empty'
+
+        data = (info["service_product"], info["service_version"],
+                info["service_extrainfo"], info["service_method"],
+                info["service_conf"], service_name_id)
+        
+        id = self.cursor.execute("SELECT product, version, extrainfo, method, \
+                    conf, fk_service_name FROM service_info WHERE \
+                    product = ? AND version = ? AND extrainfo = ? AND \
+                    method = ? AND conf = ? AND fk_service_name = ?",
+                    data).fetchone()
+
+        if not id: # info not in database yet
+            self.cursor.execute("INSERT INTO service_info (product, version, \
+                    extrainfo, method, conf, fk_service_name) VALUES (?, ?, ?,\
+                    ?, ?, ?)", data)
+            self.conn.commit()
+
+            id = self.get_id_for("service_info")
+
+        return id[0]
+
+
+    def get_service_name_id_from_db(self, service_name):
+        """
+        Get id from service_name for service_name if it exists, otherwise,
+        create new record for service_name and return its id.
+        """
+        id = self.cursor.execute("SELECT pk FROM service_name WHERE name = ?",
+                            (service_name, )).fetchone()
+
+        if not id: # service_name not in database yet.
+            self.cursor.execute("INSERT INTO service_name (name) VALUES \
+                            (?)", (service_name, ))
+            self.conn.commit()
+
+            id = self.get_id_for("service_name")
+
+        return id[0]
 
 
     def get_hostname_id_from_db(self, hostname):
@@ -712,12 +785,13 @@ class DBDataHandler:
     def __normalize(self, dictun):
         """
         Call this to normalize a dict, what it does: any empty value 
-        will be changed to None.
+        will be changed to 'Empty'.
         """
         # normalize hosts
         for key, value in dictun.items():
             if not value:
-                 dictun[key] = None
+                 #dictun[key] = None # ! having problems with this on sqlite
+                 dictun[key] = 'Empty'
 
 
 

@@ -212,10 +212,11 @@ CREATE TABLE _host_address (
 );
 
 CREATE TABLE _host_port (
-    fk_host     INTEGER NOT NULL CONSTRAINT fk_host
-                   REFERENCES host(pk),
-    fk_port     INTEGER NOT NULL CONSTRAINT fk_port
-                   REFERENCES port(pk)
+    pk       INTEGER NOT NULL PRIMARY KEY,   
+    fk_host  INTEGER NOT NULL CONSTRAINT fk_host
+                REFERENCES host(pk),
+    fk_port  INTEGER NOT NULL CONSTRAINT fk_port
+                REFERENCES port(pk)
 );
 
 
@@ -283,6 +284,7 @@ CREATE TABLE inventory (
 );
 
 CREATE TABLE _inventory_scan (
+    pk            INTEGER NOT NULL PRIMARY KEY,
     fk_scan       INTEGER NOT NULL CONSTRAINT fk_scan
                      REFERENCES scan(pk),
     fk_inventory  INTEGER NOT NULL CONSTRAINT fk_inventory
