@@ -33,33 +33,23 @@ CREATE TABLE scan (
     xmloutputversion  TEXT,
     xmloutput         TEXT,
     verbose           INTEGER,
-    debugging         INTEGER
+    debugging         INTEGER,
+    hosts_up          INTEGER,
+    hosts_down        INTEGER,
+    fk_scanner        INTEGER NOT NULL CONSTRAINT fk_scanner
+                         REFERENCES scanner(pk)
 );
 
 CREATE TABLE scaninfo (
     pk           INTEGER NOT NULL PRIMARY KEY,   
     numservices  INTEGER,
     services     TEXT,
-    fk_scanner   INTEGER NOT NULL CONSTRAINT fk_scanner
-                    REFERENCES scanner(pk),
+    fk_scan      INTEGER NOT NULL CONSTRAINT fk_scan
+                    REFERENCES scan(pk),
     fk_type      INTEGER NOT NULL CONSTRAINT fk_type
                     REFERENCES scan_type(pk),
     fk_protocol  INTEGER NOT NULL CONSTRAINT fk_protocol
                     REFERENCES protocol(pk)
-);
-
-CREATE TABLE _scan_scaninfo (
-    fk_scan      INTEGER NOT NULL CONSTRAINT fk_scan
-                    REFERENCES scan(pk),
-    fk_scaninfo  INTEGER NOT NULL CONSTRAINT fk_scaninfo
-                    REFERENCES scaninfo(pk)
-);
-
-CREATE TABLE _scan_host (
-    fk_scan INTEGER NOT NULL CONSTRAINT fk_scan
-               REFERENCES scan(pk),
-    fk_host INTEGER NOT NULL CONSTRAINT fk_host
-               REFERENCES host(pk)
 );
 
 CREATE TABLE scan_type (
@@ -79,9 +69,111 @@ CREATE TABLE scanner (
 -------------------
 
 CREATE TABLE host (
+    pk                  INTEGER NOT NULL PRIMARY KEY,
+    distance            INTEGER,
+    uptime              INTEGER,
+    lastboot            TEXT,
+    fk_scan             INTEGER NOT NULL CONSTRAINT fk_scan
+                           REFERENCES scan(pk),
+    fk_host_state       INTEGER NOT NULL CONSTRAINT fk_host_state
+                           REFERENCES host_state(pk),
+    fk_tcp_sequence     INTEGER NOT NULL CONSTRAINT fk_tcp_sequence
+                           REFERENCES tcp_sequence(pk),
+    fk_tcp_ts_sequence  INTEGER NOT NULL CONSTRAINT fk_tcp_ts_sequence
+                           REFERENCES tcp_ts_sequence(pk),
+    fk_ip_id_sequence   INTEGER NOT NULL CONSTRAINT fk_ip_id_sequence
+                           REFERENCES ip_id_sequence(pk)
+);
+
+
+-- Fingerprint
+
+CREATE TABLE tcp_sequence (
+    pk          INTEGER NOT NULL PRIMARY KEY,
+    tcp_index   INTEGER,
+    class       INTEGER,
+    difficulty  INTEGER,
+    tcp_values  TEXT
+);
+
+CREATE TABLE tcp_ts_sequence (
     pk             INTEGER NOT NULL PRIMARY KEY,
-    fk_host_state  INTEGER NOT NULL CONSTRAINT fk_host_state
-                      REFERENCES host_state(id)
+    class          INTEGER,
+    tcp_ts_values  TEXT
+);
+
+CREATE TABLE ip_id_sequence (
+    pk            INTEGER NOT NULL PRIMARY KEY,
+    class         INTEGER,
+    ip_id_values  TEXT
+);
+
+-- end Fingerprint
+
+
+-- OS Detection
+
+CREATE TABLE osmatch (
+    pk        INTEGER NOT NULL PRIMARY KEY,
+    name      TEXT,
+    accuracy  INTEGER,
+    line      INTEGER,
+    fk_host   INTEGER NOT NULL CONSTRAINT fk_host
+                 REFERENCES host(pk)
+);
+
+CREATE TABLE osclass (
+    pk           INTEGER NOT NULL PRIMARY KEY,
+    accuracy     INTEGER,
+    fk_osgen     INTEGER NOT NULL CONSTRAINT fk_osgen
+                    REFERENCES osgen(pk),
+    fk_osfamily  INTEGER NOT NULL CONSTRAINT fk_osfamily
+                    REFERENCES osfamily(pk),
+    fk_osvendor  INTEGER NOT NULL CONSTRAINT fk_osvendor
+                    REFERENCES osvendor(pk),
+    fk_ostype    INTEGER NOT NULL CONSTRAINT fk_ostype
+                    REFERENCES ostype(pk),
+    fk_host      INTEGER NOT NULL CONSTRAINT fk_host
+                    REFERENCES host(pk)
+);
+
+CREATE TABLE osgen (
+    pk   INTEGER NOT NULL PRIMARY KEY,
+    gen  TEXT
+);
+
+CREATE TABLE osfamily (
+    pk      INTEGER NOT NULL PRIMARY KEY,
+    family  INTEGER
+);
+
+CREATE TABLE osvendor (
+    pk      INTEGER NOT NULL PRIMARY KEY,
+    vendor  TEXT
+);
+
+CREATE TABLE ostype (
+    pk    INTEGER NOT NULL PRIMARY KEY,
+    type  TEXT
+);
+
+CREATE TABLE portused (
+    pk             INTEGER NOT NULL PRIMARY KEY,
+    portid         INTEGER,
+    fk_protocol    INTEGER NOT NULL CONSTRAINT fk_protocol
+                      REFERENCES protocol(pk),
+    fk_port_state  INTEGER NOT NULL CONSTRAINT fk_port_state
+                      REFERENCES port_state(pk),
+    fk_host        INTEGER NOT NULL CONSTRAINT fk_host
+                      REFERENCES host(pk)
+);
+
+-- end OS Detection
+
+
+CREATE TABLE host_state (
+    pk     INTEGER NOT NULL PRIMARY KEY,
+    state  TEXT
 );
 
 CREATE TABLE address (
@@ -95,11 +187,6 @@ CREATE TABLE address (
 CREATE TABLE vendor (
     pk    INTEGER NOT NULL PRIMARY KEY,
     name  TEXT
-);
-
-CREATE TABLE host_state (
-    pk     INTEGER NOT NULL PRIMARY KEY,
-    state  TEXT
 );
 
 CREATE TABLE hostname (
@@ -135,17 +222,14 @@ CREATE TABLE _host_port (
 -------------------
 
 CREATE TABLE port (
-    pk             INTEGER NOT NULL PRIMARY KEY,
-    portid         INTEGER,
-    version        TEXT,
-    conf           INTEGER,
-    method         INTEGER,
-    fk_service     INTEGER NOT NULL CONSTRAINT fk_service
-                      REFERENCES service(pk), 
-    fk_protocol    INTEGER NOT NULL CONSTRAINT fk_protocol
-                      REFERENCES protocol(pk),
-    fk_port_state  INTEGER NOT NULL CONSTRAINT fk_port_state
-                      REFERENCES port_state(pk)
+    pk               INTEGER NOT NULL PRIMARY KEY,
+    portid           INTEGER,
+    fk_service_info  INTEGER NOT NULL CONSTRAINT fk_service
+                        REFERENCES service_info(pk), 
+    fk_protocol      INTEGER NOT NULL CONSTRAINT fk_protocol
+                        REFERENCES protocol(pk),
+    fk_port_state    INTEGER NOT NULL CONSTRAINT fk_port_state
+                        REFERENCES port_state(pk)
 );
 
 CREATE TABLE extraports (
@@ -163,7 +247,18 @@ CREATE TABLE protocol (
     name  TEXT
 );
 
-CREATE TABLE service (
+CREATE TABLE service_info (
+    pk               INTEGER NOT NULL PRIMARY KEY,
+    product          TEXT,
+    version          TEXT,
+    extrainfo        TEXT,
+    method           INTEGER,
+    conf             INTEGER,
+    fk_service_name  INTEGER NOT NULL CONSTRAINT fk_service_name
+                        REFERENCES service_name(pk)
+);
+
+CREATE TABLE service_name (
     pk    INTEGER NOT NULL PRIMARY KEY,
     name  TEXT
 );
@@ -189,3 +284,25 @@ CREATE TABLE _inventory_scan (
     fk_inventory  INTEGER NOT NULL CONSTRAINT fk_inventory
                      REFERENCES inventory(pk)
 );
+
+
+-------------------
+-- Traceroute
+-------------------
+
+CREATE TABLE trace (
+    pk           INTEGER NOT NULL PRIMARY KEY,
+    port         INTEGER,
+    fk_protocol  INTEGER NOT NULL CONSTRAINT fk_protocol
+                    REFERENCES protocol(pk)
+);
+
+CREATE TABLE hop (
+    pk        INTEGER NOT NULL PRIMARY KEY,
+    ttl       INTEGER,
+    ipaddr    TEXT,
+    host      TEXT,
+    fk_trace  INTEGER NOT NULL CONSTRAINT fk_trace
+                 REFERENCES trace(pk)
+);
+
