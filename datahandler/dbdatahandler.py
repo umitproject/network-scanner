@@ -32,8 +32,10 @@ from connection import ConnectDB
 
 
 def empty():
-    #return None
-    return 'Empty'
+    """
+    Returns something that indicates column is empty.
+    """
+    return '' 
 
 
 class DBDataHandler(ConnectDB):
@@ -194,6 +196,7 @@ class DBDataHandler(ConnectDB):
             scaninfo_l.append(temp_d)
 
         self.insert_scaninfo_db(scaninfo_l)
+
         return scaninfo_l
 
 
@@ -280,7 +283,7 @@ class DBDataHandler(ConnectDB):
             port_state_id = self.get_port_state_id_from_db(port["port_state"])
             service_info_id = self.get_service_info_id_from_db(port)
            
-            self.print_debug("Insert new port into database")
+            self.print_debug("Inserting new port into database")
             # insert new port
             self.cursor.execute("INSERT INTO port (portid, fk_service_info, \
                     fk_protocol, fk_port_state) VALUES (?, ?, ?, ?)",
@@ -349,8 +352,7 @@ class DBDataHandler(ConnectDB):
         """
         Create new record in osmatch with data from osmatch dict.
         """
-        osmatch["line"] = empty() # check this, it seems parser isnt 
-                                  # storing this
+        osmatch["line"] = empty() # FIX: it seems parser isnt storing this
 
         self.print_debug("Inserting new osmatch into database")
         self.cursor.execute("INSERT INTO osmatch (name, accuracy, line, \
@@ -412,8 +414,9 @@ information into database")
             fk_hostname = self.get_hostname_id_from_db(hostname)
 
             self.print_debug("Inserting new _host_hostname into database")
-            self.cursor.execute("INSERT INTO _host_hostname (fk_host, fk_hostname) \
-                                 VALUES (?, ?)", (fk_host, fk_hostname))
+            self.cursor.execute("INSERT INTO _host_hostname (fk_host, \
+                                fk_hostname) VALUES (?, ?)", (fk_host, 
+                                fk_hostname))
             self.conn.commit()
 
 
@@ -425,8 +428,7 @@ information into database")
         self.__normalize(info)
 
         service_name_id = self.get_service_name_id_from_db(info["service_name"])
-        # NOT USING ostype FOR NOW
-        info["ostype"] = empty()
+        info["ostype"] = empty() # FIX: Parser not handling this yet.
 
         data = (info["service_product"], info["service_version"],
                 info["service_extrainfo"], info["service_method"],
@@ -849,7 +851,7 @@ database")
 
     def get_xml_file(self):
         """
-        Get current working xml file
+        Get current working xml file.
         """
         return self._xml_file
 
@@ -863,42 +865,42 @@ database")
 
     def get_hosts(self):
         """
-        Get host list
+        Get host list.
         """
         return self._hosts
 
 
     def set_hosts(self, lhosts):
         """
-        Set a list of hosts
+        Set a list of hosts.
         """
         self._hosts = lhosts
 
 
     def get_scaninfo(self):
         """
-        Get scaninfo list
+        Get scaninfo list.
         """
         return self._scaninfo
 
 
     def set_scaninfo(self, scaninfo_dict):
         """
-        Set a list of scaninfo
+        Set a list of scaninfo.
         """
         self._scaninfo = scaninfo_dict
 
 
     def get_scan(self):
         """
-        Get scan dict
+        Get scan dict.
         """
         return self._scan
 
 
     def set_scan(self, scan_dict):
         """
-        Set a dict for scan
+        Set a dict for scan.
         """
         self._scan = scan_dict
 
@@ -922,7 +924,7 @@ database")
     
     def set_parsed(self, parsersax):
         """
-        Sets a NmapParserSAX
+        Sets a NmapParserSAX.
         """
         self._parsed = parsersax
 
@@ -950,38 +952,3 @@ database")
     hosts = (get_hosts, set_hosts)
 
 
-# demo
-if __name__ == "__main__":
-    import time
-    import timing
-
-    timing.start()
-
-    print "Start time:", time.ctime(), '\n'
-
-    test_data = "../tests/data"
-    files = ["%s/xml_test.xml" % test_data, "%s/xml_test1.xml" % test_data, 
-             "%s/xml_test2.xml" % test_data, "%s/xml_test3.xml" % test_data, 
-             "%s/xml_test4.xml" % test_data, "%s/xml_test5.xml" % test_data, 
-             "%s/xml_test6.xml" % test_data, "%s/xml_test7.xml" % test_data, 
-             "%s/xml_test8.xml" % test_data, "%s/xml_test9.xml" % test_data, 
-             "%s/xml_test10.xml" % test_data, "%s/xml_test11.xml" % test_data, 
-             "%s/xml_test12.xml" % test_data, "%s/xml_a.xml" % test_data
-            ]
-    files = [ "scan_ver.xml" ]
-
-    a = DBDataHandler("schema-testing.db", debug=False)
-    
-    errors = len(files)
-    for test in files:
-        err = a.insert_xml(test, store_original=False)
-        if not err:
-           errors -= 1
-
-    timing.finish()
-
-    if len(files) - errors:
-        print "\n%d files inserted into database" % (len(files) - errors)
-        print "Each file took around %.4f seconds to be inserted" % (float(timing.milli()) / (len(files) * 1000))
-    print "Finish time:", time.ctime()
-    print "Duration (miliseconds):", timing.milli()
