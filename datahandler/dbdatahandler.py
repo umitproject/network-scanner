@@ -279,24 +279,12 @@ class DBDataHandler(ConnectDB):
         and service_info based on data from ports.
         """
         for port in ports:
-            protocol_id = self.get_protocol_id_from_db(port["protocol"])
-            port_state_id = self.get_port_state_id_from_db(port["port_state"])
-            service_info_id = self.get_service_info_id_from_db(port)
-           
-            self.print_debug("Inserting new port into database")
-            # insert new port
-            self.cursor.execute("INSERT INTO port (portid, fk_service_info, \
-                    fk_protocol, fk_port_state) VALUES (?, ?, ?, ?)",
-                    (port["portid"], service_info_id, protocol_id,
-                    port_state_id))
-            self.conn.commit()
-
-            id = self.get_id_for("port")
+            port_id = self.get_port_id_from_db(port)
 
             self.print_debug("Inserting new _host_port into database")
             # insert new port id in _host_port
             self.cursor.execute("INSERT INTO _host_port (fk_host, fk_port) \
-                    VALUES (?, ?)", (host, id[0]))
+                    VALUES (?, ?)", (host, port_id))
             self.conn.commit()
         
 
@@ -450,6 +438,36 @@ into database")
             self.conn.commit()
 
             id = self.get_id_for("service_info")
+
+        return id[0]
+
+
+    def get_port_id_from_db(self, port, create_on_nonexist=True):
+        """
+        Get port id based on data from port, if there is no
+        corresponding port, create a new one for storing data.
+        """
+        self.print_debug("Getting pk for port..")
+
+        protocol_id = self.get_protocol_id_from_db(port["protocol"])
+        port_state_id = self.get_port_state_id_from_db(port["port_state"])
+        service_info_id = self.get_service_info_id_from_db(port)
+        id = self.cursor.execute("SELECT pk FROM port WHERE portid = ? AND \
+                        fk_service_info = ? AND fk_protocol = ? AND \
+                        fk_port_state = ?", (port["portid"],
+                        service_info_id, protocol_id, port_state_id)).fetchone()
+
+        if not id and create_on_nonexist: # port not in database yet.
+            self.print_debug("pk didn't exist. Inserting new port into \
+database")
+
+            self.cursor.execute("INSERT INTO port (portid, fk_service_info, \
+                       fk_protocol, fk_port_state) VALUES (?, ?, ?, ?)",
+                       (port["portid"], service_info_id, protocol_id,
+                        port_state_id))
+            self.conn.commit()
+
+            id = self.get_id_for("port")
 
         return id[0]
 
