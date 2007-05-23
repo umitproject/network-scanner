@@ -104,7 +104,7 @@ class DBDataHandler(ConnectDB):
             temp_d = { }
             
             #print "Comment:", host.comment
-            temp_d["distance"] = 'Empty'
+            temp_d["distance"] = empty()
             temp_d["uptime"] = host.uptime["seconds"]
             temp_d["lastboot"] = host.uptime["lastboot"]
             temp_d["fk_scan"] = self.scan["pk"]
@@ -202,15 +202,15 @@ class DBDataHandler(ConnectDB):
         scan_d = { }
         scan_d["args"] = parsedsax.nmap["nmaprun"]["args"]
         scan_d["start"] = parsedsax.nmap["nmaprun"]["start"]
-        scan_d["startstr"] = 'Empty'
+        scan_d["startstr"] = empty()
         scan_d["finish"] = parsedsax.nmap["runstats"]["finished_time"]
-        scan_d["finishstr"] = 'Empty'
+        scan_d["finishstr"] = empty()
         scan_d["xmloutputversion"] = parsedsax.nmap["nmaprun"]["xmloutputversion"]
         if self.store_original:
             scan_d["xmloutput"] = '\n'.join(open(self.xml_file, 
                                                  'r').readlines())
         else:
-            scan_d["xmloutput"] = 'Empty'
+            scan_d["xmloutput"] = empty()
 
         scan_d["verbose"] = parsedsax.nmap["verbose"]
         scan_d["debugging"] = parsedsax.nmap["debugging"]
@@ -343,7 +343,7 @@ class DBDataHandler(ConnectDB):
         """
         Create new record in osmatch with data from osmatch dict.
         """
-        osmatch["line"] = 'Empty' # check this, it seems parser isnt 
+        osmatch["line"] = empty() # check this, it seems parser isnt 
                                   # storing this
 
         self.print_debug("Inserting new osmatch into database")
@@ -420,7 +420,7 @@ information into database")
 
         service_name_id = self.get_service_name_id_from_db(info["service_name"])
         # NOT USING ostype FOR NOW
-        info["ostype"] = 'Empty'
+        info["ostype"] = empty()
 
         data = (info["service_product"], info["service_version"],
                 info["service_extrainfo"], info["service_method"],
@@ -500,7 +500,7 @@ database")
         If address isn't in database, a new record is created.
         """
         if not address["vendor"]:
-            vendor = 'Empty'
+            vendor = empty()
         else:
             vendor = address["vendor"]
 
@@ -899,7 +899,7 @@ database")
 
     def parse(self, valid_xml):
         """
-        Parses an existent xml file.
+        Parses an existing xml file.
         """
         p = NmapParser(valid_xml)
         p.parse()
@@ -924,7 +924,7 @@ database")
     def __normalize(self, dictun):
         """
         Call this to normalize a dict. What it does: any empty value 
-        will be changed to 'Empty'.
+        will be changed to return value of empty().
         """
         # normalize hosts
         for key, value in dictun.items():
