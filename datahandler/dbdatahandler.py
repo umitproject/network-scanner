@@ -28,32 +28,23 @@ What is missing in this:
 
 import os
 from umitCore.NmapParser import NmapParser
-from _sqlite import sqlite
+from connection import ConnectDB
+
 
 def empty():
     #return None
     return 'Empty'
 
-class DBDataHandler:
+
+class DBDataHandler(ConnectDB):
     """
     This handles all operations possible in umit database.
     """
 
     def __init__(self, db, debug=False):
-        """
-        Open connection to database and acquire an cursor.
-        """
+        
+        ConnectDB.__init__(self, db)
         self.debug = debug
-        self.conn = sqlite.connect(db)
-        self.cursor = self.conn
-
-
-    def __del__(self):
-        """
-        Closes connection to database.
-        """
-        self.cursor.close()
-        self.conn.close()
 
 
     def get_debug(self):
@@ -87,7 +78,7 @@ class DBDataHandler:
             os.stat(xml_file)
         except OSError, e:
             print "OSError: %s" % e
-            return None
+            return 1
         
         print "Inserting file %s" % xml_file
         self.store_original = store_original
@@ -97,48 +88,51 @@ class DBDataHandler:
         self.scaninfo = self.scaninfo_from_xml()
         self.hosts = self.hosts_from_xml()
         print "%s inserted into database (hopefully)." % xml_file
+        
+        return 0
 
 
     def hosts_from_xml(self):
         """
         Builds a list of dicts compatible with database schema for host.
         """
+        
         self.print_debug("Building host table")
-
+        
         hosts_l = [ ]
         for host in self.parsed.nmap["hosts"]:
             temp_d = { }
-
+            
             #print "Comment:", host.comment
             temp_d["distance"] = 'Empty'
             temp_d["uptime"] = host.uptime["seconds"]
             temp_d["lastboot"] = host.uptime["lastboot"]
             temp_d["fk_scan"] = self.scan["pk"]
             temp_d["fk_host_state"] = self.get_hoststate_id_from_db(host.state)
-
+            
             # host fingerprint
             tcp_sequence = host.tcpsequence
             tcp_ts_sequence = host.tcptssequence
             ip_id_sequence = host.ipidsequence
-
+            
             temp_d["fk_tcp_sequence"] = tcp_sequence and \
                 self.get_tcpsequence_id_from_db(tcp_sequence) or empty()
             temp_d["fk_tcp_ts_sequence"] = tcp_ts_sequence and \
                 self.get_tcptssequence_id_from_db(tcp_ts_sequence) or empty()
             temp_d["fk_ip_id_sequence"] = ip_id_sequence and \
                 self.get_ipidsequence_id_from_db(ip_id_sequence) or empty()
-
+            
             self.__normalize(temp_d)
-
+            
             # insert host
             self.insert_host_db(temp_d)
-
+            
             hosts_l.append(temp_d)
-
+            
             # insert hostname
             if host.hostnames:
                 self.insert_host_hostname_db(temp_d["pk"], host.hostnames)
-
+                
             # insert host addresses
             if host.ip:
                 self.__normalize(host.ip)
@@ -149,23 +143,23 @@ class DBDataHandler:
             if host.mac:
                 self.__normalize(host.mac)
                 self.insert_host_address_db(temp_d["pk"], host.mac)
-
+                
             # insert host os match
             if host.osmatch:
                 self.insert_osmatch_db(temp_d["pk"], host.osmatch)
                 self.insert_osclass_db(temp_d["pk"], host.osclasses)
                 self.insert_portsused_db(temp_d["pk"], host.ports_used)
-
+                
             # some scan may not return any ports
             if host.ports:
                 # insert extraports
                 self.insert_extraports_db(temp_d["pk"], 
                                           host.ports[0]["extraports"])
-            
+                
                 # insert ports
                 self.insert_ports_db(temp_d["pk"], host.ports[0]["port"])
-
-
+        
+        
         return hosts_l
 
  
@@ -403,17 +397,18 @@ information into database")
         self.conn.commit()
 
 
-    def insert_host_hostname_db(self, fk_host, hostname):
+    def insert_host_hostname_db(self, fk_host, hostnames):
         """
         Creates new record in _host_hostname with fk_host = fk_host,
         and discover fk_hostname for hostname data.
         """
-        fk_hostname = self.get_hostname_id_from_db(hostname)
+        for hostname in hostnames:            
+            fk_hostname = self.get_hostname_id_from_db(hostname)
 
-        self.print_debug("Inserting new _host_hostname into database")
-        self.cursor.execute("INSERT INTO _host_hostname (fk_host, fk_hostname) \
-                             VALUES (?, ?)", (fk_host, fk_hostname))
-        self.conn.commit()
+            self.print_debug("Inserting new _host_hostname into database")
+            self.cursor.execute("INSERT INTO _host_hostname (fk_host, fk_hostname) \
+                                 VALUES (?, ?)", (fk_host, fk_hostname))
+            self.conn.commit()
 
 
     def get_service_info_id_from_db(self, info, create_on_nonexist=True):
@@ -480,10 +475,6 @@ into database")
         Return hostname id from database based on type and name,
         if hostname isn't in database, a new record is created.
         """
-
-        hostname = hostname[0] # verify if one host can have more than one
-                               # hostname in nmap xml output
-                               # Rev 2: yes it can, fix this later.
         
         self.print_debug("Getting pk for hostname..")
         id = self.cursor.execute("SELECT pk FROM hostname WHERE \
@@ -970,15 +961,20 @@ if __name__ == "__main__":
              "%s/xml_test8.xml" % test_data, "%s/xml_test9.xml" % test_data, 
              "%s/xml_test10.xml" % test_data, "%s/xml_test11.xml" % test_data, 
              "%s/xml_test12.xml" % test_data, "%s/xml_a.xml" % test_data
-             ]
+            ]
 
-    a = DBDataHandler("schema-testing.db")
+    a = DBDataHandler("schema-testing.db", debug=True)
+    
+    errors = len(files)
     for test in files:
-        a.insert_xml(test, store_original=False)
+        err = a.insert_xml(test, store_original=False)
+        if not err:
+           errors -= 1
 
     timing.finish()
 
-    print "\n%d files inserted into database" % len(files)
-    print "Each file took around %.4f seconds to be inserted" % (float(timing.milli()) / (len(files) * 1000))
+    if len(files) - errors:
+        print "\n%d files inserted into database" % (len(files) - errors)
+        print "Each file took around %.4f seconds to be inserted" % (float(timing.milli()) / (len(files) * 1000))
     print "Finish time:", time.ctime()
     print "Duration (miliseconds):", timing.milli()
