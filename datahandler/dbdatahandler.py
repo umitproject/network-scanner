@@ -147,7 +147,13 @@ class DBDataHandler(ConnectDB):
             # insert host os match
             if host.osmatch:
                 self.insert_osmatch_db(temp_d["pk"], host.osmatch)
+
+            # insert os classes
+            if host.osclasses:
                 self.insert_osclass_db(temp_d["pk"], host.osclasses)
+
+            # insert ports used
+            if host.ports_used:
                 self.insert_portsused_db(temp_d["pk"], host.ports_used)
                 
             # some scan may not return any ports
@@ -962,8 +968,9 @@ if __name__ == "__main__":
              "%s/xml_test10.xml" % test_data, "%s/xml_test11.xml" % test_data, 
              "%s/xml_test12.xml" % test_data, "%s/xml_a.xml" % test_data
             ]
+    files = [ "scan_ver.xml" ]
 
-    a = DBDataHandler("schema-testing.db", debug=True)
+    a = DBDataHandler("schema-testing.db", debug=False)
     
     errors = len(files)
     for test in files:
