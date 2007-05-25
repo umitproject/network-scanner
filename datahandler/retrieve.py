@@ -49,7 +49,7 @@ class RawRetrieve:
         
         normalize(info)
 
-        info["ostype"] = empty() # FIX: Parser not handling this yet.
+        info["ostype"] = empty() # ToFix: Parser isnt storing this
 
         data = (info["service_product"], info["service_version"],
                 info["service_extrainfo"], info["service_method"],

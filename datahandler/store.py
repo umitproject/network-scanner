@@ -188,7 +188,7 @@ class RawStore:
         """
         debug("Inserting new osmatch into database")
         
-        osmatch["line"] = empty() # FIX: it seems parser isnt storing this
+        osmatch["line"] = empty() # ToFix: Parser isnt storing this
         self.cursor.execute("INSERT INTO osmatch (name, accuracy, line, \
                     fk_host) VALUES (?, ?, ?, ?)", (osmatch["name"], 
                     osmatch["accuracy"], osmatch["line"], host))

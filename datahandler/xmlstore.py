@@ -17,6 +17,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 
 # USA
 
+from datetime import datetime
 from umitCore.NmapParser import NmapParser
 from connection import ConnectDB
 from store import RawStore
@@ -43,10 +44,10 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         self.store_original = store_original
         
         if xml_file:
-            self.insert_xml(xml_file)
+            self.store_xml(xml_file)
          
             
-    def insert_xml(self, xml_file):
+    def store_xml(self, xml_file):
         """
         Inserts xml file into database.
         """
@@ -72,7 +73,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         for host in self.parsed.nmap["hosts"]:
             temp_d = { }
             
-            temp_d["distance"] = empty()
+            temp_d["distance"] = empty() # ToFix: Parser isnt storing this
             temp_d["uptime"] = host.uptime["seconds"]
             temp_d["lastboot"] = host.uptime["lastboot"]
             temp_d["fk_scan"] = self.scan["pk"]
@@ -370,10 +371,12 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
 
         scan_d = { }
         scan_d["args"] = parsedsax.nmap["nmaprun"]["args"]
-        scan_d["start"] = parsedsax.nmap["nmaprun"]["start"]
-        scan_d["startstr"] = empty()
-        scan_d["finish"] = parsedsax.nmap["runstats"]["finished_time"]
-        scan_d["finishstr"] = empty()
+        timestamp_start = parsedsax.nmap["nmaprun"]["start"]
+        scan_d["start"] = datetime.fromtimestamp(float(timestamp_start))
+        scan_d["startstr"] = empty() # ToFix: Parser isnt storing this
+        timestamp_finish = parsedsax.nmap["runstats"]["finished_time"]
+        scan_d["finish"] = datetime.fromtimestamp(float(timestamp_finish))
+        scan_d["finishstr"] = empty() # ToFix: Parser isnt storing this
         scan_d["xmloutputversion"] = parsedsax.nmap["nmaprun"]["xmloutputversion"]
         if self.store_original:
             scan_d["xmloutput"] = '\n'.join(open(self.xml_file, 
@@ -391,7 +394,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         
         # get fk_scanner
         scanner_id = self.get_scanner_id_from_db(scanner_name,
-                                                        scanner_version)
+                                                 scanner_version)
         if not scanner_id:
             self.insert_scanner_db(scanner_name, scanner_version)
             scanner_id = self.get_id_for("scanner")

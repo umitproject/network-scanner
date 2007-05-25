@@ -36,7 +36,7 @@ class ConnectDB:
         """
         debug("Openning connection to database; %s" % database)
         
-        self.conn = sqlite.connect(database)
+        self.conn = sqlite.connect(database, detect_types=sqlite.PARSE_COLNAMES)
         self.cursor = self.conn
         
         
