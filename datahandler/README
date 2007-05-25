@@ -1,1 +1,2 @@
-# Run python dbdatahandler.py to insert a lot (14) of xml files into database.
+# Run python demo_xml_insertion.py nmap_scan_output.xml to insert
+# an xml file into schema-testing.db

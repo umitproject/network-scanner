@@ -54,7 +54,9 @@ CREATE TABLE scaninfo (
 
 CREATE TABLE scan_type (
     pk    INTEGER NOT NULL PRIMARY KEY,
-    name  TEXT
+    name  TEXT CHECK (name IN ('syn', 'ack', 'bounce', 'connect', 'null',
+                               'xmas', 'window', 'maimon', 'fin', 'udp',
+                               'ipproto'))
 );
 
 CREATE TABLE scanner (
@@ -173,13 +175,13 @@ CREATE TABLE portused (
 
 CREATE TABLE host_state (
     pk     INTEGER NOT NULL PRIMARY KEY,
-    state  TEXT
+    state  TEXT CHECK (state IN ('up', 'down', 'unknown', 'skipped'))
 );
 
 CREATE TABLE address (
     pk         INTEGER NOT NULL PRIMARY KEY,
     address    TEXT,
-    type       INTEGER,
+    type       TEXT CHECK (type IN ('ipv4', 'ipv6', 'mac')),
     fk_vendor  INTEGER NOT NULL CONSTRAINT fk_vendor
                   REFERENCES vendor(pk)
 );
@@ -191,7 +193,7 @@ CREATE TABLE vendor (
 
 CREATE TABLE hostname (
     pk    INTEGER NOT NULL PRIMARY KEY,
-    type  INTEGER,
+    type  TEXT CHECK (type = 'PTR'),
     name  TEXT
 );
 
@@ -247,7 +249,7 @@ CREATE TABLE extraports (
 -- Protocol could be in a common place maybe
 CREATE TABLE protocol (
     pk    INTEGER NOT NULL PRIMARY KEY,
-    name  TEXT
+    name  TEXT CHECK (name IN ('ip', 'tcp', 'udp'))
 );
 
 CREATE TABLE service_info (
@@ -255,8 +257,8 @@ CREATE TABLE service_info (
     product          TEXT,
     version          TEXT,
     extrainfo        TEXT,
-    method           INTEGER,
-    conf             INTEGER,
+    method           TEXT CHECK (method IN ('table', 'detection', 'probed')),
+    conf             INTEGER CHECK (conf IN (0, 3, 5, 10)),
     fk_ostype        INTEGER CONSTRAINT fk_ostype
                         REFERENCES ostype(pk),
     fk_service_name  INTEGER NOT NULL CONSTRAINT fk_service_name

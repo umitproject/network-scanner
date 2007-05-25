@@ -17,38 +17,26 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 
 # USA
 
-"""
-This handles connections to the database.
-Right now it supports only sqlite, but could support more dbs.
-"""
-
-from _sqlite import sqlite
-
-class ConnectDB:
+def empty():
     """
-    This is a handler for database connection.
+    Returns something that indicates column is empty.
     """
+    return '' 
+
+
+def debug(msg):
+    """
+    Prints a debug message.
+    """
+    print ">> %s" % msg
     
-    def __init__(self, database):
-        """
-        Open connection to database and acquire an cursor.
-        """
-        self.conn = sqlite.connect(database)
-        self.cursor = self.conn
-        
-        
-    def __del__(self):
-        """
-        Closes connections to database.
-        """
-        self.cursor.close()
-        self.conn.close()
-    
-    
-    def get_id_for(self, table_name):
-        """
-        Return last insert rowid in a table. (sqlite only)
-        """
-        return self.cursor.execute("SELECT last_insert_rowid() \
-                FROM %s" % table_name).fetchone()[0]
+
+def normalize(dictun):
+    """
+    Call this to normalize a dict. What it does: any empty value 
+    will be changed to return value of empty().
+    """
+    for key, value in dictun.items():
+        if not value:
+            dictun[key] = empty()
 

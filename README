@@ -1,5 +1,6 @@
-###### About files
-#
+
+## About directories
+
 # sql
 sqlite-schema.sql           -> Conforms to umitdb.png.
 sqlite-insert-triggers.sql  -> Triggers for garanting foreign key integrity 
@@ -10,13 +11,13 @@ sqlite-drop-triggers.sql    -> Delete triggers from database.
 
 umidb.sql                   -> PostgreSQL schema.
 
-# schema diagram
+# diagrams
 umitdb.png
 umitdb.dia
 
-###### Testing
-#
-# To create everything you need to run tests, just run the script run_all.sh
+## Testing
+
+# To create everything you need, just run the script run_all.sh
 
 ./run_all.sh
 
