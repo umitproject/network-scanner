@@ -44,18 +44,20 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         
         if xml_file:
             self.insert_xml(xml_file)
+         
             
     def insert_xml(self, xml_file):
         """
         Inserts xml file into database.
         """
-        
         debug("Inserting file %s" % xml_file)
+        
         self.xml_file = xml_file
         self.parsed = self.parse(xml_file)
         self.scan = self.scan_from_xml()
         self.scaninfo = self.scaninfo_from_xml()
         self.hosts = self.hosts_from_xml()
+        
         debug("%s inserted into database (hopefully)." % xml_file)
 
         
@@ -64,8 +66,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         Returns a list of dicts compatible with database schema for host,
         and insert hosts data.
         """
-        
-        debug("Building host table")
+        debug("Building host table...")
         
         hosts_l = [ ]
         for host in self.parsed.nmap["hosts"]:
@@ -81,8 +82,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
             if not host_state_id:
                 self.insert_host_state_db(host.state)
                 host_state_id = self.get_id_for("host_state")
-            else:
-                host_state_id = host_state_id[0]
+    
             temp_d["fk_host_state"] = host_state_id
             
             # host fingerprint
@@ -96,8 +96,6 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                 if not fk_tcp_sequence:
                     self.insert_tcp_sequence_db(tcp_sequence)
                     fk_tcp_sequence = self.get_id_for("tcp_sequence")
-                else:
-                    fk_tcp_sequence = fk_tcp_sequence[0]
                     
                 temp_d["fk_tcp_sequence"] = fk_tcp_sequence
             else:
@@ -108,8 +106,6 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                 if not fk_tcp_ts_sequence:
                     self.insert_tcp_ts_sequence_db(tcp_ts_sequence)
                     fk_tcp_ts_sequence = self.get_id_for("tcp_ts_sequence")
-                else:
-                    fk_tcp_ts_sequence = fk_tcp_ts_sequence[0]
                 
                 temp_d["fk_tcp_ts_sequence"] = fk_tcp_ts_sequence
             else:
@@ -120,8 +116,6 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                 if not fk_ip_id_sequence:
                     self.insert_ip_id_sequence_db(ip_id_sequence)
                     fk_ip_id_sequence = self.get_id_for("ip_id_sequence")
-                else:
-                    fk_ip_id_sequence = fk_ip_id_sequence[0]
                     
                 temp_d["fk_ip_id_sequence"] = fk_ip_id_sequence
             else:
@@ -141,8 +135,6 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                 if not fk_hostname:
                     self.insert_hostname_db(_host)
                     fk_hostname = self.get_id_for("hostname")
-                else:
-                    fk_hostname = fk_hostname[0]
 
                 self.insert_host_hostname_db(temp_d["pk"], fk_hostname)
                 
@@ -158,8 +150,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                 if not fk_vendor:
                     self.insert_vendor_db(vendor)
                     fk_vendor = self.get_id_for("vendor")
-                else:
-                    fk_vendor = fk_vendor[0]
+        
                 # get fk_address
                 fk_address = self.get_address_id_from_db(host.ip["addr"],
                                                          host.ip["type"], fk_vendor)
@@ -167,8 +158,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                     self.insert_address_db(host.ip["addr"], host.ip["type"],
                                            fk_vendor)
                     fk_address = self.get_id_for("address")
-                else:
-                    fk_address = fk_address[0]
+              
                 # insert _host_address
                 self.insert_host_address_db(temp_d["pk"], fk_address)
                 
@@ -184,8 +174,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                 if not fk_vendor:
                     self.insert_vendor_db(vendor)
                     fk_vendor = self.get_id_for("vendor")
-                else:
-                    fk_vendor = fk_vendor[0]
+     
                 # get fk_address
                 fk_address = self.get_address_id_from_db(host.ipv6["addr"],
                                                          host.ip["type"], fk_vendor)
@@ -193,8 +182,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                     self.insert_address_db(host.ipv6["addr"], host.ipv6["type"],
                                            fk_vendor)
                     fk_address = self.get_id_for("address")
-                else:
-                    fk_address = fk_address[0]
+     
                 # insert _host_address
                 self.insert_host_address_db(temp_d["pk"], fk_address)
                 
@@ -210,8 +198,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                 if not fk_vendor:
                     self.insert_vendor_db(vendor)
                     fk_vendor = self.get_id_for("vendor")
-                else:
-                    fk_vendor = fk_vendor[0]
+ 
                 # get fk_address
                 fk_address = self.get_address_id_from_db(host.mac["addr"],
                                                          host.mac["type"], fk_vendor)
@@ -219,8 +206,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                     self.insert_address_db(host.mac["addr"], host.mac["type"],
                                            fk_vendor)
                     fk_address = self.get_id_for("address")
-                else:
-                    fk_address = fk_address[0]
+      
                 # insert _host_address
                 self.insert_host_address_db(temp_d["pk"], fk_address)
             
@@ -235,29 +221,25 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                 if not osgen_id:
                     self.insert_osgen_db(osclass["osgen"])
                     osgen_id = self.get_id_for("osgen")
-                else:
-                    osgen_id = osgen_id[0]
+        
                 # get fk_osfamily
                 osfamily_id = self.get_osfamily_id_from_db(osclass["osfamily"])
                 if not osfamily_id:
                     self.insert_osfamily_db(osclass["osfamily"])
                     osfamily_id = self.get_id_for("osfamily")
-                else:
-                    osfamily_id = osfamily_id[0]
+     
                 # get fk_osvendor
                 osvendor_id = self.get_osvendor_id_from_db(osclass["vendor"])
                 if not osvendor_id:
                     self.insert_osvendor_db(osclass["vendor"])
                     osvendor_id = self.get_id_for("osvendor")
-                else:
-                    osvendor_id = osvendor_id[0]
+          
                 # get fk_ostype
                 ostype_id = self.get_ostype_id_from_db(osclass["type"])
                 if not ostype_id:
                     self.insert_ostype_db(osclass["type"])
                     ostype_id = self.get_id_for("ostype")
-                else:
-                    ostype_id = ostype_id[0]
+  
                 
                 self.insert_osclass_db(osclass["accuracy"], osgen_id, 
                                        osfamily_id, osvendor_id, ostype_id, temp_d["pk"])
@@ -270,15 +252,13 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                     if not port_state_id:
                         self.insert_port_state_db(portused["state"])
                         port_state_id = self.get_id_for("port_state")
-                    else:
-                        port_state_id = port_state_id[0]
+     
                     # get fk_protocol
                     port_protocol_id = self.get_protocol_id_from_db(portused["proto"])
                     if not port_protocol_id:
                         self.insert_protocol_db(portused["proto"])
                         port_protocol_id = self.get_id_for("protocol")
-                    else:
-                        port_protocol_id = port_protocol_id[0]
+       
                     # insert portused
                     self.insert_portused_db(portused["portid"], port_state_id, 
                                              port_protocol_id, temp_d["pk"])
@@ -291,8 +271,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                     if not port_state:
                         self.insert_port_state_db(extraport["state"])
                         port_state = self.get_id_for("port_state")
-                    else:
-                        port_state = port_state[0]
+           
                     self.insert_extraports_db(extraport["count"], temp_d["pk"],
                                               port_state)
                 
@@ -303,22 +282,19 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                     if not protocol_id:
                         self.insert_protocol_db(port["protocol"])
                         protocol_id = self.get_id_for("protocol")
-                    else:
-                        protocol_id = protocol_id[0]
+         
                     # get fk_port_state
                     port_state_id = self.get_port_state_id_from_db(port["port_state"])
                     if not port_state_id:
                         self.insert_port_state_db(port["port_state"])
                         port_state_id = self.get_id_for("port_state")
-                    else:
-                        port_state_id = port_state_id[0]
+                
                     # get fk_service_name
                     service_name_id = self.get_service_name_id_from_db(port["service_name"])
                     if not service_name_id:
                         self.insert_service_name_db(port["service_name"])
                         service_name_id = self.get_id_for("service_name")
-                    else:
-                        service_name_id = service_name_id[0]
+ 
                     # get fk_service_info
                     service_info_id = self.get_service_info_id_from_db(port, service_name_id)
                     if not service_info_id:
@@ -327,8 +303,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                                     port["service_conf"], service_name_id)
                         self.insert_service_info_db(data)
                         service_info_id = self.get_id_for("service_info")
-                    else:
-                        service_info_id = service_info_id[0]
+
                     # get fk_port
                     port_id = self.get_port_id_from_db(port["portid"], service_info_id,
                                                        protocol_id, port_state_id)
@@ -336,8 +311,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                         self.insert_port_db(port["portid"], service_info_id,
                                         protocol_id, port_state_id)
                         port_id = self.get_id_for("port")
-                    else:
-                        port_id = port_id[0]
+   
                     # insert _host_port
                     self.insert_host_port_db(temp_d["pk"], port_id)
         
@@ -350,12 +324,12 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         Returns a list of dicts compatible with database schema for scaninfo
         and insert scaninfos data.
         """
-
         parsedsax = self.parsed
 
         scaninfo_l = [ ]
         for si in parsedsax.nmap["scaninfo"]:
-            debug("Building scaninfo table")
+            debug("Building scaninfo table...")
+            
             temp_d = { }
             for key, value in si.items():
                 if key == 'type':
@@ -364,16 +338,14 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                     if not v: # but it didn't exist
                         self.insert_scan_type_db(value)
                         v = self.get_id_for("scan_type")
-                    else:
-                        v = v[0]
+
                 elif key == 'protocol':
                     # try to get protocol id
                     v = self.get_protocol_id_from_db(value)
                     if not v: # but it didn't exist
                         self.insert_protocol_db(value)
                         v = self.get_id_for(key)
-                    else:
-                        v = v[0]
+     
                 else:
                     v = value
 
@@ -392,7 +364,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         Returns a dict compatible with database schema for scan and
         insert scan data.
         """
-        debug("Building scan table")
+        debug("Building scan table..")
 
         parsedsax = self.parsed
 
@@ -417,14 +389,13 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         scanner_name = parsedsax.nmap["nmaprun"]["scanner"]
         scanner_version = parsedsax.nmap["nmaprun"]["version"]
         
+        # get fk_scanner
         scanner_id = self.get_scanner_id_from_db(scanner_name,
                                                         scanner_version)
-        # get fk_scanner
         if not scanner_id:
             self.insert_scanner_db(scanner_name, scanner_version)
             scanner_id = self.get_id_for("scanner")
-        else:
-            scanner_id = scanner_id[0]
+            
         scan_d["scanner"] = scanner_id
 
         self.insert_scan_db(scan_d)
@@ -509,6 +480,8 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         """
         Parses an existing xml file.
         """
+        debug("Parsing file: %s.." % valid_xml)
+        
         p = NmapParser(valid_xml)
         p.parse()
 

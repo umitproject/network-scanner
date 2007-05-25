@@ -23,6 +23,7 @@ Right now it supports only sqlite, but could support more dbs.
 """
 
 from _sqlite import sqlite
+from utils import debug
 
 class ConnectDB:
     """
@@ -33,6 +34,8 @@ class ConnectDB:
         """
         Open connection to database and acquire an cursor.
         """
+        debug("Openning connection to database; %s" % database)
+        
         self.conn = sqlite.connect(database)
         self.cursor = self.conn
         
@@ -41,6 +44,8 @@ class ConnectDB:
         """
         Closes connections to database.
         """
+        debug("Closing connection to database..")
+        
         self.cursor.close()
         self.conn.close()
     
@@ -49,6 +54,8 @@ class ConnectDB:
         """
         Return last insert rowid in a table. (sqlite only)
         """
+        debug("Getting pk for last insert in table: %s.." % table_name)
+        
         return self.cursor.execute("SELECT last_insert_rowid() \
                 FROM %s" % table_name).fetchone()[0]
 

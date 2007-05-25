@@ -25,6 +25,7 @@ from utils import normalize
 Missing methods for:
     Inventory retrieval.
     Traceroute retrieval.
+    And some others.
 """
 
 class RawRetrieve:
@@ -33,6 +34,9 @@ class RawRetrieve:
     """
     
     def __init__(self, conn, cursor):
+        """
+        Expects a conn and cursor from database connection.   
+        """
         self.conn = conn
         self.cursor = cursor
         
@@ -41,6 +45,8 @@ class RawRetrieve:
         """
         Get service_info id based on data from info and service_name_id.
         """
+        debug("Getting pk for service_info..")
+        
         normalize(info)
 
         info["ostype"] = empty() # FIX: Parser not handling this yet.
@@ -49,13 +55,13 @@ class RawRetrieve:
                 info["service_extrainfo"], info["service_method"],
                 info["service_conf"], service_name_id)
         
-        debug("Getting pk for service_info..")
         id = self.cursor.execute("SELECT pk FROM service_info WHERE \
                     product = ? AND version = ? AND extrainfo = ? AND \
                     method = ? AND conf = ? AND fk_service_name = ?",
                     data).fetchone()
 
-        return id
+        if id:
+           return id[0]
 
 
     def get_port_id_from_db(self, portid, fk_service_info, fk_protocol,
@@ -70,7 +76,8 @@ class RawRetrieve:
                         fk_port_state = ?", (portid,   fk_service_info, fk_protocol, 
                                              fk_port_state)).fetchone()
 
-        return id
+        if id:
+           return id[0]
 
 
     def get_service_name_id_from_db(self, service_name):
@@ -79,23 +86,25 @@ class RawRetrieve:
         """
         debug("Getting pk for service_name..")
 
-        id = self.cursor.execute("SELECT pk FROM service_name WHERE name = ?",
-                            (service_name, )).fetchone()
+        id = self.cursor.execute("SELECT pk FROM service_name \
+                            WHERE name = ?",  (service_name, )).fetchone()
 
-        return id
+        if id:
+           return id[0]
 
 
     def get_hostname_id_from_db(self, hostname):
         """
         Return hostname id from database based on type and name.
         """
-        
         debug("Getting pk for hostname..")
+        
         id = self.cursor.execute("SELECT pk FROM hostname WHERE \
                              type = ? AND name = ?", (hostname["hostname_type"],
                              hostname["hostname"])).fetchone()
                 
-        return id
+        if id:
+           return id[0]
     
 
     def get_address_id_from_db(self, address, type, vendor):
@@ -108,7 +117,8 @@ class RawRetrieve:
                             address = ? AND type = ? AND fk_vendor = ?",
                            (address, type, vendor)).fetchone()
         
-        return id
+        if id:
+           return id[0]
 
 
     def get_vendor_id_from_db(self, name):
@@ -116,10 +126,12 @@ class RawRetrieve:
         Return vendor id from database based on name.
         """
         debug("Getting pk for vendor..")
+        
         id = self.cursor.execute("SELECT pk FROM vendor WHERE \
                         name = ?", (name, )).fetchone()
         
-        return id
+        if id:
+           return id[0]
 
 
     def get_host_state_id_from_db(self, state):
@@ -127,10 +139,12 @@ class RawRetrieve:
         Return state id from database based on state description.
         """
         debug("Getting pk for host_state..")
+        
         id = self.cursor.execute("SELECT pk FROM host_state WHERE \
                     state = ?", (state, )).fetchone()
 
-        return id
+        if id:
+           return id[0]
 
 
     def get_tcp_sequence_id_from_db(self, tcpseq_dict):
@@ -138,10 +152,12 @@ class RawRetrieve:
         Return tcp_sequence id from database based on tcpsequence values.
         """
         debug("Getting pk for tcp_sequence..")
+        
         id = self.cursor.execute("SELECT pk FROM tcp_sequence WHERE \
                     tcp_values = ?", (tcpseq_dict["values"], )).fetchone()
         
-        return id 
+        if id:
+           return id[0]
 
 
     def get_tcp_ts_sequence_id_from_db(self, tcptsseq_dict):
@@ -150,10 +166,12 @@ class RawRetrieve:
         values, 
         """
         debug("Getting pk for tcp_ts_sequence..")
+        
         id = self.cursor.execute("SELECT pk FROM tcp_ts_sequence WHERE \
                     tcp_ts_values = ?", (tcptsseq_dict["values"], )).fetchone()
         
-        return id
+        if id:
+           return id[0]
 
 
     def get_ip_id_sequence_id_from_db(self, ipidseq_dict):
@@ -161,10 +179,12 @@ class RawRetrieve:
         Return ip_id_sequence id from database based on ipidseq values.
         """
         debug("Getting pk for ip_id_sequence..")
+        
         id = self.cursor.execute("SELECT pk FROM ip_id_sequence WHERE \
                     ip_id_values = ?", (ipidseq_dict["values"], )).fetchone()
         
-        return id
+        if id:
+           return id[0]
 
 
     def get_scan_type_id_from_db(self, name):
@@ -172,9 +192,12 @@ class RawRetrieve:
         Return scan_type id from database based on name.
         """
         debug("Getting pk for scan_type..")
+        
         id = self.cursor.execute("SELECT pk FROM scan_type \
                                     WHERE name = ?", (name, )).fetchone()
-        return id
+                                    
+        if id:
+           return id[0]
 
 
     def get_port_state_id_from_db(self, state):
@@ -182,10 +205,12 @@ class RawRetrieve:
         Return port_state id from database based on state..
         """
         debug("Getting pk for port_state..")
+        
         id = self.cursor.execute("SELECT pk FROM port_state \
                                 WHERE state = ?", (state, )).fetchone()
 
-        return id
+        if id:
+           return id[0]
 
 
     def get_protocol_id_from_db(self, name):
@@ -193,10 +218,12 @@ class RawRetrieve:
         Return protocol id from database based on name.
         """
         debug("Getting pk for protocol..")
-        id = self.cursor.execute("SELECT pk FROM protocol WHERE name = ?",
-                                  (name, )).fetchone()
+        
+        id = self.cursor.execute("SELECT pk FROM protocol \
+                                    WHERE name = ?", (name, )).fetchone()
 
-        return id
+        if id:
+           return id[0]
 
 
     def get_scanner_id_from_db(self, name, version):
@@ -204,10 +231,12 @@ class RawRetrieve:
         Return scanner id from database based on scanner name and version
         """
         debug("Getting pk for scanner..")    
+        
         id = self.cursor.execute("SELECT pk FROM scanner WHERE \
                             name = ? AND  version = ?", (name, version)).fetchone()
        
-        return id
+        if id:
+           return id[0]
 
 
     def get_osgen_id_from_db(self, osgen):
@@ -215,10 +244,12 @@ class RawRetrieve:
         Get id from osgen table for osgen.
         """
         debug("Getting pk for osgen..")
+        
         id = self.cursor.execute("SELECT pk FROM osgen WHERE gen = ?", 
             (osgen, )).fetchone()
 
-        return id
+        if id:
+           return id[0]
         
 
     def get_osfamily_id_from_db(self, osfamily):
@@ -226,10 +257,12 @@ class RawRetrieve:
         Get id from osfamily table for osfamily.
         """
         debug("Getting pk for osfamily..")
+        
         id = self.cursor.execute("SELECT pk FROM osfamily \
                         WHERE family = ?", (osfamily, )).fetchone()
 
-        return id
+        if id:
+           return id[0]
 
 
     def get_osvendor_id_from_db(self, osvendor):
@@ -237,10 +270,12 @@ class RawRetrieve:
         Get id from osvendor table for osvendor.
         """
         debug("Getting pk for osvendor..")
+        
         id = self.cursor.execute("SELECT pk FROM osvendor \
                         WHERE vendor = ?",  (osvendor, )).fetchone()
 
-        return id
+        if id:
+           return id[0]
 
 
     def get_ostype_id_from_db(self, ostype):
@@ -248,8 +283,10 @@ class RawRetrieve:
         Get id from ostype table for ostype.
         """
         debug("Getting pk for ostype..")
+        
         id = self.cursor.execute("SELECT pk FROM ostype WHERE type = ?",
                         (ostype, )).fetchone()
 
-        return id
+        if id:
+           return id[0]
 
