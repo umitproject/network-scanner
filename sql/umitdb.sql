@@ -66,16 +66,33 @@ CREATE TABLE host
 (
     pk INTEGER NOT NULL,
     distance INTEGER NOT NULL,
-    uptime INTEGER,
-    lastboot CHAR(24),
     fk_scan INTEGER NOT NULL,
     fk_host_state INTEGER,
-    fk_tcp_sequence INTEGER,
-    fk_tcp_ts_sequence INTEGER,
-    fk_ip_id_sequence INTEGER
+    fk_finger_print_info INTEGER
 );
 
 ALTER TABLE host ADD CONSTRAINT host_pk PRIMARY KEY (pk);
+
+--------------------------------------------------------------------------------
+
+-- DROP TABLE host CASCADE;
+
+CREATE TABLE finger_print_info
+(
+    pk INTEGER NOT NULL,
+    uptime INTEGER,
+    lastboot CHAR(24),
+    tcp_sequence_class INTEGER,
+    tcp_sequence_index INTEGER,
+    tcp_sequence_value VARCHAR,
+    tcp_sequence_difficulty INTEGER,
+    tcp_ts_sequence_class INTEGER,
+    tcp_ts_sequence_value VARCHAR,
+    ip_id_sequence_class INTEGER,
+    ip_id_sequence_value VARCHAR
+);
+
+ALTER TABLE host ADD CONSTRAINT finger_print_info_pk PRIMARY KEY (pk);
 
 --------------------------------------------------------------------------------
 
@@ -293,47 +310,6 @@ ALTER TABLE scaninfo ADD CONSTRAINT scaninfo_pk PRIMARY KEY (pk);
 
 --------------------------------------------------------------------------------
 
--- DROP TABLE tcp_sequence CASCADE;
-
-CREATE TABLE tcp_sequence
-(
-    pk INTEGER NOT NULL,
-    tcp_index INTEGER NOT NULL,
-    class INTEGER NOT NULL,
-    difficulty INTEGER NOT NULL,
-    tcp_values VARCHAR NOT NULL
-);
-
-ALTER TABLE tcp_sequence ADD CONSTRAINT tcp_sequence_pk PRIMARY KEY (pk);
-
---------------------------------------------------------------------------------
-
--- DROP TABLE ip_id_sequence CASCADE;
-
-CREATE TABLE ip_id_sequence
-(
-    pk INTEGER NOT NULL,
-    class INTEGER NOT NULL,
-    ip_id_values VARCHAR NOT NULL
-);
-
-ALTER TABLE ip_id_sequence ADD CONSTRAINT ip_id_sequence_pk PRIMARY KEY (pk);
-
---------------------------------------------------------------------------------
-
--- DROP TABLE tcp_ts_sequence CASCADE;
-
-CREATE TABLE tcp_ts_sequence
-(
-    pk INTEGER NOT NULL,
-    class INTEGER NOT NULL,
-    tcp_ts_values VARCHAR NOT NULL
-);
-
-ALTER TABLE tcp_ts_sequence ADD CONSTRAINT tcp_ts_sequence_pk PRIMARY KEY (pk);
-
---------------------------------------------------------------------------------
-
 -- DROP TABLE service CASCADE;
 
 CREATE TABLE service
@@ -483,14 +459,8 @@ ALTER TABLE host ADD CONSTRAINT host_scan_fk
 ALTER TABLE host ADD CONSTRAINT host_host_state_fk
     FOREIGN KEY (fk_host_state) REFERENCES host_state (pk);
 
-ALTER TABLE host ADD CONSTRAINT host_tcp_sequence_fk
-    FOREIGN KEY (fk_tcp_sequence) REFERENCES tcp_sequence (pk);
-
-ALTER TABLE host ADD CONSTRAINT host_tcp_ts_sequence_fk
-    FOREIGN KEY (fk_tcp_ts_sequence) REFERENCES tcp_ts_sequence (pk);
-
-ALTER TABLE host ADD CONSTRAINT host_ip_id_sequence_fk
-    FOREIGN KEY (fk_ip_id_sequence) REFERENCES ip_id_sequence (pk);
+ALTER TABLE host ADD CONSTRAINT host_finger_print_info_fk
+    FOREIGN KEY (fk_finger_print_info) REFERENCES finger_print_info (pk);
 
 --------------------------------------------------------------------------------
 
