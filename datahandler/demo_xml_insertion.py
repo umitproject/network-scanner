@@ -1,6 +1,5 @@
 import sys
 import time
-import timing
 from xmlstore import XMLStore
 
 if __name__ == "__main__":
@@ -9,14 +8,13 @@ if __name__ == "__main__":
         sys.exit(0)
 
     start = time.ctime()
+    start_ = time.time()
 
-    timing.start()
     storing = XMLStore("schema-testing.db")
     for file in sys.argv[1:]:
         storing.store_xml(file)
-    timing.finish()
 
     print "Started on:", start
     print "Finished on:", time.ctime()
     print "No. of files specified:", len(sys.argv[1:])
-    print "It took", timing.milli(), "miliseconds to complete operation."
+    print "It took", time.time() - start_, "seconds to complete operation."

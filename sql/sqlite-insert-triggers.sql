@@ -57,7 +57,7 @@ CREATE TRIGGER scaninfo_insert_bad_protocol
 -- Host Triggers
 -------------------
 
--- Trigger for preventing bad insertion on host
+-- Triggers for preventing bad insertion on host
 CREATE TRIGGER host_insert_bad_scan
     BEFORE INSERT ON host
     FOR EACH ROW BEGIN
@@ -72,25 +72,12 @@ CREATE TRIGGER host_insert_bad_host_state
         WHERE (SELECT pk FROM host_state WHERE pk = NEW.fk_host_state) IS NULL;
     END;
 
-CREATE TRIGGER host_insert_bad_tcp_sequence
-    BEFORE INSERT ON host
+-- Trigger for preventing bad insertion on finger_print_info
+CREATE TRIGGER finger_print_info_insert_bad_host
+    BEFORE INSERT ON finger_print_info
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'host', invalid fk_tcp_sequence especified")
-        WHERE NEW.fk_tcp_sequence IS NOT NULL AND (SELECT pk FROM tcp_sequence WHERE pk = NEW.fk_tcp_sequence) IS NULL;
-    END;
-
-CREATE TRIGGER host_insert_bad_tcp_ts_sequence
-    BEFORE INSERT ON host
-    FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'host', invalid fk_tcp_ts_sequence especified")
-        WHERE NEW.fk_tcp_ts_sequence IS NOT NULL AND (SELECT pk FROM tcp_ts_sequence WHERE pk = NEW.fk_tcp_ts_sequence) IS NULL;
-    END;
-
-CREATE TRIGGER host_insert_bad_ip_id_sequence
-    BEFORE INSERT ON host
-    FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'host', invalid fk_ip_id_sequence especified")
-        WHERE NEW.fk_ip_id_sequence IS NOT NULL AND (SELECT pk FROM ip_id_sequence WHERE pk = NEW.fk_ip_id_sequence) IS NULL;
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'finger_print_info', invalid fk_host especified")
+        WHERE (SELECT pk FROM host WHERE pk = NEW.fk_host) IS NULL;
     END;
 
 -- Trigger for preventing bad insertion on address

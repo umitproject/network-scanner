@@ -71,47 +71,29 @@ CREATE TABLE scanner (
 -------------------
 
 CREATE TABLE host (
-    pk                  INTEGER NOT NULL PRIMARY KEY,
-    distance            INTEGER,
-    uptime              INTEGER,
-    lastboot            TEXT,
-    fk_scan             INTEGER NOT NULL CONSTRAINT fk_scan
-                           REFERENCES scan(pk),
-    fk_host_state       INTEGER NOT NULL CONSTRAINT fk_host_state
-                           REFERENCES host_state(pk),
-    fk_tcp_sequence     INTEGER CONSTRAINT fk_tcp_sequence
-                           REFERENCES tcp_sequence(pk),
-    fk_tcp_ts_sequence  INTEGER CONSTRAINT fk_tcp_ts_sequence
-                           REFERENCES tcp_ts_sequence(pk),
-    fk_ip_id_sequence   INTEGER CONSTRAINT fk_ip_id_sequence
-                           REFERENCES ip_id_sequence(pk)
-);
-
-
--- Fingerprint
-
-CREATE TABLE tcp_sequence (
-    pk          INTEGER NOT NULL PRIMARY KEY,
-    tcp_index   INTEGER,
-    class       INTEGER,
-    difficulty  INTEGER,
-    tcp_values  TEXT
-);
-
-CREATE TABLE tcp_ts_sequence (
     pk             INTEGER NOT NULL PRIMARY KEY,
-    class          INTEGER,
-    tcp_ts_values  TEXT
+    distance       INTEGER,
+    fk_scan        INTEGER NOT NULL CONSTRAINT fk_scan
+                      REFERENCES scan(pk),
+    fk_host_state  INTEGER NOT NULL CONSTRAINT fk_host_state
+                      REFERENCES host_state(pk)
 );
 
-CREATE TABLE ip_id_sequence (
-    pk            INTEGER NOT NULL PRIMARY KEY,
-    class         INTEGER,
-    ip_id_values  TEXT
+CREATE TABLE finger_print_info (
+    pk                       INTEGER NOT NULL PRIMARY KEY,
+    uptime                   INTEGER,
+    lastboot                 TEXT,
+    tcp_sequence_class       TEXT,
+    tcp_sequence_index       TEXT,
+    tcp_sequence_value       TEXT,
+    tcp_sequence_difficulty  TEXT,
+    tcp_ts_sequence_class    TEXT,
+    tcp_ts_sequence_value    TEXT,
+    ip_id_sequence_class     TEXT,
+    ip_id_sequence_value     TEXT,
+    fk_host                  INTEGER NOT NULL CONSTRAINT fk_host
+                                REFERENCES host(pk)
 );
-
--- end Fingerprint
-
 
 -- OS Detection
 
@@ -146,7 +128,7 @@ CREATE TABLE osgen (
 
 CREATE TABLE osfamily (
     pk      INTEGER NOT NULL PRIMARY KEY,
-    family  INTEGER
+    family  TEXT
 );
 
 CREATE TABLE osvendor (
@@ -162,10 +144,10 @@ CREATE TABLE ostype (
 CREATE TABLE portused (
     pk             INTEGER NOT NULL PRIMARY KEY,
     portid         INTEGER,
-    fk_protocol    INTEGER NOT NULL CONSTRAINT fk_protocol
-                      REFERENCES protocol(pk),
     fk_port_state  INTEGER NOT NULL CONSTRAINT fk_port_state
                       REFERENCES port_state(pk),
+    fk_protocol    INTEGER NOT NULL CONSTRAINT fk_protocol
+                      REFERENCES protocol(pk),
     fk_host        INTEGER NOT NULL CONSTRAINT fk_host
                       REFERENCES host(pk)
 );
@@ -193,7 +175,7 @@ CREATE TABLE vendor (
 
 CREATE TABLE hostname (
     pk    INTEGER NOT NULL PRIMARY KEY,
-    type  TEXT CHECK (type = 'PTR'),
+    type  TEXT, -- CHECK (type = 'PTR'),
     name  TEXT
 );
 
@@ -249,7 +231,7 @@ CREATE TABLE extraports (
 -- Protocol could be in a common place maybe
 CREATE TABLE protocol (
     pk    INTEGER NOT NULL PRIMARY KEY,
-    name  TEXT CHECK (name IN ('ip', 'tcp', 'udp'))
+    name  TEXT -- CHECK (name IN ('ip', 'tcp', 'udp'))
 );
 
 CREATE TABLE service_info (

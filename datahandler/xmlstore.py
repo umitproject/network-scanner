@@ -71,64 +71,51 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         
         hosts_l = [ ]
         for host in self.parsed.nmap["hosts"]:
-            temp_d = { }
+            host_d = { }
             
-            temp_d["distance"] = empty() # ToFix: Parser isnt storing this
-            temp_d["uptime"] = host.uptime["seconds"]
-            temp_d["lastboot"] = host.uptime["lastboot"]
-            temp_d["fk_scan"] = self.scan["pk"]
-            
+            host_d["distance"] = empty() # ToFix: Parser not storing this.
             # get host_state fk
             host_state_id = self.get_host_state_id_from_db(host.state)
             if not host_state_id:
                 self.insert_host_state_db(host.state)
                 host_state_id = self.get_id_for("host_state")
     
-            temp_d["fk_host_state"] = host_state_id
+            host_d["fk_host_state"] = host_state_id
+            host_d["fk_scan"] = self.scan["pk"]
+    
+            # insert host
+            self.insert_host_db(host_d)
+            host_d["pk"] = self.get_id_for("host")
+            
+            hosts_l.append(host_d)
             
             # host fingerprint
+            fp_d = { }
+            fp_d["uptime"] = host.uptime["seconds"]
+            fp_d["lastboot"] = host.uptime["lastboot"]
+            
             tcp_sequence = host.tcpsequence
             tcp_ts_sequence = host.tcptssequence
             ip_id_sequence = host.ipidsequence
-            
-            # get fk_tcp_sequence or not
-            if tcp_sequence:
-                fk_tcp_sequence = self.get_tcp_sequence_id_from_db(tcp_sequence)
-                if not fk_tcp_sequence:
-                    self.insert_tcp_sequence_db(tcp_sequence)
-                    fk_tcp_sequence = self.get_id_for("tcp_sequence")
-                    
-                temp_d["fk_tcp_sequence"] = fk_tcp_sequence
-            else:
-                temp_d["fk_tcp_sequence"] = empty()
-            # get fk_tcp_ts_sequence or not
-            if tcp_ts_sequence:
-                fk_tcp_ts_sequence = self.get_tcp_ts_sequence_id_from_db(tcp_ts_sequence)
-                if not fk_tcp_ts_sequence:
-                    self.insert_tcp_ts_sequence_db(tcp_ts_sequence)
-                    fk_tcp_ts_sequence = self.get_id_for("tcp_ts_sequence")
+           
+            if host.tcpsequence:
+                fp_d["tcp_sequence_class"] = host.tcpsequence["class"]
+                fp_d["tcp_sequence_index"] = host.tcpsequence["index"]
+                fp_d["tcp_sequence_value"] = host.tcpsequence["values"]
+                fp_d["tcp_sequence_difficulty"] = host.tcpsequence["difficulty"]
+           
+            if host.tcptssequence:
+                fp_d["tcp_ts_sequence_class"] = host.tcptssequence["class"]
+                fp_d["tcp_ts_sequence_value"] = host.tcptssequence["values"]
                 
-                temp_d["fk_tcp_ts_sequence"] = fk_tcp_ts_sequence
-            else:
-                temp_d["fk_tcp_ts_sequence"] = empty()
-            # get fk_ip_id_sequence
-            if ip_id_sequence:
-                fk_ip_id_sequence = self.get_ip_id_sequence_id_from_db(ip_id_sequence)
-                if not fk_ip_id_sequence:
-                    self.insert_ip_id_sequence_db(ip_id_sequence)
-                    fk_ip_id_sequence = self.get_id_for("ip_id_sequence")
-                    
-                temp_d["fk_ip_id_sequence"] = fk_ip_id_sequence
-            else:
-                temp_d["fk_ip_id_sequence"] = empty()
-            
-            normalize(temp_d)
-            
-            # insert host
-            self.insert_host_db(temp_d)
-            temp_d["pk"] = self.get_id_for("host")
-            
-            hosts_l.append(temp_d)
+            if host.ipidsequence:
+                fp_d["ip_id_sequence_class"] = host.ipidsequence["class"]
+                fp_d["ip_id_sequence_value"] = host.ipidsequence["values"]
+   
+            # insert finger_print_info
+            if len(fp_d) > 2:
+                fp_d["fk_host"] = host_d["pk"]
+                self.insert_finger_print_info_db(fp_d)
             
             # insert hostnames
             for _host in host.hostnames:
@@ -137,7 +124,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                     self.insert_hostname_db(_host)
                     fk_hostname = self.get_id_for("hostname")
 
-                self.insert_host_hostname_db(temp_d["pk"], fk_hostname)
+                self.insert_host_hostname_db(host_d["pk"], fk_hostname)
                 
             # insert host addresses (ipv4)
             if host.ip:
@@ -154,14 +141,15 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         
                 # get fk_address
                 fk_address = self.get_address_id_from_db(host.ip["addr"],
-                                                         host.ip["type"], fk_vendor)
+                                                         host.ip["type"], 
+                                                         fk_vendor)
                 if not fk_address:
                     self.insert_address_db(host.ip["addr"], host.ip["type"],
                                            fk_vendor)
                     fk_address = self.get_id_for("address")
               
                 # insert _host_address
-                self.insert_host_address_db(temp_d["pk"], fk_address)
+                self.insert_host_address_db(host_d["pk"], fk_address)
                 
             # insert host addresses (ipv6)
             if host.ipv6:
@@ -178,14 +166,15 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
      
                 # get fk_address
                 fk_address = self.get_address_id_from_db(host.ipv6["addr"],
-                                                         host.ip["type"], fk_vendor)
+                                                         host.ip["type"], 
+                                                         fk_vendor)
                 if not fk_address:
                     self.insert_address_db(host.ipv6["addr"], host.ipv6["type"],
                                            fk_vendor)
                     fk_address = self.get_id_for("address")
      
                 # insert _host_address
-                self.insert_host_address_db(temp_d["pk"], fk_address)
+                self.insert_host_address_db(host_d["pk"], fk_address)
                 
             # insert host addresses (mac)
             if host.mac:
@@ -202,18 +191,19 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
  
                 # get fk_address
                 fk_address = self.get_address_id_from_db(host.mac["addr"],
-                                                         host.mac["type"], fk_vendor)
+                                                         host.mac["type"], 
+                                                         fk_vendor)
                 if not fk_address:
                     self.insert_address_db(host.mac["addr"], host.mac["type"],
                                            fk_vendor)
                     fk_address = self.get_id_for("address")
       
                 # insert _host_address
-                self.insert_host_address_db(temp_d["pk"], fk_address)
+                self.insert_host_address_db(host_d["pk"], fk_address)
             
             # insert host os match
-            if host.osmatch:
-                self.insert_osmatch_db(temp_d["pk"], host.osmatch)
+            if host.osmatch: # ToFix: Parser is returning only last osmatch ?
+                self.insert_osmatch_db(host_d["pk"], host.osmatch)
                 
             # insert os classes
             for osclass in host.osclasses:
@@ -243,7 +233,8 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
   
                 
                 self.insert_osclass_db(osclass["accuracy"], osgen_id, 
-                                       osfamily_id, osvendor_id, ostype_id, temp_d["pk"])
+                                       osfamily_id, osvendor_id, ostype_id, 
+                                       host_d["pk"])
 
             # insert ports used
             if host.ports_used:
@@ -262,7 +253,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
        
                     # insert portused
                     self.insert_portused_db(portused["portid"], port_state_id, 
-                                             port_protocol_id, temp_d["pk"])
+                                             port_protocol_id, host_d["pk"])
                 
             # some scan may not return any ports
             if host.ports:
@@ -273,7 +264,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                         self.insert_port_state_db(extraport["state"])
                         port_state = self.get_id_for("port_state")
            
-                    self.insert_extraports_db(extraport["count"], temp_d["pk"],
+                    self.insert_extraports_db(extraport["count"], host_d["pk"],
                                               port_state)
                 
                 # insert ports
@@ -314,7 +305,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
                         port_id = self.get_id_for("port")
    
                     # insert _host_port
-                    self.insert_host_port_db(temp_d["pk"], port_id)
+                    self.insert_host_port_db(host_d["pk"], port_id)
         
         
         return hosts_l
@@ -394,7 +385,7 @@ class XMLStore(ConnectDB, RawRetrieve, RawStore):
         
         # get fk_scanner
         scanner_id = self.get_scanner_id_from_db(scanner_name,
-                                                 scanner_version)
+                                                        scanner_version)
         if not scanner_id:
             self.insert_scanner_db(scanner_name, scanner_version)
             scanner_id = self.get_id_for("scanner")

@@ -237,31 +237,15 @@ class RawStore:
         self.conn.commit()
         
 
-    def insert_host_db(self, host):
+    def insert_host_db(self, host_d):
         """
         Create new record in host with data from host dict.
         """
-        if host["fk_tcp_sequence"] != empty():
-            debug("Inserting new host with fingerprint information \
-into database")
+        debug("Inserting new host into database")
 
-            self.cursor.execute("INSERT INTO host (distance, uptime, \
-                    lastboot, fk_scan, fk_host_state, fk_tcp_sequence, \
-                    fk_tcp_ts_sequence, fk_ip_id_sequence) VALUES \
-                    (?, ?, ?, ?, ?, ?, ?, ?)", (host["distance"],
-                    host["uptime"], host["lastboot"], host["fk_scan"],
-                    host["fk_host_state"], host["fk_tcp_sequence"],
-                    host["fk_tcp_ts_sequence"], host["fk_ip_id_sequence"]))
-        else:
-            debug("Inserting new host without fingerprint \
-information into database")
-
-            self.cursor.execute("INSERT INTO host (distance, uptime, \
-                    lastboot, fk_scan, fk_host_state) VALUES \
-                    (?, ?, ?, ?, ?)", (host["distance"], host["uptime"],
-                    host["lastboot"], host["fk_scan"],
-                    host["fk_host_state"]))
-
+        self.cursor.execute("INSERT INTO host (distance, fk_scan, \
+                     fk_host_state) VALUES (?, ?, ?)", (host_d["distance"],
+                     host_d["fk_scan"], host_d["fk_host_state"]))
         self.conn.commit()
 
 
@@ -298,7 +282,30 @@ information into database")
                                  (?, ?)", (hostname["hostname_type"], 
                                            hostname["hostname"]))
         self.conn.commit()
-    
+   
+
+    def insert_finger_print_info_db(self, fp_d):
+        """
+        Creates new record in finger_print_info with data from fp_d.
+        """
+        debug("Inserting new fingerprint information for host into database")
+
+        columns = ( "uptime", "lastboot", "tcp_sequence_class", 
+                    "tcp_sequence_index", "tcp_sequence_value",
+                    "tcp_sequence_difficulty", "tcp_ts_sequence_class",
+                    "tcp_ts_sequence_value", "ip_id_sequence_class",
+                    "ip_id_sequence_value", "fk_host" )
+
+        data = [fp_d[column] for column in columns]
+
+        self.cursor.execute("INSERT INTO finger_print_info (uptime, lastboot, \
+                tcp_sequence_class, tcp_sequence_index, tcp_sequence_value, \
+                tcp_sequence_difficulty, tcp_ts_sequence_class, \
+                tcp_ts_sequence_value, ip_id_sequence_class, \
+                ip_id_sequence_value, fk_host) VALUES (?, ?, ?, ?, ?, ?, ?, \
+                ?, ?, ?, ?)", (data))
+        self.conn.commit()
+
     
     def insert_service_name_db(self, service_name):
         """
