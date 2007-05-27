@@ -68,7 +68,6 @@ CREATE TABLE host
     distance INTEGER NOT NULL,
     fk_scan INTEGER NOT NULL,
     fk_host_state INTEGER,
-    fk_finger_print_info INTEGER
 );
 
 ALTER TABLE host ADD CONSTRAINT host_pk PRIMARY KEY (pk);
@@ -89,7 +88,8 @@ CREATE TABLE finger_print_info
     tcp_ts_sequence_class INTEGER,
     tcp_ts_sequence_value VARCHAR,
     ip_id_sequence_class INTEGER,
-    ip_id_sequence_value VARCHAR
+    ip_id_sequence_value VARCHAR,
+    fk_host INTEGER
 );
 
 ALTER TABLE host ADD CONSTRAINT finger_print_info_pk PRIMARY KEY (pk);
@@ -459,8 +459,10 @@ ALTER TABLE host ADD CONSTRAINT host_scan_fk
 ALTER TABLE host ADD CONSTRAINT host_host_state_fk
     FOREIGN KEY (fk_host_state) REFERENCES host_state (pk);
 
-ALTER TABLE host ADD CONSTRAINT host_finger_print_info_fk
-    FOREIGN KEY (fk_finger_print_info) REFERENCES finger_print_info (pk);
+--------------------------------------------------------------------------------
+
+ALTER TABLE finger_print_info ADD CONSTRAINT finger_print_info_host_fk
+    FOREIGN KEY (fk_host) REFERENCES host (pk);
 
 --------------------------------------------------------------------------------
 
