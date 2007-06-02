@@ -225,7 +225,7 @@ print
         sec = "paths"
         parser.set(sec, "config_file", config_file)
         parser.set(sec, "config_dir", install_config_dir)
-        parser.set(sec, "docs_dir", os.path.join(install_config_dir, docs_dir))
+        parser.set(sec, "docs_dir", os.path.join(self.install_data, docs_dir))
         parser.set(sec, "pixmaps_dir", os.path.join(self.install_data, pixmaps_dir))
         parser.set(sec, "icons_dir", os.path.join(self.install_data, icons_dir))
         parser.set(sec, "locale_dir", os.path.join(self.install_data, locale_dir))

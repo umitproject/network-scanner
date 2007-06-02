@@ -262,23 +262,15 @@ before trying to start scan!")
 
 
 class CommandConstructor:
-    def __init__(self, profile=None):
-        self.option_profile = NmapOptions(option_xml)
+    def __init__(self, options = {}):
         self.options = {}
+        self.option_profile = NmapOptions(option_xml)
+        for k, v in options.items():
+            self.add_option(k, v, False) # TODO: check this place further
 
     def add_option(self, option_name, args=[], level=False):
-        option = self.option_profile.get_option(option_name)
-
-        if type(args) in StringTypes:
-            args = [args]
-
-        if level:
-            self.options[option_name] = (option['option']+' ')*level
-        elif args:
-            args = tuple (args)
-            self.options[option_name] = option['option'] % args[0]
-        else:
-            self.options[option_name] = option['option']
+        self.options[option_name] = (args, level)
+        
 
     def remove_option(self, option_name):
         if option_name in self.options.keys():
@@ -286,17 +278,28 @@ class CommandConstructor:
 
     def get_command(self, target):
         splited = ['%s' % nmap_command_path]
-        for option in self.options.values():
-            splited.append(option)
 
+        for option_name in self.options:
+            option = self.option_profile.get_option(option_name)
+            args, level = self.options[option_name]
+
+            if type(args) in StringTypes:
+                args = [args]
+
+            if level:
+                splited.append((option['option']+' ')*level)
+            elif args:
+                args = tuple (args)
+                splited.append(option['option'] % args[0])
+            else:
+                splited.append(option['option'])
+            
         splited.append(target)
         return ' '.join(splited)
 
-    def __remove_double_space(self, command):
-        while re.findall('(  )', command):
-            command = command.replace('  ', ' ')
-        return command
-
+    def get_options(self):
+        return dict([(k, v[0]) for k, v in self.options.items()])
+    
 class CommandThread(threading.Thread):
     def __init__(self, command):
         self._stop_event = threading.Event()

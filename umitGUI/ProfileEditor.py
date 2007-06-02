@@ -49,23 +49,16 @@ class ProfileEditor(HIGWindow):
         self.__create_widgets()
         self.__pack_widgets()
         
-        self.options = OptionBuilder(profile_editor)
-        
-        log.debug("Option groups: %s" % str(self.options.groups))
-        log.debug("Option section names: %s" % str(self.options.section_names))
-        #log.debug("Option tabs: %s" % str(self.options.tabs))
-        
-        self.constructor = CommandConstructor()
         self.profile = CommandProfile()
         
         self.deleted = False
-        self.options_used = []
+        options_used = {}
         
         if profile_name:
             log.debug("Showing profile %s" % profile_name)
             prof = self.profile.get_profile(profile_name)
-            self.options_used = prof['options']
-
+            options_used = prof['options']
+            
             # Interface settings
             self.profile_name_entry.set_text(profile_name)
             self.profile_hint_entry.set_text(prof['hint'])
@@ -76,6 +69,12 @@ class ProfileEditor(HIGWindow):
                 # Removing profile. It must be saved again
                 self.profile.remove_profile(profile_name)
                 self.deleted = True
+        
+        self.constructor = CommandConstructor(options_used)
+        self.options = OptionBuilder(profile_editor, self.constructor, self.update_command)
+        log.debug("Option groups: %s" % str(self.options.groups))
+        log.debug("Option section names: %s" % str(self.options.section_names))
+        #log.debug("Option tabs: %s" % str(self.options.tabs))
         
         for tab in self.options.groups:
             self.__create_tab(tab, self.options.section_names[tab], self.options.tabs[tab])
@@ -98,8 +97,6 @@ class ProfileEditor(HIGWindow):
         self.command_expander = HIGExpander('<b>'+_('Command')+'</b>')
         self.command_expander.set_expanded(True)
         self.command_entry = gtk.Entry()
-        
-        self.widgets = {}
         
         self.notebook = gtk.Notebook()
         
@@ -175,80 +172,21 @@ class ProfileEditor(HIGWindow):
         self.buttons_hbox.set_border_width(5)
         self.buttons_hbox.set_spacing(6)
 
-    def __create_tab(self, tab_name, section_name, tab_widgets):
+    def __create_tab(self, tab_name, section_name, tab):
+        log.debug(">>> Tab name: %s" % tab_name)
+        log.debug(">>>Creating profile editor section: %s" % section_name)
+
         vbox = HIGVBox()
         table = HIGTable()
         section = HIGSectionLabel(section_name)
-        log.debug(">>> Tab name: %s" % tab_name)
-        log.debug(">>>Creating profile editor section: %s" % section_name)
         
         vbox._pack_noexpand_nofill(section)
         vbox._pack_noexpand_nofill(HIGSpacer(table))
-        
         vbox.set_border_width(5)
-        
-        self.widgets[tab_name] = tab_widgets
-        
-        y1 = 0
-        y2 = 1
-        
-        for widget in tab_widgets:
-            log.debug(">>> Widget: %s" % str(widget))
-            
-            if widget[1] == None:
-                table.attach(widget[0],0,2,y1,y2)
-            else:
-                table.attach(widget[0],0,1,y1,y2)
-                table.attach(widget[1],1,2,y1,y2)
-            
-            if type(widget[0]) == type(OptionCheck()):
-                widget[0].connect('toggled', self.update_check, widget[1])
-                
-                if widget[0].option['name'] in self.options_used:
-                    widget[0].set_active(True)
-            
-            te = type(widget[1])
-            
-            if te == type(OptionList()):
-                widget[1].connect('changed',self.update_list_option)
-                
-                for wid in range(widget[1].list.__len__()):
-                    if widget[1].list[wid][0] in self.options_used:
-                        widget[1].set_active(wid)
-            elif te == type(OptionIntSpin()) or\
-                 te == type(OptionFloatSpin()) or\
-                 te == type(OptionEntry()):
-                widget[1].connect('changed', self.update_entry, widget[0])
-            elif te == type(OptionLevelSpin()):
-                widget[1].connect('changed', self.update_level, widget[0])
-            elif te == type(OptionFile()):
-                widget[1].entry.connect('changed', self.update_entry, widget[0])
-            
-            y1+=1;y2+=1
+
+        tab.fill_table(table, True)
         
         self.notebook.append_page(vbox, gtk.Label(tab_name))
-    
-    def update_entry(self, widget, check):
-        if not check.get_active():
-            check.set_active(True)
-        
-        self.constructor.remove_option(check.option['name'])
-        self.constructor.add_option(check.option['name'], widget.get_text())
-        self.update_command()
-    
-    def update_level(self, widget, check):
-        if not check.get_active():
-            check.set_active(True)
-        
-        try:
-            self.constructor.remove_option(check.option['name'])
-            if int(widget.get_text()) == 0:
-                check.set_active(False)
-            else:
-                self.constructor.add_option(check.option['name'],\
-                                        level=int(widget.get_text()))
-        except:pass
-        self.update_command()
     
     def save_profile(self, widget):
         profile_name = self.profile_name_entry.get_text()
@@ -274,13 +212,13 @@ for this profile.'))
         buf = self.profile_annotation_text.get_buffer()
         annotation = buf.get_text(buf.get_start_iter(),\
                                       buf.get_end_iter())
-        
+
         self.profile.add_profile(profile_name,\
                                  command=command,\
                                  hint=hint,\
                                  description=description,\
                                  annotation=annotation,\
-                                 options=','.join(self.options_used))
+                                 options=self.constructor.get_options())
         
         self.deleted = False
         self.quit()
@@ -290,50 +228,6 @@ for this profile.'))
         self.profile_hint_entry.set_text('')
         self.profile_description_text.get_buffer().set_text('')
         self.profile_annotation_text.get_buffer().set_text('')
-    
-    def update_list_option(self, widget):
-        try:widget.last_selected
-        except:pass
-        else:
-            self.constructor.remove_option(widget.last_selected)
-            try:del(self.options_used[self.options_used.index\
-                                      (widget.last_selected)])
-            except:pass
-        
-        option_name = widget.options[widget.get_active()]['name']
-        
-        self.constructor.add_option(option_name)
-        self.options_used.append(option_name)
-        widget.last_selected = option_name
-        
-        self.update_command()
-    
-    def update_check(self, check, extra):
-        if check.get_active():
-            te = type(extra)
-            if te == type(OptionEntry()) or\
-               te == type(OptionIntSpin()) or\
-               te == type(OptionFloatSpin()):
-                self.update_entry(extra, check)
-            elif te == type(OptionLevelSpin()):
-                self.update_level(extra, check)
-            elif te == type(OptionFile()):
-                self.update_entry(extra.entry, check)
-            elif te == type(OptionInterface()):
-                self.update_entry(extra.child, check)
-            else:
-                self.constructor.add_option(check.option['name'])
-                self.update_command()
-            
-            self.options_used.append(check.option['name'])
-        else:
-            self.constructor.remove_option(check.option['name'])
-            self.update_command()
-            try:del(self.options_used[self.options_used.index\
-                                      (check.option['name'])])
-            except:pass
-        
-        #print self.options_used
     
     def set_notebook(self, notebook):
         self.scan_notebook = notebook

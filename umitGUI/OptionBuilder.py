@@ -34,17 +34,173 @@ from umitCore.Paths import Path
 options = Path.options
 
 
+class OptionTab(object):
+    def __init__(self, root_tab, options, constructor, update_func):
+        actions = {'option_list':self.__parse_option_list,\
+                   'option_check':self.__parse_option_check}
+
+        self.options = options
+        self.constructor = constructor
+        self.update_func = update_func
+        self.widgets_list = []
+
+        options_used = self.constructor.get_options()
+        
+        # Cannot use list comprehhension because text nodes raise exception
+        # when tagName is called
+        for option_element in root_tab.childNodes:
+            try:option_element.tagName
+            except:pass
+            else:
+                if option_element.tagName in actions.keys():
+                    self.widgets_list.append(actions[option_element.tagName](option_element, options_used))
+
+    def __parse_option_list(self, option_list, options_used):
+        options = option_list.getElementsByTagName(u'option')
+        
+        label = HIGEntryLabel(option_list.getAttribute(u'label'))
+        opt_list = OptionList()
+        
+        for opt in options:
+            opt_list.append(self.options.get_option(opt.getAttribute(u'name')))
+        
+        for i, row in enumerate(opt_list.list):
+            if row[0] in options_used:
+                opt_list.set_active(i)
+                
+        return label, opt_list
+    
+    def __parse_option_check(self, option_check, options_used):
+        arg_type = option_check.getAttribute(u'arg_type')
+        option = option_check.getAttribute(u'option')
+        label = option_check.getAttribute(u'label')
+        
+        check = OptionCheck(label, self.options.get_option(option))
+        check.set_active(option in options_used)
+            
+        type_mapping = { 
+            "str": OptionEntry,
+            "int": OptionIntSpin,
+            "float": OptionFloatSpin,
+            "level": OptionLevelSpin, 
+            "path": OptionFile,
+            "interface": OptionInterface
+            }
+
+        additional = None
+        if type_mapping.has_key(arg_type):
+            value = options_used.get(option, None)
+            if value:
+                additional = type_mapping[arg_type](value)
+            else:
+                additional = type_mapping[arg_type]()
+
+        check.connect('toggled', self.update_check, additional)
+        
+        return check, additional
+
+    def fill_table(self, table, expand_fill = True):
+        yopt = (0, gtk.EXPAND | gtk.FILL)[expand_fill]
+        for y, widget in enumerate(self.widgets_list):
+            if widget[1] == None:
+                table.attach(widget[0], 0, 2, y, y+1, yoptions=yopt)
+            else:
+                table.attach(widget[0], 0, 1, y, y+1, yoptions=yopt)
+                table.attach(widget[1], 1, 2, y, y+1, yoptions=yopt)
+
+        for widget in self.widgets_list:
+            te = type(widget[1])
+            if te == type(OptionList()):
+                widget[1].connect('changed',self.update_list_option)
+            elif te == type(OptionIntSpin()) or\
+                 te == type(OptionFloatSpin()) or\
+                 te == type(OptionEntry()):
+                widget[1].connect('changed', self.update_entry, widget[0])
+            elif te == type(OptionLevelSpin()):
+                widget[1].connect('changed', self.update_level, widget[0])
+            elif te == type(OptionFile()):
+                widget[1].entry.connect('changed', self.update_entry, widget[0])
+            elif te == type(OptionInterface()):
+                widget[1].child.connect('changed', self.update_entry, widget[0])
+            
+    def update_check(self, check, extra):
+        if check.get_active():
+            te = type(extra)
+            if te == type(OptionEntry()) or\
+               te == type(OptionIntSpin()) or\
+               te == type(OptionFloatSpin()):
+                self.update_entry(extra, check)
+            elif te == type(OptionLevelSpin()):
+                self.update_level(extra, check)
+            elif te == type(OptionFile()):
+                self.update_entry(extra.entry, check)
+            elif te == type(OptionInterface()):
+                self.update_entry(extra.child, check)
+            else:
+                self.constructor.add_option(check.option['name'])
+        else:
+            self.constructor.remove_option(check.option['name'])
+
+        self.update_command()
+        
+    def update_entry(self, widget, check):
+        if not check.get_active():
+            check.set_active(True)
+
+        self.constructor.remove_option(check.option['name'])
+        self.constructor.add_option(check.option['name'], widget.get_text())
+        
+        self.update_command()
+    
+    def update_level(self, widget, check):
+        if not check.get_active():
+            check.set_active(True)
+        
+        try:
+            self.constructor.remove_option(check.option['name'])
+            if int(widget.get_text()) == 0:
+                check.set_active(False)
+            else:
+                self.constructor.add_option(check.option['name'],\
+                                        level=int(widget.get_text()))
+        except:pass
+        
+        self.update_command()
+
+    def update_list_option(self, widget):
+        try:widget.last_selected
+        except:pass
+        else:
+            self.constructor.remove_option(widget.last_selected)
+        
+        option_name = widget.options[widget.get_active()]['name']
+      
+        self.constructor.add_option(option_name)
+        widget.last_selected = option_name
+        
+        self.update_command()
+
+    def update_command(self):
+        if self.update_func:
+            self.update_func()
+    
+                 
 class OptionBuilder(object):
-    def __init__(self, xml_file):
+    def __init__(self, xml_file, constructor, update_func):
+        """ OptionBuilder(xml_file, constructor)
+
+        xml_file is a UI description xml-file
+        constructor is a CommandConstructor instance
+        """
         xml_desc = open(xml_file)
         self.xml = minidom.parse(xml_desc)
-
         # Closing file to avoid problems with file descriptors
         xml_desc.close()
+
+        self.constructor = constructor
+        self.update_func = update_func
         
         self.root_tag = "interface"
-        self.actions = {'option_list':self.__parse_option_list,\
-                        'option_check':self.__parse_option_check}
         
         self.xml = self.xml.getElementsByTagName(self.root_tag)[0]
         self.options = NmapOptions(options)
@@ -68,58 +224,11 @@ class OptionBuilder(object):
     def __parse_tabs(self):
         dic = {}
         for tab_name in self.groups:
-            tab = self.xml.getElementsByTagName(tab_name)[0]
-            widgets_list = []
-            # Cannot use list comprehhension because text nodes raise exception
-            # when tagName is called
-            for option in tab.childNodes:
-                try:option.tagName
-                except:pass
-                else:
-                    if option.tagName in self.actions.keys():
-                        widgets_list.append\
-                            (self.actions[option.tagName](option))
-            
-            dic[tab_name] = widgets_list
-        
+            dic[tab_name] = OptionTab(self.xml.getElementsByTagName(tab_name)[0],
+                                      self.options, self.constructor, self.update_func)
         return dic
-    
-    def __parse_option_list(self, option_list):
-        options = option_list.getElementsByTagName(u'option')
-        
-        label = HIGEntryLabel(option_list.getAttribute(u'label'))
-        opt_list = OptionList()
-        
-        for opt in options:
-            opt_list.append(self.options.get_option\
-                            (opt.getAttribute(u'name')))
-        
-        return label, opt_list
-    
-    def __parse_option_check(self, option_check):
-        arg_type = option_check.getAttribute(u'arg_type')
-        option = option_check.getAttribute(u'option')
-        label = option_check.getAttribute(u'label')
-        
-        check = OptionCheck(label, self.options.get_option\
-                            (option_check.getAttribute(u'option')))
-        additional = None
-        
-        if arg_type == "str":
-            additional = OptionEntry()
-        elif arg_type == "int":
-            additional = OptionIntSpin()
-        elif arg_type == "float":
-            additional = OptionFloatSpin()
-        elif arg_type == "level":
-            additional = OptionLevelSpin()
-        elif arg_type == "path":
-            additional = OptionFile()
-        elif arg_type == "interface":
-            additional = OptionInterface()
-        
-        return check, additional
 
+    
 class OptionWidget:
     def enable_widget(self):
         self.set_sensitive(True)
@@ -162,23 +271,24 @@ class OptionCheck(gtk.CheckButton, OptionWidget):
 
 
 class OptionEntry(gtk.Entry, OptionWidget):
-    def __init__(self):
+    def __init__(self, param = ""):
         gtk.Entry.__init__(self)
+        self.set_text(param)
 
 class OptionLevelSpin(gtk.SpinButton, OptionWidget):
     def __init__(self, initial=0):
-        gtk.SpinButton.__init__(self,gtk.Adjustment(initial,0,10,1),0.0,0)
+        gtk.SpinButton.__init__(self,gtk.Adjustment(int(initial),0,10,1),0.0,0)
 
 class OptionIntSpin(gtk.SpinButton, OptionWidget):
     def __init__(self, initial=1):
-        gtk.SpinButton.__init__(self,gtk.Adjustment(initial,0,10**100,1),0.0,0)
+        gtk.SpinButton.__init__(self,gtk.Adjustment(int(initial),0,10**100,1),0.0,0)
 
 class OptionFloatSpin(gtk.SpinButton, OptionWidget):
     def __init__(self, initial=1):
-        gtk.SpinButton.__init__(self,gtk.Adjustment(initial,0,10**100,1),0.1,2)
+        gtk.SpinButton.__init__(self,gtk.Adjustment(float(initial),0,10**100,1),0.1,2)
 
 class OptionFile(HIGHBox, OptionWidget, object):
-    def __init__(self):
+    def __init__(self, param=""):
         HIGHBox.__init__(self)
         
         self.entry = OptionEntry()
@@ -186,7 +296,8 @@ class OptionFile(HIGHBox, OptionWidget, object):
         
         self._pack_expand_fill(self.entry)
         self._pack_noexpand_nofill(self.button)
-        
+
+        self.entry.set_text(param)
         self.button.connect('clicked', self.open_dialog_cb)
     
     def open_dialog_cb(self, widget):

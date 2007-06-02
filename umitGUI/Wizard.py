@@ -49,10 +49,9 @@ class Wizard(HIGWindow):
         self.set_size_request(600,450)
         self.set_position(gtk.WIN_POS_CENTER)
         
-        self.options = OptionBuilder(wizard)
-        self.constructor = CommandConstructor()
         self.profile = CommandProfile()
-        self.options_used = []
+        self.constructor = CommandConstructor()
+        self.options = OptionBuilder(wizard, self.constructor, self.update_command)
         
         self.target = '<target>'
         
@@ -97,13 +96,25 @@ class Wizard(HIGWindow):
             return self.options.groups[pos-1], self.options.groups[pos+1]
 
     def __create_steps(self, step_name, back_step, next_step, step_description, content):
-        step = CommandPage(step_description, content, self)
-        step.bar.cancel.connect('clicked', self.close_wizard)
-        step.bar.help.connect('clicked', self._show_help)
-        step.bar.back.connect('clicked', self.switch_page, step_name, back_step)
-        step.bar.forward.connect('clicked', self.switch_page, step_name, next_step)
+        vbox = HIGVBox()
+        vbox.set_spacing(12)
         
-        return step
+        description = HIGEntryLabel(step_description)
+        bar = ForwardBar()
+        table = HIGTable()
+        
+        vbox._pack_noexpand_nofill(description)
+        vbox._pack_expand_fill(table)
+        vbox._pack_noexpand_nofill(bar)
+
+        content.fill_table(table, False)
+
+        bar.cancel.connect('clicked', self.close_wizard)
+        bar.help.connect('clicked', self._show_help)
+        bar.back.connect('clicked', self.switch_page, step_name, back_step)
+        bar.forward.connect('clicked', self.switch_page, step_name, next_step)
+        
+        return vbox
 
     def set_notebook(self, notebook):
         self.notebook = notebook
@@ -287,70 +298,6 @@ for this profile.'))
     def constructor_page(self):
         pass
     
-    def update_entry(self, widget, check):
-        if not check.get_active():
-            check.set_active(True)
-        
-        self.constructor.remove_option(check.option['name'])
-        self.constructor.add_option(check.option['name'], widget.get_text())
-        self.update_command()
-    
-    def update_level(self, widget, check):
-        if not check.get_active():
-            check.set_active(True)
-        
-        try:
-            self.constructor.remove_option(check.option['name'])
-            if int(widget.get_text()) == 0:
-                check.set_active(False)
-            else:
-                self.constructor.add_option(check.option['name'],\
-                                        level=int(widget.get_text()))
-        except:pass
-        self.update_command()
-
-    def update_list_option(self, widget):
-        try:widget.last_selected
-        except:pass
-        else:
-            self.constructor.remove_option(widget.last_selected)
-            try:del(self.options_used[self.options_used.index\
-                                      (widget.last_selected)])
-            except:pass
-        
-        option_name = widget.options[widget.get_active()]['name']
-        
-        self.constructor.add_option(option_name)
-        self.options_used.append(option_name)
-        widget.last_selected = option_name
-        
-        self.update_command()
-    
-    def update_check(self, check, extra):
-        if check.get_active():
-            te = type(extra)
-            if te == type(OptionEntry()) or\
-               te == type(OptionIntSpin()) or\
-               te == type(OptionFloatSpin()):
-                self.update_entry(extra, check)
-            elif te == type(OptionLevelSpin()):
-                self.update_level(extra, check)
-            elif te == type(OptionFile()):
-                self.update_entry(extra.entry, check)
-            elif te == type(OptionInterface()):
-                self.update_entry(extra.child, check)
-            else:
-                self.constructor.add_option(check.option['name'])
-                self.update_command()
-            
-            self.options_used.append(check.option['name'])
-        else:
-            self.constructor.remove_option(check.option['name'])
-            self.update_command()
-            try:del(self.options_used[self.options_used.index\
-                                      (check.option['name'])])
-            except:pass
-        
     def save_profile(self, widget):
         command = self.constructor.get_command('%s')
         
@@ -372,7 +319,7 @@ for this profile.'))
                                      hint=hint,\
                                      description=description,\
                                      annotation=annotation,\
-                                     options=','.join(self.options_used))
+                                     options=','.join(self.constructor.get_options()))
             
             for i in xrange(self.notebook.get_n_pages()):
                 page = self.notebook.get_nth_page(i)
@@ -387,48 +334,6 @@ for this profile.'))
             current_page.command_toolbar.command_entry.command = cmd
         
         self.close_wizard()
-
-class CommandPage(HIGVBox):
-    def __init__(self, description, content, wizard):
-        HIGVBox.__init__(self)
-        self.set_spacing(12)
-        
-        self.description = HIGEntryLabel(description)
-        self.bar = ForwardBar()
-        table = HIGTable()
-        
-        self._pack_noexpand_nofill(self.description)
-        self._pack_expand_fill(table)
-        self._pack_noexpand_nofill(self.bar)
-        
-        y1 = 0
-        y2 = 1
-        
-        for widget in content:
-            if widget[1] == None:
-                table.attach(widget[0],0,2,y1,y2, yoptions=0)
-            else:
-                table.attach(widget[0],0,1,y1,y2, yoptions=0)
-                table.attach(widget[1],1,2,y1,y2, yoptions=0)
-            
-            if type(widget[0]) == type(OptionCheck()):
-                widget[0].connect('toggled', wizard.update_check, widget[1])
-            
-            te = type(widget[1])
-            
-            if te == type(OptionList()):
-                widget[1].connect('changed',wizard.update_list_option)
-            elif te == type(OptionIntSpin()) or\
-                 te == type(OptionFloatSpin()) or\
-                 te == type(OptionEntry()):
-                widget[1].connect('changed', wizard.update_entry, widget[0])
-            elif te == type(OptionLevelSpin()):
-                widget[1].connect('changed', wizard.update_level, widget[0])
-            elif te == type(OptionFile()):
-                widget[1].entry.connect('changed', \
-                                        wizard.update_entry, widget[0])
-            
-            y1+=1;y2+=1
 
 class FinishPage(HIGVBox):
     def __init__(self):

@@ -23,7 +23,7 @@
 import re
 
 from types import StringTypes
-from ConfigParser import NoSectionError
+from ConfigParser import NoSectionError, NoOptionError
 
 from umitCore.Paths import Path
 from umitCore.UmitConfigParser import UmitConfigParser
@@ -206,7 +206,12 @@ class Profile(UmitConfigParser, object):
         try: self.add_section(profile_name)
         except: return None
         
-        [self._set_it(profile_name, attr, attributes[attr]) for attr in attributes]
+        [self._set_it(profile_name, attr, attributes[attr]) for attr in attributes if attr != "options"]
+        options = attributes["options"]
+        self._set_it(profile_name, "options", ",".join(options.keys()))
+        for opt in options:
+            if options[opt]:
+                self._set_it(profile_name, opt, options[opt])
         self.save_changes()
 
     def remove_profile(self, profile_name):
@@ -238,8 +243,13 @@ class CommandProfile (Profile, object):
         return self._get_it(profile, 'annotation')
 
     def get_options(self, profile):
-        return self._get_it(profile, 'options').split(',')
-
+        dic = {}
+        for opt in self._get_it(profile, 'options').split(','):
+            try:
+                dic[unicode(opt.strip())] = self._get_it(profile, opt)
+            except NoOptionError:
+                dic[unicode(opt.strip())] = None
+        return dic
 
     def set_command(self, profile, command=''):
         self._set_it(profile, 'command', command)
@@ -253,8 +263,11 @@ class CommandProfile (Profile, object):
     def set_annotation (self, profile, annotation=''):
         self._set_it(profile, 'annotation', annotation)
     
-    def set_options(self, profile, options=''):
-        self._set_it(profile, 'options', options)
+    def set_options(self, profile, options={}):
+        for opt in options:
+            if options[opt]:
+                self._set_it(profile, opt, options[opt])
+        self._set_it(profile, 'options', ",".join(options.keys()))
 
     def get_profile(self, profile_name):
         return {'profile':profile_name, \
