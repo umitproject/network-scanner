@@ -67,7 +67,7 @@ CREATE TABLE host
     pk INTEGER NOT NULL,
     distance INTEGER NOT NULL,
     fk_scan INTEGER NOT NULL,
-    fk_host_state INTEGER,
+    fk_host_state INTEGER
 );
 
 ALTER TABLE host ADD CONSTRAINT host_pk PRIMARY KEY (pk);
@@ -81,6 +81,7 @@ CREATE TABLE finger_print_info
     pk INTEGER NOT NULL,
     uptime INTEGER,
     lastboot CHAR(24),
+    fingerprint TEXT,
     tcp_sequence_class INTEGER,
     tcp_sequence_index INTEGER,
     tcp_sequence_value VARCHAR,
@@ -92,7 +93,8 @@ CREATE TABLE finger_print_info
     fk_host INTEGER
 );
 
-ALTER TABLE host ADD CONSTRAINT finger_print_info_pk PRIMARY KEY (pk);
+ALTER TABLE finger_print_info
+    ADD CONSTRAINT finger_print_info_pk PRIMARY KEY (pk);
 
 --------------------------------------------------------------------------------
 
