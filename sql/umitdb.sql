@@ -76,12 +76,12 @@ ALTER TABLE host ADD CONSTRAINT host_pk PRIMARY KEY (pk);
 
 -- DROP TABLE host CASCADE;
 
-CREATE TABLE finger_print_info
+CREATE TABLE fingerprint_info
 (
     pk INTEGER NOT NULL,
     uptime INTEGER,
     lastboot CHAR(24),
-    fingerprint TEXT,
+    signature TEXT,
     tcp_sequence_class INTEGER,
     tcp_sequence_index INTEGER,
     tcp_sequence_value VARCHAR,
@@ -93,8 +93,8 @@ CREATE TABLE finger_print_info
     fk_host INTEGER
 );
 
-ALTER TABLE finger_print_info
-    ADD CONSTRAINT finger_print_info_pk PRIMARY KEY (pk);
+ALTER TABLE fingerprint_info
+    ADD CONSTRAINT fingerprint_info_pk PRIMARY KEY (pk);
 
 --------------------------------------------------------------------------------
 
@@ -463,7 +463,7 @@ ALTER TABLE host ADD CONSTRAINT host_host_state_fk
 
 --------------------------------------------------------------------------------
 
-ALTER TABLE finger_print_info ADD CONSTRAINT finger_print_info_host_fk
+ALTER TABLE fingerprint_info ADD CONSTRAINT fingerprint_info_host_fk
     FOREIGN KEY (fk_host) REFERENCES host (pk);
 
 --------------------------------------------------------------------------------
