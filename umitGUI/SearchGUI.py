@@ -63,7 +63,7 @@ class SearchGUI(gtk.HPaned, object):
         self.any = _("Any")
 
         # Setting default values
-        self.port_openned = True
+        self.port_open = True
         self.port_filtered = True
         self.port_closed = True
         self.profile = self.any_profile
@@ -404,7 +404,7 @@ the search data base option at the 'Search options' tab before start the search"
                            ipv4=self.ipv4,
                            ipv6=self.ipv6,
                            port=self.port,
-                           port_openned=self.port_openned,
+                           port_open=self.port_open,
                            port_filtered=self.port_filtered,
                            port_closed=self.port_closed,
                            service=self.service,
@@ -518,11 +518,11 @@ the search data base option at the 'Search options' tab before start the search"
         elif type(port) == type([]):
             self.serv_port_entry.set_text(";".join(port))
 
-    def get_port_openned(self):
-        return self.serv_portstate_check.openned
+    def get_port_open(self):
+        return self.serv_portstate_check.open
 
-    def set_port_openned(self, openned):
-        self.serv_portstate_check.openned = openned
+    def set_port_open(self, open):
+        self.serv_portstate_check.open = open
 
     def get_port_filtered(self):
         return self.serv_portstate_check.filtered
@@ -653,7 +653,7 @@ the search data base option at the 'Search options' tab before start the search"
     ipv4 = property(get_ipv4, set_ipv4)
     ipv6 = property(get_ipv6, set_ipv6)
     port = property(get_port, set_port)
-    port_openned = property(get_port_openned, set_port_openned)
+    port_open = property(get_port_open, set_port_open)
     port_filtered = property(get_port_filtered, set_port_filtered)
     port_closed = property(get_port_closed, set_port_closed)
     service = property(get_service, set_service)
@@ -793,19 +793,19 @@ class DateRange(gtk.HBox, object):
 class PortState(gtk.VBox, object):
     def __init__(self):
         gtk.VBox.__init__(self)
-        self.openned_check = gtk.CheckButton(_("Open"))
+        self.open_check = gtk.CheckButton(_("Open"))
         self.filtered_check = gtk.CheckButton(_("Filtered"))
         self.closed_check = gtk.CheckButton(_("Closed"))
 
-        self.pack_start(self.openned_check, False, False)
+        self.pack_start(self.open_check, False, False)
         self.pack_start(self.filtered_check, False, False)
         self.pack_start(self.closed_check, False, False)
 
-    def get_openned(self):
-        return self.openned_check.get_active()
+    def get_open(self):
+        return self.open_check.get_active()
 
-    def set_openned(self, openned):
-        self.openned_check.set_active(openned)
+    def set_open(self, open):
+        self.open_check.set_active(open)
 
     def get_filtered(self):
         return self.filtered_check.get_active()
@@ -820,7 +820,7 @@ class PortState(gtk.VBox, object):
         self.closed_check.set_active(closed)
 
 
-    openned = property(get_openned, set_openned)
+    open = property(get_open, set_open)
     filtered = property(get_filtered, set_filtered)
     closed = property(get_closed, set_closed)
 
@@ -897,7 +897,7 @@ if __name__ == "__main__":
         print "ipv4", s.ipv4
         print "ipv6", s.ipv6
         print "port", s.port
-        print "port_openned", s.port_openned
+        print "port_open", s.port_open
         print "port_filtered", s.port_filtered
         print "port_closed", s.port_closed
         print "service", s.service
@@ -923,7 +923,7 @@ if __name__ == "__main__":
     s.ipv4 = "IPv4 Address"
     s.ipv6 = "IPv6 Address"
     s.port = "20"
-    s.port_openned = True
+    s.port_open = True
     s.port_filtered = True
     s.port_closed = True
     s.service = "ssh"

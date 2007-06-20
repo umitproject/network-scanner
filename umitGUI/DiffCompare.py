@@ -679,8 +679,8 @@ class DiffTree(HIGVBox, object):
         section = _("Scan Info")
         parent = self.append_parent(None, section, "")
         
-        self.diff_it(parent, "", _("Openned Ports"), parsed1.openned_ports,
-                     parsed2.openned_ports)
+        self.diff_it(parent, "", _("Open Ports"), parsed1.open_ports,
+                     parsed2.open_ports)
         self.diff_it(parent, "", _("Filtered Ports"), parsed1.filtered_ports,
                      parsed2.filtered_ports)
         self.diff_it(parent, "", _("Closed Ports"), parsed1.closed_ports,

@@ -45,7 +45,7 @@ class SearchResult(object):
 
         # If nothing is passed, let's considerate that we want to search every port
         self.port_closed = kargs.get("port_closed", True)
-        self.port_openned = kargs.get("port_openned", True)
+        self.port_open = kargs.get("port_open", True)
         self.port_filtered = kargs.get("port_filtered", True)
 
 
@@ -143,13 +143,13 @@ class SearchResult(object):
         for p in self.parsed_scan.ports:
             for port_dic in p:
                 for portid in port_dic["port"]:
-                    if self.port_openned and portid["port_state"] == "open":
+                    if self.port_open and portid["port_state"] == "open":
                         ports.append(portid["portid"])
                     elif self.port_filtered and portid["port_state"] == "filtered":
                         ports.append(portid["portid"])
                     elif self.port_closed and portid["port_state"] == "closed":
                         ports.append(portid["portid"])
-                    elif not self.port_openned and \
+                    elif not self.port_open and \
                              not self.port_filtered and \
                              not self.port_closed:
                         # In case every port state is False, add every port
@@ -307,7 +307,7 @@ if __name__ == "__main__":
                              #uptime=209980,
                              # lastboot="", MUST BE REMOVED FROM THE UI!
                              #port=["22", "80"],
-                             #port_openned="",
+                             #port_open="",
                              #port_filtered="",
                              #port_closed="",
                              #service="",

@@ -58,8 +58,8 @@ class HostDetails(HIGVBox):
         self.host_state_label = HIGEntryLabel(_('State:'))
         self.info_host_state_label = HIGEntryLabel(na)
         
-        self.openned_label = HIGEntryLabel(_('Openned ports:'))
-        self.info_openned_ports = HIGEntryLabel(na)
+        self.open_label = HIGEntryLabel(_('Open ports:'))
+        self.info_open_ports = HIGEntryLabel(na)
         
         self.filtered_label = HIGEntryLabel(_('Filtered ports:'))
         self.info_filtered_label = HIGEntryLabel(na)
@@ -110,8 +110,8 @@ class HostDetails(HIGVBox):
         except:pass
         
         try:
-            if status['openned'] == '': raise Exception
-            self.info_openned_ports.set_text(status['openned'])
+            if status['open'] == '': raise Exception
+            self.info_open_ports.set_text(status['open'])
         except:pass
         
         try:
@@ -142,8 +142,8 @@ class HostDetails(HIGVBox):
         table.attach(self.host_state_label,0,1,0,1)
         table.attach(self.info_host_state_label,1,2,0,1)
         
-        table.attach(self.openned_label,0,1,1,2)
-        table.attach(self.info_openned_ports,1,2,1,2)
+        table.attach(self.open_label,0,1,1,2)
+        table.attach(self.info_open_ports,1,2,1,2)
         
         table.attach(self.filtered_label,0,1,2,3)
         table.attach(self.info_filtered_label,1,2,2,3)

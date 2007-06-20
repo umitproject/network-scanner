@@ -203,7 +203,7 @@ class ScanNotebook(HIGNotebook):
         HIGNotebook.append_page(self, page, tab_label)
 
     def sanitize_tab_title(self, title):
-        log.debug(">>> Sanitize this title: %s" % title)
+        #log.debug(">>> Sanitize this title: %s" % title)
         scan_id = 1
         title2 = title
         while title2 in self.tab_titles:
@@ -211,7 +211,7 @@ class ScanNotebook(HIGNotebook):
             scan_id += 1
         
         self.add_tab_title(title2)
-        log.debug(">>> Title sanitized: %s" % title2)
+        #log.debug(">>> Title sanitized: %s" % title2)
         return title2
 
     def remove_tab_title(self, title):
@@ -375,14 +375,14 @@ class ScanNotebookPage(HIGVBox):
         self.scan_result.set_sensitive(True)
     
     def refresh_command_target(self, widget):
-        log.debug(">>> Refresh Command Target")
+        #log.debug(">>> Refresh Command Target")
         
         profile = self.toolbar.selected_profile
-        log.debug(">>> Profile: %s" % profile)
+        #log.debug(">>> Profile: %s" % profile)
         
         if profile != '':
             target = self.toolbar.selected_target
-            log.debug(">>> Target: %s" % target)
+            #log.debug(">>> Target: %s" % target)
             try:
                 cmd_profile = CommandProfile()
                 command = cmd_profile.get_command(profile) % target
@@ -394,12 +394,12 @@ class ScanNotebookPage(HIGVBox):
                 #self.profile_not_found_dialog()
     
     def refresh_command(self, widget):
-        log.debug(">>> Refresh Command")
+        #log.debug(">>> Refresh Command")
         profile = self.toolbar.selected_profile
         target = self.toolbar.selected_target
 
-        log.debug(">>> Profile: %s" % profile)
-        log.debug(">>> Target: %s" % target)
+        #log.debug(">>> Profile: %s" % profile)
+        #log.debug(">>> Target: %s" % target)
         
         if target == '':
             target = self.empty_target
@@ -494,7 +494,10 @@ or type a nmap command that you would like to execute."),
             self.parsed.nmap_output = "\\n".join(self.scan_result.get_nmap_output().split("\n"))
 
     def kill_scan(self):
-        self.command_execution.kill()
+        try:
+            self.command_execution.kill()
+        except AttributeError:
+            pass
 
         self.scan_result.clear_nmap_output()
         self.scan_result.clear_host_view()
@@ -702,7 +705,7 @@ of your profile. Please, try to remove your profile and then create it again."),
                     host_details.set_os_image(get_os_logo(''))
                     
                 host_details.set_vulnerability_image(get_vulnerability_logo\
-                                                     (host_info.get_openned_ports()))
+                                                     (host_info.get_open_ports()))
                     
                 icon = None
                 try:icon = get_os_icon(host.get_osmatch()['name'])
@@ -805,7 +808,7 @@ of your profile. Please, try to remove your profile and then create it again."),
         dialog_text = "Umit has found that %s. The submission and registration of \
 fingerprints are very important for you and the Nmap project! If you would like to contribute \
 to see your favorite network mapper recognizing those fingerprints in the future, choose the \
-Ok button, and a submission page will be openned in your default web browser with instructions \
+Ok button, and a submission page will be open in your default web browser with instructions \
 about how to proceed on this registration."
         
         if key_num == 1:
@@ -866,7 +869,7 @@ Fingerprints Found!"),
              'hosts_up':str(self.parsed.get_hosts_up()),\
              'hosts_down':str(self.parsed.get_hosts_down()),\
              'hosts_scanned':str(self.parsed.get_hosts_scanned()),\
-             'openned_ports':str(self.parsed.get_openned_ports()),\
+             'open_ports':str(self.parsed.get_open_ports()),\
              'filtered_ports':str(self.parsed.get_filtered_ports()),\
              'closed_ports':str(self.parsed.get_closed_ports())})
              
@@ -1008,7 +1011,7 @@ Fingerprints Found!"),
         uptime = host.get_uptime()
 
         host_details.set_host_status({'state':host.get_state(),
-                                      'openned':str(host.get_openned_ports()),
+                                      'open':str(host.get_open_ports()),
                                       'filtered':str(host.get_filtered_ports()),
                                       'closed':str(host.get_closed_ports()),
                                       'scanned':str(host.get_scanned_ports()),
@@ -1016,15 +1019,15 @@ Fingerprints Found!"),
                                       'lastboot':uptime['lastboot']})
         
         ipv4 = ''
-        try:ipv4 = host.get_ip_address()['addr']
+        try:ipv4 = host.get_ip()['addr']
         except KeyError: pass
         
         ipv6 = ''
-        try:ipv6 = host.get_ipv6_address()['addr']
+        try:ipv6 = host.get_ipv6()['addr']
         except KeyError: pass
         
         mac = ''
-        try:mac = host.get_mac_address()['addr']
+        try:mac = host.get_mac()['addr']
         except KeyError: pass
         
         host_details.set_addresses({'ipv4':ipv4,'ipv6':ipv6,'mac':mac})

@@ -20,6 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import sys
+import signal
 from os.path import join, split
 
 ######################################
@@ -110,4 +111,13 @@ The following error message was NOT reported:
 
 if __name__ == '__main__':
     umit_app = App()
-    umit_app.run()
+    
+    signal.signal(signal.SIGTERM, umit_app.safe_shutdown)
+    signal.signal(signal.SIGHUP, umit_app.safe_shutdown)
+    signal.signal(signal.SIGINT, umit_app.safe_shutdown)
+
+    try:
+        umit_app.run()
+    except KeyboardInterrupt:
+        sys.exit(signal.SIGINT)
+

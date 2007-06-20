@@ -443,7 +443,7 @@ Scan Tab?'),
                 return False
         
         page.close_tab()
-        del(page)        
+        del(page)
         self.scan_notebook.remove_page(page_num)
         return True
 
@@ -832,8 +832,7 @@ Wait until the scan is finished and then try to save it again.'))
         webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "help.html"), new=2)
 
     def _exit_cb (self, widget=None, extra=None):
-        for page in [self.scan_notebook.get_nth_page(n)\
-                     for n in xrange(self.scan_notebook.get_n_pages(), 0, -1)]:
+        for page in self.scan_notebook.get_children():
             if not self._close_scan_cb(page):
                 self.show_all()
                 return True

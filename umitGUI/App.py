@@ -66,6 +66,24 @@ class App:
             self.hildon_app.add_window(self.main_window)
         
         self.main_window.show_all()
+    
+    def safe_shutdown(self, signum, stack):
+        log.debug("\n\n%s\nSAFE SHUTDOWN!\n%s\n" % ("#" * 30, "#" * 30))
+        log.debug("SIGNUM: %s" % signum)
+
+        try:
+            scans = self.main_window.scan_notebook.get_children()
+            for scan in scans:
+                log.debug(">>> Killing Scan: %s" % scan.get_tab_label())
+                scan.kill_scan()
+                scan.close_tab()
+                self.main_window.scan_notebook.remove(scan)
+                del(scan)
+        except NameError:
+            pass
+
+        self.main_window._exit_cb()
+        sys.exit(signum)
 
     def run(self):
         # Try to load psyco module, saving this information

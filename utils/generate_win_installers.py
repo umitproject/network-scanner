@@ -103,9 +103,9 @@ SectionEnd""",
   File COPYING_HIGWIDGETS
   File README
   File umit
-  File nmap-os-db
-  File nmap-os-fingerprints
-  File nmap-services
+  File utils\\nmap-os-db
+  File utils\\nmap-os-fingerprints
+  File utils\\nmap-services
   File umit_version
 
   Rename umit umit.pyw

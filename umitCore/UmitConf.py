@@ -320,7 +320,7 @@ class NmapOutputHighlight(UmitConfigParser, object):
 
         Sequence: [bold, italic, underline, text, highlight, regex]
         """
-        log.debug(">>> Sanitize %s" % str(settings))
+        #log.debug(">>> Sanitize %s" % str(settings))
         
         settings[0] = self.boolean_sanity(settings[0])
         settings[1] = self.boolean_sanity(settings[1])

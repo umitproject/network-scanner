@@ -244,17 +244,17 @@ umitCore.NmapParser.get_ipv6 instead."))
         
         return hostname
 
-    def get_openned_ports(self):
+    def get_open_ports(self):
         ports = self.get_ports()
-        openned = 0
+        open = 0
         
         for i in ports:
             port = i['port']
             for p in port:
                 if re.findall('open', p['port_state']):
-                    openned+=1
+                    open+=1
         
-        return openned
+        return open
     
     def get_filtered_ports(self):
         ports = self.get_ports()
@@ -504,11 +504,11 @@ Need a string or list.")
             raise Exception("Wrong date format. Date should be saved \
 in epoch format!")
     
-    def get_openned_ports(self):
+    def get_open_ports(self):
         ports = 0
 
         for h in self.nmap.get('hosts', []):
-            ports += h.get_openned_ports()
+            ports += h.get_open_ports()
 
         return ports
 
@@ -697,7 +697,7 @@ umitCore.NmapParser.get_ipv6 instead."))
     protocol = property(get_protocol)
     num_services = property(get_num_services, set_num_services)
     date = property(get_date, set_date)
-    openned_ports = property(get_openned_ports)
+    open_ports = property(get_open_ports)
     filtered_ports = property(get_filtered_ports)
     closed_ports = property(get_closed_ports)
     formated_date = property(get_formated_date)
@@ -1262,7 +1262,6 @@ def nmap_parser_sax(nmap_xml_file=""):
     nmap_parser = NmapParserSAX()
     
     parser.setContentHandler(nmap_parser)
-
     nmap_parser.set_parser(parser)
     nmap_parser.set_xml_file(nmap_xml_file)
 
@@ -1354,7 +1353,7 @@ if __name__ == '__main__':
     print "Protocol:", np.protocol
     print "Num services:", np.num_services
     print "Date:", np.date
-    print "Openned ports:", np.openned_ports
+    print "Open ports:", np.open_ports
     print "Filtered ports:", np.filtered_ports
     print "Closed ports:", np.closed_ports
     print "Formated date:", np.formated_date

@@ -17,7 +17,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import gtk
-
 from higwidgets.higboxes import HIGVBox, HIGHBox, hig_box_space_holder
 from higwidgets.higtables import HIGTable
 from higwidgets.higlabels import HIGEntryLabel
@@ -68,8 +67,8 @@ class ScanRunDetailsPage(HIGVBox):
         self.host_scanned_label = HIGEntryLabel(_('Hosts scanned:'))
         self.info_hosts_scanned_label = HIGEntryLabel(na)
         
-        self.openned_label = HIGEntryLabel(_('Openned ports:'))
-        self.info_openned_label = HIGEntryLabel(na)
+        self.open_label = HIGEntryLabel(_('Open ports:'))
+        self.info_open_label = HIGEntryLabel(na)
         
         self.filtered_label = HIGEntryLabel(_('Filtered ports:'))
         self.info_filtered_label = HIGEntryLabel(na)
@@ -141,7 +140,7 @@ class ScanRunDetailsPage(HIGVBox):
         except:pass
         
         #try:
-        self.info_openned_label.set_text(info['openned_ports'])
+        self.info_open_label.set_text(info['open_ports'])
         #except:pass
         
         #try:
@@ -170,8 +169,8 @@ class ScanRunDetailsPage(HIGVBox):
         self.general_table.attach(self.host_scanned_label,0,1,4,5)
         self.general_table.attach(self.info_hosts_scanned_label,1,2,4,5)
         
-        self.general_table.attach(self.openned_label,0,1,5,6)
-        self.general_table.attach(self.info_openned_label,1,2,5,6)
+        self.general_table.attach(self.open_label,0,1,5,6)
+        self.general_table.attach(self.info_open_label,1,2,5,6)
         
         self.general_table.attach(self.filtered_label,0,1,6,7)
         self.general_table.attach(self.info_filtered_label,1,2,6,7)
