@@ -672,13 +672,13 @@ of your profile. Please, try to remove your profile and then create it again."),
                 return
         elif parsed_result:
             self.parsed = parsed_result
-            
+
         if int(self.parsed.get_hosts_up()):
             for host in self.parsed.get_hosts():
                 hostname = host.get_hostname()
                 host_page = self.set_host_details(host)
                 list_states = ["open", "filtered", "open|filtered"]
-                    
+
                 for service in host.services:
                     name = service["service_name"]
                     state = service["port_state"]

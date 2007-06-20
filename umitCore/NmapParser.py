@@ -265,7 +265,7 @@ umitCore.NmapParser.get_ipv6 instead."))
             for p in port:
                 if re.findall('filtered', p['port_state']):
                     filtered+=1
-        
+ 
         return filtered
     
     def get_closed_ports(self):
@@ -517,6 +517,12 @@ in epoch format!")
 
         for h in self.nmap.get('hosts', []):
             ports += h.get_filtered_ports()
+        
+        for extra in self.list_extraports:
+            if extra["state"] == "filtered":
+                ports += int(extra["count"])
+
+        log.debug(">>> EXTRAPORTS: %s" % str(self.list_extraports))
 
         return ports
 
@@ -525,6 +531,10 @@ in epoch format!")
         
         for h in self.nmap['hosts']:
             ports += h.get_closed_ports()
+
+        for extra in self.list_extraports:
+            if extra["state"] == "closed":
+                ports += int(extra["count"])
 
         return ports
 
