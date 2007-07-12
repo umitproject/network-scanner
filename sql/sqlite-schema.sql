@@ -79,10 +79,11 @@ CREATE TABLE host (
                       REFERENCES host_state(pk)
 );
 
-CREATE TABLE finger_print_info (
+CREATE TABLE fingerprint_info (
     pk                       INTEGER NOT NULL PRIMARY KEY,
     uptime                   INTEGER,
     lastboot                 TEXT,
+    signature                TEXT,
     tcp_sequence_class       TEXT,
     tcp_sequence_index       TEXT,
     tcp_sequence_value       TEXT,
@@ -231,7 +232,7 @@ CREATE TABLE extraports (
 -- Protocol could be in a common place maybe
 CREATE TABLE protocol (
     pk    INTEGER NOT NULL PRIMARY KEY,
-    name  TEXT -- CHECK (name IN ('ip', 'tcp', 'udp'))
+    name  TEXT --CHECK (name IN ('ip', 'tcp', 'udp'))
 );
 
 CREATE TABLE service_info (
@@ -239,8 +240,8 @@ CREATE TABLE service_info (
     product          TEXT,
     version          TEXT,
     extrainfo        TEXT,
-    method           TEXT CHECK (method IN ('table', 'detection', 'probed')),
-    conf             INTEGER CHECK (conf IN (0, 3, 5, 10)),
+    method           TEXT, --CHECK (method IN ('table', 'detection', 'probed')),
+    conf             INTEGER,
     fk_ostype        INTEGER CONSTRAINT fk_ostype
                         REFERENCES ostype(pk),
     fk_service_name  INTEGER NOT NULL CONSTRAINT fk_service_name
@@ -267,12 +268,31 @@ CREATE TABLE inventory (
     name  TEXT
 );
 
+CREATE TABLE inventory_change_category (
+    pk    INTEGER NOT NULL PRIMARY KEY,
+    name  TEXT
+);
+
 CREATE TABLE _inventory_scan (
     pk            INTEGER NOT NULL PRIMARY KEY,
     fk_scan       INTEGER NOT NULL CONSTRAINT fk_scan
                      REFERENCES scan(pk),
     fk_inventory  INTEGER NOT NULL CONSTRAINT fk_inventory
                      REFERENCES inventory(pk)
+);
+
+CREATE TABLE _inventory_changes (
+    pk                 INTEGER NOT NULL PRIMARY KEY,
+    old_hostid         INTEGER NOT NULL,
+    new_hostid         INTEGER NOT NULL,
+    entry_date         TIMESTAMP,
+    short_description  TEXT,
+    fk_inventory       INTEGER NOT NULL CONSTRAINT fk_inventory
+                          REFERENCES inventory(pk),
+    fk_category        INTEGER NOT NULL CONSTRAINT fk_category
+                          REFERENCES inventory_change_category(pk),
+    fk_address         INTEGER NOT NULL CONSTRAINT fk_address
+                          REFERENCES address(pk)
 );
 
 

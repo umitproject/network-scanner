@@ -72,11 +72,11 @@ CREATE TRIGGER host_insert_bad_host_state
         WHERE (SELECT pk FROM host_state WHERE pk = NEW.fk_host_state) IS NULL;
     END;
 
--- Trigger for preventing bad insertion on finger_print_info
-CREATE TRIGGER finger_print_info_insert_bad_host
-    BEFORE INSERT ON finger_print_info
+-- Trigger for preventing bad insertion on fingerprint_info
+CREATE TRIGGER fingerprint_info_insert_bad_host
+    BEFORE INSERT ON fingerprint_info
     FOR EACH ROW BEGIN
-        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'finger_print_info', invalid fk_host especified")
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table 'fingerprint_info', invalid fk_host especified")
         WHERE (SELECT pk FROM host WHERE pk = NEW.fk_host) IS NULL;
     END;
 
@@ -275,6 +275,29 @@ CREATE TRIGGER _inventory_scan_insert_bad_inventory
     FOR EACH ROW BEGIN
         SELECT RAISE(ROLLBACK, "Bad INSERT on table '_inventory_scan', invalid fk_inventory especified")
         WHERE (SELECT pk FROM inventory WHERE pk = NEW.fk_inventory) IS NULL;
+    END;
+
+-- Triggers for preventing bad insertion on _inventory_changes
+CREATE TRIGGER _inventory_changes_insert_bad_inventory
+    BEFORE INSERT ON _inventory_changes
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table '_inventory_changes', invalid fk_inventory especified")
+        WHERE (SELECT pk FROM inventory WHERE pk = NEW.fk_inventory) IS NULL;
+    END;
+
+CREATE TRIGGER _inventory_changes_insert_bad_category
+    BEFORE INSERT ON _inventory_changes
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table '_inventory_changes', invalid fk_category especified")
+        WHERE (SELECT pk FROM inventory_change_category WHERE 
+               pk = NEW.fk_category) IS NULL;
+    END;
+
+CREATE TRIGGER _inventory_changes_insert_bad_address
+    BEFORE INSERT ON _inventory_changes
+    FOR EACH ROW BEGIN
+        SELECT RAISE(ROLLBACK, "Bad INSERT on table '_inventory_changes', invalid fk_address especified")
+        WHERE (SELECT pk FROM address WHERE pk = NEW.fk_address) IS NULL;
     END;
 
 
