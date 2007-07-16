@@ -2,8 +2,8 @@
 
 :: Setting variables
 set PythonEXE=C:\Python25\python.exe
-set UmitDir=C:\Umit_comp
-set DistDir=C:\Umit_comp\dist
+set UmitDir=C:\Umit\trunk
+set DistDir=C:\Umit\trunk\dist
 set GTKDir=C:\GTK
 set NmapDir=C:\Nmap
 set WinpcapDir=C:\Winpcap
