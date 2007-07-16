@@ -100,11 +100,6 @@ def check_dependencies():
         print msg
 
     try:
-        from pysqlite2 import dbapi2
-    except ImportError:
-        print "No pysqlite2 found"
-
-    try:
         import psyco
     except ImportError:
         print "Install psyco and get a better performance!"
@@ -374,5 +369,4 @@ encodings.*,\
 cairo,\
 pangocairo,\
 atk,\
-psyco,\
-pysqlite2"}})
+psyco"}})
