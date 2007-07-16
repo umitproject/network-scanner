@@ -308,7 +308,7 @@ class umit_py2exe(build_exe):
                       pixmaps_dir = install_pixmaps_dir,
                       icons_dir = install_icons_dir,
                       locale_dir = install_locale_dir,
-                      umit_icon = os.path.join(install_icon_dir, "umit_48.ico"),
+                      umit_icon = os.path.join(install_icons_dir, "umit_48.ico"),
                       nmap_command_path = "nmap")
 
         umit_conf_file = open(dist_umit_conf, 'r')
