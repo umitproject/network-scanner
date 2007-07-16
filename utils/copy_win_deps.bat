@@ -1,9 +1,9 @@
 @echo off
 
 :: Setting variables
-set PythonEXE=C:\Python24\python.exe
-set UmitDir=C:\Umit
-set DistDir=C:\Umit\dist
+set PythonEXE=C:\Python25\python.exe
+set UmitDir=C:\Umit_comp
+set DistDir=C:\Umit_comp\dist
 set GTKDir=C:\GTK
 set NmapDir=C:\Nmap
 set WinpcapDir=C:\Winpcap
