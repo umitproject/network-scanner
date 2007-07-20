@@ -24,6 +24,7 @@ import sys
 import optparse
 
 import gtk
+import gtk.gdk
 import gobject
 
 from umitGUI.Splash import Splash
@@ -108,8 +109,8 @@ at http://psyco.sf.net/"""))
 
         if main_is_frozen():
             # This is needed by py2exe
-            gtk.threads_init()
-            gtk.threads_enter()
+            gtk.gdk.threads_init()
+            gtk.gdk.threads_enter()
 
         # Create and show the main window as soon as possible
         gobject.idle_add(self.__create_show_main_window)
@@ -119,4 +120,4 @@ at http://psyco.sf.net/"""))
         gtk.main()
 
         if main_is_frozen():
-            gtk.threads_leave()
+            gtk.gdk.threads_leave()
