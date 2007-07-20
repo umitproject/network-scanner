@@ -54,7 +54,11 @@ except:
 ##################################################################################
 # Main Variables
 
-# Directories
+# Directories for POSIX operating systems
+# These are created after a "install" or "py2exe" command
+# These directories are relative to the installation or dist directory
+# Ex: python setup.py install --prefix=/tmp/umit
+# Will create the directory /tmp/umit with the following directories
 pixmaps_dir = os.path.join('share', 'pixmaps')
 icons_dir = os.path.join('share', 'icons')
 locale_dir = os.path.join('share', 'umit', 'locale')
@@ -295,20 +299,23 @@ class umit_py2exe(build_exe):
         self.finish_banner()
 
     def adequate_umit_conf(self):
-        install_config_dir = os.path.join("config")
-        install_pixmaps_dir = os.path.join("share", "pixmaps")
-        install_icons_dir = os.path.join("share", "icons")
-        install_locale_dir = os.path.join("share", "locale")
-        install_docs_dir = os.path.join("docs")
+        # These are the paths that are going to be saved inside umit.conf
+        #install_config_dir = os.path.join("share", "umit", "config")
+        #install_pixmaps_dir = os.path.join("share", "pixmaps")
+        #install_icons_dir = os.path.join("share", "icons")
+        #install_locale_dir = os.path.join("share", "locale")
+        #install_misc_dir = os.path.join("share", "misc")
+        #install_docs_dir = os.path.join("docs")
 
-        config = dict(config_file = os.path.join(install_config_dir, 'umit.conf'),
-                      config_dir = install_config_dir,
+        config = dict(config_file = os.path.join(config_dir, 'umit.conf'),
+                      config_dir = config_dir,
                       user_dir = os.path.join(os.path.expanduser("~"), user_dir),
-                      docs_dir = install_docs_dir,
-                      pixmaps_dir = install_pixmaps_dir,
-                      icons_dir = install_icons_dir,
-                      locale_dir = install_locale_dir,
-                      umit_icon = os.path.join(install_icons_dir, "umit_48.ico"),
+                      docs_dir = docs_dir,
+                      pixmaps_dir = pixmaps_dir,
+                      icons_dir = icons_dir,
+                      locale_dir = locale_dir,
+                      misc_dir = misc_dir,
+                      umit_icon = os.path.join(icons_dir, "umit_48.ico"),
                       nmap_command_path = "nmap")
 
         umit_conf_file = open(dist_umit_conf, 'r')
