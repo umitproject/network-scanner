@@ -22,13 +22,25 @@
 import os
 import sys
 import signal
-from os.path import join, split
+from os.path import join, split, exists
 
 ######################################
 # Setting the umit home directory
 
 from umitCore.Paths import Path
-Path.set_umit_conf(join(split(sys.argv[0])[0], 'config', 'umit.conf'))
+print ">>> USING THIS PATH:", split(sys.argv[0])[0]
+
+config_file = join(split(sys.argv[0])[0], 'config', 'umit.conf')
+share_config_file = join(split(sys.argv[0])[0], 'share', 'umit', 
+                         'config', 'umit.conf')
+
+if exists(config_file):
+    Path.set_umit_conf(config_file)
+elif exists(share_config_file):
+    Path.set_umit_conf(share_config_file)
+else:
+    raise Exception("Config file couldn't be found!")
+
 ######################################
 
 from umitGUI.App import App
