@@ -9,7 +9,7 @@ annotation =
 description = 
 hint = 
 options = Version detection,Operating system detection,Aggressive, Verbose
-command = nmap -T Aggressive -sV -O -v %s
+command = nmap -T Aggressive -A -v %s
 annotation = 
 
 [Regular Scan]

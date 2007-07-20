@@ -55,7 +55,7 @@ annotation =
 description = 
 hint = 
 options = Version detection,Operating system detection,Aggressive, Verbose
-command = nmap -T Aggressive -sV -O -v %s
+command = nmap -T Aggressive -A -v %s
 annotation = 
 
 [Regular Scan]
@@ -668,7 +668,7 @@ wizard_content = '''<?xml version="1.0"?>
 def create_user_dir(user_home):
     log.debug("Create user dir at given home: %s" % user_home)
     user_dir = os.path.join(user_home, base_paths['config_dir'])
-    
+
     if os.path.exists(user_home) and os.access(user_home, os.R_OK and os.W_OK)\
            and not os.path.exists(user_dir):
         os.mkdir(user_dir)

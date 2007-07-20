@@ -299,7 +299,7 @@ class CommandConstructor:
 
     def get_options(self):
         return dict([(k, v[0]) for k, v in self.options.items()])
-    
+
 class CommandThread(threading.Thread):
     def __init__(self, command):
         self._stop_event = threading.Event()

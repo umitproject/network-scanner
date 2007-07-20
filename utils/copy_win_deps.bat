@@ -52,4 +52,3 @@ xcopy %GTKDir%\etc %DistDir%\etc /S /I
 
 :: Remove build dir
 rd %UmitDir%\build /s /q
-

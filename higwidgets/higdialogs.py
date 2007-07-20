@@ -60,11 +60,11 @@ class HIGAlertDialog(gtk.MessageDialog):
                  buttons=gtk.BUTTONS_OK,
                  message_format=None,
                  secondary_text=None):
-		
+        
         gtk.MessageDialog.__init__(self, parent, flags, type, buttons)
 
         self.set_resizable(False)
-		
+        
         # HIG mandates that Message Dialogs should have no title:
         # "Alert windows have no titles, as the title would usually
         # unnecessarily duplicate the alert's primary text"

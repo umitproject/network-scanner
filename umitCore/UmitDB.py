@@ -24,7 +24,7 @@ try:
 except ImportError:
     # In case this script is been running under python2.5 with sqlite3
     import sqlite3 as sqlite
-    
+
 from time import time
 
 from umitCore.Paths import Path

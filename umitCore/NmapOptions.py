@@ -30,7 +30,7 @@ class NmapOptions:
         it's parsing.
         '''
         # Starting file's parsing
-        self.option_xml = minidom.parse (open (profile))
+        self.option_xml = minidom.parse(open (profile))
         
         # Root tag of the xml file.
         self.root_tag = 'nmap_options'

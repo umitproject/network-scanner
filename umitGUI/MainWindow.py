@@ -32,7 +32,6 @@ from higwidgets.higwindows import HIGMainWindow
 from higwidgets.higdialogs import HIGDialog, HIGAlertDialog
 from higwidgets.higlabels import HIGEntryLabel
 from higwidgets.higboxes import HIGHBox, HIGVBox
-from higwidgets.hignotebooks import HIGAnimatedTabLabel
 
 from umitGUI.FileChoosers import ResultsFileChooserDialog, SaveResultsFileChooserDialog
 from umitGUI.ScanNotebook import ScanNotebook, ScanNotebookPage
