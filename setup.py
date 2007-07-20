@@ -77,7 +77,7 @@ user_dir = '.umit'
 # Main Functions
 
 def umit_version():
-    return open(os.path.join("config", "umit_version")).readlines()[0]
+    return open(os.path.join(config_dir, "umit_version")).readlines()[0]
 
 def check_dependencies():
     '''Tries to check all dependencies, and abort instalation if something is missing
