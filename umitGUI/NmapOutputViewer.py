@@ -355,11 +355,10 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
         log.debug("Refresh nmap output")
         nmap_of = open(self.nmap_output_file)
         content = nmap_of.read()
-        content.decode()
         log.debug("Nmap output to refresh: \n\n%s\n\n" % content)
 
         # Converting to UTF-8 before trying to use it on GTK
-        self.text_buffer.set_text(content.encode("utf-8"))
+        self.text_buffer.set_text(repr(content))
 
         # Closing file to avoid file descriptor problems
         nmap_of.close()
