@@ -1,8 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # Copyright (C) 2005 Insecure.Com LLC.
 #
-# Authors: Adriano Monteiro Marques <py.adriano@gmail.com>
-#          Cleber Rodrigues <cleber.gnu@gmail.com>
-#                           <cleber@globalred.com.br>
+# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

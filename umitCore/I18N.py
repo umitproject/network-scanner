@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # Copyright (C) 2005 Insecure.Com LLC.
 #
 # Author: Adriano Monteiro Marques <py.adriano@gmail.com>
@@ -18,6 +21,7 @@
 
 from umitCore.Logging import log
 
+
 LC_ALL = ""
 try:
     import locale
@@ -28,12 +32,12 @@ except:
 try:
     import gettext
     from gettext import gettext as _
-    
+
     gettext.install('umit', unicode=True)
 
 except ImportError:
     log.critical("You don't have gettext module, no internationalization will be used.")
-    
+
     # define _() so program will not fail
     import __builtin__
     __builtin__.__dict__["_"] = str
