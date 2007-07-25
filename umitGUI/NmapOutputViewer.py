@@ -19,6 +19,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
+import sys
 import gtk
 import gtk.gdk
 import pango
@@ -354,7 +355,7 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
     def refresh_output(self, widget=None):
         log.debug("Refresh nmap output")
         nmap_of = open(self.nmap_output_file)
-        content = unicode(nmap_of.read())
+        content = unicode(nmap_of.read(), sys.getdefaultencoding())
         log.debug("Nmap output to refresh: \n\n%s\n\n" % content)
 
         # Converting to UTF-8 before trying to use it on GTK
