@@ -35,7 +35,8 @@ if not LANG:
     LANG = "en_US"
 
 # Setting the locale to en_US.utf8
-locale.setlocale(locale.LC_ALL, "en_US.utf8")
+print locale.normalize("en_US.utf8")
+locale.setlocale(locale.LC_ALL, locale.normalize("en_US.utf8"))
 
 try:
     import gettext
@@ -58,7 +59,7 @@ def enc(string):
     created string with locale encoding and return an utf8 string.
     """
     log.debug(">>> Converting '%s' from '%s' to unicode" % (string, ENC))
-    string = string.decode(ENC, ERRORS).encode("utf8")
+    string = string.encode("utf8", ERRORS)
     log.debug(">>> Converted to: '%s'" % string)
 
     return string
