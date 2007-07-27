@@ -34,6 +34,8 @@ if not ENC:
 if not LANG:
     LANG = "en_US"
 
+ENC = "iso-8859-1"
+
 try:
     import gettext
     from gettext import gettext as _
