@@ -53,10 +53,10 @@ internationalization will be used.")
 
 def enc(string):
     """Encoding conversion. This function is entended to receive a locale
-    created string with locale encoding and return unicode.
+    created string with locale encoding and return an utf8 string.
     """
     log.debug(">>> Converting '%s' from '%s' to unicode" % (string, ENC))
-    string = unicode(string, ENC, ERRORS)
+    string = unicode(string, ENC, ERRORS).encode("utf8")
     log.debug(">>> Converted to: '%s'" % string)
 
     return string
