@@ -34,6 +34,8 @@ if not ENC:
 if not LANG:
     LANG = "en_US"
 
+# Setting the locale to en_US.utf8
+locale.setlocale(locale.LC_ALL, ["en_US", "utf8"])
 
 try:
     import gettext
