@@ -55,7 +55,7 @@ def enc(string):
     created string with locale encoding and return an utf8 string.
     """
     log.debug(">>> Converting '%s' from '%s' to unicode" % (string, ENC))
-    string = unicode(string, ENC, ERRORS)
+    string = unicode(string, ENC, ERRORS).encode("utf8")
     log.debug(">>> Converted to: '%s'" % string)
 
     return string
