@@ -55,6 +55,7 @@ def enc(string):
     """Encoding conversion. This function is entended to receive a locale
     created string with locale encoding and return unicode.
     """
+    log.debug(">>> Converting '%s' from '%s' to unicode" % (string, ENC))
     return unicode(string, ENC, ERRORS)
 
 
