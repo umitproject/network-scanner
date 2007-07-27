@@ -25,7 +25,7 @@ from umitCore.Logging import log
 import locale
 LC_ALL = locale.setlocale(locale.LC_ALL, '')
 LANG, ENC = locale.getdefaultlocale()
-ERRORS = "replace"
+ERRORS = "ignore"
 
 # If not correct locale could be retrieved, set en_US.utf8 as default
 if not ENC:
@@ -49,13 +49,12 @@ internationalization will be used.")
     __builtin__.__dict__["_"] = str
 
 
-
 def enc(string):
     """Encoding conversion. This function is entended to receive a locale
     created string with locale encoding and return an utf8 string.
     """
     log.debug(">>> Converting '%s' from '%s' to unicode" % (string, ENC))
-    string = unicode(string, ENC, ERRORS).encode("utf8")
+    string = unicode(string, ENC, ERRORS)
     log.debug(">>> Converted to: '%s'" % string)
 
     return string
