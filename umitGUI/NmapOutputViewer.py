@@ -26,11 +26,10 @@ import pango
 import re
 
 from threading import Thread
-from codecs import open
 
 from higwidgets.higbuttons import HIGButton
 
-from umitCore.I18N import _, ENC
+from umitCore.I18N import _, read_file
 from umitCore.Logging import log
 from umitCore.UmitConf import NmapOutputHighlight
 
@@ -355,13 +354,9 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
     
     def refresh_output(self, widget=None):
         log.debug("Refresh nmap output")
-        nmap_of = open(self.nmap_output_file, "r", ENC, "ignore")
-        content = nmap_of.read()
+        nmap_of = read_file(self.nmap_output_file)
 
-        self.text_buffer.set_text(content)
-
-        # Closing file to avoid file descriptor problems
-        nmap_of.close()
+        self.text_buffer.set_text(nmap_of)
     
 if __name__ == '__main__':
     w = gtk.Window()
