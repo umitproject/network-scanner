@@ -34,10 +34,6 @@ if not ENC:
 if not LANG:
     LANG = "en_US"
 
-# Setting the locale to en_US.utf8
-print locale.normalize("en_US.utf8")
-locale.setlocale(locale.LC_ALL, locale.normalize("en_US.utf8"))
-
 try:
     import gettext
     from gettext import gettext as _
