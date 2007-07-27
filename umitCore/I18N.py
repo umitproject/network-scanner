@@ -34,8 +34,6 @@ if not ENC:
 if not LANG:
     LANG = "en_US"
 
-ENC = "iso-8859-1"
-
 try:
     import gettext
     from gettext import gettext as _
@@ -62,13 +60,13 @@ def enc(string):
     return string
 
 def open(filename, mode):
-    return codecs.open(filename, "r", ENC, "ignore")
+    return codecs.open(filename, "r", ENC, "replace")
 
 def read_file(filename):
     fp = open(filename, "r")
-    content = fp.read().lstrip(codecs.BOM_UTF8)
+    content = fp.read().encode("utf8", "replace")
     fp.close()
-
+    print content[72:102]
     return content
 
 if __name__ == '__main__':
