@@ -56,7 +56,10 @@ def enc(string):
     created string with locale encoding and return unicode.
     """
     log.debug(">>> Converting '%s' from '%s' to unicode" % (string, ENC))
-    return unicode(string, ENC, ERRORS)
+    string = unicode(string, ENC, ERRORS)
+    log.debug(">>> Converted to: '%s'" % string)
+
+    return string
 
 
 if __name__ == '__main__':
