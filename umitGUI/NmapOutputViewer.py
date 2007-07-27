@@ -29,7 +29,7 @@ from threading import Thread
 
 from higwidgets.higbuttons import HIGButton
 
-from umitCore.I18N import _, read_file
+from umitCore.I18N import _, enc
 from umitCore.Logging import log
 from umitCore.UmitConf import NmapOutputHighlight
 
@@ -356,7 +356,7 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
         log.debug("Refresh nmap output")
         nmap_of = read_file(self.nmap_output_file)
 
-        self.text_buffer.set_text(nmap_of)
+        self.text_buffer.set_text(enc(nmap_of.read()))
     
 if __name__ == '__main__':
     w = gtk.Window()

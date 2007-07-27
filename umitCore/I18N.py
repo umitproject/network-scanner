@@ -20,7 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 from umitCore.Logging import log
-import codecs
 
 import locale
 LC_ALL = locale.setlocale(locale.LC_ALL, '')
@@ -58,16 +57,6 @@ def enc(string):
     log.debug(">>> Converted to: '%s'" % string)
 
     return string
-
-def open(filename, mode):
-    return codecs.open(filename, "r", ENC, "replace")
-
-def read_file(filename):
-    fp = open(filename, "r")
-    content = fp.read().encode("utf8", "replace")
-    fp.close()
-    print content[72:102]
-    return content
 
 if __name__ == '__main__':
     print _('UMIT - The nmap frontend')
