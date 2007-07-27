@@ -357,7 +357,7 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
         nmap_of = open(self.nmap_output_file)
         content = nmap_of.read()
 
-        self.text_buffer.set_text(content)
+        self.text_buffer.set_text(enc(content))
 
         # Closing file to avoid file descriptor problems
         nmap_of.close()

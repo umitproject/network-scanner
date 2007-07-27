@@ -154,15 +154,15 @@ class NmapCommand(object):
             except:
                 pass
         else:
-	    try:
-		# Not sure if this works. Must research a bit more about this
-		# subprocess's method to see how it works.
-		# In the meantime, this should not raise any exception because
-		# we don't care if it killed the process as it never killed it anyway.
+            try:
+                # Not sure if this works. Must research a bit more about this
+                # subprocess's method to see how it works.
+                # In the meantime, this should not raise any exception because
+                # we don't care if it killed the process as it never killed it anyway.
                 from subprocess import TerminateProcess
-		TerminateProcess(self.command_process._handle, 0)
-	    except:
-		pass
+                TerminateProcess(self.command_process._handle, 0)
+            except:
+                pass
 
     def run_scan(self):
         if self.command:
