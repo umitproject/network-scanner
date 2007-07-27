@@ -52,7 +52,7 @@ class NmapCommand(object):
         self.normal_output = mktemp()
         self.stdout_output = mktemp()
         self.stderr_output = mktemp()
-        
+
         # Creating files. Avoid troubles while running at Windows
         open(self.xml_output,'w').close()
         open(self.normal_output,'w').close()

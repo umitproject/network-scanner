@@ -22,12 +22,18 @@
 from umitCore.Logging import log
 
 
-LC_ALL = ""
-try:
-    import locale
-    LC_ALL = locale.setlocale(locale.LC_ALL, '')
-except:
-    pass
+import locale
+LC_ALL = locale.setlocale(locale.LC_ALL, '')
+LANG, ENC = locale.getdefaultlocale()
+ERRORS = "replace"
+
+# If not correct locale could be retrieved, set en_US.utf8 as default
+if not ENC:
+    ENC = "utf8"
+
+if not LANG:
+    LANG = "en_US"
+
 
 try:
     import gettext
@@ -36,11 +42,20 @@ try:
     gettext.install('umit', unicode=True)
 
 except ImportError:
-    log.critical("You don't have gettext module, no internationalization will be used.")
+    log.critical("You don't have gettext module, no \
+internationalization will be used.")
 
     # define _() so program will not fail
     import __builtin__
     __builtin__.__dict__["_"] = str
+
+
+
+def enc(string):
+    """Encoding conversion. This function is entended to receive a locale
+    created string with locale encoding and return unicode.
+    """
+    return unicode(string, ENC, ERRORS)
 
 
 if __name__ == '__main__':

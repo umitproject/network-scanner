@@ -29,7 +29,7 @@ from threading import Thread
 
 from higwidgets.higbuttons import HIGButton
 
-from umitCore.I18N import _
+from umitCore.I18N import _, enc
 from umitCore.Logging import log
 from umitCore.UmitConf import NmapOutputHighlight
 
@@ -355,7 +355,7 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
     def refresh_output(self, widget=None):
         log.debug("Refresh nmap output")
         nmap_of = open(self.nmap_output_file)
-        content = nmap_of.read().encode("utf-8", "replace")
+        content = enc(nmap_of.read())
         log.debug("Nmap output to refresh: \n\n%s\n\n" % content)
 
         # Converting to UTF-8 before trying to use it on GTK
