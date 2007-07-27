@@ -366,6 +366,6 @@ if __name__ == '__main__':
     w.connect('delete-event', lambda x,y,z=None:gtk.main_quit())
 
     buff = n.text_view.get_buffer()
-    buff.set_text(open("test/nmap_highlight").read())
+    buff.set_text(read_file("file_with_encoding_issues.txt"))
     
     gtk.main()
