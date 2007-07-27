@@ -54,6 +54,12 @@ class NmapCommand(object):
         self.stdout_output = mktemp()
         self.stderr_output = mktemp()
 
+        log.debug(">>> Created temporary files:")
+        log.debug(">>> XML OUTPUT: %s" % self.xml_output)
+        log.debug(">>> NORMAL OUTPUT: %s" % self.normal_output)
+        log.debug(">>> STDOUT OUTPUT: %s" % self.stdout_output)
+        log.debug(">>> STDERR OUTPUT: %s" % self.stderr_output)
+
         # Creating files. Avoid troubles while running at Windows
         open(self.xml_output,'w').close()
         open(self.normal_output,'w').close()
