@@ -24,7 +24,7 @@ import locale
 from umitCore.Logging import log
 LC_ALL = locale.setlocale(locale.LC_ALL, '')
 LANG, ENC = locale.getdefaultlocale()
-ERRORS = "replace"
+ERRORS = "ignore"
 
 # If not correct locale could be retrieved, set en_US.utf8 as default
 if ENC == None:
