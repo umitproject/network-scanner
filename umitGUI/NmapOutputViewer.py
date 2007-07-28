@@ -354,9 +354,10 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
     
     def refresh_output(self, widget=None):
         log.debug("Refresh nmap output")
-        nmap_of = read_file(self.nmap_output_file)
+        nmap_of = open(self.nmap_output_file, "r")
 
         self.text_buffer.set_text(enc(nmap_of.read()))
+        nmap_of.close()
     
 if __name__ == '__main__':
     w = gtk.Window()

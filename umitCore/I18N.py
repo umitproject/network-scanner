@@ -19,19 +19,26 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-from umitCore.Logging import log
-
+import codecs
 import locale
+
+from umitCore.Logging import log
 LC_ALL = locale.setlocale(locale.LC_ALL, '')
 LANG, ENC = locale.getdefaultlocale()
-ERRORS = "ignore"
+ERRORS = "jump"
 
 # If not correct locale could be retrieved, set en_US.utf8 as default
-if not ENC:
+if ENC == None:
     ENC = "utf8"
 
-if not LANG:
+if LANG == None:
     LANG = "en_US"
+
+def jump_handler(exception):
+    print dir(exception)
+    return (0, "_")
+
+codecs.register_error("jump", jump_handler)
 
 try:
     import gettext
@@ -53,7 +60,7 @@ def enc(string):
     created string with locale encoding and return an utf8 string.
     """
     log.debug(">>> Converting '%s' from '%s' to unicode" % (string, ENC))
-    string = unicode(string, ENC, ERRORS)
+    string = string.decode(ENC, ERRORS).encode("utf8", ERRORS)
     log.debug(">>> Converted to: '%s'" % string)
 
     return string
