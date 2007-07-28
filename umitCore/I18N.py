@@ -52,6 +52,11 @@ def enc(string):
     """Encoding conversion. This function is entended to receive a locale
     created string with locale encoding and return an utf8 string.
     """
+    # FIXME: Urgent! Find a way to make the encodings work here, decoding
+    # from the correct codec and encoding to utf8, which should be the
+    # pattern here. Currently, this only removes the chars that it can't encode,
+    # and thus, the text may be very hard to understand, but yet, no error will
+    # occour
     log.debug(">>> Converting '%s' from '%s' to unicode" % (string, ENC))
     string = string.decode("utf8", ERRORS).encode("utf8", ERRORS)
     log.debug(">>> Converted to: '%s'" % string)
