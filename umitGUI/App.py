@@ -23,16 +23,9 @@
 import os
 import os.path
 import sys
-import optparse
-
-import gtk
-import gtk.gdk
-import gobject
-
-from umitGUI.Splash import Splash
-from umitGUI.MainWindow import MainWindow
 
 from umitCore.Paths import Path
+from umitCore.UmitOptionParser import option_parser
 from umitCore.UmitConf import is_maemo
 from umitCore.I18N import _
 from umitCore.Logging import log
@@ -51,16 +44,13 @@ def main_is_frozen():
 
 class App:
     def __init__(self, args=sys.argv):
-        self.__create_option_parser()
-
-    def __create_option_parser(self):
-        self.option_parser = optparse.OptionParser()
-        self.options, self.args = self.option_parser.parse_args()
+        pass
 
     def __parse_cmd_line(self):
         pass
 
     def __create_show_main_window(self):
+        from umitGUI.MainWindow import MainWindow
         self.main_window = MainWindow()
         
         if is_maemo():
@@ -102,6 +92,20 @@ application. It is not a requirement, and Umit runs perfectly well with or witho
 but you're encourajed to install it to have a better speed experience. Download it \
 at http://psyco.sf.net/"""))
             self.using_psyco = False
+
+        self.diff = option_parser.get_diff()
+        if self.diff:
+            self.__run_text()
+        else:
+            self.__run_gui()
+
+    def __run_text(self):
+        pass
+
+    def __run_gui(self):
+        import gtk
+        import gobject
+        from umitGUI.Splash import Splash
 
         if not is_maemo():
             pixmap_d = Path.pixmaps_dir
