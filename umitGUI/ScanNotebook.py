@@ -715,7 +715,7 @@ of your profile. Please, try to remove your profile and then create it again."),
                 except:icon = get_os_icon('')
                     
                 self.scan_result.scan_host_view.add_host({hostname:{'stock':icon,
-                                                                        'action':None}})
+                                                                    'action':None}})
                 
             # Select the first host found
             self.host_view_selection.select_iter(self.scan_result.scan_host_view.\
@@ -1062,6 +1062,7 @@ Fingerprints Found!"),
         for p in ports:
             host_page.add_port([self.findout_service_icon(p),
                                 p.get('portid', ''),
+                                p.get('protocol', ''),
                                 p.get('port_state', ''),
                                 p.get('service_name', ''),
                                 p.get('service_product', '')])
@@ -1088,13 +1089,17 @@ Fingerprints Found!"),
         
         for host in host_list:
             parent = host_page.port_tree.append(None, [host['host'].\
-                                                get_hostname(),'','','','',''])
+                                            get_hostname(),'','','','','', ''])
             for port in host['host'].get_ports():
                 for p in port.get('port', []):
                     host_page.port_tree.append(parent, \
-                                ['',self.findout_service_icon(p), p.get('portid', ""),\
-                                p.get('port_state', ""),p.get('service_name', _("Unknown")),\
-                                p.get('service_product', "")])
+                                ['',
+                                 self.findout_service_icon(p),
+                                 p.get('portid', ""),
+                                 p.get('protocol', ''),
+                                 p.get('port_state', ""),
+                                 p.get('service_name', _("Unknown")),
+                                 p.get('service_product', "")])
 
     def set_multiple_service_host(self, service_list):
         host_page = self.scan_result.scan_result_notebook.open_ports.host
