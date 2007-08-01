@@ -71,7 +71,7 @@ class NmapOutputViewer (gtk.VPaned):
         self.scrolled = gtk.ScrolledWindow ()
         self.text_view = gtk.TextView ()
         self.btn_refresh = gtk.Button (stock=gtk.STOCK_REFRESH)
-        self.check_enable_color = gtk.CheckButton(_("Enable/Disable Nmap output highlight"))
+        self.check_enable_color = gtk.CheckButton(_("Enable Nmap output highlight"))
         self.btn_output_properties = HIGButton(stock=gtk.STOCK_PREFERENCES)
         self.hbox_buttons = gtk.HBox (spacing=5)
         self.txg_font = gtk.TextTag()
