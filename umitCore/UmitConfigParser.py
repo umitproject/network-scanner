@@ -37,6 +37,7 @@ class UmitConfigParser(ConfigParser):
 
     def read(self, filenames):
         self.filenames = ConfigParser.read(self, filenames)    
+        return self.filenames
 
     def readfp(self, fp, filename=None):
         ConfigParser.readfp(self, fp, filename)

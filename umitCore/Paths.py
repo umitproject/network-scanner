@@ -67,30 +67,42 @@ class Paths(object):
     config_file_set = False
     
     def set_umit_conf(self, umit_conf):
-        self.using_main = False
-
         # Place supposed to have the user's config file
-        supposed_user_conf = os.path.join(base_paths['user_dir'], base_paths['config_file'])
-
+        supposed_user_conf = os.path.join(base_paths['user_dir'],
+                                          base_paths['config_file'])
         config_file = supposed_user_conf
+        parsed = False
+
         if os.path.exists(supposed_user_conf)\
                and check_access(supposed_user_conf, os.R_OK):
-            self.config_parser.read(config_file)
-            log.debug(">>> Using config files in user home directory: %s" % config_file)
+            try:
+                self.config_parser.read(config_file)
+                log.debug(">>> Using config files in user home \
+directory: %s" % config_file)
+                parsed = True
+            except:
+                log.debug(">>> Failed to load config file from \
+user home directory")
 
-        elif not os.path.exists(supposed_user_conf)\
+        if not parsed and not os.path.exists(supposed_user_conf)\
                  and not check_access(base_paths['user_dir'], os.R_OK and os.W_OK):
-            result = create_user_dir(umit_conf, HOME)
-            config_file = result['config_file']
-            self.config_parser.read(config_file)
-            [self.__setattr__(opt, result[opt]) for opt in result]
-            log.debug(">>> Using recently created config files in user home: %s" % config_file)
+            try:
+                result = create_user_dir(umit_conf, HOME)
+                config_file = result['config_file']
+                self.config_parser.read(config_file)
+                [self.__setattr__(opt, result[opt]) for opt in result]
+                log.debug(">>> Using recently created config files in \
+user home: %s" % config_file)
+                parsed = True
+            except:
+                log.debug(">>> Failed to create user home")
 
-        else:
-            self.using_main = True
-            config_file = umit_conf
-            self.config_parser.read(config_file)
-            log.debug(">>> Using main config file: %s" % config_file)
+        if not parsed and type(umit_conf) == type([]):
+            config_file = self.config_parser.read(umit_conf)
+            if config_file != None and len(config_file) >= 1:
+                config_file = config_file[0]
+            else:
+                raise Exception("Couldn't load umit config file!")
 
         # Should make the following only after reading the umit.conf file
         self.config_file = config_file
@@ -142,7 +154,17 @@ class Paths(object):
 ####################################
 # Functions for directories creation
 
-def create_user_dir(main_config, user_home):
+def create_user_dir(config_list, user_home):
+    main_config = None
+    for config in config_list:
+        if os.path.exists(config):
+            main_config = config
+            break
+    else:
+        log.critical(">>> No useful configuration file found in this list: %s"\
+                 % config_list)
+        raise Exception(">>> No usefull configuration file found!")
+
     log.debug(">>> Create user dir at given home: %s" % user_home)
     log.debug(">>> Using %s as source" % main_config)
     main_umit_conf = UmitConfigParser()
