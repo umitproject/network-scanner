@@ -125,7 +125,7 @@ class ScanToolbar(HIGHBox):
         return self.profile_entry.selected_profile
 
     def set_selected_profile(self, profile):
-        self.profile_entry.selected_entry = profile
+        self.profile_entry.selected_profile = profile
 
     selected_profile = property(get_selected_profile, set_selected_profile)
     selected_target = property(get_selected_target, set_selected_target)

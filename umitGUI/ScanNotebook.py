@@ -434,7 +434,7 @@ name, and then try again."),
     def set_tab_label(self, label):
         self.get_parent().set_tab_title(self, label)
     
-    def start_scan_cb(self, widget):
+    def start_scan_cb(self, widget=None):
         target = self.toolbar.selected_target
         command = self.command_toolbar.command
         profile = self.toolbar.selected_profile

@@ -57,7 +57,7 @@ class App:
             import hildon
             self.hildon_app = hildon.Program()
             self.hildon_app.add_window(self.main_window)
-        
+
         self.main_window.show_all()
     
     def safe_shutdown(self, signum, stack):

@@ -36,8 +36,8 @@ class UmitOptionParser(OptionParser):
         self.add_option("-i", "--inventory", 
                         default=False,
                         action="store_true",
-                        help=_("Start Umit and go straight to Network \
-Inventory window."))
+                        help=_("*NOT IMPLEMENTED* - Start Umit and go \
+straight to Network Inventory window."))
 
         ## Run nmap with args (GUI)
         ### Open Umit and runs nmap with specified args. The positional 
@@ -63,18 +63,18 @@ automatically run the profile against the specified target."))
         self.add_option("-c", "--compare",
                         action="store",
                         nargs=2,
-                        help=_("Open the diff compare window, in compare mode \
-comparing the two given scan result files (Nmap XML output or usr \
-(Umit Scan Result) file)."))
+                        help=_("*NOT IMPLEMENTED* - Open the diff compare \
+window, in compare mode comparing the two given scan result files \
+(Nmap XML output or usr (Umit Scan Result) file)."))
 
         ## Compare results in text mode (GUI)
         ### Run the diff compare window in text mode as default
         self.add_option("-e", "--compare-text",
                         action="store",
                         nargs=2,
-                        help=_("Open the diff compare window, in text mode \
-comparing the two given scan result files (Nmap XML output or usr, Umit \
-Scan Result)."))
+                        help=_("*NOT IMPLEMENTED* - Open the diff compare \
+window, in text mode comparing the two given scan result files (Nmap XML \
+output or usr, Umit Scan Result)."))
 
         ## Compare results showing text diff in terminal (TEXT)
         ### Doesn't actually run Umit interface. Just take the result files,
@@ -82,9 +82,9 @@ Scan Result)."))
         self.add_option("-d", "--diff",
                         action="store",
                         nargs=2,
-                        help=_("Take two scan result files (Nmap XML output or \
-usr, Umit Scan Result), make a text diff and print it in the terminal without \
-openning Umit Interface."))
+                        help=_("*NOT IMPLEMENTED* - Take two scan result files \
+(Nmap XML output or usr, Umit Scan Result), make a text diff and print it in \
+the terminal without openning Umit Interface."))
 
         ## NSE Facilitator (GUI)
         ### Opens Umit and go straigh to NSE Facilitator interface.
@@ -93,10 +93,11 @@ openning Umit Interface."))
         self.add_option("-s", "--nse-facilitator",
                         default=False,
                         action="store_true",
-                        help=_("Run Umit and go straight to NSE Facilitator \
-Interface. You may specify nse scripts as arguments if you want use them."))
+                        help=_("*NOT IMPLEMENTED* - Run Umit and go straight \
+to NSE Facilitator Interface. You may specify nse scripts as arguments \
+if you want use them."))
 
-        ## Targets (GUI and TEXT)
+        ## Targets (GUI)
         ### Specify a target to be used along with other command line option
         ### or simply opens Umit with the first tab target field filled with
         ### the target specified with this option
@@ -127,8 +128,8 @@ scan result files."))
         self.add_option("-m", "--mapper",
                         default=False,
                         action="store",
-                        help=_("Open Umit showing the given file at \
-Umit Mapper"))
+                        help=_("*NOT IMPLEMENTED* - Open Umit showing the \
+given file at Umit Mapper"))
 
         ## Verbosity
         self.add_option("-v", "--verbose",
@@ -173,10 +174,12 @@ used more than once to get even more verbosity"))
         """Return a list of nmap arguments or False if this option was not
         called by the user"""
 
-        nmap = self.options.nmap
-        if nmap:
-            return nmap
-        return False
+        try:
+            nmap = self.options.nmap
+            if nmap:
+                return nmap
+        except AttributeError:
+            return False
 
     def get_profile(self):
         """Return a string with the profile name, or False if no profile
@@ -204,10 +207,12 @@ used more than once to get even more verbosity"))
     def get_diff(self):
         """Return a list of two elements, containing the two files passed
         as argument, or False if user didn't call this option"""
-        diff = self.options.diff
-        if diff:
-            return diff
-        return False
+        try:
+            diff = self.options.diff
+            if diff:
+                return diff
+        except AttributeError:
+            return False
 
     def get_nse_facilitator(self):
         """Return the list ['default'] if no positional argument is passed,
