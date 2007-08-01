@@ -24,7 +24,7 @@
 import os
 import sys
 import signal
-from os.path import join, split, exists, abspath, dirname, expanduser
+from os.path import join, split, expanduser
 
 ######################################
 # Setting the umit home directory
