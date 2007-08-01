@@ -87,10 +87,10 @@ class App:
             self.using_psyco = True
         except:
             log.warning(_("RUNNING WITHOUT PSYCO!"))
-            log.warning(_("""Psyco is a module that speeds up the execution of this \
-application. It is not a requirement, and Umit runs perfectly well with or without it, \
-but you're encourajed to install it to have a better speed experience. Download it \
-at http://psyco.sf.net/"""))
+            log.warning(_("""Psyco is a module that speeds up the execution \
+of this application. It is not a requirement, and Umit runs perfectly \
+with or without it, but you're encourajed to install it to have a better \
+speed experience. Download it at http://psyco.sf.net/"""))
             self.using_psyco = False
 
         self.diff = option_parser.get_diff()
@@ -100,9 +100,10 @@ at http://psyco.sf.net/"""))
             self.__run_gui()
 
     def __run_text(self):
-        pass
+        log.info(">>> Text Mode")
 
     def __run_gui(self):
+        log.info(">>> GUI Mode")
         import gtk
         import gobject
         from umitGUI.Splash import Splash

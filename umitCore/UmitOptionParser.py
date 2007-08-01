@@ -19,7 +19,6 @@
 import re
 
 from optparse import OptionParser
-
 from umitCore.I18N import _
 
 protocol_re = re.compile("^(umit|scan|nmap)://.*")
@@ -127,6 +126,13 @@ scan result files."))
                         action="store",
                         help=_("Open Umit showing the given file at \
 Umit Mapper"))
+
+        ## Verbosity
+        self.add_option("-v", "--verbose",
+                        default=0,
+                        action="count",
+                        help=_("Increase verbosity of the output. May be \
+used more than once to get even more verbosity"))
 
         # Parsing options and arguments
         if args:
@@ -237,6 +243,14 @@ Umit Mapper"))
             files += self.args
 
         return (False or files)
+
+    def get_verbose(self):
+        """Returns an integer representing the verbosity level of the 
+        application. Verbosity level starts in 40, which means that only 
+        messages above the ERROR level are going to be reported at the output. 
+        As this value gets lower, the verbosity increases.
+        """
+        return 40 - (self.options.verbose * 10)
 
     def no_option_defined(self):
         """Return True if any of the listed options were called, of False is

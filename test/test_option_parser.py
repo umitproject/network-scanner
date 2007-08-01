@@ -213,6 +213,31 @@ class TestUmitOptionParser(unittest.TestCase):
         self.assert_(option_parser.get_mapper() == "file1.usr",
                      "Failed to get mapper option (--mapper=file1.usr)")
 
+    def testVerbose1(self):
+        option_parser = UmitOptionParser([""])
+        self.assert_(option_parser.get_verbose() == 40,
+                     "Failed to get verbose")
+
+    def testVerbose2(self):
+        option_parser = UmitOptionParser(["-v"])
+        self.assert_(option_parser.get_verbose() == 30,
+                     "Failed to get verbose (-v)")
+
+    def testVerbose3(self):
+        option_parser = UmitOptionParser(["-v", "-v"])
+        self.assert_(option_parser.get_verbose() == 20,
+                     "Failed to get verbose (-v -v)")
+
+    def testVerbose4(self):
+        option_parser = UmitOptionParser(["-v", "-v", "-v"])
+        self.assert_(option_parser.get_verbose() == 10,
+                     "Failed to get verbose (-v -v -v)")
+
+    def testVerbose5(self):
+        option_parser = UmitOptionParser(["-v", "-v", "-v", "-v"])
+        self.assert_(option_parser.get_verbose() == 0,
+                     "Failed to get verbose (-v -v -v -v)")
+
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(TestUmitOptionParser)
-    unittest.TextTestRunner(verbosity=5).run(suite)
+    unittest.TextTestRunner(verbose=5).run(suite)

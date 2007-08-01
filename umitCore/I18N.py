@@ -21,7 +21,6 @@
 
 import locale
 
-from umitCore.Logging import log
 LC_ALL = locale.setlocale(locale.LC_ALL, '')
 LANG, ENC = locale.getdefaultlocale()
 ERRORS = "ignore"
@@ -40,9 +39,6 @@ try:
     gettext.install('umit', unicode=True)
 
 except ImportError:
-    log.critical("You don't have gettext module, no \
-internationalization will be used.")
-
     # define _() so program will not fail
     import __builtin__
     __builtin__.__dict__["_"] = str
@@ -57,9 +53,7 @@ def enc(string):
     # pattern here. Currently, this only removes the chars that it can't encode,
     # and thus, the text may be very hard to understand, but yet, no error will
     # occour
-    log.debug(">>> Converting '%s' from '%s' to unicode" % (string, ENC))
     string = string.decode("utf8", ERRORS).encode("utf8", ERRORS)
-    log.debug(">>> Converted to: '%s'" % string)
 
     return string
 

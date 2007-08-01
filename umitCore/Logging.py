@@ -21,8 +21,9 @@
 
 
 from logging import Logger, StreamHandler, Formatter
+from umitCore.UmitOptionParser import option_parser
 
-LOGLEVEL = 0
+LOGLEVEL = option_parser.get_verbose()
 
 class Log(Logger, object):
     def __init__(self, name, level=0):

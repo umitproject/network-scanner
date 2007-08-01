@@ -223,9 +223,6 @@ Luis Antonio Bastião Silva <luis.kop@gmail.com>
 NSE Facilitator:
 Maxim I. Gavrilov <lovelymax@gmail.com>
 
-Nmap Python Wrapper:
-Pavel Klemenkov <parser@cs.msu.su>
-
 Umit Web:
 Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>
 
