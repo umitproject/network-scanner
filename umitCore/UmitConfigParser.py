@@ -19,7 +19,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-from ConfigParser import ConfigParser, DEFAULTSECT
+from os.path import exists
+from ConfigParser import ConfigParser, DEFAULTSECT, NoOptionError, NoSectionError
 
 class UmitConfigParser(ConfigParser):
     filenames = None
@@ -79,3 +80,15 @@ class UmitConfigParser(ConfigParser):
                     fp.write("%s = %s\n" %
                              (key, str(value).replace('\n', '\n\t')))
             fp.write("\n")
+
+def test_umit_conf_content(self, parser):
+    # Paths section
+    assert exists(get_or_false(parser, "paths", "config_file") or "")
+
+def get_or_false(self, parser, section, option):
+    try:
+        return parser.get(section, option)
+    except NoOptionError:
+        return False
+    except NoSectionError:
+        return False
