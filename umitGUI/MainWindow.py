@@ -861,7 +861,17 @@ Wait until the scan is finished and then try to save it again.'))
 
     def _show_help(self, action):
         import webbrowser
-        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "help.html"), new=2)
+        new = 0
+        try:
+            if float(sys.version[:3]) >= 2.5:
+                new = 2
+        except ValueError:
+            pass
+
+        webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
+                                                   "help.html"),
+                        new=new)
+        
 
     def _exit_cb (self, widget=None, extra=None):
         for page in self.scan_notebook.get_children():
