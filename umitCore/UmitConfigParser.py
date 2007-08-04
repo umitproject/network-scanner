@@ -21,6 +21,7 @@
 
 from os.path import exists
 from ConfigParser import ConfigParser, DEFAULTSECT, NoOptionError, NoSectionError
+from umitCore.Logging import log
 
 class UmitConfigParser(ConfigParser):
     filenames = None
@@ -28,6 +29,7 @@ class UmitConfigParser(ConfigParser):
     
     def __init__(self, *args):
         ConfigParser.__init__(self, *args)
+        self.paths_checked = []
 
     def set(self, section, option, value):
         if not self.has_section(section):
@@ -37,8 +39,28 @@ class UmitConfigParser(ConfigParser):
         self.save_changes()
 
     def read(self, filenames):
-        self.filenames = ConfigParser.read(self, filenames)    
+        if type(filenames) == type(""):
+            filenames = [filenames]
+
+        self.filenames = []
+        for fn in filenames:
+            log.debug(">>>> Testing %s" % fn)
+            if fn not in self.paths_checked:
+                try:
+                    test_umit_conf_content(fn)
+                except AssertionError:
+                    continue
+
+            self.paths_checked.append(fn)
+            filename = ConfigParser.read(self, fn)
+            self.filenames = filename
+            break
+
+        if len(self.filenames) == 0:
+            raise Exception("Couldn't find any usable config file!")
+
         return self.filenames
+
 
     def readfp(self, fp, filename=None):
         ConfigParser.readfp(self, fp, filename)
@@ -53,7 +75,7 @@ class UmitConfigParser(ConfigParser):
             elif type(self.filenames) == type([]) and len(self.filenames) == 1:
                 filename = self.filenames[0]
             else:
-                raise Exception("Wrong filename")
+                raise Exception("Wrong filename %s" % self.filenames)
             self.write(open(filename, 'w'))
         elif self.fp:
             self.write(self.fp)
@@ -81,13 +103,27 @@ class UmitConfigParser(ConfigParser):
                              (key, str(value).replace('\n', '\n\t')))
             fp.write("\n")
 
-def test_umit_conf_content(self, parser):
-    # Paths section
-    assert exists(get_or_false(parser, "paths", "config_file") or "")
+def test_umit_conf_content(filename):
+    parser = ConfigParser()
+    parser.read(filename)
 
-def get_or_false(self, parser, section, option):
+    # Paths section
+    section = "paths"
+    assert exists(get_or_false(parser, section, "config_file") or "")
+    assert exists(get_or_false(parser, section, "umit_icon") or "")
+    assert exists(get_or_false(parser, section, "locale_dir") or "")
+    assert exists(get_or_false(parser, section, "misc_dir") or "")
+    assert exists(get_or_false(parser, section, "icons_dir") or "")
+    assert exists(get_or_false(parser, section, "pixmaps_dir") or "")
+    assert exists(get_or_false(parser, section, "config_dir") or "")
+    assert exists(get_or_false(parser, section, "docs_dir") or "")
+    assert get_or_false(parser, section, "nmap_command_path")
+
+
+def get_or_false(parser, section, option):
     try:
-        return parser.get(section, option)
+        result = parser.get(section, option)
+        return result
     except NoOptionError:
         return False
     except NoSectionError:

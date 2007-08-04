@@ -25,11 +25,10 @@ from types import StringTypes
 from ConfigParser import NoSectionError, NoOptionError
 
 from umitCore.Paths import Path
-from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.Logging import log
+from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.I18N import _
 
-config_file = Path.config_file
 scan_profile = Path.scan_profile
 
 def umit_version():
@@ -47,50 +46,59 @@ except ImportError:
 def is_maemo():
     return MAEMO
 
-class UmitConf(UmitConfigParser, object):
-    def __init__(self, *args):
-        UmitConfigParser.__init__(self, *args)
-        self.read(config_file)
-        
+class UmitConf(object):
+    def __init__(self):
+        self.parser = Path.config_parser
+
+    def save_changes(self):
+        self.parser.save_changes()
+
     def get_colored_diff(self):
         try:
-            cd = self.get('diff', 'colored_diff')
-            if cd == "False" or cd == "false" or cd == "0" or cd == "" or cd == False:
+            cd = self.parser.get('diff', 'colored_diff')
+            if cd == "False" or \
+                cd == "false" or \
+                cd == "0" or \
+                cd == "" or \
+                cd == False:
                 return False
             return True
-        except:return True
+        except:
+            return True
 
     def set_colored_diff(self, enable):
-        if not self.has_section('diff'):
-            self.add_section('diff')
-        
-        self.set('diff', 'colored_diff', enable)
+        if not self.parser.has_section('diff'):
+            self.parser.add_section('diff')
+
+        self.parser.set('diff', 'colored_diff', str(enable))
 
     def get_diff_mode(self):
-        try: return self.get('diff', 'diff_mode')
+        try: return self.parser.get('diff', 'diff_mode')
         except: return "compare"
 
     def set_diff_mode(self, diff_mode):
-        if not self.has_section('diff'):
-            self.add_section('diff')
+        if not self.parser.has_section('diff'):
+            self.parser.add_section('diff')
         
-        self.set('diff', 'diff_mode', diff_mode)
+        self.parser.set('diff', 'diff_mode', diff_mode)
 
     colored_diff = property(get_colored_diff, set_colored_diff)
     diff_mode = property(get_diff_mode, set_diff_mode)
 
 
 class SearchConfig(UmitConfigParser, object):
-    def __init__(self, *args):
-        UmitConfigParser.__init__(self, *args)
-        self.read(config_file)
+    def __init__(self):
+        self.parser = Path.config_parser
 
         self.section_name = "search"
-        if not self.has_section(self.section_name):
+        if not self.parser.has_section(self.section_name):
             self.create_section()
 
+    def save_changes(self):
+        self.parser.save_changes()
+
     def create_section(self):
-        self.add_section(self.section_name)
+        self.parser.add_section(self.section_name)
         self.directory = ""
         self.file_extension = "usr"
         self.save_time = "60;days"
@@ -98,19 +106,19 @@ class SearchConfig(UmitConfigParser, object):
         self.search_db = True
 
     def _get_it(self, p_name, default):
-        return self.get(self.section_name, p_name, default)
+        return self.parser.get(self.section_name, p_name, default)
 
     def _set_it(self, p_name, value):
-        self.set(self.section_name, p_name, value)
+        self.parser.set(self.section_name, p_name, value)
         
     def boolean_sanity(self, attr):
         if attr == True or \
            attr == "True" or \
            attr == "true" or \
            attr == "1":
-            
+
             return 1
-        
+
         return 0
 
     def get_directory(self):
@@ -178,27 +186,27 @@ class SearchConfig(UmitConfigParser, object):
 class Profile(UmitConfigParser, object):
     def __init__(self, user_profile=None, *args):
         UmitConfigParser.__init__(self, *args)
-        
+
         if not user_profile:
             user_profile = scan_profile
 
         fconf = open(user_profile, 'r')
         self.readfp(fconf, user_profile)
-        
+
         fconf.close()
         del(fconf)
-        
+
         self.attributes = {}
 
     def _get_it(self, profile, attribute):
         if profile:
-            self.__verify_profile(profile)
+            self._verify_profile(profile)
             return self.get(profile, attribute)
         return ""
 
     def _set_it(self, profile, attribute, value=''):
         if profile:
-            self.__verify_profile(profile)
+            self._verify_profile(profile)
             return self.set(profile, attribute, value)
 
     def add_profile(self, profile_name, **attributes):
@@ -218,7 +226,7 @@ class Profile(UmitConfigParser, object):
         except: pass
         self.save_changes()
 
-    def __verify_profile(self, profile_name):
+    def _verify_profile(self, profile_name):
         if profile_name not in self.sections():
             raise ProfileNotFound(profile_name)
 
@@ -277,18 +285,22 @@ class CommandProfile (Profile, object):
                 'options':self.get_options(profile_name)}
 
 
-class NmapOutputHighlight(UmitConfigParser, object):
+class NmapOutputHighlight(object):
     setts = ["bold", "italic", "underline", "text", "highlight", "regex"]
     
-    def __init__(self, *args):
-        UmitConfigParser.__init__(self, *args)
-        self.read(Path.config_file)
+    def __init__(self):
+        self.parser = Path.config_parser
+
+    def save_changes(self):
+        self.parser.save_changes()
 
     def __get_it(self, p_name):
         property_name = "%s_highlight" % p_name
 
         try:
-            return self.sanity_settings([self.get(property_name, prop, True) \
+            return self.sanity_settings([self.parser.get(property_name,
+                                                         prop,
+                                                         True) \
                                          for prop in self.setts])
         except:
             settings = []
@@ -306,9 +318,9 @@ class NmapOutputHighlight(UmitConfigParser, object):
 
     def __set_it(self, property_name, settings):
         property_name = "%s_highlight" % property_name
-        settings = self.sanity_settings(settings)
+        settings = self.sanity_settings(list(settings))
 
-        [self.set(property_name, self.setts[pos], settings[pos]) \
+        [self.parser.set(property_name, self.setts[pos], settings[pos]) \
          for pos in xrange(len(settings))]
 
     def sanity_settings(self, settings):
@@ -390,9 +402,9 @@ class NmapOutputHighlight(UmitConfigParser, object):
     def get_enable(self):
         enable = True
         try:
-            enable = self.get("output_highlight", "enable_highlight")
+            enable = self.parser.get("output_highlight", "enable_highlight")
         except NoSectionError:
-            self.set("output_highlight", "enable_highlight", str(True))
+            self.parser.set("output_highlight", "enable_highlight", str(True))
         
         if enable == "False" or enable == "0" or enable == "":
             return False
@@ -400,9 +412,9 @@ class NmapOutputHighlight(UmitConfigParser, object):
 
     def set_enable(self, enable):
         if enable == False or enable == "0" or enable == None or enable == "":
-            self.set("output_highlight", "enable_highlight", str(False))
+            self.parser.set("output_highlight", "enable_highlight", str(False))
         else:
-            self.set("output_highlight", "enable_highlight", str(True))
+            self.parser.set("output_highlight", "enable_highlight", str(True))
 
     date = property(get_date, set_date)
     hostname = property(get_hostname, set_hostname)
@@ -465,18 +477,20 @@ class NmapOutputHighlight(UmitConfigParser, object):
                             "highlight":[65535, 65535, 65535],
                             "regex":"^(\w{2,}[\s]{,3}){,4}:"}}
 
-class DiffColors(UmitConfigParser, object):
-    def __init__(self, *args):
-        UmitConfigParser.__init__(self, *args)
-        self.read(Path.config_file)
+class DiffColors(object):
+    def __init__(self):
+        self.parser = Path.config_parser
         self.section_name = "diff_colors"
 
+    def save_changes(self):
+        self.parser.save_changes()
+
     def __get_it(self, p_name):
-        return self.sanity_settings(self.get(self.section_name, p_name))
+        return self.sanity_settings(self.parser.get(self.section_name, p_name))
 
     def __set_it(self, property_name, settings):
         settings = self.sanity_settings(settings)
-        self.set(self.section_name, property_name, settings)
+        self.parser.set(self.section_name, property_name, settings)
 
     def sanity_settings(self, settings):
         log.debug(">>> Sanitize %s" % str(settings))
@@ -531,54 +545,4 @@ class ProfileCouldNotBeSaved:
 
 
 if __name__ == "__main__":
-    d = DiffColors()
-
-    d.unchanged = [0, 0, 0]
-    d.added = [0, 0, 0]
-    d.modified = [0, 0, 0]
-    d.not_present = [0, 0, 0]
-
-    print d.unchanged
-    print d.added
-    print d.modified
-    print d.not_present
-    
-    '''
-    log.critical(scan_profile)
-    p = CommandProfile()
-    print p.get_profile("Quick Scan")
-
-    s_conf = SearchConfig()
-    print dir(s_conf)
-    print s_conf.directory
-    print s_conf.file_extension
-    print s_conf.save_time
-    print s_conf.store_results
-    print s_conf.search_db
-    print s_conf.converted_save_time
-
-
-    u = NmapOutputHighlight()
-    u.date = [1, 0, 0, [0, 0, 0], [65535, 65535, 65535],
-              "\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}\s.{1,4}"]
-    u.hostname = [1, 0, 1, [0, 0, 0], [65535, 65535, 65535], "(\w+[\.]?)+"]
-    u.ip = [1, 0, 0, [0, 0, 0], [65535, 65535, 65535],
-            "[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}"]
-    u.port_list = [1, 0, 0, [0, 0, 0], [65535, 65535, 65535],
-                   "PORT\s+STATE\s+SERVICE(\s+VERSION)?"]
-    u.open_port = [1, 0, 0, [0, 0, 0], [0, 65535, 0], "\d{1,5}/.{1,5}\sopen\s.*"]
-    u.closed_port = [1, 0, 0, [0, 0, 0], [65535, 0, 0], "\d{1,5}/.{1,5}\sclosed\s.*"]
-    u.filtered_port = [1, 0, 0, [0, 0, 0], [0, 65535, 65535], "\d{1,5}/.{1,5}\sfiltered\s.*"]
-    u.details = [1, 0, 0, [0, 0, 0], [65535, 65535, 65535], ".+:.+"]
-    u.enable = True
-
-    print "Date", u.date
-    print "Hostname", u.hostname
-    print "Ip", u.ip
-    print "Port list", u.port_list
-    print "Open port", u.open_port
-    print "Closed port", u.closed_port
-    print "Filtered port", u.filtered_port
-    print "Details", u.details
-
-    '''
+    pass

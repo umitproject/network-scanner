@@ -1,10 +1,3 @@
-[Quick Scan]
-description = 
-hint = 
-options = Disable reverse DNS resolution,Aggressive,Verbose
-command = nmap -T Aggressive -v -n %s
-annotation = 
-
 [Intense Scan]
 description = 
 hint = 
@@ -12,32 +5,11 @@ options = Version detection,Operating system detection,Aggressive, Verbose
 command = nmap -T Aggressive -A -v %s
 annotation = 
 
-[Regular Scan]
-description = 
-hint = 
-options = Verbose
-command = nmap -v %s
-annotation = 
-
-[Quick and verbose scan]
-description = 
-hint = 
-options = Watch packets,Verbose,Debug,Aggressive,Disable reverse DNS resolution
-command = nmap -d -T Aggressive --packet_trace -v -n %s
-annotation = 
-
 [Operating System Detection]
 description = 
 hint = 
 options = Operating system detection,Verbose
 command = nmap -O -v %s
-annotation = 
-
-[Quick Services version detection]
-description = 
-hint = 
-options = Version detection,Aggressive,Verbose
-command = nmap -T Aggressive -sV -v %s
 annotation = 
 
 [Quick Full version Detection Scan]
@@ -52,4 +24,33 @@ description =
 hint = 
 options = Operating system detection,Aggressive,Verbose
 command = nmap -T Aggressive -O -v %s
-annotation =  
+annotation = 
+
+[Quick Scan]
+description = 
+hint = 
+options = Disable reverse DNS resolution,Aggressive,Verbose
+command = nmap -T Aggressive -v -n %s
+annotation = 
+
+[Quick Services version detection]
+description = 
+hint = 
+options = Version detection,Aggressive,Verbose
+command = nmap -T Aggressive -sV -v %s
+annotation = 
+
+[Quick and verbose scan]
+description = 
+hint = 
+options = Watch packets,Verbose,Debug,Aggressive,Disable reverse DNS resolution
+command = nmap -d -T Aggressive --packet_trace -v -n %s
+annotation = 
+
+[Regular Scan]
+description = 
+hint = 
+options = Verbose
+command = nmap -v %s
+annotation = 
+

@@ -240,4 +240,4 @@ class TestUmitOptionParser(unittest.TestCase):
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(TestUmitOptionParser)
-    unittest.TextTestRunner(verbose=5).run(suite)
+    unittest.TextTestRunner(verbosity=5).run(suite)
