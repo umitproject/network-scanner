@@ -451,7 +451,7 @@ class NmapOutputHighlight(object):
                             "underline":str(False),
                             "text":[0, 1272, 28362],
                             "highlight":[65535, 65535, 65535],
-                            "regex":"PORT\s+STATE\s+SERVICE(\s+VERSION)?\s.*"},
+                            "regex":"PORT\s+STATE\s+SERVICE(\s+VERSION)?[^\n]*"},
                           "open_port":{"bold":str(True),
                             "italic":str(False),
                             "underline":str(False),
