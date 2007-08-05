@@ -861,16 +861,13 @@ Wait until the scan is finished and then try to save it again.'))
 
     def _show_help(self, action):
         import webbrowser
+
         new = 0
-        try:
-            if float(sys.version[:3]) >= 2.5:
-                new = 2
-        except ValueError:
-            pass
+        if sys.hexversion >= 0x2050000:
+            new = 2
 
         webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
-                                                   "help.html"),
-                        new=new)
+                                                   "help.html"), new=new)
         
 
     def _exit_cb (self, widget=None, extra=None):
