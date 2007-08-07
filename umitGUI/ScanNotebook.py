@@ -654,8 +654,11 @@ of your profile. Please, try to remove your profile and then create it again."),
                 log.debug(">>> An exception occourried during xml ouput parsing")
                 try:
                     error = self.command_execution.get_error()
+                except AttributeError:
+                    error = _("Couldn't retrieve the error raised by \
+the command!")
                 except:
-                    error = _('Unknown error!')
+                    error = _("Unknown error!")
 
                 log.debug(">>> Error: '%s'" % error)
 
