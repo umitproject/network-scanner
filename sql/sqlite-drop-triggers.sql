@@ -22,6 +22,10 @@
 -- Drop Triggers
 -------------------
 
+--
+-- Triggers for handling INSERT
+--
+
 -- scan
 DROP TRIGGER scan_insert_bad_scanner;
 DROP TRIGGER scaninfo_insert_bad_scan;
@@ -66,6 +70,10 @@ DROP TRIGGER trace_insert_bad_protocol;
 DROP TRIGGER hop_insert_bad_trace;
 
 
+--
+-- Triggers for handling UPDATE
+--
+
 -- scan
 DROP TRIGGER scan_update_bad_scanner;
 DROP TRIGGER scaninfo_update_bad_scan;
@@ -108,4 +116,52 @@ DROP TRIGGER _inventory_changes_update_bad_address;
 -- traceroute
 DROP TRIGGER trace_update_bad_protocol;
 DROP TRIGGER hop_update_bad_trace;
+
+
+--
+-- Triggers for handling DELETE
+--
+
+-- scan
+DROP TRIGGER scan_type_bad_delete;
+DROP TRIGGER scanner_bad_delete;
+DROP TRIGGER scan_bad_delete;
+DROP TRIGGER scan2_bad_delete;
+DROP TRIGGER scan3_bad_delete;
+-- host
+DROP TRIGGER vendor_bad_delete;
+DROP TRIGGER address_bad_delete;
+DROP TRIGGER address2_bad_delete;
+DROP TRIGGER hostname_bad_delete;
+DROP TRIGGER host_state_bad_delete;
+DROP TRIGGER osgen_bad_delete;
+DROP TRIGGER osfamily_bad_delete;
+DROP TRIGGER osvendor_bad_delete;
+DROP TRIGGER ostype_bad_delete;
+DROP TRIGGER ostype2_bad_delete;
+DROP TRIGGER host_bad_delete;
+DROP TRIGGER host2_bad_delete;
+DROP TRIGGER host3_bad_delete;
+DROP TRIGGER host4_bad_delete;
+DROP TRIGGER host5_bad_delete;
+DROP TRIGGER host6_bad_delete;
+DROP TRIGGER host7_bad_delete;
+DROP TRIGGER host8_bad_delete;
+-- ports
+DROP TRIGGER service_name_bad_delete;
+DROP TRIGGER port_state_bad_delete;
+DROP TRIGGER port_state2_bad_delete;
+DROP TRIGGER port_state3_bad_delete;
+DROP TRIGGER protocol_bad_delete;
+DROP TRIGGER protocol2_bad_delete;
+DROP TRIGGER protocol3_bad_delete;
+DROP TRIGGER protocol4_bad_delete;
+DROP TRIGGER service_info_bad_delete;
+DROP TRIGGER port_bad_delete;
+-- inventory
+DROP TRIGGER inventory_bad_delete;
+DROP TRIGGER inventory2_bad_delete;
+DROP TRIGGER inventory_change_category_bad_delete;
+-- traceroute
+DROP TRIGGER trace_bad_delete;
 
