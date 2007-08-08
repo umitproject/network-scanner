@@ -26,8 +26,11 @@ from py2exe.build_exe import py2exe as build_exe
 from distutils.core import setup
 from glob import glob
 
-##################################################################################
+################################################################################
 # Main Variables
+
+VERSION = "0.9.4"
+REVISION = "1285"
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
@@ -41,13 +44,6 @@ config_dir = os.path.join('share', 'umit', 'config')
 docs_dir = os.path.join('share', 'umit', 'docs')
 misc_dir = os.path.join('share', 'umit', 'misc')
 
-
-###################################################################################
-# Main Functions
-
-def umit_version():
-    return open(os.path.join(config_dir, "umit_version")).readlines()[0]
-
 def mo_find(result, dirname, fnames):
     files = []
     for f in fnames:
@@ -59,7 +55,7 @@ def mo_find(result, dirname, fnames):
         result.append((dirname, files))
 
 
-#####################################################################################
+################################################################################
 # Installation variables
 
 # What to copy to the destiny
@@ -111,13 +107,14 @@ class umit_py2exe(build_exe):
 
     def finish_banner(self):
         print 
-        print "%s The compiled version of Umit %s is in ./dist %s" % ("#"*10, umit_version(), "#"*10)
+        print "%s The compiled version of Umit %s-%s is in ./dist %s" % \
+              ("#"*10, VERSION, REVISION, "#"*10)
         print
 
 
 ##################### Umit banner ###################################
 print
-print "%s Umit for Windows %s %s" % ("#"*10, umit_version(), "#"*10)
+print "%s Umit for Windows %s-%s %s" % ("#"*10, VERSION, REVISION, "#"*10)
 print
 #####################################################################
 
@@ -129,19 +126,20 @@ setup(name = 'umit',
       author_email = 'py.adriano@gmail.com, cleber@globalred.com.br',
       maintainer = 'Adriano Monteiro',
       maintainer_email = 'py.adriano@gmail.com',
-      description = """UMIT is a nmap frontend, developed in Python and GTK and was \
-started with the sponsoring of Google's Summer of Code.""",
-      long_description = """The project goal is to develop a nmap frontend that \
-is really useful for advanced users and easy to be used by newbies. With UMIT, a network admin \
-could create scan profiles for faster and easier network scanning or even compare \
-scan results to easily see any changes. A regular user will also be able to construct \
-powerful scans with UMIT command creator wizards.""",
-      version = umit_version(),
-      scripts = ['umit'],
+      description = """UMIT is a nmap frontend, developed in Python and GTK \
+and was started with the sponsoring of Google's Summer of Code.""",
+      long_description = """The project goal is to develop a nmap frontend \
+that is really useful for advanced users and easy to be used by newbies. With \
+UMIT, a network admin could create scan profiles for faster and easier network \
+scanning or even compare scan results to easily see any changes. A regular \
+user will also be able to construct powerful scans with UMIT command creator \
+wizards.""",
+      version = VERSION,
+      scripts = ['umit.pyw'],
       packages = ['', 'umitCore', 'umitGUI', 'higwidgets'],
       data_files = data_files,
       cmdclass = {"py2exe":umit_py2exe},
-      windows = [{"script" : "umit",
+      windows = [{"script" : "umit.pyw",
                   "icon_resources" : [(1, os.path.join("share", "icons", "umit_48.ico"))]}],
       options = {"py2exe":{"compressed":1,
                            "optimize":2,

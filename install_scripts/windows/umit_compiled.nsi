@@ -10,14 +10,15 @@
 !define MUI_UNABORTWARNING
 
 !define APPLICATION_NAME "Umit"
-!define APPLICATION_VERSION "0.9.2"
+!define APPLICATION_VERSION "0.9.4"
+!define WINPCAP "winpcap-nmap-3.1.B.exe"
 
 Name "${APPLICATION_NAME}"
 InstallDir "$PROGRAMFILES\${APPLICATION_NAME}\"
 
 ; Pages definitions
 !define MUI_PAGE_HEADER_TEXT "Umit, The Nmap Frontend"
-!define MUI_PAGE_HEADER_SUBTEXT "Umit 0.9.2"
+!define MUI_PAGE_HEADER_SUBTEXT "Umit"
 
 ; Finish page definitions
 !define MUI_FINISHPAGE_LINK "Don't forget to visit Umit's website!"
@@ -56,13 +57,12 @@ Section "Umit" SecUmit
 
   File /r dist\*.*
 
-  File win_dependencies\winpcap-nmap-3.1.B.exe
-  ExecWait $INSTDIR\winpcap-nmap-3.1.B.exe
-  Delete $INSTDIR\winpcap-nmap-3.1.B.exe
+  File "install_scripts\windows\win_dependencies\${WINPCAP}"
+  ExecWait "$INSTDIR\${WINPCAP}"
+  Delete "$INSTDIR\${WINPCAP}"
 
   CreateDirectory "$SMPROGRAMS\Umit"
-  CreateShortCut "$SMPROGRAMS\Umit\Umit.lnk" "$INSTDIR\umit.exe" "$INSTDIR\umit_48.ico" \
-    "$INSTDIR\umit.exe" 2 SW_SHOWNORMAL ALT|CTRL|SHIFT|F5 "Umit: the nmap frontend" 
+  CreateShortCut "$SMPROGRAMS\Umit\Umit.lnk" "$INSTDIR\umit.exe" "" $INSTDIR\umit_48.ico
 
   WriteUninstaller "$INSTDIR\Umit-Uninstaller.exe"
 SectionEnd

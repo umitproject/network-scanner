@@ -1,11 +1,9 @@
 @echo off
 
 echo ####################
-echo #                  #
 echo # Umit for Windows #
-echo #                  #
 echo ####################
-
+echo .
 
 echo Setting installation variables...
 set PythonEXE=C:\Python25\python.exe
@@ -14,11 +12,17 @@ set DistDir=C:\Umit\trunk\dist
 set GTKDir=C:\GTK
 set NmapDir=C:\Nmap
 set WinpcapDir=C:\Winpcap
+set WinInstallDir=%UmitDir%\install_scripts\windows
+set Output=%UmitDir%\win_install.log
+set MakeNSIS=C:\NSIS\makensis.exe
 
+echo Writing output to 
 
 echo Removing old compilation...
-rd %DistDir% /s /q
+rd %DistDir% /s /q > %Output%
 
+echo Updating version and revision numbers in some files...
+%PythonEXE% %WinInstallDir%\version_update.py >> %Output%
 
 echo Creating dist and dist\share directories...
 mkdir %DistDir%\share
@@ -29,10 +33,10 @@ mkdir %DistDir%\share\xml
 
 
 echo Copying GTK's share to dist directory...
-xcopy %GTKDir%\share\gtk-2.0\*.* %DistDir%\share\gtk-2.0\ /S
-xcopy %GTKDir%\share\gtkthemeselector\*.* %DistDir%\share\gtkthemeselector\ /S
-xcopy %GTKDir%\share\themes\*.* %DistDir%\share\themes\ /S
-xcopy %GTKDir%\share\xml\*.* %DistDir%\share\xml\ /S
+xcopy %GTKDir%\share\gtk-2.0\*.* %DistDir%\share\gtk-2.0\ /S >> %Output%
+xcopy %GTKDir%\share\gtkthemeselector\*.* %DistDir%\share\gtkthemeselector\ /S >> %Output%
+xcopy %GTKDir%\share\themes\*.* %DistDir%\share\themes\ /S >> %Output%
+xcopy %GTKDir%\share\xml\*.* %DistDir%\share\xml\ /S >> %Output%
 
 
 echo Creating Nmap dist dirs...
@@ -40,22 +44,24 @@ mkdir %DistDir%\Nmap
 
 
 echo Copying Nmap to his dist directory...
-xcopy %NmapDir%\*.* %DistDir%\Nmap
+xcopy %NmapDir%\*.* %DistDir%\Nmap >> %Output%
 
 
 echo Compiling Umit using py2exe...
 cd %UmitDir%
-copy %UmitDir%\umit %UmitDir%\umit.pyw
-%PythonEXE% -OO setup.py py2exe
-rd %UmitDir%\umit.pyw
+%PythonEXE% -OO %WinInstallDir%\setup.py py2exe >> %Output%
 
 echo Copying some more GTK files to dist directory...
-xcopy %GTKDir%\lib %DistDir%\lib /S /I
-xcopy %GTKDir%\etc %DistDir%\etc /S /I
+xcopy %GTKDir%\lib %DistDir%\lib /S /I >> %Output%
+xcopy %GTKDir%\etc %DistDir%\etc /S /I >> %Output%
 
 
 echo Removing the build directory...
-rd %UmitDir%\build /s /q
+rd %UmitDir%\build /s /q >> %Output%
+
+echo .
+echo Creating installer...
+%MakeNSIS% /P5 /V4 /NOCD %WinInstallDir%\umit_compiled.nsi
 
 
 echo Done!

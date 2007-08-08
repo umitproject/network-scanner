@@ -28,6 +28,8 @@ from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.BasePaths import base_paths, HOME
 from umitCore.I18N import _
 
+VERSION = "0.9.4"
+REVISION = "1285"
 
 #######
 # Paths
