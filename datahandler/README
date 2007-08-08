@@ -1,2 +1,5 @@
 # Run python demo_xml_insertion.py nmap_scan_output.xml to insert
 # an xml file into schema-testing.db
+#
+# WARNING: THIS IS DEPRECATED, INSTEAD USE umitDB package at ggpolo branch.
+# svn co https://umit.svn.sourceforge.net/svnroot/umit/branch/ggpolo
