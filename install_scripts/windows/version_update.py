@@ -45,6 +45,7 @@ VERSION = umit_version()
 REVISION = umit_revision()
 WINPCAP = get_winpcap()
 UMIT = "umit"
+SPLASH = os.path.join("install_scripts", "utils", "add_splash_version.py")
 
 # List of files to update:
 # install_scripts\windows\setup.py
@@ -59,11 +60,13 @@ assert os.path.exists(setup)
 assert os.path.exists(umit_compiled)
 assert os.path.exists(paths)
 assert os.path.exists(os.path.join(BASE_DIR, "win_dependencies", WINPCAP))
+assert os.path.exists(SPLASH)
 
 print "Updating some files with the current Umit version and revision..."
 print "VERSION:", VERSION
 print "REVISION:", REVISION
 print "WINPCAP:", WINPCAP
+print "SPLASH:", SPLASH
 
 print
 print "Updating:", setup
@@ -128,6 +131,19 @@ umit_content = re.sub("DEVELOPMENT\s+=\s+(True|False)",
 uf = open("umit.pyw", "w")
 uf.write(umit_content)
 uf.close()
+
+print "Updating:", SPLASH
+sf = open(SPLASH)
+splash_content = sf.read()
+sf.close()
+
+splash_content = re.sub("umit_version\s+=\s+\"\d+\"",
+                        "umit_version = \"%s\"" % VERSION,
+                        splash_content)
+
+splash_content = re.sub("umit_revision\s+=\s+\"\d+\"",
+                        "umit_revision = \"%s\"" % REVISION,
+                        splash_content)
 
 print "Updating:", VERSION_FILE
 vf = open(VERSION_FILE, "w")

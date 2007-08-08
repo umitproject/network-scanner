@@ -15,6 +15,7 @@ set WinpcapDir=C:\Winpcap
 set WinInstallDir=%UmitDir%\install_scripts\windows
 set Output=%UmitDir%\win_install.log
 set MakeNSIS=C:\NSIS\makensis.exe
+set UtilsDir=%UmitDir%\install_scripts\utils
 
 echo Writing output to 
 
@@ -23,6 +24,9 @@ rd %DistDir% /s /q > %Output%
 
 echo Updating version and revision numbers in some files...
 %PythonEXE% %WinInstallDir%\version_update.py >> %Output%
+
+echo Generating new splash with current version and revision...
+%PythonEXE% %UtilsDir%\add_splash_version.py >> %Output%
 
 echo Creating dist and dist\share directories...
 mkdir %DistDir%\share
