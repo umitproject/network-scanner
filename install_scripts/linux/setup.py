@@ -18,16 +18,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import os
-import os.path
-import sys
-import re
 
 from distutils.core import setup
 from distutils.command.install import install
 from distutils.command.sdist import sdist
-from distutils.file_util import copy_file
 
-from ConfigParser import ConfigParser
 from glob import glob
 from stat import ST_MODE
 
@@ -35,12 +30,17 @@ from stat import ST_MODE
 VERSION = "0.9.4"
 REVISION = "1288"
 
-# Directories
-pixmaps_dir = os.path.join('share', 'pixmaps', 'umit')
-icons_dir = os.path.join('share', 'icons', 'umit')
-locale_dir = os.path.join('share', 'locale')
-umit_version = os.path.join('share', 'umit', "config", "umit_version")
+# Directories for POSIX operating systems
+# These are created after a "install" or "py2exe" command
+# These directories are relative to the installation or dist directory
+# Ex: python setup.py install --prefix=/tmp/umit
+# Will create the directory /tmp/umit with the following directories
+pixmaps_dir = os.path.join('share', 'pixmaps')
+icons_dir = os.path.join('share', 'icons')
+locale_dir = os.path.join('share', 'umit', 'locale')
 config_dir = os.path.join('share', 'umit', 'config')
+docs_dir = os.path.join('share', 'umit', 'docs')
+misc_dir = os.path.join('share', 'umit', 'misc')
 
 
 def mo_find(result, dirname, fnames):
@@ -58,17 +58,34 @@ def mo_find(result, dirname, fnames):
 # Installation variables
 
 svg = glob(os.path.join('share', 'pixmaps', '*.svg'))
+data_files = [ (pixmaps_dir, svg + glob(os.path.join(pixmaps_dir, '*.png')) +
+                             glob(os.path.join(pixmaps_dir, 'umit.o*'))),
 
+               (config_dir, [os.path.join(config_dir, 'umit.conf')] +
+                            [os.path.join(config_dir, 'scan_profile.usp')] +
+                            [os.path.join(config_dir, 'umit_version')] +
+                            [os.path.join(config_dir, 'umit.db')] + 
+                            glob(os.path.join(config_dir, '*.xml'))+
+                            glob(os.path.join(config_dir, '*.txt'))),
 
-data_files = [ (pixmaps_dir, svg + glob(os.path.join('share', 'pixmaps', '*.png')) +
-                             glob(os.path.join('share', 'pixmaps', 'umit.o*'))),
-               (config_dir, [os.path.join('config', 'umit.conf')] +
-                            [os.path.join('config', 'scan_profile.usp')] +
-                            ['umit_version'] + 
-                            glob(os.path.join('config', '*.xml'))+
-                            glob(os.path.join('config', '*.txt')) +
-                            glob(os.path.join('config', '*.dmp'))), 
-               (icons_dir, glob(os.path.join('share', 'icons', '*.ico')))]
+               (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))), 
+
+               (icons_dir, glob(os.path.join('share', 'icons', '*.ico'))+
+                           glob(os.path.join('share', 'icons', '*.png'))),
+
+               (docs_dir, glob(os.path.join(docs_dir, '*.html'))+
+                          glob(os.path.join(docs_dir,
+                                            'comparing_results', '*.xml'))+
+                          glob(os.path.join(docs_dir,
+                                            'profile_editor', '*.xml'))+
+                          glob(os.path.join(docs_dir,
+                                            'scanning', '*.xml'))+
+                          glob(os.path.join(docs_dir,
+                                            'searching', '*.xml'))+
+                          glob(os.path.join(docs_dir,
+                                            'wizard', '*.xml'))+
+                          glob(os.path.join(docs_dir,
+                                            'screenshots', '*.png')))]
 
 # Add i18n files to data_files list
 os.path.walk(locale_dir, mo_find, data_files)
@@ -129,37 +146,19 @@ print
 
 class umit_sdist(sdist):
     def run(self):
-        # Update content that is going to the packages
-
-         # Add version number to splash image
-        os.system("python utils/add_splash_version.py")
-
-        # Update/Create dumped os list
-        os.system("python utils/create_os_list.py")
-
-        # Update/Create dumped services list
-        os.system("python utils/create_services_dump.py")
-
-        # Update/Create os_classification
-        os.system("python utils/generate_classification.py")
-
-        # Remove some unused files
-        os.system("bash utils/remove_unused_files.sh")
-
         sdist.run(self)
-
         self.finish_banner()
 
     def finish_banner(self):
         print 
         print "%s The packages for Umit %s-%s are in ./dist %s" % \
-              ("#"*10, VERSION, REVISION, "#"*10)
+              ("#" * 10, VERSION, REVISION, "#" * 10)
         print
 
 
 ##################### Umit banner ########################
 print
-print "%s Umit for Linux %s-%s %s" % ("#"*10, VERSION, REVISION, "#"*10)
+print "%s Umit for Linux %s-%s %s" % ("#" * 10, VERSION, REVISION, "#" * 10)
 print
 ##########################################################
 

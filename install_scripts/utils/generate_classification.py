@@ -594,6 +594,7 @@ for i in classification:
     if match:
         wow.append(match.groups())
 
-class_file = open(os.path.join("misc", "os_classification.dmp"), "w")
+class_file = open(os.path.join("share", "umit", "misc",
+                               "os_classification.dmp"), "w")
 cPickle.dump(wow, class_file)
 class_file.close()

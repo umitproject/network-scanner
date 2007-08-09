@@ -1,0 +1,29 @@
+IMPORTANTE MESSAGE FOR DEVELOPERS AND PACKAGE MAINTAINERS:
+
+Every script under this directory is supposed to be executed from the umit
+base dir. Don't get into this directory, nor any other under this one to
+execute any of the scripts, or they're not going to work as expected.
+
+
+Generating windows installer:
+
+ 1 - Install the required dependencies for windows (including PIL)
+ 2 - Run: install_scripts\windows\generate_windows_installer.bat
+
+ Obs: Some path adaptations may be needed in the script above in order to make
+ it work in your system.
+
+
+Generating linux packages:
+
+ 1 - You don't need gtk, pygtk, psyco, pysqlite2 installed, but you need PIL
+ 2 - Run: install_scripts/linux/generate_linux_packages.sh
+
+
+Generating Mac OS X App:
+
+ 1 - Install the required dependencies for Mac OS X (including PIL)
+ 2 - Run install_scripts/macosx/generate_macosx_app.sh
+
+ Obs: Some path adaptations may be needed in the script above in order to make
+ it work in your system.

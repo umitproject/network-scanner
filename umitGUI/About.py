@@ -29,9 +29,8 @@ from higwidgets.hignotebooks import HIGNotebook
 from higwidgets.higscrollers import HIGScrolledWindow
 from higwidgets.higtextviewers import HIGTextView
 
-from umitCore.Paths import Path
+from umitCore.Paths import Path, VERSION, REVISION
 from umitCore.I18N import _
-from umitCore.UmitConf import umit_version
 
 pixmaps_dir = Path.pixmaps_dir
 if pixmaps_dir:
@@ -62,13 +61,15 @@ class About(HIGWindow):
             for i in range(26):
                 self.d[chr(i+c)] = chr((i+13) % 26 + c)
         
-        self.lbl_program_version = gtk.Label("<span size='25000' weight='heavy'>\
-UMIT %s</span>" % umit_version())
+        self.lbl_program_version = gtk.Label("""\
+<span size='30000' weight='heavy'>UMIT %s</span>
+<span size='10000' weight='heavy'>Rev. %s</span>""" % (VERSION, REVISION))
         
         self.lbl_program_description = gtk.Label(\
             _("""UMIT is the nmap frontend, developed in PyGTK
 by Adriano Monteiro Marques <py.adriano@gmail.com>
-and was sponsored by Google."""))
+and was sponsored by Google during the
+Summer of Code 2005, 2006 and 2007. Thanks Google!"""))
         
         self.lbl_copyright=gtk.Label("<small>Copyright (C) 2005 Insecure.Com LLC.</small>")
         
@@ -224,10 +225,7 @@ NSE Facilitator:
 Maxim I. Gavrilov <lovelymax@gmail.com>
 
 Umit Web:
-Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>
-
-Summer of Code's projects Design:
-Virgílio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>""")
+Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>""")
 
         b = self.contributors_text.get_buffer()
         b.set_text("""Sponsored by (SoC 2005, 2006 and 2007):

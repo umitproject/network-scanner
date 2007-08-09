@@ -25,11 +25,13 @@ import os
 
 from glob import glob
 
-BASE_DIR = os.path.join("install_scripts", "windows")
+WIN_BASE_DIR = os.path.join("install_scripts", "windows")
+LIN_BASE_DIR = os.path.join("install_scripts", "linux")
+MAC_BASE_DIR = os.path.join("install_scripts", "macosx")
 VERSION_FILE = os.path.join("share", "umit", "config", "umit_version")
 
 def umit_version():
-    return open(VERSION_FILE).readlines()[0].split("\n")[0]
+    return open(VERSION_FILE).readlines()[0].split("\n")[0].split("\r")[0]
 
 def umit_revision():
     stdin, stdout = os.popen2("svn info --xml")
@@ -38,7 +40,7 @@ def umit_revision():
     return re.findall("revision=\"(\d+)\"", stdout.read())[0]
 
 def get_winpcap():
-    windeps = os.path.join(BASE_DIR, "win_dependencies", "winpcap*")
+    windeps = os.path.join(WIN_BASE_DIR, "win_dependencies", "winpcap*")
     return os.path.split(glob(windeps)[0])[1]
 
 VERSION = umit_version()
@@ -52,38 +54,42 @@ SPLASH = os.path.join("install_scripts", "utils", "add_splash_version.py")
 # install_scripts\windows\umit_compiled.nsi
 # umitCore\Paths.py
 
-setup = os.path.join(BASE_DIR, "setup.py")
-umit_compiled = os.path.join(BASE_DIR, "umit_compiled.nsi")
+win_setup = os.path.join(WIN_BASE_DIR, "setup.py")
+lin_setup = os.path.join(LIN_BASE_DIR, "setup.py")
+mac_setup = os.path.join(MAC_BASE_DIR, "setup.py")
+
+umit_compiled = os.path.join(WIN_BASE_DIR, "umit_compiled.nsi")
 paths = os.path.join("umitCore", "Paths.py")
 
-assert os.path.exists(setup)
+assert os.path.exists(win_setup)
+assert os.path.exists(lin_setup)
+assert os.path.exists(mac_setup)
 assert os.path.exists(umit_compiled)
 assert os.path.exists(paths)
-assert os.path.exists(os.path.join(BASE_DIR, "win_dependencies", WINPCAP))
+assert os.path.exists(os.path.join(WIN_BASE_DIR, "win_dependencies", WINPCAP))
 assert os.path.exists(SPLASH)
 
 print "Updating some files with the current Umit version and revision..."
 print "VERSION:", VERSION
 print "REVISION:", REVISION
-print "WINPCAP:", WINPCAP
-print "SPLASH:", SPLASH
 
 print
-print "Updating:", setup
-sf = open(setup)
-setup_content = sf.read()
-sf.close()
+for setup in [win_setup, lin_setup, mac_setup]:
+    print "Updating:", setup
+    sf = open(setup)
+    setup_content = sf.read()
+    sf.close()
 
-setup_content = re.sub("VERSION\s+=\s+\"(\d+)\"",
-                       "VERSION = \"%s\"" % VERSION,
-                       setup_content)
-setup_content = re.sub("REVISION\s+=\s+\"(\d+)\"",
-                       "REVISION = \"%s\"" % REVISION,
-                       setup_content)
+    setup_content = re.sub("VERSION\s+=\s+\"([\d\.]+)\"",
+                           "VERSION = \"%s\"" % VERSION,
+                           setup_content)
+    setup_content = re.sub("REVISION\s+=\s+\"([\d\.]+)\"",
+                           "REVISION = \"%s\"" % REVISION,
+                           setup_content)
 
-sf = open(setup, "w")
-sf.write(setup_content)
-sf.close()
+    sf = open(setup, "w")
+    sf.write(setup_content)
+    sf.close()
 
 
 print "Updating:", umit_compiled
@@ -108,10 +114,10 @@ pf = open(paths)
 paths_content = pf.read()
 pf.close()
 
-paths_content = re.sub("VERSION\s+=\s+\"\d+\"",
+paths_content = re.sub("VERSION\s+=\s+\"[\d\.]+\"",
                        "VERSION = \"%s\"" % VERSION,
                        paths_content)
-paths_content = re.sub("REVISION\s+=\s+\"\d+\"",
+paths_content = re.sub("REVISION\s+=\s+\"[\d\.]+\"",
                        "REVISION = \"%s\"" % REVISION,
                        paths_content)
 
@@ -137,17 +143,19 @@ sf = open(SPLASH)
 splash_content = sf.read()
 sf.close()
 
-splash_content = re.sub("umit_version\s+=\s+\"\d+\"",
-                        "umit_version = \"%s\"" % VERSION,
-                        splash_content)
+splash_content = re.sub("VERSION\s+=\s+\"[\d\.]+\"",
+                       "VERSION = \"%s\"" % VERSION,
+                       splash_content)
+splash_content  = re.sub("REVISION\s+=\s+\"[\d\.]+\"",
+                       "REVISION = \"%s\"" % REVISION,
+                       splash_content)
 
-splash_content = re.sub("umit_revision\s+=\s+\"\d+\"",
-                        "umit_revision = \"%s\"" % REVISION,
-                        splash_content)
+sf = open(SPLASH, "w")
+sf.write(splash_content)
+sf.close()
 
 print "Updating:", VERSION_FILE
 vf = open(VERSION_FILE, "w")
-print [VERSION, REVISION]
 vf.write("\n".join([VERSION, REVISION]))
 vf.close()
 

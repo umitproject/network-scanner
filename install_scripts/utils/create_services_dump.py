@@ -24,7 +24,7 @@ import cPickle
 import os.path
 
 def create_services_dump(services, services_dump):
-    services_dump = os.path.join("misc", services_dump)
+    services_dump = os.path.join("share", "umit", "misc", services_dump)
 
     services_dict = {}
     serv_file = open(services, 'r')
@@ -67,9 +67,10 @@ def create_services_dump(services, services_dump):
     serv_dump = open(services_dump, "w")
     cPickle.dump(services_dict, serv_dump)
     serv_dump.close()
+    print ">>> Created!"
 
 if __name__ == "__main__":
-    services = "nmap-services"
+    services = os.path.join("install_scripts", "utils", "nmap-services")
     services_dump = "services.dmp"
 
     create_services_dump(services, services_dump)
