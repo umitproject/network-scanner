@@ -19,17 +19,26 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-import os
-import os.path
-import re
+from os import R_OK, W_OK, access, mkdir, getcwd
+from os.path import exists, join, split, abspath
+import sys
 
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.BasePaths import base_paths, HOME
 from umitCore.I18N import _
 
 VERSION = "0.9.4"
 REVISION = "1288"
+
+CONFIG_DIR = join("share", "umit", "config")
+UMIT_ICON = join("share", "icons", "umit_48.ico")
+LOCALE_DIR = join("share", "umit", "locale")
+MISC_DIR = join("share", "umit", "misc")
+ICONS_DIR = join("share", "icons")
+PIXMAPS_DIR = join("share", "pixmaps")
+DOCS_DIR = join("share", "umit", "docs")
+
 
 #######
 # Paths
@@ -38,13 +47,14 @@ class Paths(object):
     """
     config_parser = UmitConfigParser()
     paths_section = "paths"
-    
-    directories_list = ["locale_dir",
-                        "pixmaps_dir",
-                        "config_dir",
-                        "misc_dir",
-                        "docs_dir"]
-    
+
+    hardcoded = ["locale_dir",
+                 "pixmaps_dir",
+                 "icons_dir",
+                 "misc_dir",
+                 "docs_dir",
+                 "umit_icon"]
+
     config_files_list = ["config_file",
                          "target_list",
                          "profile_editor",
@@ -54,7 +64,7 @@ class Paths(object):
                          "options",
                          "umitdb",
                          "umit_version"]
-    
+
     share_files_list = ["umit_op",
                         "umit_opi",
                         "umit_opt",
@@ -63,60 +73,118 @@ class Paths(object):
     misc_files_list = ["services_dump",
                        "os_dump",
                        "os_classification"]
-    
+
     other_settings = ["nmap_command_path"]
 
     config_file_set = False
     
-    def set_umit_conf(self, umit_conf):
-        # Place supposed to have the user's config file
-        supposed_user_conf = os.path.join(base_paths['user_dir'],
-                                          base_paths['config_file'])
-        config_file = supposed_user_conf
-        parsed = False
+    def set_umit_conf(self, base_dir):
+        main_config_dir = ""
+        main_config_file = ""
+        if exists(CONFIG_DIR) and \
+            exists(join(CONFIG_DIR, base_paths['config_file'])):
+            main_config_dir = CONFIG_DIR
 
-        if os.path.exists(supposed_user_conf)\
-               and check_access(supposed_user_conf, os.R_OK):
-            try:
-                self.config_parser.read(config_file)
-                log.debug(">>> Using config files in user home \
+        elif exists(join(base_dir, CONFIG_DIR)) and\
+            exists(join(base_dir,
+                                        CONFIG_DIR,
+                                        base_paths['config_file'])):
+            main_config_dir = join(base_dir, CONFIG_DIR)
+
+        elif exists(join(split(base_dir)[0], CONFIG_DIR)) and \
+            exists(join(split(base_dir)[0],
+                                        CONFIG_DIR,
+                                        base_paths['config_file'])):
+            main_config_dir = join(split(base_dir)[0], CONFIG_DIR)
+
+        else:
+            raise Exception("Couldn't find the Umit's Config Directory! \
+Aborting...")
+
+        # Main config file, based on the main_config_dir got above
+        main_config_file = join(main_config_dir, base_paths['config_file'])
+
+        # This is the expected place in which umit.conf should be placed
+        supposed_file = join(base_paths['user_dir'], base_paths['config_file'])
+        config_dir = ""
+        config_file = ""
+
+        if exists(supposed_file)\
+               and check_access(supposed_file, R_OK and W_OK):
+            config_dir = base_paths['user_dir']
+            config_file = supposed_file
+            log.debug(">>> Using config files in user home \
 directory: %s" % config_file)
-                parsed = True
-            except:
-                log.debug(">>> Failed to load config file from \
-user home directory")
 
-        if not parsed and not os.path.exists(supposed_user_conf)\
-                 and not check_access(base_paths['user_dir'], os.R_OK and os.W_OK):
+        elif not exists(supposed_file)\
+             and not check_access(base_paths['user_dir'],
+                                  R_OK and W_OK):
             try:
-                result = create_user_dir(umit_conf, HOME)
-                config_file = result['config_file']
-                self.config_parser.read(config_file)
-                [self.__setattr__(opt, result[opt]) for opt in result]
-                log.debug(">>> Using recently created config files in \
+                result = create_user_dir(join(main_config_dir,
+                                              base_paths['config_file']),
+                                         HOME)
+                if type(result) == type({}):
+                    config_dir = result['config_dir']
+                    config_file = result['config_file']
+                    log.debug(">>> Using recently created config files in \
 user home: %s" % config_file)
-                parsed = True
+                else:
+                    raise Exception()
             except:
                 log.debug(">>> Failed to create user home")
 
-        if not parsed and type(umit_conf) == type([]):
-            config_file = self.config_parser.read(umit_conf)
-            if config_file != None and len(config_file) >= 1:
-                config_file = config_file[0]
-            else:
-                raise Exception("Couldn't load umit config file!")
+        if config_dir and config_file:
+            # Checking if the version of the configuration files are the same
+            # as this Umit's version
+            if not self.check_version(config_dir):
+                log.debug(">>> The config files versions are different!")
+                log.debug(">>> Running update scripts...")
+                self.update_config_dir(config_dir)
+
+        else:
+            log.debug(">>> There is no way to create nor use home connfigs.")
+            log.debug(">>> Trying to use main configuration files...")
+
+            config_dir = main_config_dir
+            config_file = main_config_file
+
+        # Parsing the umit main config file
+        self.config_parser.read(config_file)
 
         # Should make the following only after reading the umit.conf file
+        self.config_dir = config_dir
         self.config_file = config_file
         self.config_file_set = True
+        self.locale_dir = LOCALE_DIR
+        self.pixmaps_dir = PIXMAPS_DIR
+        self.icons_dir = ICONS_DIR
+        self.misc_dir = MISC_DIR
+        self.docs_dir = DOCS_DIR
+        self.umit_icon = UMIT_ICON
 
         log.debug(">>> Config file: %s" % config_file)
 
+    def update_config_dir(self, config_dir):
+        pass
+
+    def check_version(self, config_dir):
+        ver = open(join(config_dir,
+                        base_paths['umit_version'])).readlines()[0].\
+                                                     split("\n")[0].\
+                                                     split("\r")[0]
+
+        log.debug(">>> This Umit Version: %s" % VERSION)
+        log.debug(">>> Version of the files in %s: %s" % (config_dir, ver))
+
+        if VERSION == ver:
+            return True
+        return False
+
     def root_dir(self):
         """Retrieves root dir on current filesystem"""
-        curr_dir = os.getcwd()
+        curr_dir = getcwd()
         while True:
-            splited = os.path.split(curr_dir)[0]
+            splited = split(curr_dir)[0]
             if curr_dir == splited:
                 break
             curr_dir = splited
@@ -124,21 +192,26 @@ user home: %s" % config_file)
         log.debug(">>> Root dir: %s" % curr_dir)
         return curr_dir
 
-
     def __getattr__(self, name):
         if self.config_file_set:
-            if name in self.directories_list or name in self.other_settings:
-                return return_if_exists(self.config_parser.get(self.paths_section, name))
+            if name in self.other_settings:
+                return self.config_parser.get(self.paths_section, name)
+
+            elif name in self.hardcoded:
+                return self.__dict__[name]
+
             elif name in self.config_files_list:
-                return return_if_exists(os.path.join(self.config_parser.get(self.paths_section, "config_dir"),
-                                                     base_paths[name]))
+                return return_if_exists(join(self.__dict__['config_dir'],
+                                             base_paths[name]))
+
             elif name in self.share_files_list:
-                return return_if_exists(os.path.join(self.config_parser.get(self.paths_section, "pixmaps_dir"),
-                                                     base_paths[name]))
+                return return_if_exists(join(self.__dict__['pixmaps_dir'],
+                                             base_paths[name]))
+
             elif name in self.misc_files_list:
-                return return_if_exists(os.path.join(self.config_parser.get(self.paths_section, "misc_dir"),
+                return return_if_exists(join(self.__dict__["misc_dir"],
                                                      base_paths[name]))
-        
+
             try:
                 return self.__dict__[name]
             except:
@@ -147,44 +220,34 @@ user home: %s" % config_file)
             raise Exception("Must set config file location first")
 
     def __setattr__(self, name, value):
-        if name in self.directories_list or name in self.other_settings:    
+        if name in self.other_settings:
             self.config_parser.set(self.paths_section, name, value)
         else:
             self.__dict__[name] = value
-    
 
 ####################################
 # Functions for directories creation
 
-def create_user_dir(config_list, user_home):
-    main_config = None
-    for config in config_list:
-        if os.path.exists(config):
-            main_config = config
-            break
-    else:
-        log.critical(">>> No useful configuration file found in this list: %s"\
-                 % config_list)
-        raise Exception(">>> No usefull configuration file found!")
-
+def create_user_dir(config_file, user_home):
     log.debug(">>> Create user dir at given home: %s" % user_home)
-    log.debug(">>> Using %s as source" % main_config)
+    log.debug(">>> Using %s as source" % config_file)
+
     main_umit_conf = UmitConfigParser()
-    main_umit_conf.read(main_config)
+    main_umit_conf.read(config_file)
     paths_section = "paths"
-    
-    user_dir = os.path.join(user_home, base_paths['config_dir'])
-    
-    if os.path.exists(user_home)\
-           and os.access(user_home, os.R_OK and os.W_OK)\
-           and not os.path.exists(user_dir):
-        os.mkdir(user_dir)
+
+    user_dir = join(user_home, base_paths['config_dir'])
+
+    if exists(user_home)\
+           and access(user_home, R_OK and W_OK)\
+           and not exists(user_dir):
+        mkdir(user_dir)
         log.debug(">>> Umit user dir successfully created! %s" % user_dir)
     else:
         log.warning(">>> No permissions to create user dir!")
         return False
 
-    main_dir = os.path.split(main_config)[0]
+    main_dir = split(config_file)[0]
     copy_config_file("options.xml", main_dir, user_dir)
     copy_config_file("profile_editor.xml", main_dir, user_dir)
     copy_config_file("recent_scans.txt", main_dir, user_dir)
@@ -196,35 +259,35 @@ def create_user_dir(config_list, user_home):
 
     return dict(user_dir = user_dir,
                 config_dir = user_dir,
-                config_file = copy_config_file("umit.conf", os.path.split(main_config)[0], user_dir))
+                config_file = copy_config_file("umit.conf",
+                                               split(config_file)[0],
+                                               user_dir))
 
 def copy_config_file(filename, dir_origin, dir_destiny):
     log.debug(">>> copy_config_file %s to %s" % (filename, dir_destiny))
-    
-    origin = os.path.join(dir_origin, filename)
-    destiny = os.path.join(dir_destiny, filename)
-    
-    if not os.path.exists(destiny):
+
+    origin = join(dir_origin, filename)
+    destiny = join(dir_destiny, filename)
+
+    if not exists(destiny):
         # Quick copy
         open(destiny, 'w').write(open(origin).read())
     return destiny
 
 def check_access(path, permission):
-    return os.path.exists(path) and os.access(path, permission)
+    return exists(path) and access(path, permission)
 
 def return_if_exists(path):
-    if os.path.exists(path):
-        return os.path.abspath(path)
+    if exists(path):
+        return abspath(path)
     raise Exception("File '%s' does not exist or could not be found!" % path)
 
-#########
+############
 # Singleton!
 Path = Paths()
 
 if __name__ == '__main__':
-    #create_user_dir(os.path.expanduser("~"))
-    __file__ = ".."
-    Path.set_umit_conf(os.path.join(os.path.split(__file__)[0], "config", "umit.conf"))
+    Path.set_umit_conf(split(sys.argv[0])[0])
 
     print ">>> SAVED DIRECTORIES:"
     print ">>> LOCALE DIR:", Path.locale_dir

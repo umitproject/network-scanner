@@ -25,15 +25,11 @@ from types import StringTypes
 from ConfigParser import NoSectionError, NoOptionError
 
 from umitCore.Paths import Path
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.I18N import _
 
 scan_profile = Path.scan_profile
-
-def umit_version():
-    return open(Path.umit_version).read()
-
 
 # Check if running on Maemo
 MAEMO = False

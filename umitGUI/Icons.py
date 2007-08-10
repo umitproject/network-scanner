@@ -27,7 +27,7 @@ import os.path
 
 from umitCore.Paths import Path
 from umitCore.UmitConf import is_maemo
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 
 ######################
 # Platform recognition

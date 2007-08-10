@@ -28,10 +28,6 @@ from umitCore.UmitConf import *
 
 
 class TestUmitConf(unittest.TestCase):
-    def testUmitVersion(self):
-        self.assert_(umit_version(),
-                     "Failed to get UmitConf.umit_version()")
-
     def setUp(self):
         self.umit_conf = UmitConf()
 

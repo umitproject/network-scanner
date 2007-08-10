@@ -31,7 +31,7 @@ from xml.sax.saxutils import XMLGenerator
 from xml.sax.xmlreader import AttributesImpl as Attributes
 
 from umitCore.I18N import _
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 
 months = ('',_('January'),
              _('February'),

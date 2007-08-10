@@ -45,7 +45,7 @@ from umitGUI.SearchWindow import SearchWindow
 from umitGUI.BugReport import BugReport
 
 from umitCore.Paths import Path
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 from umitCore.I18N import _
 from umitCore.UmitOptionParser import option_parser
 from umitCore.UmitConf import SearchConfig, is_maemo

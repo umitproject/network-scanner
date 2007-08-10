@@ -42,7 +42,7 @@ from umitCore.NmapCommand import CommandConstructor
 from umitCore.UmitConf import CommandProfile, ProfileNotFound, is_maemo
 from umitCore.NmapParser import NmapParser
 from umitCore.Paths import Path
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 from umitCore.I18N import _
 
 icon_dir = Path.pixmaps_dir

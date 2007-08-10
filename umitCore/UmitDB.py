@@ -31,7 +31,7 @@ except ImportError:
 from time import time
 
 from umitCore.Paths import Path
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 
 
 umitdb = ""

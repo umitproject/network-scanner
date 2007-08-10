@@ -28,7 +28,7 @@ from email.MIMEText import MIMEText
 from email.Utils import formatdate
 from email import Encoders
 
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 
 class Email(object):
     """This class is intended to provide a simple interface for sending

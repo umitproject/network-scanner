@@ -29,7 +29,7 @@ from types import StringTypes
 
 from umitCore.UmitDB import UmitDB
 from umitCore.NmapParser import NmapParser
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 
 
 class SearchResult(object):    

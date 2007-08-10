@@ -28,7 +28,7 @@ from umitCore.Paths import Path
 from umitCore.UmitOptionParser import option_parser
 from umitCore.UmitConf import is_maemo
 from umitCore.I18N import _
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 
 
 # Script found at http://www.py2exe.org/index.cgi/HowToDetermineIfRunningFromExe

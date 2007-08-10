@@ -30,21 +30,7 @@ from os.path import join, split, expanduser, abspath, dirname
 # Setting the umit home directory
 
 from umitCore.Paths import Path
-
-config_files = []
-config_files.append(join(expanduser("~"), ".umit", "umit.conf"))
-config_files.append(join(split(abspath(dirname(sys.argv[0])))[0], "share", 
-                         "umit",  "config", "umit.conf"))
-config_files.append(join("share", "umit", "config", "umit.conf"))
-config_files.append(join(split(split(sys.argv[0])[0])[0], 'share', 'umit', 
-                         'config', 'umit.conf'))
-config_files.append(join(split(sys.argv[0])[0], 'share', 'umit', 
-                         'config', 'umit.conf'))
-config_files.append(join('config', 'umit.conf'))
-config_files.append(join(split(sys.argv[0])[0], 'config', 'umit.conf'))
-config_files.append("/usr/share/umit/config/umit.conf")
-
-Path.set_umit_conf(config_files)
+Path.set_umit_conf(split(sys.argv[0])[0])
 
 ######################################
 

@@ -21,7 +21,7 @@
 
 from os.path import exists
 from ConfigParser import ConfigParser, DEFAULTSECT, NoOptionError, NoSectionError
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 
 class UmitConfigParser(ConfigParser):
     filenames = None
@@ -29,7 +29,6 @@ class UmitConfigParser(ConfigParser):
     
     def __init__(self, *args):
         ConfigParser.__init__(self, *args)
-        self.paths_checked = []
 
     def set(self, section, option, value):
         if not self.has_section(section):
@@ -38,29 +37,11 @@ class UmitConfigParser(ConfigParser):
         ConfigParser.set(self, section, option, value)
         self.save_changes()
 
-    def read(self, filenames):
-        if type(filenames) == type(""):
-            filenames = [filenames]
+    def read(self, filename):
+        log.debug(">>> Trying to parse: %s" % filename)
 
-        self.filenames = []
-        for fn in filenames:
-            log.debug(">>>> Testing %s" % fn)
-            if fn not in self.paths_checked:
-                try:
-                    test_umit_conf_content(fn)
-                except AssertionError:
-                    continue
-
-            self.paths_checked.append(fn)
-            filename = ConfigParser.read(self, fn)
-            self.filenames = filename
-            break
-
-        if len(self.filenames) == 0:
-            raise Exception("Couldn't find any usable config file!")
-
-        return self.filenames
-
+        self.filename = ConfigParser.read(self, filename)
+        return self.filename
 
     def readfp(self, fp, filename=None):
         ConfigParser.readfp(self, fp, filename)

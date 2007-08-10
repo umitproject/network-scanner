@@ -34,7 +34,7 @@ from time import localtime
 from types import StringTypes
 
 from umitCore.I18N import _
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 from umitCore.NmapParser import months
 from umitCore.SearchResult import SearchDir, SearchDB
 from umitCore.UmitConf import SearchConfig

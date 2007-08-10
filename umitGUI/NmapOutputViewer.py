@@ -30,7 +30,7 @@ from threading import Thread
 from higwidgets.higbuttons import HIGButton
 
 from umitCore.I18N import _, enc
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 from umitCore.UmitConf import NmapOutputHighlight
 
 from umitGUI.NmapOutputProperties import NmapOutputProperties

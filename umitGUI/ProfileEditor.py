@@ -36,7 +36,7 @@ from umitGUI.OptionBuilder import *
 from umitCore.Paths import Path
 from umitCore.NmapCommand import CommandConstructor
 from umitCore.UmitConf import Profile, CommandProfile
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 from umitCore.I18N import _
 
 profile_editor = Path.profile_editor

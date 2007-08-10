@@ -23,7 +23,7 @@ import os
 import os.path
 
 from umitCore.BasePaths import base_paths
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 
 
 umit_conf_content = '''[diff]

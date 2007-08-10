@@ -18,6 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import os
+import re
 
 from distutils.core import setup
 from distutils.command.install import install
@@ -99,6 +100,7 @@ class umit_install(install):
     def run(self):
         install.run(self)
 
+        self.fix_paths()
         self.create_uninstaller()
         self.finish_banner()
 
@@ -136,6 +138,45 @@ print
         # Set exec bit for uninstaller
         mode = ((os.stat(uninstaller_filename)[ST_MODE]) | 0555) & 07777
         os.chmod(uninstaller_filename, mode)
+
+    def fix_paths(self):
+        su = os.path.join("share", "umit")
+        interesting_paths = {"CONFIG_DIR":os.path.join(su, "config"),
+                             "DOCS_DIR":os.path.join(su, "docs"),
+                             "LOCALE_DIR":os.path.join(su, "locale"),
+                             "MISC_DIR":os.path.join(su, "misc"),
+                             "PIXMAPS_DIR":os.path.join("share", "pixmaps"),
+                             "ICONS_DIR":os.path.join("share", "icons"),
+                             "UMIT_ICON":"umit_48.ico"}
+
+        pcontent = ""
+        paths_file = os.path.join("umitCore", "Paths.py")
+        installed_files = self.get_outputs()
+        for f in installed_files:
+            #print ">>> PATHS FILE:", re.findall("(%s)" % \
+            #                                    re.escape(paths_file), f)
+            if re.findall("(%s)" % re.escape(paths_file), f):
+                #print ">>>>> FOUND PATHS FILE! <<<<<"
+                paths_file = f
+                pf = open(paths_file)
+                pcontent = pf.read()
+                pf.close()
+                break
+
+        for path in interesting_paths:
+            for f in installed_files:
+                #print ">>> PATH:",
+                #print re.findall("(%s)" % re.escape(interesting_paths[path]), f)
+                if re.findall("(%s)" % re.escape(interesting_paths[path]), f):
+                    #print ">>>>> FOUND! <<<<<"
+                    pcontent = re.sub("%s\s+=\s+.+" % path,
+                                      "%s = \"%s\"" % (path, f),
+                                      pcontent)
+                    break
+
+        pf = open(paths_file, "w")
+        pf.write(pcontent)
+        pf.close()
 
     def finish_banner(self):
         print 

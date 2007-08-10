@@ -30,7 +30,7 @@ from subprocess import Popen, PIPE
 
 from umitCore.NmapOptions import NmapOptions
 from umitCore.Paths import Path
-from umitCore.Logging import log
+from umitCore.UmitLogging import log
 from umitCore.I18N import _, enc
 
 option_xml = Path.options
