@@ -165,12 +165,15 @@ print
 
         for path in interesting_paths:
             for f in installed_files:
-                #print ">>> PATH:",
-                #print re.findall("(%s)" % re.escape(interesting_paths[path]), f)
-                if re.findall("(%s)" % re.escape(interesting_paths[path]), f):
+                result = re.findall("(.*%s)" %\
+                                    re.escape(interesting_paths[path]),
+                                    f)
+                #print ">>> PATH:", path, result
+                if len(result) == 1:
+                    result = result[0]
                     #print ">>>>> FOUND! <<<<<"
                     pcontent = re.sub("%s\s+=\s+.+" % path,
-                                      "%s = \"%s\"" % (path, f),
+                                      "%s = \"%s\"" % (path, result),
                                       pcontent)
                     break
 
