@@ -747,6 +747,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
         self.in_ports = False
         self.in_port = False
         self.in_os = False
+        self.list_extraports = []
 
         self.nmap_xml_file = None
 

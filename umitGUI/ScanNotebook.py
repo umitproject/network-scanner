@@ -315,6 +315,7 @@ class ScanNotebookPage(HIGVBox):
 
     def __create_toolbar(self):
         self.toolbar = ScanToolbar()
+        self.toolbar.scan_button.set_sensitive(False)
         self.empty_target = _("<target>")
         
         self.toolbar.target_entry.connect('changed', self.refresh_command_target)
@@ -379,13 +380,17 @@ class ScanNotebookPage(HIGVBox):
     
     def refresh_command_target(self, widget):
         #log.debug(">>> Refresh Command Target")
-        
+
         profile = self.toolbar.selected_profile
         #log.debug(">>> Profile: %s" % profile)
         
         if profile != '':
             target = self.toolbar.selected_target
-            #log.debug(">>> Target: %s" % target)
+            if target == '':
+                self.toolbar.scan_button.set_sensitive(False)
+            else:
+                self.toolbar.scan_button.set_sensitive(True)
+
             try:
                 cmd_profile = CommandProfile()
                 command = cmd_profile.get_command(profile) % target
@@ -435,6 +440,9 @@ name, and then try again."),
         self.get_parent().set_tab_title(self, label)
     
     def start_scan_cb(self, widget=None):
+        if not self.toolbar.scan_button.get_property("sensitive"):
+            return
+
         target = self.toolbar.selected_target
         command = self.command_toolbar.command
         profile = self.toolbar.selected_profile
