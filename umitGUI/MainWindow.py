@@ -727,6 +727,11 @@ Wait until the scan is finished and then try to save it again.'))
             filename = None
             if (response == gtk.RESPONSE_OK):
                 filename = self._save_results_filechooser_dialog.get_filename()
+                filter = self._save_results_filechooser_dialog.get_filter()
+                # determine file extension from filter and filename
+                if (filter.get_name() == "UMIT Scan Results (*.usr)" and
+                not (filename.find('.usr') == len(filename)-4)):
+                    filename += '.usr'
                 self._save(current_page, filename)
                 
             self._save_results_filechooser_dialog.destroy()
