@@ -428,7 +428,7 @@ class ScanNotebookPage(HIGVBox):
         warn_dialog = HIGAlertDialog(message_format=_("Profile not found!"),
                                      secondary_text=_("The profile name you \
 selected/typed couldn't be found, and probably doesn't exist. Please, check the profile \
-name, and then try again."),
+name and try again."),
                                      type=gtk.MESSAGE_QUESTION)
         warn_dialog.run()
         warn_dialog.destroy()
@@ -471,9 +471,9 @@ name, and then try again."),
             self.execute_command(command)
         else:
             warn_dialog = HIGAlertDialog(message_format=_("Empty Nmap Command!"),
-                                         secondary_text=_("There is no command to be \
-executed! Maybe the selected/typed profile doesn't exist. Please, check the profile name \
-or type a nmap command that you would like to execute."),
+                                         secondary_text=_("There is no command to  \
+execute! Maybe the selected/typed profile doesn't exist. Please, check the profile name \
+or type the nmap command you would like to execute."),
                                          type=gtk.MESSAGE_ERROR)
             warn_dialog.run()
             warn_dialog.destroy()
@@ -521,9 +521,9 @@ or type a nmap command that you would like to execute."),
             alive = self.command_execution.scan_state()
             if alive:
                 warn_dialog = HIGAlertDialog(message_format=_("Scan has not finished yet"),
-                                             secondary_text=_("Another Scan is running in \
-background and has not finished yet. To start another scan and kill the old one, click Ok. \
-To wait the conclusion of the old scan, choose Cancel."),
+                                             secondary_text=_("Another scan is running in \
+the background. To start another scan and kill the old one, click Ok. To wait for the \
+conclusion of the old scan, choose Cancel."),
                                              type=gtk.MESSAGE_QUESTION,
                                              buttons=gtk.BUTTONS_OK_CANCEL)
                 response = warn_dialog.run()
@@ -543,9 +543,8 @@ To wait the conclusion of the old scan, choose Cancel."),
             self.command_execution.run_scan()
         except Exception, msg:
             warn_dialog = HIGAlertDialog(message_format=_("Command is missing!"),
-                                         secondary_text=_("It seens that your profile's \
-command is missing or something else went wrong. This may be caused by a miss configuration \
-of your profile. Please, try to remove your profile and then create it again."),
+                                         secondary_text=_("It seems that your profile's \
+command is missing or something else went wrong. Please, try to remove and recreate your profile."),
                                          type=gtk.MESSAGE_ERROR)
             warn_dialog.run()
             warn_dialog.destroy()
