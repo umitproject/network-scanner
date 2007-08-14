@@ -335,6 +335,7 @@ for this profile.'))
             current_page.toolbar.target_entry.selected_target = self.\
                                 directions['Choose'].target_entry.get_text()
             current_page.command_toolbar.command_entry.command = cmd
+            current_page.command_toolbar.set_command(cmd)
         
         self.close_wizard()
 
