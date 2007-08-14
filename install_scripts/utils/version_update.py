@@ -26,7 +26,7 @@ import os
 from glob import glob
 
 WIN_BASE_DIR = os.path.join("install_scripts", "windows")
-LIN_BASE_DIR = os.path.join("install_scripts", "linux")
+UNX_BASE_DIR = os.path.join("install_scripts", "unix")
 MAC_BASE_DIR = os.path.join("install_scripts", "macosx")
 VERSION_FILE = os.path.join("share", "umit", "config", "umit_version")
 
@@ -55,7 +55,7 @@ SPLASH = os.path.join("install_scripts", "utils", "add_splash_version.py")
 # umitCore\Paths.py
 
 win_setup = os.path.join(WIN_BASE_DIR, "setup.py")
-lin_setup = os.path.join(LIN_BASE_DIR, "setup.py")
+lin_setup = os.path.join(UNX_BASE_DIR, "setup.py")
 mac_setup = os.path.join(MAC_BASE_DIR, "setup.py")
 
 umit_compiled = os.path.join(WIN_BASE_DIR, "umit_compiled.nsi")

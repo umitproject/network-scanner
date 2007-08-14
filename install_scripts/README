@@ -14,10 +14,10 @@ Generating windows installer:
  it work in your system.
 
 
-Generating linux packages:
+Generating unix packages:
 
  1 - You don't need gtk, pygtk, psyco, pysqlite2 installed, but you need PIL
- 2 - Run: install_scripts/linux/generate_linux_packages.sh
+ 2 - Run: install_scripts/unix/generate_linux_packages.sh
 
 
 Generating Mac OS X App:
