@@ -264,6 +264,7 @@ class HostDetails(HIGVBox):
             
             try:
                 self.set_osclass(os['osclass'])
+                self.osclass_expander.set_use_markup(True)
                 table.attach(self.osclass_expander,0,2,y1,y2)
             except:pass
             
