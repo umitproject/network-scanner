@@ -459,15 +459,23 @@ name and try again."),
         elif profile:
             self.set_tab_label(profile)
 
-        ####
-        # Setting status to scanning
-        self.status.set_scanning()
-        ####
-        
         if target != '':    
             self.toolbar.add_new_target(target)
 
+        if (command.find("-iR") == -1 and command.find("-iL") == -1):
+            if command.find("<target>") > 0:
+                warn_dialog = HIGAlertDialog(message_format=_("No Target Host!"), 
+                                             secondary_text=_("Target specification \
+is mandatory. Either by an address in the target input box or through the '-iR' and \
+'-iL' nmap options. Aborting scan."),
+                                             type=gtk.MESSAGE_ERROR)
+                warn_dialog.run()
+                warn_dialog.destroy()
+                return
+
         if command != '':
+            # Setting status to scanning
+            self.status.set_scanning()
             self.execute_command(command)
         else:
             warn_dialog = HIGAlertDialog(message_format=_("Empty Nmap Command!"),
@@ -477,7 +485,7 @@ or type the nmap command you would like to execute."),
                                          type=gtk.MESSAGE_ERROR)
             warn_dialog.run()
             warn_dialog.destroy()
-    
+
     def close_tab(self):
         try:
             gobject.source_remove(self.verify_thread_timeout_id)
