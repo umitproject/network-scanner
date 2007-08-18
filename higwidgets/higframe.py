@@ -46,20 +46,19 @@ class HIGFrame(gtk.Frame):
 # Demo
 if __name__ == "__main__":
     w = gtk.Window()
-    box = gtk.VBox()
-    box.set_border_width(12)
-    f = HIGFrame()
-    f._set_label("Nice")
-    box1 = gtk.VBox()
-    box2 = gtk.HBox()
-    box2.pack_start(gtk.Label("cool"), False, False, 0)
-    box3 = gtk.HBox()
-    box3.pack_start(gtk.Label("!!!!"), False, False, 0)
-    box1.add(box2)
-    box1.add(box3)
-    box.pack_start(box1, False, False, 0)
-    f.add(box)
+
+    hframe = HIGFrame("Sample HIGFrame")
+    aalign = gtk.Alignment(0, 0, 0, 0)
+    aalign.set_padding(12, 0, 24, 0)
+    abox = gtk.VBox()
+    aalign.add(abox)
+    hframe.add(aalign)
+    w.add(hframe)
+
+    for i in xrange(5):
+        abox.pack_start(gtk.Label("Sample %d" % i), False, False, 3)
+
     w.connect('destroy', lambda d: gtk.main_quit())
-    w.add(f)
     w.show_all()
+    
     gtk.main()
