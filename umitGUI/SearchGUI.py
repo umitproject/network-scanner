@@ -36,7 +36,7 @@ from types import StringTypes
 from umitCore.I18N import _
 from umitCore.UmitLogging import log
 from umitCore.NmapParser import months
-from umitCore.SearchResult import SearchDir, SearchDB
+from umitCore.SearchResult import SearchDir, SearchDB, SearchTabs
 from umitCore.UmitConf import SearchConfig
 
 from umitGUI.FileChoosers import DirectoryChooserDialog
@@ -49,7 +49,7 @@ from umitGUI.OSCombo import OSClassCombo, OSMatchCombo
 search_config = SearchConfig()
 
 class SearchGUI(gtk.HPaned, object):
-    def __init__(self):
+    def __init__(self, notebook):
         gtk.HPaned.__init__(self)
 
         self._create_widgets()
@@ -88,6 +88,7 @@ class SearchGUI(gtk.HPaned, object):
         self._set_result_view()
         self.scan_num = 1
         self.id = 0
+        self.notebook = notebook
 
     def _create_widgets(self):
         # Main widgets
@@ -423,12 +424,15 @@ the search data base option at the 'Search options' tab before start the search"
             for result in search_db.search(**search_dict):
                 self.append_result(result)
 
-
         if self.directory:
             search_dir = SearchDir(self.directory, self.file_extension)
 
             for result in search_dir.search(**search_dict):
                 self.append_result(result)
+
+        search_tabs = SearchTabs(self.notebook)
+        for result in search_tabs.search(**search_dict):
+            self.append_result(result)  
 
     def clear_result_list(self):
         for i in range(len(self.result_list)):

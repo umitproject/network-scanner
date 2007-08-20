@@ -750,6 +750,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
         self.list_extraports = []
 
         self.nmap_xml_file = None
+        self.unsaved = False
 
     def set_parser(self, parser):
         self.parser = parser
@@ -1270,6 +1271,11 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             else:
                 return xml_file
 
+    def set_unsaved(self):
+        self.unsaved = True
+
+    def is_unsaved(self):
+        return self.unsaved
 
 def nmap_parser_sax(nmap_xml_file=""):
     parser = make_parser()

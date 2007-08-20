@@ -51,10 +51,11 @@ else:
             self.vbox.set_border_width(6)
 
 class SearchWindow(BaseSearchWindow, object):
-    def __init__(self, load_method):
+    def __init__(self, load_method, notebook):
         BaseSearchWindow.__init__(self)
 
         self.load_method = load_method
+        self.notebook = notebook
 
         self._create_widgets()
         self._pack_widgets()
@@ -65,7 +66,7 @@ class SearchWindow(BaseSearchWindow, object):
         self.btn_box = gtk.HButtonBox()
         self.btn_open = HIGButton(stock=gtk.STOCK_OPEN)
         self.btn_close = HIGButton(stock=gtk.STOCK_CLOSE)
-        self.search_gui = SearchGUI()
+        self.search_gui = SearchGUI(self.notebook)
 
     def _pack_widgets(self):
         BaseSearchWindow._pack_widgets(self)        

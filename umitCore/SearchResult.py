@@ -294,6 +294,30 @@ class SearchDir(SearchResult, object):
                 else:
                     yield parsed
 
+class SearchTabs(SearchResult, object):
+    def __init__(self, notebook):
+        self.scan_notebook = notebook
+
+    def get_scan_results(self):
+        scan_file = None
+        for i in range(self.scan_notebook.get_n_pages()):
+            sbook_page = self.scan_notebook.get_nth_page(i)
+
+            if not sbook_page.status.get_empty():
+                scan_file = sbook_page.command_execution.get_xml_output_file()
+            if scan_file and os.access(scan_file, os.R_OK) and os.path.isfile(scan_file):
+                log.debug(">>> Retrieving unsaved scan result: %s" % scan_file)
+
+                try:
+                    parsed = NmapParser()
+                    parsed.set_xml_file(scan_file)
+                    parsed.parse()
+                    parsed.set_scan_name("Unsaved " + sbook_page.get_tab_label())
+                    parsed.set_unsaved()
+                except:
+                    pass
+                else:
+                    yield parsed
 
 if __name__ == "__main__":
     s = SearchDir("/home/adriano/umit/test", ["usr", "xml"])
