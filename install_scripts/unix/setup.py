@@ -29,7 +29,7 @@ from stat import ST_MODE
 
 
 VERSION = "0.9.4"
-REVISION = "1388"
+REVISION = "1451"
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
