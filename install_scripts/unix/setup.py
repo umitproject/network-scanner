@@ -18,6 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import os
+import os.path
 import re
 
 from distutils.core import setup
@@ -25,11 +26,11 @@ from distutils.command.install import install
 from distutils.command.sdist import sdist
 
 from glob import glob
-from stat import ST_MODE
+from stat import ST_MODE, S_IRWXU, S_IRGRP, S_IROTH
 
 
 VERSION = "0.9.4"
-REVISION = "1451"
+REVISION = "1453"
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
@@ -97,11 +98,9 @@ os.path.walk(locale_dir, mo_find, data_files)
 
 class umit_install(install):
     def run(self):
-        old_umask = os.umask(0022)
-        print ">>> Old system umask:", old_umask
-
         install.run(self)
 
+	self.set_perms()
         self.fix_paths()
         self.create_uninstaller()
         self.finish_banner()
@@ -140,6 +139,25 @@ print
         # Set exec bit for uninstaller
         mode = ((os.stat(uninstaller_filename)[ST_MODE]) | 0555) & 07777
         os.chmod(uninstaller_filename, mode)
+
+    def set_perms(self):
+        re_bin = re.compile("(bin)")
+        for output in self.get_outputs():
+            print ">>> bin:", re_bin.findall(output)
+            if re_bin.findall(output):
+                continue
+
+            if os.path.isdir(output):
+                os.chmod(output, S_IRWXU | \
+                                 S_IRGRP | \
+                                 S_IXGRP | \
+                                 S_IROTH | \
+                                 S_IXOTH)
+            else:
+                os.chmod(output, S_IRWXU | \
+                                 S_IRGRP | \
+                                 S_IROTH)
+
 
     def fix_paths(self):
         su = os.path.join("share", "umit")
