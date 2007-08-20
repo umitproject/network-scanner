@@ -65,7 +65,6 @@ data_files = [ (pixmaps_dir, svg + glob(os.path.join(pixmaps_dir, '*.png')) +
                (config_dir, [os.path.join(config_dir, 'umit.conf')] +
                             [os.path.join(config_dir, 'scan_profile.usp')] +
                             [os.path.join(config_dir, 'umit_version')] +
-                            [os.path.join(config_dir, 'umit.db')] + 
                             glob(os.path.join(config_dir, '*.xml'))+
                             glob(os.path.join(config_dir, '*.txt'))),
 
@@ -98,7 +97,7 @@ os.path.walk(locale_dir, mo_find, data_files)
 
 class umit_install(install):
     def run(self):
-        old_umask = os.umask("0022")
+        old_umask = os.umask(0022)
         print ">>> Old system umask:", old_umask
 
         install.run(self)

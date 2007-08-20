@@ -72,7 +72,6 @@ data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.png')) +
                (config_dir, [os.path.join(config_dir, 'umit.conf')] +
                             [os.path.join(config_dir, 'scan_profile.usp')] +
                             [os.path.join(config_dir, 'umit_version')] +
-                            [os.path.join(config_dir, 'umit.db')] + 
                             glob(os.path.join(config_dir, '*.xml'))+
                             glob(os.path.join(config_dir, '*.txt'))),
 
