@@ -29,7 +29,7 @@ from stat import ST_MODE
 
 
 VERSION = "0.9.4"
-REVISION = "1288"
+REVISION = "1388"
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
@@ -98,6 +98,9 @@ os.path.walk(locale_dir, mo_find, data_files)
 
 class umit_install(install):
     def run(self):
+        old_umask = os.umask("0022")
+        print ">>> Old system umask:", old_umask
+
         install.run(self)
 
         self.fix_paths()

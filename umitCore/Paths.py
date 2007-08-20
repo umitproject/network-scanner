@@ -29,7 +29,7 @@ from umitCore.BasePaths import base_paths, HOME
 from umitCore.I18N import _
 
 VERSION = "0.9.4"
-REVISION = "1288"
+REVISION = "1388"
 
 CONFIG_DIR = join("share", "umit", "config")
 UMIT_ICON = join("share", "icons", "umit_48.ico")
@@ -254,7 +254,6 @@ def create_user_dir(config_file, user_home):
     copy_config_file("scan_profile.usp", main_dir, user_dir)
     copy_config_file("target_list.txt", main_dir, user_dir)
     copy_config_file("umit_version", main_dir, user_dir)
-    copy_config_file("umit.db", main_dir, user_dir)
     copy_config_file("wizard.xml", main_dir, user_dir)
 
     return dict(user_dir = user_dir,
