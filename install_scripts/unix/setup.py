@@ -101,6 +101,7 @@ class umit_install(install):
         install.run(self)
 
 	self.set_perms()
+        self.set_modules_path()
         self.fix_paths()
         self.create_uninstaller()
         self.finish_banner()
@@ -140,10 +141,35 @@ print
         mode = ((os.stat(uninstaller_filename)[ST_MODE]) | 0555) & 07777
         os.chmod(uninstaller_filename, mode)
 
+    def set_modules_path(self):
+	umit = os.path.join(self.install_scripts, "umit")
+        modules = self.install_lib
+
+        re_sys = re.compile("^import sys$")
+
+        ufile = open(umit, "r")
+        ucontent = ufile.readlines()
+        ufile.close()
+
+        uline = None
+        for line in xrange(len(ucontent)):
+            if re_sys.match(ucontent[line]):
+               uline = line + 1
+               break
+
+        ucontent.insert(uline, "sys.path.append('%s')\n" % modules)
+
+        ufile = open(umit, "w")
+        ufile.writelines(ucontent)
+        ufile.close()
+
+        print ">>> UMIT", open(umit, "r").readlines()[:uline + 5]
+
+        
+
     def set_perms(self):
         re_bin = re.compile("(bin)")
         for output in self.get_outputs():
-            print ">>> bin:", re_bin.findall(output)
             if re_bin.findall(output):
                 continue
 

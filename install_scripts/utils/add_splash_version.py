@@ -29,7 +29,7 @@ print ">>> Adding the version number to splash screen"
 BASE_DIR = os.path.join("install_scripts", "utils")
 FONT = os.path.join(BASE_DIR, "fonts", "FreeSansBold.ttf")
 VERSION = "0.9.4"
-REVISION = "1451"
+REVISION = "1453"
 
 splash = Image.open(os.path.join(BASE_DIR, "images", "splash.png"))
 font = ImageFont.truetype(FONT, 30)

@@ -29,7 +29,7 @@ from umitCore.BasePaths import base_paths, HOME
 from umitCore.I18N import _
 
 VERSION = "0.9.4"
-REVISION = "1451"
+REVISION = "1453"
 
 CONFIG_DIR = join("share", "umit", "config")
 UMIT_ICON = join("share", "icons", "umit_48.ico")
