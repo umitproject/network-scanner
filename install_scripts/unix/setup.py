@@ -26,11 +26,11 @@ from distutils.command.install import install
 from distutils.command.sdist import sdist
 
 from glob import glob
-from stat import ST_MODE, S_IRWXU, S_IRGRP, S_IROTH
+from stat import *
 
 
 VERSION = "0.9.4"
-REVISION = "1463"
+REVISION = "1453"
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
@@ -100,7 +100,7 @@ class umit_install(install):
     def run(self):
         install.run(self)
 
-        self.set_perms()
+	self.set_perms()
         self.set_modules_path()
         self.fix_paths()
         self.create_uninstaller()
@@ -142,7 +142,7 @@ print
         os.chmod(uninstaller_filename, mode)
 
     def set_modules_path(self):
-        umit = os.path.join(self.install_scripts, "umit")
+	umit = os.path.join(self.install_scripts, "umit")
         modules = self.install_lib
 
         re_sys = re.compile("^import sys$")
@@ -154,8 +154,8 @@ print
         uline = None
         for line in xrange(len(ucontent)):
             if re_sys.match(ucontent[line]):
-                uline = line + 1
-                break
+               uline = line + 1
+               break
 
         ucontent.insert(uline, "sys.path.append('%s')\n" % modules)
 
@@ -180,8 +180,7 @@ print
                                  S_IROTH | \
                                  S_IXOTH)
             else:
-                os.chmod(output, S_IRUSR |
-                                 S_IWUSR | \
+                os.chmod(output, S_IRWXU | \
                                  S_IRGRP | \
                                  S_IROTH)
 
