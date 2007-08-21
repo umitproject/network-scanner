@@ -27,39 +27,20 @@ import signal
 import webbrowser
 from os.path import split
 
-######################################
-# Setting the umit home directory
-
-from umitCore.Paths import Path
-Path.set_umit_conf(split(sys.argv[0])[0])
-
-######################################
-
-from umitGUI.App import App
-
-DEVELOPMENT = True
-if not DEVELOPMENT:
+UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", False)
+if not UMIT_DEVELOPMENT:
     from tempfile import mktemp
-
     # Generating temporary files names
     stdout_output = mktemp()
     stderr_output = mktemp()
 
-    # Just creating the files that are going to be used to receive the output
-    _stdout_handler = open(stdout_output, "w+")
-    _stderr_handler = open(stderr_output, "w+")
-
-    print ">>> STDOUT FILE:", stdout_output
-    print ">>> STDERR FILE:", stderr_output
-
     old_stdout = sys.stdout
     old_stderr = sys.stderr
     
-    sys.stdout = _stdout_handler
-    sys.stderr = _stderr_handler
+    sys.stdout = open(stdout_output, "w")
+    sys.stderr = open(stderr_output, "w")
 
     # This will catch exceptions and send them to bugzilla
-
     def excepthook(type, value, tb):
         import traceback
         import gtk
@@ -95,7 +76,8 @@ if not DEVELOPMENT:
         except:
             d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                                message_format=_("Bug not reported"),
-                               secondary_text=_("""A critical error occourried during Umit execution,
+                               secondary_text=_("""A critical error \
+occourried during Umit execution,
 and it was not properly reported to our bug tracker. Please,
 copy the error message bellow and report it on our bug tracker.
 
@@ -111,11 +93,24 @@ The following error message was NOT reported:
             # Calling a browser to open the result from bug tracker
             if report_result:
                 webbrowser.open("file://%s" % report_result)
-    
+
     sys.excepthook = excepthook
 
 if __name__ == '__main__':
+    ######################################
+    # Setting the umit home directory
+
+    from umitCore.Paths import Path
+    Path.set_umit_conf(split(sys.argv[0])[0])
+
+    ######################################
+
+    from umitCore.UmitLogging import log
+    from umitGUI.App import App
     umit_app = App()
+
+    if UMIT_DEVELOPMENT:
+        log.critical(">>> Not in development mode.")
 
     if os.name == "posix":
         signal.signal(signal.SIGHUP, umit_app.safe_shutdown)
@@ -127,4 +122,3 @@ if __name__ == '__main__':
         umit_app.run()
     except KeyboardInterrupt:
         sys.exit(signal.SIGINT)
-

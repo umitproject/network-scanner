@@ -26,7 +26,7 @@ from setuptools import setup
 from glob import glob
 
 VERSION = "0.9.4"
-REVISION = "1453"
+REVISION = "1463"
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
