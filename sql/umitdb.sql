@@ -377,6 +377,7 @@ CREATE TABLE trace
 (
     pk INTEGER NOT NULL,
     port INTEGER NOT NULL,
+    fk_host INTEGER NOT NULL,
     fk_protocol INTEGER NOT NULL
 );
 
@@ -575,6 +576,9 @@ ALTER TABLE osmatch ADD CONSTRAINT osmatch_host_fk
     FOREIGN KEY (fk_host) REFERENCES host (pk);
 
 --------------------------------------------------------------------------------
+
+ALTER TABLE trace ADD CONSTRAINT trace_host_fk
+    FOREIGN KEY (fk_host) REFERENCES host (pk);
 
 ALTER TABLE trace ADD CONSTRAINT trace_protocol_fk
     FOREIGN KEY (fk_protocol) REFERENCES protocol (pk);
