@@ -19,24 +19,33 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
+import sys
 import os
 import os.path
-import Image, ImageDraw, ImageFont
+
+try:
+    import Image, ImageDraw, ImageFont
+except:
+    print ">>> PIL not available. Couldn't update splash version"
+    sys.exit(1)
 
 
-print ">>> Adding the version number to splash screen"
+def add_version(base_dir, version, revision):
+    print ">>> Adding the version number to splash screen"
 
-BASE_DIR = os.path.join("install_scripts", "utils")
-FONT = os.path.join(BASE_DIR, "fonts", "FreeSansBold.ttf")
-VERSION = "0.9.4"
-REVISION = "1463"
+    BASE_DIR = os.path.join("install_scripts", "utils")
+    FONT = os.path.join(BASE_DIR, "fonts", "FreeSansBold.ttf")
+    TEMPLATE = os.path.join(BASE_DIR, "images", "splash.png")
 
-splash = Image.open(os.path.join(BASE_DIR, "images", "splash.png"))
-font = ImageFont.truetype(FONT, 30)
-font2 = ImageFont.truetype(FONT, 10)
+    if os.path.exists(FONT) and os.path.exists(TEMPLATE):
+        splash = Image.open(TEMPLATE)
+        font = ImageFont.truetype(FONT, 30)
+        font2 = ImageFont.truetype(FONT, 10)
 
-edit_splash = ImageDraw.Draw(splash)
-edit_splash.text((450, 155), VERSION, font=font, fill="#000")
-edit_splash.text((450, 182), "Rev. %s" % REVISION, font=font2, fill="#000")
+        edit_splash = ImageDraw.Draw(splash)
+        edit_splash.text((450, 155), version, font=font, fill="#000")
+        edit_splash.text((450, 182), "Rev. %s" % revision, font=font2, fill="#000")
 
-splash.save(os.path.join("share", "pixmaps", "splash.png"))
+        splash.save(os.path.join(base_dir, "share", "pixmaps", "splash.png"))
+    else:
+        print ">>> COULDN'T FIND TEMPLATE (%s) OR FONT (%s)" % (TEMPLATE, FONT)

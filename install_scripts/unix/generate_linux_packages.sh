@@ -6,12 +6,6 @@ echo "# Umit Source Packages #"
 echo "########################"
 echo
 
-echo "Updating version and revision numbers..."
-python install_scripts/utils/version_update.py
-
-echo "Generating the splash image with new version and revision..."
-python install_scripts/utils/add_splash_version.py
-
 echo "Updating/Creating dumped operating system list..."
 python install_scripts/utils/create_os_list.py
 

@@ -27,7 +27,9 @@ import signal
 import webbrowser
 from os.path import split
 
+
 UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", False)
+
 if not UMIT_DEVELOPMENT:
     from tempfile import mktemp
     # Generating temporary files names

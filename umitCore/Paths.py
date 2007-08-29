@@ -19,7 +19,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-from os import R_OK, W_OK, access, mkdir, getcwd
+from os import R_OK, W_OK, access, mkdir, getcwd, environ
 from os.path import exists, join, split, abspath
 import sys
 
@@ -28,8 +28,8 @@ from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.BasePaths import base_paths, HOME
 from umitCore.I18N import _
 
-VERSION = "0.9.4"
-REVISION = "1463"
+VERSION = environ.get("UMIT_VERSION", "0.4.5")
+REVISION = environ.get("UMIT_REVISION", "1567")
 
 CONFIG_DIR = join("share", "umit", "config")
 UMIT_ICON = join("share", "icons", "umit_48.ico")

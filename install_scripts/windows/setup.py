@@ -21,6 +21,7 @@
 
 import py2exe
 import os.path
+import os
 
 from py2exe.build_exe import py2exe as build_exe
 from distutils.core import setup
@@ -29,8 +30,10 @@ from glob import glob
 ################################################################################
 # Main Variables
 
-VERSION = "0.9.4"
-REVISION = "1463"
+VERSION = os.environ.get("UMIT_VERSION", "0.4.5")
+REVISION = os.environ.get("UMIT_REVISION", "1567")
+
+SOURCE_PKG = False
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command

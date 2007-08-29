@@ -17,6 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
+import sys
 import os
 import os.path
 import re
@@ -24,13 +25,19 @@ import re
 from distutils.core import setup
 from distutils.command.install import install
 from distutils.command.sdist import sdist
+from distutils import log, dir_util
 
 from glob import glob
 from stat import *
 
 
-VERSION = "0.9.4"
-REVISION = "1453"
+# The environ variables are catch only on package generating phase.
+# After package generation, the version and revision turns into a hardcoded string
+VERSION = os.environ.get("UMIT_VERSION", "0.4.5")
+REVISION = os.environ.get("UMIT_REVISION", "1567")
+
+VERSION_FILE = os.path.join("share", "umit", "config", "umit_version")
+SOURCE_PKG = False
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
@@ -100,7 +107,7 @@ class umit_install(install):
     def run(self):
         install.run(self)
 
-	self.set_perms()
+        self.set_perms()
         self.set_modules_path()
         self.fix_paths()
         self.create_uninstaller()
@@ -142,7 +149,7 @@ print
         os.chmod(uninstaller_filename, mode)
 
     def set_modules_path(self):
-	umit = os.path.join(self.install_scripts, "umit")
+        umit = os.path.join(self.install_scripts, "umit")
         modules = self.install_lib
 
         re_sys = re.compile("^import sys$")
@@ -154,8 +161,8 @@ print
         uline = None
         for line in xrange(len(ucontent)):
             if re_sys.match(ucontent[line]):
-               uline = line + 1
-               break
+                uline = line + 1
+                break
 
         ucontent.insert(uline, "sys.path.append('%s')\n" % modules)
 
@@ -164,8 +171,6 @@ print
         ufile.close()
 
         print ">>> UMIT", open(umit, "r").readlines()[:uline + 5]
-
-        
 
     def set_perms(self):
         re_bin = re.compile("(bin)")
@@ -199,10 +204,7 @@ print
         paths_file = os.path.join("umitCore", "Paths.py")
         installed_files = self.get_outputs()
         for f in installed_files:
-            #print ">>> PATHS FILE:", re.findall("(%s)" % \
-            #                                    re.escape(paths_file), f)
             if re.findall("(%s)" % re.escape(paths_file), f):
-                #print ">>>>> FOUND PATHS FILE! <<<<<"
                 paths_file = f
                 pf = open(paths_file)
                 pcontent = pf.read()
@@ -214,10 +216,8 @@ print
                 result = re.findall("(.*%s)" %\
                                     re.escape(interesting_paths[path]),
                                     f)
-                #print ">>> PATH:", path, result
                 if len(result) == 1:
                     result = result[0]
-                    #print ">>>>> FOUND! <<<<<"
                     pcontent = re.sub("%s\s+=\s+.+" % path,
                                       "%s = \"%s\"" % (path, result),
                                       pcontent)
@@ -236,8 +236,63 @@ print
 
 class umit_sdist(sdist):
     def run(self):
+        self.keep_temp = 1
         sdist.run(self)
         self.finish_banner()
+
+    def make_release_tree(self, base_dir, files):
+        """Create the directory tree that will become the source
+        distribution archive.  All directories implied by the filenames in
+        'files' are created under 'base_dir', and then we hard link or copy
+        (if hard linking is unavailable) those files into place.
+        Essentially, this duplicates the developer's source tree, but in a
+        directory named after the distribution, containing only the files
+        to be distributed.
+        
+        --- This is a copy of the distutils.command.sdist make_release_tree with
+        a slight modification, which forces the copy of the files instead of
+        hard linking them to the temp directory.
+        """
+        # Create all the directories under 'base_dir' necessary to
+        # put 'files' there; the 'mkpath()' is just so we don't die
+        # if the manifest happens to be empty.
+        self.mkpath(base_dir)
+        dir_util.create_tree(base_dir, files, dry_run=self.dry_run)
+
+        # And walk over the list of files, either making a hard link (if
+        # os.link exists) to each one that doesn't already exist in its
+        # corresponding location under 'base_dir', or copying each file
+        # that's out-of-date in 'base_dir'.  (Usually, all files will be
+        # out-of-date, because by default we blow away 'base_dir' when
+        # we're done making the distribution archives.)
+
+        # Removed the original if statement to force file copying
+        link = None
+        msg = "copying files to %s..." % base_dir
+
+        if not files:
+            log.warn("no files to distribute -- empty manifest?")
+        else:
+            log.info(msg)
+        for file in files:
+            if not os.path.isfile(file):
+                log.warn("'%s' not a regular file -- skipping" % file)
+            else:
+                dest = os.path.join(base_dir, file)
+                self.copy_file(file, dest, link=link)
+
+        self.distribution.metadata.write_pkg_info(base_dir)
+        # End of the modified version of make_release_tree
+
+        # Updating version, revision, splash and paths informations...
+        sys.path.append(os.path.join("install_scripts", "utils"))
+        from add_splash_version import add_version
+        from version_update import update_setup, update_paths, update_umit_version
+
+        add_version(base_dir, VERSION, REVISION)
+        update_setup(base_dir, VERSION, REVISION)
+        update_paths(base_dir, VERSION, REVISION)
+        update_umit_version(base_dir, VERSION, REVISION)
 
     def finish_banner(self):
         print 
@@ -245,6 +300,13 @@ class umit_sdist(sdist):
               ("#" * 10, VERSION, REVISION, "#" * 10)
         print
 
+# The umit_sdist class is intended to be used only from inside a svn working copy
+# because it uses install_scripts/utils/version_update.py and add_splash_version.py
+# which are not sent along with the source packages.
+# To avoid import errors, the following code redirects umit_sdist to the original
+# sdist class while running from a previously generated source package
+if SOURCE_PKG:
+    umit_sdist = sdist
 
 ##################### Umit banner ########################
 print
