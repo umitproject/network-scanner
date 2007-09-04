@@ -60,14 +60,16 @@ if not UMIT_DEVELOPMENT:
         sys.stderr = old_stderr
 
         hook = "Type: %s\nValue: %s\n" % (type, value)
-        outputs = "CRASH REPORTED:\n\n\
+        outputs = "CRASH REPORTED:\n\
+SYS.PLATFORM: %s\n\
+OS.NAME: %s\n\n\
 %s\nSTDOUT\n%s\n\n\
 %s\nSTDERR\n%s\n\nHOOK:\n%s" % \
-                       ("-"*80,
-                        open(stdout_output).read(),
-                        "-"*80,
-                        open(stderr_output).read(),
-                        hook)
+        (sys.platform, os.name, "-"*80,
+         open(stdout_output).read(),
+         "-"*80,
+         open(stderr_output).read(),
+         hook)
 
         report_result = False
         try:

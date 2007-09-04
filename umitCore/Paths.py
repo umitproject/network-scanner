@@ -19,8 +19,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-from os import R_OK, W_OK, access, mkdir, getcwd, environ
-from os.path import exists, join, split, abspath
+from os import R_OK, W_OK, access, mkdir, getcwd, environ, getcwd
+from os.path import exists, join, split, abspath, dirname
 import sys
 
 from umitCore.UmitLogging import log
@@ -31,13 +31,17 @@ from umitCore.I18N import _
 VERSION = environ.get("UMIT_VERSION", "0.4.5")
 REVISION = environ.get("UMIT_REVISION", "1567")
 
-CONFIG_DIR = join("share", "umit", "config")
-UMIT_ICON = join("share", "icons", "umit_48.ico")
-LOCALE_DIR = join("share", "umit", "locale")
-MISC_DIR = join("share", "umit", "misc")
-ICONS_DIR = join("share", "icons")
-PIXMAPS_DIR = join("share", "pixmaps")
-DOCS_DIR = join("share", "umit", "docs")
+main_dir = ""
+if hasattr(sys, "frozen"):
+    main_dir = dirname(sys.executable)
+
+CONFIG_DIR = join(main_dir, "share", "umit", "config")
+UMIT_ICON = join(main_dir, "share", "icons", "umit_48.ico")
+LOCALE_DIR = join(main_dir, "share", "umit", "locale")
+MISC_DIR = join(main_dir, "share", "umit", "misc")
+ICONS_DIR = join(main_dir, "share", "icons")
+PIXMAPS_DIR = join(main_dir, "share", "pixmaps")
+DOCS_DIR = join(main_dir, "share", "umit", "docs")
 
 
 #######
