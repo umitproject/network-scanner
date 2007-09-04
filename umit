@@ -46,9 +46,12 @@ if not UMIT_DEVELOPMENT:
 
     # This will catch exceptions and send them to bugzilla
     def excepthook(type, value, tb):
+        if type == type(ImportError):
+            sys.exist(1)
+
         import traceback
         import gtk
-        
+
         from umitCore.I18N import _
         from higwidgets.higdialogs import HIGAlertDialog
         from umitGUI.CrashReport import CrashReport
