@@ -27,7 +27,6 @@ import signal
 import webbrowser
 from os.path import split
 
-
 UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", False)
 
 if not UMIT_DEVELOPMENT:
@@ -38,9 +37,12 @@ if not UMIT_DEVELOPMENT:
 
     old_stdout = sys.stdout
     old_stderr = sys.stderr
-    
-    sys.stdout = open(stdout_output, "w")
-    sys.stderr = open(stderr_output, "w")
+
+    _stdout = open(stdout_output, "w")
+    _stderr = open(stderr_output, "w")
+
+    sys.stdout = _stdout
+    sys.stderr = _stderr
 
     # This will catch exceptions and send them to bugzilla
     def excepthook(type, value, tb):
