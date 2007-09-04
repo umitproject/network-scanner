@@ -398,7 +398,9 @@ class ScanNotebookPage(HIGVBox):
                 
                 self.command_toolbar.command = command
             except ProfileNotFound:
-                pass
+                pass # Go without a profile
+            except TypeError:
+                pass # The target is empty...
                 #self.profile_not_found_dialog()
     
     def refresh_command(self, widget):
