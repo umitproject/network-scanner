@@ -53,6 +53,7 @@ if not UMIT_DEVELOPMENT:
         import gtk
 
         from umitCore.I18N import _
+        from umitCore.Paths import VERSION, REVISION
         from higwidgets.higdialogs import HIGAlertDialog
         from umitGUI.CrashReport import CrashReport
 
@@ -67,10 +68,13 @@ if not UMIT_DEVELOPMENT:
         hook = "Type: %s\nValue: %s\n" % (type, value)
         outputs = "CRASH REPORTED:\n\
 SYS.PLATFORM: %s\n\
-OS.NAME: %s\n\n\
+OS.NAME: %s\n\
+Umit Version: %s\n\
+Umit Revision: %s\n\n\
 %s\nSTDOUT\n%s\n\n\
 %s\nSTDERR\n%s\n\nHOOK:\n%s" % \
-        (sys.platform, os.name, "-"*80,
+        (sys.platform, os.name,
+         VERSION, REVISION, "-"*80,
          open(stdout_output).read(),
          "-"*80,
          open(stderr_output).read(),
