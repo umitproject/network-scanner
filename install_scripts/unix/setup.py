@@ -170,8 +170,6 @@ print
         ufile.writelines(ucontent)
         ufile.close()
 
-        print ">>> UMIT", open(umit, "r").readlines()[:uline + 5]
-
     def set_perms(self):
         re_bin = re.compile("(bin)")
         for output in self.get_outputs():
