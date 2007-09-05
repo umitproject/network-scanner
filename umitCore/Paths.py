@@ -172,16 +172,18 @@ user home: %s" % config_file)
         pass
 
     def check_version(self, config_dir):
-        ver = open(join(config_dir,
-                        base_paths['umit_version'])).readlines()[0].\
-                                                     split("\n")[0].\
-                                                     split("\r")[0]
+        version_file = join(config_dir, base_paths['umit_version'])
 
-        log.debug(">>> This Umit Version: %s" % VERSION)
-        log.debug(">>> Version of the files in %s: %s" % (config_dir, ver))
+        if exists(version_file):
+            ver = open(version_file).readlines()[0].\
+                                     split("\n")[0].\
+                                     split("\r")[0]
 
-        if VERSION == ver:
-            return True
+            log.debug(">>> This Umit Version: %s" % VERSION)
+            log.debug(">>> Version of the files in %s: %s" % (config_dir, ver))
+
+            if VERSION == ver:
+                return True
         return False
 
     def root_dir(self):
