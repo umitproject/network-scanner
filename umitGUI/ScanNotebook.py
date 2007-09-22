@@ -1055,7 +1055,7 @@ Fingerprints Found!"),
                                       'scanned':str(host.get_scanned_ports()),
                                       'uptime':uptime['seconds'],
                                       'lastboot':uptime['lastboot']})
-        
+
         ipv4 = ''
         try:ipv4 = host.get_ip()['addr']
         except KeyError: pass

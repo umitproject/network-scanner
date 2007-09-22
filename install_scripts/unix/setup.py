@@ -33,8 +33,8 @@ from stat import *
 
 # The environ variables are catch only on package generating phase.
 # After package generation, the version and revision turns into a hardcoded string
-VERSION = os.environ.get("UMIT_VERSION", "0.4.5")
-REVISION = os.environ.get("UMIT_REVISION", "1567")
+VERSION = os.environ.get("UMIT_VERSION", "0.9.5")
+REVISION = os.environ.get("UMIT_REVISION", "2549")
 
 VERSION_FILE = os.path.join("share", "umit", "config", "umit_version")
 SOURCE_PKG = False

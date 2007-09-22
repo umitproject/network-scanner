@@ -27,6 +27,8 @@ import signal
 import webbrowser
 from os.path import split
 
+from umitCore.UmitOptionParser import option_parser
+
 UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", False)
 
 if not UMIT_DEVELOPMENT:
