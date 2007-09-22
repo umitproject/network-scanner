@@ -544,6 +544,8 @@ Scan Tab?'),
 
     def _create_scan_notebook(self):
         self.scan_notebook = ScanNotebook()
+        self.scan_notebook.close_scan_cb = self._close_scan_cb
+
         page = self._new_scan_cb()
         self.scan_notebook.show_all()
 
@@ -822,18 +824,7 @@ Wait until the scan is finished and then try to save it again.'))
         - Ready to start a new scan
         - Untitled scan
         """
-        page = ScanNotebookPage()
-        page.select_first_profile()
-        
-        self.scan_notebook.append_page(page, self._close_scan_cb, tab_title=data)
-        page.show_all()
-        
-        self.scan_notebook.set_current_page(-1)
-
-        # Put focus at the target combo, so user can open umit and start writing the target
-        page.target_focus()
-
-        return page
+        return self.scan_notebook.add_scan_page(data)
 
     def _new_scan_profile_cb(self, p):
         pe = ProfileEditor()

@@ -186,12 +186,27 @@ class ScanNotebook(HIGNotebook):
         self.set_scrollable(True)
         self.tab_titles = []
         self.scan_num = 1
+        self.close_scan_cb = None
 
     def remove_page(self, page_num):
         page = self.get_nth_page(page_num)
         self.remove_tab_title(self.get_tab_title(page))
         
         HIGNotebook.remove_page(self, page_num)
+
+    def add_scan_page(self, title):
+        page = ScanNotebookPage()
+        page.select_first_profile()
+
+        self.append_page(page, self.close_scan_cb, tab_title=title)
+        page.show_all()
+
+        self.set_current_page(-1)
+
+        # Put focus at the target combo, so user can open umit and start writing the target
+        page.target_focus()
+
+        return page
 
     def append_page(self, page, close_cb, tab_label=None, tab_title=None):
         log.debug(">>> Appending Scan Tab.")

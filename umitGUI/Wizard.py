@@ -328,10 +328,15 @@ for this profile.'))
                 page = self.notebook.get_nth_page(i)
                 page.toolbar.profile_entry.update()
         else:
-            cmd = command % self.directions['Choose'].target_entry.get_text()
+            target = self.directions['Choose'].target_entry.get_text()
+            cmd = command % target
             
             current_page = self.notebook.get_nth_page(self.notebook.get_current_page())
+            if current_page == None:
+                current_page = self.notebook.add_scan_page(target)
+
             current_page.execute_command(cmd)
+
             current_page.toolbar.target_entry.selected_target = self.\
                                 directions['Choose'].target_entry.get_text()
             current_page.command_toolbar.command_entry.command = cmd
