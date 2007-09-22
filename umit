@@ -83,7 +83,7 @@ Umit Revision: %s\n\n\
         report_result = False
         try:
             old_stdout.write("Bug reported!")
-            c = CrashReport("Umit Crash - STDOUT and STDERR", outputs)
+            c = CrashReport("Umit Crash - '%s'" % value, outputs)
             c.show_all()
             gtk.main()
         except:
