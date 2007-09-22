@@ -31,7 +31,7 @@ from higwidgets.higscrollers import HIGScrolledWindow
 from umitGUI.NmapOutputViewer import NmapOutputViewer
 from umitGUI.ScanHostDetailsPage import ScanHostDetailsPage
 from umitGUI.ScanToolbar import ScanCommandToolbar, ScanToolbar
-from umitGUI.ScanHostsView import ScanHostsView
+from umitGUI.ScanHostsView import ScanHostsView, SCANNING
 from umitGUI.ScanOpenPortsPage import ScanOpenPortsPage
 from umitGUI.ScanRunDetailsPage import ScanRunDetailsPage
 from umitGUI.ScanNmapOutputPage import ScanNmapOutputPage
@@ -563,12 +563,11 @@ command is missing or something else went wrong. Please, try to remove and recre
         self.scan_result.show_nmap_output(self.command_execution.get_output_file())
 
         # Set a "EXECUTING" icon to host list
-        self.scan_result.set_hosts({_('Scanning'):{'stock':gtk.STOCK_EXECUTE,'action':None}})
-        self.scan_result.set_services({_('Scanning'):{'action':None}})
+        self.scan_result.set_hosts({SCANNING:{'stock':gtk.STOCK_EXECUTE,'action':None}})
+        self.scan_result.set_services({SCANNING:{'action':None}})
 
         # Clear port list, to remove old information
         self.scan_result.clear_port_list()
-
 
         # When scan starts, change to nmap output view tab and refresh output
         self.scan_result.change_to_nmap_output_tab()
@@ -902,6 +901,7 @@ Fingerprints Found!"),
     
     def update_host_info(self, widget):
         self.scan_result.scan_result_notebook.port_mode()
+
         model_host_list, selection = widget.get_selected_rows()
         host_objs = [self.hosts[model_host_list[i[0]][1]] for i in selection]
         self.clean_host_details()

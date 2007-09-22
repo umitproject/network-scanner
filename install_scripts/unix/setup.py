@@ -284,10 +284,8 @@ class umit_sdist(sdist):
 
         # Updating version, revision, splash and paths informations...
         sys.path.append(os.path.join("install_scripts", "utils"))
-        from add_splash_version import add_version
         from version_update import update_setup, update_paths, update_umit_version
 
-        add_version(base_dir, VERSION, REVISION)
         update_setup(base_dir, VERSION, REVISION)
         update_paths(base_dir, VERSION, REVISION)
         update_umit_version(base_dir, VERSION, REVISION)
@@ -298,11 +296,6 @@ class umit_sdist(sdist):
               ("#" * 10, VERSION, REVISION, "#" * 10)
         print
 
-# The umit_sdist class is intended to be used only from inside a svn working copy
-# because it uses install_scripts/utils/version_update.py and add_splash_version.py
-# which are not sent along with the source packages.
-# To avoid import errors, the following code redirects umit_sdist to the original
-# sdist class while running from a previously generated source package
 if SOURCE_PKG:
     umit_sdist = sdist
 

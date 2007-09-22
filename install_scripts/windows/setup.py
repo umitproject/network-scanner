@@ -107,9 +107,7 @@ class umit_py2exe(build_exe):
         base_dir = os.getcwd()
         sys.path.append(os.path.join("install_scripts", "utils"))
         from version_update import update_umit_compiled, update_paths, update_umit_version
-        from add_splash_version import add_version
 
-        add_version(base_dir, VERSION, REVISION)
         update_umit_compiled(base_dir, VERSION, REVISION)
         update_paths(base_dir, VERSION, REVISION)
         update_umit_version(base_dir, VERSION, REVISION)

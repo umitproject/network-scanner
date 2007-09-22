@@ -22,10 +22,10 @@
 import gtk
 
 from types import StringTypes
-
 from higwidgets.higboxes import HIGVBox
-
 from umitCore.I18N import _
+
+SCANNING = _("Scanning")
 
 class ScanHostsView(HIGVBox, object):
     def __init__(self, hosts={}, services={}):
@@ -168,18 +168,18 @@ class ScanHostsView(HIGVBox, object):
         for i in range(len(self.service_list)):
             iter = self.service_list.get_iter_root()
             del(self.service_list[iter])
-    
+
     def set_hosts(self, hosts):
         self.hosts = hosts
         self.clear_host_list()
-        
+
         for host in hosts:
             self.host_list.append ([hosts[host]['stock'], host])
 
     def set_services(self, services):
         self.services = services
         self.clear_service_list()
-        
+
         for service in services:
             self.service_list.append([service])
     

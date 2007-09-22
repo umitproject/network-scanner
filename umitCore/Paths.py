@@ -28,8 +28,8 @@ from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.BasePaths import base_paths, HOME
 from umitCore.I18N import _
 
-VERSION = environ.get("UMIT_VERSION", "0.4.5")
-REVISION = environ.get("UMIT_REVISION", "1567")
+VERSION = environ.get("UMIT_VERSION", "0.9.5")
+REVISION = environ.get("UMIT_REVISION", "2549")
 
 main_dir = ""
 if hasattr(sys, "frozen"):
@@ -60,14 +60,15 @@ class Paths(object):
                  "umit_icon"]
 
     config_files_list = ["config_file",
-                         "target_list",
                          "profile_editor",
                          "wizard",
                          "scan_profile",
-                         "recent_scans",
                          "options",
-                         "umitdb",
                          "umit_version"]
+
+    empty_config_files_list = ["target_list",
+                               "recent_scans",
+                               "umitdb"]
 
     share_files_list = ["umit_op",
                         "umit_opi",
@@ -91,14 +92,14 @@ class Paths(object):
 
         elif exists(join(base_dir, CONFIG_DIR)) and\
             exists(join(base_dir,
-                                        CONFIG_DIR,
-                                        base_paths['config_file'])):
+                        CONFIG_DIR,
+                        base_paths['config_file'])):
             main_config_dir = join(base_dir, CONFIG_DIR)
 
         elif exists(join(split(base_dir)[0], CONFIG_DIR)) and \
             exists(join(split(base_dir)[0],
-                                        CONFIG_DIR,
-                                        base_paths['config_file'])):
+                        CONFIG_DIR,
+                        base_paths['config_file'])):
             main_config_dir = join(split(base_dir)[0], CONFIG_DIR)
 
         else:
@@ -210,6 +211,11 @@ user home: %s" % config_file)
                 return return_if_exists(join(self.__dict__['config_dir'],
                                              base_paths[name]))
 
+            elif name in self.empty_config_files_list:
+                return return_if_exists(join(self.__dict__['config_dir'],
+                                             base_paths[name]),
+                                        True)
+
             elif name in self.share_files_list:
                 return return_if_exists(join(self.__dict__['pixmaps_dir'],
                                              base_paths[name]))
@@ -282,9 +288,14 @@ def copy_config_file(filename, dir_origin, dir_destiny):
 def check_access(path, permission):
     return exists(path) and access(path, permission)
 
-def return_if_exists(path):
+def return_if_exists(path, create=False):
+    path = abspath(path)
     if exists(path):
-        return abspath(path)
+        return path
+    elif create:
+        f = open(path, "w")
+        f.close()
+        return path
     raise Exception("File '%s' does not exist or could not be found!" % path)
 
 ############
