@@ -54,7 +54,7 @@ Rev. %s</span>" % REVISION)
         self.verbox.pack_start(self.version, False, False)
         self.verbox.pack_start(self.revision, False, False)
 
-        self.fixed.put(self.verbox, width - 110, height - 50)
+        self.fixed.put(self.verbox, width - 110, height - 55)
         self.add(self.fixed)
 
         self.hid = self.connect("expose-event", self.set_bg, mask, pixmap)
