@@ -206,12 +206,17 @@ class Profile(UmitConfigParser, object):
             return self.set(profile, attribute, value)
 
     def add_profile(self, profile_name, **attributes):
+        log.debug(">>> Add Profile '%s': %s" % (profile_name, attributes))
         try: self.add_section(profile_name)
         except: return None
         
         [self._set_it(profile_name, attr, attributes[attr]) for attr in attributes if attr != "options"]
         options = attributes["options"]
-        self._set_it(profile_name, "options", ",".join(options.keys()))
+        if type(options) in StringTypes:
+            self._set_it(profile_name, "options", options)
+        elif type(options) == type({}):
+            self._set_it(profile_name, "options", ",".join(options.keys()))
+
         for opt in options:
             if options[opt]:
                 self._set_it(profile_name, opt, options[opt])

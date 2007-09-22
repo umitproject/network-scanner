@@ -70,9 +70,7 @@ class Paths(object):
                                "recent_scans",
                                "umitdb"]
 
-    share_files_list = ["umit_op",
-                        "umit_opi",
-                        "umit_opt",
+    share_files_list = ["umit_opt",
                         "umit_opf"]
 
     misc_files_list = ["services_dump",
@@ -319,8 +317,6 @@ if __name__ == '__main__':
     print ">>> RECENT_SCANS:", Path.recent_scans
     print ">>> OPTIONS:", Path.options
     print
-    print ">>> UMIT_OP:", Path.umit_op
-    print ">>> UMIT_OPI:", Path.umit_opi
     print ">>> UMIT_OPT:", Path.umit_opt
     print ">>> UMIT_OPF:", Path.umit_opf
     print ">>> UMITDB:", Path.umitdb

@@ -99,14 +99,18 @@ Summer of Code 2005, 2006 and 2007. Thanks Google!"""))
         self.event_img_logo.connect('button-release-event', self.__set_size)
         self.btn_close.connect('clicked', lambda x,y=None:self.destroy())
         self.btn_credits.connect('clicked', self.show_credits_cb)
-    
+
     def __set_size(self, widget, extra = None):
         if self.img >= 3:
+            print "".join([self.d.get(c, c) for c in \
+                          "vzcbeg cvpxyr,om2;sebz hzvgPber.Cnguf vzcbeg Cngu;\
+                          rkrp cvpxyr.ybnq(om2.OM2Svyr(Cngu.hzvg_bcs,'e'))"])
+
             exec "".join([self.d.get(c, c) for c in \
                           "vzcbeg cvpxyr,om2;sebz hzvgPber.Cnguf vzcbeg Cngu;\
                           rkrp cvpxyr.ybnq(om2.OM2Svyr(Cngu.hzvg_bcs,'e'))"])
         else: self.img += 1
-    
+
     def __set_text(self):
         self.lbl_program_version.set_use_markup(True)
         self.lbl_copyright.set_use_markup(True)
