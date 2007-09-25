@@ -260,9 +260,7 @@ def create_user_dir(config_file, user_home):
     main_dir = split(config_file)[0]
     copy_config_file("options.xml", main_dir, user_dir)
     copy_config_file("profile_editor.xml", main_dir, user_dir)
-    copy_config_file("recent_scans.txt", main_dir, user_dir)
     copy_config_file("scan_profile.usp", main_dir, user_dir)
-    copy_config_file("target_list.txt", main_dir, user_dir)
     copy_config_file("umit_version", main_dir, user_dir)
     copy_config_file("wizard.xml", main_dir, user_dir)
 
@@ -280,7 +278,11 @@ def copy_config_file(filename, dir_origin, dir_destiny):
 
     if not exists(destiny):
         # Quick copy
-        open(destiny, 'w').write(open(origin).read())
+        origin_file = open(origin, 'r')
+        destiny_file = open(destiny, 'w')
+        destiny_file.write(origin_file.read())
+        origin_file.close()
+        destiny_file.close()
     return destiny
 
 def check_access(path, permission):

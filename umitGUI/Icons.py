@@ -21,6 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import gtk
+import gobject
 import re
 import sys
 import os.path
@@ -29,16 +30,8 @@ from umitCore.Paths import Path
 from umitCore.UmitConf import is_maemo
 from umitCore.UmitLogging import log
 
-######################
-# Platform recognition
-PLATFORM = sys.platform
-if is_maemo():
-    PLATFORM = "maemo"
-
-icons = []
-
-icon_names = (\
-    # Operating Systems
+icon_names = (
+# Operating Systems
     'default',
     'freebsd',
     'irix',
@@ -51,67 +44,47 @@ icon_names = (\
     'ubuntu',
     'unknown',
     'win',
-    
-    # Vulnerability Levels
+# Vulnerability Levels
     'vl_1',
     'vl_2',
     'vl_3',
     'vl_4',
     'vl_5')
 
-
-
 pixmap_path = Path.pixmaps_dir
 if pixmap_path:
-    if PLATFORM == 'linux2':
-        # FIXME: This naming scheme should be more consistent
-        # All icon or all logo, and not mixed up
-        for icon_name in icon_names[0:12]:
-            file_path = os.path.join(pixmap_path, '%s.svg' % icon_name)
-            (key, val) = ('%s_icon' % icon_name, file_path)
-            if os.path.exists(file_path):
-                log.debug('Register %s icon name for file %s' % (key, val))
-                icons.append(('%s_icon' % icon_name, file_path))
+    # This is a generator that returns file names for pixmaps in the order they
+    # should be tried.
+    def get_pixmap_file_names(icon_name, size):
+        yield '%s.svg' % icon_name
+        yield '%s_%s.png' % (icon_name, size)
+
+    iconfactory = gtk.IconFactory()
+    for icon_name in icon_names:
+        for type, size in (('icon', '32'), ('logo', '75')):
+            key = '%s_%s' % (icon_name, type)
+            # Look for a usable image file.
+            for file_name in get_pixmap_file_names(icon_name, size):
+                file_path = os.path.join(pixmap_path, file_name)
+                try:
+                    pixbuf = gtk.gdk.pixbuf_new_from_file(file_path)
+                    break
+                except gobject.GError:
+                    # Try again.
+                    pass
             else:
-                log.warn('Could not find %s file for icon name %s' % (val, key))
-
-        for icon_name in icon_names[12:]:
-            file_path = os.path.join(pixmap_path, '%s.svg' % icon_name)
-            (key, val) = ('%s_logo' % icon_name, file_path)
-            if os.path.exists(file_path):
-                log.debug('Register %s icon name for file %s' % (key, val))
-                icons.append(('%s_logo' % icon_name, file_path))
-            else:
-                log.warning('Could not find %s file for icon name %s' % (val, key))        
-    else:
-        for icon_name in icon_names:
-            for variant in (('icon', '32'), ('logo', '75')):
-                #log.debug('Pixmap Path: %s' % pixmap_path)
-                file_path = os.path.join(pixmap_path, '%s_%s.png' % (icon_name, variant[1]))
-                (key, val) = ('%s_%s' % (icon_name, variant[0]), file_path)
-                if os.path.exists(file_path):
-                    #log.debug('Register %s icon name for file %s' % (key, val))
-                    icons.append((key, val))
-                else:
-                    log.warn('Could not find %s file for icon name %s' % (val, key))
-
-
-iconfactory = gtk.IconFactory()
-
-for stock_id, file in icons:
-    # only load image files when our stock_id is not present
-    pixbuf = gtk.gdk.pixbuf_new_from_file(file)
-    iconset = gtk.IconSet(pixbuf)
-    iconfactory.add(stock_id, iconset)
+                log.warn('Could not find the icon for %s at any of (%s) in %s' % (icon_name, ', '.join(get_pixmap_file_names(icon_name, size)), pixmap_path))
+                continue
+            iconset = gtk.IconSet(pixbuf)
+            iconfactory.add(key, iconset)
+            log.debug('Register %s icon name for file %s' % (key, file_path))
     iconfactory.add_default()
 
 def get_os_icon(os_match):
     return get_os(os_match, 'icon')
 
 def get_os_logo(os_match):
-    if PLATFORM != 'linux2':
-        return get_os(os_match, 'logo')
-    return get_os(os_match, 'icon')
+    return get_os(os_match, 'logo')
 
 def get_os(os_match, type):
     if os_match:

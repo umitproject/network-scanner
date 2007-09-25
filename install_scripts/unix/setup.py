@@ -67,7 +67,8 @@ def mo_find(result, dirname, fnames):
 # Installation variables
 
 svg = glob(os.path.join('share', 'pixmaps', '*.svg'))
-data_files = [ (pixmaps_dir, svg + glob(os.path.join(pixmaps_dir, '*.png')) +
+data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
+                             glob(os.path.join(pixmaps_dir, '*.png')) +
                              glob(os.path.join(pixmaps_dir, 'umit.o*'))),
 
                (config_dir, [os.path.join(config_dir, 'umit.conf')] +
