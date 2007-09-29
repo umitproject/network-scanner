@@ -24,7 +24,7 @@ import gtk
 
 import sys
 import os
-import os.path
+from os.path import split, isfile, join, abspath
 
 from types import StringTypes
 from time import time
@@ -45,6 +45,7 @@ from umitGUI.SearchWindow import SearchWindow
 from umitGUI.BugReport import BugReport
 
 from umitCore.Paths import Path
+from umitCore.RecentScans import recent_scans
 from umitCore.UmitLogging import log
 from umitCore.I18N import _
 from umitCore.UmitOptionParser import option_parser
@@ -484,21 +485,12 @@ Scan Tab?'),
 
 
     def get_recent_scans(self):
-        r_scans = []
+        r_scans = recent_scans.get_recent_scans_list()
         new_rscan_xml = ''
-        
-        try:
-            recent = open(Path.recent_scans)
-            r_scans = recent.readlines()
 
-            recent.close()
-        except: pass
-        
         for scan in r_scans[:7]:
             scan = scan.replace('\n','')
-            #print '>>> Exists:', scan, os.path.isfile(scan)
-            if os.access(os.path.split(scan)[0],os.R_OK) and os.path.isfile(scan):
-                
+            if os.access(split(scan)[0],os.R_OK) and isfile(scan):
                 scan = scan.replace('\n','')
                 new_rscan = (scan, None, scan, None, scan, self._load_recent_scan)
                 new_rscan_xml += "<menuitem action='%s'/>\n" % scan
@@ -763,7 +755,7 @@ Wait until the scan is finished and then try to save it again.'))
     
     def _save(self, saving_page, saved_filename):
         log.debug(">>> File been saved: %s" % saved_filename)
-        if os.access(os.path.split(saved_filename)[0], os.W_OK):
+        if os.access(split(saved_filename)[0], os.W_OK):
             f = None
             try:
                 f = open(saved_filename, 'w')
@@ -791,25 +783,9 @@ Wait until the scan is finished and then try to save it again.'))
                 saving_page.status.set_saved()
 
                 # Saving recent scan information
-                rs = ['']
-                try:
-                    recent = open(Path.recent_scans)
-                    rs = recent.readlines()
+                recent_scans.add_recent_scan(saved_filename)
+                recent_scans.save()
 
-                    recent.close()
-                except:
-                    return None
-                else:
-                    rs.insert(0, saved_filename+'\n')
-
-                try:
-                    recent = open(Path.recent_scans,'w')
-                    recent.writelines(rs[:7])
-
-                    recent.close()
-                except:
-                    pass
-                
         else:
             alert = HIGAlertDialog(message_format=_('Permission denied'),
                                    secondary_text=_('Don\'t have write access to this path.'))
@@ -866,8 +842,8 @@ Wait until the scan is finished and then try to save it again.'))
         if sys.hexversion >= 0x2050000:
             new = 2
 
-        webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
-                                                   "help.html"), new=new)
+        webbrowser.open("file://%s" % abspath(join(Path.docs_dir,
+                                                   "help.html")), new=new)
         
 
     def _exit_cb (self, widget=None, extra=None):

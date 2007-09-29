@@ -31,9 +31,7 @@ from umitGUI.FileChoosers import AllFilesFileChooserDialog
 
 from umitCore.NmapOptions import NmapOptions
 from umitCore.I18N import _
-from umitCore.Paths import Path
-
-options = Path.options
+from umitCore.OptionsConf import options_file
 
 
 class OptionTab(object):
@@ -205,7 +203,7 @@ class OptionBuilder(object):
         self.root_tag = "interface"
         
         self.xml = self.xml.getElementsByTagName(self.root_tag)[0]
-        self.options = NmapOptions(options)
+        self.options = NmapOptions(options_file)
         
         self.groups = self.__parse_groups()
         self.section_names = self.__parse_section_names()

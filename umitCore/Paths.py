@@ -21,11 +21,14 @@
 
 from os import R_OK, W_OK, access, mkdir, getcwd, environ, getcwd
 from os.path import exists, join, split, abspath, dirname
+from tempfile import mktemp
+
 import sys
 
 from umitCore.UmitLogging import log
 from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.BasePaths import base_paths, HOME
+from umitCore.TempConf import create_temp_conf_dir
 from umitCore.I18N import _
 
 VERSION = environ.get("UMIT_VERSION", "0.9.5")
@@ -101,8 +104,7 @@ class Paths(object):
             main_config_dir = join(split(base_dir)[0], CONFIG_DIR)
 
         else:
-            raise Exception("Couldn't find the Umit's Config Directory! \
-Aborting...")
+            main_config_dir = create_temp_conf_dir(VERSION, REVISION)
 
         # Main config file, based on the main_config_dir got above
         main_config_file = join(main_config_dir, base_paths['config_file'])

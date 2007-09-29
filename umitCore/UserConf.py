@@ -715,6 +715,9 @@ def create_wizard(user_dir):
 def create_options(user_dir):
     return create_config_file(user_dir, base_paths['options'], options_content)
 
+def create_umit_version(user_dir, version, revision):
+    return create_config_file(user_dir, base_paths["umit_version"],
+                              "%s\n%s" % (version, revision))
 
 if __name__ == "__main__":
     create_user_dir("/home/adriano")

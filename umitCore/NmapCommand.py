@@ -29,11 +29,9 @@ from types import StringTypes
 from subprocess import Popen, PIPE
 
 from umitCore.NmapOptions import NmapOptions
-from umitCore.Paths import Path
+from umitCore.OptionsConf import options_file
 from umitCore.UmitLogging import log
 from umitCore.I18N import _, enc
-
-option_xml = Path.options
 
 # shell_state = True avoids python to open a terminal to execute nmap.exe
 # shell_state = False is needed to run correctly at Linux
@@ -274,7 +272,7 @@ before trying to start scan!")
 class CommandConstructor:
     def __init__(self, options = {}):
         self.options = {}
-        self.option_profile = NmapOptions(option_xml)
+        self.option_profile = NmapOptions(options_file)
         for k, v in options.items():
             self.add_option(k, v, False) # TODO: check this place further
 

@@ -24,13 +24,10 @@ import gtk
 from higwidgets.higboxes import HIGHBox
 from higwidgets.higlabels import HIGEntryLabel
 
-from umitCore.Paths import Path
 from umitCore.I18N import _
 
 from umitGUI.ProfileCombo import ProfileCombo
 from umitGUI.TargetCombo import TargetCombo
-
-target_list = Path.target_list
 
 
 class ScanCommandToolbar(HIGHBox):

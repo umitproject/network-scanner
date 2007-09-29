@@ -33,13 +33,11 @@ from higwidgets.higdialogs import HIGAlertDialog, HIGDialog
 
 from umitGUI.OptionBuilder import *
 
-from umitCore.Paths import Path
+from umitCore.ProfileEditorConf import profile_editor_file
 from umitCore.NmapCommand import CommandConstructor
 from umitCore.UmitConf import Profile, CommandProfile
 from umitCore.UmitLogging import log
 from umitCore.I18N import _
-
-profile_editor = Path.profile_editor
 
 
 class ProfileEditor(HIGWindow):
@@ -73,7 +71,7 @@ class ProfileEditor(HIGWindow):
                 self.deleted = True
         
         self.constructor = CommandConstructor(options_used)
-        self.options = OptionBuilder(profile_editor, self.constructor, self.update_command)
+        self.options = OptionBuilder(profile_editor_file, self.constructor, self.update_command)
         log.debug("Option groups: %s" % str(self.options.groups))
         log.debug("Option section names: %s" % str(self.options.section_names))
         #log.debug("Option tabs: %s" % str(self.options.tabs))

@@ -245,14 +245,14 @@ Adriano Monteiro Marques <py.adriano@gmail.com>
 Cleber Rodrigues Rosa Junior <cleber.gnu@gmail.com>
 
 Nmap students from Google SoC 2007 that helped Umit:
-Eddie
-David
+Eddie Bell <ejlbell@gmail.com>
+David Fifield <david@bamsoftware.com>
 Kris Katterjohn <katterjohn@gmail.com>
 
 The Umit Project WebSite:
-Abrao
+AbraoBarbosa dos Santos Neto <abraobsn@gmail.com>
 Adriano Monteiro Marques <py.adriano@gmail.com>
-Heitor
+Heitor de Lima Matos <heitordelima@hotmail.com>
 Joao Paulo Pacheco <jp.pacheco@gmail.com>
 João Paulo de Souza Medeiros <ignotus21@gmail.com>
 Luis Antonio Bastião Silva <luis.kop@gmail.com>

@@ -22,10 +22,8 @@
 import gtk
 
 from umitCore.I18N import _
-from umitCore.Paths import Path
+from umitCore.OptionsConf import options_file
 from umitCore.NmapOptions import NmapOptions
-
-options = Path.options
 
 class OptionCombo(gtk.ComboBoxEntry):
     def __init__(self):
@@ -40,7 +38,7 @@ class OptionCombo(gtk.ComboBoxEntry):
 
     def update(self):
         try:
-            self.nmap_options = NmapOptions(options)
+            self.nmap_options = NmapOptions(options_file)
             self.options = self.nmap_options.get_options_list()
             self.options.sort()
         

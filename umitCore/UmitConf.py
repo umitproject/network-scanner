@@ -25,11 +25,10 @@ from types import StringTypes
 from ConfigParser import NoSectionError, NoOptionError
 
 from umitCore.Paths import Path
+from umitCore.ScanProfileConf import scan_profile_file
 from umitCore.UmitLogging import log
 from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.I18N import _
-
-scan_profile = Path.scan_profile
 
 # Check if running on Maemo
 MAEMO = False
@@ -184,7 +183,7 @@ class Profile(UmitConfigParser, object):
         UmitConfigParser.__init__(self, *args)
 
         if not user_profile:
-            user_profile = scan_profile
+            user_profile = scan_profile_file
 
         fconf = open(user_profile, 'r')
         self.readfp(fconf, user_profile)
@@ -234,7 +233,7 @@ class Profile(UmitConfigParser, object):
 class CommandProfile (Profile, object):
     def __init__(self, user_profile=''):
         if not user_profile:
-            user_profile = scan_profile
+            user_profile = scan_profile_file
         
         Profile.__init__(self, user_profile)
         

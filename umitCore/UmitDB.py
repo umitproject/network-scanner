@@ -46,6 +46,18 @@ except:
     Path.umitdb = umitdb
 
 
+from os.path import exists, dirname
+from os import access, R_OK, W_OK
+
+using_memory = False
+if not exists(umitdb) or \
+   not access(umitdb, R_OK and W_OK) or \
+   not access(dirname(umitdb), R_OK and W_OK):
+    # Tells sqlite to use memory instead of a physics file to avoid crash
+    # and still serve user with most part of umit features
+    umitdb = ":memory:"
+    using_memory = True
+
 connection = sqlite.connect(umitdb)
 
 class Table(object):

@@ -32,6 +32,8 @@ from umitGUI.OptionBuilder import *
 from umitGUI.ProfileEditor import *
 
 from umitCore.Paths import Path
+from umitCore.WizardConf import wizard_file
+from umitCore.TargetList import target_list
 from umitCore.NmapCommand import *
 from umitCore.UmitConf import Profile, CommandProfile
 from umitCore.I18N import _
@@ -42,10 +44,6 @@ if pixmaps_dir:
 else:
     logo = None
 
-wizard = Path.wizard
-target_list = Path.target_list
-
-
 class Wizard(HIGWindow):
     def __init__(self):
         HIGWindow.__init__(self)
@@ -54,7 +52,7 @@ class Wizard(HIGWindow):
         
         self.profile = CommandProfile()
         self.constructor = CommandConstructor()
-        self.options = OptionBuilder(wizard, self.constructor, self.update_command)
+        self.options = OptionBuilder(wizard_file, self.constructor, self.update_command)
         
         self.target = '<target>'
         
@@ -463,40 +461,13 @@ class ChoosePage(HIGVBox):
         self.completion.set_text_column(0)
         
         self.target_entry.set_completion(self.completion)
-        
-        try:
-            t_list = open(target_list)
-            list = t_list.readlines()
 
-            # Closing file to avoid file descriptor problems
-            t_list.close()
-        except: return None
-        else:
-            for i in list[:15]:
-                self.target_list.append([i.replace('\n','')])
+        for target in target_list.get_traget_list()[:15]:
+            self.target_list.append([target.replace('\n','')])
     
     def add_new_target(self, target):
-        list = []
-        try:
-            t_list = open(target_list)
-            t_list.readlines()
+        target_list.add_target(target)
 
-            # Closing file to avoid file descriptor problems
-            t_list.close()
-        except:
-            return None
-
-        target += '\n' 
-        if target not in list:
-            list.insert(0, target)
-            try:
-                t_list = open(target_list, 'w')
-                t_list.writelines(list)
-
-                # Closing file to avoid file descriptor problems
-                t_list.close()
-            except:return None
-    
     def enable_target(self, widget=None):
         self.hbox.set_sensitive(True)
     
