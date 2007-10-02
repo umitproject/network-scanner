@@ -24,7 +24,7 @@ import gtk
 
 import sys
 import os
-from os.path import split, isfile, join, abspath
+from os.path import split, isfile, join, abspath, exists
 
 from types import StringTypes
 from time import time
@@ -842,9 +842,17 @@ Wait until the scan is finished and then try to save it again.'))
         if sys.hexversion >= 0x2050000:
             new = 2
 
-        webbrowser.open("file://%s" % abspath(join(Path.docs_dir,
-                                                   "help.html")), new=new)
-        
+        doc_path = abspath(join(Path.docs_dir, "help.html"))
+        if exists(doc_path):
+            webbrowser.open("file://%s" % doc_path, new=new)
+        else:
+            d = HIGAlertDialog(parent=self,
+                               message_format=_("Couldn't find documentation files!"),
+                               secondary_text=_("""Umit couldn't find the \
+documentation files. Please, go to Umit's website and have the latest \
+documentation in our Support & Development section."""))
+            d.run()
+            d.destroy()
 
     def _exit_cb (self, widget=None, extra=None):
         for page in self.scan_notebook.get_children():

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2005 Insecure.Com LLC.
+# Copyright (C) 2007 Adriano Monteiro Marques.
 #
 # Author: Adriano Monteiro Marques <py.adriano@gmail.com>
 #
@@ -19,30 +19,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-import cPickle
-from umitCore.OSListDump import os_dump_file
+from umitCore.GetConfigFile import get_config_file
+from umitCore.UserConf import services_dump_content
 
-def load_dumped_os():
-    of = open(os_dump_file)
-    osd = cPickle.load(of)
-    of.close()
-    return osd
-
-
-class OSList(object):
-    def __init__(self):
-        self.os = load_dumped_os()
-
-    def get_match_list(self, osclass):
-        if osclass in self.os.keys():
-            return self.os[osclass]
-        return None
-
-    def get_class_list(self):
-        return self.os.keys()
-    
-if __name__ == "__main__":
-    o = OSList()
-
-    from pprint import pprint
-    pprint (o.os)
+services_dump_file = get_config_file("services_dump", services_dump_content)

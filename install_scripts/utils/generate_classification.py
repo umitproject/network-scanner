@@ -26,11 +26,7 @@ import os.path
 from pprint import pprint
 import cPickle
 
-try:
-    nmap = urllib.urlopen("http://www.insecure.org/cgi-bin/nmap-submit.cgi")
-    classification = nmap.read()
-except:
-    classification = '''<option value="">Nothing in this list matches
+classification = '''<option value="">Nothing in this list matches
 </option><option value="2Wire|embedded||WAP">2Wire embedded WAP
 </option><option value="3Com|ComOS||terminal server">3Com ComOS terminal server
 </option><option value="3Com|embedded||broadband router">3Com embedded broadband router

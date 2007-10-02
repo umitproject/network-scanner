@@ -117,7 +117,7 @@ class umit_install(install):
     def create_uninstaller(self):
         uninstaller_filename = os.path.join(self.install_scripts, "uninstall_umit")
         uninstaller = """#!/usr/bin/env python
-import os, sys
+import os, os.path, sys
 
 print
 print '%(line)s Uninstall Umit %(version)s-%(revision)s %(line)s'
@@ -136,7 +136,8 @@ print
 
         for output in self.get_outputs():
             uninstaller += "print 'Removing %s...'\n" % output
-            uninstaller += "os.remove('%s')\n" % output
+            uninstaller += "if os.path.exists('%s'): os.remove('%s')\n" % (output,
+                                                                         output)
 
         uninstaller += "print 'Removing uninstaller itself...'\n"
         uninstaller += "os.remove('%s')\n" % uninstaller_filename

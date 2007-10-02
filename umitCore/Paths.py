@@ -22,6 +22,7 @@
 from os import R_OK, W_OK, access, mkdir, getcwd, environ, getcwd
 from os.path import exists, join, split, abspath, dirname
 from tempfile import mktemp
+from types import StringTypes
 
 import sys
 
@@ -288,7 +289,9 @@ def copy_config_file(filename, dir_origin, dir_destiny):
     return destiny
 
 def check_access(path, permission):
-    return exists(path) and access(path, permission)
+    if type(path) in StringTypes:
+        return exists(path) and access(path, permission)
+    return False
 
 def return_if_exists(path, create=False):
     path = abspath(path)

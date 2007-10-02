@@ -21,12 +21,10 @@
 
 import cPickle
 
-from umitCore.Paths import Path
-
-services_dump = Path.services_dump
+from umitCore.ServicesDump import services_dump_file
 
 def load_dumped_services():
-    serv_dump = open(services_dump)
+    serv_dump = open(services_dump_file)
     services_list = cPickle.load(serv_dump)
     serv_dump.close()
 

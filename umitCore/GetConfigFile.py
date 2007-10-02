@@ -24,6 +24,7 @@ from os import access, R_OK
 from tempfile import mktemp
 
 from umitCore.Paths import Path
+from umitCore.UmitLogging import log
 
 def get_config_file(filename, original_content):
     config_file = mktemp()
@@ -40,4 +41,5 @@ def get_config_file(filename, original_content):
         cfile.write(original_content)
         cfile.close()
 
+    log.debug(">>> Get config file %s: %s" % (filename, config_file))
     return config_file

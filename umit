@@ -124,9 +124,6 @@ if __name__ == '__main__':
     from umitGUI.App import App
     umit_app = App()
 
-    if UMIT_DEVELOPMENT:
-        log.critical(">>> Not in development mode.")
-
     if os.name == "posix":
         signal.signal(signal.SIGHUP, umit_app.safe_shutdown)
 

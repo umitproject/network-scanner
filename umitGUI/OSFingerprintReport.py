@@ -28,7 +28,7 @@ from higwidgets.higtables import HIGTable
 from higwidgets.higlabels import HIGSectionLabel, HIGHintSectionLabel
 
 from umitCore.OSFingerprintRegister import OSFingerprintRegister
-from umitCore.Paths import Path
+from umitCore.OSClassificationDump import os_classification_file
 from umitCore.I18N import _
 
 class OSFingerprintReport(gtk.Window, object):
@@ -46,7 +46,7 @@ class OSFingerprintReport(gtk.Window, object):
         self._connect_widgets()
 
     def _set_classification_list(self):
-        class_file = open(Path.os_classification, "r")
+        class_file = open(os_classification_file, "r")
         class_list = cPickle.load(class_file)
         class_file.close()
         

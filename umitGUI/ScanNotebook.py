@@ -918,7 +918,13 @@ Fingerprints Found!"),
         self.scan_result.scan_result_notebook.port_mode()
 
         model_host_list, selection = widget.get_selected_rows()
-        host_objs = [self.hosts[model_host_list[i[0]][1]] for i in selection]
+        #host_objs = [self.hosts[model_host_list[i[0]][1]] for i in selection]
+        host_objs = []
+        for i in selection:
+            key = model_host_list[i[0]][1]
+            if self.hosts.has_key(key):
+                host_objs.append(self.hosts[key])
+
         self.clean_host_details()
         
         if len(host_objs) == 1:
@@ -933,12 +939,17 @@ Fingerprints Found!"),
             self.go_to_host(host_objs[0]['host'].get_hostname())
         except IndexError:
             pass
-            
+
     def update_service_info(self, widget):
         self.scan_result.scan_result_notebook.host_mode()
         
         model_service_list, selection = widget.get_selected_rows()
-        serv_objs = [self.services[model_service_list[i[0]][0]] for i in selection]
+        #serv_objs = [self.services[model_service_list[i[0]][0]] for i in selection]
+        serv_objs = []
+        for i in selection:
+            key = model_service_list[i[0]][0]
+            if self.services.has_key(key):
+                serv_objs.append(key)
 
         # Removing current widgets from the host details page
         self.clean_host_details()
