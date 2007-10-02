@@ -45,7 +45,7 @@ class Splash(gtk.Window):
         self.revision = gtk.Label("Rev. %s" % REVISION)
 
         self.version.set_use_markup(True)
-        self.version.set_markup("<span size='24000' weight='heavy'>\
+        self.version.set_markup("<span size='23000' weight='heavy'>\
 %s</span>" % VERSION)
         self.revision.set_use_markup(True)
         self.revision.set_markup("<span size='10000' weight='heavy'>\
@@ -54,7 +54,7 @@ Rev. %s</span>" % REVISION)
         self.verbox.pack_start(self.version, False, False)
         self.verbox.pack_start(self.revision, False, False)
 
-        self.fixed.put(self.verbox, width - 110, height - 55)
+        self.fixed.put(self.verbox, width - 140, height - 55)
         self.add(self.fixed)
 
         self.hid = self.connect("expose-event", self.set_bg, mask, pixmap)

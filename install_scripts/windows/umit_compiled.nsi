@@ -17,7 +17,7 @@ Name "${APPLICATION_NAME}"
 InstallDir "$PROGRAMFILES\${APPLICATION_NAME}\"
 
 ; Pages definitions
-!define MUI_PAGE_HEADER_TEXT "Umit, The Nmap Frontend"
+;!define MUI_PAGE_HEADER_TEXT "Umit, The Nmap Frontend"
 !define MUI_PAGE_HEADER_SUBTEXT "Umit"
 
 ; Finish page definitions
@@ -63,6 +63,7 @@ Section "Umit" SecUmit
 
   CreateDirectory "$SMPROGRAMS\Umit"
   CreateShortCut "$SMPROGRAMS\Umit\Umit.lnk" "$INSTDIR\umit.exe" "" $INSTDIR\umit_48.ico
+  CreateShortCut "$SMPROGRAMS\Umit\Umit-Uninstaller.lnk" "$INSTDIR\Umit-Uninstaller.exe" "" $INSTDIR\Umit-Uninstaller.exe
 
   WriteUninstaller "$INSTDIR\Umit-Uninstaller.exe"
 SectionEnd
@@ -73,11 +74,6 @@ SectionEnd
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 Section "Uninstall"
-    ;Delete "$INSTDIR\*"
-    Delete "$SMPROGRAMS\Umit"
-    RMDir "$INSTDIR"
-    RMDir "$SMPROGRAMS\Umit"
-
-  remove_uninstaller:
-      Delete "$INSTDIR\Umit-Uninstaller.exe"  
+    RMDir /r "$SMPROGRAMS\Umit"
+    RMDir /r "$INSTDIR"
 SectionEnd

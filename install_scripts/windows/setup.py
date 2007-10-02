@@ -30,8 +30,8 @@ from glob import glob
 ################################################################################
 # Main Variables
 
-VERSION = os.environ.get("UMIT_VERSION", "0.4.5")
-REVISION = os.environ.get("UMIT_REVISION", "1567")
+VERSION = os.environ.get("UMIT_VERSION", "0.9.5RC1")
+REVISION = os.environ.get("UMIT_REVISION", "2724")
 
 SOURCE_PKG = False
 
@@ -149,6 +149,7 @@ wizards.""",
       scripts = ['umit.pyw'],
       packages = ['', 'umitCore', 'umitGUI', 'higwidgets'],
       data_files = data_files,
+      zipfile=None,
       cmdclass = {"py2exe":umit_py2exe},
       windows = [{"script" : "umit.pyw",
                   "icon_resources" : [(1, os.path.join("share", "icons", "umit_48.ico"))]}],

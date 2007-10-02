@@ -258,12 +258,14 @@ João Paulo de Souza Medeiros <ignotus21@gmail.com>
 Luis Antonio Bastião Silva <luis.kop@gmail.com>
 Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>
 
-Beta testers:
+Beta testers for 0.9.5RC1:
 Drew Miller <securitygeek@fribble.org>
+Igor Feghali <ifeghali@php.net>
 Joao Paulo Pacheco <jp.pacheco@gmail.com>
-Kris Katterjohn <katterjohn@gmail.com>
-Regis Kuramoto Dias <kuramotobm@gmail.com>
-Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>
+Luis Antonio Bastião Silva <luis.kop@gmail.com>
+<ray-solomon@excite.com>
+<jah@zadkiel.plus.com>
+<epatterson@directapps.com>
 
 Initial attempt on Maemo port:
 Adriano Monteiro Marques <py.adriano@gmail.com>
