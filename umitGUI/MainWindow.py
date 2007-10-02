@@ -355,7 +355,10 @@ class MainWindow(UmitMainWindow):
             page_num = self.scan_notebook.page_num(data)
         page = self.scan_notebook.get_nth_page(page_num)
         filename = None
-        
+
+        if page == None:
+            return True
+
         if page.status.unsaved_unchanged \
                or page.status.unsaved_changed\
                or page.status.loaded_changed:

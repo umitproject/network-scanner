@@ -73,11 +73,11 @@ SectionEnd
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 Section "Uninstall"
-    Delete "$INSTDIR\*"
+    ;Delete "$INSTDIR\*"
     Delete "$SMPROGRAMS\Umit"
     RMDir "$INSTDIR"
     RMDir "$SMPROGRAMS\Umit"
-  
+
   remove_uninstaller:
       Delete "$INSTDIR\Umit-Uninstaller.exe"  
 SectionEnd

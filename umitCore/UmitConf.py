@@ -194,14 +194,12 @@ class Profile(UmitConfigParser, object):
         self.attributes = {}
 
     def _get_it(self, profile, attribute):
-        if profile:
-            self._verify_profile(profile)
+        if self._verify_profile(profile):
             return self.get(profile, attribute)
         return ""
 
     def _set_it(self, profile, attribute, value=''):
-        if profile:
-            self._verify_profile(profile)
+        if self._verify_profile(profile):
             return self.set(profile, attribute, value)
 
     def add_profile(self, profile_name, **attributes):
@@ -228,7 +226,8 @@ class Profile(UmitConfigParser, object):
 
     def _verify_profile(self, profile_name):
         if profile_name not in self.sections():
-            raise ProfileNotFound(profile_name)
+            return False
+        return True
 
 class CommandProfile (Profile, object):
     def __init__(self, user_profile=''):

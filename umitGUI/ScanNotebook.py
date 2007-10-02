@@ -949,11 +949,11 @@ Fingerprints Found!"),
         for i in selection:
             key = model_service_list[i[0]][0]
             if self.services.has_key(key):
-                serv_objs.append(key)
+                serv_objs.append(self.services[key])
 
         # Removing current widgets from the host details page
         self.clean_host_details()
-        
+
         if len(serv_objs) == 1:
             self.set_single_service_host(serv_objs[0]['hosts'])
             self.switch_host_details([page["page"] for page in serv_objs[0]['hosts']])
@@ -1107,7 +1107,7 @@ Fingerprints Found!"),
         host_page.clear_port_list()
         for p in ports:
             host_page.add_port([self.findout_service_icon(p),
-                                p.get('portid', ''),
+                                int(p.get('portid', '0')),
                                 p.get('protocol', ''),
                                 p.get('port_state', ''),
                                 p.get('service_name', ''),
@@ -1121,7 +1121,7 @@ Fingerprints Found!"),
         for h in service:
             host_page.add_host([self.findout_service_icon(h),
                                 h.get('hostname', ''),
-                                h.get('portid', ''),
+                                int(h.get('portid', '0')),
                                 h.get('protocol', ''),
                                 h.get('port_state', ''),
                                 h.get('service_product', ''),
@@ -1135,13 +1135,13 @@ Fingerprints Found!"),
         
         for host in host_list:
             parent = host_page.port_tree.append(None, [host['host'].\
-                                            get_hostname(),'','','','','', ''])
+                                            get_hostname(),0,'','','','', ''])
             for port in host['host'].get_ports():
                 for p in port.get('port', []):
                     host_page.port_tree.append(parent, \
                                 ['',
                                  self.findout_service_icon(p),
-                                 p.get('portid', ""),
+                                 int(p.get('portid', "0")),
                                  p.get('protocol', ''),
                                  p.get('port_state', ""),
                                  p.get('service_name', _("Unknown")),
@@ -1154,12 +1154,13 @@ Fingerprints Found!"),
         
         for host in service_list:
             parent = host_page.host_tree.append(None, [host['service_name'],
-                                                       '','','','','', '', ''])
+                                                       '','',0,'','', '', ''])
             for h in host['hosts']:
                 host_page.host_tree.append(parent, \
-                                           ['', self.findout_service_icon(h),
+                                           ['',
+                                            self.findout_service_icon(h),
                                             h["hostname"],
-                                            h.get('portid', ""),
+                                            int(h.get('portid', "0")),
                                             h.get('protocol', ""),
                                             h.get('port_state', _("Unknown")),
                                             h.get('service_product', ''),

@@ -24,6 +24,7 @@ import gtk
 from higwidgets.higboxes import HIGVBox, HIGHBox
 from higwidgets.higtables import HIGTable
 
+from umitCore.UmitLogging import log
 from umitCore.I18N import _
 
 class ScanOpenPortsPage(gtk.ScrolledWindow):
@@ -50,8 +51,8 @@ class HostOpenPorts(HIGVBox):
     def _create_widgets(self):
         # Ports view
         self.port_columns = {}
-        self.port_list = gtk.ListStore(str, str, str, str, str, str, str)
-        self.port_tree = gtk.TreeStore(str, str, str, str, str, str, str)
+        self.port_list = gtk.ListStore(str, str, int, str, str, str, str)
+        self.port_tree = gtk.TreeStore(str, str, int, str, str, str, str)
         
         self.port_view = gtk.TreeView(self.port_list)
         
@@ -68,8 +69,8 @@ class HostOpenPorts(HIGVBox):
 
         # Host services view
         self.host_columns = {}
-        self.host_list = gtk.ListStore(str, str, str, str, str, str, str, str)
-        self.host_tree = gtk.TreeStore(str, str, str, str, str, str, str, str)
+        self.host_list = gtk.ListStore(str, str, str, int, str, str, str, str)
+        self.host_tree = gtk.TreeStore(str, str, str, int, str, str, str, str)
         
         self.host_view = gtk.TreeView(self.host_list)
         
@@ -241,9 +242,11 @@ class HostOpenPorts(HIGVBox):
             self.host_list.append(h)
     
     def add_port(self, port_info):
+        log.debug(">>> Add Port: %s" % port_info)
         self.port_list.append([""] + port_info)
 
     def add_host(self, host_info):
+        log.debug(">>> Add Host: %s" % host_info)
         self.host_list.append([""] + host_info)
     
     def switch_port_to_list_store(self):
