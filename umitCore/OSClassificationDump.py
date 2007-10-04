@@ -22,4 +22,4 @@
 from umitCore.GetConfigFile import get_config_file
 from umitCore.UserConf import os_classification_content
 
-os_classification_file = get_config_file("os_classificaion", os_classification_content)
+os_classification_file = get_config_file("os_classification", os_classification_content)
