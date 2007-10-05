@@ -462,7 +462,7 @@ class ChoosePage(HIGVBox):
         
         self.target_entry.set_completion(self.completion)
 
-        for target in target_list.get_traget_list()[:15]:
+        for target in target_list.get_target_list()[:15]:
             self.target_list.append([target.replace('\n','')])
     
     def add_new_target(self, target):
