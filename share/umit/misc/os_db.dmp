@@ -4,12 +4,12 @@ p2
 (lp3
 S'Microsoft Windows 3.1 with Trumpet Winsock 2.0 revision B'
 p4
-asS'Intel | embedded || switch'
+aS'Microsoft Windows for Workgroups 3.11 / TCP/IP-32 3.11b stack or Windows 98'
 p5
-(lp6
+asS'Intel | embedded || switch'
+p6
+(lp7
 S'Intel Express 510T switch'
-p7
-aS'Intel Express 510T switch'
 p8
 aS'Intel NetStructure 470T Switch'
 p9
@@ -103,917 +103,909 @@ p58
 asS'HP | embedded || printer'
 p59
 (lp60
-S'HP JetDirect Card in a LaserJet printer'
+S'HP Deskjet 6127 printer or InkJet 1200 printer server'
 p61
-aS'HP LaserJet 4000N Printer'
+aS'HP JetDirect Card in a LaserJet printer'
 p62
-aS'HP LaserJet 4100N printer'
+aS'HP LaserJet 2420 or 4250 printer'
 p63
-aS'HP LaserJet 5'
+aS'HP LaserJet 4000N Printer'
 p64
-aS'HP printer w/Jet Direct'
+aS'HP LaserJet 4100N printer'
 p65
-aS'HP printer w/JetDirect card'
+aS'HP LaserJet 5'
 p66
-aS'HP printer w/JetDirect card'
+aS'HP LaserJet printer/print server'
 p67
-aS'HP printer w/JetDirect card'
+aS'HP printer w/Jet Direct'
 p68
 aS'HP printer w/JetDirect card'
 p69
-aS'HP printer w/JetDirect card'
-p70
 aS'HP printer w/JetDirect J2556b card (firmware A.05.32)'
-p71
+p70
 aS'HP printer w/JetDirect J2556b card firmware A.05.32'
-p72
+p71
 asS'Planet | embedded || WAP'
-p73
-(lp74
+p72
+(lp73
 S'Planet WAP 1950 Wireless Access Point'
+p74
+asS'GNet | embedded || broadband router'
 p75
+(lp76
+S'GNet BB0040 or SAR 703 DSL modem + router'
+p77
 asS'Linux | Linux | 2.5.X | general purpose'
-p76
-(lp77
-S'Linux 2.4.0 - 2.5.20'
 p78
-aS'Linux 2.4.0 - 2.5.20 w/o tcp_timestamps'
-p79
-aS'Linux 2.5.25 - 2.6.8 or Gentoo 1.2 Linux 2.4.19 rc1-rc7'
+(lp79
+S'Linux 2.4.0 - 2.5.20'
 p80
-asS'Microsoft | Windows || general purpose'
+aS'Linux 2.4.0 - 2.5.20 w/o tcp_timestamps'
 p81
-(lp82
-S'Microsoft Windows 2000 Professional SP4'
+aS'Linux 2.4.7 - 2.6.11'
+p82
+aS'Linux 2.5.25 - 2.6.8 or Gentoo 1.2 Linux 2.4.19 rc1-rc7'
 p83
-aS'Microsoft Windows 2000 Professional with SP4 and latest Windows Update patches as of August 11, 2004'
+asS'Microsoft | Windows || general purpose'
 p84
-aS'Microsoft Windows 2000 Server SP3'
-p85
-aS'Microsoft Windows Longhorn eval build 4051'
+(lp85
+S'Microsoft Windows 2000 Professional SP4'
 p86
-asS'Cisco | embedded || VoIP adapter'
+aS'Microsoft Windows 2000 Professional with SP4 and latest Windows Update patches as of August 11, 2004'
 p87
-(lp88
-S'Cisco ATA 186 POTS<->VoIP phone gateway device'
+aS'Microsoft Windows 2000 Server SP3'
+p88
+aS'Microsoft Windows Longhorn eval build 4051'
 p89
-asS'Netgear | embedded || print server'
+asS'Cisco | embedded || VoIP adapter'
 p90
 (lp91
-S'Netgear PS101 Print Server'
+S'Cisco ATA 186 POTS<->VoIP phone gateway device'
 p92
-aS'Netgear PS110 Print Server'
+aS'Cisco VoIP Phone 7905/7912 or ATA 186 Analog Telephone Adapter'
 p93
-asS'Cyberguard | embedded || firewall'
+asS'Netgear | embedded || print server'
 p94
 (lp95
-S'Cyberguard 4.0 firewall'
+S'Netgear PS101 Print Server'
 p96
-aS'Cyberguard Firewall 5.2'
+aS'Netgear PS110 Print Server'
 p97
-asS'Netopia | embedded || broadband router'
+asS'Cyberguard | embedded || firewall'
 p98
 (lp99
-S'Cisco Catalyst 1900 switch, Bay networks 350-450 switch,  or Netopia DSL/ISDN router'
+S'Cyberguard 4.0 firewall'
 p100
-aS'Netopia 4541/R7100 DSL router'
+aS'Cyberguard Firewall 5.2'
 p101
-aS'Netopia Cayman 3341-ENT ADSL Router'
+asS'Netopia | embedded || broadband router'
 p102
-aS'Netopia DSL router'
-p103
-aS'Netopia DSL Router'
+(lp103
+S'Cisco Catalyst 1900 switch, Bay networks 350-450 switch,  or Netopia DSL/ISDN router'
 p104
-aS'Netopia R5300 Router'
+aS'Broadband Router (Farralon Netopia or Compatible Systems 900i)'
 p105
-aS'Netopia R9100 DSL Router'
+aS'Netopia 4541/R7100 DSL router'
 p106
-asS'Talaris | embedded || printer'
+aS'Netopia Cayman 3341-ENT ADSL Router'
 p107
-(lp108
-S'Talaris 1794 Printstation'
+aS'Netopia DSL router'
+p108
+aS'Netopia DSL Router'
 p109
-asS'Ricoh | embedded || printer'
+aS'Netopia R5300 Router'
 p110
-(lp111
-S'Ricoh Aficio AP4500 Network Laser Printer'
+aS'Netopia R9100 DSL Router'
+p111
+asS'Talaris | embedded || printer'
 p112
-aS'Savin 9927 Copier or Ricoh Aficio 270 copier'
-p113
-asS'Raptor | Solaris | 2.X | firewall'
+(lp113
+S'Talaris 1794 Printstation'
 p114
-(lp115
-S'Raptor Firewall 6 on Solaris 2.6'
-p116
-asS'HP | HP-UX | 9.X | general purpose'
+asS'Ricoh | embedded || printer'
+p115
+(lp116
+S'Ricoh Aficio AP4500 Network Laser Printer'
 p117
-(lp118
-S'HP-UX 9.01 - 9.07'
+aS'Savin 9927 Copier or Ricoh Aficio 270 copier'
+p118
+asS'Raptor | Solaris | 2.X | firewall'
 p119
-aS'HP-UX A.09.00 E 9000/817 - A.09.07 A 9000/777'
-p120
-asS'Sony | Linux || specialized'
+(lp120
+S'Raptor Firewall 6 on Solaris 2.6'
 p121
-(lp122
-S'Sony PlayStation 2 Performance Analyser'
-p123
-asS'Ascend | Embedded/OS || router'
+asS'HP | HP-UX | 9.X | general purpose'
+p122
+(lp123
+S'HP-UX 9.01 - 9.07'
 p124
-(lp125
-S'Ascend GRF Router running Ascend Embedded/OS 2.1'
+aS'HP-UX A.09.00 E 9000/817 - A.09.07 A 9000/777'
+p125
+asS'Sony | Linux || specialized'
 p126
-asS'Avocent | embedded || specialized'
-p127
-(lp128
-S'Avocent net KVM switch'
+(lp127
+S'Sony PlayStation 2 Performance Analyser'
+p128
+asS'Ascend | Embedded/OS || router'
 p129
-asS'MultiTech | embedded || firewall'
-p130
-(lp131
-S'MultiTech standalone firewall box, version 3'
+(lp130
+S'Ascend GRF Router running Ascend Embedded/OS 2.1'
+p131
+asS'Avocent | embedded || specialized'
 p132
-asS'FreeSCO | Linux | 2.0.X | router'
-p133
-(lp134
-S'FreeSCO 0.27 (Linux 2.0.38)'
+(lp133
+S'Avocent net KVM switch'
+p134
+aS'NetBSD 1.6.2 - 2.0_BETA or Avocent Switchview net KVM switch'
 p135
-aS'FreeSCO 0.27 (Linux 2.0.38)'
+asS'MultiTech | embedded || firewall'
 p136
-asS'Commodore | embedded || game console'
-p137
-(lp138
-S'Commodore 64 with TFE Ethernet Card (Contiki)'
+(lp137
+S'MultiTech standalone firewall box, version 3'
+p138
+asS'FreeSCO | Linux | 2.0.X | router'
 p139
-aS'Commodore 64 with TFE Ethernet Card (uIP TCP/IP stack)'
-p140
-asS'ZoomAir | embedded || WAP'
+(lp140
+S'FreeSCO 0.27 (Linux 2.0.38)'
 p141
-(lp142
-S'ZoomAir IG-4165 Wireless gateway (WAP)'
-p143
-asS'Checkpoint | Solaris | 8 | firewall'
+asS'Commodore | embedded || game console'
+p142
+(lp143
+S'Commodore 64 with TFE Ethernet Card (Contiki)'
 p144
-(lp145
-S'Checkpoint Firewall-1 NG on Sun Solaris 8'
+aS'Commodore 64 with TFE Ethernet Card (uIP TCP/IP stack)'
+p145
+asS'ZoomAir | embedded || WAP'
 p146
-asS'Spirent | embedded || specialized'
-p147
-(lp148
-S'Spirent AX4000 Network Testing Tool'
+(lp147
+S'ZoomAir IG-4165 Wireless gateway (WAP)'
+p148
+asS'Checkpoint | Solaris | 8 | firewall'
 p149
-asS'Treck | Treck || general purpose'
-p150
-(lp151
-S'Treck TCP/IP stack v2.1'
+(lp150
+S'Checkpoint Firewall-1 NG on Sun Solaris 8'
+p151
+asS'Spirent | embedded || specialized'
 p152
-asS'Adtran | embedded || telecom-misc'
-p153
-(lp154
-S'Adtran Atlas 890 digital cross-connect device'
+(lp153
+S'Spirent AX4000 Network Testing Tool'
+p154
+asS'Treck | Treck || general purpose'
 p155
-asS'FreeBSD | FreeBSD | 4.x | general purpose'
-p156
-(lp157
-S'DragonFly 1.1-Stable (FreeBSD-4 fork)'
+(lp156
+S'Treck TCP/IP stack v2.1'
+p157
+asS'Adtran | embedded || telecom-misc'
 p158
-asS'Lucent | BSD-misc || general purpose'
-p159
-(lp160
-S'ATT UNIX SVR4.2 on a Lucent Definity voicemail system'
+(lp159
+S'Adtran Atlas 890 digital cross-connect device'
+p160
+asS'FreeBSD | FreeBSD | 4.x | general purpose'
 p161
-asS'Avaya | embedded || PBX'
-p162
-(lp163
-S'Avaya G3 PBX version 8.3'
+(lp162
+S'DragonFly 1.1-Stable (FreeBSD-4 fork)'
+p163
+asS'Apple | embedded || WAP'
 p164
-aS'Avaya IP Office 403 PBX'
-p165
-asS'Netgear | embedded || WAP'
+(lp165
+S'Apple Airport Extreme Base Station (WAP) or ARRIS Cadant C3 CMTS Cable Modem'
 p166
-(lp167
-S'WAP: Compaq iPAQ Connection Point or Netgear MR814'
+aS'Embedded device (Apple WAP, Dell bridge, OKI printer, Westel Broadband router)'
+p167
+asS'Lucent | BSD-misc || general purpose'
 p168
-asS'IBM | VM/CMS || general purpose'
-p169
-(lp170
-S'IBM VM/CMS (mainframe)'
+(lp169
+S'ATT UNIX SVR4.2 on a Lucent Definity voicemail system'
+p170
+asS'Avaya | embedded || PBX'
 p171
-aS'IBM VM/ESA 2.2.0 CMS Mainframe System'
-p172
-asS'3Com | embedded || PBX'
+(lp172
+S'Avaya G3 PBX version 8.3'
 p173
-(lp174
-S'3Com NBX PBX'
+aS'Avaya IP Office 403 PBX'
+p174
+asS'Netgear | embedded || WAP'
 p175
-asS'Blue Coat | embedded || web proxy'
-p176
-(lp177
-S'Blue Coat Security Proxy Appliance'
+(lp176
+S'WAP: Compaq iPAQ Connection Point or Netgear MR814'
+p177
+asS'IBM | VM/CMS || general purpose'
 p178
-asS'Motorola | BSD-misc || general purpose'
-p179
-(lp180
-S'Motorola BSR 1000R'
+(lp179
+S'IBM VM/CMS (mainframe)'
+p180
+aS'IBM VM/ESA 2.2.0 CMS Mainframe System'
 p181
-aS'Motorola System V/68 version R3V7 on a 68030'
+asS'Alteon | embedded || switch'
 p182
-asS'AXIS | embedded || webcam'
-p183
-(lp184
-S'AXIS 200+ Web Camera running OS v1.42'
+(lp183
+S'Alteon AceSwitch 110 or Cantillion C100 ATM Switch'
+p184
+aS'Alteon ACEswitch 184 V. 8.0.49'
 p185
-aS'AXIS 2120 network camera'
+asS'Apple | Newton OS || PDA'
 p186
-aS'AXIS Neteye 200+ Webcam running software version 1.42'
-p187
-aS'AXIS NetEye Camera Server V1.20'
+(lp187
+S'Apple Newton MessagePad 2100, Newton OS 2.1'
 p188
-asS'Linux | Linux | 2.3.X | general purpose'
+asS'3Com | embedded || PBX'
 p189
 (lp190
-S'Linux 2.3.12'
+S'3Com NBX PBX'
 p191
-aS'Linux 2.3.28-33'
+asS'Blue Coat | embedded || web proxy'
 p192
-aS'Linux 2.3.47 - 2.3.99-pre2 x86'
-p193
-aS'Linux 2.3.49 x86'
+(lp193
+S'Blue Coat Security Proxy Appliance'
 p194
-asS'LG GoldStream | embedded || router'
+asS'Motorola | BSD-misc || general purpose'
 p195
 (lp196
-S'LG Goldstream LR3001f router, software version 4.0'
+S'Motorola BSR 1000R'
 p197
-aS'LG Goldstream LR3100p router, software version 1.0-1.5'
+aS'Motorola System V/68 version R3V7 on a 68030'
 p198
-asS'Cisco | PIX | 4.X | firewall'
+asS'AXIS | embedded || webcam'
 p199
 (lp200
-S'Cisco PIX 4.2(2) Internal Interface'
+S'AXIS Stack -- CD-ROM server or print server or camera server'
 p201
-aS'Cisco PIX 515 firewall running software 4.4(5)'
+aS'AXIS 200+ Web Camera running OS v1.42'
 p202
-aS'Cisco PIX Firewall running PIX 4.1(5)'
+aS'AXIS 2120 network camera'
 p203
-aS'Cisco Pix Firewall running PIX 4.1.6'
+aS'AXIS Neteye 200+ Webcam running software version 1.42'
 p204
-aS'Cisco PIX v4.2 Firewall'
+aS'AXIS NetEye Camera Server V1.20'
 p205
-asS'Cisco | embedded || terminal server'
+asS'Linux | Linux | 2.3.X | general purpose'
 p206
 (lp207
-S'Cisco AS5200 terminal server'
+S'Linux 2.3.12'
 p208
-asS'Siemens | embedded || PBX'
+aS'Linux 2.3.28-33'
 p209
-(lp210
-S'Siemens HICOM 300 Phone switch (PBX)'
+aS'Linux 2.3.47 - 2.3.99-pre2 x86'
+p210
+aS'Linux 2.3.49 x86'
 p211
-aS'Siemens HICOM Phone switch (PBX)'
+asS'LG GoldStream | embedded || router'
 p212
-aS'Siemens HiPATH3500 VoIP PBX'
-p213
-asS'FiberLine | embedded || WAP'
+(lp213
+S'LG Goldstream LR3001f router, software version 4.0'
 p214
-(lp215
-S'FiberLine WL-1200R1 (also known as InterEpoch IWE-1200A-1) Wireless Broadband Router (WAP)'
+aS'LG Goldstream LR3100p router, software version 1.0-1.5'
+p215
+asS'Cisco | PIX | 4.X | firewall'
 p216
-asS'F5 Labs | BSDI || load balancer'
-p217
-(lp218
-S'F5 Labs Big/IP HA TCP/IP Load Balancer (BSDI kernel/x86)'
+(lp217
+S'Cisco PIX 4.2(2) Internal Interface'
+p218
+aS'Cisco PIX 515 firewall running software 4.4(5)'
 p219
-asS'Minolta | embedded || printer'
+aS'Cisco PIX Firewall running PIX 4.1(5)'
 p220
-(lp221
-S'Konica-Minolta Di3010 photocopier/printer/scanner'
+aS'Cisco Pix Firewall running PIX 4.1.6'
+p221
+aS'Cisco PIX v4.2 Firewall'
 p222
-aS'Minolta Di183 printer/copier'
+asS'Cisco | embedded || terminal server'
 p223
-asS'Sequent | embedded || general purpose'
-p224
-(lp225
-S'Sequent DYNIX/ptx V4.2.1'
+(lp224
+S'Cisco AS5200 terminal server'
+p225
+asS'FlowPoint | embedded || broadband router'
 p226
-aS'Sequent DYNIX/ptx V4.4.6'
-p227
-asS'Thales | embedded || encryption accelerator'
+(lp227
+S'DSL Router: FlowPoint 144/22XX v3.0.8 or SpeedStream 5851 v4.0.5.1'
 p228
-(lp229
-S'Thales WebSentry HSM Crypto Accelerator'
+aS'FlowPoint/2000 - 2200 SDSL Router (v1.2.3 - 3.0.4) or ASCOM Timeplex Access Router'
+p229
+asS'Siemens | embedded || PBX'
 p230
-asS'Atari | Atari || game console'
-p231
-(lp232
-S'MiNT with MiNTnet 1.03 running on Atari TT'
+(lp231
+S'Siemens HICOM 300 Phone switch (PBX)'
+p232
+aS'Siemens HICOM Phone switch (PBX)'
 p233
-asS'Apple | Mac OS X | 10.4.X | general purpose'
+aS'Siemens HiPATH3500 VoIP PBX'
 p234
-(lp235
-S'Apple Mac OS X 10.3.8 or 10.4'
-p236
-asS'KA9Q | KA9Q || specialized'
+asS'FiberLine | embedded || WAP'
+p235
+(lp236
+S'FiberLine WL-1200R1 (also known as InterEpoch IWE-1200A-1) Wireless Broadband Router (WAP)'
 p237
-(lp238
-S'KA9Q amateur radio OS'
-p239
-asS'Symbol | embedded || WAP'
+asS'F5 Labs | BSDI || load balancer'
+p238
+(lp239
+S'F5 Labs Big/IP HA TCP/IP Load Balancer (BSDI kernel/x86)'
 p240
-(lp241
-S'Symbol/Spectrum24 Wireless AP'
-p242
-asS'Infortrend | embedded || storage-misc'
+asS'Minolta | embedded || printer'
+p241
+(lp242
+S'Konica-Minolta Di3010 photocopier/printer/scanner'
 p243
-(lp244
-S'Infortrend EonStor A16U-G1410'
+aS'Minolta Di183 printer/copier'
+p244
+asS'Sequent | embedded || general purpose'
 p245
-asS'Cray | UNICOS | 8.X | general purpose'
-p246
-(lp247
-S'Cray UNICOS/mk 8.6'
+(lp246
+S'Sequent DYNIX/ptx V4.2.1'
+p247
+aS'Sequent DYNIX/ptx V4.4.6'
 p248
-asS'Tainet | embedded || broadband router'
+asS'Thales | embedded || encryption accelerator'
 p249
 (lp250
-S'Tainet WANpro 2000i Broadband router'
+S'Thales WebSentry HSM Crypto Accelerator'
 p251
-asS'DEC | BSD-misc || general purpose'
+asS'Atari | Atari || game console'
 p252
 (lp253
-S'4.3BSD-tahoe on a MicroVax III'
+S'MiNT with MiNTnet 1.03 running on Atari TT'
 p254
-asS'Linux | Linux | 2.6.X | general purpose'
+asS'Apple | Mac OS X | 10.4.X | general purpose'
 p255
 (lp256
-S'Linux 2.4.20 or 2.6.0-test5-love3 (x86)'
+S'Apple Mac OS X 10.3.8 or 10.4'
 p257
-aS'Linux 2.4.21 - 2.4.23'
+aS'Apple Mac OS X 10.4.0 - 10.4.4 (Tiger)'
 p258
-aS'Linux 2.4.22 or 2.6.10'
+asS'KA9Q | KA9Q || specialized'
 p259
-aS'Linux 2.4.7 - 2.6.11'
-p260
-aS'Linux 2.5.5 (Gentoo)'
+(lp260
+S'KA9Q amateur radio OS'
 p261
-aS'Linux 2.6.0 (x86)'
+asS'Symbol | embedded || WAP'
 p262
-aS'Linux 2.6.0 - 2.6.11'
-p263
-aS'Linux 2.6.0 - 2.6.11'
+(lp263
+S'Symbol/Spectrum24 Wireless AP'
 p264
-aS'Linux 2.6.0 - 2.6.11'
+asS'Infortrend | embedded || storage-misc'
 p265
-aS'Linux 2.6.0 - 2.6.11'
-p266
-aS'Linux 2.6.0 - 2.6.11'
+(lp266
+S'Infortrend EonStor A16U-G1410'
 p267
-aS'Linux 2.6.0-test10 (x86)'
+asS'Cray | UNICOS | 8.X | general purpose'
 p268
-aS'Linux 2.6.0-test5 x86'
-p269
-aS'Linux 2.6.0-test7 (x86)'
+(lp269
+S'Cray UNICOS/mk 8.6'
 p270
-aS'Linux 2.6.0-test9 - 2.6.0 (x86)'
+asS'Tainet | embedded || broadband router'
 p271
-aS'Linux 2.6.10'
-p272
-aS'Linux 2.6.10'
+(lp272
+S'Tainet WANpro 2000i Broadband router'
 p273
-aS'Linux 2.6.10'
+asS'DEC | BSD-misc || general purpose'
 p274
-aS'Linux 2.6.10'
-p275
-aS'Linux 2.6.10 - 2.6.11'
+(lp275
+S'4.3BSD-tahoe on a MicroVax III'
 p276
-aS'Linux 2.6.11'
+asS'IBM | embedded || switch'
 p277
-aS'Linux 2.6.11 (gentoo)'
-p278
-aS'Linux 2.6.3 - 2.6.10'
+(lp278
+S'IBM LAN RouteSwitch/Xylan OmniSwitch Version 3.2.5/NeXT'
 p279
-aS'Linux 2.6.3 - 2.6.7 (X86)'
+asS'Linux | Linux | 2.6.X | general purpose'
 p280
-aS'Linux 2.6.3 or 2.6.8'
-p281
-aS'Linux 2.6.4 (Suse)'
+(lp281
+S'Linux 2.6.15'
 p282
-aS'Linux 2.6.5'
-p283
-aS'Linux 2.6.6'
-p284
-aS'Linux 2.6.6-1-k7 (X86)'
-p285
-aS'Linux 2.6.7'
-p286
-aS'Linux 2.6.7'
-p287
-aS'Linux 2.6.7'
-p288
-aS'Linux 2.6.7 (X86)'
-p289
-aS'Linux 2.6.7 w/grsecurity.org patch'
-p290
-aS'Linux 2.6.8'
-p291
-aS'Linux 2.6.8'
-p292
-aS'Linux 2.6.8'
-p293
-aS'Linux 2.6.8'
-p294
-aS'Linux 2.6.8 (Debian)'
-p295
-aS'Linux 2.6.8 (Ubuntu)'
-p296
-aS'Linux 2.6.8 - 2.6.11'
-p297
-aS'Linux 2.6.8 - 2.6.9'
-p298
-aS'Linux 2.6.9'
-p299
-aS'Linux 2.6.9'
-p300
-aS'Linux kernel 2.6.5 - 2.6.8'
-p301
 asS'2Wire | embedded || WAP'
-p302
-(lp303
+p283
+(lp284
 S'2Wire Home Portal 100 residential gateway, v.3.1.0'
-p304
+p285
 asS'Radionics | embedded || specialized'
-p305
-(lp306
+p286
+(lp287
 S'Lantronix CoBox serial device server or Radionics RAM IV Alarm'
-p307
+p288
+asS'HP | VxWorks || switch'
+p289
+(lp290
+S'VxWorks 5.3.x bases system (usually an Ethernet hub or switch such as HP ProCurve) or Bay Networks MicroAnnex XL terminal server'
+p291
 asS'Cisco | embedded || bridge'
-p308
-(lp309
+p292
+(lp293
 S'Cisco Accesspoint 1200'
-p310
+p294
 aS'Cisco AIR-WGB340 V8.38 Wireless workgroup bridge 340'
-p311
+p295
 aS'Cisco WGB350 Wireless WorkGroup Bridge'
-p312
+p296
 asS'Cisco | IOS | 12.X | router'
-p313
-(lp314
+p297
+(lp298
 S'Cisco IOS 11.3 - 12.0(11)'
-p315
+p299
 aS'Cisco 1601 router running IOS 12.0(8)'
-p316
+p300
 aS'Cisco 1601R router running IOS 12.1(5)'
-p317
+p301
 aS'Cisco 1721 router running IOS 12.3(10)'
-p318
+p302
 aS'Cisco 2514 router running IOS 12.0(21)'
-p319
+p303
 aS'Cisco 2600 router running IOS 12.2(3)'
-p320
+p304
 aS'Cisco 2610 router running IOS 12.2(21a)'
-p321
+p305
 aS'Cisco 2611 router running IOS 12.0(7)T'
-p322
+p306
 aS'Cisco 2611 router running IOS 12.2(7a)'
-p323
+p307
 aS'Cisco 2620 router running IOS 12.2(15)'
-p324
+p308
 aS'Cisco 2620 router running IOS 12.3(5)'
-p325
+p309
 aS'Cisco 2620 running IOS 12.2(19a)'
-p326
+p310
 aS'Cisco 3660 running IOS 12.0(6r)T'
-p327
+p311
 aS'Cisco 3725 router running IOS 12.3(6c)'
-p328
+p312
 aS'Cisco 3745 Router running IOS 12.2(15)T13'
-p329
+p313
 aS'Cisco 4000 Series running IOS 12.0(10.3)'
-p330
+p314
 aS'Cisco 7200 router running IOS 12.1(14)E6'
-p331
+p315
 aS'Cisco 7200 router running IOS 12.4(1a)'
-p332
+p316
 aS'Cisco 7204 router running IOS 12.1(19)'
-p333
+p317
 aS'Cisco 7206 router running IOS 12.2(13)T8'
-p334
+p318
 aS'Cisco 800 Series Broadband Routers running IOS 12.0(7)T'
-p335
+p319
 aS'Cisco 837 router running IOS 12.3(11)T or Cisco 2811 router running IOS 12.3(8r)T7'
-p336
+p320
 aS'Cisco 837 router running IOS 12.3(8)T'
-p337
+p321
 aS'Cisco AS5350 running IOS 12.2(2)XB6'
-p338
+p322
 aS'Cisco IOS 12.0(3.3)S (perhaps a 7200 router)'
-p339
+p323
 aS'Cisco IOS 12.0(5)WC3 - 12.0(16a)'
-p340
+p324
 aS'Cisco IOS 12.0(7)T (on a 1700 router)'
-p341
+p325
 aS'Cisco IOS 12.1(4) on a 2600 router'
-p342
+p326
 aS'Cisco IOS 12.2(8)T5 on a 7507 router'
-p343
+p327
 aS'Cisco router or WAP running IOS 12.2'
-p344
+p328
 aS'Cisco router running IOS 12.0(18)S or 12.0(18)S1'
-p345
+p329
 aS'Cisco router running IOS 12.1'
-p346
+p330
 aS'Cisco router running IOS 12.1(5)-12.2(7a)'
-p347
+p331
 aS'Cisco router running IOS 12.1.5-12.2.13a'
-p348
+p332
+aS'Cisco router running IOS 12.2'
+p333
 aS'Cisco router running IOS 12.2(8)T'
-p349
+p334
 aS'Cisco router running IOS 12.3(11)'
-p350
+p335
+aS'Cisco router running IOS 12.3(6) - 12.3(11)'
+p336
 aS'Cisco router running IOS v12.0(15)'
-p351
+p337
 aS'Cisco SOHO 91 secure router running IOS 12.3'
-p352
+p338
 aS'Cisco switch running IOS 12.1(23)E'
-p353
+p339
 aS'router Cisco 3640 running IOS 12.2(23a)'
-p354
+p340
 asS'Bell Labs | Plan9 || general purpose'
-p355
-(lp356
+p341
+(lp342
 S'Bell Labs Plan9 Fourth Edition'
-p357
+p343
 aS'Bell Labs Plan9 Fourth Edition (x86)'
-p358
+p344
 aS'Bell Labs Plan9 Second Edition'
-p359
+p345
 asS'FreeBSD | FreeBSD | 4.X | general purpose'
-p360
-(lp361
+p346
+(lp347
 S'FreeBSD 2.2.1 - 4.1'
-p362
+p348
 aS'FreeBSD 3.2-4.0'
-p363
+p349
 aS'FreeBSD 4.0-20000208-CURRENT'
-p364
+p350
 aS'FreeBSD 4.1.1 - 4.3 (x86)'
-p365
+p351
 aS'FreeBSD 4.10-STABLE'
-p366
+p352
 aS'FreeBSD 4.2 - 4.3-RC (X86)'
-p367
+p353
 aS'FreeBSD 4.3 - 4.4-RELEASE'
-p368
+p354
 aS'FreeBSD 4.3 - 4.4PRERELEASE'
-p369
+p355
 aS'FreeBSD 4.4 for i386 (IA-32)'
-p370
+p356
+aS'FreeBSD 4.4-5 or Apple Mac OS X 10.0.4 (Darwin V. 1.3-1.3.7 or 4P13)'
+p357
 aS'FreeBSD 4.4-STABLE'
-p371
+p358
 aS'FreeBSD 4.5-RELEASE (or -STABLE) through 4.6-RC (x86)'
-p372
+p359
 aS'FreeBSD 4.6'
-p373
-aS'FreeBSD 4.6'
-p374
-aS'FreeBSD 4.6'
-p375
+p360
 aS'FreeBSD 4.6 through 4.6.2 (July 2002) (x86)'
-p376
+p361
 aS'FreeBSD 4.6-RC on Alpha'
-p377
+p362
 aS'FreeBSD 4.6.2-RELEASE'
-p378
+p363
 aS'FreeBSD 4.6.2-RELEASE - 4.8-RELEASE'
-p379
+p364
 aS'FreeBSD 4.7 - 4.8-RELEASE'
-p380
+p365
 aS'FreeBSD 4.7-RELEASE'
-p381
+p366
 aS'FreeBSD 4.7-RELEASE through 4.8-RELEASE (x86)'
-p382
+p367
 aS'FreeBSD 4.7-RELEASE-p3'
-p383
+p368
 aS'FreeBSD 4.7-STABLE'
-p384
+p369
 aS'FreeBSD 4.8-RELEASE through 4.9-STABLE'
-p385
+p370
 aS'FreeBSD 4.8-STABLE'
-p386
-aS'FreeBSD 4.8-STABLE'
-p387
+p371
 aS'FreeBSD 4.8-STABLE - 4.9-PRERELEASE'
-p388
+p372
 aS'FreeBSD 4.9 - 5.1'
-p389
+p373
 aS'FreeBSD 4.9-RELEASE'
-p390
-aS'FreeBSD 4.9-RELEASE'
-p391
+p374
 aS'FreeBSD 4.9-STABLE'
-p392
+p375
 asS'Microbase | VirtuOS || general purpose'
-p393
-(lp394
+p376
+(lp377
 S'Microbase VirtuOS v3.00b R.09'
-p395
+p378
+asS'Westel | embedded || broadband router'
+p379
+(lp380
+g167
 asS'Lantronix | embedded || switch'
-p396
-(lp397
+p381
+(lp382
 S'Lantronix LSB4 Ethernet Switch'
-p398
+p383
 asS'EMC | DART || fileserver'
+p384
+(lp385
+S'EMC DART running on a Data Mover fileserver. Version T4.1.8.1'
+p386
+aS'EMC IP4700 Filer'
+p387
+asS'Cisco | CBOS || broadband router'
+p388
+(lp389
+S'Cisco 675 DSL router -- cbos 2.1'
+p390
+asS'Cisco | embedded || switch'
+p391
+(lp392
+S'Cisco 1548M managed switch'
+p393
+ag104
+aS'Cisco Catalyst 2820 switch Management Console'
+p394
+aS'Cisco Catalyst 5500/6500 or Alcatel OmniSwitch/Router'
+p395
+aS'Cisco Catalyst 6509 switch running IOS Version 12.1(23)E'
+p396
+aS'Cisco Catalyst switch'
+p397
+aS'Router/Switch/Printer/Firewall (LanPlex 2500/Cisco Catalyst 5505/Cisco 6509/Trancell Webramp/Xylan OmniSwitch)/Epson Stylus (100BTX-NIC HP Secure Web Console, SonicWall firewall appliance 3.3.1)'
+p398
+asS'Sega | embedded || game console'
 p399
 (lp400
-S'EMC DART running on a Data Mover fileserver. Version T4.1.8.1'
+S'Sega Dreamcast game console'
 p401
-aS'EMC IP4700 Filer'
+asS'Nortel | embedded || terminal server'
 p402
-asS'Cisco | CBOS || broadband router'
-p403
-(lp404
-S'Cisco 675 DSL router -- cbos 2.1'
+(lp403
+S'Nortel Networks CVX1800 RAS. Software version 2.02'
+p404
+asS'Draytek | embedded || broadband router'
 p405
-asS'Cisco | embedded || switch'
-p406
-(lp407
-S'Cisco 1548M managed switch'
+(lp406
+S'Draytek Vigor 2000 ISDN router'
+p407
+aS'Draytek Vigor 2200e DSL router v2.1a'
 p408
-aS'Cisco Catalyst 2820 switch Management Console'
+aS'Draytek Vigor 2200e DSL router v2.1b'
 p409
-aS'Cisco Catalyst 5500/6500 or Alcatel OmniSwitch/Router'
+asS'Sony | NewsOS || general purpose'
 p410
-aS'Cisco Catalyst 6509 switch running IOS Version 12.1(23)E'
-p411
-aS'Cisco Catalyst switch'
+(lp411
+S'Sony NewsOS 6.1.2'
 p412
-asS'Sega | embedded || game console'
+asS'FastComm | embedded || specialized'
 p413
 (lp414
-S'Sega Dreamcast game console'
+S'FastComm FRAD (Frame Relay Access Device) F9200-DS-DNI -- Ver. 4.2.3A'
 p415
-asS'Nortel | embedded || terminal server'
+asS'Radware | embedded || security-misc'
 p416
 (lp417
-S'Nortel Networks CVX1800 RAS. Software version 2.02'
+S'Radware Content Inspection Director v2.10.03'
 p418
-asS'Draytek | embedded || broadband router'
+asS'AXIS | embedded || fileserver'
 p419
 (lp420
-S'Draytek Vigor 2000 ISDN router'
+S'AXIS or Meridian Data Network CD-ROM server'
 p421
-aS'Draytek Vigor 2200e DSL router v2.1a'
+ag201
+aS'AXIS StorPoint CD E100 CD-ROM Server'
 p422
-aS'Draytek Vigor 2200e DSL router v2.1b'
+aS'AXIS StorPoint CD E100 CD-ROM Server V5.20'
 p423
-asS'Sony | NewsOS || general purpose'
+aS'AXIS StorPoint CD E100 CD-ROM Server V5.38'
 p424
-(lp425
-S'Sony NewsOS 6.1.2'
-p426
-asS'FastComm | embedded || specialized'
+asS'Microsoft | Windows | PocketPC/CE | PDA'
+p425
+(lp426
+S'Microsoft Windows 95/98/NT 4.0 or PocketPC'
 p427
-(lp428
-S'FastComm FRAD (Frame Relay Access Device) F9200-DS-DNI -- Ver. 4.2.3A'
+aS'HP Jornada running Microsoft Windows CE 2.11 (Handheld/PC Pro 3.0 PDA)'
+p428
+aS'Microsoft PocketPC 3.0.11171 running on Compaq iPAQ 3870 Pocket PC'
 p429
-asS'Radware | embedded || security-misc'
+asS'3Com | embedded || terminal server'
 p430
 (lp431
-S'Radware Content Inspection Director v2.10.03'
-p432
-asS'AXIS | embedded || fileserver'
-p433
-(lp434
-S'AXIS or Meridian Data Network CD-ROM server'
-p435
-aS'AXIS StorPoint CD E100 CD-ROM Server'
-p436
-aS'AXIS StorPoint CD E100 CD-ROM Server V5.20'
-p437
-aS'AXIS StorPoint CD E100 CD-ROM Server V5.38'
-p438
-asS'Microsoft | Windows | PocketPC/CE | PDA'
-p439
-(lp440
-S'Microsoft Windows 95/98/NT 4.0 or PocketPC'
-p441
-aS'HP Jornada running Microsoft Windows CE 2.11 (Handheld/PC Pro 3.0 PDA)'
-p442
-aS'Microsoft PocketPC 3.0.11171 running on Compaq iPAQ 3870 Pocket PC'
-p443
-asS'3Com | embedded || terminal server'
-p444
-(lp445
 S'3Com SuperStack II RAS remote access server'
-p446
+p432
 aS'3Com terminal server ESPL CS2100'
-p447
+p433
 asS'RoadLanner | embedded || broadband router'
+p434
+(lp435
+S'RoadLanner Broadband router BRL-04FW 6.15.02r Build 0091 L:01'
+p436
+asS'3Com | embedded || broadband router'
+p437
+(lp438
+S'3Com Home Connect Cable Modem'
+p439
+aS'3Com OfficeConnect 812 aDSL router'
+p440
+aS'3Com OfficeConnect Remote 812 aDSL Router'
+p441
+aS'3Com Sharkfin/Tailfin Cable Modem'
+p442
+aS'US Robotics USR8000 Broadband router'
+p443
+aS'Kentrox DataSMART 656 CSU/DSU, USR NETserver/16, or 3Com OfficeConnect ADSL router'
+p444
+asS'HP | embedded || switch'
+p445
+(lp446
+S'HP Advancestack Etherswitch 224T or 210 or Netgear RP114 DSL-Router w/Switch'
+p447
+asS'Netburner | embedded || specialized'
 p448
 (lp449
-S'RoadLanner Broadband router BRL-04FW 6.15.02r Build 0091 L:01'
+S'Netburner Model 5282 Embedded Ethernet Microcontroller'
 p450
-asS'3Com | embedded || broadband router'
+asS'Lucent | ComOS || terminal server'
 p451
 (lp452
-S'3Com Home Connect Cable Modem'
-p453
-aS'3Com OfficeConnect 812 aDSL router'
-p454
-aS'3Com OfficeConnect Remote 812 aDSL Router'
-p455
-aS'3Com Sharkfin/Tailfin Cable Modem'
-p456
-aS'3Com Sharkfin/Tailfin Cable Modem'
-p457
-aS'US Robotics USR8000 Broadband router'
-p458
-asS'Netburner | embedded || specialized'
-p459
-(lp460
-S'Netburner Model 5282 Embedded Ethernet Microcontroller'
-p461
-asS'Lucent | ComOS || terminal server'
-p462
-(lp463
 S'Lucent Portmaster 4 running ComOS v4.0.3c2'
-p464
+p453
 asS'Easytel | embedded || broadband router'
-p465
-(lp466
+p454
+(lp455
 S'Easytel TeleWell EA-701B ADSL Modem/Router'
-p467
+p456
+asS'HP | BSD-misc || general purpose'
+p457
+(lp458
+S'HP-BSD 2.0'
+p459
 asS'SGI | IRIX | 4.X | general purpose'
-p468
-(lp469
+p460
+(lp461
 S'SGI IRIX 4.0.5F'
-p470
+p462
 asS'DEC | DIGITAL UNIX | 4.X | general purpose'
+p463
+(lp464
+S'DEC DIGITAL UNIX OSF1 V 4.0-4.0F'
+p465
+aS'DIGITAL UNIX OSF1 V 4.0,4.0B,4.0D,4.0E,4.0F'
+p466
+asS'Konica | embedded || printer'
+p467
+(lp468
+S'Konica-Minolta magicolor2300DL printer controller'
+p469
+aS'Pitney Bowes photocopier, Konica printer/fax/scanner, or Toshiba E-Studio16 printer'
+p470
+asS'Packet Engines | embedded || router'
 p471
 (lp472
-S'DEC DIGITAL UNIX OSF1 V 4.0-4.0F'
+S'Packet Engines PowerRail 5200 router version 2.6.0r10 - 16 Sep, 1999'
 p473
-aS'DIGITAL UNIX OSF1 V 4.0,4.0B,4.0D,4.0E,4.0F'
+asS'US Robotics | embedded || WAP'
 p474
-asS'Konica | embedded || printer'
-p475
-(lp476
-S'Konica-Minolta magicolor2300DL printer controller'
+(lp475
+S'D-Link DI-804HV VPN Router or US-Robotics 8022 WAP or DI-714P+ Wireless router'
+p476
+aS'US Robotics Broadband router (model #8000-02)'
 p477
-aS'Pitney Bowes photocopier, Konica printer/fax/scanner, or Toshiba E-Studio16 printer'
+aS'US Robotics USR8022 Broadband Wireless router (WAP)'
 p478
-asS'Packet Engines | embedded || router'
+asS'Cyclades | Cyros || terminal server'
 p479
 (lp480
-S'Packet Engines PowerRail 5200 router version 2.6.0r10 - 16 Sep, 1999'
+S'Cyclades PathRAS Remote Access Server v1.1.8 - 1.3.12'
 p481
-asS'US Robotics | embedded || WAP'
+asS'StackTools | StackTos || general purpose'
 p482
 (lp483
-S'D-Link DI-804HV VPN Router or US-Robotics 8022 WAP or DI-714P+ Wireless router'
-p484
-aS'US Robotics Broadband router (model #8000-02)'
-p485
-aS'US Robotics USR8022 Broadband Wireless router (WAP)'
-p486
-asS'Cyclades | Cyros || terminal server'
-p487
-(lp488
-S'Cyclades PathRAS Remote Access Server v1.1.8 - 1.3.12'
-p489
-asS'StackTools | StackTos || general purpose'
-p490
-(lp491
 S'StackTools StackTos 1.0 embedded networking OS'
-p492
+p484
 aS'StackTos 2.1'
-p493
+p485
 asS'MultiTech | embedded || telecom-misc'
-p494
-(lp495
+p486
+(lp487
 S'MultiTech MultiVoIP Version 2.01A Firmware'
-p496
+p488
+asS'Contiki | Contiki || specialized'
+p489
+(lp490
+S'Contiki 1.2-devel0 embedded OS on Ethernut card or uIP 0.9 TCP/IP stack'
+p491
 asS'Nexland | embedded || broadband router'
-p497
-(lp498
+p492
+(lp493
 S'Nexland ISB Pro800 Turbo Cable/DSL router'
-p499
+p494
 asS'Fore | embedded || switch'
-p500
-(lp501
+p495
+(lp496
 S'Fore ForeThought 7.1.0 ATM switch'
-p502
+p497
 aS'Fore ForeThought 8.3.0.N ATM BX200 switch'
-p503
+p498
+asS'Trancell | embedded || router'
+p499
+(lp500
+g398
 asS'Aironet | embedded || WAP'
+p501
+(lp502
+S'Aironet AP4800E v8.07 - Aironet (Cisco?) 11 Mbps Wireless access point'
+p503
+asS'Minolta | VxWorks || printer'
 p504
 (lp505
-S'Aironet AP4800E v8.07 - Aironet (Cisco?) 11 Mbps Wireless access point'
+S'Minolta QMS Printer running VxWorks 5.4.2'
 p506
-asS'Minolta | VxWorks || printer'
+asS'Apple | embedded || printer'
 p507
 (lp508
-S'Minolta QMS Printer running VxWorks 5.4.2'
-p509
-asS'Apple | embedded || printer'
-p510
-(lp511
 S'Apple Color LaserWriter 12/660 PS (Model No. M3036)'
-p512
+p509
 aS'Apple Color LaserWriter 600 Printer'
-p513
-aS'Apple Color LaserWriter 600 Printer'
-p514
+p510
 aS'Apple LaserWriter 12/640 PS'
-p515
+p511
 aS'Apple LaserWriter 16/600 PS, HP 6P, or HP 5 Printer'
-p516
+p512
 aS'Apple LaserWriter 8500 (PostScript version 3010.103)'
-p517
+p513
 asS'Proteon | OpenRoute || router'
+p514
+(lp515
+S'Proteon OpenRoute 2.1 on a RBX200 Router or IBM 2210 Router'
+p516
+aS'Proteon OpenRoute 3.0 gt series router'
+p517
+asS'NetBSD | NetBSD || general purpose'
 p518
 (lp519
-S'Proteon OpenRoute 2.1 on a RBX200 Router or IBM 2210 Router'
-p520
-aS'Proteon OpenRoute 3.0 gt series router'
-p521
-asS'NetBSD | NetBSD || general purpose'
-p522
-(lp523
 S'NetBSD 1.0 big endian arch'
-p524
+p520
+aS'NetBSD 1.0 i386'
+p521
 aS'NetBSD 1.0 little endian arch'
-p525
+p522
 aS'NetBSD 1.1 - 1.2.1 litle endian arch'
-p526
+p523
 aS'NetBSD 1.2 - 1.2.1 big endian arch'
-p527
+p524
 aS'NetBSD 1.3 - 1.3.3 big endian arch'
-p528
+p525
 aS'NetBSD 1.3 - 1.3.3 little endian arch'
-p529
+p526
 aS'NetBSD 1.3H (after 19980919) or 1.3I (before 19990119) little endian arch'
-p530
+p527
 aS'NetBSD 1.3H-1.5  big endian arch'
-p531
+p528
+aS'NetBSD 1.3I through 1.6'
+p529
 aS'NetBSD 1.5.2 running on a Commodore Amiga (68040 processor)'
-p532
+p530
 aS'NetBSD 1.5_ALPHA i386'
-p533
+p531
 aS'NetBSD 1.6'
-p534
+p532
 aS'NetBSD 1.6 - 1.6.1 (Alpha)'
-p535
+p533
 aS'NetBSD 1.6 BETA 4 i386 (20020630 snapshot)'
-p536
+p534
 aS'NetBSD 1.6.2 (alpha)'
-p537
+p535
 aS'NetBSD 1.6.2 (X86)'
-p538
-aS'NetBSD 1.6.2 - 2.0_BETA or Avocent Switchview net KVM switch'
-p539
+p536
+ag135
 aS'NetBSD 1.6ZC (SPARC)'
-p540
+p537
 aS'NetBSD 1.6ZD'
-p541
+p538
+aS'NetBSD 1.6ZH or 2.0 - 2.0.2'
+p539
 aS'NetBSD 2.0'
-p542
-aS'NetBSD 2.0'
-p543
+p540
 aS'NetBSD/Alpha 1.5.2 on a DEC 000/300 LX'
-p544
+p541
 asS'XCD | embedded || print server'
+p542
+(lp543
+S'XCD Xconnect Print Server, firmware version CC8S-3.58 (98.09.21)'
+p544
+asS'Panasonic | embedded || broadband router'
 p545
 (lp546
-S'XCD Xconnect Print Server, firmware version CC8S-3.58 (98.09.21)'
+S'Panasonic IP Technology Broadband Networking Gateway, KX-HGW200'
 p547
-asS'Panasonic | embedded || broadband router'
+asS'RCA | embedded || broadband router'
 p548
 (lp549
-S'Panasonic IP Technology Broadband Networking Gateway, KX-HGW200'
+S'Cisco 1538M HUB running Cisco 1538M EES (1.00.00) or Assured Access Technology ISAS Switch Release-2.3.0 or Thomson Multimedia RCA DCM245 Cable Modem'
 p550
-asS'RCA | embedded || broadband router'
+aS'RCA/Thomson cable modem DCM-235/245'
 p551
-(lp552
-S'RCA/Thomson cable modem DCM-235/245'
-p553
-asS'Symantec | Solaris | 8 | firewall'
+asS'Neoware | NetOS || X terminal'
+p552
+(lp553
+S'Cisco 11151/Arrowpoint 150 load balancer, Neoware (was HDS) NetOS V. 2.0.1 or HP Entria C3230A'
 p554
-(lp555
+asS'Symantec | Solaris | 8 | firewall'
+p555
+(lp556
 S'Symantec Enterprise Firewall v7.0.4 (on Solaris 8)'
-p556
-asS'BSDI | BSD/OS | 3.X | general purpose'
 p557
-(lp558
+asS'BSDI | BSD/OS | 3.X | general purpose'
+p558
+(lp559
 S'BSDI BSD/OS 3.0-3.1 (or possibly Mac OS, NetBSD)'
-p559
-asS'Sun | Solaris | 9 | general purpose'
 p560
-(lp561
+asS'Sun | Solaris | 9 | general purpose'
+p561
+(lp562
 S'Sun Solaris 9'
-p562
-aS'Sun Solaris 9'
 p563
-aS'Sun Solaris 9'
+aS'Sun Solaris 9 or 10'
 p564
 aS'Sun Solaris 9 with TCP_STRONG_ISS set to 2'
 p565
@@ -1080,22 +1072,23 @@ S'Bay Networks BLN-2 Network Router or ASN Processor revision 9'
 p600
 aS'Bay Networks Instant Internet router'
 p601
-aS'Bay Networks Instant Internet router'
-p602
 aS'Baystack Instant Internet 400 SoHo Router'
-p603
+p602
 asS'SMC | embedded || WAP'
-p604
-(lp605
-S'SMC Barricade Router, firmware 1.94a'
+p603
+(lp604
+S'Panasonic network camera or SMC WAP'
+p605
+aS'SMC Barricade DSL Router/Modem/Wireless AP'
 p606
-aS'SMC Barricade Wireless Broadband Router (firmware R1.93e)'
+aS'SMC Barricade Router, firmware 1.94a'
 p607
-asS'US Robotics | embedded || switch'
+aS'SMC Barricade Wireless Broadband Router (firmware R1.93e)'
 p608
-(lp609
-S'Kentrox DataSMART 656 CSU/DSU, USR NETserver/16, or 3Com OfficeConnect ADSL router'
-p610
+asS'US Robotics | embedded || switch'
+p609
+(lp610
+g444
 asS'Billion | embedded || broadband router'
 p611
 (lp612
@@ -1131,3632 +1124,3444 @@ aS'ELSA LANCOM DSL/10 Office DSL router'
 p629
 aS'ELSA LANCOM DSL/10 office router'
 p630
-aS'ELSA LANCOM DSL/10 office router'
-p631
 aS'ELSA LANCOM DSL/I-1611 Office router'
-p632
+p631
 asS'Canon | embedded || printer'
-p633
-(lp634
+p632
+(lp633
 S'Canon GP 160 PF printer'
-p635
+p634
 aS'Canon iR 2200 printer'
-p636
+p635
 aS'Canon iR C3200 printer'
-p637
+p636
 aS'Canon iR2270 printer'
-p638
+p637
 aS'Canon iR6000 printer'
-p639
+p638
 aS'Canon iR7200 Printer'
-p640
+p639
 aS'Canon photocopier/fax/scanner/printer GP30F'
-p641
+p640
 aS'Canon Pixmar IP4000R printer'
-p642
+p641
 asS'IPCop | Linux | 2.2.X | firewall'
-p643
-(lp644
+p642
+(lp643
 S'IPCop 1.20 Linux 2.2.2X-based firewall'
-p645
+p644
 asS'DEC | embedded || router'
-p646
-(lp647
+p645
+(lp646
 S'DECNIS 600 V4.1.3B multiprotocol bridge/router'
-p648
+p647
 asS'Nortel | embedded || switch'
-p649
-(lp650
+p648
+(lp649
 S'Nortel Networks BayStack switch'
-p651
+p650
 aS'Nortel Networks Passport 1100 switch'
-p652
+p651
 aS'Nortel Networks Passport 8600 routing switch sw 3.3.0.0'
-p653
+p652
 asS'Rio | embedded || media device'
-p654
-(lp655
+p653
+(lp654
 S'Rio Karma mp3 player'
-p656
+p655
 asS'Sharp | embedded || printer'
-p657
-(lp658
+p656
+(lp657
 S'Sharp DIGITAL Imager (copier) AR-507'
-p659
+p658
 aS'Sharp Network Printer AR-337'
-p660
+p659
 asS'IBM | embedded || hub'
-p661
-(lp662
+p660
+(lp661
 S'Cisco 760 Series ISDN router (non IOS) or IBM Stackable Hub'
-p663
+p662
 aS'IBM 8222 hub'
-p664
+p663
 aS'IBM 8239 Token-Ring Stackable Hub'
-p665
+p664
 asS'IPRoute | DOS || software router'
-p666
-(lp667
+p665
+(lp666
 S'IPRoute (DOS based software router)'
-p668
+p667
 asS'Redback | AOS || router'
-p669
-(lp670
+p668
+(lp669
 S'Redback SMS 1800 router'
-p671
+p670
 aS'Redback SMS 1800/10000 router or Thomson TMC 390 cable modem'
-p672
+p671
 aS'Redback SMS500 Redback Networks router AOS Release 5.0.3.8 - 5.0.4.0'
-p673
+p672
 asS'ZyXel | ZyNOS || firewall'
-p674
-(lp675
+p673
+(lp674
 S'ZyXel ZyWALL 1 firewall'
-p676
+p675
 aS'ZyXel Zywall 10W firewall'
-p677
+p676
 aS'ZyXel ZyWALL 50 (ZyNOS 3.52)'
-p678
+p677
 asS'3Com | embedded || router'
-p679
-(lp680
+p678
+(lp679
 S'3Com AccessBuilder Remote Office 500 router'
-p681
+p680
 aS'3Com NetBuilder & NetBuilder II OS v 9.3'
-p682
+p681
 aS'3Com Netbuilder & Netbuilder II router OS v8.1'
-p683
+p682
 aS'3Com Netbuilder II Router Ver 11.4.0.51'
-p684
+p683
 aS'3Com Netbuilder Remote Office 222 (ESPL-310), Version 10.1 (SW/NBRO-AB,10.1)'
-p685
+p684
 aS'3Com Netbuilder Remote Office 222 router'
-p686
+p685
 aS'3Com NetBuilder-II, OS version SW/NB2M-BR-5.1.0.27'
-p687
+p686
 aS'3Com OfficeConnect Netbuilder router'
-p688
+p687
 aS'3com OfficeConnect Remote 812 ADSL Router'
-p689
+p688
 aS'Shiva AccessPort Bridge/Router Software V 2.1.0 or 3Com HiPer Access Router Card hardware V1.0.0 software V4.1.59'
-p690
+p689
 asS'Zebra | embedded || printer'
-p691
-(lp692
+p690
+(lp691
 S'Zebra Technologies TLP2844-Z printer'
-p693
+p692
 asS'DEC | OpenVMS | 6.X | general purpose'
-p694
-(lp695
+p693
+(lp694
 S'DEC OpenVMS 6.1'
+p695
+aS'DEC OpenVMS 6.2'
 p696
-aS'DEC OpenVMS 6.2'
+aS'DEC OpenVMS 6.2 - 7.2-1 on VAX or AXP'
 p697
-aS'DEC OpenVMS 6.2'
-p698
-aS'DEC OpenVMS 6.2'
-p699
 aS'DEC OpenVMS 6.2/Alpha'
-p700
+p698
 aS'DEC OpenVMS Alpha 6.2 running DIGITAL TCP/IP Services (UCX) v4.0'
-p701
+p699
 aS'DEC OpenVMS AXP 6.2 running Attachmate Pathway 3.1 TCP stack'
-p702
+p700
 aS'DEC OpenVMS V6.1 on VAX 4000-105A'
-p703
+p701
 asS'ARRIS | embedded || broadband router'
+p702
+(lp703
+g166
+asS'Compaq | Tru64 UNIX | 4.X | general purpose'
 p704
 (lp705
-S'Apple Airport Extreme Base Station (WAP) or ARRIS Cadant C3 CMTS Cable Modem'
-p706
-asS'Compaq | Tru64 UNIX | 4.X | general purpose'
-p707
-(lp708
 S'Compaq Tru64 UNIX (formerly DIGITAL UNIX) 4.0e'
-p709
+p706
 aS'Compaq Tru64 UNIX 4.0e'
-p710
+p707
 aS'Tru64 UNIX 4.0f - 4.0g'
-p711
+p708
 asS'ZyXel | ZyNOS || broadband router'
-p712
-(lp713
+p709
+(lp710
 S'Hardware: ZyXel Prestige Broadband router'
-p714
+p711
 aS'ZyXel 944S Prestige router'
-p715
+p712
 aS'ZyXel P480 ISDN router running ZyNOS v2.42(O.00)'
-p716
+p713
 aS'ZyXel Prestige 642R-11 ASDL router running ZyNOS'
-p717
+p714
 aS'ZyXel Prestige 643 router'
-p718
+p715
 aS'ZyXel Prestige 700/Netgear MR314 Broadband router'
-p719
+p716
 aS'ZyXel Prestige 791R'
-p720
+p717
+aS'ZyXel ZyNOS based Broadband router (ZyNOS) or Intel Express ISDN router'
+p718
 asS'Palm | PalmOS | 3.X | PDA'
-p721
-(lp722
+p719
+(lp720
 S'PalmOS 3.5.1 on m100 PDA'
-p723
+p721
 asS'Efficient Networks | embedded || broadband router'
-p724
-(lp725
+p722
+(lp723
 S'Efficient Networks/SpeedStream DSL router'
-p726
+p724
 asS'Shiva | embedded || terminal server'
-p727
-(lp728
+p725
+(lp726
 S'Shiva LanRover/8E Version 3.5'
-p729
+p727
 asS'Data General | AOS/VS || general purpose'
-p730
-(lp731
+p728
+(lp729
 S'AOS/VS on a Data General mainframe'
-p732
+p730
 aS'AOS/VS or VSII'
-p733
+p731
 asS'Actiontec | embedded || broadband router'
-p734
-(lp735
+p732
+(lp733
 S'Actiontec 1520 DSL gateway firmware 8.2.0.16'
-p736
+p734
 asS'D-Link | embedded || print server'
-p737
-(lp738
+p735
+(lp736
 S'D-Link Print Server'
-p739
+p737
 asS'AXIS | Linux || webcam'
-p740
-(lp741
+p738
+(lp739
 S'AXIS 2100 Network Camera running Linux/CRIS v2.32'
-p742
+p740
 asS'Cisco | IOS | 11.X | terminal server'
-p743
-(lp744
+p741
+(lp742
 S'Cisco 2501/5260/5300 terminal server IOS 11.3.6(T1)'
-p745
-asS'Liebert | embedded || specialized'
+p743
+asS'AtheOS | AtheOS || general purpose'
+p744
+(lp745
+S'AtheOS ( www.atheos.cx )'
 p746
-(lp747
-S'Liebert Intellislot SNMP/Web Card (power devices, air conditioning, etc.)'
+aS'AtheOS/Syllable 0.4.2'
+p747
+asS'Liebert | embedded || specialized'
 p748
+(lp749
+S'Liebert Intellislot SNMP/Web Card (power devices, air conditioning, etc.)'
+p750
 asS'BSDI | BSD/OS | 4.X | general purpose'
-p749
-(lp750
-S'BSDI BSD/OS 4.0-4.0.1'
 p751
-aS'BSDI BSD/OS 4.0.1'
-p752
-aS'BSDI BSD/OS 4.2'
+(lp752
+S'BSDI BSD/OS 4.0-4.0.1'
 p753
-asS'Parks | embedded || broadband router'
+aS'BSDI BSD/OS 4.0.1'
 p754
-(lp755
-S'Parks Altavia 671R router'
+aS'BSDI BSD/OS 4.2'
+p755
+asS'Parks | embedded || broadband router'
 p756
+(lp757
+S'Parks Altavia 671R router'
+p758
 asS'Toshiba | embedded || broadband router'
-p757
-(lp758
-S'Toshiba DOCSIS Cable Modem'
 p759
-aS'Toshiba TR650 ISDN Router'
-p760
-asS'IBM | embedded || printer'
+(lp760
+S'Toshiba DOCSIS Cable Modem'
 p761
-(lp762
-S'IBM Infoprint 12 Net-Printer'
+aS'Toshiba TR650 ISDN Router'
+p762
+asS'IBM | embedded || printer'
 p763
-asS'SCO | UnixWare || general purpose'
-p764
-(lp765
-S'SCO UnixWare 2.01'
+(lp764
+S'IBM 6400 printer or Microplex Pocket Print Server'
+p765
+aS'IBM Infoprint 12 Net-Printer'
 p766
-aS'SCO UnixWare 2.1'
+asS'SCO | UnixWare || general purpose'
 p767
-aS'SCO UnixWare 2.1'
-p768
-aS'SCO UnixWare 2.1.2'
+(lp768
+S'SCO UnixWare 2.01'
 p769
-aS'SCO UnixWare 7.0.0 or OpenServer 5.0.4-5.0.6'
+aS'SCO UnixWare 2.1'
 p770
-aS'SCO UnixWare 7.1.0 - 7.1.1 (x86)'
+aS'SCO UnixWare 2.1.2'
 p771
-aS'SCO UnixWare 7.1.0 x86'
+aS'SCO UnixWare 7.0.0 or OpenServer 5.0.4-5.0.6'
 p772
-aS'SCO UnixWare 7.1.1'
+aS'SCO UnixWare 7.1.0 - 7.1.1 (x86)'
 p773
-asS'Xylogics | LynxOS || terminal server'
+aS'SCO UnixWare 7.1.0 x86'
 p774
-(lp775
-S'Xylogics Remote Annex 4000 terminal server running LynxOS realtime OS'
+aS'SCO UnixWare 7.1.1'
+p775
+asS'Xylogics | LynxOS || terminal server'
 p776
+(lp777
+S'Xylogics Remote Annex 4000 terminal server running LynxOS realtime OS'
+p778
 asS'IBM | OS/400 | V4 | general purpose'
-p777
-(lp778
-S'IBM AS/400 V3 and V4'
 p779
-aS'IBM AS/400 running OS/400 R4.4'
-p780
-aS'IBM OS/400 V4 r4-5'
+(lp780
+S'IBM AS/400 V3 and V4'
 p781
-aS'IBM OS/400 V4R2M0'
+aS'IBM AS/400 running OS/400 R4.4'
 p782
-aS'IBM OS/400 V4R5'
+aS'IBM OS/400 V4 r4-5'
 p783
-aS'IBM OS/400 V4R5M0'
+aS'IBM OS/400 V4R2M0'
 p784
-asS'HP | Netstation || X terminal'
+aS'IBM OS/400 V4R5'
 p785
-(lp786
-S'HP Entria X station (running Netstation 7.x)'
+aS'IBM OS/400 V4R5M0'
+p786
+asS'Compaq | embedded || WAP'
 p787
-asS'Ascend | TAOS || terminal server'
-p788
-(lp789
-S'Ascend / Lucent MAX TNT terminal server'
-p790
-aS'Ascend Mac 6000 Terminal access server'
+(lp788
+g177
+asS'HP | Netstation || X terminal'
+p789
+(lp790
+S'HP Entria X station (running Netstation 7.x)'
 p791
-aS'Ascend Max terminal server firmware 7.0.4'
+asS'Ascend | TAOS || terminal server'
 p792
-aS'Ascend TNT OS +5.0Ap48+'
-p793
-aS'Ascend/Lucent Max (HP,4000-6000) version 6.1.3 - 7.0.2+'
+(lp793
+S'Ascend / Lucent MAX TNT terminal server'
 p794
-asS'Enterasys | embedded || switch'
+aS'Ascend Mac 6000 Terminal access server'
 p795
-(lp796
-S'Enterasys/Cabletron switch running Enterasys E8.2.0.0 - E9.0.0.0'
+aS'Ascend Max terminal server firmware 7.0.4'
+p796
+aS'Ascend TNT OS +5.0Ap48+'
 p797
-aS'SonicWall SOHO firewall, Enterasys Matrix E1, or Accelerated Networks VoDSL, or Cisco 350 Access Point'
+aS'Ascend/Lucent Max (HP,4000-6000) version 6.1.3 - 7.0.2+'
 p798
-asS'Panasonic | embedded || printer'
+asS'Enterasys | embedded || switch'
 p799
 (lp800
-S'Panasonic DP-3520 multi-function printer'
+S'Enterasys/Cabletron switch running Enterasys E8.2.0.0 - E9.0.0.0'
 p801
-aS'Panasonic panafax DX2000 SuperG3 fax machine'
+aS'Nortel CallPilot 100 voicemail system, 3Com Superstack 3 switch, Enterasys switch, HP TopTools remote control card, or Cisco 1538M hub'
 p802
-asS'Enterasys | embedded || firewall'
+aS'SonicWall SOHO firewall, Enterasys Matrix E1, or Accelerated Networks VoDSL, or Cisco 350 Access Point'
 p803
-(lp804
-S'Enterasys XSR-1805 Security Route'
-p805
-asS'HP | embedded || remote management'
-p806
-(lp807
-S'HP Integrated Lights Out remote configuration Board'
-p808
-asS'Microplex | embedded || print server'
-p809
-(lp810
-S'IBM 6400 printer or Microplex Pocket Print Server'
-p811
-aS'Microplex Print Server'
-p812
-asS'Microsoft | Windows | 2003/.NET | general purpose'
-p813
-(lp814
-S'Microsoft Windows 2003 Server'
-p815
-aS'Microsoft Windows 2003 Server'
-p816
-aS'Microsoft Windows 2003 Server'
-p817
-aS'Microsoft Windows 2003 Server'
-p818
-aS'Microsoft Windows 2003 Server'
-p819
-aS'Microsoft Windows 2003 Server Enterprise Edition'
-p820
-aS'Microsoft Windows 2003 Server Enterprise Edition'
-p821
-aS'Microsoft Windows 2003 Server SP1'
-p822
-aS'Microsoft Windows 2003 Server SP1'
-p823
-aS'Microsoft Windows 2003 Server Standard Edition'
-p824
-aS'Microsoft Windows 2003 Server Standard Edition'
-p825
-aS'Microsoft Windows 2003 Server Standard Edition'
-p826
-aS'Microsoft Windows 2003 Server Standart Edition SP1'
-p827
-aS'Microsoft Windows 2003 standard edition'
-p828
-aS'Microsoft Windows Server 2003'
-p829
-aS'Microsoft Windows Server 2003 Enterprise Edition'
-p830
-asS'Linksys | embedded || print server'
-p831
-(lp832
-S'Linksys EtherFast Print Server'
-p833
-aS'Linksys EtherFast Print Server'
-p834
-aS'Linksys PSUS4 USB Print Server and switch'
-p835
-aS'Linksys WPS54GU2 Wireless Print Server'
-p836
-asS'Digital Link | embedded || CSUDSU'
-p837
-(lp838
-S'Digital Link DL2001 CSU/DSU Management Access Processor'
-p839
-asS'D-Link | embedded || telecom-misc'
-p840
-(lp841
-S'D-Link VoIP Gateway GS-104SH'
-p842
-asS'Kronos | embedded || specialized'
-p843
-(lp844
-S'Kronos Time clock'
-p845
-asS'IBM | OS/390 | V2 | general purpose'
-p846
-(lp847
-S'IBM OS/390 V2R10'
-p848
-asS'Nokia | Symbian || phone'
-p849
-(lp850
-S'Symbian OS 6.1 on Nokia N-Gage v 4.03 phone'
-p851
-asS'Bay Networks | embedded || terminal server'
-p852
-(lp853
-S'VxWorks 5.3.x bases system (usually an Ethernet hub or switch such as HP ProCurve) or Bay Networks MicroAnnex XL terminal server'
-p854
-asS'Maxim-IC | TiniOS || general purpose'
-p855
-(lp856
-S'Maxim-IC TiniOS DS80c400'
-p857
-aS'Maxim/Dallas TINI embedded Java v1.02b'
-p858
-aS'Maxim/Dallas TINI embedded Java v1.02d'
-p859
-asS'NetScreen | ScreenOS || firewall'
-p860
-(lp861
-S'Netscreen 5GT Plus running ScreenOS 4.0.0r5.3'
-p862
-aS'NetScreen NS-204 Firewall'
-p863
-aS'NetScreen-100'
-p864
 asS'MultiTech | embedded || terminal server'
-p865
-(lp866
+p804
+(lp805
 S'MultiTech CommPlete (modem server) RAScard'
-p867
+p806
 aS'MultiTech CommPlete Controller (terminal server)'
+p807
+asS'Panasonic | embedded || printer'
+p808
+(lp809
+S'Panasonic DP-3520 multi-function printer'
+p810
+aS'Panasonic panafax DX2000 SuperG3 fax machine'
+p811
+asS'Enterasys | embedded || firewall'
+p812
+(lp813
+S'Enterasys XSR-1805 Security Route'
+p814
+asS'HP | embedded || remote management'
+p815
+(lp816
+S'HP Integrated Lights Out remote configuration Board'
+p817
+ag802
+asS'Microplex | embedded || print server'
+p818
+(lp819
+g765
+aS'Microplex Print Server'
+p820
+asS'Microsoft | Windows | 2003/.NET | general purpose'
+p821
+(lp822
+S'Microsoft Windows 2003 Server'
+p823
+aS'Microsoft Windows 2003 Server Enterprise Edition'
+p824
+aS'Microsoft Windows 2003 Server Enterprise Edition or XP Pro SP2'
+p825
+aS'Microsoft Windows 2003 Server or XP SP2'
+p826
+aS'Microsoft Windows 2003 Server SP1'
+p827
+aS'Microsoft Windows 2003 Server Standard Edition'
+p828
+aS'Microsoft Windows 2003 Server Standart Edition SP1'
+p829
+aS'Microsoft Windows 2003 standard edition'
+p830
+aS'Microsoft Windows Server 2003'
+p831
+aS'Microsoft Windows Server 2003 Enterprise Edition'
+p832
+aS'Microsoft Windows 2000 Server SP4 or 2003 Server Standard Edition'
+p833
+aS'Microsoft Windows 2003 Server, 2003 Server SP1 or XP Pro SP2'
+p834
+aS'Microsoft Windows XP SP2 or 2003 Server'
+p835
+asS'Linksys | embedded || print server'
+p836
+(lp837
+S'Linksys EtherFast Print Server'
+p838
+aS'Linksys PSUS4 USB Print Server and switch'
+p839
+aS'Linksys WPS54GU2 Wireless Print Server'
+p840
+asS'Digital Link | embedded || CSUDSU'
+p841
+(lp842
+S'Digital Link DL2001 CSU/DSU Management Access Processor'
+p843
+asS'D-Link | embedded || telecom-misc'
+p844
+(lp845
+S'D-Link VoIP Gateway GS-104SH'
+p846
+asS'Kronos | embedded || specialized'
+p847
+(lp848
+S'Kronos Time clock'
+p849
+asS'IBM | OS/390 | V2 | general purpose'
+p850
+(lp851
+S'IBM OS/390 V2R10'
+p852
+asS'Nokia | Symbian || phone'
+p853
+(lp854
+S'Symbian OS 6.1 on Nokia N-Gage v 4.03 phone'
+p855
+asS'Bay Networks | embedded || terminal server'
+p856
+(lp857
+g291
+asS'Maxim-IC | TiniOS || general purpose'
+p858
+(lp859
+S'Maxim-IC TiniOS DS80c400'
+p860
+aS'Maxim/Dallas TINI embedded Java v1.02b'
+p861
+aS'Maxim/Dallas TINI embedded Java v1.02d'
+p862
+asS'NetScreen | ScreenOS || firewall'
+p863
+(lp864
+S'Netscreen 5GT Plus running ScreenOS 4.0.0r5.3'
+p865
+aS'NetScreen NS-204 Firewall'
+p866
+aS'NetScreen-100'
+p867
+asS'Alpha Micro | AMOS || general purpose'
 p868
+(lp869
+S'Amos 2.3A'
+p870
 asS'Netgear | embedded || switch'
-p869
-(lp870
-S'Netgear GS724T Gigabit Smart Switch'
 p871
+(lp872
+S'Netgear GS724T Gigabit Smart Switch'
+p873
 asS'Sun | SunOS || general purpose'
-p872
-(lp873
-S'Sun RSC (Remote System Control card) v1.14 (in Solaris 2.7)'
 p874
-aS'Sun SunOS 4.0.3'
-p875
-aS'Sun SunOS 4.1.3_U1 + ISI RFC1323 mods from ISI'
+(lp875
+S'Sun RSC (Remote System Control card) v1.14 (in Solaris 2.7)'
 p876
-asS'RiverStone | embedded || router'
+aS'Sun SunOS 4.0.3'
 p877
-(lp878
-S'RiverStone RS3000 router'
+aS'Sun SunOS 4.1.1 - 4.1.4 (or derivative)'
+p878
+aS'Sun SunOS 4.1.3_U1 + ISI RFC1323 mods from ISI'
 p879
-asS'Cisco | embedded || VoIP phone'
+asS'RiverStone | embedded || router'
 p880
 (lp881
-S'Cisco 7960 SIP Phone running OS 4.2'
+S'RiverStone RS3000 router'
 p882
-aS'Cisco IP phone (POS3-04-3-00, PC030301)'
+asS'Quantum | embedded || storage-misc'
 p883
-aS'Cisco IP Phone 7910 or 7940 Firmware 3.1'
-p884
-aS'Cisco IP Phone 7940'
+(lp884
+S'Quantum Snap server 4100'
 p885
-aS'Cisco IP Phone 7960'
+aS'Quantum Snap Server Network Storage Box'
 p886
-aS'Cisco IP Phone 7970G'
-p887
 asS'KIRK | embedded || VoIP gateway'
-p888
-(lp889
+p887
+(lp888
 S'KIRK Wireless Server 600'
-p890
+p889
 asS'Pace | embedded || media device'
-p891
-(lp892
+p890
+(lp891
 S'Pace digital cable TV receiver'
-p893
+p892
 asS'Alteon | embedded || load balancer'
-p894
-(lp895
+p893
+(lp894
 S'Alteon Networks ACEswitch 180e Software Version 8.0.62.7'
-p896
+p895
 aS'Nortel/Alteon ACE Director 3 Version 6.0.42-B'
+p896
+asS'Livingston | ComOS || terminal server'
 p897
+(lp898
+S'ComOS based terminal server - Livingston PortMaster or U.S. Robotics/3Com Total Control'
+p899
 asS'NCD | embedded || X terminal'
-p898
-(lp899
-S'NCD X server (NCD16 server 2.3.0 03/12/91)'
 p900
+(lp901
+S'NCD X server (NCD16 server 2.3.0 03/12/91)'
+p902
 asS'Xylogics | embedded || terminal server'
-p901
-(lp902
-S'Xylogics Micro Annex ELS terminal server x7.1.8'
 p903
-asS'Lantronix | Punix || print server'
-p904
-(lp905
-S'Lantronix EPS1 Print Server version V3.5/1(970325)'
+(lp904
+S'Xylan OmniSwitch 5x/9x Ethernet switch, Xylogics Annex-III Comm server R10.0, or Hitachi HI-UX/WE2'
+p905
+aS'Xylogics Micro Annex ELS terminal server x7.1.8'
 p906
-aS'Lantronix EPS1 Printer Server'
+asS'Lantronix | Punix || print server'
 p907
-aS'Lantronix EPS2 Print Server Version V3.5/2(970721)'
-p908
-asS'SCO | OpenServer || general purpose'
+(lp908
+S'Lantronix EPS1 Print Server version V3.5/1(970325)'
 p909
-(lp910
-S'SCO OpenServer 5.0.5'
+aS'Lantronix EPS1 Printer Server'
+p910
+aS'Lantronix EPS2 Print Server Version V3.5/2(970721)'
 p911
-aS'SCO OpenServer 5.0.7'
+asS'SCO | OpenServer || general purpose'
 p912
-aS'SCO OpenServer Release 5'
-p913
-aS'SCO OpenServer Release 5'
+(lp913
+S'SCO OpenServer 5.0.5'
 p914
-asS'Intel | embedded || router'
+aS'SCO OpenServer 5.0.7'
 p915
-(lp916
-S'Intel ER8100ST Express Router 8100'
+aS'SCO OpenServer Release 5'
+p916
+asS'Intel | embedded || router'
 p917
-aS'Intel ER9100 Express Router 9100'
-p918
-asS'Edimax | embedded || broadband router'
+(lp918
+S'Intel ER8100ST Express Router 8100'
 p919
-(lp920
-S'Edimax BR-6004 Broadband router'
+aS'Intel ER9100 Express Router 9100'
+p920
+asS'Edimax | embedded || broadband router'
 p921
+(lp922
+S'Edimax BR-6004 Broadband router'
+p923
 asS'Sun | Solaris | 8 | general purpose'
-p922
-(lp923
-S'Sun Solaris 2.6 - 8 (SPARC)'
 p924
-aS'Sun Solaris 8'
-p925
-aS'Sun Solaris 8'
+(lp925
+S'Sun Solaris 2.6 - 8 (SPARC)'
 p926
 aS'Sun Solaris 8'
 p927
-aS'Sun Solaris 8'
-p928
-aS'Sun Solaris 8'
-p929
-aS'Sun Solaris 8'
-p930
 aS'Sun Trusted Solaris 8'
+p928
+asS'EUSSO | embedded || print server'
+p929
+(lp930
+S'Print server: Zero One Tech 3000, Hawking PN7117, or EUSSO UPS1211-B'
 p931
 asS'Linux | Linux | 2.1.X | general purpose'
 p932
 (lp933
-S'Linux 2.1.24 PowerPC'
+S'Linux 2.1.19 - 2.2.25'
 p934
-aS'Linux 2.1.76'
+aS'Linux 2.1.24 PowerPC'
 p935
-aS'Linux 2.1.88'
+aS'Linux 2.1.76'
 p936
-aS'Linux 2.1.91 - 2.1.103'
+aS'Linux 2.1.88'
 p937
-asS'FreeBSD | FreeBSD | 6.X | general purpose'
+aS'Linux 2.1.91 - 2.1.103'
 p938
-(lp939
+asS'FreeBSD | FreeBSD | 6.X | general purpose'
+p939
+(lp940
 S'FreeBSD 5.2.1-RELEASE or 6.0-CURRENT'
-p940
-asS'Apple | Mac OS X | 10.3.X | general purpose'
 p941
-(lp942
+asS'Apple | Mac OS X | 10.3.X | general purpose'
+p942
+(lp943
 S'Apple Mac OS X 10.3.3 (Panther)'
-p943
-aS'Apple Mac OS X 10.3.5 or 10.3.7'
 p944
-aS'Apple Mac OS X 10.3.6 or 10.3.7'
+aS'Apple Mac OS X 10.3.5 or 10.3.7'
 p945
-aS'Apple Mac OS X 10.3.9'
+aS'Apple Mac OS X 10.3.6 or 10.3.7'
 p946
-aS'Apple Mac OS X 10.4.1 (Tiger)'
+aS'Apple Mac OS X 10.3.9'
 p947
-asS'NeXT | Mach || general purpose'
+aS'Apple Mac OS X 10.4.1 (Tiger)'
 p948
-(lp949
+asS'NeXT | Mach || general purpose'
+p949
+(lp950
 S'NeXT Mach'
-p950
-asS'Foundry | embedded || load balancer'
 p951
-(lp952
+asS'Foundry | embedded || load balancer'
+p952
+(lp953
 S'Foundry FastIron Edge Switch (load balancer) 2402'
-p953
-aS'Foundry Load Balancer OS Ver 7.2.X - 7.3.X'
 p954
-aS'Foundry Networks Biglron 8000 load balancer'
+aS'Foundry Load Balancer OS Ver 7.2.X - 7.3.X'
 p955
-asS'SAR | embedded || broadband router'
+aS'Foundry Networks Biglron 8000 load balancer'
 p956
-(lp957
-S'GNet BB0040 or SAR 703 DSL modem + router'
-p958
-asS'Netgear | embedded || broadband router'
+asS'DEC | DIGITAL UNIX | 1.X | general purpose'
+p957
+(lp958
+S'DEC OSF/1 V1.3A - 2.0'
 p959
-(lp960
-S'HP Advancestack Etherswitch 224T or 210 or Netgear RP114 DSL-Router w/Switch'
-p961
-aS'Netgear DG824M WAP'
+asS'SAR | embedded || broadband router'
+p960
+(lp961
+g77
+asS'Netgear | embedded || broadband router'
 p962
-aS'Netgear FVL238 vpn/firewall/router'
-p963
-aS'Netgear FVL328 vpn/firewall/router'
+(lp963
+g447
+aS'Netgear DG824M WAP'
 p964
-aS'Netgear WGR614 Wireless router'
+aS'Netgear FVL238 vpn/firewall/router'
 p965
-aS'Netgear Wireless router or Netgear FM114P/REPOTEC IP515H Router & Print Server'
+aS'Netgear FVL328 vpn/firewall/router'
 p966
-asS'Turtle Beach | embedded || media device'
+aS'Netgear WGR614 Wireless router'
 p967
-(lp968
-S'Turtle Beach AudioTron network MP3 player'
+aS'Netgear Wireless router or Netgear FM114P/REPOTEC IP515H Router & Print Server'
+p968
+asS'Turtle Beach | embedded || media device'
 p969
-aS'Turtle Beach AudioTron network MP3 player'
-p970
-asS'Level One | embedded || broadband router'
+(lp970
+S'Turtle Beach AudioTron 100 network MP3 player or Microsoft Windows 98SE'
 p971
-(lp972
-S'Fingerprint LevelOne WBR-3406TX Wireless Broadband router'
+aS'Turtle Beach AudioTron network MP3 player'
+p972
+asS'IPCop | Linux | 2.4.X | firewall'
 p973
-aS'LevelOne WBR-3403TX Wireless Broadband router'
-p974
-asS'IBM | OS/390 | V5 | general purpose'
+(lp974
+S'IPCop 1.4 - 1.4.6 Linux 2.4.2x-based firewall'
 p975
-(lp976
-S'IBM OS/390 V5R0M0'
-p977
-asS'Quanterra | OS/9 || specialized'
+asS'Level One | embedded || broadband router'
+p976
+(lp977
+S'Fingerprint LevelOne WBR-3406TX Wireless Broadband router'
 p978
-(lp979
-S'Quanterra seismic data acquisition system running OS/9 V2.4 on 68K'
+aS'LevelOne WBR-3403TX Wireless Broadband router'
+p979
+asS'IBM | OS/390 | V5 | general purpose'
 p980
-asS'Nokia | embedded || broadband router'
-p981
-(lp982
-S'Nokia M1122 DSL Router'
+(lp981
+S'IBM OS/390 V5R0M0'
+p982
+asS'Brocade | embedded || switch'
 p983
-asS'D-Link | embedded || hub'
-p984
-(lp985
-S'D-Link Corp. DE-1800 Stackable Hub SNMP/Telnet Agent Software version 2.04B3 boot PROM 2.21'
+(lp984
+S'Cisco Aironet WAP, Brocade Fibre Switch, or Sun Remote System Console'
+p985
+asS'Quanterra | OS/9 || specialized'
 p986
-asS'Cabletron | embedded || router'
-p987
-(lp988
-S'Cabletron Smart Switch Router 8600'
+(lp987
+S'Quanterra seismic data acquisition system running OS/9 V2.4 on 68K'
+p988
+asS'Nokia | embedded || broadband router'
 p989
-aS'Cabletron Systems SSR 8000 smart switch router System Software, Version 3.1.B.16'
-p990
-asS'Xylan | embedded || switch'
+(lp990
+S'Nokia M1122 DSL Router'
 p991
-(lp992
-S'IBM LAN RouteSwitch/Xylan OmniSwitch Version 3.2.5/NeXT'
-p993
-asS'Exabyte | embedded || storage-misc'
+asS'D-Link | embedded || hub'
+p992
+(lp993
+S'D-Link Corp. DE-1800 Stackable Hub SNMP/Telnet Agent Software version 2.04B3 boot PROM 2.21'
 p994
-(lp995
-S'Exabyte X80 tape backup robot'
-p996
-asS'3Com | embedded || switch'
+asS'Cabletron | embedded || router'
+p995
+(lp996
+S'Cabletron Smart Switch Router 8600'
 p997
-(lp998
-S'3Com / USR TotalSwitch Firmware: 02.02.00R'
+aS'Cabletron Systems SSR 8000 smart switch router System Software, Version 3.1.B.16'
+p998
+asS'Xylan | embedded || switch'
 p999
-aS'3Com Access Builder 4000 Switch'
-p1000
-aS'3Com LANplex 6004 switch'
+(lp1000
+g398
+ag279
+ag905
+asS'Exabyte | embedded || storage-misc'
 p1001
-aS'3Com SuperStack II switch (OS v 2.0)'
-p1002
-aS'3Com SuperStack II switch SW/NBSI-CF,11.1.0.00S38'
+(lp1002
+S'Exabyte X80 tape backup robot'
 p1003
-aS'Cisco VPN 3000 or 3Com 4924 GigE Switch'
+asS'3Com | embedded || switch'
 p1004
-asS'IQinVision | embedded || webcam'
-p1005
-(lp1006
-S'IQinVison IQeye3 webcam'
+(lp1005
+S'3Com / USR TotalSwitch Firmware: 02.02.00R'
+p1006
+aS'3Com 7700/8800 Switch or Huawei S6506R routing switch VRP 3.10'
 p1007
-asS'DEC | VMS || general purpose'
+aS'3Com Access Builder 4000 Switch'
 p1008
-(lp1009
-S'DEC OpenVMS 7.3-1 w/Multinet 4.4'
+aS'3Com LANplex 6004 switch'
+p1009
+aS'3Com SuperStack II switch (OS v 2.0)'
 p1010
-aS'DEC VAX 7000-610 or 4200/SPX OR 6000-430'
+aS'3Com SuperStack II switch SW/NBSI-CF,11.1.0.00S38'
 p1011
-aS'DEC VAX/VMS 5.3 on a MicroVAX II'
+aS'Cisco VPN 3000 or 3Com 4924 GigE Switch'
 p1012
-aS'DEC VAX/VMS 5.5-2'
+ag802
+asS'IQinVision | embedded || webcam'
 p1013
-aS'DEC VAX/VMS v5.5, CMU-TEK TCP/IP stack'
-p1014
-aS'DEC VMS MultiNet V4.1(16)'
+(lp1014
+S'IQinVison IQeye3 webcam'
 p1015
-asS'Isolation | embedded || encryption accelerator'
+asS'DEC | VMS || general purpose'
 p1016
 (lp1017
-S'Isolation Systems Infocrypt Enterprise'
+S'DEC OpenVMS 7.3-1 w/Multinet 4.4'
 p1018
-asS'HP | embedded || print server'
+aS'DEC VAX 7000-610 or 4200/SPX OR 6000-430'
 p1019
-(lp1020
-S'HP printer w/JetDirect card'
+aS'DEC VAX/VMS 5.3 on a MicroVAX II'
+p1020
+aS'DEC VAX/VMS 5.5-2'
 p1021
-aS'HP Deskjet 6127 printer or InkJet 1200 printer server'
+aS'DEC VAX/VMS v5.5, CMU-TEK TCP/IP stack'
 p1022
-aS'HP LaserJet printer/print server'
+aS'DEC VMS MultiNet V4.1(16)'
 p1023
-asS'Sony | Linux || game console'
+asS'Radware | embedded || load balancer'
 p1024
 (lp1025
-S'PS2 Linux 1.0 on Sony PS2 game console'
+S'Netopia Cayman 334x router/WAP or Radware Web Server Director load balancer'
 p1026
-asS'IBM | OS/400 | V3 | general purpose'
+asS'Isolation | embedded || encryption accelerator'
 p1027
 (lp1028
-S'IBM OS/400 V3'
+S'Isolation Systems Infocrypt Enterprise'
 p1029
-asS'IBM | embedded || X terminal'
+asS'HP | embedded || print server'
 p1030
 (lp1031
-S'AGE Logic, Inc. IBM XStation'
+S'HP printer w/JetDirect card'
 p1032
-asS'Xyplex | embedded || terminal server'
+ag61
+ag67
+asS'Sony | Linux || game console'
 p1033
 (lp1034
-S'Xyplex Network 9000 terminal server'
+S'PS2 Linux 1.0 on Sony PS2 game console'
 p1035
-aS'Xyplex Terminal Server CSERV-20 software v6.0.4'
+asS'IBM | OS/400 | V3 | general purpose'
 p1036
-aS'Xyplex Terminal Server v6.0.2S5'
-p1037
-asS'Linux | Linux | 2.0.X | general purpose'
+(lp1037
+g781
+aS'IBM OS/400 V3'
 p1038
-(lp1039
-S'Linux 2.0.0'
-p1040
-aS'Linux 2.0.27 - 2.0.30'
+asS'IBM | embedded || X terminal'
+p1039
+(lp1040
+S'AGE Logic, Inc. IBM XStation'
 p1041
-aS'Linux 2.0.32-34'
+asS'Xyplex | embedded || terminal server'
 p1042
-aS'Linux 2.0.32-34'
-p1043
-aS'Linux 2.0.34-38'
+(lp1043
+S'Xyplex Network 9000 terminal server'
 p1044
-aS'Linux 2.0.35 (S.u.S.E. Linux 5.3 (i386)'
+aS'Xyplex Terminal Server CSERV-20 software v6.0.4'
 p1045
-aS'Linux 2.0.39'
+aS'Xyplex Terminal Server v6.0.2S5'
 p1046
-asS'xMach | xMach || general purpose'
+asS'Linux | Linux | 2.0.X | general purpose'
 p1047
 (lp1048
-S'xMach free distributed OS version 0.1 current'
+S'Linux 2.0.0'
 p1049
-asS'MultiTech | embedded || VoIP gateway'
+aS'Linux 2.0.27 - 2.0.30'
 p1050
-(lp1051
-S'MultiTech MultiVoip 2410'
+aS'Linux 2.0.32-34'
+p1051
+aS'Linux 2.0.34-38'
 p1052
-asS'Convex | SPP-UX || general purpose'
+aS'Linux 2.0.35 (S.u.S.E. Linux 5.3 (i386)'
 p1053
-(lp1054
-S'Convex SPP-UX 5.2.1'
+aS'Linux 2.0.39'
+p1054
+asS'xMach | xMach || general purpose'
 p1055
-aS'SPP-UX 5.x on a Convex SPP-1600'
-p1056
-asS'Apollo | Domain/OS || general purpose'
+(lp1056
+S'xMach free distributed OS version 0.1 current'
 p1057
-(lp1058
-S'Apollo Domain/OS SR10.3.5'
-p1059
-aS'Apollo Domain/OS SR10.4'
+asS'MultiTech | embedded || VoIP gateway'
+p1058
+(lp1059
+S'MultiTech MultiVoip 2410'
 p1060
-asS'Soyo | embedded || VoIP phone'
+asS'Convex | SPP-UX || general purpose'
 p1061
 (lp1062
-S'Soyo G668 VoIP phone'
+S'Convex SPP-UX 5.2.1'
 p1063
-asS'Cisco | vxworks || WAP'
+aS'SPP-UX 5.x on a Convex SPP-1600'
 p1064
-(lp1065
-S'Cisco Aironet WAP, Brocade Fibre Switch, or Sun Remote System Console'
-p1066
-asS'FreeBSD | FreeBSD | 2.X | general purpose'
+asS'Apollo | Domain/OS || general purpose'
+p1065
+(lp1066
+S'Apollo Domain/OS SR10.3.5'
 p1067
-(lp1068
-S'FreeBSD 2.1.0 - 2.1.5'
+aS'Apollo Domain/OS SR10.4'
+p1068
+asS'Soyo | embedded || VoIP phone'
 p1069
-aS'FreeBSD 2.2.1-STABLE'
-p1070
-asS'Intel | embedded || print server'
+(lp1070
+S'Soyo G668 VoIP phone'
 p1071
-(lp1072
-S'Intel InBusiness Print Station'
-p1073
-aS'Intel NetportExpress 10 3-port Print Server'
+asS'Cisco | vxworks || WAP'
+p1072
+(lp1073
+g985
+asS'FreeBSD | FreeBSD | 2.X | general purpose'
 p1074
-aS'Intel NetportExpress 10/100 3-port Print Server'
-p1075
-aS'Intel NetportExpress PRO Print Server V04.33a'
+(lp1075
+S'FreeBSD 2.1.0 - 2.1.5'
 p1076
-aS'Intel NetportExpress XL Print Server'
+ag348
+aS'FreeBSD 2.2.1-STABLE'
 p1077
-asS'Gauntlet | Solaris | 2.5.X | firewall'
+asS'Intel | embedded || print server'
 p1078
 (lp1079
-S'Gauntlet 4.0a firewall on Solaris 2.5.1'
+S'Intel InBusiness Print Station'
 p1080
-asS'Genius | embedded || print server'
+aS'Intel NetportExpress 10 3-port Print Server'
 p1081
-(lp1082
-S'Genius Print Server'
+aS'Intel NetportExpress 10/100 3-port Print Server'
+p1082
+aS'Intel NetportExpress PRO Print Server V04.33a'
 p1083
-asS'Compex | embedded || switch'
+aS'Intel NetportExpress XL Print Server'
 p1084
-(lp1085
-S'Compex CGX3224 Switch'
-p1086
-asS'Alcatel | embedded || broadband router'
+asS'Gauntlet | Solaris | 2.5.X | firewall'
+p1085
+(lp1086
+S'Gauntlet 4.0a firewall on Solaris 2.5.1'
 p1087
-(lp1088
-S'Alcatel 1000 ADSL (modem)'
-p1089
-aS'Alcatel 1000 DSL Router'
+asS'Genius | embedded || print server'
+p1088
+(lp1089
+S'Genius Print Server'
 p1090
-aS'Alcatel Speed Touch *DSL modem/router'
+asS'Compex | embedded || switch'
 p1091
-aS'Alcatel Speed Touch 510 *DSL modem/router'
-p1092
-aS'Alcatel Speed Touch Pro aDSL modem'
+(lp1092
+S'Compex CGX3224 Switch'
 p1093
-asS'Tektronix | embedded || printer'
+asS'Alcatel | embedded || broadband router'
 p1094
 (lp1095
-S'Tektronix Phaser 350 printer'
+S'Alcatel 1000 ADSL (modem)'
 p1096
-aS'Tektronix Phaser 560 printer'
+aS'Alcatel 1000 DSL Router'
 p1097
-aS'Tektronix Phaser printer'
+aS'Alcatel Speed Touch *DSL modem/router'
 p1098
-aS'Tektronix Phaser printer'
+aS'Alcatel Speed Touch 510 *DSL modem/router'
 p1099
-aS'Tektronix/Xerox Phaser printer'
+aS'Alcatel Speed Touch Pro aDSL modem'
 p1100
-asS'ZyXel | ZyNOS || switch'
+asS'Tektronix | embedded || printer'
 p1101
 (lp1102
-S'ZyXel switch ES-3024 ZyNOS V3.50'
+S'Tektronix Phaser 350 printer'
 p1103
-asS'Proxim | embedded || bridge'
+aS'Tektronix Phaser 560 printer'
 p1104
-(lp1105
-S'Proxim Stratum MP Wireless bridge'
+aS'Tektronix Phaser printer'
+p1105
+aS'Tektronix/Xerox Phaser printer'
 p1106
-asS'Cyclades | Cyras || terminal server'
+asS'ZyXel | ZyNOS || switch'
 p1107
 (lp1108
-S'Cyclades PathRAS Remote Access Server v1.1.7'
+S'ZyXel switch ES-3024 ZyNOS V3.50'
 p1109
-asS'Hitachi | HI-UX || general purpose'
+asS'Proxim | embedded || bridge'
 p1110
 (lp1111
-S'Hitachi HI-UX/MPP'
+S'Proxim Stratum MP Wireless bridge'
 p1112
-aS'Xylan OmniSwitch 5x/9x Ethernet switch, Xylogics Annex-III Comm server R10.0, or Hitachi HI-UX/WE2'
+asS'Cyclades | Cyras || terminal server'
 p1113
-asS'Juniper | JUNOS || router'
-p1114
-(lp1115
-S'Juniper Networks JUNOS 5.3 on an Olive router'
+(lp1114
+S'Cyclades PathRAS Remote Access Server v1.1.7'
+p1115
+asS'Hitachi | HI-UX || general purpose'
 p1116
-aS'Juniper Networks JUNOS 5.6R1.3 routing software on x86 box'
-p1117
-aS'Juniper Networks router JUNOS 5.5R1.2'
+(lp1117
+S'Hitachi HI-UX/MPP'
 p1118
-aS'Juniper Networks router M10i running JUNOS 7.2R1.7'
+ag905
+asS'Juniper | JUNOS || router'
 p1119
-aS'Juniper Router running JUNOS'
-p1120
-asS'Cisco | embedded || web proxy'
+(lp1120
+S'Juniper Networks JUNOS 5.3 on an Olive router'
 p1121
-(lp1122
-S'Cisco Cache Engine Web Proxy'
+aS'Juniper Networks JUNOS 5.6R1.3 routing software on x86 box'
+p1122
+aS'Juniper Networks router JUNOS 5.5R1.2'
 p1123
-asS'Magna | embedded || router'
+aS'Juniper Networks router M10i running JUNOS 7.2R1.7'
 p1124
-(lp1125
-S'Magna SG10 intranet router'
+aS'Juniper Router running JUNOS'
+p1125
+asS'Cisco | embedded || web proxy'
 p1126
-asS'Arlan | embedded || bridge'
-p1127
-(lp1128
-S'ARLAN BR2000E V5.0E Wireless Radio Bridge'
+(lp1127
+S'Cisco Cache Engine Web Proxy'
+p1128
+asS'Magna | embedded || router'
 p1129
-asS'Minix | Minix || general purpose'
-p1130
-(lp1131
-S'Minix 32-bit/Intel 2.0.0'
+(lp1130
+S'Magna SG10 intranet router'
+p1131
+asS'Arlan | embedded || bridge'
 p1132
-aS'Minix 32-bit/Intel 2.0.3'
-p1133
-aS'Minix v2.0.2 32bits'
+(lp1133
+S'ARLAN BR2000E V5.0E Wireless Radio Bridge'
 p1134
-asS'Bosch | embedded || webcam'
+asS'Minix | Minix || general purpose'
 p1135
 (lp1136
-S"Bosch Security Systems's Divar Digital Video Recorder Version 2.00"
+S'Minix 32-bit/Intel 2.0.0'
 p1137
-asS'Be | BeOS | 5.X | general purpose'
+aS'Minix 32-bit/Intel 2.0.3'
 p1138
-(lp1139
-S'BeOS 5.0.4 (BeOS 5 Pro + BONE 7a)'
+aS'Minix v2.0.2 32bits'
+p1139
+asS'Bosch | embedded || webcam'
 p1140
-aS'BeOS 5.03 x86 with the BONE network stack'
-p1141
-aS'BeOS 5.1d0/DANO on x86'
+(lp1141
+S"Bosch Security Systems's Divar Digital Video Recorder Version 2.00"
 p1142
-aS'BeOS R5.03 Personal Edition'
+asS'Be | BeOS | 5.X | general purpose'
 p1143
-asS'IBM | AIX | 3.X | general purpose'
-p1144
-(lp1145
-S'IBM AIX 3.2'
+(lp1144
+S'BeOS 5.0.4 (BeOS 5 Pro + BONE 7a)'
+p1145
+aS'BeOS 5.03 x86 with the BONE network stack'
 p1146
-aS'IBM AIX 3.2'
+aS'BeOS 5.1d0/DANO on x86'
 p1147
-aS'IBM AIX 3.2 running on RS/6000'
+aS'BeOS R5.03 Personal Edition'
 p1148
-aS'IBM AIX 3.2.3 running on RS6000 model 560'
+asS'IBM | AIX | 3.X | general purpose'
 p1149
-aS'IBM AIX 3.2.5 (Bull HardWare)'
-p1150
-aS'IBM AIX v3.2.5 - 4'
+(lp1150
+S'IBM AIX 3.2'
 p1151
-asS'NeXT | NeXTStep || general purpose'
+aS'IBM AIX 3.2 running on RS/6000'
 p1152
-(lp1153
-S'NeXTStep/OpenStep 4.2/Intel'
+aS'IBM AIX 3.2.3 running on RS6000 model 560'
+p1153
+aS'IBM AIX 3.2.5 (Bull HardWare)'
 p1154
-aS'OpenStep 4.0-4.2 or NeXTStep 1.0-3.3 (Intel)'
+aS'IBM AIX v3.2.5 - 4'
 p1155
-aS'OpenStep 4.1/NeXTStep 3.3'
+asS'NeXT | NeXTStep || general purpose'
 p1156
-asS'DEC | DIGITAL UNIX | 3.X | general purpose'
-p1157
-(lp1158
-S'DIGITAL UNIX OSF1 V 3.0,3.2,3.2C'
+(lp1157
+S'NeXTStep/OpenStep 4.2/Intel'
+p1158
+aS'OpenStep 4.0-4.2 or NeXTStep 1.0-3.3 (Intel)'
 p1159
-asS'Aethra | embedded || webcam'
+aS'OpenStep 4.1/NeXTStep 3.3'
 p1160
-(lp1161
-S'Aethra Vega Conference System'
-p1162
-asS'Stratus | VOS || general purpose'
+asS'DEC | DIGITAL UNIX | 3.X | general purpose'
+p1161
+(lp1162
+S'DIGITAL UNIX OSF1 V 3.0,3.2,3.2C'
 p1163
-(lp1164
-S'Stratus VOS Release 14.3.1ae'
-p1165
-asS'Microsoft | Windows | NT/2K/XP | general purpose'
+asS'Aethra | embedded || webcam'
+p1164
+(lp1165
+S'Aethra Vega Conference System'
 p1166
-(lp1167
-S'Microsoft Windows 2003 Server Enterprise Edition or XP Pro SP2'
-p1168
-aS'Microsoft Windows 2003 Server or XP SP2'
+asS'Stratus | VOS || general purpose'
+p1167
+(lp1168
+S'Stratus VOS Release 14.3.1ae'
 p1169
-aS'Microsoft Windows NT 3.51 SP5, NT 4.0 or 95/98/98SE'
+asS'Microsoft | Windows | NT/2K/XP | general purpose'
 p1170
-aS'Microsoft Windows 2000 Advanced Server SP2'
-p1171
-aS'Microsoft Windows 2000 Advanced Server SP3'
+(lp1171
+S'Microsoft XP SP2 (firewall disabled)'
 p1172
-aS'Microsoft Windows 2000 Advanced Server SP3'
-p1173
-aS'Microsoft Windows 2000 Advanced Server SP4'
-p1174
-aS'Microsoft Windows 2000 Advanced Server SP4'
-p1175
-aS'Microsoft Windows 2000 Advanced Server SP4'
-p1176
-aS'Microsoft Windows 2000 Professional'
-p1177
-aS'Microsoft Windows 2000 Professional (Russian) SP2'
-p1178
-aS'Microsoft Windows 2000 Professional RC1 or Windows 2000 Advanced Server Beta3'
-p1179
-aS'Microsoft Windows 2000 Professional SP2'
-p1180
-aS'Microsoft Windows 2000 Professional SP3'
-p1181
-aS'Microsoft Windows 2000 Professional SP4'
-p1182
-aS'Microsoft Windows 2000 Server SP1'
-p1183
-aS'Microsoft Windows 2000 Server SP2'
-p1184
-aS'Microsoft Windows 2000 Server SP3'
-p1185
-aS'Microsoft Windows 2000 Server SP3'
-p1186
-aS'Microsoft Windows 2000 Server SP3'
-p1187
-aS'Microsoft Windows 2000 Server SP3 or Windows XP Pro SP1'
-p1188
-aS'Microsoft Windows 2000 Server SP4'
-p1189
-aS'Microsoft Windows 2000 Server SP4'
-p1190
-aS'Microsoft Windows 2000 Server SP4'
-p1191
-aS'Microsoft Windows 2000 Server SP4'
-p1192
-aS'Microsoft Windows 2000 Server SP4'
-p1193
-aS'Microsoft Windows 2000 Server SP4 or 2003 Server Standard Edition'
-p1194
-aS'Microsoft Windows 2000 Server SP4 or XP SP1'
-p1195
-aS'Microsoft Windows 2000 SP1'
-p1196
-aS'Microsoft Windows 2000 SP1'
-p1197
-aS'Microsoft Windows 2000 SP2'
-p1198
-aS'Microsoft Windows 2000 SP2'
-p1199
-aS'Microsoft Windows 2000 SP2'
-p1200
-aS'Microsoft Windows 2000 SP2'
-p1201
-aS'Microsoft Windows 2000 SP2 or XP or XP SP1'
-p1202
-aS'Microsoft Windows 2000 SP2 with Hotfix (Pre-SP3)'
-p1203
-aS'Microsoft Windows 2000 SP3'
-p1204
-aS'Microsoft Windows 2000 SP3'
-p1205
-aS'Microsoft Windows 2000 SP3'
-p1206
-aS'Microsoft Windows 2000 SP3'
-p1207
-aS'Microsoft Windows 2000 SP3'
-p1208
-aS'Microsoft Windows 2000 SP3'
-p1209
-aS'Microsoft Windows 2000 SP3'
-p1210
-aS'Microsoft Windows 2000 SP3'
-p1211
-aS'Microsoft Windows 2000 SP3'
-p1212
-aS'Microsoft Windows 2000 SP3'
-p1213
-aS'Microsoft Windows 2000 SP4'
-p1214
-aS'Microsoft Windows 2000 SP4'
-p1215
-aS'Microsoft Windows 2000 SP4'
-p1216
-aS'Microsoft Windows 2000 SP4'
-p1217
-aS'Microsoft Windows 2000 SP4'
-p1218
-aS'Microsoft Windows 2000 SP4'
-p1219
-aS'Microsoft Windows 2000 SP4'
-p1220
-aS'Microsoft Windows 2000 SP4'
-p1221
-aS'Microsoft Windows 2000 SP4'
-p1222
-aS'Microsoft Windows 2000 SP4 or Windows XP SP1'
-p1223
-aS'Microsoft Windows NT 3.10 (Build 528)'
-p1224
-aS'Microsoft Windows NT 4.0 Server SP5-SP6'
-p1225
-aS'Microsoft Windows NT 4.0 SP 6a + hotfixes'
-p1226
-aS'Microsoft Windows NT 4.0 SP3'
-p1227
-aS'Microsoft Windows NT 4.0 SP3'
-p1228
-aS'Microsoft Windows NT 4.0 SP5'
-p1229
-aS'Microsoft Windows NT 4.0 SP5-SP6'
-p1230
-aS'Microsoft Windows NT 4.0 SP6'
-p1231
-aS'Microsoft Windows NT 4.0 SP6a'
-p1232
-aS'Microsoft Windows NT 4.0 SP6a'
-p1233
-aS'Microsoft Windows NT 4.0 SP6a with Kerio WinRoute Pro 4.27 Firewall'
-p1234
-aS'Microsoft Windows NT 4.0 Terminal Server Edition'
-p1235
-aS'Microsoft Windows NT 4.0 Workstation SP6a'
-p1236
-aS'Microsoft Windows NT 4.0 Workstation SP6a'
-p1237
-aS'Microsoft Windows NT Version 4 (Build 1381) Service Pack 6a'
-p1238
-aS'Microsoft Windows XP'
-p1239
-aS'Microsoft Windows XP Home Edition'
-p1240
-aS'Microsoft Windows XP Home Edition (English) SP2'
-p1241
-aS'Microsoft Windows XP Home Edition (German) SP1'
-p1242
-aS'Microsoft Windows XP Home Edition (German) SP2'
-p1243
-aS'Microsoft Windows XP Home Edition SP1'
-p1244
-aS'Microsoft Windows XP Home Edition SP1 or SP2'
-p1245
-aS'Microsoft Windows XP Pro'
-p1246
-aS'Microsoft Windows XP Pro (German)'
-p1247
-aS'Microsoft Windows XP Pro (German) SP1'
-p1248
-aS'Microsoft Windows XP Pro (German) SP1'
-p1249
-aS'Microsoft Windows XP Pro (Italian)'
-p1250
-aS'Microsoft Windows XP Pro (Spanish) SP2'
-p1251
-aS'Microsoft Windows XP Pro or Windows 2000 Professional SP2+'
-p1252
-aS'Microsoft Windows XP Pro RC1+ through final release'
-p1253
-aS'Microsoft Windows XP Pro SP1'
-p1254
-aS'Microsoft Windows XP Pro SP1'
-p1255
-aS'Microsoft Windows XP Pro SP1'
-p1256
-aS'Microsoft Windows XP Pro SP1'
-p1257
-aS'Microsoft Windows XP Pro SP1'
-p1258
-aS'Microsoft Windows XP Pro SP1'
-p1259
-aS'Microsoft Windows XP Pro SP1'
-p1260
-aS'Microsoft Windows XP Pro SP1'
-p1261
-aS'Microsoft Windows XP Pro SP1'
-p1262
-aS'Microsoft Windows XP Pro SP1'
-p1263
-aS'Microsoft Windows XP Pro SP1'
-p1264
-aS'Microsoft Windows XP Pro SP1'
-p1265
-aS'Microsoft Windows XP Pro SP1'
-p1266
-aS'Microsoft Windows XP Pro SP1'
-p1267
-aS'Microsoft Windows XP Pro SP1 or Windows 2000 Advanced Server SP3'
-p1268
-aS'Microsoft Windows XP Pro SP2'
-p1269
-aS'Microsoft Windows XP Pro SP2'
-p1270
-aS'Microsoft Windows XP Pro SP2'
-p1271
-aS'Microsoft Windows XP Pro SP2'
-p1272
-aS'Microsoft Windows XP Pro SP2'
-p1273
-aS'Microsoft Windows XP Pro SP2'
-p1274
-aS'Microsoft Windows XP Pro SP2'
-p1275
-aS'Microsoft Windows XP Pro SP2 (firewall disabled)'
-p1276
-aS'Microsoft Windows XP Pro Version 5.1 Build 2600'
-p1277
-aS'Microsoft Windows XP SP1'
-p1278
-aS'Microsoft Windows XP SP1'
-p1279
-aS'Microsoft Windows XP SP1'
-p1280
-aS'Microsoft Windows XP SP1 or Windows 2000 SP3'
-p1281
-aS'Microsoft Windows XP SP1 or Windows 2000 SP4'
-p1282
-aS'Microsoft Windows XP SP2'
-p1283
-aS'Microsoft Windows XP SP2'
-p1284
-aS'Microsoft Windows XP SP2'
-p1285
-aS'Microsoft Windows XP SP2'
-p1286
-aS'Microsoft Windows XP SP2'
-p1287
-aS'Microsoft Windows XP SP2 or 2003 Server'
-p1288
 asS'Tandberg | embedded || X terminal'
-p1289
-(lp1290
+p1173
+(lp1174
 S'Tandberg X-terminal'
-p1291
+p1175
 asS'Polycom | embedded || webcam'
-p1292
-(lp1293
+p1176
+(lp1177
 S'Polycom Video Conference node'
-p1294
+p1178
 aS'Polycom ViewStation'
-p1295
+p1179
 aS'Polycom ViewStation 512K videoconferencing system'
+p1180
+asS'Scientific-Atlanta | embedded || media device'
+p1181
+(lp1182
+S'Scientific Atlanta Explorer 4200 Digital Cable Box'
+p1183
+aS'Scientific Atlanta PowerVu Program Receiver Model D9850/9010'
+p1184
+asS'Handspring | PalmOS | 5.X | PDA'
+p1185
+(lp1186
+S'PalmOS 5.2.1 on Handspring Treo'
+p1187
+asS'Compaq | Tru64 UNIX | 5.X | general purpose'
+p1188
+(lp1189
+S'Compaq Tru64 UNIX 5.0 or DEC OpenVMS 7.2'
+p1190
+aS'Compaq Tru64 UNIX V5.1 (Rev. 732)'
+p1191
+aS'Compaq Tru64 UNIX V5.1A (Rev. 1885)'
+p1192
+aS'Compaq Tru64 UNIX V5.1B'
+p1193
+aS'HP Tru64 UNIX v5.1B'
+p1194
+aS'OSF1 5.0 Rev. 910 (AKA Compaq/DIGITAL Tru64 UNIX)'
+p1195
+asS'Proxim | embedded || WAP'
+p1196
+(lp1197
+S'Proxim 8571 802.11a Access Point'
+p1198
+asS'HP | embedded || load balancer'
+p1199
+(lp1200
+S'HP Procurve Routing Switch 9304M'
+p1201
+aS'HP Procurve Switch 2600 series or 5304XL'
+p1202
+asS'Raptor | embedded || firewall'
+p1203
+(lp1204
+S'Raptor firewall 5.03 on NT 4'
+p1205
+asS'Corega | embedded || broadband router'
+p1206
+(lp1207
+S'Corega BAR SW-4P Broadband Access Router'
+p1208
+asS'Digital Networks | embedded || switch'
+p1209
+(lp1210
+S'Digital Networks VNswitch 900'
+p1211
+asS'SonicWall | embedded || firewall'
+p1212
+(lp1213
+S'SonicWall Pro 200 firewall'
+p1214
+asS'WTI | embedded || power-device'
+p1215
+(lp1216
+S'WTI Internet Power Switch 1.01'
+p1217
+aS'WTI Network Power Switch v3.02'
+p1218
+asS'Cray | UNICOS | 10.X | general purpose'
+p1219
+(lp1220
+S'UNICOS 10.0.0 on Cray 90'
+p1221
+asS'PolyCom | embedded || webcam'
+p1222
+(lp1223
+S'PolyCom ViewStation video-conferencing system (firmware v7.2)'
+p1224
+asS'Phillips | embedded || media device'
+p1225
+(lp1226
+S'Phillips ReplayTV 5000 DVR'
+p1227
+asS'Telocity | embedded || broadband router'
+p1228
+(lp1229
+S'Telocity (DirectTVDSL) Gateway x2 Model'
+p1230
+asS'Racal | embedded || encryption accelerator'
+p1231
+(lp1232
+S'Racal 7100 Host Security Module 1.05 / 5.05'
+p1233
+asS'Rockwell | embedded || telecom-misc'
+p1234
+(lp1235
+S'Rockwell Spectrum 100 POTS switcher release 7.2'
+p1236
+asS'Sony | Symbian || phone'
+p1237
+(lp1238
+S'Sony Ericsson P800 mobile phone, Symbian OS v7.0'
+p1239
+asS'Bay Networks | embedded || switch'
+p1240
+(lp1241
+S'Bay Networks BayStack 310T switch'
+p1242
+aS'BayStack 28115/ADV Fast Ethernet Switch'
+p1243
+aS'BayStack 450-24T switch'
+p1244
+ag104
+asS'Teltrend | embedded || router'
+p1245
+(lp1246
+S'Teltrend (aka Securicor 3net) Router'
+p1247
+asS'Galacticomm | WorldGroup || BBS'
+p1248
+(lp1249
+S'Galacticomm WorldGroup BBS (MajorBBS) w/TCP/IP'
+p1250
+aS'Galacticomm WorldGroup BBS / Vircom TCP/IP stack'
+p1251
+asS'Gandalf | embedded || router'
+p1252
+(lp1253
+S'Gandalf LanLine Router'
+p1254
+asS'Intracom | embedded || broadband router'
+p1255
+(lp1256
+S'Intergraph jetSpeed 520 ADSL Router'
+p1257
+asS'Linux | Linux | 2.2.X | general purpose'
+p1258
+(lp1259
+g934
+aS'Linux 2.2.12 - 2.2.25'
+p1260
+aS'Linux 2.2.13'
+p1261
+aS'Linux 2.2.13 (SuSE; x86)'
+p1262
+aS'Linux 2.2.14'
+p1263
+aS'Linux 2.2.16C37_III on Sun Cobalt'
+p1264
+aS'Linux 2.2.19'
+p1265
+aS'Linux 2.2.19 (Alpha)'
+p1266
+aS'Linux 2.2.19 - 2.2.20'
+p1267
+aS'Linux 2.2.19 on a DEC Alpha'
+p1268
+aS'Linux 2.2.20 SMP'
+p1269
+aS'Linux 2.2.21 SMP (x86)'
+p1270
+aS'Linux 2.2.22'
+p1271
+aS'Linux 2.2.5 - 2.2.13 SMP'
+p1272
+aS'Linux 2.4.4'
+p1273
+asS'Linksys | embedded || broadband router'
+p1274
+(lp1275
+S'Linksys BEFSR41 Broadband router'
+p1276
+aS'Linksys BEFSR41 V3 Etherfast cable/DSL router'
+p1277
+aS'Linksys BEFVP41 VPN Router'
+p1278
+aS'Linksys BEFW11S4 Wireless DSL/Cable Router'
+p1279
+aS'Linksys BEFW11S4/WRT-54G Wireless Broadband router or BEFSR41 Cable/DSL router'
+p1280
+aS'Linksys WAG54G Wireless Broadband Router'
+p1281
+aS'Linksys WAG54G Wireless Gateway'
+p1282
+aS'Linksys WRT54G Wireless Broadband Router (Linux kernel 2.4.20)'
+p1283
+asS'DEC | DIGITAL UNIX | 2.X | general purpose'
+p1284
+(lp1285
+g959
+asS'HP | HP-UX | 11.X | general purpose'
+p1286
+(lp1287
+S'Apple Mac OS 9.04 or HP-UX B.11.00'
+p1288
+aS'Apple Mac OS 9, or HP-UX 11.00'
+p1289
+aS'HP-UX 11'
+p1290
+aS'HP-UX 11 w/tcp_isn_passphrase'
+p1291
+aS'HP-UX 11.00'
+p1292
+aS'HP-UX 11.11'
+p1293
+aS'HP-UX B.11.00 A 9000/785'
+p1294
+aS'HP-UX B.11.00 A 9000/800'
+p1295
+aS'HP-UX B11.00 U 9000/839'
 p1296
-asS'Alpha Micro | AMOS || general purpose'
+asS'Sun | Solaris | 2.X | general purpose'
 p1297
 (lp1298
-S'Amos 2.3A'
+S'Sun Solaris 2.3 - 2.4'
 p1299
-asS'Scientific-Atlanta | embedded || media device'
+aS'Sun Solaris 2.4 w/most Sun patches (jumbo cluster patch, security patches, etc)'
 p1300
-(lp1301
-S'Scientific Atlanta Explorer 4200 Digital Cable Box'
+aS'Sun Solaris 2.5, 2.5.1'
+p1301
+aS'Sun Solaris 2.6'
 p1302
-aS'Scientific Atlanta PowerVu Program Receiver Model D9850/9010'
+aS'Sun Solaris 2.6 (SPARC)'
 p1303
-asS'Handspring | PalmOS | 5.X | PDA'
+aS'Sun Solaris 2.6 - 7 with tcp_strong_iss=0'
 p1304
-(lp1305
-S'PalmOS 5.2.1 on Handspring Treo'
+aS'Sun Solaris 2.6 - 7 with tcp_strong_iss=2'
+p1305
+aS'Sun Solaris 2.6 - 7 x86'
 p1306
-asS'Compaq | Tru64 UNIX | 5.X | general purpose'
+ag926
+asS'HP | embedded || X terminal'
 p1307
 (lp1308
-S'Compaq Tru64 UNIX V5.1 (Rev. 732)'
+S'HP Entria II X station'
 p1309
-aS'Compaq Tru64 UNIX V5.1 (Rev. 732)'
+ag554
+asS'Cray | UNICOS || general purpose'
 p1310
-aS'Compaq Tru64 UNIX V5.1A (Rev. 1885)'
-p1311
-aS'Compaq Tru64 UNIX V5.1A (Rev. 1885)'
+(lp1311
+S'Cray UNICOS 9.0 - 10.0 or UNICOS/mk 1.5.1'
 p1312
-aS'Compaq Tru64 UNIX V5.1B'
+aS'Cray UNICOS 9.0.1ai - 10.0.0.2'
 p1313
-aS'HP Tru64 UNIX v5.1B'
+asS'GrandStream | embedded || VoIP phone'
 p1314
-aS'OSF1 5.0 Rev. 910 (AKA Compaq/DIGITAL Tru64 UNIX)'
-p1315
-asS'Proxim | embedded || WAP'
+(lp1315
+S'Grandstream BT-100 IP Phone'
 p1316
-(lp1317
-S'Proxim 8571 802.11a Access Point'
+aS'GrandStream BT-100 IP Phone'
+p1317
+aS'Grandstream BT-101 IP phone'
 p1318
-asS'HP | embedded || load balancer'
+aS'GrandStream BT-101 IP phone'
 p1319
-(lp1320
-S'HP Procurve Routing Switch 9304M'
+aS'Grandstream BudgeTone 101 IP Phone'
+p1320
+aS'Grandstream IP Phone'
 p1321
-aS'HP Procurve Switch 2600 series or 5304XL'
+aS'GrandStream VoIP Phone (BudgeTone-100)'
 p1322
-asS'Raptor | embedded || firewall'
+aS'Grandstream VoIP Phone (BudgeTone-101)'
 p1323
-(lp1324
-S'Raptor firewall 5.03 on NT 4'
-p1325
-asS'Corega | embedded || broadband router'
+asS'ACC | embedded || router'
+p1324
+(lp1325
+S'ACC Amazon 9.2.29 or Congo 9.2.35 WAN concentrator'
 p1326
-(lp1327
-S'Corega BAR SW-4P Broadband Access Router'
-p1328
-asS'Digital Networks | embedded || switch'
+asS'Siemens | SINIX || general purpose'
+p1327
+(lp1328
+S'Siemens SINIX-N 5.41C0005'
 p1329
-(lp1330
-S'Digital Networks VNswitch 900'
+aS'Siemens SINIX-N 5.43C3002'
+p1330
+aS'Siemens SINIX-Y 5.43B0045'
 p1331
-asS'SonicWall | embedded || firewall'
+aS'Siemens SINIX-Y 5.43C4001'
 p1332
-(lp1333
-S'SonicWall Pro 200 firewall'
-p1334
-asS'WTI | embedded || power-device'
+asS'Cisco | PIX | 5.X | firewall'
+p1333
+(lp1334
+S'Cisco PIX Firewall (PixOS 5.2 - 6.1)'
 p1335
-(lp1336
-S'WTI Internet Power Switch 1.01'
+aS'Cisco Secure PIX Firewall Version 5.0(2)'
+p1336
+asS'D-Link | embedded || webcam'
 p1337
-aS'WTI Network Power Switch v3.02'
-p1338
-asS'Cray | UNICOS | 10.X | general purpose'
+(lp1338
+S'D-Link DCS-1000 webcam with firmware 1.06'
 p1339
-(lp1340
-S'UNICOS 10.0.0 on Cray 90'
+aS'D-Link dcs-5300w Wireless WebCam'
+p1340
+aS'D-Link DVC-1000 Wireless Broadband VideoPhone'
 p1341
-asS'PolyCom | embedded || webcam'
+asS'Cisco | CacheOS || web proxy'
 p1342
 (lp1343
-S'PolyCom ViewStation video-conferencing system (firmware v7.2)'
+S'Cisco CacheOS (1.1.0)'
 p1344
-asS'Phillips | embedded || media device'
+asS'Smoothwall | Linux | 2.2.X | firewall'
 p1345
 (lp1346
-S'Phillips ReplayTV 5000 DVR'
+S'Smoothwall Linux-based firewall 2.2.23'
 p1347
-asS'Telocity | embedded || broadband router'
+asS'IBM | embedded || storage-misc'
 p1348
 (lp1349
-S'Telocity (DirectTVDSL) Gateway x2 Model'
+S'IBM 3494 Magnetic Tape Library'
 p1350
-asS'MiraPoint | embedded || general purpose'
+asS'Apple | Mac OS X | 10.2.X | general purpose'
 p1351
 (lp1352
-S'Mirapoint messaging server M1000 (OS v 1.0.0)'
+S'Apple Mac OS X 10.1.5-10.2.8'
 p1353
-aS'MiraPoint messaging server v3.1'
+aS'Apple Mac OS X 10.2.6'
 p1354
-asS'Racal | embedded || encryption accelerator'
+aS'Apple Mac OS X 10.2.6 (Jaguar)'
 p1355
-(lp1356
-S'Racal 7100 Host Security Module 1.05 / 5.05'
+aS'Apple Mac OS X 10.2.8 (Jaguar)'
+p1356
+aS'Apple Mac OS X Server 10.2.8'
 p1357
-asS'Rockwell | embedded || telecom-misc'
+asS'Softek | embedded || specialized'
 p1358
 (lp1359
-S'Rockwell Spectrum 100 POTS switcher release 7.2'
+S'Softek Digi One serial device server'
 p1360
-asS'Sony | Symbian || phone'
+asS'Asante | embedded || hub'
 p1361
 (lp1362
-S'Sony Ericsson P800 mobile phone, Symbian OS v7.0'
+S'Asante FriendlyNet FR3004 Series Internet Hub'
 p1363
-asS'Bay Networks | embedded || switch'
+aS'AsanteHub 2072 Ethernet hub'
 p1364
-(lp1365
-S'Bay Networks BayStack 310T switch'
-p1366
-aS'BayStack 28115/ADV Fast Ethernet Switch'
+asS'NetApp | Data ONTAP || fileserver'
+p1365
+(lp1366
+S'NetApp Data ONTAP 3.1.6 or BSDi 1.1'
 p1367
-aS'BayStack 450-24T switch'
+aS'NetApp Data ONTAP 5.1.2 - 5.3.5r2'
 p1368
-asS'Teltrend | embedded || router'
+aS'NetApp Data ONTAP 6.1.2R3 on an F840 filer'
 p1369
-(lp1370
-S'Teltrend (aka Securicor 3net) Router'
+aS'NetApp Data ONTAP Release 6.3.1'
+p1370
+aS'NetApp F360 or F760 Filer'
 p1371
-asS'Galacticomm | WorldGroup || BBS'
+aS'NetApp Filer (Data OnTap 6.5.2) or NetCache (NetApp 5.6 - 6.0.1)'
 p1372
-(lp1373
-S'Galacticomm WorldGroup BBS (MajorBBS) w/TCP/IP'
+aS'NetApp ONTAP Release 6.3.3'
+p1373
+aS'Network Appliance Filer running Data ONTAP Release 6.4.3'
 p1374
-aS'Galacticomm WorldGroup BBS / Vircom TCP/IP stack'
+asS'IronPort | AsyncOS || specialized'
 p1375
-asS'Intracom | embedded || broadband router'
-p1376
-(lp1377
-S'Intergraph jetSpeed 520 ADSL Router'
+(lp1376
+S'IronPort C60 email security appliance'
+p1377
+asS'Cisco | PIX | 6.X | firewall'
 p1378
-asS'Linux | Linux | 2.2.X | general purpose'
-p1379
-(lp1380
-S'Linux 2.1.19 - 2.2.25'
+(lp1379
+g1335
+aS'Cisco Firewall (PIX 6.1.4 - 6.2.2)'
+p1380
+aS'Cisco PIX 501 firewall running PIX 6.1(1)'
 p1381
-aS'Linux 2.2.12 - 2.2.25'
+aS'Cisco PIX 515 or 525 Firewall running 6.1(4) - 6.2(1)'
 p1382
-aS'Linux 2.2.13'
+aS'Cisco PIX Firewall running PIX 6.2 - 6.3.3'
 p1383
-aS'Linux 2.2.13 (SuSE; x86)'
+aS'Cisco PIX Firewall Version 6.1(2)'
 p1384
-aS'Linux 2.2.14'
+aS'Cisco PIX Firewall Version 6.2(1)'
 p1385
-aS'Linux 2.2.16C37_III on Sun Cobalt'
+aS'Cisco PIX Firewall Version 6.2(2) - 6.3'
 p1386
-aS'Linux 2.2.19'
+asS'Chase | embedded || terminal server'
 p1387
-aS'Linux 2.2.19 (Alpha)'
-p1388
-aS'Linux 2.2.19 - 2.2.20'
+(lp1388
+S'Chase IOLan Terminal Server'
 p1389
-aS'Linux 2.2.19 on a DEC Alpha'
+aS'Chase/Perle IOLAN Terminal Server'
 p1390
-aS'Linux 2.2.20 SMP'
+aS'Chase/Perle IOLAN terminal server'
 p1391
-aS'Linux 2.2.21 SMP (x86)'
+asS'ZyXel | ZyNOS || WAP'
 p1392
-aS'Linux 2.2.22'
-p1393
-aS'Linux 2.2.5 - 2.2.13 SMP'
+(lp1393
+S'ZyXel ZyAir B-4000 Wireless Lan Access Point'
 p1394
-aS'Linux 2.4.4'
+asS'NetSilicon | ThreadX || specialized'
 p1395
-asS'Linksys | embedded || broadband router'
-p1396
-(lp1397
-S'Linksys BEFSR41 Broadband router'
+(lp1396
+S'NetSilicon NetARM running ThreadX 2.0'
+p1397
+asS'HP | embedded || scanner'
 p1398
-aS'Linksys BEFSR41 Broadband router'
-p1399
-aS'Linksys BEFSR41 V3 Etherfast cable/DSL router'
+(lp1399
+g67
+asS'Clipcomm | embedded || VoIP phone'
 p1400
-aS'Linksys BEFVP41 VPN Router'
-p1401
-aS'Linksys BEFW11S4 Wireless DSL/Cable Router'
+(lp1401
+S'Clipcomm CP-100 VoIP phone'
 p1402
-aS'Linksys BEFW11S4 Wireless DSL/Cable Router'
+asS'BayTech | embedded || power-device'
 p1403
-aS'Linksys WAG54G Wireless Broadband Router'
-p1404
-aS'Linksys WAG54G Wireless Gateway'
+(lp1404
+S'BayTech Remote Power Control RPC3-15NC or RPC4'
 p1405
-aS'Linksys WRT54G Wireless Broadband Router (Linux kernel 2.4.20)'
+asS'Microsoft | Windows | PocketPC/CE | specialized'
 p1406
-asS'DEC | DIGITAL UNIX | 2.X | general purpose'
-p1407
-(lp1408
-S'DEC OSF/1 V1.3A - 2.0'
+(lp1407
+S'Microsoft Windows CE 3.0'
+p1408
+aS'Microsoft Windows CE or Pocket PC (PDA or other embedded device)'
 p1409
-asS'HP | HP-UX | 11.X | general purpose'
+asS'Cisco | embedded || router'
 p1410
 (lp1411
-S'Apple Mac OS 9.04 or HP-UX B.11.00'
+S'Cisco Router C2600 running IOS 12.2(2)T'
 p1412
-aS'HP-UX 11'
+aS'Cisco X.25/TCP/LAT Protocol Translator ver 8.2(4)'
 p1413
-aS'HP-UX 11 w/tcp_isn_passphrase'
+asS'Cantillion | embedded || switch'
 p1414
-aS'HP-UX 11.00'
-p1415
-aS'HP-UX 11.11'
+(lp1415
+g184
+asS'Wooksung | embedded || telecom-misc'
 p1416
-aS'HP-UX 11.11'
-p1417
-aS'HP-UX B.11.00 A 9000/785'
+(lp1417
+S'Wooksung TelePhoSee WVP-2100 teleconference system'
 p1418
-aS'HP-UX B.11.00 A 9000/800'
+asS'Alcatel | embedded || telecom-misc'
 p1419
-aS'HP-UX B11.00 U 9000/839'
-p1420
-asS'Sun | Solaris | 2.X | general purpose'
+(lp1420
+S'Alcatel OmniPcx 4400 telephone system'
 p1421
-(lp1422
-S'Sun Solaris 2.3 - 2.4'
-p1423
-aS'Sun Solaris 2.4 w/most Sun patches (jumbo cluster patch, security patches, etc)'
+asS'APC | embedded || power-device'
+p1422
+(lp1423
+S'APC MasterSwitch Network Power Controller'
 p1424
-aS'Sun Solaris 2.5, 2.5.1'
+aS'APC Network management Card AP9616'
 p1425
-aS'Sun Solaris 2.6'
+aS'APC network-enabled UPS'
 p1426
-aS'Sun Solaris 2.6 (SPARC)'
+aS'APC UPS Network Management Card'
 p1427
-asS'HP | embedded || X terminal'
+aS'APC UPS system'
 p1428
-(lp1429
-S'HP Entria II X station'
+aS'APC UPS System network management card (runs AOS v2.5.3)'
+p1429
+aS'APC UPS System network management card (runs AOS)'
 p1430
-asS'Cray | UNICOS || general purpose'
+aS'APC Web/SNMP UPS management card'
 p1431
-(lp1432
-S'Cray UNICOS 9.0 - 10.0 or UNICOS/mk 1.5.1'
-p1433
-aS'Cray UNICOS 9.0.1ai - 10.0.0.2'
+asS'Sony | embedded || robotic pet'
+p1432
+(lp1433
+S'Sony AIBO ERS-7 running AIBO Mind 2'
 p1434
-asS'GrandStream | embedded || VoIP phone'
+asS'Be | BeOS | 4.X | general purpose'
 p1435
 (lp1436
-S'Grandstream BT-100 IP Phone'
+S'BeOS 4 - 4.5'
 p1437
-aS'GrandStream BT-100 IP Phone'
+asS'Intel | embedded || firewall'
 p1438
-aS'Grandstream BT-101 IP phone'
-p1439
-aS'GrandStream BT-101 IP phone'
+(lp1439
+S'Intel NetStructure 3110 VPN Gateway'
 p1440
-aS'Grandstream BudgeTone 101 IP Phone'
+asS'Hawking | embedded || print server'
 p1441
-aS'Grandstream IP Phone'
-p1442
-aS'GrandStream VoIP Phone (BudgeTone-100)'
+(lp1442
+S'Hawking PS12U Embedded Print Server'
 p1443
-aS'Grandstream VoIP Phone (BudgeTone-101)'
+ag931
+asS'BinTec | embedded || broadband router'
 p1444
-asS'ACC | embedded || router'
-p1445
-(lp1446
-S'ACC Amazon 9.2.29 or Congo 9.2.35 WAN concentrator'
+(lp1445
+S'BinTEC BIANCA/BRIK-XS Broadband router V. 6.X'
+p1446
+aS'BinTec BingoDSL/X4000 Router Firmware V. 7.1'
 p1447
-asS'Siemens | SINIX || general purpose'
+aS'BinTec XS/XM ISDN access router V. 4.9.1-4.9.3'
 p1448
-(lp1449
-S'Siemens SINIX-N 5.41C0005'
+aS'VPN Access 25 version V. 7.1'
+p1449
+asS'FreeBSD | FreeBSD | 3.X | general purpose'
 p1450
-aS'Siemens SINIX-N 5.43C3002'
-p1451
-aS'Siemens SINIX-Y 5.43B0045'
+(lp1451
+g348
+ag349
+aS'FreeBSD 3.4-RELEASE'
 p1452
-aS'Siemens SINIX-Y 5.43C4001'
+asS'Apple | Mac OS X | 10.1.X | general purpose'
 p1453
-asS'Cisco | PIX | 5.X | firewall'
-p1454
-(lp1455
-S'Cisco PIX Firewall (PixOS 5.2 - 6.1)'
+(lp1454
+S'Apple Mac OS X 10.1 - 10.1.4'
+p1455
+aS'Apple Mac OS X 10.1.4 (Darwin Kernel 5.4) on iMac'
 p1456
-aS'Cisco Secure PIX Firewall Version 5.0(2)'
+aS'Apple Mac OS X 10.1.5'
 p1457
-asS'D-Link | embedded || webcam'
+ag1353
+aS'Apple Mac OS X Server 10.1.2 (ppc)'
 p1458
-(lp1459
-S'D-Link DCS-1000 webcam with firmware 1.06'
-p1460
-aS'D-Link dcs-5300w Wireless WebCam'
+asS'Pitney Bowes | embedded || printer'
+p1459
+(lp1460
+g470
+asS'SMC | embedded || broadband router'
 p1461
-aS'D-Link DVC-1000 Wireless Broadband VideoPhone'
-p1462
-asS'Cisco | CacheOS || web proxy'
+(lp1462
+S'SMC Barricade SMC7004VR2.0EU DSL router'
 p1463
-(lp1464
-S'Cisco CacheOS (1.1.0)'
-p1465
-asS'Smoothwall | Linux | 2.2.X | firewall'
+asS'Dell | embedded || storage-misc'
+p1464
+(lp1465
+g167
+aS'Dell Powervault 132T Automated Tape Library'
 p1466
-(lp1467
-S'Smoothwall Linux-based firewall 2.2.23'
+aS'Dell Tape Library MSL6030'
+p1467
+asS'TrueTime | embedded || specialized'
 p1468
-asS'IBM | embedded || storage-misc'
-p1469
-(lp1470
-S'IBM 3494 Magnetic Tape Library'
+(lp1469
+S'Embedded device: HP Switch, Copper Mountain DSL Concentrator, Compaq Remote Insight Lights-Out remote console card, 3Com NBX 25 phone system or Home Wireless Gateway, or TrueTime NTP clock'
+p1470
+asS'Siemens | embedded || VoIP phone'
 p1471
-asS'Apple | Mac OS X | 10.2.X | general purpose'
-p1472
-(lp1473
-S'Apple Mac OS X 10.1.5-10.2.8'
+(lp1472
+S'Siemens HiCom 300E business phone system Release 6.5'
+p1473
+asS'Necomm | embedded || broadband router'
 p1474
-aS'Apple Mac OS X 10.2.6'
-p1475
-aS'Apple Mac OS X 10.2.6 (Jaguar)'
+(lp1475
+S'Necomm NB1300 DSL router'
 p1476
-aS'Apple Mac OS X 10.2.8 (Jaguar)'
+asS'3Com | ComOS || terminal server'
 p1477
-aS'Apple Mac OS X Server 10.2.8'
-p1478
-asS'Softek | embedded || specialized'
+(lp1478
+g899
+asS'Sun | embedded || remote management'
 p1479
 (lp1480
-S'Softek Digi One serial device server'
+g985
+asS'Alcatel | embedded || switch'
 p1481
-asS'Asante | embedded || hub'
-p1482
-(lp1483
-S'Asante FriendlyNet FR3004 Series Internet Hub'
+(lp1482
+S'Alcatel OmniStack switch version 4.3.3 GA'
+p1483
+ag395
+asS'Linux | Linux | 2.4.X | general purpose'
 p1484
-aS'AsanteHub 2072 Ethernet hub'
-p1485
-asS'NetApp | Data ONTAP || fileserver'
+(lp1485
+S'Astaro Security Linux 4 (Kernel 2.4.19)'
 p1486
-(lp1487
-S'NetApp Data ONTAP 3.1.6 or BSDi 1.1'
+aS'Gentoo 1.2 linux (Kernel 2.4.19-gentoo-rc5)'
+p1487
+aS'Linux 2.2.16'
 p1488
-aS'NetApp Data ONTAP 5.1.2 - 5.3.5r2'
+ag80
+ag81
+aS'Linux 2.4.0-test5'
 p1489
-aS'NetApp Data ONTAP 6.1.2R3 on an F840 filer'
+aS'Linux 2.4.10 - 2.4.18'
 p1490
-aS'NetApp Data ONTAP Release 6.3.1'
+aS'Linux 2.4.16 - 2.4.18'
 p1491
-aS'NetApp F360 or F760 Filer'
+aS'Linux 2.4.17 on HP 9000 s700'
 p1492
-aS'NetApp ONTAP Release 6.3.3'
+aS'Linux 2.4.18'
 p1493
-aS'Network Appliance Filer running Data ONTAP Release 6.4.3'
+aS'Linux 2.4.18 (PPC)'
 p1494
-asS'Microsoft | Windows Longhorn || general purpose'
+aS'Linux 2.4.18 (x86)'
 p1495
-(lp1496
-S'Microsoft Windows Longhorn Preview'
+aS'Linux 2.4.18 - 2.4.19 w/o tcp_timestamps'
+p1496
+aS'Linux 2.4.18 - 2.4.20'
 p1497
-asS'Cisco | PIX | 6.X | firewall'
+aS'Linux 2.4.18 - 2.4.20 (x86)'
 p1498
-(lp1499
-S'Cisco Firewall (PIX 6.1.4 - 6.2.2)'
+aS'Linux 2.4.18 - 2.4.21 (x86)'
+p1499
+aS'Linux 2.4.18 - 2.4.27'
 p1500
-aS'Cisco PIX 501 firewall running PIX 6.1(1)'
+aS'Linux 2.4.19'
 p1501
-aS'Cisco PIX 515 or 525 Firewall running 6.1(4) - 6.2(1)'
+aS'Linux 2.4.19 (Mandrake, X86)'
 p1502
-aS'Cisco PIX Firewall Version 6.1(2)'
+aS'Linux 2.4.19 (x86)'
 p1503
-aS'Cisco PIX Firewall Version 6.2(1)'
+aS'Linux 2.4.19 - 2.4.20'
 p1504
-aS'Cisco PIX Firewall Version 6.2(2) - 6.3'
+aS'Linux 2.4.19 w/grsecurity patch'
 p1505
-asS'Chase | embedded || terminal server'
+aS'Linux 2.4.20'
 p1506
-(lp1507
-S'Chase IOLan Terminal Server'
+aS'Linux 2.4.20 (Red Hat)'
+p1507
+aS'Linux 2.4.20 (X86, Redhat 7.3)'
 p1508
-aS'Chase/Perle IOLAN Terminal Server'
+aS'Linux 2.4.20 - 2.4.22'
 p1509
-aS'Chase/Perle IOLAN terminal server'
+aS'Linux 2.4.20 - 2.4.22 w/grsecurity.org patch'
 p1510
-asS'ZyXel | ZyNOS || WAP'
+aS'Linux 2.4.20 - 2.4.28'
 p1511
-(lp1512
-S'ZyXel ZyAir B-4000 Wireless Lan Access Point'
+aS'Linux 2.4.20 or 2.6.0-test5-love3 (x86)'
+p1512
+aS'Linux 2.4.20 x86'
 p1513
-asS'NetSilicon | ThreadX || specialized'
+aS'Linux 2.4.20-ac2'
 p1514
-(lp1515
-S'NetSilicon NetARM running ThreadX 2.0'
+aS'Linux 2.4.21'
+p1515
+aS'Linux 2.4.21 (RedHat)'
 p1516
-asS'Leunig | embedded || power-device'
+aS'Linux 2.4.21 (Suse)'
 p1517
-(lp1518
-S'Leunig ePower Switch b723 v5.2'
+aS'Linux 2.4.21 (Suse, X86)'
+p1518
+aS'Linux 2.4.21 (x86 SuSE)'
 p1519
-asS'Clipcomm | embedded || VoIP phone'
+aS'Linux 2.4.21 (x86)'
 p1520
-(lp1521
-S'Clipcomm CP-100 VoIP phone'
+aS'Linux 2.4.21 (x86, RedHat)'
+p1521
+aS'Linux 2.4.21 - 2.4.23'
 p1522
-asS'BayTech | embedded || power-device'
+aS'Linux 2.4.22'
 p1523
-(lp1524
-S'BayTech Remote Power Control RPC3-15NC or RPC4'
+aS'Linux 2.4.22 (SPARC)'
+p1524
+aS'Linux 2.4.22 (x86) w/grsecurity patch and with timestamps disabled'
 p1525
-asS'Microsoft | Windows | PocketPC/CE | specialized'
+aS'Linux 2.4.22 - 2.6.8'
 p1526
-(lp1527
-S'Microsoft Windows CE 3.0'
+aS'Linux 2.4.22 or 2.6.10'
+p1527
+aS'Linux 2.4.22 or 2.6.3 - 2.6.10'
 p1528
-aS'Microsoft Windows CE or Pocket PC (PDA or other embedded device)'
+aS'Linux 2.4.22 or 2.6.4 - 2.6.10'
 p1529
-asS'Cisco | embedded || router'
+aS'Linux 2.4.22-ck2 (x86)   w/grsecurity.org and HZ=1000 patches'
 p1530
-(lp1531
-S'Cisco Router C2600 running IOS 12.2(2)T'
+aS'Linux 2.4.22-gentoo-r2 i686'
+p1531
+aS'Linux 2.4.22-gentoo-r5 (x86) w/grsecurity'
 p1532
-aS'Cisco X.25/TCP/LAT Protocol Translator ver 8.2(4)'
+aS'Linux 2.4.22-gentoo-rc'
 p1533
-asS'Cantillion | embedded || switch'
+aS'Linux 2.4.23 (x86)'
 p1534
-(lp1535
-S'Alteon AceSwitch 110 or Cantillion C100 ATM Switch'
+aS'Linux 2.4.23-grsec w/o timestamps'
+p1535
+aS'Linux 2.4.25 w/grsec (x86)'
 p1536
-asS'Wooksung | embedded || telecom-misc'
+aS'Linux 2.4.26'
 p1537
-(lp1538
-S'Wooksung TelePhoSee WVP-2100 teleconference system'
+aS'Linux 2.4.26 (gentoo)'
+p1538
+aS'Linux 2.4.26-gentoo-r6 w/grsec'
 p1539
-asS'Alcatel | embedded || telecom-misc'
+aS'Linux 2.4.27 or D-Link DSL-500T (running linux 2.4)'
 p1540
-(lp1541
-S'Alcatel OmniPcx 4400 telephone system'
+aS'Linux 2.4.27 with grsec'
+p1541
+aS'Linux 2.4.29'
 p1542
-asS'APC | embedded || power-device'
+aS'Linux 2.4.30'
 p1543
-(lp1544
-S'APC MasterSwitch Network Power Controller'
+aS'Linux 2.4.4'
+p1544
+aS'Linux 2.4.6 - 2.4.26 or 2.6.9'
 p1545
-aS'APC Network management Card AP9616'
+aS'Linux 2.4.7 (x86)'
 p1546
-aS'APC network-enabled UPS'
+aS'Linux 2.4.7 (zLinux on OS/390)'
 p1547
-aS'APC UPS Network Management Card'
+ag82
+aS'Linux 2.4.9 - 2.4.18'
 p1548
-aS'APC UPS system'
+ag83
+aS'Microsoft Xbox running Debian Linux 2.4.20'
 p1549
-aS'APC UPS System network management card (runs AOS v2.5.3)'
+asS'BenQ | embedded || WAP'
 p1550
-aS'APC Web/SNMP UPS management card'
-p1551
-asS'Sony | embedded || robotic pet'
+(lp1551
+S'BenQ Wireless Lan Router AWL700'
 p1552
-(lp1553
-S'Sony AIBO ERS-7 running AIBO Mind 2'
-p1554
-asS'Be | BeOS | 4.X | general purpose'
+asS'Cisco | NmpSW || switch'
+p1553
+(lp1554
+S'Cisco Catalyst 4006 Switch running NmpSW 7.4(2)'
 p1555
-(lp1556
-S'BeOS 4 - 4.5'
-p1557
-asS'Intel | embedded || firewall'
+asS'lwIP | lwIP || general purpose'
+p1556
+(lp1557
+S'lwIP (Lightweight TCP/IP stack) version lwip-0.5.3-win32'
 p1558
-(lp1559
-S'Intel NetStructure 3110 VPN Gateway'
-p1560
-asS'Hawking | embedded || print server'
+asS'uIP | uIP || specialized'
+p1559
+(lp1560
+g491
+asS'Siemens | ReliantUNIX || general purpose'
 p1561
 (lp1562
-S'Hawking PS12U Embedded Print Server'
+S'ReliantUNIX-Y 5.44 B0033 RM600 1/256 R10000'
 p1563
-asS'BinTec | embedded || broadband router'
+aS'Siemens Reliant UNIX 5.45B20'
 p1564
-(lp1565
-S'BinTEC BIANCA/BRIK-XS Broadband router V. 6.X'
+aS'Siemens RM200-C40 running ReliantUNIX-N 5.45'
+p1565
+asS'Linksys | embedded || WAP'
 p1566
-aS'BinTec BingoDSL/X4000 Router Firmware V. 7.1'
-p1567
-aS'BinTec XS/XM ISDN access router V. 4.9.1-4.9.3'
+(lp1567
+S'Linksys BEFW11S4/BEFSR41/BEFSR81/WRK54G Broadband router or RT31P2 VoIP router'
 p1568
-aS'VPN Access 25 version V. 7.1'
+aS'Linksys WAP11 Wireless AP'
 p1569
-asS'FreeBSD | FreeBSD | 3.X | general purpose'
+aS'Linksys, D-Link, or Planet WAP'
 p1570
-(lp1571
-S'FreeBSD 3.4-RELEASE'
-p1572
-asS'Apple | Mac OS X | 10.1.X | general purpose'
+asS'Cisco | embedded || broadband router'
+p1571
+(lp1572
+g662
+aS'Cisco 761 running c760-in.r.NET3 4.3(1)'
 p1573
-(lp1574
-S'Apple Mac OS X 10.1 - 10.1.4'
+aS'Cisco 762 Non-IOS Software release 4.1(2) or 766 ISDN router'
+p1574
+aS'Cisco 766 non-IOS software 4.2(3.5)'
 p1575
-aS'Apple Mac OS X 10.1.4 (Darwin Kernel 5.4) on iMac'
+aS'Cisco Soho 97 router running IOS 12.3(8)'
 p1576
-aS'Apple Mac OS X 10.1.5'
+asS'Datavoice | embedded || CSUDSU'
 p1577
-aS'Apple Mac OS X Server 10.1.2 (ppc)'
-p1578
-asS'SMC | embedded || broadband router'
+(lp1578
+S'Datavoice 3Com WAP or TxPORT PRISM T1 CSU/DSU'
 p1579
-(lp1580
-S'SMC Barricade SMC7004VR2.0EU DSL router'
-p1581
-asS'Dell | embedded || storage-misc'
+asS'SGI | IRIX | 6.X | general purpose'
+p1580
+(lp1581
+S'SGI IRIX 6.2'
 p1582
-(lp1583
-S'Dell Powervault 132T Automated Tape Library'
+aS'SGI IRIX 6.2 - 6.5'
+p1583
+aS'SGI IRIX 6.4 - 6.5.3m  # Lamont Granquist (again :)'
 p1584
-aS'Dell Powervault 132T Automated Tape Library'
+aS'SGI IRIX 6.5'
 p1585
-aS'Dell Tape Library MSL6030'
+aS'SGI IRIX 6.5 (MIPS)'
 p1586
-asS'Siemens | embedded || VoIP phone'
+aS'SGI IRIX 6.5 Origin2'
 p1587
-(lp1588
-S'Siemens HiCom 300E business phone system Release 6.5'
+aS'SGI IRIX 6.5-6.5.15m'
+p1588
+aS'SGI IRIX 6.5.14'
 p1589
-asS'Necomm | embedded || broadband router'
+aS'SGI IRIX 6.5.15m on SGI O2'
 p1590
-(lp1591
-S'Necomm NB1300 DSL router'
+aS'SGI IRIX 6.5.16m'
+p1591
+aS'SGI IRIX 6.5.20m'
 p1592
-asS'3Com | ComOS || terminal server'
+aS'SGI IRIX 6.5.25'
 p1593
-(lp1594
-S'ComOS based terminal server - Livingston PortMaster or U.S. Robotics/3Com Total Control'
+aS'SGI IRIX 6.5.7f-6.5.8f'
+p1594
+asS'Telebit | embedded || router'
 p1595
-asS'Microsoft | Windows | 95/98/ME | general purpose'
-p1596
-(lp1597
-S'Microsoft Windows for Workgroups 3.11 / TCP/IP-32 3.11b stack or Windows 98'
+(lp1596
+S'Telebit NetBlazer router version 3.0'
+p1597
+aS'Telebit NetBlazer router Version 3.05'
 p1598
-aS'Microsoft Windows 95 4.00.950'
+aS'Telebit NetBlazer router Version 3.1'
 p1599
-aS'Microsoft Windows 95 4.00.950B'
+asS'Sun | Solaris | 7 | general purpose'
 p1600
-aS'Microsoft Windows 95 4.00.950B (IE 5 5.00 2314.1003)'
-p1601
-aS'Microsoft Windows 98'
+(lp1601
+g1304
+ag1305
+ag1306
+ag926
+asS'Leunig | embedded || power-device'
 p1602
-aS'Microsoft Windows 98'
-p1603
-aS'Microsoft Windows 98 4.10.1998'
+(lp1603
+S'Leunig ePower Switch b723 v5.2'
 p1604
-aS'Microsoft Windows 98 4.10.1998'
+asS'innovaphone | embedded || telecom-misc'
 p1605
-aS'Microsoft Windows 98 or 98SE'
-p1606
-aS'Microsoft Windows 98 SP1'
+(lp1606
+S'innovaphone IP200/IP400 VoIP phone/gateway'
 p1607
-aS'Microsoft Windows 98 SP2'
+asS'Open Networks | embedded || broadband router'
 p1608
-aS'Microsoft Windows 98SE'
-p1609
-aS'Microsoft Windows 98SE'
+(lp1609
+S'Open Network 501r or 531r (ADSL Router)'
 p1610
-aS'Microsoft Windows 98SE'
+asS'Packet8 | embedded || VoIP adapter'
 p1611
-aS'Microsoft Windows 98SE'
-p1612
-aS'Microsoft Windows 98SE'
+(lp1612
+S'Packet8 BPA410 Broadband Phone Adapter'
 p1613
-aS'Microsoft Windows 98SE'
+aS'Packet8 DTA310 VoIP/POTS gateway'
 p1614
-aS'Microsoft Windows 98SE + IE5.5sp1'
+asS'Redback | embedded || broadband router'
 p1615
-aS'Microsoft Windows 98SE SP1'
-p1616
-aS'Microsoft Windows 98SE with security patch A'
+(lp1616
+S'Redback SMS 1000-2000 DSL Router'
 p1617
-aS'Microsoft Windows Millennium Edition (Me)'
+asS'Asante | embedded || switch'
 p1618
-aS'Microsoft Windows Millennium Edition (Me)'
-p1619
-aS'Microsoft Windows Millennium Edition (Me)'
+(lp1619
+S'Asante 6524-2G GigE switch'
 p1620
-aS'Microsoft Windows Millennium Edition (Me), Windows 2000, or Windows XP'
+aS'Asante IntraStack Ethernet Switch (6014 DSB Versions: BP(2.06 ), FW(1.03 ))'
 p1621
-aS'Turtle Beach AudioTron 100 network MP3 player or Microsoft Windows 98SE'
+aS'Asante IntraSwitch 5324'
 p1622
-asS'Linux | Linux | 2.4.X | general purpose'
+aS'Asante IntraSwitch 6216M firmware v2.05A'
 p1623
-(lp1624
-S'Astaro Security Linux 4 (Kernel 2.4.19)'
-p1625
-aS'Gentoo 1.2 linux (Kernel 2.4.19-gentoo-rc5)'
+asS'CompUSA | embedded || broadband router'
+p1624
+(lp1625
+S'CompUSA Broadband Router'
 p1626
-aS'Linux 2.2.16'
+asS'Alcatel | embedded || VoIP phone'
 p1627
-aS'Linux 2.4.0-test5'
-p1628
-aS'Linux 2.4.10 - 2.4.18'
+(lp1628
+S'Alcatel Advanced Reflexes IP Phone or IBM x450 remote management console'
 p1629
-aS'Linux 2.4.16 - 2.4.18'
+asS'Brother | embedded || printer'
 p1630
-aS'Linux 2.4.17 on HP 9000 s700'
-p1631
-aS'Linux 2.4.18'
+(lp1631
+S'Brother HL-1230 Printer'
 p1632
-aS'Linux 2.4.18'
+aS'Brother HL-2070N Printer'
 p1633
-aS'Linux 2.4.18 (PPC)'
+asS'Network Systems | embedded || router'
 p1634
-aS'Linux 2.4.18 (x86)'
-p1635
-aS'Linux 2.4.18 (x86)'
+(lp1635
+S'Network Systems router NS6614 (NSC 6600 series)'
 p1636
-aS'Linux 2.4.18 - 2.4.19 w/o tcp_timestamps'
+asS'DEC | IOS | 10.X | router'
 p1637
-aS'Linux 2.4.18 - 2.4.20'
-p1638
-aS'Linux 2.4.18 - 2.4.20 (x86)'
+(lp1638
+S'Cisco 1601 (IOS 11.0) or DECbrouter90T1 (Runs Cisco IOS 10.2(5))'
 p1639
-aS'Linux 2.4.18 - 2.4.21 (x86)'
+asS'Swissvoice | embedded || VoIP phone'
 p1640
-aS'Linux 2.4.18 - 2.4.27'
-p1641
-aS'Linux 2.4.19'
+(lp1641
+S'Swissvoice IP 10S VoIP phone'
 p1642
-aS'Linux 2.4.19'
+asS'Savin | embedded || printer'
 p1643
-aS'Linux 2.4.19 (Mandrake, X86)'
-p1644
-aS'Linux 2.4.19 (x86)'
+(lp1644
+g118
+asS'Cnet | embedded || broadband router'
 p1645
-aS'Linux 2.4.19 - 2.4.20'
-p1646
-aS'Linux 2.4.19 w/grsecurity patch'
+(lp1646
+S'Cnet CNIG904B Internet Broadband Gateway firmware version 1.11'
 p1647
-aS'Linux 2.4.20'
+asS'Liebert-Hiross | embedded || specialized'
 p1648
-aS'Linux 2.4.20'
-p1649
-aS'Linux 2.4.20'
+(lp1649
+S'Liebert-Hiross HiSNMP A/C controlling unit'
 p1650
-aS'Linux 2.4.20'
+asS'Checkpoint | IPSO || firewall'
 p1651
-aS'Linux 2.4.20'
-p1652
-aS'Linux 2.4.20'
+(lp1652
+S'Nokia IPSO 3.2-3.5 Running Checkpoint Firewall-1 or NG FP2'
 p1653
-aS'Linux 2.4.20'
+aS'Nokia IPSO 3.2-4.3.1-FCS5 Running checkpoint FW1'
 p1654
-aS'Linux 2.4.20 (Red Hat)'
+aS'Nokia IPSO 3.6 running CheckPoint FW-1 NG FP2'
 p1655
-aS'Linux 2.4.20 (X86, Redhat 7.3)'
+asS'Intel | embedded || broadband router'
 p1656
-aS'Linux 2.4.20 - 2.4.22 w/grsecurity.org patch'
-p1657
-aS'Linux 2.4.20 x86'
+(lp1657
+g718
+asS'Cisco | IOS | 11.X | switch'
 p1658
-aS'Linux 2.4.20-ac2'
-p1659
-aS'Linux 2.4.21'
+(lp1659
+S'Cisco Router/Switch with IOS 11.2'
 p1660
-aS'Linux 2.4.21 (RedHat)'
+aS'Cisco switch/router with IOS 11.1(7)-11.2(8.10)'
 p1661
-aS'Linux 2.4.21 (RedHat)'
+asS'Ascend | embedded || broadband router'
 p1662
-aS'Linux 2.4.21 (Suse)'
-p1663
-aS'Linux 2.4.21 (Suse, X86)'
+(lp1663
+S'Ascend DSLPipe DSL-50S-CELL DSL router'
 p1664
-aS'Linux 2.4.21 (x86 SuSE)'
+asS'Copper Mountain | embedded || terminal server'
 p1665
-aS'Linux 2.4.21 (x86)'
-p1666
-aS'Linux 2.4.21 (x86, RedHat)'
+(lp1666
+g1470
+asS'AXIS | Linux || print server'
 p1667
-aS'Linux 2.4.22'
-p1668
-aS'Linux 2.4.22 (SPARC)'
+(lp1668
+S'AXIS Network Print Server'
 p1669
-aS'Linux 2.4.22 (x86) w/grsecurity patch and with timestamps disabled'
+asS'Apple | Mac OS X | 10.0.X | general purpose'
 p1670
-aS'Linux 2.4.22 - 2.6.8'
-p1671
-aS'Linux 2.4.22 or 2.6.4 - 2.6.10'
+(lp1671
+S'Apple Mac OS X 1.1-1.2 (Rhapsody 5.5-5.6) on a G3'
 p1672
-aS'Linux 2.4.22-ck2 (x86)   w/grsecurity.org and HZ=1000 patches'
+aS'Apple Mac OS X Server 1.0-1.0-1 (Rhapsody 5.3 - 5.4)'
 p1673
-aS'Linux 2.4.22-gentoo-r2 i686'
+ag357
+asS'Amiga | AmigaOS || general purpose'
 p1674
-aS'Linux 2.4.22-gentoo-r5 (x86) w/grsecurity'
-p1675
-aS'Linux 2.4.22-gentoo-rc'
+(lp1675
+S'Amiga OS 3.5 (Miami TCP/IP Stack v3.1)'
 p1676
-aS'Linux 2.4.23 (x86)'
+aS'AmigaOS 2.1 running AmiTCP4.3'
 p1677
-aS'Linux 2.4.23-grsec w/o timestamps'
+aS'AmigaOS 3.1 running Miami Deluxe 0.9m'
 p1678
-aS'Linux 2.4.25 w/grsec (x86)'
+aS'AmigaOS 3.5/3.9 running Miami Deluxe 1.0c'
 p1679
-aS'Linux 2.4.26'
+aS'AmigaOS AmiTCP/IP 4.3'
 p1680
-aS'Linux 2.4.26'
+aS'AmigaOS AmiTCP/IP Genesis 4.6'
 p1681
-aS'Linux 2.4.26'
+aS'AmigaOS Miami 2.1-3.0'
 p1682
-aS'Linux 2.4.26'
+aS'AmigaOS Miami 3.0'
 p1683
-aS'Linux 2.4.26 (gentoo)'
+aS'AmigaOS Miami 3.1-3.2'
 p1684
-aS'Linux 2.4.26-gentoo-r6 w/grsec'
+aS'AmigaOS Miami Deluxe 0.9 - Miami 3.2B'
 p1685
-aS'Linux 2.4.27 with grsec'
+asS'Hydra | embedded || load balancer'
 p1686
-aS'Linux 2.4.27 with grsec'
-p1687
-aS'Linux 2.4.29'
+(lp1687
+S'Hydra HydraWEB 5000'
 p1688
-aS'Linux 2.4.30'
+asS'Linksys | embedded || bridge'
 p1689
-aS'Linux 2.4.4'
-p1690
-aS'Linux 2.4.6 - 2.4.26 or 2.6.9'
+(lp1690
+S'Linksys WET-11 Wireless Ethernet bridge'
 p1691
-aS'Linux 2.4.7 (x86)'
+aS'Linksys WGA54G Wireless Game Adapter (bridge)'
 p1692
-aS'Linux 2.4.7 (zLinux on OS/390)'
+asS'm0n0wall | FreeBSD | 5.X | firewall'
 p1693
-aS'Linux 2.4.9 - 2.4.18'
-p1694
-aS'Microsoft Xbox running Debian Linux 2.4.20'
+(lp1694
+S'M0n0wall 1.2b7 FreeBSD 5.3 based firewall'
 p1695
-asS'BenQ | embedded || WAP'
+asS'Tandem | Tandem NSK || general purpose'
 p1696
 (lp1697
-S'BenQ Wireless Lan Router AWL700'
+S'Tandem NSK D39'
 p1698
-asS'Cisco | NmpSW || switch'
+aS'Tandem NSK D40'
 p1699
-(lp1700
-S'Cisco Catalyst 4006 Switch running NmpSW 7.4(2)'
-p1701
-asS'lwIP | lwIP || general purpose'
+asS'MikroTik | RouterOS || software router'
+p1700
+(lp1701
+S'MikroTik RouterOS 2.7.20'
 p1702
-(lp1703
-S'lwIP (Lightweight TCP/IP stack) version lwip-0.5.3-win32'
-p1704
-asS'uIP | uIP || specialized'
+asS'Cisco | embedded || WAP'
+p1703
+(lp1704
+g803
+asS'AXIS | embedded || print server'
 p1705
 (lp1706
-S'Contiki 1.2-devel0 embedded OS on Ethernut card or uIP 0.9 TCP/IP stack'
+g201
+aS'AXIS 540 Ethernet Print Server ver 5.48'
 p1707
-asS'Siemens | ReliantUNIX || general purpose'
+aS'AXIS 540 Print Server'
 p1708
-(lp1709
-S'ReliantUNIX-Y 5.44 B0033 RM600 1/256 R10000'
+aS'AXIS 540/542 Print Server v5.30'
+p1709
+aS'AXIS Print Server firmware 7.0.2'
 p1710
-aS'Siemens Reliant UNIX 5.45B20'
+asS'Kyocera | embedded || printer'
 p1711
-aS'Siemens RM200-C40 running ReliantUNIX-N 5.45'
-p1712
-asS'Linksys | embedded || WAP'
+(lp1712
+S'Kyocera FS-1700+ printer'
 p1713
-(lp1714
-S'Linksys WAP11 Wireless AP'
+aS'Kyocera IB-21 Printer NIC'
+p1714
+aS'Kyocera Printer (network module IB-21E 1.3.x)'
 p1715
-asS'Cisco | embedded || broadband router'
+aS'Kyocera SB-4e printer NIC'
 p1716
-(lp1717
-S'Cisco 761 running c760-in.r.NET3 4.3(1)'
-p1718
-aS'Cisco 762 Non-IOS Software release 4.1(2) or 766 ISDN router'
+asS'OpenBSD | OpenBSD | 2.7 | general purpose'
+p1717
+(lp1718
+S'OpenBSD 2.7/SPARC or NFR IDS Appliance ( 12/10/00 )'
 p1719
-aS'Cisco 766 non-IOS software 4.2(3.5)'
+asS'Cisco | embedded || VoIP phone'
 p1720
-aS'Cisco Soho 97 router running IOS 12.3(8)'
-p1721
-asS'Datavoice | embedded || CSUDSU'
+(lp1721
+S'Cisco 7960 SIP Phone running OS 4.2'
 p1722
-(lp1723
-S'Datavoice 3Com WAP or TxPORT PRISM T1 CSU/DSU'
+aS'Cisco IP phone (POS3-04-3-00, PC030301)'
+p1723
+aS'Cisco IP Phone 7910 or 7940 Firmware 3.1'
 p1724
-asS'SGI | IRIX | 6.X | general purpose'
+aS'Cisco IP Phone 7940'
 p1725
-(lp1726
-S'SGI IRIX 6.2'
+aS'Cisco IP Phone 7960'
+p1726
+aS'Cisco IP Phone 7970G'
 p1727
-aS'SGI IRIX 6.2 - 6.5'
+ag93
+asS'Tally | embedded || printer'
 p1728
-aS'SGI IRIX 6.2 - 6.5'
-p1729
-aS'SGI IRIX 6.4 - 6.5.3m  # Lamont Granquist (again :)'
+(lp1729
+S'Tally 9112 Printer'
 p1730
-aS'SGI IRIX 6.5'
+aS'Tallycom+ Print Server'
 p1731
-aS'SGI IRIX 6.5 (MIPS)'
+asS'Apple | A/UX || general purpose'
 p1732
-aS'SGI IRIX 6.5 Origin2'
-p1733
-aS'SGI IRIX 6.5-6.5.15m'
+(lp1733
+S'Apple A/UX 3.1.1 SVR2 or OpenStep 4.2'
 p1734
-aS'SGI IRIX 6.5.14'
+asS'Nokia | embedded || router'
 p1735
-aS'SGI IRIX 6.5.15m on SGI O2'
-p1736
-aS'SGI IRIX 6.5.16m'
+(lp1736
+S'Nokia Rooftop Wireless Router model R240A'
 p1737
-aS'SGI IRIX 6.5.20m'
+asS'NEC | UX/4800 || general purpose'
 p1738
-aS'SGI IRIX 6.5.20m'
-p1739
-aS'SGI IRIX 6.5.25'
+(lp1739
+S'NEC UX/4800'
 p1740
-aS'SGI IRIX 6.5.7f-6.5.8f'
+asS'Terayon | embedded || broadband router'
 p1741
-aS'SGI IRIX 6.5.7f-6.5.8f'
-p1742
-asS'Telebit | embedded || router'
+(lp1742
+S'Terayon Tj715x cable modem'
 p1743
-(lp1744
-S'Telebit NetBlazer router version 3.0'
-p1745
-aS'Telebit NetBlazer router Version 3.05'
+asS'Huawei | VRP || router'
+p1744
+(lp1745
+S'Huawei Quidway R2621 router running VRP 1.5.6(1)'
 p1746
-aS'Telebit NetBlazer router Version 3.1'
+aS'Huawei Quidway Router R2621E VRP 1.5.6'
 p1747
-asS'Sun | Solaris | 7 | general purpose'
+asS'Telsey | embedded || broadband router'
 p1748
 (lp1749
-S'Sun Solaris 2.6 - 7 with tcp_strong_iss=0'
+S'CPV Telsey Broadband + voip residential gateway or Signal SP100x VoIP appliance'
 p1750
-aS'Sun Solaris 2.6 - 7 with tcp_strong_iss=2'
+asS'Ericsson | embedded || terminal server'
 p1751
-aS'Sun Solaris 2.6 - 7 x86'
-p1752
-asS'innovaphone | embedded || telecom-misc'
+(lp1752
+S'Ericsson Tigris Access Server Software V. 12.1.*'
 p1753
-(lp1754
-S'innovaphone IP200/IP400 VoIP phone/gateway'
-p1755
-asS'Open Networks | embedded || broadband router'
+asS'Zero One | embedded || print server'
+p1754
+(lp1755
+g931
+asS'Perle | embedded || remote management'
 p1756
 (lp1757
-S'Open Network 501r or 531r (ADSL Router)'
+S'Perle 594e Network Controller'
 p1758
-asS'Packet8 | embedded || VoIP adapter'
+asS'Netscreen | ScreenOS || firewall'
 p1759
 (lp1760
-S'Packet8 BPA410 Broadband Phone Adapter'
+S'Netscreen 5XP firewall+vpn (OS 3.0.1r2)'
 p1761
-aS'Packet8 DTA310 VoIP/POTS gateway'
+aS'Netscreen 5XP firewall+vpn (os 4.0.3r2.0)'
 p1762
-aS'Packet8 DTA310 VoIP/POTS gateway'
+asS'Cisco | Content Networking System || web proxy'
 p1763
-asS'Redback | embedded || broadband router'
-p1764
-(lp1765
-S'Redback SMS 1000-2000 DSL Router'
+(lp1764
+S'Cisco ACNS 5.1 Content Engine'
+p1765
+aS'Cisco Content Engine 505 Software V. 4.2.1'
 p1766
-asS'Asante | embedded || switch'
+aS'Cisco Content Engine 560 running Content Networking System V. 4.2.3'
 p1767
-(lp1768
-S'Asante 6524-2G GigE switch'
+aS'Cisco Content Engine ACNSS V5.2.1 or V5.3.1'
+p1768
+asS'HP | HP-UX | 10.X | general purpose'
 p1769
-aS'Asante IntraStack Ethernet Switch (6014 DSB Versions: BP(2.06 ), FW(1.03 ))'
-p1770
-aS'Asante IntraSwitch 5324'
+(lp1770
+S'HP-UX 10.20 # 9000/777 or A 712/60 with tcp_random_seq = 1 or 2'
 p1771
-aS'Asante IntraSwitch 6216M firmware v2.05A'
+aS'HP-UX 10.20 A 9000/715 or 9000/899'
 p1772
-asS'CompUSA | embedded || broadband router'
+aS'HP-UX 10.20 E 9000/777 or A 712/60 with tcp_random_seq = 0'
 p1773
-(lp1774
-S'CompUSA Broadband Router'
+aS'HP-UX B.10.01 A 9000/715'
+p1774
+aS'HP-UX B.10.20 9000/897'
 p1775
-asS'Brother | embedded || printer'
+aS'HP-UX B.10.20 A 9000/715 or 9000/712 or 9000/871 with tcp_random_seq = 1'
 p1776
-(lp1777
-S'Brother HL-1230 Printer'
+aS'HP-UX B.10.20 A 9000/750'
+p1777
+aS'HP-UX B.10.20 A with tcp_random_seq = 0'
 p1778
-aS'Brother HL-2070N Printer'
+aS'HP-UX release B.10.20 version A'
 p1779
-asS'Network Systems | embedded || router'
+asS'SonicWall | SonicOS || firewall'
 p1780
 (lp1781
-S'Network Systems router NS6614 (NSC 6600 series)'
+g398
+aS'SonicWall 4060 firewall'
 p1782
-asS'DEC | IOS | 10.X | router'
+aS'SonicWall PRO 3060 firewall'
 p1783
-(lp1784
-S'Cisco 1601 (IOS 11.0) or DECbrouter90T1 (Runs Cisco IOS 10.2(5))'
+ag803
+aS'SonicWall SOHO-3 firewall'
+p1784
+aS'SonicWall SOHO3 firewall'
 p1785
-asS'Swissvoice | embedded || VoIP phone'
+aS'SonicWall TZ 170'
 p1786
-(lp1787
-S'Swissvoice IP 10S VoIP phone'
+aS'SonicWall TZ 170 Firewall'
+p1787
+aS'SonicWall TZ170 Firewall'
 p1788
-asS'HP | BSD-misc || general purpose'
+aS'SonicWall/10 firewall'
 p1789
-(lp1790
-S'HP-BSD 2.0'
-p1791
-asS'Cnet | embedded || broadband router'
+asS'Cisco | PIX || firewall'
+p1790
+(lp1791
+S'Cisco PIX 506 Firewall'
 p1792
-(lp1793
-S'Cnet CNIG904B Internet Broadband Gateway firmware version 1.11'
-p1794
-asS'Checkpoint | IPSO || firewall'
+asS'Meridian | embedded || storage-misc'
+p1793
+(lp1794
+S'Meridian Data Network CD-ROM Server (V4.20 Nov 26 1997)'
 p1795
-(lp1796
-S'Nokia IPSO 3.2-3.5 Running Checkpoint Firewall-1 or NG FP2'
-p1797
-aS'Nokia IPSO 3.6 running CheckPoint FW-1 NG FP2'
+asS'NTT | embedded || telecom-misc'
+p1796
+(lp1797
+g802
+asS'Eicon | embedded || broadband router'
 p1798
-asS'Alteon | embedded || switch'
-p1799
-(lp1800
-S'Alteon ACEswitch 184 V. 8.0.49'
+(lp1799
+S'Eicon Diva1830 ISDN router running 1.5 firmware'
+p1800
+asS'IBM | AIX | 5.X | general purpose'
 p1801
-asS'Cisco | IOS | 11.X | switch'
-p1802
-(lp1803
-S'Cisco Router/Switch with IOS 11.2'
+(lp1802
+S'IBM AIX 5.1'
+p1803
+aS'IBM AIX 5.1 - 5.2'
 p1804
-aS'Cisco switch/router with IOS 11.1(7)-11.2(8.10)'
+aS'IBM AIX 5.1 on a p610-6C1'
 p1805
-asS'Ascend | embedded || broadband router'
+aS'IBM AIX 5.1-5.2'
 p1806
-(lp1807
-S'Ascend DSLPipe DSL-50S-CELL DSL router'
+aS'IBM AIX 5.103'
+p1807
+aS'IBM AIX 5.2'
 p1808
-asS'AXIS | Linux || print server'
+aS'IBM AIX 5.2 (on RS/6000)'
 p1809
-(lp1810
-S'AXIS Network Print Server'
+aS'IBM AIX 5.2.3'
+p1810
+aS'IBM AIX 5.3'
 p1811
-asS'Apple | Mac OS X | 10.0.X | general purpose'
+aS'IBM AIX 5.3 ML01'
 p1812
-(lp1813
-S'Apple Mac OS X 1.1-1.2 (Rhapsody 5.5-5.6) on a G3'
-p1814
-aS'Apple Mac OS X Server 1.0-1.0-1 (Rhapsody 5.3 - 5.4)'
+asS'Cisco | IOS | 12.X | broadband router'
+p1813
+(lp1814
+S'Cisco 827 ADSL router running IOS 112.2(11)'
 p1815
-aS'FreeBSD 4.4-5 or Apple Mac OS X 10.0.4 (Darwin V. 1.3-1.3.7 or 4P13)'
+aS'Cisco 827 ADSL router running IOS 12.1(1)XB1'
 p1816
-asS'Amiga | AmigaOS || general purpose'
+asS'Cisco | embedded || encryption accelerator'
 p1817
 (lp1818
-S'Amiga OS 3.5 (Miami TCP/IP Stack v3.1)'
+S'Cisco 3000 Series VPN Concentrator'
 p1819
-aS'AmigaOS 2.1 running AmiTCP4.3'
+aS'Cisco 3000 Series VPN concentrator (OS ver 4.1.x)'
 p1820
-aS'AmigaOS 3.1 running Miami Deluxe 0.9m'
+ag1012
+asS'Cisco | IOS | 12.X | switch'
 p1821
-aS'AmigaOS 3.5/3.9 running Miami Deluxe 1.0c'
-p1822
-aS'AmigaOS AmiTCP/IP 4.3'
+(lp1822
+S'Cisco catalyst 2924 running IOS 12.0(5)WC5'
 p1823
-aS'AmigaOS AmiTCP/IP Genesis 4.6'
+aS'Cisco Catalyst 2924XL switch running IOS 12.0(5)'
 p1824
-aS'AmigaOS Miami 2.1-3.0'
+aS'Cisco Catalyst 2950 switch running IOS 12.0(5.3)WC(1)'
 p1825
-aS'AmigaOS Miami 3.0'
+aS'Cisco Catalyst 2950 switch running IOS 12.1(9)EA1 or IOS 12.1(22)EA2'
 p1826
-aS'AmigaOS Miami 3.1-3.2'
+aS'Cisco IOS 12.0(5)WC5a on a catalyst 2900XL switch'
 p1827
-aS'AmigaOS Miami Deluxe 0.9 - Miami 3.2B'
+asS'Apple | Mac OS | 8.X | general purpose'
 p1828
-asS'Hydra | embedded || load balancer'
-p1829
-(lp1830
-S'Hydra HydraWEB 5000'
+(lp1829
+S'Apple Mac OS 7.5.5 - 9'
+p1830
+aS'Apple Mac OS 8 running on an LC 475'
 p1831
-asS'Linksys | embedded || bridge'
+aS'Apple Mac OS 8.0'
 p1832
-(lp1833
-S'Linksys WET-11 Wireless Ethernet bridge'
+aS'Apple Mac OS 8.1'
+p1833
+aS'Apple Mac OS 8.1 running on a PowerPC G3 (iMac)'
 p1834
-aS'Linksys WGA54G Wireless Game Adapter (bridge)'
+aS'Apple Mac OS 8.5'
 p1835
-asS'm0n0wall | FreeBSD | 5.X | firewall'
+aS'Apple Mac OS 8.5.1 (Appleshare IP 6.0)'
 p1836
-(lp1837
-S'M0n0wall 1.2b7 FreeBSD 5.3 based firewall'
+aS'Apple Mac OS 8.6'
+p1837
+asS'Beck-IPC | embedded || specialized'
 p1838
-asS'Tandem | Tandem NSK || general purpose'
-p1839
-(lp1840
-S'Tandem NSK D39'
+(lp1839
+S'IPC@CHIP CHIP-RTOS version SC12'
+p1840
+asS'Compatible Systems | embedded || broadband router'
 p1841
-aS'Tandem NSK D40'
-p1842
-asS'MikroTik | RouterOS || software router'
+(lp1842
+S'Compatible Systems ISDN/leased-line/dialup Microrouter 2220R w/ firmware v4.5'
 p1843
-(lp1844
-S'MikroTik RouterOS 2.7.20'
+aS'Compatible Systems ISDN/leased-line/dialup MicroRouter 900i v3.0.9'
+p1844
+asS'SGI | IRIX | 5.X | general purpose'
 p1845
-asS'AXIS | embedded || print server'
-p1846
-(lp1847
-S'AXIS 540 Ethernet Print Server ver 5.48'
+(lp1846
+S'SGI IRIX 5.2'
+p1847
+aS'SGI IRIX 5.3'
 p1848
-aS'AXIS 540 Print Server'
+asS'FiberLine | embedded || broadband router'
 p1849
-aS'AXIS 540/542 Print Server v5.30'
-p1850
-aS'AXIS Print Server firmware 7.0.2'
+(lp1850
+S'FiberLine Wireless DSL router'
 p1851
-asS'Kyocera | embedded || printer'
+asS'Microsoft | DOS || general purpose'
 p1852
 (lp1853
-S'Kyocera FS-1700+ printer'
+S"Bart's Network Boot Disk 2.7 (X86) MS-DOS"
 p1854
-aS'Kyocera IB-21 Printer NIC'
+aS'NCSA Telnet (dos)'
 p1855
-aS'Kyocera SB-4e printer NIC'
+aS'NCSA Telnet 2.3.08 for the PC (DOS)'
 p1856
-asS'OpenBSD | OpenBSD | 2.7 | general purpose'
+aS'Watt-32 DOS tcp/ip stack'
 p1857
-(lp1858
-S'OpenBSD 2.7/SPARC or NFR IDS Appliance ( 12/10/00 )'
+aS'WNOS 5.0 on Microsoft DOS 6.22'
+p1858
+asS'Netopia | embedded || WAP'
 p1859
-asS'Quantum | embedded || storage-misc'
-p1860
-(lp1861
-S'Quantum Snap server 4100'
-p1862
-aS'Quantum Snap Server Network Storage Box'
+(lp1860
+g1026
+asS'Novell | NetWare | 5.X | general purpose'
+p1861
+(lp1862
+S'Novell NetWare 3.12 - 5.00'
 p1863
-asS'Tally | embedded || printer'
+aS'Novell NetWare 4.11-5.0SP5'
 p1864
-(lp1865
-S'Tally 9112 Printer'
+aS'NetWare 5.0 SP 3a'
+p1865
+aS'NetWare 5.1 SP3'
 p1866
-aS'Tallycom+ Print Server'
+aS'Novell NetWare 5.0 with Border Manager'
 p1867
-asS'Apple | A/UX || general purpose'
+aS'Novell NetWare 5.00.09 SP06'
 p1868
-(lp1869
-S'Apple A/UX 3.1.1 SVR2 or OpenStep 4.2'
+aS'Novell NetWare 5.1 SP5'
+p1869
+aS'Novell NetWare 5.1 SP5 with Groupwise'
 p1870
-asS'Nokia | embedded || router'
+aS'Novell NetWare 5.1 SP8 or 6.5 SP3'
 p1871
-(lp1872
-S'Nokia Rooftop Wireless Router model R240A'
+aS'Novell NetWare 5.1-6.0'
+p1872
+aS'Novell NetWare 5.1SP4 - 6.0'
 p1873
-asS'NEC | UX/4800 || general purpose'
+aS'Novell NetWare 5.1SP5 - 6.5'
 p1874
-(lp1875
-S'NEC UX/4800'
+aS'Novell NetWare 5.x'
+p1875
+asS'PowerShow | embedded || webcam'
 p1876
-asS'Terayon | embedded || broadband router'
-p1877
-(lp1878
-S'Terayon Tj715x cable modem'
+(lp1877
+S'PowerShow NetworKam webcam'
+p1878
+asS'Grandstream | embedded || VoIP adapter'
 p1879
-asS'Huawei | VRP || router'
-p1880
-(lp1881
-S'Huawei Quidway R2621 router running VRP 1.5.6(1)'
+(lp1880
+S'Grandstream HT-286 POTS<->VoIP phone gateway device'
+p1881
+asS'Ascend | embedded || router'
 p1882
-aS'Huawei Quidway Router R2621E VRP 1.5.6'
-p1883
-asS'Ericsson | embedded || terminal server'
+(lp1883
+S'Ascend Max 1800 50Ap8+ or 2024 router'
 p1884
-(lp1885
-S'Ericsson Tigris Access Server Software V. 12.1.*'
+aS'Ascend P130 Router'
+p1885
+aS'Ascend P75 router'
 p1886
-asS'Perle | embedded || remote management'
+aS'Ascend Pipeline 400/T1 (Software V 4.5B)'
 p1887
-(lp1888
-S'Perle 594e Network Controller'
+aS'Ascend Pipeline 50'
+p1888
+aS'Ascend Pipeline 50 rev 4.6C'
 p1889
-asS'Netscreen | ScreenOS || firewall'
+aS'Ascend Pipeline 50 running 5.1A Firmware'
 p1890
-(lp1891
-S'Netscreen 5XP firewall+vpn (OS 3.0.1r2)'
+aS'Ascend Pipeline P130 or 50'
+p1891
+asS'IBM | embedded || router'
 p1892
-aS'Netscreen 5XP firewall+vpn (os 4.0.3r2.0)'
-p1893
-asS'Cisco | Content Networking System || web proxy'
+(lp1893
+S'IBM 2210 router'
 p1894
-(lp1895
-S'Cisco ACNS 5.1 Content Engine'
+aS'IBM 2210 Router MRS 2.x on Token Ring interface'
+p1895
+aS'IBM 8210 Multiprotocol Switching Server/router for ATM networks'
 p1896
-aS'Cisco Content Engine 505 Software V. 4.2.1'
+ag516
+asS'Toshiba | embedded || printer'
 p1897
-aS'Cisco Content Engine 560 running Content Networking System V. 4.2.3'
-p1898
-aS'Cisco Content Engine ACNSS V5.2.1 or V5.3.1'
+(lp1898
+g470
+aS'Toshiba estudio 4511 Multifunction Copier/Fax/Scanner/Printer'
 p1899
-asS'HP | HP-UX | 10.X | general purpose'
+asS'BreezeCOM | embedded || bridge'
 p1900
 (lp1901
-S'HP-UX 10.20 # 9000/777 or A 712/60 with tcp_random_seq = 1 or 2'
+S'BreezeCOM BreezeACCESS Wireless bridge'
 p1902
-aS'HP-UX 10.20 A 9000/715 or 9000/899'
+asS'CacheFlow | CacheOS || web proxy'
 p1903
-aS'HP-UX 10.20 E 9000/777 or A 712/60 with tcp_random_seq = 0'
-p1904
-aS'HP-UX B.10.01 A 9000/715'
+(lp1904
+S'CacheFlow 6000 web proxy cache running CacheOS 4.1.05'
 p1905
-aS'HP-UX B.10.20 9000/897'
+aS'CacheFlow 6000 web proxy running Security Gateway 2.1.0'
 p1906
-aS'HP-UX B.10.20 A 9000/715 or 9000/712 or 9000/871 with tcp_random_seq = 1'
+aS'Cacheflow 6x5 web proxy cache running CacheOS 3.1.19-4.1.05'
 p1907
-aS'HP-UX B.10.20 A 9000/750'
+aS'CacheFlow CacheOS (web proxy cache) CFOS 2.1.08 - 2.2.1'
 p1908
-aS'HP-UX B.10.20 A with tcp_random_seq = 0'
+aS'CacheFlow CacheOS 3.1 on a model 6000 web proxy cache'
 p1909
-aS'HP-UX release B.10.20 version A'
+aS'CacheOS (CacheFlow 2000 proxy cache)'
 p1910
-asS'SonicWall | SonicOS || firewall'
+asS'Dell | embedded || printer'
 p1911
 (lp1912
-S'SonicWall 4060 firewall'
+S'Dell 3100cn/5100cn printer'
 p1913
-aS'SonicWall PRO 3060 firewall'
+asS'NAT | embedded || router'
 p1914
-aS'SonicWall SOHO-3 firewall'
-p1915
-aS'SonicWall SOHO-3 firewall'
+(lp1915
+S'NAT LANB/290 router Console Program V4.00'
 p1916
-aS'SonicWall SOHO3 firewall'
+asS'Sun | embedded || storage-misc'
 p1917
-aS'SonicWall TZ 170'
-p1918
-aS'SonicWall TZ 170 Firewall'
+(lp1918
+S'Sun StorEdge T3 Storage Array'
 p1919
-aS'SonicWall TZ170 Firewall'
+asS'Zcomax | embedded || WAP'
 p1920
-aS'SonicWall/10 firewall'
-p1921
-aS'SonicWall/10 firewall'
+(lp1921
+S'Zcomax Wireless Access Point XI-1500'
 p1922
-asS'Cisco | PIX || firewall'
+asS'Belkin | embedded || broadband router'
 p1923
 (lp1924
-S'Cisco PIX 506 Firewall'
+S'Belkin DSL/Cable Router'
 p1925
-asS'Meridian | embedded || storage-misc'
+asS'Cyclades | Cyros || router'
 p1926
 (lp1927
-S'Meridian Data Network CD-ROM Server (V4.20 Nov 26 1997)'
+S'Cyclades PathRouter V 1.2.4'
 p1928
-asS'Gandalf | embedded || router'
+asS'Wiesemann & Theis | embedded || specialized'
 p1929
 (lp1930
-S'Gandalf LanLine Router'
+S'WuT Web Thermometer'
 p1931
-asS'Eicon | embedded || broadband router'
+asS'NetApp | embedded || web proxy'
 p1932
 (lp1933
-S'Eicon Diva1830 ISDN router running 1.5 firmware'
+g1372
+aS'NetApp NetCache C1100 (NetApp 5.1D4)'
 p1934
-asS'IBM | AIX | 5.X | general purpose'
+aS'NetApp NetCache C1100 with NetAppliance 5.0'
 p1935
-(lp1936
-S'IBM AIX 5.1'
+aS'NetApp NetCache C6100 (NetApp 5.5)'
+p1936
+aS'NetApp NetCache C760 os 4.x'
 p1937
-aS'IBM AIX 5.1'
+aS'NetApp NetCache running OS 5.4R2'
 p1938
-aS'IBM AIX 5.1'
+asS'3Com | embedded || telecom-misc'
 p1939
-aS'IBM AIX 5.1 - 5.2'
-p1940
-aS'IBM AIX 5.1 - 5.2'
+(lp1940
+g1470
+asS'Ixia | embedded || specialized'
 p1941
-aS'IBM AIX 5.1 on a p610-6C1'
-p1942
-aS'IBM AIX 5.1-5.2'
+(lp1942
+S'Ixia 1600 -- Ixia Socket/Serial TCL traffic generation and analysis server'
 p1943
-aS'IBM AIX 5.103'
+asS'FreeBSD | FreeBSD | 5.X | general purpose'
 p1944
-aS'IBM AIX 5.2'
-p1945
-aS'IBM AIX 5.2 (on RS/6000)'
+(lp1945
+g373
+aS'FreeBSD 5.0-CURRENT (Apr 2002)'
 p1946
-aS'IBM AIX 5.2.3'
+aS'FreeBSD 5.0-RELEASE'
 p1947
-aS'IBM AIX 5.3'
+aS'FreeBSD 5.0-RELEASE or -CURRENT (Jan 2003)'
 p1948
-aS'IBM AIX 5.3 ML01'
+aS'FreeBSD 5.1-CURRENT (June 2003) on Sparc64'
 p1949
-asS'Cisco | IOS | 12.X | broadband router'
+aS'FreeBSD 5.1-RELEASE (x86)'
 p1950
-(lp1951
-S'Cisco 827 ADSL router running IOS 112.2(11)'
+aS'FreeBSD 5.2'
+p1951
+aS'FreeBSD 5.2 - 5.3'
 p1952
-aS'Cisco 827 ADSL router running IOS 12.1(1)XB1'
+aS'FreeBSD 5.2 - 5.4'
 p1953
-asS'Cisco | embedded || encryption accelerator'
+aS'FreeBSD 5.2-CURRENT - 5.3 (x86) with pf scrub all'
 p1954
-(lp1955
-S'Cisco 3000 Series VPN Concentrator'
+aS'FreeBSD 5.2.1 (SPARC)'
+p1955
+aS'FreeBSD 5.3'
 p1956
-aS'Cisco 3000 Series VPN concentrator (OS ver 4.1.x)'
+aS'FreeBSD 5.3-RELEASE'
 p1957
-asS'Cisco | IOS | 12.X | switch'
+aS'FreeBSD 5.3-STABLE'
 p1958
-(lp1959
-S'Cisco catalyst 2924 running IOS 12.0(5)WC5'
+aS'FreeBSD 5.4'
+p1959
+aS'FreeBSD 5.4-RELEASE'
 p1960
-aS'Cisco Catalyst 2924XL switch running IOS 12.0(5)'
+asS'Gatorbox | GatorShare || bridge'
 p1961
-aS'Cisco Catalyst 2950 switch running IOS 12.0(5.3)WC(1)'
-p1962
-aS'Cisco Catalyst 2950 switch running IOS 12.1(9)EA1 or IOS 12.1(22)EA2'
+(lp1962
+g878
+asS'SpeedStream | embedded || broadband router'
 p1963
-aS'Cisco IOS 12.0(5)WC5a on a catalyst 2900XL switch'
-p1964
-asS'Apple | Mac OS | 8.X | general purpose'
+(lp1964
+g228
+aS'Speedstream 5871 DSL router'
 p1965
-(lp1966
-S'Apple Mac OS 8 running on an LC 475'
-p1967
-aS'Apple Mac OS 8.0'
+asS'Pirelli | embedded || broadband router'
+p1966
+(lp1967
+S'Pirelli Microbusiness ADSL router'
 p1968
-aS'Apple Mac OS 8.1'
+asS'Novell | NetWare | 3.X | general purpose'
 p1969
-aS'Apple Mac OS 8.1'
-p1970
-aS'Apple Mac OS 8.1'
+(lp1970
+g1863
+aS'Novell NetWare 3.12 or 386 TCP/IP'
 p1971
-aS'Apple Mac OS 8.1 running on a PowerPC G3 (iMac)'
+asS'NetMatrix | embedded || general purpose'
 p1972
-aS'Apple Mac OS 8.5'
-p1973
-aS'Apple Mac OS 8.5.1 (Appleshare IP 6.0)'
+(lp1973
+S'IPAD (Internet Protocol Adapter) Model 5000 or V.1.52'
 p1974
-aS'Apple Mac OS 8.6'
+asS'Nokia | IPSO || firewall'
 p1975
-aS'Apple Mac OS 8.6'
-p1976
-aS'Apple Mac OS 8.6'
+(lp1976
+S'Nokia IP530 Network Appliance (IPSO 3.4-3.4.2)'
 p1977
-aS'Apple Mac OS 8.6'
+aS'Nokia IPSO 3.7 running CheckPoint FW-1'
 p1978
-asS'Beck-IPC | embedded || specialized'
+aS'Nokia IPSO 3.8.x'
 p1979
-(lp1980
-S'IPC@CHIP CHIP-RTOS version SC12'
-p1981
-asS'Compatible Systems | embedded || broadband router'
+asS'Lexmark | embedded || printer'
+p1980
+(lp1981
+S'Lexmark M412n network printer'
 p1982
-(lp1983
-S'Compatible Systems ISDN/leased-line/dialup Microrouter 2220R w/ firmware v4.5'
+aS'Lexmark Marknet X2031e printer'
+p1983
+aS'Lexmark Optra N Laser Printer'
 p1984
-aS'Compatible Systems ISDN/leased-line/dialup MicroRouter 900i v3.0.9'
+aS'Lexmark Optra network printer'
 p1985
-asS'SGI | IRIX | 5.X | general purpose'
+aS'Lexmark Optra printer'
 p1986
-(lp1987
-S'SGI IRIX 5.2'
+aS'Lexmark Optra printer w/MarkNet XL Network Adapter'
+p1987
+aS'Lexmark Optra S Printer'
 p1988
-aS'SGI IRIX 5.3'
+aS'Lexmark T520 printer'
 p1989
-asS'FiberLine | embedded || broadband router'
+aS'Lexmark T522 printer'
 p1990
-(lp1991
-S'FiberLine Wireless DSL router'
+aS'Lexmark T522/T622 printer'
+p1991
+asS'IBM | embedded || remote management'
 p1992
-asS'Microsoft | DOS || general purpose'
-p1993
-(lp1994
-S"Bart's Network Boot Disk 2.7 (X86) MS-DOS"
+(lp1993
+g1629
+aS'IBM BladeCenter Remote Management Module'
+p1994
+aS'IBM Remote Supervisor Adapter II'
 p1995
-aS'NCSA Telnet (dos)'
+asS'NIB | embedded || printer'
 p1996
-aS'NCSA Telnet 2.3.08 for the PC (DOS)'
-p1997
-aS'Watt-32 DOS tcp/ip stack'
+(lp1997
+S'NIB 450-E printer network interface'
 p1998
-aS'WNOS 5.0 on Microsoft DOS 6.22'
+asS'Huawei | VRP || switch'
 p1999
-asS'Novell | NetWare | 5.X | general purpose'
-p2000
-(lp2001
-S'Novell NetWare 3.12 - 5.00'
-p2002
-aS'Novell NetWare 4.11-5.0SP5'
+(lp2000
+g1007
+asS'Siemens | embedded || specialized'
+p2001
+(lp2002
+S'Siemens S7-400 programmable logic controller'
 p2003
-aS'NetWare 5.0 SP 3a'
+asS'Digitel | embedded || router'
 p2004
-aS'NetWare 5.1 SP3'
-p2005
-aS'Novell NetWare 5.0 with Border Manager'
+(lp2005
+S'Digitel NetRouter NR3000'
 p2006
-aS'Novell NetWare 5.00.09 SP06'
+aS'Digitel NetRouter NR3100'
 p2007
-aS'Novell NetWare 5.1 SP5'
+asS'Novell | NetWare | 4.X | general purpose'
 p2008
-aS'Novell NetWare 5.1 SP5 with Groupwise'
-p2009
-aS'Novell NetWare 5.x'
+(lp2009
+g1863
+aS'NetWare 4.11 SP7- 5 SP3A BorderManager 3.5'
 p2010
-asS'PowerShow | embedded || webcam'
+aS'NetWare 4.11 SP8a - NetWare 5 SP4'
 p2011
-(lp2012
-S'PowerShow NetworKam webcam'
+aS'novell netware 4.11'
+p2012
+ag1864
+asS'Compatible Systems | embedded || router'
 p2013
-asS'Grandstream | embedded || VoIP adapter'
-p2014
-(lp2015
-S'Grandstream HT-286 POTS<->VoIP phone gateway device'
+(lp2014
+S'Compatible Systems (RISC Router, IntraPort)'
+p2015
+ag105
+asS'Apple | Mac OS | 9.X | general purpose'
 p2016
-asS'Ascend | embedded || router'
-p2017
-(lp2018
-S'Ascend Max 1800 50Ap8+ or 2024 router'
+(lp2017
+g1830
+aS'Apple Mac OS 9 - 9.1'
+p2018
+ag1288
+aS'Apple Mac OS 9.2.2'
 p2019
-aS'Ascend P130 Router'
+aS'Apple MacOS 9.2.2'
 p2020
-aS'Ascend P75 router'
+ag1289
+asS'DEC | OpenVMS | 7.X | general purpose'
 p2021
-aS'Ascend Pipeline 400/T1 (Software V 4.5B)'
-p2022
-aS'Ascend Pipeline 50'
+(lp2022
+g1190
+ag697
+aS'DEC OpenVMS 7.1'
 p2023
-aS'Ascend Pipeline 50 rev 4.6C'
+aS'DEC OpenVMS 7.1 ALPHA'
 p2024
-aS'Ascend Pipeline 50 running 5.1A Firmware'
+aS"DEC OpenVMS 7.1 Alpha running DIGITAL's UCX v4.1ECO2 TCP/IP package"
 p2025
-aS'Ascend Pipeline P130 or 50'
+aS"DEC OpenVMS 7.1 using Process Software's TCPWare 5.3 TCP/IP package"
 p2026
-asS'IBM | embedded || router'
+aS'DEC OpenVMS 7.2'
 p2027
-(lp2028
-S'IBM 2210 router'
+aS'DEC OpenVMS 7.2 Alpha'
+p2028
+aS'DEC OpenVMS 7.3'
 p2029
-aS'IBM 2210 Router MRS 2.x on Token Ring interface'
+aS'DEC OpenVMS 7.3 (Alpha) TCP/IP 5.3'
 p2030
-aS'IBM 8210 Multiprotocol Switching Server/router for ATM networks'
+aS'DEC OpenVMS 7.3 (Compaq TCP/IP 5.3)'
 p2031
-asS'Toshiba | embedded || printer'
+aS'DEC OpenVMS 7.3-1'
 p2032
-(lp2033
-S'Toshiba estudio 4511 Multifunction Copier/Fax/Scanner/Printer'
+aS'DEC OpenVMS Alpha 7.2-3'
+p2033
+aS'DEC OpenVMS Alpha V7.1-1H2 running DIGITAL TCP/IP Services (UCX) V4.2'
 p2034
-asS'BreezeCOM | embedded || bridge'
+aS'DEC OpenVMS V7.1 on VAX 6000-530'
 p2035
-(lp2036
-S'BreezeCOM BreezeACCESS Wireless bridge'
+aS"DEC OpenVMS v7.1 VAX running Process Software's TCPWare 5.1-5 TCP/IP package"
+p2036
+aS'DEC OpenVMS v7.3 on VAXStation 4000/60'
 p2037
-asS'CacheFlow | CacheOS || web proxy'
+aS'DEC OpenVMS VAX V7.3, Process Software MultiNet V5.0'
 p2038
-(lp2039
-S'CacheFlow 6000 web proxy cache running CacheOS 4.1.05'
+aS"DEC OpenVMS/Alpha 7.1 using Process Software's TCPWare V5.3-4"
+p2039
+aS'DEC VMS MultiNet V4.2(16)/ OpenVMS V7.1-2'
 p2040
-aS'CacheFlow 6000 web proxy running Security Gateway 2.1.0'
+aS'DEC VMS MultiNet V4.4 / OpenVMS V7.1'
 p2041
-aS'Cacheflow 6x5 web proxy cache running CacheOS 3.1.19-4.1.05'
+asS'Sequent | DYNIX || general purpose'
 p2042
-aS'CacheFlow CacheOS (web proxy cache) CFOS 2.1.08 - 2.2.1'
-p2043
-aS'CacheFlow CacheOS 3.1 on a model 6000 web proxy cache'
+(lp2043
+S'Sequent DYNIX/PTX 4.4.2'
 p2044
-aS'CacheOS (CacheFlow 2000 proxy cache)'
+aS'Sequent DYNIX/ptx 4.4.6 x86'
 p2045
-asS'Dell | embedded || printer'
+asS'Data General | DG/UX || general purpose'
 p2046
 (lp2047
-S'Dell 3100cn/5100cn printer'
+S'Data General DG/UX Release R4.11MU02'
 p2048
-asS'NAT | embedded || router'
+aS'Data General DG/UX Release R4.20MU02'
 p2049
-(lp2050
-S'NAT LANB/290 router Console Program V4.00'
+aS'Data General DG/UX Release R4.20MU04'
+p2050
+aS'Data General DG/UX Release R4.20MU06'
 p2051
-asS'Sun | embedded || storage-misc'
+asS'ASCOM | embedded || broadband router'
 p2052
 (lp2053
-S'Sun StorEdge T3 Storage Array'
+g229
+asS'CastleNet | embedded || broadband router'
 p2054
-asS'Zcomax | embedded || WAP'
-p2055
-(lp2056
-S'Zcomax Wireless Access Point XI-1500'
+(lp2055
+S'CastleNet AR502/GlobespanVirata GS8100 (same thing) DSL router'
+p2056
+asS'OpenBSD | OpenBSD | 2.X | general purpose'
 p2057
-asS'Belkin | embedded || broadband router'
-p2058
-(lp2059
-S'Belkin DSL/Cable Router'
+(lp2058
+S'OpenBSD 2.1 - 2.3/SPARC'
+p2059
+aS'OpenBSD 2.1/x86'
 p2060
-asS'Cyclades | Cyros || router'
+aS'OpenBSD 2.2 - 2.3'
 p2061
-(lp2062
-S'Cyclades PathRouter V 1.2.4'
+aS'OpenBSD 2.6 with all available patches as of roughly Feb01'
+p2062
+aS'OpenBSD 2.6-2.8'
 p2063
-asS'Wiesemann & Theis | embedded || specialized'
+aS'OpenBSD 2.8 (x86)'
 p2064
-(lp2065
-S'WuT Web Thermometer'
+aS'OpenBSD 2.9-beta through release (x86)'
+p2065
+aS'OpenBSD 2.9-stable'
 p2066
-asS'NetApp | embedded || web proxy'
+aS'OpenBSD Post 2.4 (November 1998) - 2.5'
 p2067
-(lp2068
-S'NetApp NetCache C1100 (NetApp 5.1D4)'
-p2069
-aS'NetApp NetCache C1100 with NetAppliance 5.0'
+asS'VegaStream | embedded || VoIP gateway'
+p2068
+(lp2069
+S'Vega 50/400'
 p2070
-aS'NetApp NetCache C6100 (NetApp 5.5)'
+asS'NetJet | embedded || printer'
 p2071
-aS'NetApp NetCache C760 os 4.x'
-p2072
-aS'NetApp NetCache running OS 5.4R2'
+(lp2072
+S'NetJet Version 3.0 - 4.0 Printer'
 p2073
-asS'Ixia | embedded || specialized'
+asS'DEC | Ultrix || general purpose'
 p2074
 (lp2075
-S'Ixia 1600 -- Ixia Socket/Serial TCL traffic generation and analysis server'
+S'DEC Ultrix 4.1'
 p2076
-asS'FreeBSD | FreeBSD | 5.X | general purpose'
+aS'DEC Ultrix 4.2 - 4.5'
 p2077
-(lp2078
-S'FreeBSD 5.0-CURRENT (Apr 2002)'
-p2079
-aS'FreeBSD 5.0-RELEASE'
+asS'Apple | Mac OS | 7.X | general purpose'
+p2078
+(lp2079
+S'Apple Mac OS 7.0-7.1 With MacTCP 1.1.1 - 2.0.6'
 p2080
-aS'FreeBSD 5.0-RELEASE'
+aS'Apple Mac OS 7.1'
 p2081
-aS'FreeBSD 5.0-RELEASE or -CURRENT (Jan 2003)'
+ag1830
+asS'GNU | Hurd || general purpose'
 p2082
-aS'FreeBSD 5.1-CURRENT (June 2003) on Sparc64'
-p2083
-aS'FreeBSD 5.1-RELEASE (x86)'
+(lp2083
+S'GNU Hurd 0.2 (GNUmach-1.2/Hurd-0.2) x86'
 p2084
-aS'FreeBSD 5.2'
+asS'Motorola | VxWorks || broadband router'
 p2085
-aS'FreeBSD 5.2 - 5.3'
-p2086
-aS'FreeBSD 5.2-CURRENT - 5.3 (x86) with pf scrub all'
+(lp2086
+S'Motorola (SB5100/CG4500E) or Thomson (TCM390/TCM410) Cable Modem'
 p2087
-aS'FreeBSD 5.2.1 (SPARC)'
+aS'Motorola SurfBoard 4401 cable modem'
 p2088
-aS'FreeBSD 5.3'
+aS'Motorola SurfBoard SB4100E Cable Modem'
 p2089
-aS'FreeBSD 5.3'
+aS'Motorola Surfboard SB5100 cable modem'
 p2090
-aS'FreeBSD 5.3-RELEASE'
+aS'Motorola SURFboard SBG1000 Broadband router'
 p2091
-aS'FreeBSD 5.3-RELEASE'
+asS'Avaya | embedded || telecom-misc'
 p2092
-aS'FreeBSD 5.3-STABLE'
-p2093
-aS'FreeBSD 5.3-STABLE'
+(lp2093
+S'Avaya TN2302 Prowler/Medpro H.323 gateway'
 p2094
-aS'FreeBSD 5.4'
+asS'Pigtail | VxWorks || VoIP phone'
 p2095
-aS'FreeBSD 5.4-RELEASE'
-p2096
-asS'Gatorbox | GatorShare || bridge'
+(lp2096
+S'Pigtail Express VoIP phone (runs VxWorks)'
 p2097
-(lp2098
-S'Sun SunOS 4.1.1 - 4.1.4 (or derivative)'
-p2099
-asS'SpeedStream | embedded || broadband router'
+asS'D-Link | embedded || WAP'
+p2098
+(lp2099
+S'Broadband router or WAP: D-Link DI-series, Sitecom BHS WAP, or SMC Barricade'
 p2100
-(lp2101
-S'DSL Router: FlowPoint 144/22XX v3.0.8 or SpeedStream 5851 v4.0.5.1'
+aS'D-Link DI-713P WAP'
+p2101
+aS'D-Link DI-713P Wireless Gateway (2.57 build 3a)'
 p2102
-aS'Speedstream 5871 DSL router'
+aS'D-Link DI-774 WAP'
 p2103
-asS'Pirelli | embedded || broadband router'
+aS'D-Link DWL-5000AP WAP/BSP 1.3'
 p2104
-(lp2105
-S'Pirelli Microbusiness ADSL router'
+aS'D-Link, SMC, Tonze, or US Robotics Wireless Broadband router'
+p2105
+aS'Wireless access point (WAP): D-Link DRC-1000AP or 3Com Access Point 2000'
 p2106
-asS'Novell | NetWare | 3.X | general purpose'
+ag1570
+asS'Edimax | embedded || print server'
 p2107
 (lp2108
-S'Novell NetWare 3.12 or 386 TCP/IP'
+S'Edimax PS-1001 Print Server model'
 p2109
-asS'NetMatrix | embedded || general purpose'
+aS'Edimax PS-901 Print Server model 1P/13E-9.5.12'
 p2110
-(lp2111
-S'IPAD (Internet Protocol Adapter) Model 5000 or V.1.52'
-p2112
-asS'Nokia | IPSO || firewall'
+asS'Perle | embedded || terminal server'
+p2111
+(lp2112
+S'Perle JetStream 8500 Serial/Access Server, v 2.6.0'
 p2113
-(lp2114
-S'Nokia IP530 Network Appliance (IPSO 3.4-3.4.2)'
-p2115
-aS'Nokia IPSO 3.7 running CheckPoint FW-1'
+asS'IBM | OS/2 || general purpose'
+p2114
+(lp2115
+S'IBM OS/2 V 2.1'
 p2116
-aS'Nokia IPSO 3.8.x'
+aS'IBM OS/2 V.3'
 p2117
-asS'Lexmark | embedded || printer'
+aS'IBM OS/2 Warp 4.0'
 p2118
-(lp2119
-S'Lexmark M412n network printer'
+aS'IBM OS/2 Warp Server for E-business (Aurora) Beta'
+p2119
+aS'OS/2 Warp Server for eBusiness 4.52'
 p2120
-aS'Lexmark Marknet X2031e printer'
+asS'UTStarcom | embedded || VoIP phone'
 p2121
-aS'Lexmark Optra N Laser Printer'
-p2122
-aS'Lexmark Optra network printer'
+(lp2122
+S'UTStarcom F1000 wifi voip phone'
 p2123
-aS'Lexmark Optra printer'
+asS'VersaNet | embedded || terminal server'
 p2124
-aS'Lexmark Optra printer w/MarkNet XL Network Adapter'
-p2125
-aS'Lexmark Optra S Printer'
+(lp2125
+S'VersaNet ISP-Accelerator(TM) Remote Access Server'
 p2126
-aS'Lexmark T520 printer'
+asS'Epson | embedded || printer'
 p2127
-aS'Lexmark T522 printer'
-p2128
-aS'Lexmark T522/T622 printer'
+(lp2128
+g398
+aS'EPSON Ethernet Ver. 4.20 6.04, 13395E-98'
 p2129
-asS'IBM | embedded || remote management'
+aS'Epson Stylus 800n/EPSON Ethernet Ver. 4.20'
 p2130
-(lp2131
-S'Alcatel Advanced Reflexes IP Phone or IBM x450 remote management console'
-p2132
-aS'IBM BladeCenter Remote Management Module'
+asS'DEC | embedded || terminal server'
+p2131
+(lp2132
+S'DECserver 700-16 terminal server, Network Access SW V2.2'
 p2133
-aS'IBM Remote Supervisor Adapter II'
+asS'Siemens | embedded || broadband router'
 p2134
-asS'NIB | embedded || printer'
-p2135
-(lp2136
-S'NIB 450-E printer network interface'
+(lp2135
+S'Siemens Broadband Router 5940 T1/E1'
+p2136
+aS'Siemens Santis 50 Wireless adsl router'
 p2137
-asS'Huawei | VRP || switch'
+aS'Siemens Speedstream 2602 DSL/Cable router'
 p2138
-(lp2139
-S'3Com 7700/8800 Switch or Huawei S6506R routing switch VRP 3.10'
-p2140
-asS'Siemens | embedded || specialized'
+asS'Pelco | embedded || webcam'
+p2139
+(lp2140
+S'Pelco Network Camera'
 p2141
-(lp2142
-S'Siemens S7-400 programmable logic controller'
-p2143
-asS'Digitel | embedded || router'
+asS'Cyclades | Cyras || router'
+p2142
+(lp2143
+S'Cyclades PathRouter'
 p2144
-(lp2145
-S'Digitel NetRouter NR3000'
+aS'Cyclades PathRouter/PC'
+p2145
+asS'Capellix | embedded || storage-misc'
 p2146
-aS'Digitel NetRouter NR3100'
-p2147
-asS'Novell | NetWare | 4.X | general purpose'
+(lp2147
+S'Capellix 3000 Modular SAN Switch'
 p2148
-(lp2149
-S'NetWare 4.11 SP7- 5 SP3A BorderManager 3.5'
-p2150
-aS'NetWare 4.11 SP8a - NetWare 5 SP4'
+asS'Packeteer | pSOS || load balancer'
+p2149
+(lp2150
+S'Packeteer PacketShaper 4000 v4.1.3b2 2000-04-05'
 p2151
-aS'novell netware 4.11'
+aS'pSOS embedded IP stack, such as Packeteer IP-PacketShaper 2000 V3.1'
 p2152
-asS'Compatible Systems | embedded || router'
+asS'Atari | Atari || general purpose'
 p2153
 (lp2154
-S'Compatible Systems (RISC Router, IntraPort)'
+S'Atari Mega STE running JIS-68k 3.0'
 p2155
-aS'Broadband Router (Farralon Netopia or Compatible Systems 900i)'
+asS'D-Link | embedded || broadband router'
 p2156
-asS'Apple | Mac OS | 9.X | general purpose'
-p2157
-(lp2158
-S'Apple Mac OS 7.5.5 - 9'
+(lp2157
+S'D-Link 2630 Broadband router'
+p2158
+aS'D-Link 704P Broadband Gateway or DI-713P WAP'
 p2159
-aS'Apple Mac OS 9 - 9.1'
+aS'D-Link DI-604 Broadband router'
 p2160
-aS'Apple Mac OS 9.2.2'
+aS'D-Link DI-604 Ethernet Broadband Router'
 p2161
-aS'Apple MacOS 9.2.2'
+aS'D-Link DI-604 Ethernet router'
 p2162
-aS'Apple Mac OS 9, or HP-UX 11.00'
+aS'D-Link DI-701, Version 2.22'
 p2163
-asS'DEC | OpenVMS | 7.X | general purpose'
+aS'D-Link DI-704 cable/DSL residential gateway, firmware 2.50 build 9'
 p2164
-(lp2165
-S'Compaq Tru64 UNIX 5.0 or DEC OpenVMS 7.2'
+aS'D-Link DI-704P Cable/DSL Residential Gateway'
+p2165
+aS'D-Link DI-804 Cable/DSL Residential Gateway'
 p2166
-aS'DEC OpenVMS 6.2 - 7.2-1 on VAX or AXP'
+ag476
+aS'D-Link DSL-300G+ DSL modem'
 p2167
-aS'DEC OpenVMS 7.1'
+aS'D-Link DSL-500 DSL modem'
 p2168
-aS'DEC OpenVMS 7.1 ALPHA'
+aS'D-Link Systems DI-713P Wireless Gateway'
 p2169
-aS"DEC OpenVMS 7.1 Alpha running DIGITAL's UCX v4.1ECO2 TCP/IP package"
+aS'D-Link VPN Router DI-714P+/DI-804HV'
 p2170
-aS"DEC OpenVMS 7.1 using Process Software's TCPWare 5.3 TCP/IP package"
+aS'DI-701 Residential Gateway or KA9Q NOS - KO4KS-TNOS v. 2.30'
 p2171
-aS'DEC OpenVMS 7.2'
+ag1540
+asS'Cayman | embedded || broadband router'
 p2172
-aS'DEC OpenVMS 7.2'
-p2173
-aS'DEC OpenVMS 7.2 Alpha'
+(lp2173
+S'Cayman 2E DSL/CABLE router'
 p2174
-aS'DEC OpenVMS 7.3'
+aS'Cayman 3000 DSL Router'
 p2175
-aS'DEC OpenVMS 7.3 (Alpha) TCP/IP 5.3'
+aS'Netopia Cayman 3346 DSL router'
 p2176
-aS'DEC OpenVMS 7.3 (Compaq TCP/IP 5.3)'
+asS'Nortel | embedded || telecom-misc'
 p2177
-aS'DEC OpenVMS 7.3-1'
-p2178
-aS'DEC OpenVMS Alpha 7.2-3'
+(lp2178
+g802
+aS'Nortel Micronode telephone switch running OS version GSM15'
 p2179
-aS'DEC OpenVMS Alpha V7.1-1H2 running DIGITAL TCP/IP Services (UCX) V4.2'
+aS'Nortel Passport 4400 Series multiservice access switch'
 p2180
-aS'DEC OpenVMS V7.1 on VAX 6000-530'
+asS'Shiva | embedded || router'
 p2181
-aS"DEC OpenVMS v7.1 VAX running Process Software's TCPWare 5.1-5 TCP/IP package"
-p2182
-aS'DEC OpenVMS v7.3 on VAXStation 4000/60'
+(lp2182
+g689
+asS'BSDI | BSD/OS | 2.X | general purpose'
 p2183
-aS'DEC OpenVMS VAX V7.3, Process Software MultiNet V5.0'
-p2184
-aS"DEC OpenVMS/Alpha 7.1 using Process Software's TCPWare V5.3-4"
+(lp2184
+S'BSDI BSD/OS 2.0 - 2.1'
 p2185
-aS'DEC VMS MultiNet V4.2(16)/ OpenVMS V7.1-2'
+asS'Okidata | embedded || printer'
 p2186
-aS'DEC VMS MultiNet V4.4 / OpenVMS V7.1'
-p2187
-asS'Sequent | DYNIX || general purpose'
+(lp2187
+g167
+aS'OkiData 20nx printer with OkiLAN ethernet module'
 p2188
-(lp2189
-S'Sequent DYNIX/PTX 4.4.2'
+aS'Okidata 7200 Printer'
+p2189
+aS'Okidata OKI C5100 Laser Printer'
 p2190
-aS'Sequent DYNIX/ptx 4.4.6 x86'
+aS'Okidata OKI C7200 Printer'
 p2191
-asS'Data General | DG/UX || general purpose'
+asS'Labtam | embedded || X terminal'
 p2192
 (lp2193
-S'Data General DG/UX Release R4.11MU02'
+S'Labtam MT300, X-Terminal Kernel'
 p2194
-aS'Data General DG/UX Release R4.20MU02'
+asS'Megabit | embedded || terminal server'
 p2195
-aS'Data General DG/UX Release R4.20MU04'
-p2196
-aS'Data General DG/UX Release R4.20MU06'
+(lp2196
+S'MegaBit Gear TE4111C modem'
 p2197
-asS'ASCOM | embedded || broadband router'
+asS'Tahoe | Tahoe OS || router'
 p2198
 (lp2199
-S'FlowPoint/2000 - 2200 SDSL Router (v1.2.3 - 3.0.4) or ASCOM Timeplex Access Router'
+S'Tahoe OS 1.2.1 running on Tahoe router'
 p2200
-asS'CastleNet | embedded || broadband router'
+asS'Dell | embedded || remote management'
 p2201
 (lp2202
-S'CastleNet AR502/GlobespanVirata GS8100 (same thing) DSL router'
+S'Dell Remote Access Controller III/XT or 4/I'
 p2203
-asS'OpenBSD | OpenBSD | 2.X | general purpose'
+asS'3Com | embedded || WAP'
 p2204
 (lp2205
-S'OpenBSD 2.1 - 2.3/SPARC'
+g1579
+ag1470
+asS'Cisco | IOS | 12.X | WAP'
 p2206
-aS'OpenBSD 2.1/x86'
-p2207
-aS'OpenBSD 2.2 - 2.3'
+(lp2207
+S'Cisco 1200 access point (WAP) running IOS 12.2(8)'
 p2208
-aS'OpenBSD 2.6 with all available patches as of roughly Feb01'
+aS'Cisco AP1220 WAP running IOS 12.2(11)'
 p2209
-aS'OpenBSD 2.6-2.8'
+asS'Cisco | IOS || router'
 p2210
-aS'OpenBSD 2.6-2.8'
-p2211
-aS'OpenBSD 2.8 (x86)'
+(lp2211
+S'Cisco CPA2500 (68030) or 2511 router'
 p2212
-aS'OpenBSD 2.9-beta through release (x86)'
+aS'Cisco uBR 7223 router'
 p2213
-aS'OpenBSD 2.9-stable'
+asS'Signal | embedded || VoIP gateway'
 p2214
-aS'OpenBSD Post 2.4 (November 1998) - 2.5'
-p2215
-asS'VegaStream | embedded || VoIP gateway'
+(lp2215
+g1750
+asS'Kentrox | embedded || CSUDSU'
 p2216
 (lp2217
-S'Vega 50/400'
+g444
+asS'Secure Computing | embedded || firewall'
 p2218
-asS'NetJet | embedded || printer'
-p2219
-(lp2220
-S'NetJet Version 3.0 - 4.0 Printer'
+(lp2219
+S'Secure Computing SECUREZone Firewall Version 2.0'
+p2220
+aS'Secure Computing Sidewinder firewall 3.2 update 4'
 p2221
-asS'DEC | Ultrix || general purpose'
+aS'Secure Computing Sidewinder firewall 5.2.1.06'
 p2222
-(lp2223
-S'DEC Ultrix 4.1'
-p2224
-aS'DEC Ultrix 4.2 - 4.5'
+asS'AudioCodes | embedded || VoIP gateway'
+p2223
+(lp2224
+S'AudioCodes MP-104 VoIP Gateway FXO'
 p2225
-asS'Apple | Mac OS | 7.X | general purpose'
+aS'AudioCodes MP-108 VoIP Gateway FXS'
 p2226
-(lp2227
-S'Apple Mac OS 7.0-7.1 With MacTCP 1.1.1 - 2.0.6'
-p2228
-aS'Apple Mac OS 7.1'
+asS'Virtual Access | embedded || router'
+p2227
+(lp2228
+S'Virtual Access LinXpeed Pro 120 router running Software 7.4.33CM'
 p2229
-asS'GNU | Hurd || general purpose'
+asS'Planet | embedded || switch'
 p2230
 (lp2231
-S'GNU Hurd 0.2 (GNUmach-1.2/Hurd-0.2) x86'
+S'Planet FGSW-2620VS switch'
 p2232
-asS'Motorola | VxWorks || broadband router'
+asS'Computone | embedded || terminal server'
 p2233
 (lp2234
-S'Motorola SurfBoard 4401 cable modem'
+S'Computone Power Rack IntelliServer terminal server Release 1.5.4d'
 p2235
-aS'Motorola SurfBoard SB4100E Cable Modem'
+asS'DEC | TOPS-20 || general purpose'
 p2236
-aS'Motorola Surfboard SB5100 cable modem'
-p2237
-aS'Motorola SURFboard SBG1000 Broadband router'
+(lp2237
+S'DEC TOPS-20 Monitor 7(102540)-1,TD-1'
 p2238
-asS'Avaya | embedded || telecom-misc'
+aS'DEC TOPS-20 Monitor 7(21733),KL-10 (DEC 2065)'
 p2239
-(lp2240
-S'Avaya TN2302 Prowler/Medpro H.323 gateway'
-p2241
-asS'Pigtail | VxWorks || VoIP phone'
+asS'Compaq | Windows | PocketPC/CE | terminal'
+p2240
+(lp2241
+S'Compaq T1010 Thin Client Windows CE 2.12'
 p2242
-(lp2243
-S'Pigtail Express VoIP phone (runs VxWorks)'
-p2244
-asS'D-Link | embedded || WAP'
+asS'Cisco | embedded || hub'
+p2243
+(lp2244
+g802
+ag550
+asS'WatchGuard | embedded || firewall'
 p2245
 (lp2246
-S'D-Link DI-713P WAP'
+S'WatchGuard Firebox 700 firewall'
 p2247
-aS'D-Link DI-713P Wireless Gateway (2.57 build 3a)'
+aS'WatchGuard Firebox II version 7.00'
 p2248
-aS'D-Link DI-774 WAP'
+aS'WatchGuard Firebox SOHO 6tc firewall'
 p2249
-aS'D-Link DWL-5000AP WAP/BSP 1.3'
+aS'WatchGuard Firebox SOHO V.5-V.6 firewall'
 p2250
-aS'Wireless access point (WAP): D-Link DRC-1000AP or 3Com Access Point 2000'
+aS'WatchGuard Firebox X700'
 p2251
-asS'Edimax | embedded || print server'
+asS'Sun | Solaris | 10 | general purpose'
 p2252
 (lp2253
-S'Edimax PS-1001 Print Server model'
+S'Sun Solaris 5.10.1'
 p2254
-aS'Edimax PS-901 Print Server model 1P/13E-9.5.12'
+aS'SunOS 5.10 (sparc)'
 p2255
-asS'Perle | embedded || terminal server'
+aS'SunOS webbox 5.10 Generic'
 p2256
-(lp2257
-S'Perle JetStream 8500 Serial/Access Server, v 2.6.0'
-p2258
-asS'IBM | OS/2 || general purpose'
+ag564
+asS'IBM | AIX | 4.X | general purpose'
+p2257
+(lp2258
+S'IBM AIX 4.0 - 4.2'
 p2259
-(lp2260
-S'IBM OS/2 V 2.1'
+aS'IBM AIX 4.02.0001.0000'
+p2260
+aS'IBM AIX 4.1'
 p2261
-aS'IBM OS/2 V.3'
+aS'IBM AIX 4.1-4.1.5'
 p2262
-aS'IBM OS/2 Warp 4.0'
+aS'IBM AIX 4.2'
 p2263
-aS'IBM OS/2 Warp Server for E-business (Aurora) Beta'
+aS'IBM AIX 4.2-4.3.3'
 p2264
-aS'IBM OS/2 Warp Server for E-business (Aurora) Beta'
+aS'IBM AIX 4.2.X-4.3.3.0'
 p2265
-aS'OS/2 Warp Server for eBusiness 4.52'
+aS'IBM AIX 4.3'
 p2266
-asS'UTStarcom | embedded || VoIP phone'
+aS'IBM AIX 4.3.1 on a IBM RS/6000 R40'
 p2267
-(lp2268
-S'UTStarcom F1000 wifi voip phone'
+aS'IBM AIX 4.3.2.0-4.3.3.0 on an IBM RS/*'
+p2268
+aS'IBM AIX 4.3.3.0 on an IBM RS/*'
 p2269
-asS'VersaNet | embedded || terminal server'
+aS'IBM AIX v4.1 running on a C10'
 p2270
-(lp2271
-S'VersaNet ISP-Accelerator(TM) Remote Access Server'
+aS'IBM AIX v4.2'
+p2271
+aS'IBM AIX Version 4.3'
 p2272
-asS'Epson | embedded || printer'
+asS'Telindus | embedded || broadband router'
 p2273
 (lp2274
-S'EPSON Ethernet Ver. 4.20 6.04, 13395E-98'
+S'Telindus 11xx ADSL Router'
 p2275
-aS'Epson Stylus 800n/EPSON Ethernet Ver. 4.20'
+asS'QNX | QNX || general purpose'
 p2276
-asS'DEC | embedded || terminal server'
-p2277
-(lp2278
-S'DECserver 700-16 terminal server, Network Access SW V2.2'
+(lp2277
+S'QNX 4.24 - 4.25 realtime embedded OS'
+p2278
+aS'QNX 6.00 realtime embedded OS (x86)'
 p2279
-asS'Siemens | embedded || broadband router'
+asS'Microsoft | Windows Longhorn || general purpose'
 p2280
 (lp2281
-S'Siemens Broadband Router 5940 T1/E1'
+S'Microsoft Windows Longhorn Preview'
 p2282
-aS'Siemens Santis 50 Wireless adsl router'
+asS'Convex | ConvexOS || general purpose'
 p2283
-aS'Siemens Speedstream 2602 DSL/Cable router'
-p2284
-asS'Pelco | embedded || webcam'
+(lp2284
+S'Convex OS Release 10.1'
 p2285
-(lp2286
-S'Pelco Network Camera'
-p2287
-asS'Cyclades | Cyras || router'
+asS'GrandStream | embedded || VoIP adapter'
+p2286
+(lp2287
+S'GrandStream 486 VoIP adapter'
 p2288
-(lp2289
-S'Cyclades PathRouter'
-p2290
-aS'Cyclades PathRouter/PC'
+asS'Novell | NetWare | 6.X | general purpose'
+p2289
+(lp2290
+g1871
+ag1872
+ag1873
+ag1874
+aS'NetWare 6.5 SP2'
 p2291
-asS'Capellix | embedded || storage-misc'
+aS'Novell Netware 6 (no service packs)'
 p2292
-(lp2293
-S'Capellix 3000 Modular SAN Switch'
+aS'Novell NetWare 6 SP1'
+p2293
+aS'Novell NetWare 6 SP2'
 p2294
-asS'Packeteer | pSOS || load balancer'
+aS'Novell NetWare 6.0 SP3'
 p2295
-(lp2296
-S'Packeteer PacketShaper 4000 v4.1.3b2 2000-04-05'
+aS'Novell Netware 6.0 SP4'
+p2296
+aS'Novell Netware 6.5 SP2'
 p2297
-aS'pSOS embedded IP stack, such as Packeteer IP-PacketShaper 2000 V3.1'
+asS'Xyplex | MAXserver || terminal server'
 p2298
-asS'Atari | Atari || general purpose'
-p2299
-(lp2300
-S'Atari Mega STE running JIS-68k 3.0'
+(lp2299
+S'Xyplex 1600 terminal server running MAXserver V6.0.2 firmware'
+p2300
+aS'Xyplex Maxserver 1600 Terminal Server'
 p2301
-asS'D-Link | embedded || broadband router'
+asS'Cisco | IOS | 11.X | router'
 p2302
 (lp2303
-S'D-Link 2630 Broadband router'
+S'Cisco 2501/2504/4500 router with IOS Version 10.3(15) - 11.1(20)'
 p2304
-aS'D-Link 704P Broadband Gateway or DI-713P WAP'
+aS'Cisco 1600/3640/7513 Router (IOS 11.2(14)P)'
 p2305
-aS'D-Link DI-604 Broadband router'
+ag1639
+aS'Cisco 4500 router running IOS 11.2(2)'
 p2306
-aS'D-Link DI-604 Ethernet Broadband Router'
+aS'Cisco 4500-M router running IOS 11.3(6) IP Plus'
 p2307
-aS'D-Link DI-604 Ethernet router'
+aS'Cisco 7206 router (IOS 11.1(17)'
 p2308
-aS'D-Link DI-701, Version 2.22'
+aS'Cisco 7206 running IOS 11.1(24)'
 p2309
-aS'D-Link DI-704 cable/DSL residential gateway, firmware 2.50 build 9'
+ag299
+aS'Cisco IOS v11.14(CA)/12.0.2aT1/v12.0.3T'
 p2310
-aS'D-Link DI-704P Cable/DSL Residential Gateway'
+ag1660
+ag1661
+asS'CNT | embedded || storage-misc'
 p2311
-aS'D-Link DI-804 Cable/DSL Residential Gateway'
-p2312
-aS'D-Link DSL-300G+ DSL modem'
+(lp2312
+S'CNT UltraNet EDGE (SAN Router) V. 1.4.1.2'
 p2313
-aS'D-Link DSL-500 DSL modem'
+asS'Microsoft | Windows | 95/98/ME | general purpose'
 p2314
-aS'D-Link DSL-500 DSL modem'
-p2315
-aS'D-Link Systems DI-713P Wireless Gateway'
+(lp2315
+g5
+aS'Microsoft Windows 95 4.00.950'
 p2316
-aS'D-Link VPN Router DI-714P+/DI-804HV'
+aS'Microsoft Windows 95 4.00.950B'
 p2317
-aS'DI-701 Residential Gateway or KA9Q NOS - KO4KS-TNOS v. 2.30'
+aS'Microsoft Windows 95 4.00.950B (IE 5 5.00 2314.1003)'
 p2318
-aS'Linux 2.4.27 or D-Link DSL-500T (running linux 2.4)'
+ag427
+aS'Microsoft Windows 98'
 p2319
-asS'Cayman | embedded || broadband router'
+aS'Microsoft Windows 98 4.10.1998'
 p2320
-(lp2321
-S'Cayman 2E DSL/CABLE router'
+aS'Microsoft Windows 98 or 98SE'
+p2321
+aS'Microsoft Windows 98 SP1'
 p2322
-aS'Cayman 3000 DSL Router'
+aS'Microsoft Windows 98 SP2'
 p2323
-aS'Netopia Cayman 3346 DSL router'
+aS'Microsoft Windows 98SE'
 p2324
-asS'Nortel | embedded || telecom-misc'
+aS'Microsoft Windows 98SE + IE5.5sp1'
 p2325
-(lp2326
-S'Nortel Micronode telephone switch running OS version GSM15'
+aS'Microsoft Windows 98SE 4.10.2222'
+p2326
+aS'Microsoft Windows 98SE SP1'
 p2327
-aS'Nortel Passport 4400 Series multiservice access switch'
+aS'Microsoft Windows 98SE with security patch A'
 p2328
-asS'AtheOS | AtheOS || general purpose'
+aS'Microsoft Windows Millennium Edition (Me)'
 p2329
-(lp2330
-S'AtheOS ( www.atheos.cx )'
+aS'Microsoft Windows Millennium Edition (Me), Windows 2000 Professional or Advanced Server, or Windows XP'
+p2330
+aS'Microsoft Windows NT 3.51 SP5, NT 4.0 or 95/98/98SE'
 p2331
-aS'AtheOS/Syllable 0.4.2'
+aS'Microsoft Windows Millennium Edition (Me), Windows 2000, or Windows XP'
 p2332
-asS'BSDI | BSD/OS | 2.X | general purpose'
+ag971
+asS'Symantec | embedded || firewall'
 p2333
 (lp2334
-S'BSDI BSD/OS 2.0 - 2.1'
+S'Symantec Gateway Security 5310 Firewall'
 p2335
-asS'Okidata | embedded || printer'
+aS'Symantec Gateway Security 5420 firewall'
 p2336
-(lp2337
-S'OkiData 20nx printer with OkiLAN ethernet module'
-p2338
-aS'Okidata 7200 Printer'
+asS'Checkpoint | Windows | NT/2K/XP | firewall'
+p2337
+(lp2338
+S'Check Point FireWall-1 4.0 SP-5 (IPSO build)'
 p2339
-aS'Okidata OKI C5100 Laser Printer'
+aS'Checkpoint Firewall-1 on Windows NT 4.0 Server SP4-SP5'
 p2340
-aS'Okidata OKI C7200 Printer'
+aS'Checkpoint SecurePlatform NG FP3'
 p2341
-asS'Labtam | embedded || X terminal'
+asS'Cobalt | Linux | 2.0.X | general purpose'
 p2342
 (lp2343
-S'Labtam MT300, X-Terminal Kernel'
+S'Cobalt Linux 4.0 (Fargo) Kernel 2.0.34C52_SK on MIPS or TEAMInternet Series 100 WebSense'
 p2344
-asS'Megabit | embedded || terminal server'
+asS'Fortinet | embedded || firewall'
 p2345
 (lp2346
-S'MegaBit Gear TE4111C modem'
+S'Fortinet firewall Fortigate 50A (FortiOS V2.80)'
 p2347
-asS'Tahoe | Tahoe OS || router'
+aS'Fortinet firewall Fortigate 60'
 p2348
-(lp2349
-S'Tahoe OS 1.2.1 running on Tahoe router'
-p2350
-asS'Cisco | IOS | 12.X | WAP'
+asS'Lantronix | embedded || terminal server'
+p2349
+(lp2350
+g288
+aS'Lantronix Consoleserver 800'
 p2351
-(lp2352
-S'Cisco 1200 access point (WAP) running IOS 12.2(8)'
+aS'Lantronix ETS16 terminal server Version V3.4/5(961028)'
+p2352
+aS'Lantronix ETS16P terminal server Version V3.5/2(970721)'
 p2353
-aS'Cisco AP1220 WAP running IOS 12.2(11)'
+aS'Lantronix SCS1600 secure console server version V1.0/2(010620)'
 p2354
-asS'Cisco | IOS || router'
+asS'MiraPoint | embedded || general purpose'
 p2355
 (lp2356
-S'Cisco CPA2500 (68030) or 2511 router'
+S'Mirapoint messaging server M1000 (OS v 1.0.0)'
 p2357
-aS'Cisco uBR 7223 router'
+aS'MiraPoint messaging server v3.1'
 p2358
-asS'Signal | embedded || VoIP gateway'
+asS'DEC | DIGITAL UNIX | 5.X | general purpose'
 p2359
 (lp2360
-S'CPV Telsey Broadband + voip residential gateway or Signal SP100x VoIP appliance'
+S'DEC OSF1 (AKA Compaq/DIGITAL Tru64 UNIX) Version 5.0.0'
 p2361
-asS'Secure Computing | embedded || firewall'
+aS'OSF/1 (AKA Compaq/DIGITAL Tru64 UNIX) 5.60'
 p2362
-(lp2363
-S'Secure Computing SECUREZone Firewall Version 2.0'
-p2364
-aS'Secure Computing Sidewinder firewall 3.2 update 4'
+asS'US Robotics | embedded || terminal server'
+p2363
+(lp2364
+S'US Robotics Total Control NETServer Card'
 p2365
-aS'Secure Computing Sidewinder firewall 5.2.1.06'
+asS'Intergraph | CLiX || general purpose'
 p2366
-asS'AudioCodes | embedded || VoIP gateway'
-p2367
-(lp2368
-S'AudioCodes MP-104 VoIP Gateway FXO'
+(lp2367
+S'Intergraph CLiX R3.1 Vr.7.6.20 6480'
+p2368
+aS'Intergraph Workstation (2000 Series) running CLiX R3.1'
 p2369
-aS'AudioCodes MP-108 VoIP Gateway FXS'
+asS'Borderware | embedded || firewall'
 p2370
-asS'Virtual Access | embedded || router'
-p2371
-(lp2372
-S'Virtual Access LinXpeed Pro 120 router running Software 7.4.33CM'
+(lp2371
+S'Borderware 5.0 Firewall'
+p2372
+aS'Borderware 5.2 firewall'
 p2373
-asS'Planet | embedded || switch'
+aS'Borderware 6.0.2 firewall'
 p2374
-(lp2375
-S'Planet FGSW-2620VS switch'
-p2376
-asS'Computone | embedded || terminal server'
+asS'IBM | OS/400 | V5 | general purpose'
+p2375
+(lp2376
+S'IBM AS/400 running OS/400 5.1'
 p2377
-(lp2378
-S'Computone Power Rack IntelliServer terminal server Release 1.5.4d'
+aS'IBM OS/400 V5R1 - V5R2'
+p2378
+aS'IBM OS/400 V5R1M0'
 p2379
-asS'DEC | TOPS-20 || general purpose'
+aS'IBM OS/400 V5R2M0'
 p2380
-(lp2381
-S'DEC TOPS-20 Monitor 7(102540)-1,TD-1'
+aS'OS/400 V5R2M0 or V5R3 or V5R3M0'
+p2381
+asS'WYSE | WYSE OS || terminal server'
 p2382
-aS'DEC TOPS-20 Monitor 7(21733),KL-10 (DEC 2065)'
-p2383
-asS'Compaq | Windows | PocketPC/CE | terminal'
+(lp2383
+S'Winterm WYSE System Version 4.2.077'
 p2384
-(lp2385
-S'Compaq T1010 Thin Client Windows CE 2.12'
+aS'WYSE Winterm terminal server'
+p2385
+asS'SCO | SCO UNIX || general purpose'
 p2386
-asS'Cisco | embedded || hub'
-p2387
-(lp2388
-S'Cisco 1538M HUB running Cisco 1538M EES (1.00.00) or Assured Access Technology ISAS Switch Release-2.3.0 or Thomson Multimedia RCA DCM245 Cable Modem'
+(lp2387
+S'SCO Open Desktop 2.0'
+p2388
+aS'SCO UNIX release 3.2'
 p2389
-asS'WatchGuard | embedded || firewall'
+asS'Lantronix | Punix || terminal server'
 p2390
 (lp2391
-S'WatchGuard Firebox 700 firewall'
+S'Lantronix ETS16 terminal server'
 p2392
-aS'WatchGuard Firebox II version 7.00'
+asS'Cisco | IOS | 10.X | router'
 p2393
-aS'WatchGuard Firebox SOHO 6tc firewall'
-p2394
-aS'WatchGuard Firebox SOHO V.5-V.6 firewall'
+(lp2394
+g2304
+asS'Axent | Windows | NT/2K/XP | firewall'
 p2395
-aS'WatchGuard Firebox X700'
-p2396
-asS'Sun | Solaris | 10 | general purpose'
+(lp2396
+S'Axent Raptor Firewall running on Windows NT'
 p2397
-(lp2398
-S'Sun Solaris 5.10.1'
-p2399
-aS'SunOS 5.10 (sparc)'
+asS'Thomson | embedded || broadband router'
+p2398
+(lp2399
+g671
+aS'Thomson Speed Touch 500 Series or 610i *DSL modem'
 p2400
-aS'SunOS webbox 5.10 Generic'
+aS'Thomson THG 520 Cable Modem'
 p2401
-asS'IBM | AIX | 4.X | general purpose'
+asS'Aironet | embedded || bridge'
 p2402
 (lp2403
-S'IBM AIX 4.0 - 4.2'
+S'Aironet 630-2400 V3.3P Wireless LAN bridge'
 p2404
-aS'IBM AIX 4.02.0001.0000'
+aS'Aironet Wireless Bridge running firmware V5.0J'
 p2405
-aS'IBM AIX 4.1'
+asS'OpenBSD | OpenBSD | 3.X | general purpose'
 p2406
-aS'IBM AIX 4.1-4.1.5'
-p2407
-aS'IBM AIX 4.2'
+(lp2407
+S'OpenBSD 3.0 or 3.3'
 p2408
-aS'IBM AIX 4.2-4.3.3'
+aS'OpenBSD 3.0 SPARC with pf "scrub in all"'
 p2409
-aS'IBM AIX 4.2.X-4.3.3.0'
+aS'OpenBSD 3.0-STABLE (x86)'
 p2410
-aS'IBM AIX 4.3'
+aS'OpenBSD 3.1 (x86)'
 p2411
-aS'IBM AIX 4.3.1 on a IBM RS/6000 R40'
+aS'OpenBSD 3.1 on an Alpha'
 p2412
-aS'IBM AIX 4.3.2.0-4.3.3.0 on an IBM RS/*'
+aS'OpenBSD 3.2 (x86)'
 p2413
-aS'IBM AIX 4.3.3.0 on an IBM RS/*'
+aS'OpenBSD 3.2 with pf scrub and no-df'
 p2414
-aS'IBM AIX v4.1 running on a C10'
+aS'OpenBSD 3.3'
 p2415
-aS'IBM AIX v4.2'
+aS'OpenBSD 3.3 x86 with pf "scrub in all"'
 p2416
-aS'IBM AIX Version 4.3'
+aS'OpenBSD 3.4'
 p2417
-asS'Telindus | embedded || broadband router'
+aS'OpenBSD 3.4 (X86)'
 p2418
-(lp2419
-S'Telindus 11xx ADSL Router'
+aS'OpenBSD 3.4 x86'
+p2419
+aS'OpenBSD 3.4 x86 with pf "scrub in all"'
 p2420
-asS'QNX | QNX || general purpose'
+aS'OpenBSD 3.4-BETA'
 p2421
-(lp2422
-S'QNX 4.24 - 4.25 realtime embedded OS'
+aS'OpenBSD 3.5 - 3.9'
+p2422
+aS'OpenBSD 3.5 or 3.6'
 p2423
-aS'QNX 6.00 realtime embedded OS (x86)'
+aS'OpenBSD 3.6'
 p2424
-aS'QNX 6.00 realtime embedded OS (x86)'
+aS'OpenBSD 3.6 (i386)'
 p2425
-asS'IronPort | AsyncOS || specialized'
+aS'OpenBSD 3.6 x86 with pf "scrub in all"'
 p2426
-(lp2427
-S'IronPort C60 email security appliance'
+aS'OpenBSD 3.7'
+p2427
+asS'm0n0wall | FreeBSD | 4.X | firewall'
 p2428
-asS'Convex | ConvexOS || general purpose'
-p2429
-(lp2430
-S'Convex OS Release 10.1'
+(lp2429
+S'M0n0wall 1.2b2 - 1.2b8 FreeBSD 4.1 based firewall'
+p2430
+asS'Panasonic | embedded || webcam'
 p2431
-asS'GrandStream | embedded || VoIP adapter'
-p2432
-(lp2433
-S'GrandStream 486 VoIP adapter'
+(lp2432
+S'Panasonic WJ-NT104 Network video device'
+p2433
+ag605
+asS'Auspex | AuspexOS || fileserver'
 p2434
-asS'Novell | NetWare | 6.X | general purpose'
-p2435
-(lp2436
-S'Novell NetWare 5.1-6.0'
+(lp2435
+S'Auspex Fileserver (AuspexOS 1.9.1/SunOS 4.1.4)'
+p2436
+asS'HP | HP-UX | 7.X | general purpose'
 p2437
-aS'Novell NetWare 5.1SP4 - 6.0'
-p2438
-aS'Novell NetWare 5.1SP5 - 6.5'
+(lp2438
+S'HP-UX 7.0'
 p2439
-aS'NetWare 6.5 SP2'
+asS'Avocent | embedded || terminal server'
 p2440
-aS'Novell Netware 6 (no service packs)'
-p2441
-aS'Novell NetWare 6 SP1'
+(lp2441
+S'Avocent CPS 1610 serial port server'
 p2442
-aS'Novell NetWare 6 SP2'
+asS'Dell | embedded || switch'
 p2443
-aS'Novell NetWare 6.0 SP3'
-p2444
-aS'Novell Netware 6.0 SP4'
+(lp2444
+S'Dell PowerConnect Switch 3324 or 3348'
 p2445
-aS'Novell Netware 6.5 SP2'
+aS'Dell PowerConnect Switch 5324'
 p2446
-asS'Xyplex | MAXserver || terminal server'
+aS'Dell PowerConnect Switch running SW V.1.0.0.52'
 p2447
-(lp2448
-S'Xyplex 1600 terminal server running MAXserver V6.0.2 firmware'
-p2449
-aS'Xyplex Maxserver 1600 Terminal Server'
+asS'QMS | embedded || printer'
+p2448
+(lp2449
+S'QMS Magicolor 2200 DeskLaser printer'
 p2450
-asS'Cisco | IOS | 11.X | router'
+asS'Conexant | embedded || broadband router'
 p2451
 (lp2452
-S'Cisco 2501/2504/4500 router with IOS Version 10.3(15) - 11.1(20)'
+S'Conexant ADSL Router'
 p2453
-aS'Cisco 1600/3640/7513 Router (IOS 11.2(14)P)'
+aS'Sphairon Turbolink ADSL Modem/Router (AR800C2-B01B)'
 p2454
-aS'Cisco 4500 router running IOS 11.2(2)'
+asS'Sipura | embedded || VoIP adapter'
 p2455
-aS'Cisco 4500-M router running IOS 11.3(6) IP Plus'
-p2456
-aS'Cisco 7206 router (IOS 11.1(17)'
+(lp2456
+S'Sipura SPA-841/1000/2000/3000 POTS<->VoIP gateway'
 p2457
-aS'Cisco 7206 running IOS 11.1(24)'
+asS'Vanguard | embedded || router'
 p2458
-aS'Cisco IOS v11.14(CA)/12.0.2aT1/v12.0.3T'
-p2459
-asS'CNT | embedded || storage-misc'
+(lp2459
+S'MOTOROLA VANGUARD 320 IP router running OS version 5.4'
 p2460
-(lp2461
-S'CNT UltraNet EDGE (SAN Router) V. 1.4.1.2'
+aS'Motorola Vanguard 320 multi-protocol network access device V5.5 - 5.6'
+p2461
+asS'Acorn | RISC OS || general purpose'
 p2462
-asS'Alcatel | embedded || switch'
-p2463
-(lp2464
-S'Alcatel OmniStack switch version 4.3.3 GA'
+(lp2463
+S'Acorn RISC OS 3.60 (Acorn TCP/IP Stack 4.07)'
+p2464
+aS'Acorn RISC OS 3.70 using AcornNet TCP/IP stack or RISC OS 4 (Pace, RISCOS Ltd)'
 p2465
-asS'Symantec | embedded || firewall'
+asS'Cisco | embedded || load balancer'
 p2466
 (lp2467
-S'Symantec Gateway Security 5310 Firewall'
+S'Cisco CSS 11501 Content Services Switch'
 p2468
-aS'Symantec Gateway Security 5420 firewall'
+aS'Cisco Local Director 420 version 2.1.1'
 p2469
-asS'Checkpoint | Windows | NT/2K/XP | firewall'
+aS'Cisco Localdirector load balancer'
 p2470
-(lp2471
-S'Check Point FireWall-1 4.0 SP-5 (IPSO build)'
+aS'Cisco LocalDirector load balancer'
+p2471
+ag554
+asS'Barix | embedded || media device'
 p2472
-aS'Checkpoint Firewall-1 on Windows NT 4.0 Server SP4-SP5'
-p2473
-aS'Checkpoint SecurePlatform NG FP3'
+(lp2473
+S'Barix Exstreamer network MP3 player'
 p2474
-asS'Cobalt | Linux | 2.0.X | general purpose'
+asS'NSG | embedded || router'
 p2475
 (lp2476
-S'Cobalt Linux 4.0 (Fargo) Kernel 2.0.34C52_SK on MIPS or TEAMInternet Series 100 WebSense'
+S'NSG-300/500 series router running Version 7.6.x'
 p2477
-asS'Fortinet | embedded || firewall'
+asS'Madge | embedded || switch'
 p2478
 (lp2479
-S'Fortinet firewall Fortigate 50A (FortiOS V2.80)'
-p2480
-aS'Fortinet firewall Fortigate 60'
-p2481
-asS'Lantronix | embedded || terminal server'
-p2482
-(lp2483
-S'Lantronix Consoleserver 800'
-p2484
-aS'Lantronix ETS16 terminal server Version V3.4/5(961028)'
-p2485
-aS'Lantronix ETS16P terminal server Version V3.5/2(970721)'
-p2486
-aS'Lantronix SCS1600 secure console server version V1.0/2(010620)'
-p2487
-aS'Lantronix SCS1600 secure console server version V1.0/2(010620)'
-p2488
-asS'Apple | Newton OS || PDA'
-p2489
-(lp2490
-S'Apple Newton MessagePad 2100, Newton OS 2.1'
-p2491
-asS'DEC | DIGITAL UNIX | 5.X | general purpose'
-p2492
-(lp2493
-S'DEC OSF1 (AKA Compaq/DIGITAL Tru64 UNIX) Version 5.0.0'
-p2494
-aS'OSF/1 (AKA Compaq/DIGITAL Tru64 UNIX) 5.60'
-p2495
-asS'US Robotics | embedded || terminal server'
-p2496
-(lp2497
-S'US Robotics Total Control NETServer Card'
-p2498
-asS'Intergraph | CLiX || general purpose'
-p2499
-(lp2500
-S'Intergraph CLiX R3.1 Vr.7.6.20 6480'
-p2501
-aS'Intergraph Workstation (2000 Series) running CLiX R3.1'
-p2502
-asS'Borderware | embedded || firewall'
-p2503
-(lp2504
-S'Borderware 5.0 Firewall'
-p2505
-aS'Borderware 5.2 firewall'
-p2506
-aS'Borderware 6.0.2 firewall'
-p2507
-asS'IBM | OS/400 | V5 | general purpose'
-p2508
-(lp2509
-S'IBM AS/400 running OS/400 5.1'
-p2510
-aS'IBM OS/400 V5R1 - V5R2'
-p2511
-aS'IBM OS/400 V5R1M0'
-p2512
-aS'IBM OS/400 V5R2M0'
-p2513
-aS'IBM OS/400 V5R2M0'
-p2514
-asS'WYSE | WYSE OS || terminal server'
-p2515
-(lp2516
-S'Winterm WYSE System Version 4.2.077'
-p2517
-aS'WYSE Winterm terminal server'
-p2518
-asS'SCO | SCO UNIX || general purpose'
-p2519
-(lp2520
-S'SCO Open Desktop 2.0'
-p2521
-aS'SCO UNIX release 3.2'
-p2522
-asS'Lantronix | Punix || terminal server'
-p2523
-(lp2524
-S'Lantronix ETS16 terminal server'
-p2525
-asS'Axent | Windows | NT/2K/XP | firewall'
-p2526
-(lp2527
-S'Axent Raptor Firewall running on Windows NT'
-p2528
-asS'Thomson | embedded || broadband router'
-p2529
-(lp2530
-S'Thomson THG 520 Cable Modem'
-p2531
-asS'Aironet | embedded || bridge'
-p2532
-(lp2533
-S'Aironet 630-2400 V3.3P Wireless LAN bridge'
-p2534
-aS'Aironet Wireless Bridge running firmware V5.0J'
-p2535
-asS'OpenBSD | OpenBSD | 3.X | general purpose'
-p2536
-(lp2537
-S'OpenBSD 3.0 or 3.3'
-p2538
-aS'OpenBSD 3.0 SPARC with pf "scrub in all"'
-p2539
-aS'OpenBSD 3.0-STABLE (x86)'
-p2540
-aS'OpenBSD 3.1 (x86)'
-p2541
-aS'OpenBSD 3.1 (x86)'
-p2542
-aS'OpenBSD 3.1 on an Alpha'
-p2543
-aS'OpenBSD 3.2 (x86)'
-p2544
-aS'OpenBSD 3.2 with pf scrub and no-df'
-p2545
-aS'OpenBSD 3.3'
-p2546
-aS'OpenBSD 3.3 x86 with pf "scrub in all"'
-p2547
-aS'OpenBSD 3.3 x86 with pf "scrub in all"'
-p2548
-aS'OpenBSD 3.4'
-p2549
-aS'OpenBSD 3.4 (X86)'
-p2550
-aS'OpenBSD 3.4 x86'
-p2551
-aS'OpenBSD 3.4 x86 with pf "scrub in all"'
-p2552
-aS'OpenBSD 3.4 x86 with pf "scrub in all"'
-p2553
-aS'OpenBSD 3.4-BETA'
-p2554
-aS'OpenBSD 3.5 or 3.6'
-p2555
-aS'OpenBSD 3.5 or 3.6'
-p2556
-aS'OpenBSD 3.5 or 3.6'
-p2557
-aS'OpenBSD 3.6'
-p2558
-aS'OpenBSD 3.6'
-p2559
-aS'OpenBSD 3.6'
-p2560
-aS'OpenBSD 3.6'
-p2561
-aS'OpenBSD 3.6'
-p2562
-aS'OpenBSD 3.6'
-p2563
-aS'OpenBSD 3.6 (i386)'
-p2564
-aS'OpenBSD 3.6 x86 with pf "scrub in all"'
-p2565
-aS'OpenBSD 3.7'
-p2566
-asS'Panasonic | embedded || webcam'
-p2567
-(lp2568
-S'Panasonic WJ-NT104 Network video device'
-p2569
-aS'Panasonic network camera or SMC WAP'
-p2570
-asS'Auspex | AuspexOS || fileserver'
-p2571
-(lp2572
-S'Auspex Fileserver (AuspexOS 1.9.1/SunOS 4.1.4)'
-p2573
-asS'HP | HP-UX | 7.X | general purpose'
-p2574
-(lp2575
-S'HP-UX 7.0'
-p2576
-asS'Avocent | embedded || terminal server'
-p2577
-(lp2578
-S'Avocent CPS 1610 serial port server'
-p2579
-asS'Dell | embedded || switch'
-p2580
-(lp2581
-S'Dell PowerConnect Switch 3324 or 3348'
-p2582
-aS'Dell PowerConnect Switch 5324'
-p2583
-aS'Dell PowerConnect Switch running SW V.1.0.0.52'
-p2584
-asS'QMS | embedded || printer'
-p2585
-(lp2586
-S'QMS Magicolor 2200 DeskLaser printer'
-p2587
-asS'Conexant | embedded || broadband router'
-p2588
-(lp2589
-S'Conexant ADSL Router'
-p2590
-aS'Sphairon Turbolink ADSL Modem/Router (AR800C2-B01B)'
-p2591
-asS'Vanguard | embedded || router'
-p2592
-(lp2593
-S'MOTOROLA VANGUARD 320 IP router running OS version 5.4'
-p2594
-aS'Motorola Vanguard 320 multi-protocol network access device V5.5 - 5.6'
-p2595
-asS'Acorn | RISC OS || general purpose'
-p2596
-(lp2597
-S'Acorn RISC OS 3.60 (Acorn TCP/IP Stack 4.07)'
-p2598
-aS'Acorn RISC OS 3.70 using AcornNet TCP/IP stack or RISC OS 4 (Pace, RISCOS Ltd)'
-p2599
-asS'Cisco | embedded || load balancer'
-p2600
-(lp2601
-S'Cisco CSS 11501 Content Services Switch'
-p2602
-aS'Cisco CSS 11501 Content Services Switch'
-p2603
-aS'Cisco Local Director 420 version 2.1.1'
-p2604
-aS'Cisco Localdirector load balancer'
-p2605
-aS'Cisco LocalDirector load balancer'
-p2606
-asS'Barix | embedded || media device'
-p2607
-(lp2608
-S'Barix Exstreamer network MP3 player'
-p2609
-asS'NSG | embedded || router'
-p2610
-(lp2611
-S'NSG-300/500 series router running Version 7.6.x'
-p2612
-asS'Madge | embedded || switch'
-p2613
-(lp2614
 S'Madge Smart Ringswitch'
-p2615
+p2480
 asS'Compaq | embedded || remote management'
-p2616
-(lp2617
+p2481
+(lp2482
 S'Compaq Inside Management Board'
-p2618
+p2483
 aS'Compaq Integrated Lights Out remote configuration Board'
-p2619
+p2484
 aS'Compaq ProLiant DL580 Integrated Lights-Out remote configuration board V1.06'
-p2620
+p2485
+ag1470
 asS'F5 Labs | embedded || load balancer'
-p2621
-(lp2622
+p2486
+(lp2487
 S'F5 Labs BIG-IP Load balancer Kernel 4.1.1PTF-03 (x86)'
-p2623
+p2488
 aS'F5 Labs BIG-IP load balancer kernel 4.2PTF-05a (x86)'
-p2624
+p2489
 asS'BBIagent | Linux | 2.4.X | software router'
-p2625
-(lp2626
+p2490
+(lp2491
 S'BBIagent v1.8.1 software router'
-p2627
+p2492
 asS'Xerox | embedded || printer'
-p2628
-(lp2629
+p2493
+(lp2494
 S'Dell Laser Printer 5100cn'
-p2630
+p2495
 aS'Xerox 8830 Plotter'
-p2631
+p2496
 aS'Xerox Document Centre 440 w/ CentreWare Internet Services'
-p2632
+p2497
 aS'Xerox Document Centre ColorSeries 50'
-p2633
+p2498
 aS'Xerox DocuPrint C55'
-p2634
+p2499
 aS'Xerox Docuprint N2125 network printer'
-p2635
+p2500
 aS'Xerox DocuPrint N24/N32/N40 Network Laser Printer'
-p2636
+p2501
 aS'Xerox DocuPrint N40'
-p2637
+p2502
 as.
