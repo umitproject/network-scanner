@@ -39,7 +39,6 @@ class Splash(gtk.Window):
         self.set_resizable(False)
         self.realize()
 
-        self.fixed = gtk.Fixed()
         self.verbox = gtk.VBox()
         self.version = gtk.Label("%s" % VERSION)
         self.revision = gtk.Label("Rev. %s" % REVISION)
@@ -51,11 +50,16 @@ class Splash(gtk.Window):
         self.revision.set_markup("<span size='10000' weight='heavy'>\
 Rev. %s</span>" % REVISION)
 
-        self.verbox.pack_start(self.version, False, False)
+        self.verbox.pack_start(self.version, True, False)
+        self.verbox.set_size_request(-1, 56)
+        self.verbox.show_all()
         self.verbox.pack_start(self.revision, False, False)
 
-        self.fixed.put(self.verbox, width - 140, height - 55)
-        self.add(self.fixed)
+        fixed = gtk.Fixed()
+        # These constants are derived from the dimensions of the open space in
+        # the splash graphic. We attempt to center the version number.
+        fixed.put(self.verbox, width - 75 - self.verbox.size_request()[0] / 2, height - 56)
+        self.add(fixed)
 
         self.hid = self.connect("expose-event", self.set_bg, mask, pixmap)
         self.set_bg(self, None, mask, pixmap)
@@ -71,7 +75,6 @@ Rev. %s</span>" % REVISION)
 
     def set_bg(self, widget, event, mask, pixmap):
         if self.window != None:
-            self.input_shape_combine_mask(mask, 0, 0)
             self.window.set_back_pixmap(pixmap, False)
         else:
             gobject.idle_add(self.set_bg, widget, event, mask, pixmap)
