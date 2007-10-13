@@ -95,6 +95,6 @@ def update_paths(base_dir, version, revision):
 
 def update_umit_version(base_dir, version, revision):
     print ">>> Updating umit_version at", VERSION_FILE
-    vf = open(VERSION_FILE, "w")
+    vf = open(VERSION_FILE, "wb")
     vf.write("\n".join([version, revision]))
     vf.close()
