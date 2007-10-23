@@ -33,12 +33,6 @@ from umitCore.Version import VERSION
 from umitCore.Paths import Path
 from umitCore.I18N import _
 
-pixmaps_dir = Path.pixmaps_dir
-if pixmaps_dir:
-    logo = os.path.join(pixmaps_dir,'logo.png')
-else:
-    logo = None
-
 class About(HIGWindow):
     def __init__(self):
         HIGWindow.__init__(self)
@@ -119,6 +113,12 @@ Summer of Code 2005, 2006 and 2007. Thanks Google!"""))
         self.lbl_program_website.set_selectable(True)
     
     def __set_img(self):
+        pixmaps_dir = Path.pixmaps_dir
+        if pixmaps_dir:
+            logo = os.path.join(pixmaps_dir,'logo.png')
+        else:
+            logo = None
+
         self.img_logo.set_from_file(logo)
     
     def show_credits_cb(self, widget):
@@ -280,6 +280,8 @@ Adriano Monteiro Marques <py.adriano@gmail.com>""")
 
 
 if __name__ == '__main__':
+    import sys
+    Path.set_umit_conf(os.path.split(sys.argv[0])[0])
     about = About()
     about.connect('delete-event', lambda x,y:gtk.main_quit())
     about.show_all()
