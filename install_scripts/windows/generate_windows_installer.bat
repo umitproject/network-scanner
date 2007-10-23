@@ -7,7 +7,7 @@ echo .
 
 echo Setting installation variables...
 set PythonEXE=C:\Python25\python.exe
-set UmitOrig=C:\Umit\trunk
+set UmitOrig=.
 set UmitDir=C:\UmitTemp
 set DistDir=%UmitDir%\dist
 set GTKDir=C:\GTK
