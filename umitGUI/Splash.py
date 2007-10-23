@@ -53,8 +53,8 @@ Rev. %s</span>" % REVISION)
         # These constants are derived from the dimensions of the open space in
         # the splash graphic. We attempt to center the version number.
         self.verbox.set_size_request(152, 56)
-        self.verbox.pack_start(self.version, False, False)
-        self.verbox.pack_start(self.revision, False, False)
+        self.verbox.pack_start(self.version, True, False)
+        self.verbox.pack_start(self.revision, True, False)
 
         fixed = gtk.Fixed()
         fixed.put(self.verbox, width - 152, height - 56)
