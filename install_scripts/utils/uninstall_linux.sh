@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 rm -rf ~/.umit
 rm -rf /usr/lib/python2.4/site-packages/umitCore

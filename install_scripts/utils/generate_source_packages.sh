@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Copyright (C) 2005 Insecure.Com LLC.
 #
 # Author: Adriano Monteiro Marques   <py.adriano@gmail.com>

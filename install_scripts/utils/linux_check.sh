@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "##################################################"
 echo "Dependencies installed in your system:"
