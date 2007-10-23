@@ -192,8 +192,7 @@ print
                              "LOCALE_DIR":os.path.join(su, "locale"),
                              "MISC_DIR":os.path.join(su, "misc"),
                              "PIXMAPS_DIR":os.path.join("share", "pixmaps"),
-                             "ICONS_DIR":os.path.join("share", "icons"),
-                             "UMIT_ICON":"umit_48.ico"}
+                             "ICONS_DIR":os.path.join("share", "icons")}
 
         pcontent = ""
         paths_file = os.path.join("umitCore", "Paths.py")

@@ -38,7 +38,6 @@ if hasattr(sys, "frozen"):
     main_dir = dirname(sys.executable)
 
 CONFIG_DIR = join(main_dir, "share", "umit", "config")
-UMIT_ICON = join(main_dir, "share", "icons", "umit_48.ico")
 LOCALE_DIR = join(main_dir, "share", "umit", "locale")
 MISC_DIR = join(main_dir, "share", "umit", "misc")
 ICONS_DIR = join(main_dir, "share", "icons")
@@ -58,8 +57,7 @@ class Paths(object):
                  "pixmaps_dir",
                  "icons_dir",
                  "misc_dir",
-                 "docs_dir",
-                 "umit_icon"]
+                 "docs_dir"]
 
     config_files_list = ["config_file",
                          "profile_editor",
@@ -164,7 +162,6 @@ user home: %s" % config_file)
         self.icons_dir = ICONS_DIR
         self.misc_dir = MISC_DIR
         self.docs_dir = DOCS_DIR
-        self.umit_icon = UMIT_ICON
 
         log.debug(">>> Config file: %s" % config_file)
 
