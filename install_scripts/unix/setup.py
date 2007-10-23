@@ -32,8 +32,6 @@ from stat import *
 
 from umitCore.Version import VERSION
 
-VERSION_FILE = os.path.join("share", "umit", "config", "umit_version")
-
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
 # These directories are relative to the installation or dist directory
