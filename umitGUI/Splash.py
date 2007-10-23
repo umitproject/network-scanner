@@ -22,7 +22,7 @@
 import gtk
 import gobject
 
-from umitCore.Paths import VERSION, REVISION
+from umitCore.Version import VERSION
 
 class Splash(gtk.Window):
     def __init__(self, image, time=1700):
@@ -41,20 +41,15 @@ class Splash(gtk.Window):
 
         self.verbox = gtk.VBox()
         self.version = gtk.Label("%s" % VERSION)
-        self.revision = gtk.Label("Rev. %s" % REVISION)
 
         self.version.set_use_markup(True)
         self.version.set_markup("<span size='23000' weight='heavy'>\
 %s</span>" % VERSION)
-        self.revision.set_use_markup(True)
-        self.revision.set_markup("<span size='10000' weight='heavy'>\
-Rev. %s</span>" % REVISION)
 
         # These constants are derived from the dimensions of the open space in
         # the splash graphic. We attempt to center the version number.
         self.verbox.set_size_request(152, 56)
         self.verbox.pack_start(self.version, True, False)
-        self.verbox.pack_start(self.revision, True, False)
 
         fixed = gtk.Fixed()
         fixed.put(self.verbox, width - 152, height - 56)

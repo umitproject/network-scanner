@@ -18524,9 +18524,9 @@ def create_wizard(user_dir):
 def create_options(user_dir):
     return create_config_file(user_dir, base_paths['options'], options_content)
 
-def create_umit_version(user_dir, version, revision):
+def create_umit_version(user_dir, version):
     return create_config_file(user_dir, base_paths["umit_version"],
-                              "%s\n%s" % (version, revision))
+                              "%s\n" % version)
 
 def create_services_dump(user_dir):
     return create_config_file(user_dir,

@@ -30,14 +30,9 @@ from distutils import log, dir_util
 from glob import glob
 from stat import *
 
-
-# The environ variables are catch only on package generating phase.
-# After package generation, the version and revision turns into a hardcoded string
-VERSION = os.environ.get("UMIT_VERSION", "0.9.5")
-REVISION = os.environ.get("UMIT_REVISION", "2549")
+from umitCore.Version import VERSION
 
 VERSION_FILE = os.path.join("share", "umit", "config", "umit_version")
-SOURCE_PKG = False
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
@@ -120,7 +115,7 @@ class umit_install(install):
 import os, os.path, sys
 
 print
-print '%(line)s Uninstall Umit %(version)s-%(revision)s %(line)s'
+print '%(line)s Uninstall Umit %(version)s %(line)s'
 print
 
 answer = raw_input('Are you sure that you want to completly uninstall Umit %(version)s? \
@@ -132,7 +127,7 @@ if answer != 'yes' and answer != 'y':
 print
 print '%(line)s Uninstalling Umit %(version)s... %(line)s'
 print
-""" % {'version':VERSION, 'revision':REVISION, 'line':'-'*10}
+""" % {'version':VERSION, 'line':'-'*10}
 
         for output in self.get_outputs():
             uninstaller += "print 'Removing %s...'\n" % output
@@ -229,8 +224,8 @@ print
 
     def finish_banner(self):
         print 
-        print "%s Thanks for using Umit %s-%s %s" % \
-              ("#"*10, VERSION, REVISION, "#"*10)
+        print "%s Thanks for using Umit %s %s" % \
+              ("#"*10, VERSION, "#"*10)
         print
 
 
@@ -240,70 +235,15 @@ class umit_sdist(sdist):
         sdist.run(self)
         self.finish_banner()
 
-    def make_release_tree(self, base_dir, files):
-        """Create the directory tree that will become the source
-        distribution archive.  All directories implied by the filenames in
-        'files' are created under 'base_dir', and then we hard link or copy
-        (if hard linking is unavailable) those files into place.
-        Essentially, this duplicates the developer's source tree, but in a
-        directory named after the distribution, containing only the files
-        to be distributed.
-        
-        --- This is a copy of the distutils.command.sdist make_release_tree with
-        a slight modification, which forces the copy of the files instead of
-        hard linking them to the temp directory.
-        """
-        # Create all the directories under 'base_dir' necessary to
-        # put 'files' there; the 'mkpath()' is just so we don't die
-        # if the manifest happens to be empty.
-        self.mkpath(base_dir)
-        dir_util.create_tree(base_dir, files, dry_run=self.dry_run)
-
-        # And walk over the list of files, either making a hard link (if
-        # os.link exists) to each one that doesn't already exist in its
-        # corresponding location under 'base_dir', or copying each file
-        # that's out-of-date in 'base_dir'.  (Usually, all files will be
-        # out-of-date, because by default we blow away 'base_dir' when
-        # we're done making the distribution archives.)
-
-        # Removed the original if statement to force file copying
-        link = None
-        msg = "copying files to %s..." % base_dir
-
-        if not files:
-            log.warn("no files to distribute -- empty manifest?")
-        else:
-            log.info(msg)
-        for file in files:
-            if not os.path.isfile(file):
-                log.warn("'%s' not a regular file -- skipping" % file)
-            else:
-                dest = os.path.join(base_dir, file)
-                self.copy_file(file, dest, link=link)
-
-        self.distribution.metadata.write_pkg_info(base_dir)
-        # End of the modified version of make_release_tree
-
-        # Updating version, revision, splash and paths informations...
-        sys.path.append(os.path.join("install_scripts", "utils"))
-        from version_update import update_setup, update_paths, update_umit_version
-
-        update_setup(base_dir, VERSION, REVISION)
-        update_paths(base_dir, VERSION, REVISION)
-        update_umit_version(base_dir, VERSION, REVISION)
-
     def finish_banner(self):
         print 
-        print "%s The packages for Umit %s-%s are in ./dist %s" % \
-              ("#" * 10, VERSION, REVISION, "#" * 10)
+        print "%s The packages for Umit %s are in ./dist %s" % \
+              ("#" * 10, VERSION, "#" * 10)
         print
-
-if SOURCE_PKG:
-    umit_sdist = sdist
 
 ##################### Umit banner ########################
 print
-print "%s Umit for Linux %s-%s %s" % ("#" * 10, VERSION, REVISION, "#" * 10)
+print "%s Umit for Linux %s %s" % ("#" * 10, VERSION, "#" * 10)
 print
 ##########################################################
 

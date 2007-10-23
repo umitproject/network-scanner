@@ -31,9 +31,7 @@ from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.BasePaths import base_paths, HOME
 from umitCore.TempConf import create_temp_conf_dir
 from umitCore.I18N import _
-
-VERSION = environ.get("UMIT_VERSION", "0.9.5")
-REVISION = environ.get("UMIT_REVISION", "2549")
+from umitCore.Version import VERSION
 
 main_dir = ""
 if hasattr(sys, "frozen"):
@@ -105,7 +103,7 @@ class Paths(object):
             main_config_dir = join(split(base_dir)[0], CONFIG_DIR)
 
         else:
-            main_config_dir = create_temp_conf_dir(VERSION, REVISION)
+            main_config_dir = create_temp_conf_dir(VERSION)
 
         # Main config file, based on the main_config_dir got above
         main_config_file = join(main_config_dir, base_paths['config_file'])
@@ -171,15 +169,14 @@ user home: %s" % config_file)
         log.debug(">>> Config file: %s" % config_file)
 
     def update_config_dir(self, config_dir):
+        # Do any updates of configuration files. Not yet implemented.
         pass
 
     def check_version(self, config_dir):
         version_file = join(config_dir, base_paths['umit_version'])
 
         if exists(version_file):
-            ver = open(version_file).readlines()[0].\
-                                     split("\n")[0].\
-                                     split("\r")[0]
+            ver = open(version_file).readline().strip()
 
             log.debug(">>> This Umit Version: %s" % VERSION)
             log.debug(">>> Version of the files in %s: %s" % (config_dir, ver))

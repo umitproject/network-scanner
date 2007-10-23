@@ -27,13 +27,10 @@ from py2exe.build_exe import py2exe as build_exe
 from distutils.core import setup
 from glob import glob
 
+from umitCore.Version import VERSION
+
 ################################################################################
 # Main Variables
-
-VERSION = os.environ.get("UMIT_VERSION", "0.9.5RC1")
-REVISION = os.environ.get("UMIT_REVISION", "2724")
-
-SOURCE_PKG = False
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
@@ -102,30 +99,21 @@ data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
 os.path.walk(locale_dir, mo_find, data_files)
 
 
-
 class umit_py2exe(build_exe):
     def run(self):
-        base_dir = os.getcwd()
-        sys.path.append(os.path.join("install_scripts", "utils"))
-        from version_update import update_umit_compiled, update_paths, update_umit_version
-
-        update_umit_compiled(base_dir, VERSION, REVISION)
-        update_paths(base_dir, VERSION, REVISION)
-        update_umit_version(base_dir, VERSION, REVISION)
-
         build_exe.run(self)
         self.finish_banner()
 
     def finish_banner(self):
         print 
-        print "%s The compiled version of Umit %s-%s is in ./dist %s" % \
-              ("#"*10, VERSION, REVISION, "#"*10)
+        print "%s The compiled version of Umit %s is in ./dist %s" % \
+              ("#"*10, VERSION, "#"*10)
         print
 
 
 ##################### Umit banner ###################################
 print
-print "%s Umit for Windows %s-%s %s" % ("#"*10, VERSION, REVISION, "#"*10)
+print "%s Umit for Windows %s %s" % ("#"*10, VERSION, "#"*10)
 print
 #####################################################################
 

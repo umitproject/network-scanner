@@ -29,7 +29,8 @@ from higwidgets.hignotebooks import HIGNotebook
 from higwidgets.higscrollers import HIGScrolledWindow
 from higwidgets.higtextviewers import HIGTextView
 
-from umitCore.Paths import Path, VERSION, REVISION
+from umitCore.Version import VERSION
+from umitCore.Paths import Path
 from umitCore.I18N import _
 
 pixmaps_dir = Path.pixmaps_dir
@@ -62,8 +63,7 @@ class About(HIGWindow):
                 self.d[chr(i+c)] = chr((i+13) % 26 + c)
         
         self.lbl_program_version = gtk.Label("""\
-<span size='30000' weight='heavy'>UMIT %s</span>
-<span size='10000' weight='heavy'>Rev. %s</span>""" % (VERSION, REVISION))
+<span size='30000' weight='heavy'>UMIT %s</span>""" % VERSION)
         
         self.lbl_program_description = gtk.Label(\
             _("""UMIT is the nmap frontend, developed in PyGTK

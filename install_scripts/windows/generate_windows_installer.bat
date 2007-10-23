@@ -58,9 +58,12 @@ echo Copying Nmap to his dist directory...
 xcopy %NmapDir%\*.* %DistDir%\Nmap >> %Output%
 
 
+echo Copying setup.py...
+xcopy %WinInstallDir%\setup.py . /Y
+
 echo Compiling Umit using py2exe...
 cd %UmitDir%
-%PythonEXE% -OO %WinInstallDir%\setup.py py2exe
+%PythonEXE% -OO setup.py py2exe
 
 echo Copying some more GTK files to dist directory...
 xcopy %GTKDir%\lib %DistDir%\lib /S /I >> %Output%

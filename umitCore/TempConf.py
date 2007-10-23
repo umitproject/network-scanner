@@ -23,7 +23,7 @@ from os.path import join
 from tempfile import mkdtemp, mkstemp
 from umitCore.UserConf import *
 
-def create_temp_conf_dir(version, revision):
+def create_temp_conf_dir(version):
     conf_dir = mkdtemp("umit-")
 
     # Creating an empty target_list file
@@ -45,7 +45,7 @@ def create_temp_conf_dir(version, revision):
     create_umit_conf(conf_dir)
 
     # Creating the umit_version file
-    create_umit_version(conf_dir, version, revision)
+    create_umit_version(conf_dir, version)
 
     # Creating an empty recent_scans file
     create_recent_scans(conf_dir)

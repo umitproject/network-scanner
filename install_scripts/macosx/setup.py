@@ -25,8 +25,7 @@ import os.path
 from setuptools import setup
 from glob import glob
 
-VERSION = "0.9.4"
-REVISION = "1567"
+from umitCore.Version import VERSION
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
@@ -85,7 +84,7 @@ os.path.walk(locale_dir, mo_find, data_files)
 
 ##################### Umit banner ########################
 print
-print "%s Umit %s-%s %s" % ("#"*10, VERSION, REVISION, "#"*10)
+print "%s Umit %s %s" % ("#"*10, VERSION, "#"*10)
 print
 ##########################################################
 

@@ -10,7 +10,7 @@
 !define MUI_UNABORTWARNING
 
 !define APPLICATION_NAME "Umit"
-!define APPLICATION_VERSION "0.9.4"
+!define APPLICATION_VERSION "0.9.5RC1"
 !define WINPCAP "winpcap-nmap-4.01.exe"
 
 Name "${APPLICATION_NAME}"
