@@ -50,15 +50,14 @@ class Splash(gtk.Window):
         self.revision.set_markup("<span size='10000' weight='heavy'>\
 Rev. %s</span>" % REVISION)
 
-        self.verbox.pack_start(self.version, True, False)
-        self.verbox.set_size_request(-1, 56)
-        self.verbox.show_all()
+        # These constants are derived from the dimensions of the open space in
+        # the splash graphic. We attempt to center the version number.
+        self.verbox.set_size_request(152, 56)
+        self.verbox.pack_start(self.version, False, False)
         self.verbox.pack_start(self.revision, False, False)
 
         fixed = gtk.Fixed()
-        # These constants are derived from the dimensions of the open space in
-        # the splash graphic. We attempt to center the version number.
-        fixed.put(self.verbox, width - 75 - self.verbox.size_request()[0] / 2, height - 56)
+        fixed.put(self.verbox, width - 152, height - 56)
         self.add(fixed)
 
         self.hid = self.connect("expose-event", self.set_bg, mask, pixmap)
