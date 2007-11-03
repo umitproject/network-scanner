@@ -23,6 +23,7 @@ import sys
 import os
 import re
 import threading
+import unittest
 
 from tempfile import mktemp
 from types import StringTypes
@@ -44,6 +45,11 @@ nmap_command_path = "nmap"
 
 log.debug(">>> Platform: %s" % sys.platform)
 log.debug(">>> Nmap command path: %s" % nmap_command_path)
+
+def split_quoted(s):
+    """Like str.split, except that no splits occur inside quoted strings, and
+       quoted strings are unquoted."""
+    return [x.replace("\"", "") for x in re.findall('((?:"[^"]*"|[^"\s]+)+)', s)]
 
 class NmapCommand(object):
     def __init__(self, command=None):
@@ -97,9 +103,8 @@ class NmapCommand(object):
         # Removing output options that user may have set away from command
         found = re.findall('(-o[XGASN]{1}) {0,1}', command)
 
-        # Adequating double quoted options
-        splited = [x.replace("\"", "") for x in re.findall('([\w\-\,\./]+|".*")', command)]
-        #splited = command.split(' ')
+        # Split back into individual options, honoring double quotes.
+        splited = split_quoted(command)
 
         if found:
             for option in found:
@@ -367,6 +372,19 @@ COMMAND: %s
 
 
 
+class SplitQuotedTest(unittest.TestCase):
+    """A unittest class that tests the split_quoted function."""
+
+    def test_split(self):
+        self.assertEqual(split_quoted(''), [])
+        self.assertEqual(split_quoted('a'), ['a'])
+        self.assertEqual(split_quoted('a b c'), 'a b c'.split())
+
+    def test_quotes(self):
+        self.assertEqual(split_quoted('a "b" c'), ['a', 'b', 'c'])
+        self.assertEqual(split_quoted('a "b c"'), ['a', 'b c'])
+        self.assertEqual(split_quoted('a "b c""d e"'), ['a', 'b cd e'])
+        self.assertEqual(split_quoted('a "b c"z"d e"'), ['a', 'b czd e'])
 
 # Testing module functionality! ;-)
 if __name__ == '__main__':
@@ -392,6 +410,8 @@ if __name__ == '__main__':
     #    print open(executando[3]).read()
     #    sleep (1)
     #print open(executando[3]).read()
+
+    unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromTestCase(SplitQuotedTest))
 
     scan = NmapCommand('%s -T4 -iL "/home/adriano/umit/test/targets\ teste"' % nmap_command_path)
     scan.run_scan()
