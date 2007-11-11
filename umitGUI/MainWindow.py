@@ -25,6 +25,7 @@ import gtk
 import sys
 import os
 from os.path import split, isfile, join, abspath, exists
+import xml.sax.saxutils
 
 from types import StringTypes
 from time import time
@@ -496,7 +497,7 @@ Scan Tab?'),
             if os.access(split(scan)[0],os.R_OK) and isfile(scan):
                 scan = scan.replace('\n','')
                 new_rscan = (scan, None, scan, None, scan, self._load_recent_scan)
-                new_rscan_xml += "<menuitem action='%s'/>\n" % scan
+                new_rscan_xml += "<menuitem action='%s'/>\n" % xml.sax.saxutils.escape(scan)
                 
                 self.main_actions.append(new_rscan)
         else:
