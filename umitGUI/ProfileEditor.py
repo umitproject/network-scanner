@@ -268,8 +268,12 @@ for this profile.'))
         
         for i in xrange(self.scan_notebook.get_n_pages()):
             page = self.scan_notebook.get_nth_page(i)
-            page.toolbar.profile_entry.set_active(0)
             page.toolbar.profile_entry.update()
+            list = page.toolbar.profile_entry.get_model()
+            length = len(list)
+            if self.deleted and length >0 :
+                page.toolbar.profile_entry.set_active(0)
+
         
         #page.toolbar.scan_profile.profile_entry.child.\
         #    set_text(self.profile_name_entry.get_text())
