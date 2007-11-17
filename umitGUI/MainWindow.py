@@ -886,7 +886,8 @@ Wait until the scan is finished and then try to save it again.'))
             new = 2
 
         doc_path = abspath(join(Path.docs_dir, "help.html"))
-        if exists(doc_path):
+        log.warning(">>> Openning documentation: %s" % doc_path)
+        if exists(doc_path) and os.access(doc_path, os.R_OK):
             webbrowser.open("file://%s" % doc_path, new=new)
         else:
             d = HIGAlertDialog(parent=self,
