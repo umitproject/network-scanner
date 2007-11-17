@@ -68,6 +68,7 @@ class ProfileEditor(HIGWindow):
             if delete:
                 # Removing profile. It must be saved again
                 self.profile.remove_profile(profile_name)
+                        
                 self.deleted = True
         
         self.constructor = CommandConstructor(options_used)
@@ -263,11 +264,11 @@ for this profile.'))
             
             if response == gtk.RESPONSE_CANCEL:
                 return None
-        
         self.destroy()
         
         for i in xrange(self.scan_notebook.get_n_pages()):
             page = self.scan_notebook.get_nth_page(i)
+            page.toolbar.profile_entry.set_active(0)
             page.toolbar.profile_entry.update()
         
         #page.toolbar.scan_profile.profile_entry.child.\
