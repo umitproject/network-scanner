@@ -22,11 +22,14 @@
 import md5
 
 sqlite = None
+OperationalError = None
 try:
     from pysqlite2 import dbapi2 as sqlite
+    from pysqlite2.dbapi2 import OperationalError
 except ImportError:
     # In case this script is been running under python2.5 with sqlite3
     import sqlite3 as sqlite
+    from sqlite3 import OperationalError
 
 from time import time
 
@@ -49,16 +52,15 @@ except:
 from os.path import exists, dirname
 from os import access, R_OK, W_OK
 
-using_memory = False
-if not exists(umitdb) or \
-   not access(umitdb, R_OK and W_OK) or \
-   not access(dirname(umitdb), R_OK and W_OK):
-    # Tells sqlite to use memory instead of a physics file to avoid crash
-    # and still serve user with most part of umit features
-    umitdb = ":memory:"
-    using_memory = True
 
-connection = sqlite.connect(umitdb)
+using_memory = False
+connection = None
+try:
+    connection = sqlite.connect(umitdb)
+except OperationalError:
+    using_memory = True
+    connection = sqlite.connect(":memory:")
+
 
 class Table(object):
     def __init__(self, table_name):
