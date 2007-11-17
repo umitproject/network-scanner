@@ -572,6 +572,39 @@ with %s" % (target, profile))
         else:
             self.vbox.pack_start(self.scan_notebook, True, True, 4)
 
+        # Conencting ScanNotebook Callbacks
+        self.scan_notebook.connect("page-removed", self._update_when_removed)
+        self.scan_notebook.connect("page-added", self._update_when_added)
+
+    def _update_when_removed(self, notebook, child, pagenum):
+        self._update_main_menu()
+
+    def _update_when_added(self, notebook, child, pagenum):
+        self._update_main_menu()
+
+    def _update_main_menu(self):
+        page = self.scan_notebook.get_n_pages()
+
+        # Get some menu widgets
+        close_scan = self.ui_manager.get_action("/menubar/Scan/Close Scan")
+        save_scan = self.ui_manager.get_action("/menubar/Scan/Save Scan")
+        compare_results = self.ui_manager.get_action("/menubar/Tools/Compare Results")
+        new_profile_with_selected = self.ui_manager.get_action("/menubar/Profile/New Profile with Selected")
+        edit_profile = self.ui_manager.get_action("/menubar/Profile/Edit Profile")
+        
+        if page == 0:
+            close_scan.set_sensitive(False)
+            save_scan.set_sensitive(False)
+            compare_results.set_sensitive(False)
+            new_profile_with_selected.set_sensitive(False)
+            edit_profile.set_sensitive(False)
+        else:
+            close_scan.set_sensitive(True)
+            save_scan.set_sensitive(True)
+            compare_results.set_sensitive(True)
+            new_profile_with_selected.set_sensitive(True)
+            edit_profile.set_sensitive(True)
+
     def _create_statusbar(self):
         self.statusbar = gtk.Statusbar()
         self.vbox.pack_start(self.statusbar, False, False, 0)
@@ -815,6 +848,9 @@ Wait until the scan is finished and then try to save it again.'))
     def _edit_scan_profile_cb(self, p):
         page = self.scan_notebook.get_nth_page\
                 (self.scan_notebook.get_current_page())
+        if page == None:
+            return
+
         profile = page.toolbar.selected_profile
         
         pe = ProfileEditor(profile)
@@ -824,6 +860,9 @@ Wait until the scan is finished and then try to save it again.'))
     
     def _new_scan_profile_with_selected_cb(self, p):
         page = self.scan_notebook.get_nth_page(self.scan_notebook.get_current_page())
+        if page == None:
+            return
+
         profile = page.toolbar.selected_profile
         
         pe = ProfileEditor(profile, delete=False)
