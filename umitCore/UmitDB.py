@@ -27,8 +27,11 @@ try:
     from pysqlite2 import dbapi2 as sqlite
     from pysqlite2.dbapi2 import OperationalError
 except ImportError:
-    # In case this script is been running under python2.5 with sqlite3
-    import sqlite3 as sqlite
+    try:
+        # In case this script is been running under python2.5 with sqlite3
+        import sqlite3 as sqlite
+    except ImportError:
+        raise ImportError(_("No module named dbapi2.pysqlite2 or sqlite3"))
     from sqlite3 import OperationalError
 
 from time import time
