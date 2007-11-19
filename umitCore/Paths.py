@@ -24,6 +24,7 @@ from os.path import exists, join, split, abspath, dirname
 from tempfile import mktemp
 from types import StringTypes
 
+import os.path
 import sys
 
 from umitCore.UmitLogging import log
@@ -33,7 +34,9 @@ from umitCore.TempConf import create_temp_conf_dir
 from umitCore.I18N import _
 from umitCore.Version import VERSION
 
-main_dir = ""
+# Look for files relative to the script path to allow running within the build
+# directory.
+main_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
 if hasattr(sys, "frozen"):
     main_dir = dirname(sys.executable)
 
