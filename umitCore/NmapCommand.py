@@ -27,7 +27,10 @@ import unittest
 
 from tempfile import mktemp
 from types import StringTypes
-from subprocess import Popen, PIPE
+try:
+    from subprocess import Popen, PIPE
+except ImportError, e:
+    raise ImportError(str(e) + ".\n" + _("Python 2.4 or later is required."))
 
 from umitCore.NmapOptions import NmapOptions
 from umitCore.OptionsConf import options_file
