@@ -78,11 +78,10 @@ A required module was not found.
             outputs = "CRASH REPORTED:\n\
     SYS.PLATFORM: %s\n\
     OS.NAME: %s\n\
-    %s Version: %s\n\
+    Umit Version: %s\n\
     %s\nSTDOUT\n%s\n\n\
     %s\nSTDERR\n%s\n\nHOOK:\n%s" % \
             (sys.platform, os.name,
-             APP_DISPLAY_NAME,
              VERSION, "-"*80,
              open(stdout_output).read(),
              "-"*80,
@@ -92,7 +91,7 @@ A required module was not found.
             report_result = False
             try:
                 old_stdout.write("Bug reported!")
-                c = CrashReport("%s Crash - '%s'" % (APP_DISPLAY_NAME, value), outputs)
+                c = CrashReport("Umit Crash - '%s'" % value, outputs)
                 c.show_all()
                 gtk.main()
             except:
