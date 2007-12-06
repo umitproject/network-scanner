@@ -992,17 +992,18 @@ Fingerprints Found!"),
             parent.remove(child)
 
     def switch_host_details(self, page):
-        if type(page) == type([]) and len(page) > 1:
-            for p in page:
-                p.hide()
-                p.set_expanded(False)
-                self.scan_result.scan_result_notebook.host_details_vbox._pack_noexpand_nofill(p)
-            
-            self.scan_result.scan_result_notebook.host_details_vbox.show_all()
-            
-            return
-        elif len(page) == 1:
-            page = page[0]
+        if type(page) == type([]):
+            if len(page) > 1:
+                for p in page:
+                    p.hide()
+                    p.set_expanded(False)
+                    self.scan_result.scan_result_notebook.host_details_vbox._pack_noexpand_nofill(p)
+                
+                self.scan_result.scan_result_notebook.host_details_vbox.show_all()
+                
+                return
+            else:
+                page = page[0]
         
         try:
             page.hide()
