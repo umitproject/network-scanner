@@ -1002,7 +1002,7 @@ Fingerprints Found!"),
                 self.scan_result.scan_result_notebook.host_details_vbox.show_all()
                 
                 return
-            else:
+            elif len(page) == 1:
                 page = page[0]
         
         try:
