@@ -527,7 +527,7 @@ or type the nmap command you would like to execute."),
         try:
             self.parsed.nmap_output = self.command_execution.get_raw_output()
         except:
-            self.parsed.nmap_output = "\\n".join(self.scan_result.get_nmap_output().split("\n"))
+            self.parsed.nmap_output = self.scan_result.get_nmap_output()
 
     def kill_scan(self):
         try:

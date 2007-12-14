@@ -234,7 +234,7 @@ before trying to start scan!")
         raw_output = raw_desc.readlines()
         
         raw_desc.close()
-        return "\\n".join(raw_output)
+        return "".join(raw_output)
 
     def get_output(self):
         output_desc = open(self.stdout_output, "r")
