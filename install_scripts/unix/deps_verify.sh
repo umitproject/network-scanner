@@ -30,5 +30,9 @@ Check "Python"
 python -c "import gtk"
 Check "PyGTK"
 
+# sqllite
+pythonn -c 
+Check "SQLite"
+
 
 
