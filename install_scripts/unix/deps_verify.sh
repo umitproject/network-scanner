@@ -31,8 +31,8 @@ python -c "import gtk"
 Check "PyGTK"
 
 # sqllite
-pythonn -c 
-Check "SQLite"
+#pythonn -c 
+#Check "SQLite"
 
 
 
