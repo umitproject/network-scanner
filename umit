@@ -29,7 +29,7 @@ from os.path import split
 
 from umitCore.UmitOptionParser import option_parser
 
-UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", False)
+UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
 
 if not UMIT_DEVELOPMENT:
     from tempfile import mktemp
