@@ -173,8 +173,9 @@ class SearchResult(object):
         for first in self.parsed_scan.ports:
             for ports in first:
                 for port in ports["port"]:
-                    if port["service_name"] not in services:
-                        services.append(port["service_name"])
+                    if port.has_key('service_name'):
+                        if port["service_name"] not in services:
+                            services.append(port["service_name"])
                         
         if service in services:
             return True # Given service name matched current result
