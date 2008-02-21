@@ -24,117 +24,70 @@
 import os
 import sys
 import signal
-import webbrowser
-from os.path import split
 
-from umitCore.UmitOptionParser import option_parser
+# used by exception hook
+import gtk
+import cgitb
+from umitCore.I18N import _
+from umitCore.Version import VERSION
+from umitGUI.CrashReport import CrashReport
+from higwidgets.higdialogs import HIGAlertDialog
 
 UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
 
-if not UMIT_DEVELOPMENT:
-    from tempfile import mktemp
-    # Generating temporary files names
-    stdout_output = mktemp()
-    stderr_output = mktemp()
-
-    old_stdout = sys.stdout
-    old_stderr = sys.stderr
-
-    _stdout = open(stdout_output, "w")
-    _stderr = open(stderr_output, "w")
-
-    sys.stdout = _stdout
-    sys.stderr = _stderr
-
-    # This will catch exceptions and send them to bugzilla
-    def excepthook(type, value, tb):
-        import traceback
-        import gtk
-
-        from umitCore.I18N import _
-        from umitCore.Version import VERSION
-        from higwidgets.higdialogs import HIGAlertDialog
-        from umitGUI.CrashReport import CrashReport
-
-        if type == ImportError:
+class UmitExceptionHook(object):
+    def __call__(self, etype, emsg, etb):
+        if etype == ImportError:
             d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                 message_format=_("Import error"),
-                secondary_text=_("""\
-A required module was not found.
+                secondary_text=_("\nA required module was not "
+                    "found.\n\nError: %s" % emsg))
+            d.run()
+            d.destroy()
+            return
 
-""" + value.message))
+        crash_text = cgitb.text((etype, emsg, etb))
+        extrainfo = "%-15s %s\n%-15s %s\n%-15s %s\n" % ("sys.platform", 
+            sys.platform, "os.name", os.name, "Umit version", VERSION)
+        crashmsg = "Crash Report\n%s\n%s\nDescription\n%s\n%s" % ('=' * 10, 
+            extrainfo, '-' * 20, crash_text)
+
+        try:
+            cwin = CrashReport("Umit Crash - '%s'" % emsg, crashmsg)
+            cwin.show_all()
+            gtk.main()
+        except:
+            d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
+                message_format=_("Bug not reported"),
+                secondary_text=_("A critical error occourried during "
+                    "Umit execution, \nand it was not properly reported " 
+                    "to our bug tracker. Please,\ncopy the error message "
+                    "bellow and report it on our bug tracker.\n\n"
+                    "The following error message was NOT reported:\n"
+                    "%s") % crash_msg)
             d.run()
             d.destroy()
         else:
-            traceback.print_tb(tb)
-
-            sys.stdout.close()
-            sys.stderr.close()
-
-            sys.stdout = old_stdout
-            sys.stderr = old_stderr
-
-            hook = "Type: %s\nValue: %s\n" % (type, value)
-            outputs = "CRASH REPORTED:\n\
-    SYS.PLATFORM: %s\n\
-    OS.NAME: %s\n\
-    Umit Version: %s\n\
-    %s\nSTDOUT\n%s\n\n\
-    %s\nSTDERR\n%s\n\nHOOK:\n%s" % \
-            (sys.platform, os.name,
-             VERSION, "-"*80,
-             open(stdout_output).read(),
-             "-"*80,
-             open(stderr_output).read(),
-             hook)
-
-            report_result = False
-            try:
-                old_stdout.write("Bug reported!")
-                c = CrashReport("Umit Crash - '%s'" % value, outputs)
-                c.show_all()
-                gtk.main()
-            except:
-                d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
-                                   message_format=_("Bug not reported"),
-                                   secondary_text=_("""A critical error \
-occourried during Umit execution,
-and it was not properly reported to our bug tracker. Please,
-copy the error message bellow and report it on our bug tracker.
-
-The following error message was NOT reported:
-%s""") % (outputs))
-                d.run()
-                d.destroy()
-            else:
-                # Showing a message on the terminal
-                old_stdout.write("Bug reported!")
-                old_stdout.write("\n")
-
-                # Calling a browser to open the result from bug tracker
-                if report_result:
-                    webbrowser.open("file://%s" % report_result)
+            sys.stdout.write("Bug reported")
 
         gtk.main_quit()
 
-    sys.excepthook = excepthook
+if not UMIT_DEVELOPMENT:
+    sys.excepthook = UmitExceptionHook()
 
-if __name__ == '__main__':
-    ######################################
+def main(args):
     # Setting the umit home directory
-
     from umitCore.Paths import Path
-    Path.set_umit_conf(split(sys.argv[0])[0])
-
-    ######################################
+    Path.set_umit_conf(os.path.split(args[0])[0])
+    #################################
 
     from umitCore.UmitLogging import log
     from umitGUI.App import App
+
     umit_app = App()
 
     if os.name == "posix":
         signal.signal(signal.SIGHUP, umit_app.safe_shutdown)
-
     signal.signal(signal.SIGTERM, umit_app.safe_shutdown)
     signal.signal(signal.SIGINT, umit_app.safe_shutdown)
 
@@ -142,3 +95,6 @@ if __name__ == '__main__':
         umit_app.run()
     except KeyboardInterrupt:
         sys.exit(signal.SIGINT)
+
+if __name__ == "__main__":
+    main(sys.argv)
