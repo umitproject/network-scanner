@@ -47,8 +47,10 @@ class UmitExceptionHook(object):
             return
 
         crash_text = cgitb.text((etype, emsg, etb))
-        extrainfo = "%-15s %s\n%-15s %s\n%-15s %s\n" % ("sys.platform", 
-            sys.platform, "os.name", os.name, "Umit version", VERSION)
+        extrainfo = "%-17s %s\n%-17s %s\n%-17s %s\n%-17s %s\n" % (
+            "sys.platform", sys.platform, "os.name", os.name, 
+            "Gtk version", '.'.join(map(str, gtk.gtk_version)), 
+            "Umit version", VERSION)
         crashmsg = "Crash Report\n%s\n%s\nDescription\n%s\n%s" % ('=' * 10, 
             extrainfo, '-' * 20, crash_text)
 
