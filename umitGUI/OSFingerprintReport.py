@@ -46,7 +46,7 @@ class OSFingerprintReport(gtk.Window, object):
         self._connect_widgets()
 
     def _set_classification_list(self):
-        class_file = open(os_classification_file, "r")
+        class_file = open(os_classification_file, "rb")
         class_list = cPickle.load(class_file)
         class_file.close()
         

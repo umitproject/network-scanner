@@ -23,7 +23,7 @@ import cPickle
 from umitCore.OSListDump import os_dump_file
 
 def load_dumped_os():
-    of = open(os_dump_file)
+    of = open(os_dump_file, "rb")
     osd = cPickle.load(of)
     of.close()
     return osd

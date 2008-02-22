@@ -64,7 +64,7 @@ def create_services_dump(services, services_dump):
     serv_file.close()
 
     print ">>> Creating %s file" % services_dump
-    serv_dump = open(services_dump, "w")
+    serv_dump = open(services_dump, "wb")
     cPickle.dump(services_dict, serv_dump)
     serv_dump.close()
     print ">>> Created!"

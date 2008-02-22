@@ -24,7 +24,7 @@ import cPickle
 from umitCore.ServicesDump import services_dump_file
 
 def load_dumped_services():
-    serv_dump = open(services_dump_file)
+    serv_dump = open(services_dump_file, "rb")
     services_list = cPickle.load(serv_dump)
     serv_dump.close()
 

@@ -61,14 +61,14 @@ def parse(os_file):
     return os_dict
 
 def write_os_db_dump(osd, file_name):
-    f = open(file_name, "w")
+    f = open(file_name, "wb")
     try:
         cPickle.dump(osd, f)
     finally:
         f.close()
 
 def write_os_classification_dump(osd, file_name):
-    f = open(file_name, "w")
+    f = open(file_name, "wb")
     try:
         os_classes = osd.keys()
         os_classes.sort(lambda a, b: cmp(a.lower(), b.lower()))
@@ -86,7 +86,7 @@ def write_os_classification_dump(osd, file_name):
         f.close()
 
 def load_dumped_os():
-    f = open(os_dump)
+    f = open(os_dump, "rb")
     osd = cPickle.load(f)
     f.close()
 
