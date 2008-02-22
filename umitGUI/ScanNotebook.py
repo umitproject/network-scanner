@@ -1135,8 +1135,8 @@ Fingerprints Found!"),
         host_page.clear_port_tree()
         
         for host in host_list:
-            parent = host_page.port_tree.append(None, [host['host'].\
-                                            get_hostname(),0,'','','','', ''])
+            parent = host_page.port_tree.append(None, 
+                [host['host'].get_hostname(), '', 0, '', '', '', ''])
             for port in host['host'].get_ports():
                 for p in port.get('port', []):
                     host_page.port_tree.append(parent, \
