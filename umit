@@ -55,8 +55,20 @@ class UmitExceptionHook(object):
         try:
             cwin = CrashReport("Umit Crash - '%s'" % emsg, crashmsg)
             cwin.show_all()
-            gtk.main()
+            while True: 
+                # keeping running while bug report is not sent successfully,
+                # or until the user closes the window.
+                result = cwin.run()
+                if result in (gtk.RESPONSE_CANCEL, gtk.RESPONSE_DELETE_EVENT,
+                    gtk.RESPONSE_NONE):
+
+                    cwin.destroy()
+                    break
         except:
+            # XXX if for some reason an exception happened, the following
+            #     dialog will present a very long message and won't fit on
+            #     user's screen (probably). Maybe the error could be saved
+            #     to a file or we could place a scrolled window there.
             d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                 message_format=_("Bug not reported"),
                 secondary_text=_("A critical error occourried during "
@@ -64,13 +76,11 @@ class UmitExceptionHook(object):
                     "to our bug tracker. Please,\ncopy the error message "
                     "bellow and report it on our bug tracker.\n\n"
                     "The following error message was NOT reported:\n"
-                    "%s") % crash_msg)
+                    "%s") % crashmsg)
             d.run()
             d.destroy()
-        else:
-            sys.stdout.write("Bug reported")
-
-        gtk.main_quit()
+        finally:
+            gtk.main_quit()
 
 if not UMIT_DEVELOPMENT:
     sys.excepthook = UmitExceptionHook()
