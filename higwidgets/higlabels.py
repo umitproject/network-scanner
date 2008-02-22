@@ -99,11 +99,11 @@ class HIGEntryLabel(gtk.Label):
     """
     Simple label, like the ones used to label entries
     """
-    def __init__(self, text=None):
+    def __init__(self, text=None, underline=False):
         gtk.Label.__init__(self, text)
         self.set_justify(gtk.JUSTIFY_LEFT)
         self.set_alignment(0, 0.50)
-        self.set_use_underline(True)
+        self.set_use_underline(underline)
         self.set_use_markup(True)
         self.set_line_wrap(True)
 
@@ -121,7 +121,11 @@ class HIGDialogLabel(gtk.Label):
 if __name__ == "__main__":
     w = gtk.Window()
     h = HIGHintSectionLabel("Label", "Hint")
-    w.add(h)
+    test = HIGEntryLabel("x86_64")
+    box = gtk.VBox()
+    box.add(h)
+    box.add(test)
+    w.add(box)
     w.connect("delete-event", lambda x, y: gtk.main_quit())
     w.show_all()
 
