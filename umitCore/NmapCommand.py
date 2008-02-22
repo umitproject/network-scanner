@@ -285,12 +285,15 @@ class CommandConstructor:
             self.add_option(k, v, False) # TODO: check this place further
 
     def add_option(self, option_name, args=[], level=False):
+        if option_name == "None" and not args and not level:
+            # this certainly shouldn't be added
+            return
         self.options[option_name] = (args, level)
         
 
     def remove_option(self, option_name):
         if option_name in self.options.keys():
-            del(self.options[option_name])
+            self.options.pop(option_name)
 
     def get_command(self, target):
         splited = ['%s' % nmap_command_path]
