@@ -28,10 +28,13 @@ import signal
 # used by exception hook
 import gtk
 import cgitb
+import tempfile
+
 from umitCore.I18N import _
 from umitCore.Version import VERSION
-from umitGUI.CrashReport import CrashReport
+from umitGUI.BugReport import CrashReport
 from higwidgets.higdialogs import HIGAlertDialog
+#########################
 
 UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
 
@@ -67,18 +70,16 @@ class UmitExceptionHook(object):
                     cwin.destroy()
                     break
         except:
-            # XXX if for some reason an exception happened, the following
-            #     dialog will present a very long message and won't fit on
-            #     user's screen (probably). Maybe the error could be saved
-            #     to a file or we could place a scrolled window there.
+            tempfd, tempname = tempfile.mkstemp()
+            os.write(tempfd, crashmsg)
             d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                 message_format=_("Bug not reported"),
                 secondary_text=_("A critical error occourried during "
                     "Umit execution, \nand it was not properly reported " 
-                    "to our bug tracker. Please,\ncopy the error message "
-                    "bellow and report it on our bug tracker.\n\n"
-                    "The following error message was NOT reported:\n"
-                    "%s") % crashmsg)
+                    "to our bug tracker. The crash description was saved to: "
+                    "%s, so you can still report it on our bug "
+                    "tracker.") % tempname)
+            os.close(tempfd)
             d.run()
             d.destroy()
         finally:
@@ -93,7 +94,6 @@ def main(args):
     Path.set_umit_conf(os.path.split(args[0])[0])
     #################################
 
-    from umitCore.UmitLogging import log
     from umitGUI.App import App
 
     umit_app = App()

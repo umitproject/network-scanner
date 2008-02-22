@@ -29,7 +29,8 @@ atid = "752647"
 
 sf_site = "http://www.sourceforge.net/"
 sf_project_site = sf_site + "projects/umit/"
-sf_bug_tracker_page = sf_site + "tracker/?group_id=%s&atid=%s" % (group_id, atid)
+sf_bug_tracker_page = sf_site + "tracker/?group_id=%s&atid=%s" % (group_id, 
+    atid)
 sf_bug_tracker_submit = sf_site + "tracker/index.php"
 
 
@@ -43,14 +44,14 @@ class BugRegister(object):
         self.group_id = group_id
         self.atid = atid
         self.func = "postadd"
-        self.is_private = "1"
+        self.is_private = "0" # not private
         self.category_id = "862568"
         self.artifact_group_id = "100" # None
         self.assigned_to = "855755" # boltrix
         self.priority = "5"
         self.summary = "Testing umit bug reporter"
-        self.details = "Just testing the umit dialog to report bugs directly from the interface!\
- py.adriano@gmail.com"
+        self.details = ("Just testing the umit dialog to report bugs "
+            "directly from the interface! py.adriano@gmail.com")
         self.input_file = ""
         self.file_description = ""
         self.submit = "SUBMIT"
@@ -70,9 +71,10 @@ class BugRegister(object):
                                  "file_description":self.file_description,
                                  "submit":self.submit})
 
-        # The submit page source code points that the info should be set using POST method
-        # But, it only worked sending it through GET method. So, I decided to send using
-        # both methods, to insure that it's going to work.
+        # The submit page source code points that the info should be set 
+        # using POST method.
+        # But, it only worked sending it through GET method. So, I decided 
+        # to send using both methods, to insure that it's going to work.
         request = urllib2.Request(sf_bug_tracker_submit + "?" + data, data)
         response = urllib2.urlopen(request)
 
