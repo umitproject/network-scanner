@@ -62,6 +62,7 @@ class NmapOutputViewer (gtk.VPaned):
         self.pack1(self.scrolled, resize=True, shrink=True)
         self.pack2(self.hbox_buttons, resize=True, shrink=False)
         
+        self.nmap_output_file = None
         self.nmap_previous_output = ''
         self.brazil = True
         
@@ -354,15 +355,18 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
     
     def refresh_output(self, widget=None):
         log.debug("Refresh nmap output")
-        nmap_of = open(self.nmap_output_file, "r")
 
-        new_output = nmap_of.read()
+        if self.nmap_output_file != None:
 
-        if self.nmap_previous_output != new_output:
-            self.text_buffer.set_text(enc(new_output))
-            self.nmap_previous_output = new_output
+            nmap_of = open(self.nmap_output_file, "r")
 
-        nmap_of.close()
+            new_output = nmap_of.read()
+
+            if self.nmap_previous_output != new_output:
+                self.text_buffer.set_text(enc(new_output))
+                self.nmap_previous_output = new_output
+
+            nmap_of.close()
     
 if __name__ == '__main__':
     w = gtk.Window()
