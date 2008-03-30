@@ -58,32 +58,35 @@ class UmitExceptionHook(object):
             extrainfo, '-' * 20, crash_text)
 
         try:
-            cwin = CrashReport("Umit Crash - '%s'" % emsg, crashmsg)
-            cwin.show_all()
-            while True: 
-                # keeping running while bug report is not sent successfully,
-                # or until the user closes the window.
-                result = cwin.run()
-                if result in (gtk.RESPONSE_CANCEL, gtk.RESPONSE_DELETE_EVENT,
-                    gtk.RESPONSE_NONE):
+            try:
+                cwin = CrashReport("Umit Crash - '%s'" % emsg, crashmsg)
+                cwin.show_all()
+                while True: 
+                    # keeping running while bug report is not sent successfully,
+                    # or until the user closes the window.
+                    result = cwin.run()
+                    if result in (gtk.RESPONSE_CANCEL,
+                        gtk.RESPONSE_DELETE_EVENT,
+                        gtk.RESPONSE_NONE):
 
-                    cwin.destroy()
-                    break
-        except:
-            tempfd, tempname = tempfile.mkstemp()
-            os.write(tempfd, crashmsg)
-            d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
-                message_format=_("Bug not reported"),
-                secondary_text=_("A critical error occourried during "
-                    "Umit execution, \nand it was not properly reported " 
-                    "to our bug tracker. The crash description was saved to: "
-                    "%s, so you can still report it on our bug "
-                    "tracker.") % tempname)
-            os.close(tempfd)
-            d.run()
-            d.destroy()
+                        cwin.destroy()
+                        break
+            except:
+                tempfd, tempname = tempfile.mkstemp()
+                os.write(tempfd, crashmsg)
+                d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
+                    message_format=_("Bug not reported"),
+                    secondary_text=_("A critical error occourried during "
+                        "Umit execution, \nand it was not properly reported " 
+                        "to our bug tracker. The crash description was saved to: "
+                        "%s, so you can still report it on our bug "
+                        "tracker.") % tempname)
+                os.close(tempfd)
+                d.run()
+                d.destroy()
         finally:
             gtk.main_quit()
+
 
 if not UMIT_DEVELOPMENT:
     sys.excepthook = UmitExceptionHook()
