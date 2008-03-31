@@ -52,7 +52,7 @@ GNU/Linux Installation
    $ tar xvzf umit-0.9.1.tar.gz
 
    # Extracting bziped tarball
-   $ tar xvjf umit-0.9.1.tar.gz
+   $ tar xvjf umit-0.9.1.tar.bz2
 
    # Extracting ziped source
    $ unzip umit-0.9.1.zip
