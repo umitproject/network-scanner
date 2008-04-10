@@ -537,9 +537,9 @@ class ScanNotebookPage(HIGVBox):
         del(profile) # XXX not needed, will remove on next commit if no one
                      #     complains.
 
-        try:
+        if hasattr(self, "command_execution"):
             self.parsed.nmap_output = self.command_execution.get_raw_output()
-        except:
+        elif not self.parsed.nmap_output:
             self.parsed.nmap_output = self.scan_result.get_nmap_output()
 
     def kill_scan(self):

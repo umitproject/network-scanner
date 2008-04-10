@@ -96,7 +96,7 @@ class SearchConfig(UmitConfigParser, object):
         self.parser.add_section(self.section_name)
         self.directory = ""
         self.file_extension = "usr"
-        self.save_time = "60;days"
+        self.save_time = "60;Days"
         self.store_results = True
         self.search_db = True
 
@@ -132,7 +132,7 @@ class SearchConfig(UmitConfigParser, object):
             self._set_it("file_extension", file_extension)
 
     def get_save_time(self):
-        return self._get_it("save_time", "60;days").split(";")
+        return self._get_it("save_time", "60;Days").split(";")
 
     def set_save_time(self, save_time):
         if type(save_time) == type([]):
