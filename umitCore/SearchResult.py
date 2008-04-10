@@ -305,7 +305,13 @@ class SearchTabs(SearchResult, object):
             sbook_page = self.scan_notebook.get_nth_page(i)
 
             if not sbook_page.status.get_empty():
-                scan_file = sbook_page.command_execution.get_xml_output_file()
+                scan_file = sbook_page.parsed.nmap_xml_file
+                if hasattr(scan_file, "name"):
+                    # this scan was loaded from a file so nmap_xml_file is
+                    # actually a file object, but we are interested only in
+                    # the file name.
+                    scan_file = scan_file.name
+
             if scan_file and os.access(scan_file, os.R_OK) and os.path.isfile(scan_file):
                 log.debug(">>> Retrieving unsaved scan result: %s" % scan_file)
 
