@@ -79,6 +79,7 @@ import getopt
 import difflib
 import glob
 import os.path
+import codecs
 
 try:
     True, False
@@ -136,8 +137,6 @@ class Options:
 
 class MsgmergeError(Exception):
     '''Exception class for msgmerge'''
-    def __init__(self, args):
-        self.args = args
 
 def gen(lines):
     '''
@@ -319,7 +318,7 @@ def parse(filename, entry):
     cmt = autocmt = ref = flag = ''
     msgid = False
     lno = 0
-    while not lno == last:    
+    while not lno == last:
         l, lno = g.next()
         if l.startswith('# '):
             l, lno, g, cmt  = slurp(l, g, '# ')
@@ -452,7 +451,7 @@ def header(pot, defs):
             'Error: did not find POT-Creation-Date field in pot file.')
 
     subs = '\\1%s\\3' % m.group(2)
-    po.str, count = r.subn(subs, po.str)
+    _, count = r.subn(subs, po.str)
     if not count == 1:
         raise MsgmergeError(
             'Error: did not find POT-Creation-Date field in po file.')
@@ -466,7 +465,7 @@ def match(defs, refs):
     global option
     matches = []
     empty = Msgs('msgid ""\n', 'msgstr ""\n', '', -1, 'str')
-    deco = [(r.lno, r) for r in refs.values() ]
+    deco = [(r.lno, r) for r in refs.values()]
     deco.sort()
     po = header(deco.pop(0)[1], defs)       # Header entry
     matches.append(add(empty, po))
@@ -563,14 +562,17 @@ def cmdline():
         print '%(name)s: ' % globals() + '%s' % err
         sys.exit(1)
 
-def io(iofile, mode = 'r'):
+def io(iofile, mode = 'rU'):
     '''Wrapper around open().'''
     try:
-        fd = open(iofile, mode)
+        fo = open(iofile, mode)        
+        if 'r' in mode and fo.read(3) != codecs.BOM_UTF8:
+            fo.seek(0)
+
     except IOError, msg:
         raise MsgmergeError('error while opening file: %s: %s.' %
                             (msg[1], iofile))
-    return fd
+    return fo
 
 def backup(infile):
     '''Handle backup of files in update mode'''
