@@ -3,6 +3,9 @@
 # Written by Martin v. Löwis <loewis@informatik.hu-berlin.de>
 #
 # Changelog: (Guilherme Polo)
+#   2008-04-11
+#    - Support for files with BOM UTF8 mark.
+#
 #   2008-04-10
 #    - Support for fuzzy strings in output.
 #    - Bumped to version 1.1.1
@@ -42,6 +45,7 @@ import os
 import getopt
 import struct
 import array
+import codecs
 
 __version__ = "1.1.1"
 
@@ -118,6 +122,8 @@ def make(filename, outfile, use_fuzzy):
 
     try:
         lines = open(infile).readlines()
+        if lines[0].startswith(codecs.BOM_UTF8):
+            lines[0] = lines[0][len(codecs.BOM_UTF8):]
     except IOError, msg:
         print >> sys.stderr, msg
         sys.exit(1)
