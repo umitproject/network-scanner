@@ -1,12 +1,12 @@
-# translation of messages.po to Italiano
+# translation of it.po to Italiano
 # Copyright (C) YEAR ORGANIZATION
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: messages\n"
+"Project-Id-Version: it\n"
 "POT-Creation-Date: 2008-04-09 20:41+CEST\n"
-"PO-Revision-Date: 2008-04-09 20:25+0200\n"
+"PO-Revision-Date: 2008-04-11 00:33+0200\n"
 "Last-Translator:  <stack.box@gmail.com>\n"
 "Language-Team: Italiano <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "Cambianenti a questo file potrebbero rendere UMIT incapace di leggerlo."
 
 #: umitCore/DiffHtml.py:156
 msgid "Regular Text Diff: "
-msgstr ""
+msgstr "Diff Espressione Regolare: "
 
 #: umitCore/NmapCommand.py:33
 msgid "Python 2.4 or later is required."
@@ -106,36 +106,42 @@ msgid "Unknown"
 msgstr "Sconosciuto"
 
 #: umitCore/NmapParser.py:167
+#, fuzzy
 msgid ""
 "umitCore.NmapParser.set_ip_address deprecated! Use umitCore.NmapParser."
 "set_ip instead."
 msgstr ""
 
 #: umitCore/NmapParser.py:172
+#, fuzzy
 msgid ""
 "umitCore.NmapParser.get_ip_address deprecated! Use umitCore.NmapParser."
 "get_ip instead."
 msgstr ""
 
 #: umitCore/NmapParser.py:191
+#, fuzzy
 msgid ""
 "umitCore.NmapParser.set_mac_address deprecated! Use umitCore.NmapParser."
 "set_mac instead."
 msgstr ""
 
 #: umitCore/NmapParser.py:196 umitCore/NmapParser.py:582
+#, fuzzy
 msgid ""
 "umitCore.NmapParser.get_mac_address deprecated! Use umitCore.NmapParser."
 "get_mac instead."
 msgstr ""
 
 #: umitCore/NmapParser.py:208
+#, fuzzy
 msgid ""
 "umitCore.NmapParser.set_ipv6_address deprecated! Use umitCore.NmapParser."
 "set_ipv6 instead."
 msgstr ""
 
 #: umitCore/NmapParser.py:213 umitCore/NmapParser.py:598
+#, fuzzy
 msgid ""
 "umitCore.NmapParser.get_ipv6_address deprecated! Use umitCore.NmapParser."
 "get_ipv6 instead."
@@ -154,6 +160,7 @@ msgid "Unknown version"
 msgstr "Versione sconosciuta"
 
 #: umitCore/NmapParser.py:566
+#, fuzzy
 msgid ""
 "umitCore.NmapParser.get_ipv4_address deprecated! Use umitCore.NmapParser."
 "get_ipv4 instead."
@@ -192,8 +199,8 @@ msgid "No module named dbapi2.pysqlite2 or sqlite3"
 msgstr "Nessun modulo chiamato dbapi2.pysqlite2 o sqlite3"
 
 #: umitCore/UmitOptionParser.py:39
-msgid ""
-"*NOT IMPLEMENTED* - Start Umit and go straight to Network Inventory window."
+#, fuzzy
+msgid "*NOT IMPLEMENTED* - Start Umit and go straight to Network Inventory window."
 msgstr ""
 
 #: umitCore/UmitOptionParser.py:49
@@ -211,6 +218,7 @@ msgstr ""
 "specifico."
 
 #: umitCore/UmitOptionParser.py:66
+#, fuzzy
 msgid ""
 "*NOT IMPLEMENTED* - Open the diff compare window, in compare mode comparing "
 "the two given scan result files (Nmap XML output or usr (Umit Scan Result) "
@@ -218,12 +226,14 @@ msgid ""
 msgstr ""
 
 #: umitCore/UmitOptionParser.py:75
+#, fuzzy
 msgid ""
 "*NOT IMPLEMENTED* - Open the diff compare window, in text mode comparing the "
 "two given scan result files (Nmap XML output or usr, Umit Scan Result)."
 msgstr ""
 
 #: umitCore/UmitOptionParser.py:85
+#, fuzzy
 msgid ""
 "*NOT IMPLEMENTED* - Take two scan result files (Nmap XML output or usr, Umit "
 "Scan Result), make a text diff and print it in the terminal without openning "
@@ -231,6 +241,7 @@ msgid ""
 msgstr ""
 
 #: umitCore/UmitOptionParser.py:96
+#, fuzzy
 msgid ""
 "*NOT IMPLEMENTED* - Run Umit and go straight to NSE Facilitator Interface. "
 "You may specify nse scripts as arguments if you want use them."
@@ -241,14 +252,19 @@ msgid ""
 "Specify a target to be used along with other options. If specified alone, "
 "opens Umit with the target field filled with the specified target"
 msgstr ""
+"Specificare un target da usare con queste opzioni. Se fornito, Umit verrà "
+"aperto con il campo target riempito da quello specificato"
 
 #: umitCore/UmitOptionParser.py:122
 msgid ""
 "Specify a scan result file in Nmap XML Output or Umit Scan Result file. Can "
 "be used more than once to specify several scan result files."
 msgstr ""
+"Seleziona un file risultato nel formato Nmap XML o Risultato Scansione Umit. "
+"Può essere usato più di un file."
 
 #: umitCore/UmitOptionParser.py:131
+#, fuzzy
 msgid "*NOT IMPLEMENTED* - Open Umit showing the given file at Umit Mapper"
 msgstr ""
 
@@ -257,8 +273,8 @@ msgid ""
 "Increase verbosity of the output. May be used more than once to get even "
 "more verbosity"
 msgstr ""
-"Incrementa il livello di verbosità dell'output. Può essere utilizzato più di "
-"una volta per incrementare ancor più la stessa"
+"Incrementa il livello di verbosità dell'output. Può essere utilizzato più "
+"di una volta per incrementare ancor più la stessa"
 
 #: umitGUI/About.py:39 umitGUI/MainWindow.py:255
 msgid "About UMIT"
@@ -272,17 +288,17 @@ msgid ""
 "Summer of Code 2005, 2006 and 2007. Thanks Google!"
 msgstr ""
 "UMIT è un frontend per nmap; sviluppato in PyGTK\n"
-"by Adriano Monteiro Marques <py.adriano@gmail.com>\n"
+"da Adriano Monteiro Marques <py.adriano@gmail.com>\n"
 "sponsorizzato da Google durante il\n"
 "Summer of Code 2005, 2006 e 2007. Grazie Google!"
 
 #: umitGUI/About.py:74
 msgid "Credits"
-msgstr ""
+msgstr "Credits"
 
 #: umitGUI/About.py:131
 msgid "UMIT credits"
-msgstr ""
+msgstr "UMIT credits"
 
 #: umitGUI/About.py:172
 msgid "Written by"
@@ -310,7 +326,7 @@ msgstr "Maemo"
 
 #: umitGUI/App.py:89
 msgid "RUNNING WITHOUT PSYCO!"
-msgstr ""
+msgstr "FUNZIONO SENZA IL MODULO PSYCO!"
 
 #: umitGUI/App.py:90
 msgid ""
@@ -326,7 +342,7 @@ msgstr ""
 
 #: umitGUI/BugReport.py:35
 msgid "Bug Report"
-msgstr ""
+msgstr "Segnalazione Bug"
 
 #: umitGUI/BugReport.py:69
 msgid "Category (optional)"
@@ -337,8 +353,8 @@ msgid ""
 "If you know in which section of the program is the bug, please, seclect it "
 "from the choosebox. If you don't know what section to choose, leave it blank."
 msgstr ""
-"Se conosci in quale parte del programma è presente il bug, selezionalo dalla "
-"choosebox, altrimenti lasciala in bianco."
+"Se conosci in quale parte del programma è presente il bug, selezionalo "
+"dalla choosebox, altrimenti lasciala in bianco."
 
 #: umitGUI/BugReport.py:76
 msgid "Email"
@@ -357,8 +373,7 @@ msgid "Summary"
 msgstr "Sommario"
 
 #: umitGUI/BugReport.py:83
-msgid ""
-"This should be a quick description of the issue. Try to be clear and concise."
+msgid "This should be a quick description of the issue. Try to be clear and concise."
 msgstr ""
 "Questa dovrebbe essere una veloce descrizione del problema. Cerca di essere "
 "chiaro e conciso."
@@ -374,6 +389,9 @@ msgid ""
 "informations, like: Which operating system are you using? Which Nmap version "
 "do you have installed?"
 msgstr ""
+"Qui dovresti scrivere riguardo il bug, più chiaramente possibile, dando "
+"più informazioni che puoi riguardo il tuo sistema, come: Quale sistema "
+"operativo state utilizzando? Quale versione di nmap è installata?"
 
 #: umitGUI/BugReport.py:97
 msgid ""
@@ -381,10 +399,13 @@ msgid ""
 "may have found on Umit. Doing so, you help us to help you, by fixing and "
 "improving Umit faster than usual."
 msgstr ""
+"Questa finestra ti permette di comunicarci facilmente un problema che è stato "
+"riscontrato in Umit. Facendolo, la tua segnalazione verrà utilizzata per "
+"sistemare il problema e migliorare Umit."
 
 #: umitGUI/BugReport.py:180
 msgid "Bug report is incomplete!"
-msgstr ""
+msgstr "Segnalazione Bug incompleto!"
 
 #: umitGUI/BugReport.py:181
 msgid ""
@@ -392,10 +413,13 @@ msgid ""
 "clearly what is happening and a valid e-mail, so you can be contacted when "
 "the bug gets fixed."
 msgstr ""
+"Questa segnalazione bug è incompleta. Devi fornire una descrizione che "
+"descriva chiaramente quello che è successo e un indirizzo e-mail valid, in "
+"modo da poter essere contatto quando il bug verra risolto."
 
 #: umitGUI/BugReport.py:201
 msgid "Bug not reported!"
-msgstr ""
+msgstr "Bug non segnalato!"
 
 #: umitGUI/BugReport.py:202
 msgid ""
@@ -404,10 +428,10 @@ msgid ""
 "Please, verify your internet access, and then try to report the bug once "
 "again."
 msgstr ""
-"La descrizione del bug non può essere segnalata. Questo problema può essere "
-"causato dall'assenza di un accesso a Internet o dall'indisponibilità del "
-"server del bug tracker. Prego, verificare il proprio accesso a Internet, e "
-"provare a segnalare il bug nuovamente."
+"La descrizione del bug non può essere segnalata. Questo problema può "
+"essere causato dall'assenza di un accesso a Internet o dall'indisponibilità "
+"del server del bug tracker. Prego, verificare il proprio accesso a Internet, "
+"e provare a segnalare il bug nuovamente."
 
 #: umitGUI/BugReport.py:212
 msgid "Bug sucessfully reported!"
@@ -439,7 +463,7 @@ msgstr ""
 
 #: umitGUI/BugReport.py:275
 msgid "Crash Report"
-msgstr ""
+msgstr "Segnalazione Crash"
 
 #: umitGUI/DiffCompare.py:84
 msgid "Scan Result"
@@ -447,7 +471,7 @@ msgstr "Risultato Scansione"
 
 #: umitGUI/DiffCompare.py:90
 msgid "Scan Result Visualization"
-msgstr ""
+msgstr "Visualizzazione Risultati Scansione"
 
 #: umitGUI/DiffCompare.py:140
 msgid "Select Scan Result"
@@ -462,8 +486,8 @@ msgid ""
 "Selected file is not a Umit Scan Result file. Umit can not parse this file. "
 "Please, select another."
 msgstr ""
-"Il file selezionato non è un file Risultato Scansione di Umit. Umit non può "
-"interpretare questo file. Prego, selezionarne un altro."
+"Il file selezionato non è un file Risultato Scansione di Umit. Umit non "
+"può interpretare questo file. Prego, selezionarne un altro."
 
 #: umitGUI/DiffCompare.py:165
 msgid "Can not open selected file"
@@ -483,7 +507,7 @@ msgstr "Apri nel browser"
 
 #: umitGUI/DiffCompare.py:243
 msgid "Enable colored diffies"
-msgstr ""
+msgstr "Abilita differenze colorate"
 
 #: umitGUI/DiffCompare.py:244 umitGUI/DiffCompare.py:909
 msgid "Color Descriptions"
@@ -527,10 +551,10 @@ msgstr "Valore corrente"
 
 #: umitGUI/DiffCompare.py:661
 msgid "Umit Info"
-msgstr ""
+msgstr "Informazioni Umit"
 
 #: umitGUI/DiffCompare.py:663 umitGUI/ProfileEditor.py:142
-#: umitGUI/SearchGUI.py:126 umitGUI/Wizard.py:432
+#: umitGUI/SearchGUI.py:126 umitGUI/Wizard.py:433
 msgid "Profile"
 msgstr "Profilo"
 
@@ -542,15 +566,16 @@ msgstr "Nome del Profilo"
 msgid "Profile Options"
 msgstr "Opzioni del Profilo"
 
-#: umitGUI/DiffCompare.py:668 umitGUI/SearchGUI.py:149 umitGUI/Wizard.py:437
+#: umitGUI/DiffCompare.py:668 umitGUI/SearchGUI.py:149 umitGUI/Wizard.py:438
 msgid "Target"
 msgstr "Target"
 
 #: umitGUI/DiffCompare.py:670
 msgid "Nmap Info"
-msgstr ""
+msgstr "Informazioni Nmap"
 
 #: umitGUI/DiffCompare.py:673
+#, fuzzy
 msgid "Debugging"
 msgstr ""
 
@@ -559,7 +584,7 @@ msgid "Verbosity"
 msgstr "Verbosità"
 
 #: umitGUI/DiffCompare.py:677 umitGUI/ProfileEditor.py:98
-#: umitGUI/Wizard.py:137 umitGUI/Wizard.py:433
+#: umitGUI/Wizard.py:137 umitGUI/Wizard.py:434
 msgid "Command"
 msgstr "Comando"
 
@@ -618,6 +643,7 @@ msgid "LastBoot"
 msgstr "Ultimo Avvio"
 
 #: umitGUI/DiffCompare.py:737
+#, fuzzy
 msgid "OS Match"
 msgstr ""
 
@@ -652,6 +678,7 @@ msgid "Extra Info"
 msgstr "Informazioni extra"
 
 #: umitGUI/DiffCompare.py:859
+#, fuzzy
 msgid "Service Conf"
 msgstr ""
 
@@ -665,7 +692,7 @@ msgstr "Conto"
 
 #: umitGUI/DiffCompare.py:921
 msgid "Property remained <b>U</b>nchanged"
-msgstr ""
+msgstr "Proprietà Imm<b>U</b>tata"
 
 #: umitGUI/DiffCompare.py:924
 msgid "Property was <b>A</b>dded"
@@ -713,7 +740,7 @@ msgstr "Wizard _Comando"
 
 #: umitGUI/MainWindow.py:159
 msgid "Open nmap command constructor wizard"
-msgstr ""
+msgstr "Apri il wizard per la costruzione di comandi nmap"
 
 #: umitGUI/MainWindow.py:164
 msgid "_Save Scan"
@@ -777,7 +804,7 @@ msgstr "Modifica il profilo di scansione selezionato"
 
 #: umitGUI/MainWindow.py:216
 msgid "New P_rofile with Selected"
-msgstr ""
+msgstr "Nuovo P_rofilo come il Selezionato"
 
 #: umitGUI/MainWindow.py:218
 msgid "Use the selected scan profile to create another"
@@ -836,6 +863,8 @@ msgid ""
 "The given scan has unsaved changes.\n"
 "What do you want to do?"
 msgstr ""
+"La scansione ha cambiamenti non salvati. \n"
+"Cosa desideri fare?"
 
 #: umitGUI/MainWindow.py:421 umitGUI/MainWindow.py:423
 msgid "Trying to close"
@@ -846,6 +875,8 @@ msgid ""
 "The page you are trying to close has a scan running at the background.\n"
 "What do you want to do?"
 msgstr ""
+"La pagina che cerchi di chiudere ha una scansione in background \n"
+"Cosa desideri fare?"
 
 #: umitGUI/MainWindow.py:454
 msgid "Closing current Scan Tab"
@@ -872,8 +903,8 @@ msgid ""
 "An unidentified error occouried and the scan result was unable to be loaded "
 "properly."
 msgstr ""
-"Un errore sconosciuto si è verificato e il risultato della scansione non può "
-"essere caricato correttamente."
+"Un errore sconosciuto si è verificato e il risultato della scansione non "
+"può essere caricato correttamente."
 
 #: umitGUI/MainWindow.py:716
 msgid "No scan tab"
@@ -906,8 +937,7 @@ msgstr "Interpretando il risultato"
 
 #: umitGUI/MainWindow.py:744
 msgid "The result is still been parsed. You can not save the result yet."
-msgstr ""
-"Il risultato deve ancora essere interpretato. Non puoi salvarlo ancora."
+msgstr "Il risultato deve ancora essere interpretato. Non puoi salvarlo ancora."
 
 #: umitGUI/MainWindow.py:751
 msgid "Scan is running"
@@ -943,11 +973,11 @@ msgstr "Non hai accesso in scrittura al percorso."
 
 #: umitGUI/MainWindow.py:877
 msgid "The text above is this action's name"
-msgstr ""
+msgstr "Il testo qui riportato è il nome di questa azione"
 
 #: umitGUI/MainWindow.py:894
 msgid "Couldn't find documentation files!"
-msgstr ""
+msgstr "Impossibile trovare i file di documentazione!"
 
 #: umitGUI/MainWindow.py:895
 msgid ""
@@ -979,13 +1009,14 @@ msgstr "Utente non amministratore"
 
 #: umitGUI/NmapOutputProperties.py:38
 msgid "Nmap Output Properties"
-msgstr ""
+msgstr "Proprietà di Output Nmap"
 
 #: umitGUI/NmapOutputProperties.py:65
 msgid "details"
 msgstr "dettagli"
 
 #: umitGUI/NmapOutputProperties.py:66
+#, fuzzy
 msgid "port listing title"
 msgstr ""
 
@@ -1014,6 +1045,7 @@ msgid "ip"
 msgstr "ip"
 
 #: umitGUI/NmapOutputProperties.py:111
+#, fuzzy
 msgid "Highlight definitions"
 msgstr ""
 
@@ -1031,7 +1063,7 @@ msgstr "colore testo"
 
 #: umitGUI/NmapOutputProperties.py:179
 msgid "highlight color"
-msgstr ""
+msgstr "colore evidenziatura"
 
 #: umitGUI/NmapOutputViewer.py:75
 msgid "Enable Nmap output highlight"
@@ -1039,7 +1071,7 @@ msgstr "Abilita l'evidanziazione dell'output di Nmap"
 
 #: umitGUI/OSFingerprintReport.py:37
 msgid "Operating System Fingerprint Report"
-msgstr ""
+msgstr "Segnalazione Fingerprint Sistema Operativo"
 
 #: umitGUI/OSFingerprintReport.py:60 umitGUI/ServiceFingerprintReport.py:50
 msgid "Submitted by (optional)"
@@ -1069,6 +1101,16 @@ msgid ""
 "phone, etc). Try to provide the architecture (X86, SPARC, etc.) where "
 "appropriate."
 msgstr ""
+"<b>Inserisci più dettagli possibili</b> Per le macchine UNIX, il comando '<i>uname "
+"-a</i>' spesso fornisce il numero di versione corretta. Se si tratta di una "
+"macchina Linux, con un kernel distribuito dal vendor fornisci anche la "
+"versione della distribuzione (ad esempio Redhat 9.0). Per Windows, il "
+"comando '<i>winer</i>' (se disponibile) dovrebbe mostrare informazioni "
+"riguardo il service pack. Se la macchina Windows non ha service pack "
+"installati, scriverlo esplicitamente. Per dispositivi embedded, menzionare "
+"il numero del modello e di dispositivo si tratta (stampante, webcam, router "
+"DSL, telefono VOIP, ecc). Se appropriato fornire anche l'architettura (X86, "
+"SPARC, ecc)."
 
 #: umitGUI/OSFingerprintReport.py:76
 msgid "Classification"
@@ -1076,16 +1118,17 @@ msgstr "Classificazione"
 
 #: umitGUI/OSFingerprintReport.py:77
 msgid "Please select the Device/OS info from this alphabetized choosebox"
-msgstr ""
+msgstr "Seleziona Dispositivo/OS da questa choosebox ordinata alfabeticamente"
 
 #: umitGUI/OSFingerprintReport.py:82 umitGUI/ServiceFingerprintReport.py:75
 msgid "Notes"
 msgstr "Note"
 
 #: umitGUI/OSFingerprintReport.py:83
-msgid ""
-"Fill with further info on the device, any special network conditions, etc."
+msgid "Fill with further info on the device, any special network conditions, etc."
 msgstr ""
+"Compila con ulteriori informazioni sul dispositivo, ed eventuali speciali "
+"condizioni di rete, ecc."
 
 #: umitGUI/OSFingerprintReport.py:89
 msgid ""
@@ -1097,20 +1140,29 @@ msgid ""
 "Fyodor so that he can modify it, relicense it, incorporate it into programs "
 "such as Nmap, etc."
 msgstr ""
+"Questo form ti permette di contribuire al database di Nmap fornendo un "
+"fingerprint del sistema operativo. Grazie per l'aiuto! <b>Non riempire se "
+"non sei sicuro di quale OS stia girando sulla macchina che stai analizzando</"
+"b>. Segnalazioni non corrette potrebbero corrompere il database. Inviando il "
+"fingerprint stai cedendo qualunque copyright sullo stesso a Fyodor in modo "
+"che lui possa modificare, ri-licenziare, incorporare il suddetto fingerprint "
+"in programmi come Nmap, ecc."
 
 #: umitGUI/OSFingerprintReport.py:150
 msgid "Operating System Fingerprint report is incomplete!"
-msgstr ""
+msgstr "Segnalazione Fingerprint del Sistema Operativo incompleta!"
 
 #: umitGUI/OSFingerprintReport.py:152
 msgid ""
 "The Operating System Fingerprint report is incomplete. Please, try to "
 "provide as much information as possible."
 msgstr ""
+"La segnalazione del Fingerprint del Sistema Operativo è incompleto. Prego, "
+"prova a fornire più informazioni possibili."
 
 #: umitGUI/OSFingerprintReport.py:171
 msgid "Operating System Fingerprint not registered!"
-msgstr ""
+msgstr "Fingerprint del Sistema Operativo non registrato!"
 
 #: umitGUI/OSFingerprintReport.py:173
 msgid ""
@@ -1169,7 +1221,7 @@ msgstr "Suggerimento"
 
 #: umitGUI/ProfileEditor.py:114 umitGUI/Wizard.py:371
 msgid "Annotation"
-msgstr "Nota"
+msgstr "Note"
 
 #: umitGUI/ProfileEditor.py:195 umitGUI/Wizard.py:261
 msgid "Unnamed profile"
@@ -1205,7 +1257,7 @@ msgstr "Indirizzi"
 
 #: umitGUI/ScanHostDetailsPage.py:49
 msgid "Hostnames"
-msgstr ""
+msgstr "Nomi Host"
 
 #: umitGUI/ScanHostDetailsPage.py:50
 msgid "Operating System"
@@ -1217,7 +1269,7 @@ msgstr "Porte utilizzate"
 
 #: umitGUI/ScanHostDetailsPage.py:52
 msgid "OS Class"
-msgstr ""
+msgstr "Classe OS"
 
 #: umitGUI/ScanHostDetailsPage.py:53
 msgid "TCP Sequence"
@@ -1257,7 +1309,7 @@ msgstr "Porte scansionate:"
 
 #: umitGUI/ScanHostDetailsPage.py:76
 msgid "Up time:"
-msgstr ""
+msgstr "Up time:"
 
 #: umitGUI/ScanHostDetailsPage.py:79
 msgid "Last boot:"
@@ -1277,7 +1329,7 @@ msgstr "MAC:"
 
 #: umitGUI/ScanHostDetailsPage.py:93
 msgid "Vendor:"
-msgstr ""
+msgstr "Produttore:"
 
 #: umitGUI/ScanHostDetailsPage.py:231
 msgid "Name - Type:"
@@ -1305,15 +1357,15 @@ msgstr "Tipo"
 
 #: umitGUI/ScanHostDetailsPage.py:294
 msgid "Vendor"
-msgstr ""
+msgstr "Produttore"
 
 #: umitGUI/ScanHostDetailsPage.py:295
 msgid "OS Family"
-msgstr ""
+msgstr "OS Family"
 
 #: umitGUI/ScanHostDetailsPage.py:296
 msgid "OS Generation"
-msgstr ""
+msgstr "OS Generation"
 
 #: umitGUI/ScanHostDetailsPage.py:297
 msgid "Accuracy"
@@ -1343,7 +1395,7 @@ msgstr "Scansionando"
 
 #: umitGUI/ScanHostsView.py:51
 msgid "Hosts"
-msgstr ""
+msgstr "Host"
 
 #: umitGUI/ScanHostsView.py:52
 msgid "Services"
@@ -1365,7 +1417,7 @@ msgstr "scansionse_senza_titolo%s"
 
 #: umitGUI/ScanNotebook.py:339
 msgid "<target>"
-msgstr ""
+msgstr "<target>"
 
 #: umitGUI/ScanNotebook.py:454
 msgid "Profile not found!"
@@ -1388,6 +1440,8 @@ msgid ""
 "Target specification is mandatory. Either by an address in the target input "
 "box or through the '-iR' and '-iL' nmap options. Aborting scan."
 msgstr ""
+"Specificare un target è obbligatorio. Inserire un indirrizzo nell'input box "
+"target o utilizzare l'opzione '-iR' o '-iL' di nmap. Scansione interrotta."
 
 #: umitGUI/ScanNotebook.py:509
 msgid "Empty Nmap Command!"
@@ -1399,10 +1453,13 @@ msgid ""
 "exist. Please, check the profile name or type the nmap command you would "
 "like to execute."
 msgstr ""
+"Nessun comando da eseguire! Probabilmente il profilo selezionato/inserito "
+"non esiste. Prego, controllare il nome del profilo o inserire il comando "
+"nmap che desidera eseguire."
 
 #: umitGUI/ScanNotebook.py:562
 msgid "Scan has not finished yet"
-msgstr ""
+msgstr "Scansione non ancora terminata"
 
 #: umitGUI/ScanNotebook.py:563
 msgid ""
@@ -1410,6 +1467,8 @@ msgid ""
 "the old one, click Ok. To wait for the conclusion of the old scan, choose "
 "Cancel."
 msgstr ""
+"Un'altra scansione è in esecuzione. Per avviarne un'altra e fermare la "
+"precedente, premi Ok. Per aspettare la fine della scansione, premi Annulla."
 
 #: umitGUI/ScanNotebook.py:585
 msgid "Command is missing!"
@@ -1420,10 +1479,12 @@ msgid ""
 "It seems that your profile's command is missing or something else went "
 "wrong. Please, try to remove and recreate your profile."
 msgstr ""
+"Sembra che il comando del profilo sia mancante o qualcos'altro è andato "
+"storto. Prego, provare a rimuovere e a ricreare il profilo."
 
 #: umitGUI/ScanNotebook.py:708
 msgid "Couldn't retrieve the error raised by the command!"
-msgstr ""
+msgstr "Errore irrecuperabile prodotto dal comando!"
 
 #: umitGUI/ScanNotebook.py:711
 msgid "Unknown error!"
@@ -1440,16 +1501,20 @@ msgstr "Un errore inaspettato è avvenuto!"
 #: umitGUI/ScanNotebook.py:875
 msgid "you network scan discovered an unknown fingerprint sent by the host %s"
 msgstr ""
+"la tua scansione della rete ha scoperto un fingerprint sconosciuto inviato "
+"dall'host %s"
 
 #: umitGUI/ScanNotebook.py:881
 msgid ""
 "you network scan discovered several unknown fingerprints sent by the "
 "follwoing hosts: "
 msgstr ""
+"la tua scansione della rete ha scoperto diversi fingerprint sconosciuti "
+"inviati dai seguenti host: "
 
 #: umitGUI/ScanNotebook.py:892
 msgid "Unrecognized Services/OS Fingerprints Found!"
-msgstr ""
+msgstr "Fingeprint Servizio/OS non riconosciuto Trovato!"
 
 #: umitGUI/ScanNotebook.py:1251
 msgid "Ports / Hosts"
@@ -1488,12 +1553,13 @@ msgid "Hostname"
 msgstr "Nome Host"
 
 #: umitGUI/ScanOpenPortsPage.py:86
+#, fuzzy
 msgid "Server product"
 msgstr ""
 
 #: umitGUI/ScanOpenPortsPage.py:90
 msgid "Display Order / Grouping"
-msgstr ""
+msgstr "Ordine di Visualizzazione / Raggruppamento"
 
 #: umitGUI/ScanOpenPortsPage.py:96
 msgid "Sort by port number"
@@ -1521,7 +1587,7 @@ msgstr "Versione di Nmap:"
 
 #: umitGUI/ScanRunDetailsPage.py:48
 msgid "Verbosity level:"
-msgstr ""
+msgstr "Livello di verbosità:"
 
 #: umitGUI/ScanRunDetailsPage.py:51
 msgid "Debug level:"
@@ -1537,15 +1603,15 @@ msgstr "Finita il:"
 
 #: umitGUI/ScanRunDetailsPage.py:64
 msgid "Hosts up:"
-msgstr ""
+msgstr "Host attivi:"
 
 #: umitGUI/ScanRunDetailsPage.py:67
 msgid "Hosts down:"
-msgstr ""
+msgstr "Host inattivi:"
 
 #: umitGUI/ScanRunDetailsPage.py:70
 msgid "Hosts scanned:"
-msgstr ""
+msgstr "Host scansionati:"
 
 #: umitGUI/ScanRunDetailsPage.py:198
 msgid "Scan type:"
@@ -1585,11 +1651,11 @@ msgstr "Cerco all'interno di '%s'"
 
 #: umitGUI/Search.py:91
 msgid "File name been searched"
-msgstr ""
+msgstr "Nome file cercato"
 
 #: umitGUI/Search.py:92
 msgid "Path been scanned"
-msgstr ""
+msgstr "Percorso scansionato"
 
 #: umitGUI/Search.py:93
 msgid "Fraction of the progress bar"
@@ -1785,9 +1851,9 @@ msgid ""
 "are \"Linux 2.4.X\", \"Windows XP\", \"Cisco 3640 router\", \"Netgear MR814 "
 "WAP\""
 msgstr ""
-"Il sistema operativo o il dispositivo embedded sul quale il servizio sta "
-"funzionando - Esempi sono: \"Linux 2.4.X\", \"Windows XP\", \"Cisco 3640 "
-"router\", \"Netgear MR814 WAP\""
+"Il sistema operativo o il dispositivo embedded sul quale il servizio sta funzionando "
+"- Esempi sono: \"Linux 2.4.X\", \"Windows XP\", \"Cisco 3640 router\", "
+"\"Netgear MR814 WAP\""
 
 #: umitGUI/ServiceFingerprintReport.py:67
 msgid "Service Description"
@@ -1798,10 +1864,15 @@ msgid ""
 "Please try to include vendor name, app name, and version number as "
 "applicable. It is OK to leave this blank for embedded devices where you have "
 "described the hardware above and don't have any further details on the "
-"service name/version. Here are a few examples: ISC Bind 9.2.2, Sendmail "
-"8.12.9/8.10.2, Microsoft Exchange 5.5.2656.59, Network Associates WebShield "
-"4.5"
+"service name/version. Here are a few examples: ISC Bind 9.2.2, Sendmail 8.12."
+"9/8.10.2, Microsoft Exchange 5.5.2656.59, Network Associates WebShield 4.5"
 msgstr ""
+"Si prega di includere nome del produttore, dell'applicativo e il numero di "
+"versione se possibile. E' corretto lasciare in bianco se si tratta di un "
+"dispositivo embedded, avete descritto l'hardware in basso e non avete "
+"maggiori dettagli sul nome o sulla versione del servizio. Di seguito "
+"elencati alcuni esempi: ISC Bind 9.2.2, Sendmail 8.12.9/8.10.2, Microsoft "
+"Exchange 5.5.2656.59, Network Associates WebShield 4.5"
 
 #: umitGUI/ServiceFingerprintReport.py:76
 msgid ""
@@ -1810,6 +1881,10 @@ msgid ""
 "email gateway, Gnutella-protocol P2P app, print server web configuration "
 "port, etc"
 msgstr ""
+"Ulteriori informazioni sul dispositivo o sul servizio, come "
+"personalizzazioni particolari, ecc Se non è chiaro, si prega di comunicare "
+"di quale servizio si tratta (Gateway email con scansione anti-virus, "
+"appplicazione P2P Gnutella, ecc)"
 
 #: umitGUI/ServiceFingerprintReport.py:84
 msgid ""
@@ -1821,6 +1896,14 @@ msgid ""
 "Fyodor so that he can modify it, relicense it, incorporate it into programs "
 "such as Nmap, etc."
 msgstr ""
+"Questo form ti permette di contribuire al database di Nmap fornendo un "
+"fingerprint di un nuovo servizio o di una nuova versione. Grazie per "
+"l'aiuto! <b>Non riempire se non sei sicuro di quale applicazione stia "
+"girando sulla macchina che stai analizzando</b>. Segnalazioni non corrette "
+"potrebbero corrompere il database. Inviando il fingerprint stai cedendo "
+"qualunque copyright sullo stesso a Fyodor in modo che lui possa modificare, "
+"ri-licenziare, incorporare il suddetto fingerprint in programmi come Nmap, "
+"ecc."
 
 #: umitGUI/ServiceFingerprintReport.py:148
 msgid "Service Fingerprint report is incomplete!"
@@ -1892,21 +1975,21 @@ msgstr ""
 
 #: umitGUI/Wizard.py:409
 msgid "UMIT allow user to construct powerful commands in two distinct ways:"
-msgstr ""
-"UMIT permette all'utente di costruire potenti comandi in 2 modi differenti:"
+msgstr "UMIT ti permette di costruire potenti comandi in 2 modi differenti:"
 
-#: umitGUI/Wizard.py:411
+#: umitGUI/Wizard.py:412
 msgid "Novice"
 msgstr "Novizio"
 
-#: umitGUI/Wizard.py:412
+#: umitGUI/Wizard.py:413
 msgid "Expert"
 msgstr "Esperto"
 
-#: umitGUI/Wizard.py:430
+#: umitGUI/Wizard.py:431
 msgid ""
 "You wish to create a new profile, or just want to quickly create a command "
 "and run it once?"
 msgstr ""
-"Desideri creare un nuovo profilo o creare soltanto un veloce comando da "
-"avviare una sola volta?"
+"Desideri creare un nuovo profilo o soltanto un comando veloce da "
+"eseguire una sola volta?"
+
