@@ -1,4 +1,4 @@
-﻿# Bahasa Melayu Localization of UMIT.
+# Bahasa Melayu Localization of UMIT.
 # Copyright (C) 2008
 # This file is distributed under the same license as the PACKAGE package.
 # Devtar Singh <devtar@gmail.com>, 2008.
@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2008-04-11 08:45+Malay Peninsula Standard Time\n"
+"POT-Creation-Date: 2008-04-10 08:45+Malay Peninsula Standard Time\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Devtar Singh <devtar@gmail.com>\n"
 "Language-Team: Bahasa Melayu <LL@li.org>\n"
@@ -214,7 +214,7 @@ msgstr "Tiada module bernama dbapi2.pysqlite2 atau sqlite3"
 msgid ""
 "*NOT IMPLEMENTED* - Start Umit and go straight to Network Inventory window."
 msgstr ""
-"*TIADA IMPLIMENTASI - Mulakan Umit dan terus ke ruangan Network Inventory."
+"*TIADA IMPLIMENTASI* - Mulakan Umit dan terus ke ruangan Network Inventory."
 
 #: umitCore/UmitOptionParser.py:49
 msgid "Open Umit and runs a Nmap scan with specified args."
@@ -359,7 +359,7 @@ msgstr ""
 
 #: umitGUI/BugReport.py:35
 msgid "Bug Report"
-msgstr "Laporan Bug"
+msgstr "Laporan Pepijat"
 
 #: umitGUI/BugReport.py:69
 msgid "Category (optional)"
@@ -370,7 +370,7 @@ msgid ""
 "If you know in which section of the program is the bug, please, seclect it "
 "from the choosebox. If you don't know what section to choose, leave it blank."
 msgstr ""
-"Jika kamu tahu bahagian program ini yang mengandungi bug, tolong pilih daripada "
+"Jika kamu tahu bahagian program ini yang mengandungi pepijat, tolong pilih daripada "
 "choosebox. Jika kame tidak mengetahui bahagian mana untuk dipilih, biarkan ia kosong."
 
 #: umitGUI/BugReport.py:76
@@ -383,7 +383,7 @@ msgid ""
 "notified when the bug gets fixed. Not used for other purposes."
 msgstr ""
 "Tolong berikan alamat e-mail yang sahih dari mana kamu boleh dihubungi "
-"untuk dinotifikasikan tentang bug ini. Maklumat ini tidak digunakan untuk "
+"untuk dinotifikasikan tentang pepijat ini. Maklumat ini tidak digunakan untuk "
 "tujuan lain." 
 
 #: umitGUI/BugReport.py:82
@@ -407,7 +407,7 @@ msgid ""
 "informations, like: Which operating system are you using? Which Nmap version "
 "do you have installed?"
 msgstr ""
-"Di sinilah bug sepatutnya ditulis, terangkan sebaik mungkin dengan memberi "
+"Di sinilah pepijat sepatutnya ditulis, terangkan sebaik mungkin dengan memberi "
 "sebanyak informasi yang boleh tentang system anda seperti: Apakah OS yang digunakan? "
 "Apakah versi Nmap yang diinstall."
 
@@ -417,13 +417,13 @@ msgid ""
 "may have found on Umit. Doing so, you help us to help you, by fixing and "
 "improving Umit faster than usual."
 msgstr ""
-"Ini adalah dialog Bug Report yang membolehkan anda memberi penerangan tentang "
+"Ini adalah dialog Laporan Pepijat yang membolehkan anda memberi penerangan tentang "
 "masalah yang dihadapi dengan Umit. Dengan berbuat demikian, anda dapat menolong kami "
 "menolong kamu dengan membaiki Umit supaya lebih laju."
 
 #: umitGUI/BugReport.py:180
 msgid "Bug report is incomplete!"
-msgstr "Laporan bug ini tidak lengkap!"
+msgstr "Laporan pepijat ini tidak lengkap!"
 
 #: umitGUI/BugReport.py:181
 msgid ""
@@ -431,13 +431,13 @@ msgid ""
 "clearly what is happening and a valid e-mail, so you can be contacted when "
 "the bug gets fixed."
 msgstr ""
-"Laporan Bug ini tidak lengkap. Kamu hendaklah memberi penerangan yang menerangkan "
+"Laporan Pepijat ini tidak lengkap. Kamu hendaklah memberi penerangan yang menerangkan "
 "dengan terang tentang apa yang sedang berlaku dengan e-mail yang sahih supaya anda boleh "
-"dihubungi jika bug dapat dibaiki."
+"dihubungi jika pepijat dapat dibaiki."
 
 #: umitGUI/BugReport.py:201
 msgid "Bug not reported!"
-msgstr "Bug tidak dilaporkan!"
+msgstr "Pepijat tidak dilaporkan!"
 
 #: umitGUI/BugReport.py:202
 msgid ""
@@ -446,20 +446,20 @@ msgid ""
 "Please, verify your internet access, and then try to report the bug once "
 "again."
 msgstr ""
-"Penerangan Bug ini tidak dapat dilaporkan. Masalah ini berpunca daripada "
-"kekurangan akses Internet atau masalah dengan server bug tracker. "
+"Penerangan Pepijat ini tidak dapat dilaporkan. Masalah ini berpunca daripada "
+"kekurangan akses Internet atau masalah dengan server penjejak pepijat. "
 "Tolong pastikan akses internet anda berfungsi dan cuba lagi"
 
 #: umitGUI/BugReport.py:212
 msgid "Bug sucessfully reported!"
-msgstr "Bug berjaya dilaporkan!"
+msgstr "Pepijat berjaya dilaporkan!"
 
 #: umitGUI/BugReport.py:213
 msgid ""
 "The bug description was sucessfully reported. A web page with detailed "
 "description about this report will be opened in your default web browser now."
 msgstr ""
-"Penerangan Bug dapat dilaporkan dengan berjayanya. Satu Web Page dengan "
+"Penerangan Pepijat dapat dilaporkan dengan berjayanya. Satu Web Page dengan "
 "maklumat mengenai laporan anda akan dibuka di browser web default anda."
 
 #: umitGUI/BugReport.py:225
@@ -472,9 +472,9 @@ msgid ""
 "page with the report status. Try visiting Umit's bug tracker page to see if "
 "your bug was reported."
 msgstr ""
-"Umit tidak dapat membuka browser web default untuk menunjukkan halaman bug tracker "
-"dengan status laporan. Cuba melawati halaman bug tracker Umit untuk memastikan "
-"bug dilaporkan"
+"Umit tidak dapat membuka browser web default untuk menunjukkan halaman penjejak pepijat "
+"dengan status laporan. Cuba melawati halaman penjejak pepijat Umit untuk memastikan "
+"pepijat dilaporkan"
 
 #: umitGUI/BugReport.py:275
 #, fuzzy
@@ -885,11 +885,11 @@ msgstr "_Tolong"
 
 #: umitGUI/MainWindow.py:245
 msgid "_Report a bug"
-msgstr "_Laporkan bug"
+msgstr "_Laporkan pepijat"
 
 #: umitGUI/MainWindow.py:247
 msgid "Report a bug"
-msgstr "Laporkan bug"
+msgstr "Laporkan pepijat"
 
 #: umitGUI/MainWindow.py:253
 msgid "_About"
