@@ -34,7 +34,7 @@ from higwidgets.higbuttons import HIGButton
 from umitCore.Diff import Diff
 from umitCore.UmitConf import UmitConf, DiffColors
 from umitCore.NmapParser import NmapParser, HostInfo
-from umitCore.Paths import check_access
+from umitCore.Paths import check_access, Path
 from umitCore.UmitLogging import log
 from umitCore.I18N import _
 
