@@ -313,7 +313,7 @@ class NmapOutputHighlight(object):
 
             self.__set_it(p_name, settings)
 
-            return settings
+            return self.sanity_settings(settings)
 
     def __set_it(self, property_name, settings):
         property_name = "%s_highlight" % property_name
