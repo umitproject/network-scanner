@@ -112,8 +112,10 @@ class NmapCommand(object):
         if found:
             for option in found:
                 pos = splited.index(option)
-                del(splited[pos+1])
-                del(splited[pos])
+                # Removes the element pos and pos+1 from splited list,
+                # in case of pos+1 being out of splited's range,
+                # just pos is removed then.
+                splited[pos:pos+2] = []
 
         # Saving the XML output to a temporary file
         splited.append('-oX')
