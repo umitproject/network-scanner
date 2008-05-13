@@ -44,6 +44,8 @@ from umitCore.Paths import Path
 from umitCore.UmitLogging import log
 from umitCore.I18N import _
 
+from types import StringTypes
+
 icon_dir = Path.pixmaps_dir
 
 class PageStatus(object):
@@ -187,6 +189,7 @@ class ScanNotebook(HIGNotebook):
         self.tab_titles = []
         self.scan_num = 1
         self.close_scan_cb = None
+        self.title_edited_cb = None
 
     def remove_page(self, page_num):
         page = self.get_nth_page(page_num)
@@ -218,6 +221,7 @@ class ScanNotebook(HIGNotebook):
         else:
             tab_label = HIGAnimatedTabLabel(self.get_new_tab_title())
 
+        tab_label.get_animated_label().connect("title-edited", self.title_edited_cb, page)
         tab_label.connect("close-clicked", close_cb, page)
         HIGNotebook.append_page(self, page, tab_label)
 

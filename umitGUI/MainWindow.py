@@ -537,10 +537,35 @@ Scan Tab?'),
             self.vbox.pack_start(self.toolbar, False, False, 0)
 
         self.toolbar.show_all()
+    
+    def _title_edited_cb(self, widget, old_text, new_text, page):
+        # Called when the user try to edit the title
+        # we could decide to set or not the title
 
+        # Only loaded and unsaved tab can change their title
+        # so let's filter
+        
+        status = page.status
+
+        # Change to unsaved. (needs adds?)
+        if status.loaded_unchanged or status.loaded_changed:
+            page.status.set_loaded_changed()
+        elif status.unsaved_unchanged or status.unsaved_changed or status.empty:
+            page.status.set_unsaved_changed()
+        else:
+            # No compatible status.
+            return False
+        
+        log.debug(">>> Changing scan_name")
+        page.parsed.set_scan_name(new_text)
+        
+        # Ok we can change this title.
+        return True
+    
     def _create_scan_notebook(self):
         self.scan_notebook = ScanNotebook()
         self.scan_notebook.close_scan_cb = self._close_scan_cb
+        self.scan_notebook.title_edited_cb = self._title_edited_cb
 
         page = self._new_scan_cb()
         self.scan_notebook.show_all()

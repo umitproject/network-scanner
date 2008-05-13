@@ -34,9 +34,10 @@ from umitCore.UmitLogging import log
 
 class SearchResult(object):    
     def __init__(self):
-        """This method is called by classes that inherit this one at their constructor methods.
-        If in the future this method get some functionallity, then, it will work fine for those
-        classes that inherit this one.
+        """This method is called by classes that inherit this one at their
+        constructor methods. If in the future this method get some 
+        functionallity, then, it will work fine for those classes that inherit
+        this one.
         """
         pass
     
@@ -46,7 +47,8 @@ class SearchResult(object):
                       "mac", "ipv4", "ipv6", "port", "service",
                       "osclass", "osmatch", "product"]
 
-        # If nothing is passed, let's considerate that we want to search every port
+        # If nothing is passed, let's considerate that we want to search
+        # every port
         self.port_closed = kargs.get("port_closed", True)
         self.port_open = kargs.get("port_open", True)
         self.port_filtered = kargs.get("port_filtered", True)
@@ -54,31 +56,35 @@ class SearchResult(object):
 
         # Iterate over scan results searching for patterns
         # Obs: This search looks for a result that matches each received
-        # parameters ("and" based search). If something fail, it desconsiderates the result
+        # parameters ("and" based search). If something fail, it
+        # desconsiderates the result
         
         keys = kargs.keys() # Catch given parameters names
         log.debug(">>> Search parameters: %s" % keys)
         
-        for scan_result in self.get_scan_results(): # Get parsed results, as NmapParser objects
+        # Get parsed results, as NmapParser objects
+        for scan_result in self.get_scan_results():
             self.parsed_scan = scan_result
 
             # Test each given parameter against current parsed result
             for parameter in parameters:
                 if parameter in keys:
-                    log.debug(">>> Searching '%s' at '%s'" % (parameter, kargs[parameter]))
+                    log.debug(">>> Searching '%s' at '%s'" % (parameter,
+                                                              kargs[parameter]))
                     
-                    if not self.__getattribute__("match_%s" % parameter)(kargs[parameter]):
-                        # A break here, means that there is no match for the given pattern
-                        # and, as it is an "and" based search, the parsed result must be
-                        # discarted
+                    if not self.__getattribute__("match_%s" % parameter)\
+                       (kargs[parameter]):
+                        # A break here, means that there is no match for the 
+                        # given pattern and, as it is an "and" based search, the
+                        # parsed result must be discarted
                         log.debug(">>> Parsed result doesn't match patterns!")
                         break
             else:
                 log.debug(">>> Parsed result matches given patterns!")
                 yield self.parsed_scan
 
-        #    # If current scan result matches the pattern, yield the parsed object
-        #    # Else discart parsed result, and get another! ;-)
+        # If current scan result matches the pattern, yield the parsed object
+        # Else discart parsed result, and get another! ;-)
 
     def get_scan_results(self):
         # To be implemented by classes that are going to inherit this one
@@ -86,7 +92,8 @@ class SearchResult(object):
 
     def basic_match(self, keyword, property):
         if keyword == "*" or keyword == "" or \
-           fnmatch(str(self.parsed_scan.__getattribute__(property)), "*%s*" % keyword):
+           fnmatch(str(self.parsed_scan.__getattribute__(property)),
+                   "*%s*" % keyword):
             return True # Pattern matches
         return False # Pattern doesn't match
 
@@ -107,14 +114,20 @@ class SearchResult(object):
 
     def match_profile(self, profile):
         log.debug("Match profile: %s" % profile)
-        log.debug("Comparing: %s == %s ??" % (str(self.parsed_scan.profile_name).lower(),
-                                              "*%s*" % profile.lower()))
+        log.debug("Comparing: %s == %s ??" % \
+                  (str(self.parsed_scan.profile_name).lower(),
+                   "*%s*" % profile.lower()))
         if profile == "*" or profile == "" or \
-           fnmatch(str(self.parsed_scan.profile_name).lower(), "*%s*" % profile.lower()):
+           fnmatch(str(self.parsed_scan.profile_name).lower(),
+                   "*%s*" % profile.lower()):
             return True # Pattern matches
+
         return False # Pattern doesn't match
-    
-        return self.basic_match(profile, "profile_name")
+
+        # FIXME: What is this?? I have commented this line, because it was
+        # useless Though, I don't have the time now to find out what is going
+        # on here but I'll do that later 
+        #return self.basic_match(profile, "profile_name")
     
     def match_option(self, option):
         log.debug("Match option: %s" % option)
@@ -122,7 +135,8 @@ class SearchResult(object):
 
     def match_target(self, target):
         log.debug("Match target: %s" % target)
-        return self.basic_match(target, "target") or self.basic_match(target, "nmap_command")
+        return self.basic_match(target, "target") or\
+               self.basic_match(target, "nmap_command")
 
     def match_mac(self, mac):
         log.debug("Match mac: %s" % mac)
@@ -148,7 +162,8 @@ class SearchResult(object):
                 for portid in port_dic["port"]:
                     if self.port_open and portid["port_state"] == "open":
                         ports.append(portid["portid"])
-                    elif self.port_filtered and portid["port_state"] == "filtered":
+                    elif self.port_filtered and\
+                         portid["port_state"] == "filtered":
                         ports.append(portid["portid"])
                     elif self.port_closed and portid["port_state"] == "closed":
                         ports.append(portid["portid"])
@@ -225,8 +240,12 @@ class SearchResult(object):
                 for port in ports["port"]:
                     if fnmatch(port.get("service_product", "").lower(),
                                "*%s*" % product.lower()):
-                        return True # Given service product matched current result
-        return False # Given service product didn't match current result
+
+                        # Given service product matched current result
+                        return True
+
+        # Given service product didn't match current result
+        return False
 
     def split_osclass(self, osclass):
         return [i.strip().lower() for i in osclass.split("|")]
@@ -273,7 +292,8 @@ class SearchDir(SearchResult, object):
         elif type(file_extensions) == type([]):
             self.file_extensions = file_extensions
         else:
-            raise Exception("Wrong file extension format! '%s'" % file_extensions)
+            raise Exception("Wrong file extension format! '%s'" %
+                            file_extensions)
 
     def get_scan_results(self):
         log.debug(">>> Getting directory's scan results")
@@ -312,14 +332,16 @@ class SearchTabs(SearchResult, object):
                     # the file name.
                     scan_file = scan_file.name
 
-            if scan_file and os.access(scan_file, os.R_OK) and os.path.isfile(scan_file):
+            if scan_file and os.access(scan_file, os.R_OK) and\
+               os.path.isfile(scan_file):
                 log.debug(">>> Retrieving unsaved scan result: %s" % scan_file)
 
                 try:
                     parsed = NmapParser()
                     parsed.set_xml_file(scan_file)
                     parsed.parse()
-                    parsed.set_scan_name("Unsaved " + sbook_page.get_tab_label())
+                    parsed.set_scan_name("Unsaved " + \
+                                         sbook_page.get_tab_label())
                     parsed.set_unsaved()
                 except:
                     pass
@@ -329,26 +351,26 @@ class SearchTabs(SearchResult, object):
 if __name__ == "__main__":
     s = SearchDir("/home/adriano/umit/test", ["usr", "xml"])
     for result in s.search(\
-                             keyword="",
-                             #profile="",
-                             #option="",
-                             #started="1121737119",
-                             #finished="1121737192",
-                             #target="10.0.0.100-180",
-                             #mac=":",
-                             #ipv4="10.0.0.150",
-                             #ipv6="",
-                             #uptime=209980,
-                             # lastboot="", MUST BE REMOVED FROM THE UI!
-                             #port=["22", "80"],
-                             #port_open="",
-                             #port_filtered="",
-                             #port_closed="",
-                             #service="",
-                             #osclass="Microsoft | Windows | 95/98/ME | General Purpose",
-                             #osmatch="gentoo",
-                             #product="Apache"\
-                           ):
+        keyword="",
+        #profile="",
+        #option="",
+        #started="1121737119",
+        #finished="1121737192",
+        #target="10.0.0.100-180",
+        #mac=":",
+        #ipv4="10.0.0.150",
+        #ipv6="",
+        #uptime=209980,
+        # lastboot="", MUST BE REMOVED FROM THE UI!
+        #port=["22", "80"],
+        #port_open="",
+        #port_filtered="",
+        #port_closed="",
+        #service="",
+        #osclass="Microsoft | Windows | 95/98/ME | General Purpose",
+        #osmatch="gentoo",
+        #product="Apache"\
+        ):
 
         print "Ports:", result.hosts[-1].ports
 

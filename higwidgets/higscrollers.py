@@ -33,4 +33,5 @@ class HIGScrolledWindow(gtk.ScrolledWindow):
     def __init__(self):
         gtk.ScrolledWindow.__init__(self)
         self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        #self.set_shadow_type(gtk.SHADOW_ETCHED_IN)
         self.set_border_width(5)
