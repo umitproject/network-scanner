@@ -890,7 +890,7 @@ class ScanNotebookPage(HIGVBox):
             self.show_contribute_dialog(dialog_text % msg)
 
         elif key_num > 1:
-            msg = _("you network scan discovered several unknown "
+            msg = _("your network scan discovered several unknown "
                 "fingerprints sent by the follwoing hosts: ")
             for i in fingerprints:
                 msg += "%s, " % i
