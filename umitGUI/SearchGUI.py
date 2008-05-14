@@ -197,7 +197,7 @@ class SearchGUI(gtk.HPaned, object):
         self.opt_base_hbox = HIGHBox()
         self.opt_local_section = HIGSectionLabel(_("Local files"))
         self.opt_local_table = HIGTable()
-        self.opt_base_section = HIGSectionLabel(_("Data base"))
+        self.opt_base_section = HIGSectionLabel(_("Database"))
         self.opt_base_table = HIGTable()
 
         self.opt_path_label = HIGEntryLabel(_("Directory"))
