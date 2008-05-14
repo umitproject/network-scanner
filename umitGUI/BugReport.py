@@ -68,7 +68,7 @@ class BugReport(HIGDialog):
     def _create_widgets(self):
         self.category_label = HIGHintSectionLabel(_("Category (optional)"),
             _("If you know in which section of the program "
-            "is the bug, please, seclect it from the choosebox. "
+            "is the bug, please, select it from the choosebox. "
             "If you don't know what section to choose, leave it blank."))
         self.category_list = gtk.ListStore(str, str)
         self.category_combo = gtk.ComboBoxEntry(self.category_list, 0)
