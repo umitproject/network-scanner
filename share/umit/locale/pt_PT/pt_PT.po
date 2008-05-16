@@ -314,7 +314,7 @@ msgstr "Maio"
 
 #: umitGUI/App.py:89
 msgid "RUNNING WITHOUT PSYCO!"
-msgstr ""
+msgstr "A CORRER SEM PSYCO"
 
 #: umitGUI/App.py:90
 msgid ""
@@ -323,20 +323,25 @@ msgid ""
 "encourajed to install it to have a better speed experience. Download it at "
 "http://psyco.sf.net/"
 msgstr ""
-
+"O Psyco é um modulo que aumenta a velcoidade de execução desta aplicação"
+"Não é um requesito e o Umit corre perfeitamente com ou sem ele, mas nós "
+"aconselhamos a instalar para ter uma melhor fluidez. Faz o download em"
+"http://psyco.sf.net/"
 #: umitGUI/BugReport.py:35
 msgid "Bug Report"
 msgstr ""
 
 #: umitGUI/BugReport.py:69
 msgid "Category (optional)"
-msgstr ""
+msgstr "Categoria (opcional)"
 
 #: umitGUI/BugReport.py:70
 msgid ""
 "If you know in which section of the program is the bug, please, seclect it "
 "from the choosebox. If you don't know what section to choose, leave it blank."
 msgstr ""
+"Se souber qual a secção do bug, por favor seleccione-a"
+"Se não souber deixe em branco este campo"
 
 #: umitGUI/BugReport.py:76
 msgid "Email"
@@ -347,6 +352,8 @@ msgid ""
 "Please inform a valid e-mail address from where you can be reached to be "
 "notified when the bug gets fixed. Not used for other purposes."
 msgstr ""
+"Por favor coloque um endereço de email válido para se for necessário"
+"poderes ser contactado quando ele estiver corrigido"
 
 #: umitGUI/BugReport.py:82
 #, fuzzy
@@ -357,6 +364,7 @@ msgstr "Janeiro"
 msgid ""
 "This should be a quick description of the issue. Try to be clear and concise."
 msgstr ""
+"Deverá ser uma pequena descrição do erro. Tente ser claro na descrição"
 
 #: umitGUI/BugReport.py:87 umitGUI/ProfileEditor.py:111 umitGUI/Wizard.py:370
 msgid "Description"
@@ -369,6 +377,10 @@ msgid ""
 "informations, like: Which operating system are you using? Which Nmap version "
 "do you have installed?"
 msgstr ""
+"Escreva aqui informação sobre o bug, a descrição deve ser o mais clara possível"
+"e dar o máximo de informações do sistema disponiveis"
+"Informações como: Qual o Sistema Operativo que usa? Qual a versão do Nmap que"
+"têm instalada?"
 
 #: umitGUI/BugReport.py:97
 msgid ""
@@ -376,10 +388,13 @@ msgid ""
 "may have found on Umit. Doing so, you help us to help you, by fixing and "
 "improving Umit faster than usual."
 msgstr ""
+"Esta janela de BugReport permite-lhe facilmente dizer-nos o problema"
+"que encontrou no Umit. Ao fazer isto está ajudar, para que possamos corrigir "
+"e melhorar o Umit"
 
 #: umitGUI/BugReport.py:180
 msgid "Bug report is incomplete!"
-msgstr ""
+msgstr "Bug Report está incompleto"
 
 #: umitGUI/BugReport.py:181
 msgid ""
@@ -387,10 +402,12 @@ msgid ""
 "clearly what is happening and a valid e-mail, so you can be contacted when "
 "the bug gets fixed."
 msgstr ""
+"O Bug reportado está completo. Descreva-nos o bug, e indique-nos um email"
+"valido para que possa ser contactado quando nós corrigirmos o bug"
 
 #: umitGUI/BugReport.py:201
 msgid "Bug not reported!"
-msgstr ""
+msgstr "Bug não reportado!"
 
 #: umitGUI/BugReport.py:202
 msgid ""
@@ -399,20 +416,25 @@ msgid ""
 "Please, verify your internet access, and then try to report the bug once "
 "again."
 msgstr ""
+"O bug descrito não pode ser reportado. Este problema pode ser causado "
+"por falta de ligação à Internet ou indisponiblidade no bug tracker."
+"Por favor verifique o acesso à Internet e tente reportar novamente."
 
 #: umitGUI/BugReport.py:212
 msgid "Bug sucessfully reported!"
-msgstr ""
+msgstr "Bug reportado com sucesso!"
 
 #: umitGUI/BugReport.py:213
 msgid ""
 "The bug description was sucessfully reported. A web page with detailed "
 "description about this report will be opened in your default web browser now."
 msgstr ""
+"O Bug descrito foi reportado com sucesso. A página web com informação detalhada sobre o "
+"o bug foi aberto no seu browser defenido por defeito."
 
 #: umitGUI/BugReport.py:225
 msgid "Could not open default Web Browser"
-msgstr ""
+msgstr "Não foi possível abrir o Web Browser"
 
 #: umitGUI/BugReport.py:226
 msgid ""
@@ -420,6 +442,8 @@ msgid ""
 "page with the report status. Try visiting Umit's bug tracker page to see if "
 "your bug was reported."
 msgstr ""
+"O Umit não consegue abrir o browser para mostrar a página do bug tracker"
+"Tente visitar o Bug Tracker do Umit e verifique se o bug já foi reportado"
 
 #: umitGUI/BugReport.py:275
 #, fuzzy
@@ -1813,11 +1837,11 @@ msgstr "Fechar Scan"
 
 #: umitGUI/SearchGUI.py:850
 msgid "Choose the path to search in"
-msgstr ""
+msgstr "Escolher o directório para pesquisar"
 
 #: umitGUI/SearchWindow.py:47
 msgid "Search Window"
-msgstr ""
+msgstr "Janela de Pesquisa"
 
 #: umitGUI/ServiceFingerprintReport.py:35
 msgid "Service Fingerprint Report"
