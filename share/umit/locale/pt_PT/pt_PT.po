@@ -5,7 +5,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: pt_PT\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-04-12 11:08-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -34,11 +34,11 @@ msgstr ""
 
 #: umitCore/Diff.py:40
 msgid " Start of diff "
-msgstr "Início do diff"
+msgstr "Início do diff "
 
 #: umitCore/Diff.py:42
 msgid " End of diff "
-msgstr "Fim do diff"
+msgstr "Fim do diff "
 
 #: umitCore/DiffHtml.py:155
 msgid "Changes to this file can make UMIT unable to read it."
@@ -635,7 +635,7 @@ msgstr "Dica"
 #: umitGUI/DiffCompare.py:729
 #, fuzzy
 msgid "Host %s"
-msgstr "Estado do Servidor"
+msgstr ""
 
 #: umitGUI/DiffCompare.py:733
 #, fuzzy
@@ -781,7 +781,7 @@ msgstr "Abrir os resultados de um scan anterior"
 
 #: umitGUI/MainWindow.py:177
 msgid "_Tools"
-msgstr ""
+msgstr "_Ferramentas"
 
 #: umitGUI/MainWindow.py:181
 msgid "_New Scan"
@@ -856,11 +856,11 @@ msgstr "_Ajuda"
 
 #: umitGUI/MainWindow.py:245
 msgid "_Report a bug"
-msgstr ""
+msgstr "_Reportar um bug"
 
 #: umitGUI/MainWindow.py:247
 msgid "Report a bug"
-msgstr ""
+msgstr "Reportar um buf"
 
 #: umitGUI/MainWindow.py:253
 msgid "_About"
@@ -1627,7 +1627,7 @@ msgstr "Serviços:"
 #: umitGUI/ScanToolbar.py:58 umitGUI/SearchGUI.py:105
 #, fuzzy
 msgid "Scan"
-msgstr "Sca_n"
+msgstr "Scan"
 
 #: umitGUI/ScanToolbar.py:82
 msgid "Target:"
@@ -1773,14 +1773,13 @@ msgid "Data base"
 msgstr ""
 
 #: umitGUI/SearchGUI.py:203
-#, fuzzy
 msgid "Directory"
-msgstr "Outubro"
+msgstr "Directório"
 
 #: umitGUI/SearchGUI.py:204
 #, fuzzy
 msgid "File extension"
-msgstr "Ficheiro %s"
+msgstr "Extensão do ficheiro"
 
 #: umitGUI/SearchGUI.py:205
 #, fuzzy
@@ -1823,12 +1822,12 @@ msgstr ""
 #: umitGUI/SearchGUI.py:803
 #, fuzzy
 msgid "Open"
-msgstr "Tipo"
+msgstr "Abrir"
 
 #: umitGUI/SearchGUI.py:804
 #, fuzzy
 msgid "Filtered"
-msgstr "_Ficheiro"
+msgstr "Filtrado"
 
 #: umitGUI/SearchGUI.py:805
 #, fuzzy
