@@ -31,6 +31,18 @@ HOME = os.path.expanduser("~")
 #HOME = os.environ.get('HOME', '')
 CURRENT_DIR = os.getcwd()
 
+# Look for files relative to the script path to allow running within the build
+# directory.
+main_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
+if hasattr(sys, "frozen"):
+    main_dir = dirname(sys.executable)
+
+CONFIG_DIR = os.path.join(main_dir, "share", "umit", "config")
+LOCALE_DIR = os.path.join(main_dir, "share", "umit", "locale")
+MISC_DIR = os.path.join(main_dir, "share", "umit", "misc")
+ICONS_DIR = os.path.join(main_dir, "share", "icons")
+PIXMAPS_DIR = os.path.join(main_dir, "share", "pixmaps")
+DOCS_DIR = os.path.join(main_dir, "share", "umit", "docs")
 
 base_paths = dict(config_file = 'umit.conf',
                   config_dir = '.umit',

@@ -21,6 +21,8 @@
 
 import locale
 
+from umitCore.BasePaths import LOCALE_DIR
+
 LC_ALL = locale.setlocale(locale.LC_ALL, '')
 LANG, ENC = locale.getdefaultlocale()
 ERRORS = "ignore"
@@ -34,14 +36,13 @@ if LANG == None:
 
 try:
     import gettext
-    from gettext import gettext as _
-
-    gettext.install('umit', unicode=True)
-
 except ImportError:
     # define _() so program will not fail
     import __builtin__
     __builtin__.__dict__["_"] = str
+else:
+    lang = gettext.translation('umit', LOCALE_DIR, [LANG], fallback=True)
+    _ = lang.gettext
 
 
 def enc(string):

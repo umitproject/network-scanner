@@ -29,24 +29,11 @@ import sys
 
 from umitCore.UmitLogging import log
 from umitCore.UmitConfigParser import UmitConfigParser
-from umitCore.BasePaths import base_paths, HOME
 from umitCore.TempConf import create_temp_conf_dir
-from umitCore.I18N import _
 from umitCore.Version import VERSION
-
-# Look for files relative to the script path to allow running within the build
-# directory.
-main_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
-if hasattr(sys, "frozen"):
-    main_dir = dirname(sys.executable)
-
-CONFIG_DIR = join(main_dir, "share", "umit", "config")
-LOCALE_DIR = join(main_dir, "share", "umit", "locale")
-MISC_DIR = join(main_dir, "share", "umit", "misc")
-ICONS_DIR = join(main_dir, "share", "icons")
-PIXMAPS_DIR = join(main_dir, "share", "pixmaps")
-DOCS_DIR = join(main_dir, "share", "umit", "docs")
-
+from umitCore.BasePaths import base_paths, HOME
+from umitCore.BasePaths import (CONFIG_DIR, LOCALE_DIR, MISC_DIR, ICONS_DIR,
+    PIXMAPS_DIR, DOCS_DIR)
 
 #######
 # Paths
