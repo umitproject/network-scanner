@@ -154,7 +154,11 @@ this instead: '%s'" % str(id))
     
     def get_ports(self):
         return self._ports
-
+    def set_extraports(self, port_list):
+        self._extraports = port_list
+    
+    def get_extraports(self):
+        return self._extraports
     # HOSTNAMES
     def set_hostnames(self, hostname_list):
         self._hostnames = hostname_list
@@ -261,6 +265,7 @@ umitCore.NmapParser.get_ipv6 instead."))
     
     def get_filtered_ports(self):
         ports = self.get_ports()
+        extraports = self.get_extraports()
         filtered = 0
         
         for i in ports:
@@ -268,11 +273,14 @@ umitCore.NmapParser.get_ipv6 instead."))
             for p in port:
                 if re.findall('filtered', p['port_state']):
                     filtered+=1
- 
+        for extra in extraports:
+            if extra["state"] == "filtered":
+                filtered += int(extra["count"])
         return filtered
     
     def get_closed_ports(self):
         ports = self.get_ports()
+        extraports = self.get_extraports()
         closed = 0
         
         for i in ports:
@@ -280,18 +288,22 @@ umitCore.NmapParser.get_ipv6 instead."))
             for p in port:
                 if re.findall('closed', p['port_state']):
                     closed+=1
-        
+        for extra in extraports:
+            if extra["state"] == "closed":
+                closed += int(extra["count"])
         return closed
     
     def get_scanned_ports(self):
         ports = self.get_ports()
+        extraports = self.get_extraports()
         scanned = 0
         
         for i in ports:
             port = i['port']
             for p in port:
                 scanned+=1
-        
+        for extra in extraports:
+            scanned += int(extra["count"])
         return scanned
 
     def get_services(self):
@@ -520,10 +532,7 @@ in epoch format!")
 
         for h in self.nmap.get('hosts', []):
             ports += h.get_filtered_ports()
-        
-        for extra in self.list_extraports:
-            if extra["state"] == "filtered":
-                ports += int(extra["count"])
+
 
         log.debug(">>> EXTRAPORTS: %s" % str(self.list_extraports))
 
@@ -534,10 +543,6 @@ in epoch format!")
         
         for h in self.nmap['hosts']:
             ports += h.get_closed_ports()
-
-        for extra in self.list_extraports:
-            if extra["state"] == "closed":
-                ports += int(extra["count"])
 
         return ports
 
@@ -979,6 +984,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             self.in_ports = False
             self.list_ports.append({"extraports":self.list_extraports,
                                     "port":self.list_port})
+            self.host_info.set_extraports(self.list_extraports)
         elif self.in_host and self.in_ports and name == "port":
             self.in_port = False
             self.list_port.append(self.dic_port)
