@@ -448,7 +448,8 @@ class ScanNotebookPage(HIGVBox):
             del(cmd_profile)
             
             # scan button must be enable if -iR or -iL options are passed
-            if command.find('-iR') != -1 or command.find('-iL') != -1:
+            if command.find('-iR') != -1 or command.find('-iL') != -1 \
+                    or target != self.empty_target:
                 self.toolbar.scan_button.set_sensitive(True)
                 # removes unnecessary target from the command
                 command = command.replace(target,'').strip()
