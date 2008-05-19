@@ -26,20 +26,28 @@ import sys
 import signal
 
 # used by exception hook
-import gtk
 import cgitb
 import tempfile
 
 from umitCore.I18N import _
 from umitCore.Version import VERSION
-from umitGUI.BugReport import CrashReport
-from higwidgets.higdialogs import HIGAlertDialog
 #########################
 
 UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
 
 class UmitExceptionHook(object):
     def __call__(self, etype, emsg, etb):
+        import warnings
+        warnings.filterwarnings("error", module = "gtk")
+        try:
+            import gtk
+            from umitGUI.BugReport import CrashReport
+            from higwidgets.higdialogs import HIGAlertDialog
+        except Warning, e:
+            print e.message
+            sys.exit(-1)
+        warnings.resetwarnings()
+
         if etype == ImportError:
             d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                 message_format=_("Import error"),

@@ -104,7 +104,15 @@ speed experience. Download it at http://psyco.sf.net/"""))
 
     def __run_gui(self):
         log.info(">>> GUI Mode")
-        import gtk
+        import warnings
+        warnings.filterwarnings("error", module = "gtk")
+        try:
+            import gtk
+        except Warning, e:
+            print e.message
+            sys.exit(-1)
+        warnings.resetwarnings()
+
         import gobject
         from umitGUI.Splash import Splash
 
