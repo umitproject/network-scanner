@@ -250,7 +250,11 @@ class CommandProfile (Profile, object):
 
     def get_options(self, profile):
         dic = {}
-        for opt in self._get_it(profile, 'options').split(','):
+        options_result = self._get_it(profile, 'options')
+        if options_result.strip()=='':
+            return dic
+        
+        for opt in options_result.split(','):
             try:
                 dic[unicode(opt.strip())] = self._get_it(profile, opt)
             except NoOptionError:
