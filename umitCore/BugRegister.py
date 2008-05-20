@@ -21,8 +21,12 @@
 
 import urllib
 import urllib2
+from urllib2 import Request, urlopen, URLError, HTTPError
 
 from tempfile import mktemp
+import re
+
+# Old school
 
 group_id = "142490"
 atid = "752647"
@@ -34,50 +38,84 @@ sf_bug_tracker_page = sf_site + "tracker/?group_id=%s&atid=%s" % (group_id,
 sf_bug_tracker_submit = sf_site + "tracker/index.php"
 
 
+trac_site="http://trac.umitproject.org/"
+trac_new_ticket=trac_site + "newticket"
+trac_submit=trac_new_ticket
+
+
+
+
+
 class BugRegister(object):
     def __init__(self):
         try:
-            urllib.urlopen(sf_site)
+            urllib.urlopen(trac_new_ticket)
         except:
             return None
-
-        self.group_id = group_id
-        self.atid = atid
-        self.func = "postadd"
-        self.is_private = "0" # not private
-        self.category_id = "862568"
-        self.artifact_group_id = "100" # None
-        self.assigned_to = "855755" # boltrix
-        self.priority = "5"
         self.summary = "Testing umit bug reporter"
         self.details = ("Just testing the umit dialog to report bugs "
-            "directly from the interface! py.adriano@gmail.com")
+            "directly from the interface!")
         self.input_file = ""
         self.file_description = ""
-        self.submit = "SUBMIT"
-
+        self.submit = "submit"
+        self.cc = ""
+	self.reporter = "luis"
+        self.keywords = ""
+        self.milestore = "Umit 0.9.5"
+        self.version = "current svn"
+        self.assigned_to = "boltrix"
+        self.component = "Documentation"
+        self.type = "defect"
+	
+    # Function to get the cookie of headers
+    def __get_cookie(self, header, name):
+	"""
+	Receive header and the name intended to find
+	Returns the value or None if not found
+	"""
+	try:
+	    pattern = r".*%s=([^;]+)[;]{0,1}.*" % name 
+	    return re.findall(pattern, header['Set-cookie'])[0]
+	except Exception, ex:
+	    return None
+	
+	    
+	    
     def report(self):
-        data = urllib.urlencode({"group_id":self.group_id,
-                                 "atid":self.atid,
-                                 "func":self.func,
-                                 "is_private":self.is_private,
-                                 "category_id":self.category_id,
-                                 "artifact_group_id":self.artifact_group_id,
-                                 "assigned_to":self.assigned_to,
-                                 "priority":self.priority,
-                                 "summary":self.summary,
-                                 "details":self.details,
-                                 "input_file":self.input_file,
-                                 "file_description":self.file_description,
+        f = urllib2.urlopen(trac_new_ticket)
+
+	# Get cookie trac_session 
+	trac_session = self.__get_cookie(f.headers, "trac_session")
+	# Get value of __FORM_TOKEN
+	trac_form = self.__get_cookie(f.headers, "trac_form_token")
+	if (trac_form == None or trac_session == None ):
+	    return None 
+	
+        data = urllib.urlencode({"summary":self.summary,
+				 "__FORM_TOKEN":trac_form,
+                                 "type":self.type,
+                                 "description":self.details,
+                                 "milestone":self.milestore,
+                                 "component":self.component,
+                                 "version":self.version,
+                                 "keywords":self.keywords,
+                                 "owner":self.assigned_to,
+                                 "cc":self.cc,
+				 "reporter":self.reporter,
+                                 "attachment":self.input_file,
                                  "submit":self.submit})
 
-        # The submit page source code points that the info should be set 
-        # using POST method.
-        # But, it only worked sending it through GET method. So, I decided 
-        # to send using both methods, to insure that it's going to work.
-        request = urllib2.Request(sf_bug_tracker_submit + "?" + data, data)
-        response = urllib2.urlopen(request)
+        request = urllib2.Request(trac_new_ticket, data)
+	request.add_header("Cookie", "trac_session=%s; \
+	trac_form_token=%s" % (trac_session, trac_form))
+        try:
+            response = urllib2.urlopen(request)
+        except URLError,e:
+            #print e.code
+            #print e.read()
+	    return None 
 
+        
         tfile = mktemp()
         open(tfile, "w").write(response.read())
         return tfile

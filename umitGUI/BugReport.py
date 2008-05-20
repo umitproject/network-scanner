@@ -53,17 +53,16 @@ class BugReport(HIGDialog):
 
     def _set_category_list(self):
         # Obtained at bug tracker page source code
-        self.category_list.append(["None", "100"])
-        self.category_list.append(["Search Window", "883332"])
-        self.category_list.append(["Colored Nmap Output", "862566"])
-        self.category_list.append(["Command Constructor (Wizard)", "862564"])
-        self.category_list.append(["Compare Results", "862563"])
-        self.category_list.append(["Interface (example)", "750538"])
-        self.category_list.append(["Other", "862568"])
-        self.category_list.append(["Profile Editor", "862565"])
-        self.category_list.append(["umitCore", "862561"])
-        self.category_list.append(["umitGUI", "862562"])
-        self.category_list.append(["XML Parser", "862567"])
+        
+        self.category_list.append(["Umit 0.9.5","Umit 0.9.5"])
+        self.category_list.append(["umitCore","umitCore"])
+        self.category_list.append(["umitGUI","umitGUI"])
+        self.category_list.append(["CrashReport","CrashReport"])
+        self.category_list.append(["Documentation", "Documentation"])
+        self.category_list.append(["umitWeb","umitWeb"])
+        self.category_list.append(["InterfaceEditor", "InterfaceEditor"])
+        self.category_list.append(["website","website"])
+        self.category_list.append(["Umit GNU/Linux 0.1 ALPHA 1","Umit GNU/Linux 0.1 ALPHA 1"])
         
     def _create_widgets(self):
         self.category_label = HIGHintSectionLabel(_("Category (optional)"),
@@ -188,10 +187,10 @@ class BugReport(HIGDialog):
 
         bug_register = BugRegister()
 
-        bug_register.category_id = self.category_id
+        bug_register.component = self.category_id
         bug_register.summary = self.summary
-        bug_register.details = "%s\n\nEmail: %s" % (self.description, 
-            self.email)
+        bug_register.details = self.description
+        bug_register.reporter = self.email
         
         bug_page = None
         try:
@@ -273,7 +272,7 @@ class BugReport(HIGDialog):
 
 class CrashReport(BugReport):
     def __init__(self, summary, description, title=_('Crash Report')):
-        BugReport.__init__(self, title, summary, description, "862568", True)
+        BugReport.__init__(self, title, summary, description, "CrashReport", True)
     
 if __name__ == "__main__":
     c = BugReport()
