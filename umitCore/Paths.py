@@ -32,8 +32,8 @@ from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.TempConf import create_temp_conf_dir
 from umitCore.Version import VERSION
 from umitCore.BasePaths import base_paths, HOME
-from umitCore.BasePaths import (CONFIG_DIR, LOCALE_DIR, MISC_DIR, ICONS_DIR,
-    PIXMAPS_DIR, DOCS_DIR)
+from umitCore.BasePaths import CONFIG_DIR, LOCALE_DIR, MISC_DIR
+from umitCore.BasePaths import ICONS_DIR, PIXMAPS_DIR, DOCS_DIR
 
 #######
 # Paths
