@@ -287,7 +287,8 @@ class CommandConstructor:
             self.add_option(k, v, False) # TODO: check this place further
 
     def add_option(self, option_name, args=[], level=False):
-        if option_name == "None" and not args and not level:
+        if (not option_name) or \
+	    (option_name == "None" and not args and not level):
             # this certainly shouldn't be added
             return
         self.options[option_name] = (args, level)
