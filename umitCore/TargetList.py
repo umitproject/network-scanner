@@ -56,8 +56,10 @@ class TargetList(object):
             target_file.close()
 
     def add_target(self, target):
+        # to keep stack order;
+        # if the target is on the list, we have to move it at the beginning
         if target in self.temp_list:
-            return
+            self.temp_list.remove(target)
 
         self.temp_list.append(target)
         self.save()
