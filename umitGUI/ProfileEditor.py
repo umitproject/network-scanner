@@ -327,7 +327,10 @@ Ok to continue, or Cancel to go back to Profile Editor.'))
     def update_profile_entry(self):
         for i in xrange(self.scan_notebook.get_n_pages()):
             page = self.scan_notebook.get_nth_page(i)
-            page.toolbar.profile_entry.update()
+
+            page.toolbar.profile_entry.update(\
+                self.profile_name_entry.get_text())
+
             list = page.toolbar.profile_entry.get_model()
             length = len(list)
             if self.deleted and length > 0 :
