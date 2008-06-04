@@ -441,18 +441,21 @@ class ScanNotebookPage(HIGVBox):
         
         if target == '':
             target = self.empty_target
-        
+
         try:
             cmd_profile = CommandProfile()
             command = cmd_profile.get_command(profile) % target
             del(cmd_profile)
             
             # scan button must be enable if -iR or -iL options are passed
-            if command.find('-iR') != -1 or command.find('-iL') != -1 \
-                    or target != self.empty_target:
+            if command.find('-iR') != -1 or command.find('-iL') != -1:
                 self.toolbar.scan_button.set_sensitive(True)
-                # removes unnecessary target from the command
+
+                # For these nmap options, target is unecessary.
+                # Removes unnecessary target from the command
                 command = command.replace(target,'').strip()
+            elif target != self.empty_target:
+                self.toolbar.scan_button.set_sensitive(True)
             else:
                 self.toolbar.scan_button.set_sensitive(False)
 
