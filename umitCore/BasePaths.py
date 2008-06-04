@@ -40,9 +40,9 @@ if hasattr(sys, "frozen"):
 CONFIG_DIR = os.path.join(main_dir, "share", "umit", "config")
 LOCALE_DIR = os.path.join(main_dir, "share", "umit", "locale")
 MISC_DIR = os.path.join(main_dir, "share", "umit", "misc")
-ICONS_DIR = os.path.join(main_dir, "share", "icons")
-PIXMAPS_DIR = os.path.join(main_dir, "share", "pixmaps")
-DOCS_DIR = os.path.join(main_dir, "share", "umit", "docs")
+ICONS_DIR = os.path.join(main_dir, "share", "icons", "umit")
+PIXMAPS_DIR = os.path.join(main_dir, "share", "pixmaps", "umit")
+DOCS_DIR = os.path.join(main_dir, "share", "doc", "umit")
 
 base_paths = dict(config_file = 'umit.conf',
                   config_dir = '.umit',

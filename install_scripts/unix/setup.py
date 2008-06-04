@@ -195,6 +195,8 @@ print
         pcontent = ""
         paths_file = os.path.join("umitCore", "Paths.py")
         installed_files = self.get_outputs()
+        
+        # Finding where the Paths.py file was installed.
         for f in installed_files:
             if re.findall("(%s)" % re.escape(paths_file), f):
                 paths_file = f
