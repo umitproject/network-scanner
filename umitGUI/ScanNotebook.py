@@ -1211,6 +1211,7 @@ class ScanResult(gtk.HPaned):
     def set_nmap_output(self, msg):
         nmap_output = self.scan_result_notebook.nmap_output.nmap_output
         nmap_output.text_view.get_buffer().set_text(msg)
+        nmap_output.update_output_colors()
 
     def clear_nmap_output(self):
         nmap_output = self.scan_result_notebook.nmap_output.nmap_output
