@@ -584,21 +584,31 @@ Scan Tab?'),
         profile = option_parser.get_profile()
         nmap = option_parser.get_nmap()
 
-        if nmap:
-            page.command_toolbar.command = " ".join(nmap)
+        print target, profile, nmap
+
+        if target:
+            page.toolbar.selected_target = target
+        if profile:
+            page.toolbar.selected_profile = profile
+
+        if target and profile:
+            log.debug(">>> Executing scan with the given args: %s \
+                      with %s" % (target, profile))
+            page.toolbar.scan_button.set_sensitive(True)
             page.start_scan_cb()
 
-        else:
-            if target:
-                page.toolbar.selected_target = target
+        elif target and nmap:
+            page.command_toolbar.command = " ".join(["".join(nmap),target])
+            page.toolbar.scan_button.set_sensitive(True)
+            page.start_scan_cb()
 
-            if profile:
-                page.toolbar.selected_profile = profile
+        elif not target and nmap:
+            #non_valid_target = NonValidTarget()
+            #del non_valid_target
+            page.command_toolbar.command = "nmap " + " ".join(nmap)
+            page.toolbar.scan_button.set_sensitive(True)
+            page.start_scan_cb()
 
-            if target and profile:
-                log.debug(">>> Executing scan with the given args: %s \
-with %s" % (target, profile))
-                page.start_scan_cb()
 
         if is_maemo():
             # No padding. We need space!
@@ -989,6 +999,19 @@ Some nmap options need root privileges to work.''')
 
         self.run()
         self.destroy()
+
+class NonValidTarget (HIGAlertDialog):
+    """ Alert for bad nmap option"""
+    def __init__(self):
+        warning_text = _('''You run the umit with nmap option and didn't specified\n
+a valid target (see the umit options)''')
+
+        HIGAlertDialog.__init__(self, message_format=_('Non valid target'),
+                                secondary_text=warning_text)
+
+        self.run()
+        self.destroy()
+
 
 
 if __name__ == '__main__':
