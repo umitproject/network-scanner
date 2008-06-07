@@ -195,7 +195,7 @@ print
                              "ICONS_DIR":icons_dir}
 
         pcontent = ""
-        paths_file = os.path.join("umitCore", "Paths.py")
+        paths_file = os.path.join("umitCore", "BasePaths.py")
         installed_files = self.get_outputs()
         
         # Finding where the Paths.py file was installed.
