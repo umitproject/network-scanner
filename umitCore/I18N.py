@@ -23,10 +23,21 @@ import locale
 
 from umitCore.BasePaths import LOCALE_DIR
 
-print locale.LC_ALL
-print locale.getdefaultlocale()
+try:
+    # If the content of the environment variable LANG contains a string which
+    # represents a language or encoding not supported by the system, the 
+    # following line will raise an exception.
+    LC_ALL = locale.setlocale(locale.LC_ALL, '')
+except locale.Error, error_msg:
+    # Here we tell user that it's system is set to an unsupported language,
+    # and that Umit will proceed using the system's default.
+    # Latter, we call setlocale again, but now providing None as the second
+    # argument, avoiding the occourrance of the exception.
+    # Gtk will raise a warning in this case, but will work just perfectly.
+    print "Your locale setting is not supported. Umit will continue using \
+using your system's preferred language."
+    LC_ALL = locale.setlocale(locale.LC_ALL, None)
 
-LC_ALL = locale.setlocale(locale.LC_ALL, None)
 LANG, ENC = locale.getdefaultlocale()
 ERRORS = "ignore"
 
