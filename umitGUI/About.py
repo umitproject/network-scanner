@@ -3,7 +3,7 @@
 
 # Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -61,14 +61,16 @@ class About(HIGWindow):
         
         self.lbl_program_description = gtk.Label(\
             _("""UMIT is the nmap frontend, developed in PyGTK
-by Adriano Monteiro Marques <py.adriano@gmail.com>
+by Adriano Monteiro Marques <adriano@umitproject.org>
 and was sponsored by Google during the
-Summer of Code 2005, 2006 and 2007. Thanks Google!"""))
+Summer of Code 2005, 2006, 2007 and 2008. Thanks Google!"""))
         
-        self.lbl_copyright=gtk.Label("<small>Copyright (C) 2005 Insecure.Com LLC.</small>")
+        self.lbl_copyright=gtk.Label("<small>Copyright (C) 2005-2006 \
+Insecure.Com LLC. and (C) 2007-2008 Adriano Monteiro Marques</small>")
         
         self.lbl_program_website = gtk.Label(\
-            "<span underline='single' foreground='blue'>http://umit.sourceforge.net</span>")
+            "<span underline='single' \
+            foreground='blue'>http://www.umitproject.org</span>")
         
         self.btn_close = HIGButton(stock=gtk.STOCK_CLOSE)
         self.btn_credits = HIGButton(_("Credits"))
@@ -129,7 +131,7 @@ class Credits(HIGWindow):
     def __init__(self):
         HIGWindow.__init__(self)
         self.set_title(_("UMIT credits"))
-        self.set_size_request(-1,250)
+        self.set_size_request(-1, 450)
         self.set_position(gtk.WIN_POS_CENTER)
         
         self.__create_widgets()
@@ -150,6 +152,9 @@ class Credits(HIGWindow):
 
         self.soc2007_scroll = HIGScrolledWindow()
         self.soc2007_text = HIGTextView()
+        
+        self.soc2008_scroll = HIGScrolledWindow()
+        self.soc2008_text = HIGTextView()
 
         self.contributors_scroll = HIGScrolledWindow()
         self.contributors_text = HIGTextView()
@@ -169,12 +174,20 @@ class Credits(HIGWindow):
         self.hbox._pack_expand_fill(hig_box_space_holder())
         self.hbox._pack_noexpand_nofill(self.btn_close)
         
-        self.notebook.append_page(self.written_by_scroll, gtk.Label(_("Written by")))
-        self.notebook.append_page(self.design_scroll, gtk.Label(_("Design")))
-        self.notebook.append_page(self.soc2007_scroll, gtk.Label(_("SoC 2007")))
-        self.notebook.append_page(self.contributors_scroll, gtk.Label(_("Contributors")))
-        self.notebook.append_page(self.translation_scroll, gtk.Label(_("Translation")))
-        self.notebook.append_page(self.nokia_scroll, gtk.Label(_("Maemo")))
+        self.notebook.append_page(self.written_by_scroll,
+                                  gtk.Label(_("Written by")))
+        self.notebook.append_page(self.design_scroll,
+                                  gtk.Label(_("Design")))
+        self.notebook.append_page(self.soc2007_scroll,
+                                  gtk.Label(_("SoC 2007")))
+        self.notebook.append_page(self.soc2008_scroll,
+                                  gtk.Label(_("SoC 2008")))
+        self.notebook.append_page(self.contributors_scroll,
+                                  gtk.Label(_("Contributors")))
+        self.notebook.append_page(self.translation_scroll,
+                                  gtk.Label(_("Translations")))
+        self.notebook.append_page(self.nokia_scroll,
+                                  gtk.Label(_("Maemo")))
         
         self.written_by_scroll.add(self.written_by_text)
         self.written_by_text.set_wrap_mode(gtk.WRAP_NONE)
@@ -184,6 +197,9 @@ class Credits(HIGWindow):
 
         self.soc2007_scroll.add(self.soc2007_text)
         self.soc2007_text.set_wrap_mode(gtk.WRAP_NONE)
+
+        self.soc2008_scroll.add(self.soc2008_text)
+        self.soc2008_text.set_wrap_mode(gtk.WRAP_NONE)
 
         self.contributors_scroll.add(self.contributors_text)
         self.contributors_text.set_wrap_mode(gtk.WRAP_NONE)
@@ -198,21 +214,21 @@ class Credits(HIGWindow):
     
     def set_text(self):
         b = self.written_by_text.get_buffer()
-        b.set_text("""Adriano Monteiro Marques <py.adriano@gmail.com>""")
+        b.set_text("""Adriano Monteiro Marques <adriano@umitproject.org>""")
         
         b = self.design_text.get_buffer()
-        b.set_text("""Operating System and Vulnerability Icons:
+        b.set_text(_("""Operating System and Vulnerability Icons:
 Takeshi Alexandre Gondo <sinistrofumanchu@yahoo.com.br>
 
-Logo, Application Icons and Splash screen:
+Logo, Application Icons, Splash screen and Umit GNU/Linux theme:
 Virgílio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>
 
 The Umit Project Web Site Design:
-Joao Paulo Pacheco <jp.pacheco@gmail.com>""")
+Joao Paulo Pacheco <jp.pacheco@gmail.com>"""))
 
         b = self.soc2007_text.get_buffer()
-        b.set_text("""Independent Features:
-Adriano Monteiro Marques <py.adriano@gmail.com>
+        b.set_text(_("""Independent Features:
+Adriano Monteiro Marques <adriano@umitproject.org>
 Frederico Silva Ribeiro <fredegart@gmail.com>
 
 Network Inventory:
@@ -228,20 +244,45 @@ NSE Facilitator:
 Maxim I. Gavrilov <lovelymax@gmail.com>
 
 Umit Web:
-Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>""")
+Rodolfo da Silva Carvalho <rodolfo@umitproject.org>"""))
+
+        b = self.soc2008_text.get_buffer()
+        b.set_text(_("""Packet Manipulation Backend
+Bartosz Adam Skowron <getxsick@gmail.com>
+
+Quick Scan:
+Daniel Mendes Cassiano <danielcassiano@gmail.com>
+
+Bluetooth Scanner & Vulnerabilities Database System:
+Devtar Singh <devtar@gmail.com>
+
+Umit Plugins and Packet Manipulation Frontend
+Francesco Piccinno <stack.box@gmail.com>
+
+Preferences Window and Interface Editor improvements:
+Luis Antonio Bastião Silva <luis.kop@gmail.com>
+
+UmitWeb Improvements and Independent Features:
+Rodolfo da Silva Carvalho <rodolfo@umitproject.org>
+
+Umit GNU/Linux:
+Túlio Gonçalves <tulhera@gmail.com>"""))
 
         b = self.contributors_text.get_buffer()
-        b.set_text("""Sponsored by (SoC 2005, 2006 and 2007):
+        b.set_text(_("""Sponsored by (SoC 2005, 2006, 2007 and 2008):
 Google <code.summer@gmail.com>
 
 Mentor of Umit for Google SoC 2005 and 2006:
 Fyodor <fyodor@insecure.org>
 
 Mentor of Umit for Google SoC 2007 Projects:
-Adriano Monteiro Marques <py.adriano@gmail.com>
+Adriano Monteiro Marques <adriano@umitproject.org>
+
+Mentor of Umit for Google SoC 2008 Projects:
+Adriano Monteiro Marques <adriano@umitproject.org>
 
 Initial development:
-Adriano Monteiro Marques <py.adriano@gmail.com>
+Adriano Monteiro Marques <adriano@umitproject.org>
 Cleber Rodrigues Rosa Junior <cleber.gnu@gmail.com>
 
 Nmap students from Google SoC 2007 that helped Umit:
@@ -251,32 +292,60 @@ Kris Katterjohn <katterjohn@gmail.com>
 
 The Umit Project WebSite:
 AbraoBarbosa dos Santos Neto <abraobsn@gmail.com>
-Adriano Monteiro Marques <py.adriano@gmail.com>
+Adriano Monteiro Marques <adriano@umitproject.org>
 Heitor de Lima Matos <heitordelima@hotmail.com>
 Joao Paulo Pacheco <jp.pacheco@gmail.com>
 João Paulo de Souza Medeiros <ignotus21@gmail.com>
 Luis Antonio Bastião Silva <luis.kop@gmail.com>
-Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>
+Rodolfo da Silva Carvalho <rodolfo@umitproject.org>
 
 Beta testers for 0.9.5RC1:
+Bartosz Adam Skowron <getxsick@gmail.com>
+Denis Kurov <deniskurov@gmail.com>
+Devtar Singh <devtar@gmail.com>
 Drew Miller <securitygeek@fribble.org>
+Francesco Piccinno <stack.box@gmail.com>
 Igor Feghali <ifeghali@php.net>
 Joao Paulo Pacheco <jp.pacheco@gmail.com>
 Luis Antonio Bastião Silva <luis.kop@gmail.com>
+Rodolfo da Silva Carvalho <rodolfo@umitproject.org>
 <ray-solomon@excite.com>
 <jah@zadkiel.plus.com>
 <epatterson@directapps.com>
 
+Special thanks to our GSoC volunteers heroes:
+Daniel Mendes Cassiano <danielcassiano@gmail.com>
+Túlio Gonçalves <tulhera@gmail.com>
+
 Initial attempt on Maemo port:
-Adriano Monteiro Marques <py.adriano@gmail.com>
-Osvaldo Santana Neto <osantana@gmail.com>""")
+Adriano Monteiro Marques <adriano@umitproject.org>
+Osvaldo Santana Neto <osantana@gmail.com>"""))
         
         b = self.translation_text.get_buffer()
-        b.set_text("""Brazilian Portuguese:
-Adriano Monteiro Marques <py.adriano@gmail.com>""")
-        
+        b.set_text(_("""Bahasa Indonesia:
+Devtar Singh <devtar@gmail.com>
+
+Bahasa Melayu:
+Devtar Singh <devtar@gmail.com>
+
+Brazilian Portuguese:
+Adriano Monteiro Marques <adriano@umitproject.org>
+
+Italian:
+Francesco Piccinno <stack.box@gmail.com>
+
+Polish:
+Bartosz Adam Skowron <getxsick@gmail.com>
+
+Portuguese Portugal:
+Luis Antonio Bastião Silva <luis.kop@gmail.com>
+
+Simplified Chinese:
+Devtar Singh <devtar@gmail.com>
+Haoyu Bai <baihaoyu@gmail.com>"""))
+
         b = self.nokia_text.get_buffer()
-        b.set_text("""Adriano Monteiro Marques <py.adriano@gmail.com>""")
+        b.set_text("""Adriano Monteiro Marques <adriano@umitproject.org>""")
 
 
 if __name__ == '__main__':
