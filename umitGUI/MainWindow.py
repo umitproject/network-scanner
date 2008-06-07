@@ -584,8 +584,6 @@ Scan Tab?'),
         profile = option_parser.get_profile()
         nmap = option_parser.get_nmap()
 
-        print target, profile, nmap
-
         if target:
             page.toolbar.selected_target = target
         if profile:
