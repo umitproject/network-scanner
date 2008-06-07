@@ -39,7 +39,7 @@ from umitCore.Version import VERSION
 # Will create the directory /tmp/umit with the following directories
 pixmaps_dir = os.path.join('share', 'pixmaps', 'umit')
 icons_dir = os.path.join('share', 'icons', 'umit')
-locale_dir = os.path.join('share', 'umit', 'locale')
+locale_dir = os.path.join('share', 'locale')
 config_dir = os.path.join('share', 'umit', 'config')
 docs_dir = os.path.join('share', 'doc', 'umit')
 misc_dir = os.path.join('share', 'umit', 'misc')
