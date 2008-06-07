@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #         Cleber Rodrigues <cleber.gnu@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -41,5 +42,5 @@ class HIGLabeledProgressBar(HIGHBox):
             self.progress_bar.set_size_request(80, 16)
             self.pack_label(self.progress_bar)
 
-	def show(self):
+        def show(self):
             HIGHBox.show_all(self)

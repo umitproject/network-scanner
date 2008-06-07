@@ -1,7 +1,7 @@
-# Copyright (C) 2005 Insecure.Com LLC.
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
-#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -19,7 +19,7 @@
 # 30 April 2007 -- More generic structure
 #                  Maxim Gavrilov <lovelymax@gmail.com>
 # 16 May 2007 -- Removing specific files at clean to avoid removing help.html
-#                Adriano Monteiro Marques <py.adriano@gmail.com>
+#                Adriano Monteiro Marques <adriano@umitproject.org>
 
 VPATH = comparing_results \
 	profile_editor \

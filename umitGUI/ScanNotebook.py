@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -221,7 +222,8 @@ class ScanNotebook(HIGNotebook):
         else:
             tab_label = HIGAnimatedTabLabel(self.get_new_tab_title())
 
-        tab_label.get_animated_label().connect("title-edited", self.title_edited_cb, page)
+        tab_label.get_animated_label().connect("title-edited",
+                                               self.title_edited_cb, page)
         tab_label.connect("close-clicked", close_cb, page)
         HIGNotebook.append_page(self, page, tab_label)
 
@@ -381,25 +383,7 @@ class ScanNotebookPage(HIGVBox):
     def check_command(self, widget, extra=None):
         # User has left command entry. Verify if something has changed!
         new_command = self.command_toolbar.command
-        #print "New:", new_command
-        #print "Old:", self.old_full_command
 
-        #if new_command != self.old_full_command:
-        #    print "Gosh! Is different!! Now, what?"
-
-
-        #target = self.toolbar.target_entry.selected_target
-
-        #if self.saved_target:
-        #    self.saved_command = self.command_toolbar.command_entry.get_text().split(
-        #                                                                   self.saved_target)[0]
-        #else:
-        #    self.saved_command = self.command_toolbar.command_entry.get_text().split(
-        #                                                                      _("<target>"))[0]
-        #
-        #print self.saved_target
-        #print self.saved_command
-    
     def disable_widgets(self):
         self.scan_result.set_sensitive(False)
     
@@ -607,7 +591,8 @@ class ScanNotebookPage(HIGVBox):
             warn_dialog.destroy()
 
         # Ask NmapOutputViewer to show/refresh nmap output from given file
-        self.scan_result.show_nmap_output(self.command_execution.get_output_file())
+        self.scan_result.show_nmap_output(\
+            self.command_execution.get_output_file())
 
         # Set a "EXECUTING" icon to host list
         self.scan_result.set_hosts({SCANNING: {'stock': gtk.STOCK_EXECUTE,
@@ -637,10 +622,8 @@ class ScanNotebookPage(HIGVBox):
             self.scan_result.set_nmap_output(self.command_execution.get_error())
             return False
 
-        #log.debug(">>> Process alive? %s" % alive)
-        #log.debug(">>> Nmap output:\n %s" % self.command_execution.get_output())
-
-        # Maybe this automatic refresh should be eliminated to avoid processor burning
+        # Maybe this automatic refresh should be eliminated 
+        # to avoid processor burning
         self.scan_result.refresh_nmap_output()
         
         if alive:
@@ -795,12 +778,14 @@ class ScanNotebookPage(HIGVBox):
             
         try:
             # And them, we update the nmap output! ;)
-            self.scan_result.scan_result_notebook.nmap_output.nmap_output.refresh_output()
+            self.scan_result.scan_result_notebook.nmap_output.\
+                nmap_output.refresh_output()
         except:
             # Put saved nmap output
             self.scan_result.scan_result_notebook.nmap_output.\
                         nmap_output.text_buffer.\
-                        set_text('\n'.join(self.parsed.get_nmap_output().split('\\n')))
+                        set_text('\n'.join(self.parsed.get_nmap_output().\
+                                           split('\\n')))
             
         target = self.parsed.get_target()
             
@@ -993,7 +978,8 @@ class ScanNotebookPage(HIGVBox):
 
         if len(serv_objs) == 1:
             self.set_single_service_host(serv_objs[0]['hosts'])
-            self.switch_host_details([page["page"] for page in serv_objs[0]['hosts']])
+            self.switch_host_details([page["page"] \
+                                      for page in serv_objs[0]['hosts']])
         else:
             servs = []
             for s in serv_objs:

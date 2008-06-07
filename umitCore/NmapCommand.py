@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +45,8 @@ shell_state = (sys.platform == "win32")
 nmap_command_path = "nmap"
 # Don't need the line below anymore
 #if sys.platform == "win32":
-#   nmap_command_path = os.path.join(os.path.split(os.path.abspath(sys.executable))[0], "Nmap", "nmap.exe")
+#   nmap_command_path = os.path.join(os.path.split(os.path.abspath(\
+#                                      sys.executable))[0], "Nmap", "nmap.exe")
 
 log.debug(">>> Platform: %s" % sys.platform)
 log.debug(">>> Nmap command path: %s" % nmap_command_path)
@@ -52,7 +54,8 @@ log.debug(">>> Nmap command path: %s" % nmap_command_path)
 def split_quoted(s):
     """Like str.split, except that no splits occur inside quoted strings, and
        quoted strings are unquoted."""
-    return [x.replace("\"", "") for x in re.findall('((?:"[^"]*"|[^"\s]+)+)', s)]
+    return [x.replace("\"", "") for x in re.findall('((?:"[^"]*"|[^"\s]+)+)',
+                                                    s)]
 
 class NmapCommand(object):
     def __init__(self, command=None):
@@ -144,9 +147,11 @@ class NmapCommand(object):
         #    command = command.replace('  ', ' ')
 
 
-        # The first join + split ensures to remove double spaces on lists like this:
+        # The first join + split ensures to remove double spaces on 
+        # lists like this:
         # ["nmap    ", "-T4", ...]
-        # And them, we must return a list of the command, that's why we have the second split
+        # And them, we must return a list of the command, that's why 
+        # we have the second split
         return " ".join(command.split()).split()
 
     def close(self):
@@ -172,7 +177,8 @@ class NmapCommand(object):
                 # Not sure if this works. Must research a bit more about this
                 # subprocess's method to see how it works.
                 # In the meantime, this should not raise any exception because
-                # we don't care if it killed the process as it never killed it anyway.
+                # we don't care if it killed the process as it never killed 
+                # it anyway.
                 from subprocess import TerminateProcess
                 TerminateProcess(self.command_process._handle, 0)
             except:
@@ -183,9 +189,10 @@ class NmapCommand(object):
             #self.command_process = Popen(self.command, bufsize=1, stdin=PIPE,
             #                             stdout=PIPE, stderr=PIPE)
             
-            # Because of problems with Windows, I passed only the file descriptors to \
-            # Popen and set stdin to PIPE
-            # Python problems... Cross-platform execution of process should be improved
+            # Because of problems with Windows, I passed only the file 
+            # descriptors to  Popen and set stdin to PIPE
+            # Python problems... Cross-platform execution of process 
+            # should be improved
             
             self._stdout_handler = open(self.stdout_output, "w+")
             self._stderr_handler = open(self.stderr_output, "w+")
@@ -196,8 +203,8 @@ class NmapCommand(object):
                                          stderr=self._stderr_handler.fileno(),
                                          shell=shell_state)
         else:
-            raise Exception("You have no command to run! Please, set the command \
-before trying to start scan!")
+            raise Exception("You have no command to run! Please, set \
+the command before trying to start scan!")
 
     def scan_state(self):
         if self.command_process == None:
@@ -205,12 +212,11 @@ before trying to start scan!")
 
         state = self.command_process.poll()
 
-        ### Buffer is not been used anymore
-        ## This line blocks the GUI execution, once the read method waits until a
-        ## new content come to be buffered
+        # Buffer is not been used anymore
+        # This line blocks the GUI execution, once the read method waits until a
+        # new content come to be buffered
         #self.command_buffer += self.command_process.stdout.read()
-        ###
-        
+
         if state == None:
             return True # True means that the process is still running
         elif state == 0:
@@ -220,15 +226,16 @@ before trying to start scan!")
             
             log.critical("An error occourried during the scan execution!")
             log.critical('%s' % self.command_stderr)
-            log.critical("Command that raised the exception: '%s'" % " ".join(self.command))
+            log.critical("Command that raised the exception: '%s'" % \
+                         " ".join(self.command))
             
-            raise Exception("An error occourried during the scan execution!\n'%s'" % \
-                            self.command_stderr)
+            raise Exception("An error occourried during the scan \
+execution!\n'%s'" % self.command_stderr)
 
     def scan_progress(self):
-        """Should return a tuple with the stage and status of the scan execution progress.
-        Will work only when the runtime interaction problem is solved.
-        """
+        """Should return a tuple with the stage and status of the scan 
+        execution progress. Will work only when the runtime interaction 
+        problem is solved."""
         pass
 
     def get_raw_output(self):
@@ -288,7 +295,7 @@ class CommandConstructor:
 
     def add_option(self, option_name, args=[], level=False):
         if (not option_name) or \
-	    (option_name == "None" and not args and not level):
+           (option_name == "None" and not args and not level):
             # this certainly shouldn't be added
             return
         self.options[option_name] = (args, level)
@@ -347,7 +354,8 @@ class WrongCommandType(Exception):
         self.command = command
 
     def __str__(self):
-        print "Command must be of type string! Got %s instead." % str(type(self.command))
+        print "Command must be of type string! Got %s instead." % \
+              str(type(self.command))
 
 class OptionDependency(Exception):
     def __init__(self, option, dependency):
@@ -420,9 +428,11 @@ if __name__ == '__main__':
     #    sleep (1)
     #print open(executando[3]).read()
 
-    unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromTestCase(SplitQuotedTest))
+    unittest.TextTestRunner().run(unittest.TestLoader().\
+                                  loadTestsFromTestCase(SplitQuotedTest))
 
-    scan = NmapCommand('%s -T4 -iL "/home/adriano/umit/test/targets\ teste"' % nmap_command_path)
+    scan = NmapCommand('%s -T4 -iL "/home/adriano/umit/test/targets\ teste"' % \
+                       nmap_command_path)
     scan.run_scan()
 
     while scan.scan_state():

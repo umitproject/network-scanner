@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -112,14 +113,22 @@ class HostOpenPorts(HIGVBox):
             self.host_columns[c].set_reorderable(True)
             self.host_columns[c].set_resizable(True)
 
-        self.host_columns['service'].connect('clicked', self.set_host_search_cb, 0)
-        self.host_columns['icon'].connect('clicked', self.set_host_search_cb, 5)
-        self.host_columns['hostname'].connect('clicked', self.set_host_search_cb, 2)
-        self.host_columns['port_number'].connect('clicked', self.set_host_search_cb, 3)
-        self.host_columns['protocol'].connect('clicked', self.set_host_search_cb, 4)
-        self.host_columns['state'].connect('clicked', self.set_host_search_cb, 5)
-        self.host_columns['server'].connect('clicked', self.set_host_search_cb, 6)
-        self.host_columns['version'].connect('clicked', self.set_host_search_cb, 7)
+        self.host_columns['service'].connect('clicked',
+                                             self.set_host_search_cb, 0)
+        self.host_columns['icon'].connect('clicked',
+                                          self.set_host_search_cb, 5)
+        self.host_columns['hostname'].connect('clicked',
+                                              self.set_host_search_cb, 2)
+        self.host_columns['port_number'].connect('clicked',
+                                                 self.set_host_search_cb, 3)
+        self.host_columns['protocol'].connect('clicked',
+                                              self.set_host_search_cb, 4)
+        self.host_columns['state'].connect('clicked',
+                                           self.set_host_search_cb, 5)
+        self.host_columns['server'].connect('clicked',
+                                            self.set_host_search_cb, 6)
+        self.host_columns['version'].connect('clicked',
+                                             self.set_host_search_cb, 7)
 
         self.host_columns['service'].set_sort_column_id(0)
         self.host_columns['icon'].set_min_width(35)
@@ -139,20 +148,29 @@ class HostOpenPorts(HIGVBox):
         self.host_columns['version'].pack_start(self.cell_port, True)
         self.host_columns['state'].pack_start(self.cell_port, True)
         self.host_columns['server'].pack_start(self.cell_port, True)
-        
-        self.host_columns['service'].set_attributes(self.cell_port, text=0)
-        self.host_columns['icon'].set_attributes(self.cell_host_icon, stock_id=1)
-        self.host_columns['hostname'].set_attributes(self.cell_port, text=2)
-        self.host_columns['port_number'].set_attributes(self.cell_port, text=3)
-        self.host_columns['protocol'].set_attributes(self.cell_port, text=4)
-        self.host_columns['state'].set_attributes(self.cell_port, text=5)
-        self.host_columns['server'].set_attributes(self.cell_port, text=6)
-        self.host_columns['version'].set_attributes(self.cell_port, text=7)
-        
+
+        self.host_columns['service'].set_attributes(self.cell_port,
+                                                    text=0)
+        self.host_columns['icon'].set_attributes(self.cell_host_icon,
+                                                 stock_id=1)
+        self.host_columns['hostname'].set_attributes(self.cell_port,
+                                                     text=2)
+        self.host_columns['port_number'].set_attributes(self.cell_port,
+                                                        text=3)
+        self.host_columns['protocol'].set_attributes(self.cell_port,
+                                                     text=4)
+        self.host_columns['state'].set_attributes(self.cell_port,
+                                                  text=5)
+        self.host_columns['server'].set_attributes(self.cell_port,
+                                                   text=6)
+        self.host_columns['version'].set_attributes(self.cell_port,
+                                                    text=7)
+
         self.host_columns['service'].set_visible(False)
-        
-        self.scroll_ports_hosts.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-    
+
+        self.scroll_ports_hosts.set_policy(gtk.POLICY_AUTOMATIC,
+                                           gtk.POLICY_AUTOMATIC)
+
     def _set_port_list(self):
         self.port_view.set_enable_search(True)
         self.port_view.set_search_column(3)

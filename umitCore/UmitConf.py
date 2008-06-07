@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -207,7 +208,8 @@ class Profile(UmitConfigParser, object):
         try: self.add_section(profile_name)
         except: return None
         
-        [self._set_it(profile_name, attr, attributes[attr]) for attr in attributes if attr != "options"]
+        [self._set_it(profile_name, attr, attributes[attr]) \
+         for attr in attributes if attr != "options"]
         options = attributes["options"]
         if type(options) in StringTypes:
             self._set_it(profile_name, "options", options)
@@ -342,10 +344,12 @@ class NmapOutputHighlight(object):
 
         tuple_regex = "[\(\[]\s?(\d+)\s?,\s?(\d+)\s?,\s?(\d+)\s?[\)\]]"
         if type(settings[3]) == type(""):
-            settings[3] = [int(t) for t in re.findall(tuple_regex, settings[3])[0]]
+            settings[3] = [int(t) \
+                           for t in re.findall(tuple_regex, settings[3])[0]]
 
         if type(settings[4]) == type(""):
-            settings[4]= [int(h) for h in re.findall(tuple_regex, settings[4])[0]]
+            settings[4]= [int(h) \
+                          for h in re.findall(tuple_regex, settings[4])[0]]
 
         return settings
 
@@ -429,8 +433,8 @@ class NmapOutputHighlight(object):
     details = property(get_details, set_details)
     enable = property(get_enable, set_enable)
 
-    # These settings are made when there is nothing set yet. They set the "factory" \
-    # default to highlight colors
+    # These settings are made when there is nothing set yet. They set 
+    # the "factory" default to highlight colors
     default_highlights = {"date":{"bold":str(True),
                             "italic":str(False),
                             "underline":str(False),
@@ -442,7 +446,7 @@ class NmapOutputHighlight(object):
                             "underline":str(True),
                             "text":[0, 111, 65535],
                             "highlight":[65535, 65535, 65535],
-                            "regex":"(\w{2,}://)*\w{2,}\.\w{2,}(\.\w{2,})*(/[\w{2,}]*)*"},
+                "regex":"(\w{2,}://)*\w{2,}\.\w{2,}(\.\w{2,})*(/[\w{2,}]*)*"},
                           "ip":{"bold":str(True),
                             "italic":str(False),
                             "underline":str(False),
@@ -454,7 +458,7 @@ class NmapOutputHighlight(object):
                             "underline":str(False),
                             "text":[0, 1272, 28362],
                             "highlight":[65535, 65535, 65535],
-                            "regex":"PORT\s+STATE\s+SERVICE(\s+VERSION)?[^\n]*"},
+                        "regex":"PORT\s+STATE\s+SERVICE(\s+VERSION)?[^\n]*"},
                           "open_port":{"bold":str(True),
                             "italic":str(False),
                             "underline":str(False),

@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -145,7 +146,8 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
         self.scrolled = gtk.ScrolledWindow ()
         self.text_view = gtk.TextView ()
         self.btn_refresh = gtk.Button (stock=gtk.STOCK_REFRESH)
-        self.check_enable_color = gtk.CheckButton(_("Enable Nmap output highlight"))
+        self.check_enable_color = gtk.CheckButton(\
+            _("Enable Nmap output highlight"))
         self.btn_output_properties = HIGButton(stock=gtk.STOCK_PREFERENCES)
         self.hbox_buttons = gtk.HBox (spacing=5)
     
@@ -164,9 +166,12 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
         self.check_enable_color.set_active(self.nmap_highlight.enable)
         
         # Connecting events
-        self.btn_refresh.connect('clicked', self.refresh_output)
-        self.btn_output_properties.connect("clicked", self.show_output_properties)
-        self.check_enable_color.connect("toggled", self.enable_color_highlight)
+        self.btn_refresh.connect('clicked',
+                                 self.refresh_output)
+        self.btn_output_properties.connect("clicked",
+                                           self.show_output_properties)
+        self.check_enable_color.connect("toggled",
+                                        self.enable_color_highlight)
         
         # Setting hbox
         self.hbox_buttons.set_border_width(5)
@@ -186,22 +191,23 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
 
         for i in xrange(len(output)):
             if re_host.search(output[i]):
-                self.text_view.scroll_to_iter(buff.get_iter_at_line(i), 0, True, 0, 0)
+                self.text_view.scroll_to_iter(buff.get_iter_at_line(i),
+                                              0, True, 0, 0)
                 break
-        
+
     def enable_color_highlight(self, widget):
         if widget.get_active():
             self.nmap_highlight.enable = 1
         else:
             self.nmap_highlight.enable = 0
-        
+
         self.text_buffer.move_mark(self.mark, self.text_buffer.get_start_iter())
         self.update_output_colors()
 
     def show_output_properties(self, widget):
         nmap_out_prop = NmapOutputProperties(self.text_view)
         #nmap_out_prop.connect("response", self.update_output_colors)
-        
+
         nmap_out_prop.run()
         
         for prop in nmap_out_prop.property_names:
@@ -393,7 +399,8 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
             new_output = nmap_of.read()
 
             if self.nmap_previous_output != new_output:
-                # Setting text and moving mark to the start to update_colors correctly
+                # Setting text and moving mark to the start 
+                # to update_colors correctly
                 self.text_buffer.set_text(enc(new_output))
 
                 self.nmap_previous_output = new_output

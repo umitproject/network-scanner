@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,44 +49,49 @@ class ServiceFingerprintReport(gtk.Window, object):
         self.button_box = gtk.HButtonBox()
         
         self.submitted_label = HIGHintSectionLabel(_("Submitted by (optional)"),
-                                                   _("Enter your name and e-mail address if we \
- can contact you with any questions. (kept private, used for nothing else)"))
+                                                   _("Enter your name and \
+e-mail address if we can contact you with any questions. (kept private, used \
+for nothing else)"))
         self.submitted_entry = gtk.Entry()
 
         self.service_name_label = HIGHintSectionLabel(_("Service Name"),
-                                                      _("E.g. smtp, pop-3, http, domain, \
-ssh, etc. Umit tries to automaticly fill this field for you, based on the Nmap \"SERVICE\" \
-output field. If it is correct, you don't need to worry about filling out this field. "))
+                                                      _("E.g. smtp, pop-3, \
+http, domain, ssh, etc. Umit tries to automaticly fill this field for you, \
+based on the Nmap \"SERVICE\" output field. If it is correct, you don't need \
+to worry about filling out this field. "))
         self.service_name_entry = gtk.Entry()
 
         self.platform_label = HIGHintSectionLabel(_("Platform/OS"),
-                                                  _('The operating system or embedded \
-device the service is running on - Examples are "Linux 2.4.X", "Windows XP", \
-"Cisco 3640 router", "Netgear MR814 WAP"'))
+                                                  _('The operating system \
+or embedded device the service is running on - Examples are "Linux 2.4.X", \
+"Windows XP", "Cisco 3640 router", "Netgear MR814 WAP"'))
         self.platform_entry = gtk.Entry()
 
-        self.service_description_label = HIGHintSectionLabel(_("Service Description"),
-                                                             _("Please try to include \
-vendor name, app name, and version number as applicable. It is OK to leave this blank \
-for embedded devices where you have described the hardware above and don't have any \
-further details on the service name/version. Here are a few examples: ISC Bind 9.2.2, \
-Sendmail 8.12.9/8.10.2, Microsoft Exchange 5.5.2656.59, Network Associates WebShield 4.5"))
+        self.service_description_label = HIGHintSectionLabel(_("Service \
+Description"),
+                                                             _("Please try to \
+include vendor name, app name, and version number as applicable. It is OK to \
+leave this blank for embedded devices where you have described the hardware \
+above and don't have any further details on the service name/version. Here \
+are a few examples: ISC Bind 9.2.2, Sendmail 8.12.9/8.10.2, Microsoft Exchange \
+5.5.2656.59, Network Associates WebShield 4.5"))
         self.service_description_entry = gtk.Entry()
 
         self.notes_label = HIGHintSectionLabel(_("Notes"),
-                                               _("Further info on the device or service, \
-any special customizations, etc. If it isn't obvious, please let me know what the \
-service is (Virus scanning email gateway, Gnutella-protocol P2P app, print server \
-web configuration port, etc"))
+                                               _("Further info on the device \
+or service, any special customizations, etc. If it isn't obvious, please let \
+me know what the service is (Virus scanning email gateway, Gnutella-protocol \
+P2P app, print server web configuration port, etc"))
         self.notes_scrolled = gtk.ScrolledWindow()
         self.notes_text = gtk.TextView()
 
         self.fingerprint_icon = gtk.Image()
-        self.fingerprint_text = gtk.Label(_("This form allows you to contribute new \
-service/version fingerprints to the Nmap database. Thanks for helping! <b>Please do not \
-fill this out unless you are sure that you know what application is running on the \
-machine you are submitting</b>. Incorrect entries can pollute the database. By submitting \
-fingerprints you are transfering any copyright interest in the data to Fyodor so that he \
+        self.fingerprint_text = gtk.Label(_("This form allows you to \
+contribute new service/version fingerprints to the Nmap database. Thanks for \
+helping! <b>Please do not fill this out unless you are sure that you know what \
+application is running on the machine you are submitting</b>. Incorrect \
+entries can pollute the database. By submitting fingerprints you are \
+transfering any copyright interest in the data to Fyodor so that he \
 can modify it, relicense it, incorporate it into programs such as Nmap, etc."))
 
         self.btn_ok = gtk.Button(stock=gtk.STOCK_OK)
@@ -96,11 +102,13 @@ can modify it, relicense it, incorporate it into programs such as Nmap, etc."))
 
     def _pack_widgets(self):
         self.notes_scrolled.add(self.notes_text)
-        self.notes_scrolled.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.notes_scrolled.set_policy(gtk.POLICY_AUTOMATIC,
+                                       gtk.POLICY_AUTOMATIC)
         self.notes_scrolled.set_size_request(400, 150)
         self.notes_text.set_wrap_mode(gtk.WRAP_WORD)
-        
-        self.fingerprint_icon.set_from_stock(gtk.STOCK_DIALOG_INFO, gtk.ICON_SIZE_DIALOG)
+
+        self.fingerprint_icon.set_from_stock(gtk.STOCK_DIALOG_INFO,
+                                             gtk.ICON_SIZE_DIALOG)
         self.fingerprint_icon.set_padding(10, 0)
         self.fingerprint_text.set_line_wrap(True)
         self.fingerprint_text.set_use_markup(True)
@@ -143,12 +151,14 @@ can modify it, relicense it, incorporate it into programs such as Nmap, etc."))
         self.destroy()
 
     def send_report(self, widget):
-        if self.service_name == "" or self.service_description == "" or self.platform == "":
+        if self.service_name == "" or self.service_description == "" or \
+           self.platform == "":
             cancel_dialog = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
-                                           message_format=_("Service Fingerprint \
-report is incomplete!"),
-                                           secondary_text=_("The Service Fingerprint \
-report is incomplete. Please, try to provide as much information as possible."))
+                                           message_format=_("Service \
+Fingerprint report is incomplete!"),
+                                           secondary_text=_("The Service \
+Fingerprint report is incomplete. Please, try to provide as much information \
+as possible."))
             cancel_dialog.run()
             cancel_dialog.destroy()
             return None
@@ -167,21 +177,22 @@ report is incomplete. Please, try to provide as much information as possible."))
             service_register.report()
         except:
             cancel_dialog = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
-                                           message_format=_("Service Fingerprint \
-not registered!"),
-                                           secondary_text=_("The Service Fingerprint \
-could not be registered. This problem may be caused by the lack of Internet Access or \
-indisponibility of the fingerprint server. Please, verify your internet access, and \
-then try to register the service fingerprint once again."))
+                                           message_format=_("Service \
+Fingerprint not registered!"),
+                                           secondary_text=_("The Service \
+Fingerprint could not be registered. This problem may be caused by the lack \
+of Internet Access or indisponibility of the fingerprint server. Please, \
+verify your internet access, and then try to register the service fingerprint \
+once again."))
             cancel_dialog.run()
             cancel_dialog.destroy()
         else:
             ok_dialog = HIGAlertDialog(type=gtk.MESSAGE_INFO,
                                        message_format=_("Service Fingerprint \
 sucessfully registered!"),
-                                       secondary_text=_("The Service Fingerprint was \
-sucessfully registered. A web page with detailed description about this registration is \
-going to be openned in your default web browser."))
+                                       secondary_text=_("The Service \
+Fingerprint was sucessfully registered. A web page with detailed description \
+about this registration is going to be openned in your default web browser."))
             ok_dialog.run()
             ok_dialog.destroy()
 
@@ -226,11 +237,14 @@ going to be openned in your default web browser."))
     submitted = property(get_submitted, set_submitted)
     platform = property(get_platform, set_platform)
     service_name = property(get_service_name, set_service_name)
-    service_description = property(get_service_description, set_service_description)
+    service_description = property(get_service_description,
+                                   set_service_description)
     notes = property(get_notes, set_notes)
 
 if __name__ == "__main__":
-    w = ServiceFingerprintReport("ssh", "Testing umit fingerprint submission", "IP Address")
+    w = ServiceFingerprintReport("ssh",
+                                 "Testing umit fingerprint submission",
+                                 "IP Address")
     w.show_all()
 
     gtk.main()

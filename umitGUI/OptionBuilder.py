@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +54,9 @@ class OptionTab(object):
             except:pass
             else:
                 if option_element.tagName in actions.keys():
-                    self.widgets_list.append(actions[option_element.tagName](option_element, options_used))
+                    self.widgets_list.append(\
+                        actions[option_element.tagName](option_element,
+                                                        options_used))
 
     def __parse_option_list(self, option_list, options_used):
         options = option_list.getElementsByTagName(u'option')
@@ -225,10 +228,12 @@ class OptionBuilder(object):
         dic = {}
         for tab_name in self.groups:
             dic[tab_name] = OptionTab(self.xml.getElementsByTagName(tab_name)[0],
-                                      self.options, self.constructor, self.update_func)
+                                      self.options,
+                                      self.constructor,
+                                      self.update_func)
         return dic
 
-    
+
 class OptionWidget:
     def enable_widget(self):
         self.set_sensitive(True)
@@ -281,11 +286,15 @@ class OptionLevelSpin(gtk.SpinButton, OptionWidget):
 
 class OptionIntSpin(gtk.SpinButton, OptionWidget):
     def __init__(self, initial=1):
-        gtk.SpinButton.__init__(self,gtk.Adjustment(int(initial),0,10**100,1),0.0,0)
+        gtk.SpinButton.__init__(self,
+                                gtk.Adjustment(int(initial),0,10**100,1),
+                                0.0,0)
 
 class OptionFloatSpin(gtk.SpinButton, OptionWidget):
     def __init__(self, initial=1):
-        gtk.SpinButton.__init__(self,gtk.Adjustment(float(initial),0,10**100,1),0.1,2)
+        gtk.SpinButton.__init__(self,
+                                gtk.Adjustment(float(initial),0,10**100,1),
+                                0.1,2)
 
 class OptionFile(HIGHBox, OptionWidget, object):
     def __init__(self, param=""):
@@ -316,7 +325,7 @@ class OptionFile(HIGHBox, OptionWidget, object):
 
 if __name__ == '__main__':
     o = OptionBuilder('profile_editor.xml')
-    
+
     ol = OptionFile()
     w = gtk.Window()
     w.add(ol)

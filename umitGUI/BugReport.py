@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,6 +30,7 @@ from higwidgets.higtables import HIGTable
 from higwidgets.higboxes import HIGHBox
 
 from umitCore.BugRegister import BugRegister
+from umitCore.Version import VERSION
 from umitCore.I18N import _
 
 class BugReport(HIGDialog):
@@ -54,7 +56,8 @@ class BugReport(HIGDialog):
     def _set_category_list(self):
         # Obtained at bug tracker page source code
         
-        self.category_list.append(["Umit 0.9.5","Umit 0.9.5"])
+        self.category_list.append(["Umit %s" % VERSION,
+                                   "Umit %s" % VERSION])
         self.category_list.append(["umitCore","umitCore"])
         self.category_list.append(["umitGUI","umitGUI"])
         self.category_list.append(["CrashReport","CrashReport"])
@@ -62,7 +65,8 @@ class BugReport(HIGDialog):
         self.category_list.append(["umitWeb","umitWeb"])
         self.category_list.append(["InterfaceEditor", "InterfaceEditor"])
         self.category_list.append(["website","website"])
-        self.category_list.append(["Umit GNU/Linux 0.1 ALPHA 1","Umit GNU/Linux 0.1 ALPHA 1"])
+        self.category_list.append(["Umit GNU/Linux 0.1 ALPHA 1",
+                                   "Umit GNU/Linux 0.1 ALPHA 1"])
         
     def _create_widgets(self):
         self.category_label = HIGHintSectionLabel(_("Category (optional)"),
@@ -272,7 +276,8 @@ class BugReport(HIGDialog):
 
 class CrashReport(BugReport):
     def __init__(self, summary, description, title=_('Crash Report')):
-        BugReport.__init__(self, title, summary, description, "CrashReport", True)
+        BugReport.__init__(self, title, summary, description,
+                           "CrashReport", True)
     
 if __name__ == "__main__":
     c = BugReport()

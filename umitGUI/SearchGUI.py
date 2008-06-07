@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +26,8 @@ import os.path
 from higwidgets.higwindows import HIGWindow
 from higwidgets.higboxes import HIGVBox
 from higwidgets.higbuttons import HIGButton
-from higwidgets.higboxes import HIGVBox, HIGHBox, HIGSpacer, hig_box_space_holder
+from higwidgets.higboxes import HIGVBox, HIGHBox
+from higwidgets.higboxes import HIGSpacer, hig_box_space_holder
 from higwidgets.higlabels import HIGSectionLabel, HIGEntryLabel
 from higwidgets.higtables import HIGTable
 from higwidgets.higdialogs import HIGAlertDialog
@@ -117,8 +119,6 @@ class SearchGUI(gtk.HPaned, object):
         #self.general_finish_hbox = HIGHBox()
         
         self.general_section = HIGSectionLabel(_("General search parameters"))
-        #self.general_start_section = HIGSectionLabel(_("Scan started in range"))
-        #self.general_finish_section = HIGSectionLabel(_("Scan finished in range"))
         
         self.general_table = HIGTable()
 
@@ -141,8 +141,6 @@ class SearchGUI(gtk.HPaned, object):
         #self.host_lastboot_hbox = HIGHBox()
         
         self.host_section = HIGSectionLabel(_("Host search parameters"))
-        #self.host_uptime_section = HIGSectionLabel(_("Hosts with uptime in range"))
-        #self.host_lastboot_section = HIGSectionLabel(_("Hosts with lastboot in range"))
         
         self.host_table = HIGTable()
 
@@ -181,7 +179,8 @@ class SearchGUI(gtk.HPaned, object):
         # OS
         self.os_vbox = HIGVBox()
         self.os_hbox = HIGHBox()
-        self.os_section = HIGSectionLabel(_("Operating System search parameters"))
+        self.os_section = HIGSectionLabel(_("Operating System search \
+parameters"))
         self.os_table = HIGTable()
         
         self.os_osclass_label = HIGEntryLabel(_("OS class"))

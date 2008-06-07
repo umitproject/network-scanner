@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -76,9 +77,10 @@ class Table(object):
         if self.__getattribute__("_%s" % item_name):
             return self.__getattribute__("_%s" % item_name)
 
-        sql = "SELECT %s FROM %s WHERE %s_id = %s" % (item_name, self.table_name,
+        sql = "SELECT %s FROM %s WHERE %s_id = %s" % (item_name,
                                                       self.table_name,
-                                                      self.__getattribute__(self.table_id))
+                                                      self.table_name,
+                                           self.__getattribute__(self.table_id))
 
         self.cursor.execute(sql)
         
@@ -89,9 +91,10 @@ class Table(object):
         if item_value == self.__getattribute__("_%s" % item_name):
             return None
         
-        sql = "UPDATE %s SET %s = ? WHERE %s_id = %s" % (self.table_name, item_name,
+        sql = "UPDATE %s SET %s = ? WHERE %s_id = %s" % (self.table_name,
+                                                         item_name,
                                                          self.table_name,
-                                                         self.__getattribute__(self.table_id))
+                                           self.__getattribute__(self.table_id))
         self.cursor.execute(sql, (item_value,))
         connection.commit()
         self.__setattr__("_%s" % item_name, item_value)
@@ -136,7 +139,8 @@ class UmitDB(object):
             connection.commit()
 
         
-        creation_string = ("""CREATE TABLE scans (scans_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        creation_string = ("""CREATE TABLE scans (scans_id INTEGER \
+                                                  PRIMARY KEY AUTOINCREMENT,
                                                   scan_name TEXT,
                                                   nmap_xml_output TEXT,
                                                   digest TEXT,
@@ -162,7 +166,8 @@ class UmitDB(object):
     def cleanup(self, save_time):
         log.debug(">>> Cleanning up data base.")
         log.debug(">>> Removing results olders than %s seconds" % save_time)
-        self.cursor.execute("SELECT scans_id FROM scans WHERE date < ?", (time() - save_time,))
+        self.cursor.execute("SELECT scans_id FROM scans WHERE date < ?",
+                            (time() - save_time,))
         
         for sid in [sid[0] for sid in self.cursor.fetchall()]:
             log.debug(">>> Removing results with scans_id %s" % sid)
@@ -183,18 +188,22 @@ class Scans(Table, object):
             
             for k in kargs.keys():
                 if k not in fields:
-                    raise Exception("Wrong table field passed to creation method. '%s'" % k)
+                    raise Exception("Wrong table field passed to creation \
+method. '%s'" % k)
 
-            if "nmap_xml_output" not in kargs.keys() or not kargs["nmap_xml_output"]:
+            if "nmap_xml_output" not in kargs.keys() or \
+               not kargs["nmap_xml_output"]:
                 raise Exception("Can't save result without xml output")
 
-            if not self.verify_digest(md5.new(kargs["nmap_xml_output"]).hexdigest()):
+            if not self.verify_digest(md5.new(kargs["nmap_xml_output"]).\
+                                      hexdigest()):
                 raise Exception("XML output registered already!")
             
             self.scans_id = self.insert(**kargs)
 
     def verify_digest(self, digest):
-        self.cursor.execute("SELECT scans_id FROM scans WHERE digest = ?", (digest, ))
+        self.cursor.execute("SELECT scans_id FROM scans WHERE digest = ?",
+                            (digest, ))
         result = self.cursor.fetchall()
         if result:
             return False

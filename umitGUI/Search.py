@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -88,9 +89,15 @@ class SearchWindow(HIGWindow, object):
         self.progress.set_fraction(self.fraction + self.progress.get_fraction())
 
 
-    filename = property(get_filename, set_filename, doc=_("File name been searched"))
-    path = property(get_path, set_path, doc=_("Path been scanned"))
-    fraction = property(get_fraction, set_fraction, doc=_("Fraction of the progress bar"))
+    filename = property(get_filename,
+                        set_filename,
+                        doc=_("File name been searched"))
+    path = property(get_path,
+                    set_path,
+                    doc=_("Path been scanned"))
+    fraction = property(get_fraction,
+                        set_fraction,
+                        doc=_("Fraction of the progress bar"))
 
 if __name__ == '__main__':
     s = SearchWindow()

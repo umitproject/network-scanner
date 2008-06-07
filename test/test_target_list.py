@@ -1,6 +1,6 @@
 # Copyright (C) 2007 Adriano Monteiro Marques.
 #
-# Authors: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Authors: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

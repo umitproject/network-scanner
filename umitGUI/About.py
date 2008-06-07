@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
+#
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
 #
 # Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
@@ -60,8 +61,9 @@ class About(HIGWindow):
 <span size='30000' weight='heavy'>UMIT %s</span>""" % VERSION)
         
         self.lbl_program_description = gtk.Label(\
-            _("""UMIT is the nmap frontend, developed in PyGTK
-by Adriano Monteiro Marques <adriano@umitproject.org>
+            _("""UMIT is network scanning frontend frontend,
+developed in PyGTK by Adriano Monteiro 
+Marques <adriano@umitproject.org>
 and was sponsored by Google during the
 Summer of Code 2005, 2006, 2007 and 2008. Thanks Google!"""))
         

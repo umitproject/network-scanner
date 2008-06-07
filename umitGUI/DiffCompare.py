@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,7 +82,8 @@ class ScanChooser(HIGVBox):
         self._pack_expand_fill(self.hbox)
     
     def _create_widgets(self):
-        self.lbl_scan = HIGSectionLabel("%s %s"%(_("Scan Result"), str(self.num)))
+        self.lbl_scan = HIGSectionLabel("%s %s"%(_("Scan Result"),
+                                                 str(self.num)))
         self.hbox = HIGHBox()
         self.table = HIGTable()
         self.list_scan = gtk.ListStore(str)
@@ -94,10 +96,11 @@ class ScanChooser(HIGVBox):
 
     def get_buffer(self):
         return self.txt_scan_result.get_buffer()
-    
+
     def show_scan (self, widget):
         self.txt_scan_result.get_buffer().\
-             set_text(self.normalize_output(self.scan_dict[widget.child.get_text()].nmap_output))
+             set_text(self.normalize_output(\
+                 self.scan_dict[widget.child.get_text()].nmap_output))
 
     def normalize_output(self, output):
         return "\n".join(output.split("\\n"))
@@ -131,7 +134,8 @@ class ScanChooser(HIGVBox):
         
         self.txt_scan_result.set_wrap_mode(gtk.WRAP_WORD)
         self.txt_scan_result.set_editable(False)
-        self.txt_scan_result.get_buffer().connect("changed", self._text_changed_cb)
+        self.txt_scan_result.get_buffer().connect("changed",
+                                                  self._text_changed_cb)
 
     def _set_open_button (self):
         self.btn_open_scan.connect('clicked', self.open_file)
@@ -149,9 +153,10 @@ class ScanChooser(HIGVBox):
                 parser.parse()
             except:
                 alert = HIGAlertDialog(
-                    message_format='<b>%s</b>' % _('File is not a Umit Scan Result'),
-                    secondary_text=_("Selected file is not a Umit Scan Result file. \
-Umit can not parse this file. Please, select another."))
+                    message_format='<b>%s</b>' % _('File is not a Umit \
+Scan Result'),
+                    secondary_text=_("Selected file is not a Umit Scan \
+Result file. Umit can not parse this file. Please, select another."))
                 alert.run()
                 alert.destroy()
                 return False
@@ -162,9 +167,10 @@ Umit can not parse this file. Please, select another."))
             self.combo_scan.set_active(len(self.list_scan) - 1)
         else:
             alert = HIGAlertDialog(
-                    message_format='<b>%s</b>' % _('Can not open selected file'),
-                    secondary_text=_("Umit can not open selected file. Please, select \
-another."))
+                    message_format='<b>%s</b>' % \
+                                   _('Can not open selected file'),
+                    secondary_text=_("Umit can not open selected file. Please, \
+select another."))
             alert.run()
             alert.destroy()
 
@@ -229,7 +235,8 @@ class DiffWindow(gtk.Window):
         self.initial_size = self.size_request()
 
     def _show_help(self, action):
-        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "help.html"), new=2)
+        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "help.html"),
+                        new=2)
 
     def _create_widgets(self):
         self.main_vbox = HIGVBox()
@@ -237,11 +244,13 @@ class DiffWindow(gtk.Window):
         self.hbox_settings = HIGHBox()
         self.hbox_buttons = HIGHBox()
         self.hbox_result = HIGHBox()
-        self.btn_open_browser = HIGButton(_("Open in Browser"), stock=gtk.STOCK_EXECUTE)
+        self.btn_open_browser = HIGButton(_("Open in Browser"),
+                                          stock=gtk.STOCK_EXECUTE)
         self.btn_help = HIGButton(stock=gtk.STOCK_HELP)
         self.btn_close = HIGButton(stock=gtk.STOCK_CLOSE)
         self.check_color = gtk.CheckButton(_("Enable colored diffies"))
-        self.btn_legend = HIGButton(_("Color Descriptions"), stock=gtk.STOCK_SELECT_COLOR)
+        self.btn_legend = HIGButton(_("Color Descriptions"),
+                                    stock=gtk.STOCK_SELECT_COLOR)
         self.text_mode = gtk.ToggleButton(_("Text Mode"))
         self.compare_mode = gtk.ToggleButton(_("Compare Mode"))
         self.vpaned = gtk.VPaned()
@@ -421,7 +430,6 @@ because you dont have Python 2.4 or higher.)\n''')
     def close(self, widget=None, extra=None):
         self.destroy()
 
-
 class DiffText(HIGVBox, object):
     def __init__ (self, colors, check_color):
         HIGVBox.__init__(self)
@@ -496,8 +504,10 @@ class DiffText(HIGVBox, object):
             for i in positions['removed']:
                 buff.apply_tag(self.txg_removed, i[0], i[1])
         else:
-            buff.remove_tag(self.txg_added, buff.get_start_iter (), buff.get_end_iter())
-            buff.remove_tag(self.txg_removed, buff.get_start_iter (), buff.get_end_iter())
+            buff.remove_tag(self.txg_added, buff.get_start_iter(),
+                            buff.get_end_iter())
+            buff.remove_tag(self.txg_removed, buff.get_start_iter(),
+                            buff.get_end_iter())
 
     def _take_changes (self, buffer):
         positions = {'added':[], 'removed':[]}
@@ -560,11 +570,21 @@ class DiffTree(HIGVBox, object):
 
     def activate_color(self, activate):
         if activate:
-            self.diff_column1.set_attributes(self.diff_cell, text=0, background=5)
-            self.diff_column2.set_attributes(self.diff_cell, text=1, background=5)
-            self.diff_column3.set_attributes(self.diff_cell, text=2, background=5)
-            self.diff_column4.set_attributes(self.diff_cell, text=3, background=5)
-            self.diff_column5.set_attributes(self.diff_cell, text=4, background=5)
+            self.diff_column1.set_attributes(self.diff_cell,
+                                             text=0,
+                                             background=5)
+            self.diff_column2.set_attributes(self.diff_cell,
+                                             text=1,
+                                             background=5)
+            self.diff_column3.set_attributes(self.diff_cell,
+                                             text=2,
+                                             background=5)
+            self.diff_column4.set_attributes(self.diff_cell,
+                                             text=3,
+                                             background=5)
+            self.diff_column5.set_attributes(self.diff_cell,
+                                             text=4,
+                                             background=5)
         else:
             self.diff_column1.clear_attributes(self.diff_cell)
             self.diff_column2.clear_attributes(self.diff_cell)
@@ -638,7 +658,8 @@ class DiffTree(HIGVBox, object):
         self.diff_column5.pack_start(self.diff_cell, True)
         self.diff_column5.set_attributes(self.diff_cell, text=4)
 
-        self.diff_scrolled.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.diff_scrolled.set_policy(gtk.POLICY_AUTOMATIC,
+                                      gtk.POLICY_AUTOMATIC)
 
     def clear_diff_tree(self):
         for i in range(len(self.diff_tree)):
@@ -732,16 +753,23 @@ class DiffTree(HIGVBox, object):
 
             self.diff_it(parent, "", _("Comment"), host.comment,
                          host2.comment)
-            self.diff_it(parent, "", _("LastBoot"), host.uptime.get("lastboot", ""),
+            self.diff_it(parent,
+                         "",
+                         _("LastBoot"),
+                         host.uptime.get("lastboot", ""),
                          host2.uptime.get("lastboot", ""))
-            self.diff_it(parent, "", _("OS Match"), host.osmatch.get("name", ""),
+            self.diff_it(parent,
+                         "",
+                         _("OS Match"),
+                         host.osmatch.get("name", ""),
                          host2.osmatch.get("name", ""))
 
 
             host_ports = host.ports[:]
             host2_ports = host2.ports[:]
             for port in xrange(len(host_ports)):
-                # Making sure that extraports1 will get a sanity value to be processed
+                # Making sure that extraports1 will get a sanity 
+                # value to be processed
                 try:
                     extraports1 = host_ports[port].get("extraports", [])
                 except:
@@ -752,7 +780,8 @@ class DiffTree(HIGVBox, object):
                     elif len(extraports1) == 1:
                         extraports1 = extraports1[0]
 
-                # Making sure that extraports2 will get a sanity value to be processed
+                # Making sure that extraports2 will get a sanity
+                # value to be processed
                 try:
                     extraports2 = host2_ports[port].get("extraports", [])
                 except:
@@ -765,18 +794,27 @@ class DiffTree(HIGVBox, object):
 
                 
                 if extraports1 and extraports2:
-                    self.add_extraports_diff(parent, "", extraports1, extraports2)
+                    self.add_extraports_diff(parent,
+                                             "",
+                                             extraports1,
+                                             extraports2)
                 elif extraports1 and not extraports2:
-                    self.add_extraports_diff(parent, "N", extraports1, extraports2)
+                    self.add_extraports_diff(parent,
+                                             "N",
+                                             extraports1,
+                                             extraports2)
                 elif not extraports1 and extraports2:
-                    self.add_extraports_diff(parent, "A", extraports1, extraports2)
-                
+                    self.add_extraports_diff(parent,
+                                             "A",
+                                             extraports1,
+                                             extraports2)
 
                 section =  _("Ports")
                 parent = self.append_parent(parent, section, "")
 
 
-                # Making sure that ports1 will get a sanity value to be processed
+                # Making sure that ports1 will get a sanity
+                # value to be processed
                 try:
                     ports1 = host_ports[port].get("port", [])
                 except:
@@ -787,7 +825,8 @@ class DiffTree(HIGVBox, object):
                     elif len(ports1) == 1:
                         ports1 = ports1[0]
 
-                # Making sure that ports2 will get a sanity value to be processed
+                # Making sure that ports2 will get a sanity
+                # value to be processed
                 try:
                     ports2 = host2_ports[port].get("port", [])
                 except:
@@ -824,7 +863,8 @@ class DiffTree(HIGVBox, object):
             
 
     def add_port_diff(self, port_parent, state, port1, port2):
-        if (port1 or port2) and (type(port1) == type({})) and (type(port2) == type({})):
+        if (port1 or port2) and (type(port1) == type({})) and\
+           (type(port2) == type({})):
             section = port1.get("portid", False)
             if not section: # If port1 is empty, then, try port2
                 section = port2.get("portid", "")
@@ -951,10 +991,18 @@ class DiffLegendWindow(HIGDialog, object):
         self.vbox.show_all()
 
     def _connect_widgets(self):
-        self.unchanged_button.connect("color-set", self.set_color, "unchanged")
-        self.added_button.connect("color-set", self.set_color, "added")
-        self.modified_button.connect("color-set", self.set_color, "modified")
-        self.not_present_button.connect("color-set", self.set_color, "not_present")
+        self.unchanged_button.connect("color-set",
+                                      self.set_color,
+                                      "unchanged")
+        self.added_button.connect("color-set",
+                                  self.set_color,
+                                  "added")
+        self.modified_button.connect("color-set",
+                                     self.set_color,
+                                     "modified")
+        self.not_present_button.connect("color-set",
+                                        self.set_color,
+                                        "not_present")
 
     def set_color(self, widget, prop):
         self.colors.__setattr__(prop, widget.get_color())

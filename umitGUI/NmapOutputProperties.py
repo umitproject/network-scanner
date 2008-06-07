@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -63,13 +64,20 @@ class NmapOutputProperties(HIGDialog):
         #############
         # Properties:
         self.property_names = {"details": [_("details"), "MAC Address:"],
-                               "port_list": [_("port listing title"), "PORT   STATE   SERVICE"],
-                               "open_port": [_("open port"), "22/tcp   open   ssh"],
-                               "closed_port": [_("closed port"), "70/tcp   closed   gopher"],
-                               "filtered_port": [_("filtered port"), "80/tcp   filtered   http"],
-                               "date": [_("date"), "2006-05-26 11:14 BRT"],
-                               "hostname": [_("hostname"), "scanme.nmap.org"],
-                               "ip": [_("ip"), "127.0.0.1"]}
+                               "port_list": [_("port listing title"),
+                                             "PORT   STATE   SERVICE"],
+                               "open_port": [_("open port"),
+                                             "22/tcp   open   ssh"],
+                               "closed_port": [_("closed port"),
+                                               "70/tcp   closed   gopher"],
+                               "filtered_port": [_("filtered port"),
+                                                 "80/tcp   filtered   http"],
+                               "date": [_("date"),
+                                        "2006-05-26 11:14 BRT"],
+                               "hostname": [_("hostname"),
+                                            "scanme.nmap.org"],
+                               "ip": [_("ip"),
+                                      "127.0.0.1"]}
 
         for p in self.property_names:
             settings = self.nmap_highlight.__getattribute__(p)
@@ -86,13 +94,20 @@ class NmapOutputProperties(HIGDialog):
         y2 = 1
         for p in self.property_names:
             hp = HighlightProperty(p, self.property_names[p])
-            self.highlight_main_table.attach(hp.property_name_label, 0, 1, y1, y2)
-            self.highlight_main_table.attach(hp.example_label, 1, 2, y1, y2)
-            self.highlight_main_table.attach(hp.bold_tg_button, 2, 3, y1, y2)
-            self.highlight_main_table.attach(hp.italic_tg_button, 3, 4, y1, y2)
-            self.highlight_main_table.attach(hp.underline_tg_button, 4, 5, y1, y2)
-            self.highlight_main_table.attach(hp.text_color_button, 5, 6, y1, y2)
-            self.highlight_main_table.attach(hp.highlight_color_button, 6, 7, y1, y2)
+            self.highlight_main_table.attach(hp.property_name_label,
+                                             0, 1, y1, y2)
+            self.highlight_main_table.attach(hp.example_label,
+                                             1, 2, y1, y2)
+            self.highlight_main_table.attach(hp.bold_tg_button,
+                                             2, 3, y1, y2)
+            self.highlight_main_table.attach(hp.italic_tg_button,
+                                             3, 4, y1, y2)
+            self.highlight_main_table.attach(hp.underline_tg_button,
+                                             4, 5, y1, y2)
+            self.highlight_main_table.attach(hp.text_color_button,
+                                             5, 6, y1, y2)
+            self.highlight_main_table.attach(hp.highlight_color_button,
+                                             6, 7, y1, y2)
 
             # Setting example styles and colors
             hp.update_example()
@@ -108,7 +123,7 @@ class NmapOutputProperties(HIGDialog):
 
         # Adding color tab
         self.properties_notebook.append_page(self.highlight_main_vbox,
-                                             gtk.Label(_("Highlight definitions")))
+                                          gtk.Label(_("Highlight definitions")))
 
 
 class HighlightProperty(object):
@@ -134,29 +149,39 @@ class HighlightProperty(object):
         self.bold_tg_button = HIGToggleButton("", gtk.STOCK_BOLD)
         self.italic_tg_button = HIGToggleButton("", gtk.STOCK_ITALIC)
         self.underline_tg_button = HIGToggleButton("", gtk.STOCK_UNDERLINE)
-        self.text_color_button = HIGButton(_("Text"), stock=gtk.STOCK_SELECT_COLOR)
-        self.highlight_color_button = HIGButton(_("Highlight"), stock=gtk.STOCK_SELECT_COLOR)
+        self.text_color_button = HIGButton(_("Text"),
+                                           stock=gtk.STOCK_SELECT_COLOR)
+        self.highlight_color_button = HIGButton(_("Highlight"),
+                                                stock=gtk.STOCK_SELECT_COLOR)
 
     def __connect_buttons(self):
         self.bold_tg_button.connect("toggled", self.update_example)
         self.italic_tg_button.connect("toggled", self.update_example)
         self.underline_tg_button.connect("toggled", self.update_example)
 
-        self.text_color_button.connect("clicked", self.text_color_dialog)
-        self.highlight_color_button.connect("clicked", self.highlight_color_dialog)
+        self.text_color_button.connect("clicked",
+                                       self.text_color_dialog)
+        self.highlight_color_button.connect("clicked",
+                                            self.highlight_color_dialog)
 
 
     ####################################
     # Text color dialog
     
     def text_color_dialog(self, widget):
-        color_dialog = gtk.ColorSelectionDialog("%s %s" % (self.label, _("text color")))
+        color_dialog = gtk.ColorSelectionDialog("%s %s" % (self.label,
+                                                           _("text color")))
         color_dialog.colorsel.set_current_color(self.text_color)
         
-        color_dialog.ok_button.connect("clicked", self.text_color_dialog_ok, color_dialog)
+        color_dialog.ok_button.connect("clicked",
+                                       self.text_color_dialog_ok,
+                                       color_dialog)
         color_dialog.cancel_button.connect("clicked",
-                                           self.text_color_dialog_cancel, color_dialog)
-        color_dialog.connect("delete-event", self.text_color_dialog_close, color_dialog)
+                                           self.text_color_dialog_cancel,
+                                           color_dialog)
+        color_dialog.connect("delete-event",
+                             self.text_color_dialog_close,
+                             color_dialog)
         
         color_dialog.run()
 
@@ -176,13 +201,18 @@ class HighlightProperty(object):
     # Highlight color dialog
     def highlight_color_dialog(self, widget):
         color_dialog = gtk.ColorSelectionDialog("%s %s" % (self.property_name,
-                                                           _("highlight color")))
+                                                        _("highlight color")))
         color_dialog.colorsel.set_current_color(self.highlight_color)
 
-        color_dialog.ok_button.connect("clicked", self.highlight_color_dialog_ok, color_dialog)
-        color_dialog.cancel_button.connect("clicked", self.highlight_color_dialog_cancel,
+        color_dialog.ok_button.connect("clicked",
+                                       self.highlight_color_dialog_ok,
+                                       color_dialog)
+        color_dialog.cancel_button.connect("clicked",
+                                           self.highlight_color_dialog_cancel,
                                            color_dialog)
-        color_dialog.connect("delete-event", self.highlight_color_dialog_close, color_dialog)
+        color_dialog.connect("delete-event",
+                             self.highlight_color_dialog_close,
+                             color_dialog)
         
         color_dialog.run()
 
@@ -203,8 +233,10 @@ class HighlightProperty(object):
         
         attributes = pango.AttrList()
 
-        attributes.insert(pango.AttrForeground(self.text_color.red, self.text_color.green,
-                                               self.text_color.blue, start, end))
+        attributes.insert(pango.AttrForeground(self.text_color.red,
+                                               self.text_color.green,
+                                               self.text_color.blue,
+                                               start, end))
         attributes.insert(pango.AttrBackground(self.highlight_color.red,
                                                self.highlight_color.green,
                                                self.highlight_color.blue,
@@ -224,10 +256,12 @@ class HighlightProperty(object):
 
         # Underline verification
         if self.underline_tg_button.get_active():
-            attributes.insert(pango.AttrUnderline(pango.UNDERLINE_SINGLE, start, end))
+            attributes.insert(pango.AttrUnderline(pango.UNDERLINE_SINGLE,
+                                                  start, end))
         else:
-            attributes.insert(pango.AttrUnderline(pango.UNDERLINE_NONE, start, end))
-        
+            attributes.insert(pango.AttrUnderline(pango.UNDERLINE_NONE,
+                                                  start, end))
+
         self.example_label.set_attributes(attributes)
 
 

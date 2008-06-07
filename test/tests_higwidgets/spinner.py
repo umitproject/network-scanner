@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #         Cleber Rodrigues <cleber.gnu@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -33,7 +34,8 @@ def test_cache():
     print cache.spinner_images.static_pixbufs
     
     cache._write_animated_pixbuf_to_files("/tmp/cache_animated_%02i.png", "png")
-    cache._write_static_pixbuf_to_file("gnome-spinner-rest", "/tmp/cache_static.png", "png")
+    cache._write_static_pixbuf_to_file("gnome-spinner-rest",
+                                       "/tmp/cache_static.png", "png")
     
 def test_widget(num_spinners=1):
     win = gtk.Window()
@@ -57,11 +59,13 @@ def test_widget(num_spinners=1):
 
         s.my_index = i
 
-        # This is a HACK, uncomment this if you want to load a animation from a file
+        # This is a HACK, uncomment this if you want to load a animation 
+        # from a file
         s.cache.spinner_images.animated_pixbufs = []
         s.cache.load_animated_from_filename("gnome-green-spinner.png", 36)
         # This is the HACK continuation
-        s.cache.load_static_from_filename("gnome-green-rest.png", "gnome-green-rest")
+        s.cache.load_static_from_filename("gnome-green-rest.png",
+                                          "gnome-green-rest")
         s.cache.spinner_images.set_rest_pixbuf("gnome-green-rest")
 
         s.cache.spinner_images.set_size(100, 50)
@@ -72,7 +76,11 @@ def test_widget(num_spinners=1):
         stop_button.connect("clicked", lambda x: s.stop())
 
         # Attach button
-        print 'Spinner #%s: %s, %s, %s, %s' % (i, x_start, x_end, y_start, y_end)
+        print 'Spinner #%s: %s, %s, %s, %s' % (i,
+                                               x_start,
+                                               x_end,
+                                               y_start,
+                                               y_end)
         t.attach(s, x_start, x_end, y_start, y_end)
 
         # Move downwards 
@@ -80,13 +88,11 @@ def test_widget(num_spinners=1):
         # Button spans only one cell
         x_end -= 1
 
-        #print 'Start   #%s: %s, %s, %s, %s' % (i, x_start, x_end, y_start, y_end)
         t.attach(start_button, x_start, x_end, y_start, y_end, yoptions=0)
 
         # Move right
         x_start += 1; x_end += 1
 
-        #print 'Stop    #%s: %s, %s, %s, %s' % (i, x_start, x_end, y_start, y_end)
         t.attach(stop_button, x_start, x_end, y_start, y_end, yoptions=0)
 
         # Now move up, and to the right

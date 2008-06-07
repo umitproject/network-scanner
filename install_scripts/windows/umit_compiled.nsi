@@ -17,12 +17,12 @@ Name "${APPLICATION_NAME}"
 InstallDir "$PROGRAMFILES\${APPLICATION_NAME}\"
 
 ; Pages definitions
-;!define MUI_PAGE_HEADER_TEXT "Umit, The Nmap Frontend"
+;!define MUI_PAGE_HEADER_TEXT "Umit, Take the red pill"
 !define MUI_PAGE_HEADER_SUBTEXT "Umit"
 
 ; Finish page definitions
 !define MUI_FINISHPAGE_LINK "Don't forget to visit Umit's website!"
-!define MUI_FINISHPAGE_LINK_LOCATION "http://umit.sourceforge.net/" 
+!define MUI_FINISHPAGE_LINK_LOCATION "http://www.umitproject.org/" 
 
 Outfile ${APPLICATION_NAME}-${APPLICATION_VERSION}.exe
 

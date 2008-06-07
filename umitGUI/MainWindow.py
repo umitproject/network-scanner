@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
-#         Cleber Rodrigues <cleber.gnu@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Authors: Adriano Monteiro Marques <adriano@umitproject.org>
+#          Cleber Rodrigues <cleber.gnu@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -340,7 +341,8 @@ class MainWindow(UmitMainWindow):
         bug.show_all()
 
     def _search_scan_result(self, widget):
-        search_window = SearchWindow(self._load_search_result, self.scan_notebook)
+        search_window = SearchWindow(self._load_search_result,
+                                     self.scan_notebook)
         search_window.show_all()
 
     def _load_search_result(self, results):
@@ -382,7 +384,8 @@ class MainWindow(UmitMainWindow):
 
             alert = None
             if title:
-                alert = HIGEntryLabel('<b>%s "%s"</b>' % (_("Save changes on"), title))
+                alert = HIGEntryLabel('<b>%s "%s"</b>' % (_("Save changes on"),
+                                                          title))
             else:
                 alert = HIGEntryLabel('<b>%s</b>' % _("Save changes"))
 
@@ -427,12 +430,13 @@ What do you want to do?'))
 
             alert = None
             if title:
-                alert = HIGEntryLabel('<b>%s "%s"</b>' % (_("Trying to close"), title))
+                alert = HIGEntryLabel('<b>%s "%s"</b>' % (_("Trying to close"),
+                                                          title))
             else:
                 alert = HIGEntryLabel('<b>%s</b>' % _("Trying to close"))
 
-            text = HIGEntryLabel(_('The page you are trying to close has a scan \
-running at the background.\nWhat do you want to do?'))
+            text = HIGEntryLabel(_('The page you are trying to close has \
+a scan running at the background.\nWhat do you want to do?'))
             hbox = HIGHBox()
             hbox.set_border_width(5)
             hbox.set_spacing(12)
@@ -461,8 +465,8 @@ running at the background.\nWhat do you want to do?'))
                 return False
         elif not page.status.empty:
             alert = HIGAlertDialog(message_format=_('Closing current Scan Tab'),
-                                   secondary_text=_('Are you sure you want to close current \
-Scan Tab?'),
+                                   secondary_text=_('Are you sure you want \
+to close current Scan Tab?'),
           buttons=gtk.BUTTONS_OK_CANCEL,
           type=gtk.MESSAGE_WARNING)
             response = alert.run()
@@ -505,8 +509,14 @@ Scan Tab?'),
             scan = scan.replace('\n','')
             if os.access(split(scan)[0],os.R_OK) and isfile(scan):
                 scan = scan.replace('\n','')
-                new_rscan = (scan, None, scan, None, scan, self._load_recent_scan)
-                new_rscan_xml += "<menuitem action='%s'/>\n" % xml.sax.saxutils.escape(scan)
+                new_rscan = (scan,
+                             None,
+                             scan,
+                             None,
+                             scan,
+                             self._load_recent_scan)
+                new_rscan_xml += "<menuitem action='%s'/>\n" % \
+                              xml.sax.saxutils.escape(scan)
 
                 self.main_actions.append(new_rscan)
         else:

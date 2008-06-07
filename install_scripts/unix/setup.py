@@ -1,7 +1,9 @@
 #!/usr/bin/env python
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Authors: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -249,12 +251,11 @@ print
 setup(name = 'umit',
       license = 'GNU GPL (version 2 or later)',
       url = 'http://www.umitproject.org',
-      download_url = 'http://sourceforge.net/project/showfiles.php?\
-group_id=142490',
+      download_url = 'http://www.umitproject.org',
       author = 'Adriano Monteiro & Cleber Rodrigues',
-      author_email = 'py.adriano@gmail.com, cleber@globalred.com.br',
+      author_email = 'adriano@umitproject.org, cleber@globalred.com.br',
       maintainer = 'Adriano Monteiro',
-      maintainer_email = 'py.adriano@gmail.com',
+      maintainer_email = 'adriano@gmail.com',
       description = """UMIT is a network scanning frontend, developed in \
 Python and GTK and was started with the sponsoring of Google's Summer \
 of Code.""",

@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -63,8 +64,8 @@ class HostInfo(object):
             try:
                 self._id = int(id)
             except:
-                raise Exception("Id invalid! Id must be an integer, but received \
-this instead: '%s'" % str(id))
+                raise Exception("Id invalid! Id must be an integer, \
+but received this instead: '%s'" % str(id))
         else:
             raise Exception("Id invalid! Id must be an integer, but received \
 this instead: '%s'" % str(id))
@@ -239,7 +240,8 @@ umitCore.NmapParser.get_ipv6 instead."))
         except:
             pass
 
-        # FIXME: Check if i can return the 'addr' key directly from get_ip, get_ipv6 and get_mac
+        # FIXME: Check if i can return the 'addr' key directly from get_ip,
+        # get_ipv6 and get_mac
         if self.ip:
             hostname += self._ip['addr']
         elif self.ipv6:
@@ -310,7 +312,8 @@ umitCore.NmapParser.get_ipv6 instead."))
         services = []
         for port in self.ports:
             for p in port.get("port", []):
-                services.append({"service_name":p.get("service_name", _("unknown")),
+                services.append({"service_name":p.get("service_name",
+                                                      _("unknown")),
                                  "portid":p.get("portid", ""),
                                  "service_version":p.get("service_version",
                                                          _("Unknown version")),

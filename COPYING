@@ -3,14 +3,15 @@ of the GNU GPL is appended to this file.
 
  ***********************IMPORTANT UMIT LICENSE TERMS************************
  *                                                                         *
- * UMIT, the Nmap Frontend is (C) 2005 Insecure.Com LLC. Nmap              *
- * is also a registered trademark of Insecure.Com LLC.  This program is    *
- * free software; you may redistribute and/or modify it under the          *
- * terms of the GNU General Public License as published by the Free        *
- * Software Foundation; Version 2.  This guarantees your right to use,     *
- * modify, and redistribute this software under certain conditions.  If    *
- * you wish to embed Nmap technology into proprietary software, we may be  *
- * willing to sell alternative licenses (contact sales@insecure.com).      *
+ * UMIT is (C) 2005-2006 Insecure.Com LLC. and (C) 2007-2008 Adriano       *
+ * Monteiro Marques. Nmap is also a registered trademark of Insecure.Com   *
+ * LLC. This program is free software; you may redistribute and/or modify  *
+ * it under the terms of the GNU General Public License as published by    *
+ * the Free Software Foundation; Version 2.  This guarantees your right    *
+ * to use, modify, and redistribute this software under certain            *
+ * conditions.  If you wish to embed Nmap technology into proprietary      *
+ * software, we may be willing to sell alternative licenses                *
+ * (contact sales@insecure.com).                                           *
  * Many security scanner vendors already license Nmap technology such as   *
  * our remote OS fingerprinting database and code, service/version         *
  * detection system, and port scanning code.                               *

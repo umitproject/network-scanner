@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,7 +53,9 @@ class Wizard(HIGWindow):
         
         self.profile = CommandProfile()
         self.constructor = CommandConstructor()
-        self.options = OptionBuilder(wizard_file, self.constructor, self.update_command)
+        self.options = OptionBuilder(wizard_file,
+                                     self.constructor,
+                                     self.update_command)
         
         self.target = '<target>'
         
@@ -96,7 +99,8 @@ class Wizard(HIGWindow):
         else:
             return self.options.groups[pos-1], self.options.groups[pos+1]
 
-    def __create_steps(self, step_name, back_step, next_step, step_description, content):
+    def __create_steps(self, step_name, back_step, next_step,
+                       step_description, content):
         vbox = HIGVBox()
         vbox.set_spacing(12)
         
@@ -200,11 +204,13 @@ class Wizard(HIGWindow):
             p.show_all()
             
             self.close_wizard()
-    
+
     def _show_help(self, widget=None):
         import webbrowser
-        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "help.html"), new=2)
-    
+        webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
+                                                   "help.html"),
+                                                   new=2)
+
     def choose_page(self):
         choose = ChoosePage()
         choose.bar.cancel.connect('clicked', self.close_wizard)
@@ -284,11 +290,12 @@ for this profile.'))
         finish = FinishPage()
         finish.bar.cancel.connect('clicked', self.close_wizard)
         finish.bar.help.connect('clicked', self._show_help)
-        finish.bar.back.connect('clicked', self.finish_back, finish, self.options.groups[-1])
+        finish.bar.back.connect('clicked', self.finish_back,
+                                finish, self.options.groups[-1])
         finish.bar.apply.connect('clicked', self.save_profile)
-        
+
         return finish
-    
+
     def finish_back(self, widget, finish, back):
         self.main_vbox.remove(finish)
         finish.hide()
@@ -328,8 +335,9 @@ for this profile.'))
         else:
             target = self.directions['Choose'].target_entry.get_text()
             cmd = command % target
-            
-            current_page = self.notebook.get_nth_page(self.notebook.get_current_page())
+
+            current_page = self.notebook.get_nth_page(\
+                self.notebook.get_current_page())
             if current_page == None:
                 current_page = self.notebook.add_scan_page(target)
 

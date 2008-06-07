@@ -1,13 +1,13 @@
 Introduction
 
-   UMIT is the nmap frontend.
+   UMIT is a network scanning frontend.
 
    UMIT is developed in the Python programming language, and its
    interface is built with the GTK Toolkit. It's also worth to mention
    that the initial development is sponsored by Google's Summer of Code.
 
-   The project goal is to develop a nmap frontend that is really useful
-   for advanced users and easy to be used by newbies. With UMIT, a
+   The project goal is to develop a network scanning frontend that is really
+   useful for advanced users and easy to be used by newbies. With UMIT, a
    network admin can create scan profiles for faster and easier network
    scanning and even compare scan results to easily see any changes. New
    users can also construct powerful scans with UMIT command creator
@@ -85,7 +85,7 @@ GNU/Linux Installation
 Microsoft Windows Installation
 
    For the Microsoft Windows platform, ready to run installers are
-   available. Download them from the [6]SourceForge project page.
+   available. Download them from the [6]Umit website.
 
 
 Links:
@@ -95,7 +95,6 @@ Links:
 [3] PyGTK official website - http://www.pygtk.org
 [4] Nmap official website - http://www.insecure.org/nmap
 [5] PySQLite2 official website - http://initd.org/tracker/pysqlite
-[6] Umit sourceforge project page - http://www.sourceforge.net/projects/umit
-[7] Umit website - http://umit.sourceforge.net
-[9] Umit blog - http://umitproject.blogspot.com
+[6] Umit website - http://www.umitproject.org
+[9] Umit blog - http://blog.umitproject.org
 [10] Pysco website - http://psyco.sourceforge.net

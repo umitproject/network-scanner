@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,9 +50,10 @@ class ServiceFingerprintRegister(object):
                                  "fingerprint":self.fingerprint,
                                  "notes":self.notes})
 
-        # The submit page source code points that the info should be set using POST method
-        # But, it only worked sending it through GET method. So, I decided to send using
-        # both methods, to insure that it's going to work.
+        # The submit page source code points that the info should be 
+        # set using POST method. But, it only worked sending it through GET 
+        # method. So, I decided to send using both methods, to insure that 
+        # it's going to work.
         request = urllib2.Request(nmap_submission_page + "?" + data, data)
         response = urllib2.urlopen(request)
 

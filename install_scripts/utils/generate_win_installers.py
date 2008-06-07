@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Copyright (C) 2005 Insecure.Com LLC.
 #
-# Author: Adriano Monteiro Marques <py.adriano@gmail.com>
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +23,7 @@
 script_content = dict(splash="share\\pixmaps\\splash.bmp",
                       app_name="Umit",
                       app_version="0.8.3",
-                      app_header="Umit, The Nmap Frontend",
+                      app_header="Umit, Take the red pill",
                       release="(Testing release)",
                       nmap="Nmap 4.11",
                       nmap_installer="nmap-4.11-setup.exe",
@@ -62,7 +63,7 @@ InstallDir "$PROGRAMFILES\\${APPLICATION_NAME}\\"
 
 ; Finish page definitions
 !define MUI_FINISHPAGE_LINK "Don't forget to visit Umit's website!"
-!define MUI_FINISHPAGE_LINK_LOCATION "http://umit.sourceforge.net/" """,
+!define MUI_FINISHPAGE_LINK_LOCATION "http://www.umitproject.org/" """,
 
                       
                       script_uninstaller="""Section "Uninstall"
@@ -132,7 +133,7 @@ SectionEnd""",
   CreateDirectory "$SMPROGRAMS\\Umit"
   CreateShortCut "$SMPROGRAMS\\Umit\\Umit.lnk" "$INSTDIR\\umit.pyw" "" \\
     "$INSTDIR\\umit.pyw" 2 SW_SHOWNORMAL \\
-    ALT|CTRL|SHIFT|F5 "Umit: the nmap frontend" """)
+    ALT|CTRL|SHIFT|F5 "Umit: Take the red pill" """)
     
 
 ########################################################################
