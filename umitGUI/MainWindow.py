@@ -632,9 +632,12 @@ Scan Tab?'),
         # Get some menu widgets
         close_scan = self.ui_manager.get_action("/menubar/Scan/Close Scan")
         save_scan = self.ui_manager.get_action("/menubar/Scan/Save Scan")
-        compare_results = self.ui_manager.get_action("/menubar/Tools/Compare Results")
-        new_profile_with_selected = self.ui_manager.get_action("/menubar/Profile/New Profile with Selected")
-        edit_profile = self.ui_manager.get_action("/menubar/Profile/Edit Profile")
+        compare_results = self.ui_manager.\
+                        get_action("/menubar/Tools/Compare Results")
+        new_profile_with_selected = self.ui_manager.\
+                        get_action("/menubar/Profile/New Profile with Selected")
+        edit_profile = self.ui_manager.\
+                     get_action("/menubar/Profile/Edit Profile")
 
         if page == 0:
             close_scan.set_sensitive(False)
@@ -660,7 +663,8 @@ Scan Tab?'),
         w.show_all()
 
     def _load_scan_results_cb(self, p):
-        self._results_filechooser_dialog = ResultsFileChooserDialog(title=p.get_name())
+        self._results_filechooser_dialog = ResultsFileChooserDialog(\
+            title=p.get_name())
 
         if (self._results_filechooser_dialog.run() == gtk.RESPONSE_OK):
             self._load(filename=self._results_filechooser_dialog.get_filename())
@@ -673,8 +677,8 @@ Scan Tab?'),
 
     def _verify_page_usage(self, page):
         """Verifies if given page is empty and can be used to load a result, or
-        if it's not empty and shouldn't be used to load a result. Returns True, if
-        it's ok to be used, and False if not.
+        if it's not empty and shouldn't be used to load a result. Returns True,
+        if it's ok to be used, and False if it's not.
         """
         if page == None \
            or page.status.saved\
@@ -693,7 +697,8 @@ Scan Tab?'),
         scan_page = None
 
         if filename or parsed_result:
-            current_page = self.scan_notebook.get_nth_page(self.scan_notebook.get_current_page())
+            current_page = self.scan_notebook.\
+                         get_nth_page(self.scan_notebook.get_current_page())
 
             if self._verify_page_usage(current_page):
                 log.debug(">>> Loading inside current scan page.")
@@ -708,7 +713,8 @@ Scan Tab?'),
         if filename and os.access(filename, os.R_OK):
             # Load scan result from file
             log.debug(">>> Loading file: %s" % filename)
-            log.debug(">>> Permissions to access file? %s" % os.access(filename, os.R_OK))
+            log.debug(">>> Permissions to access file? %s" % os.access(filename,
+                                                                       os.R_OK))
 
             # Parse result
             f = open(filename)
@@ -730,14 +736,15 @@ Scan Tab?'),
 
         elif filename and not os.access(filename, os.R_OK):
             alert = HIGAlertDialog(message_format=_('Permission denied'),
-                                   secondary_text=_('Don\'t have read access to the path'))
+                                   secondary_text=_('Don\'t have read access \
+to the path'))
             alert.run()
             alert.destroy()
             return 
         else:
             alert = HIGAlertDialog(message_format=_('Could not load result'),
-                                   secondary_text=_('An unidentified error occouried and the \
-scan result was unable to be loaded properly.'))
+                                   secondary_text=_('An unidentified error \
+occouried and the scan result was unable to be loaded properly.'))
             alert.run()
             alert.destroy()
             return 
@@ -752,14 +759,15 @@ this scan result yet")
         return scan_page
 
     def _save_scan_results_cb(self, saving_page):
-        current_page = self.scan_notebook.get_nth_page(self.scan_notebook.get_current_page())
+        current_page = self.scan_notebook.get_nth_page(self.scan_notebook.\
+                                                       get_current_page())
 
         try:
             status = current_page.status
         except:
             alert = HIGAlertDialog(message_format=_('No scan tab'),
-                                   secondary_text=_('There is no scan tab or scan result \
-been shown. Run a scan and then try to save it.'))
+                                   secondary_text=_('There is no scan tab or \
+scan result been shown. Run a scan and then try to save it.'))
             alert.run()
             alert.destroy()
             return None
@@ -770,35 +778,36 @@ been shown. Run a scan and then try to save it.'))
         if status.empty or status.unknown:    # EMPTY or UNKNOWN
             # Show a dialog saying that there is nothing to be saved
             alert = HIGAlertDialog(message_format=_('Nothing to save'),
-                                   secondary_text=_('No scan on this tab. Start a scan an \
-then try again'))
+                                   secondary_text=_('No scan on this tab. \
+Start a scan an then try again'))
             alert.run()
             alert.destroy()
 
         elif status.scan_failed:
             alert = HIGAlertDialog(message_format=_('Nothing to save'),
-                                   secondary_text=_('The scan has failed! There is nothing \
-to be saved.'))
+                                   secondary_text=_('The scan has failed! \
+There is nothing to be saved.'))
             alert.run()
             alert.destroy()
 
         elif status.parsing_result:    # PARSING_RESULT
             # Say that the result is been parsed
             alert = HIGAlertDialog(message_format=_('Parsing the result'),
-                                   secondary_text=_('The result is still been parsed. \
-You can not save the result yet.'))
+                                   secondary_text=_('The result is still \
+been parsed. You can not save the result yet.'))
             alert.run()
             alert.destroy()
 
         elif status.scanning:    # SCANNING
             # Say that the scan is still running
             alert = HIGAlertDialog(message_format=_('Scan is running'),
-                                   secondary_text=_('The scan process is not finished yet. \
-Wait until the scan is finished and then try to save it again.'))
+                                   secondary_text=_('The scan process is not \
+finished yet. wait until the scan is finished and then try to save it again.'))
             alert.run()
             alert.destroy()
 
-        elif status.unsaved_unchanged or status.unsaved_changed or status.search_loaded:
+        elif status.unsaved_unchanged or status.unsaved_changed or \
+             status.search_loaded:
             # UNSAVED_UNCHANGED and UNSAVED_CHANGED
             # Show the dialog to choose the path to save scan result
             self._save_results_filechooser_dialog = SaveResultsFileChooserDialog(\
@@ -825,8 +834,8 @@ Wait until the scan is finished and then try to save it again.'))
             pass
         else:    # UNDEFINED status
             alert = HIGAlertDialog(message_format=_('Nothing to save'),
-                                   secondary_text=_('No scan on this tab. Start a scan \
-                                                an then try again'))
+                                   secondary_text=_('No scan on this tab. \
+Start a scan an then try again'))
             alert.run()
             alert.destroy()
 
@@ -842,7 +851,8 @@ Wait until the scan is finished and then try to save it again.'))
                 f = open(saved_filename, 'w')
             except:
                 alert = HIGAlertDialog(message_format=_('Can\'t save file'),
-                                       secondary_text=_('Can\'t open file to write'))
+                                       secondary_text=_('Can\'t open file \
+to write'))
                 alert.run()
                 alert.destroy()
             else:
@@ -853,7 +863,8 @@ Wait until the scan is finished and then try to save it again.'))
 
                 log.debug(">>> Page saved? %s" % saving_page.status.saved)
                 log.debug(">>> Changes on page? %s" % saving_page.status.status)
-                log.debug(">>> File to be saved at: %s" % saving_page.saved_filename)
+                log.debug(">>> File to be saved at: %s" % \
+                          saving_page.saved_filename)
 
                 saving_page.parsed.write_xml(f)
 
@@ -869,7 +880,8 @@ Wait until the scan is finished and then try to save it again.'))
 
         else:
             alert = HIGAlertDialog(message_format=_('Permission denied'),
-                                   secondary_text=_('Don\'t have write access to this path.'))
+                                   secondary_text=_('Don\'t have write \
+access to this path.'))
             alert.run()
             alert.destroy()
 
@@ -933,7 +945,8 @@ Wait until the scan is finished and then try to save it again.'))
     def _alert_with_action_name_cb(self, p):
         d = HIGAlertDialog(parent=self,
                            message_format=p.get_name(),
-                           secondary_text=_("The text above is this action's name"))
+                           secondary_text=_("The text above is this \
+action's name"))
         d.run()
         d.destroy()
 
@@ -950,7 +963,8 @@ Wait until the scan is finished and then try to save it again.'))
             webbrowser.open("file://%s" % doc_path, new=new)
         else:
             d = HIGAlertDialog(parent=self,
-                               message_format=_("Couldn't find documentation files!"),
+                               message_format=_("Couldn't find \
+documentation files!"),
                                secondary_text=_("""Umit couldn't find the \
 documentation files. Please, go to Umit's website and have the latest \
 documentation in our Support & Development section."""))
@@ -1003,15 +1017,14 @@ Some nmap options need root privileges to work.''')
 class NonValidTarget (HIGAlertDialog):
     """ Alert for bad nmap option"""
     def __init__(self):
-        warning_text = _('''You run the umit with nmap option and didn't specified\n
-a valid target (see the umit options)''')
+        warning_text = _('''You run the umit with nmap option and didn't \
+specified a valid target (see the umit options)''')
 
         HIGAlertDialog.__init__(self, message_format=_('Non valid target'),
                                 secondary_text=warning_text)
 
         self.run()
         self.destroy()
-
 
 
 if __name__ == '__main__':

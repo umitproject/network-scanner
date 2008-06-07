@@ -37,11 +37,11 @@ from umitCore.Version import VERSION
 # These directories are relative to the installation or dist directory
 # Ex: python setup.py install --prefix=/tmp/umit
 # Will create the directory /tmp/umit with the following directories
-pixmaps_dir = os.path.join('share', 'pixmaps')
-icons_dir = os.path.join('share', 'icons')
+pixmaps_dir = os.path.join('share', 'pixmaps', 'umit')
+icons_dir = os.path.join('share', 'icons', 'umit')
 locale_dir = os.path.join('share', 'umit', 'locale')
 config_dir = os.path.join('share', 'umit', 'config')
-docs_dir = os.path.join('share', 'umit', 'docs')
+docs_dir = os.path.join('share', 'doc', 'umit')
 misc_dir = os.path.join('share', 'umit', 'misc')
 
 
@@ -108,7 +108,8 @@ class umit_install(install):
         self.finish_banner()
 
     def create_uninstaller(self):
-        uninstaller_filename = os.path.join(self.install_scripts, "uninstall_umit")
+        uninstaller_filename = os.path.join(self.install_scripts,
+                                            "uninstall_umit")
         uninstaller = """#!/usr/bin/env python
 import os, os.path, sys
 
@@ -116,8 +117,8 @@ print
 print '%(line)s Uninstall Umit %(version)s %(line)s'
 print
 
-answer = raw_input('Are you sure that you want to completly uninstall Umit %(version)s? \
-(yes/no) ')
+answer = raw_input('Are you sure that you want to completly uninstall \
+Umit %(version)s? (yes/no) ')
 
 if answer != 'yes' and answer != 'y':
     sys.exit(0)
@@ -129,8 +130,8 @@ print
 
         for output in self.get_outputs():
             uninstaller += "print 'Removing %s...'\n" % output
-            uninstaller += "if os.path.exists('%s'): os.remove('%s')\n" % (output,
-                                                                         output)
+            uninstaller += "if os.path.exists('%s'): os.remove('%s')\n" % \
+                        (output, output)
 
         uninstaller += "print 'Removing uninstaller itself...'\n"
         uninstaller += "os.remove('%s')\n" % uninstaller_filename
@@ -184,13 +185,12 @@ print
 
 
     def fix_paths(self):
-        su = os.path.join("share", "umit")
-        interesting_paths = {"CONFIG_DIR":os.path.join(su, "config"),
-                             "DOCS_DIR":os.path.join(su, "docs"),
-                             "LOCALE_DIR":os.path.join(su, "locale"),
-                             "MISC_DIR":os.path.join(su, "misc"),
-                             "PIXMAPS_DIR":os.path.join("share", "pixmaps"),
-                             "ICONS_DIR":os.path.join("share", "icons")}
+        interesting_paths = {"CONFIG_DIR":config_dir,
+                             "DOCS_DIR":docs_dir,
+                             "LOCALE_DIR":locale_dir,
+                             "MISC_DIR":misc_dir,
+                             "PIXMAPS_DIR":pixmaps_dir,
+                             "ICONS_DIR":icons_dir}
 
         pcontent = ""
         paths_file = os.path.join("umitCore", "Paths.py")
@@ -248,19 +248,22 @@ print
 
 setup(name = 'umit',
       license = 'GNU GPL (version 2 or later)',
-      url = 'http://umit.sourceforge.net',
-      download_url = 'http://sourceforge.net/project/showfiles.php?group_id=142490',
+      url = 'http://www.umitproject.org',
+      download_url = 'http://sourceforge.net/project/showfiles.php?\
+group_id=142490',
       author = 'Adriano Monteiro & Cleber Rodrigues',
       author_email = 'py.adriano@gmail.com, cleber@globalred.com.br',
       maintainer = 'Adriano Monteiro',
       maintainer_email = 'py.adriano@gmail.com',
-      description = """UMIT is a nmap frontend, developed in Python and GTK and was \
-started with the sponsoring of Google's Summer of Code.""",
-      long_description = """The project goal is to develop a nmap frontend that \
-is really useful for advanced users and easy to be used by newbies. With UMIT, a network admin \
-could create scan profiles for faster and easier network scanning or even compare \
-scan results to easily see any changes. A regular user will also be able to construct \
-powerful scans with UMIT command creator wizards.""",
+      description = """UMIT is a network scanning frontend, developed in \
+Python and GTK and was started with the sponsoring of Google's Summer \
+of Code.""",
+      long_description = """The project goal is to develop a network scanning \
+frontend that is really useful for advanced users and easy to be used by \
+newbies. With UMIT, a network admin could create scan profiles for faster and \
+easier network scanning or even compare scan results to easily see any \
+changes. A regular user will also be able to construct powerful scans with \
+UMIT command creator wizards.""",
       version = VERSION,
       scripts = ['umit'],
       packages = ['', 'umitCore', 'umitGUI', 'higwidgets'],
