@@ -15,7 +15,7 @@ recursive-include share/doc/umit/scanning *.xml
 recursive-include share/doc/umit/searching *.xml
 recursive-include share/doc/umit/wizard *.xml
 recursive-include share/doc/umit/screenshots *.png
-recursive-include share/umit/config *.xml *.conf *.usp *.txt umit_version
+recursive-include share/umit/config *.xml *.conf *.usp umit_version
 recursive-include share/umit/misc *.dmp
 recursive-include umitCore *.py
 recursive-include umitGUI *.py
