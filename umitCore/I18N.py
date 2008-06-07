@@ -23,7 +23,10 @@ import locale
 
 from umitCore.BasePaths import LOCALE_DIR
 
-LC_ALL = locale.setlocale(locale.LC_ALL, '')
+print locale.LC_ALL
+print locale.getdefaultlocale()
+
+LC_ALL = locale.setlocale(locale.LC_ALL, None)
 LANG, ENC = locale.getdefaultlocale()
 ERRORS = "ignore"
 
