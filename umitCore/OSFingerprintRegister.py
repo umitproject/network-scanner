@@ -66,3 +66,5 @@ class OSFingerprintRegister(object):
 if __name__ == "__main__":
     f = OSFingerprintRegister()
     f.report()
+
+    

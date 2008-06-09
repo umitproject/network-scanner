@@ -39,7 +39,7 @@ if hasattr(sys, "frozen"):
     main_dir = dirname(sys.executable)
 
 CONFIG_DIR = os.path.join(main_dir, "share", "umit", "config")
-LOCALE_DIR = os.path.join(main_dir, "share", "umit", "locale")
+LOCALE_DIR = os.path.join(main_dir, "share", "locale")
 MISC_DIR = os.path.join(main_dir, "share", "umit", "misc")
 ICONS_DIR = os.path.join(main_dir, "share", "icons", "umit")
 PIXMAPS_DIR = os.path.join(main_dir, "share", "pixmaps", "umit")

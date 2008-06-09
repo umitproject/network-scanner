@@ -199,7 +199,10 @@ class BugReport(HIGDialog):
         bug_page = None
         try:
             bug_page = bug_register.report()
+            assert bug_page
         except:
+            import traceback
+            print traceback.extract_tb()
             cancel_dialog = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                 message_format=_("Bug not reported!"),
                 secondary_text=_("The bug description could not be "
@@ -219,6 +222,7 @@ class BugReport(HIGDialog):
                     "now."))
             ok_dialog.run()
             ok_dialog.destroy()
+            webbrowser.open(bug_page, autoraise=1)
 
         if bug_page:
             try:
@@ -288,4 +292,3 @@ if __name__ == "__main__":
             gtk.RESPONSE_NONE):
             c.destroy()
             break
-    

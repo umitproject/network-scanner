@@ -34,13 +34,10 @@ trac_submit=trac_new_ticket
 
 class BugRegister(object):
     def __init__(self):
-        try:
-            urllib.urlopen(trac_new_ticket)
-        except:
-            return None
-        self.summary = "Testing umit bug reporter"
-        self.details = ("Just testing the umit dialog to report bugs "
-                        "directly from the interface!")
+        urllib.urlopen(trac_new_ticket)
+
+        self.summary = ""
+        self.details = ""
         self.input_file = ""
         self.file_description = ""
         self.submit = "submit"
@@ -94,13 +91,8 @@ class BugRegister(object):
         request = urllib2.Request(trac_new_ticket, data)
         request.add_header("Cookie", "trac_session=%s; \
                            trac_form_token=%s" % (trac_session, trac_form))
-        try:
-            response = urllib2.urlopen(request)
-        except URLError,e:
-            #print e.code
-            #print e.read()
-            return None 
 
+        response = urllib2.urlopen(request)
 
         tfile = mktemp()
         open(tfile, "w").write(response.read())

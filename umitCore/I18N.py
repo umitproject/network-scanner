@@ -23,6 +23,7 @@
 import locale
 
 from umitCore.BasePaths import LOCALE_DIR
+print LOCALE_DIR
 
 try:
     # If the content of the environment variable LANG contains a string which
