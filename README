@@ -1,21 +1,21 @@
 Introduction
 
-   UMIT is a network scanning frontend.
+   Umit is a network scanning frontend.
 
-   UMIT is developed in the Python programming language, and its
+   Umit is developed in the Python programming language, and its
    interface is built with the GTK Toolkit. It's also worth to mention
    that the initial development is sponsored by Google's Summer of Code.
 
    The project goal is to develop a network scanning frontend that is really
-   useful for advanced users and easy to be used by newbies. With UMIT, a
+   useful for advanced users and easy to be used by newbies. With Umit, a
    network admin can create scan profiles for faster and easier network
    scanning and even compare scan results to easily see any changes. New
-   users can also construct powerful scans with UMIT command creator
+   users can also construct powerful scans with Umit command creator
    wizard.
 
 Installation
 
-   UMIT is available for multiple platforms. It has been successfully
+   Umit is available for multiple platforms. It has been successfully
    tested on the following platforms/flavors:
      * Ubuntu 5.04 Hoary Hedgeog
      * Red Hat Enterprise Linux 4
@@ -29,7 +29,7 @@ Installation
 
 Default (source) Installation
 
-   The UMIT's source package are provided in such a way that, if you have
+   The Umit's source package are provided in such a way that, if you have
    all the required software, it will run 'out-of-the-tarball'.
 
    The list of required software follows:

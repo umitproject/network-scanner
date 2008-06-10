@@ -38,7 +38,7 @@ class ProfileFileFilter(gtk.FileFilter):
 
         pattern = "*.usp"
         self.add_pattern(pattern)
-        self.set_name(_("UMIT Scan Profile (%s)") % pattern)
+        self.set_name(_("Umit Scan Profile (%s)") % pattern)
 
 class ResultsFileFilter(gtk.FileFilter):
     def __init__(self):
@@ -46,7 +46,7 @@ class ResultsFileFilter(gtk.FileFilter):
 
         pattern = "*.usr"
         self.add_pattern(pattern)
-        self.set_name(_("UMIT Scan Results (%s)") % pattern)
+        self.set_name(_("Umit Scan Results (%s)") % pattern)
 
 class RegularDiffiesFileFilter(gtk.FileFilter):
     def __init__(self):
@@ -54,7 +54,7 @@ class RegularDiffiesFileFilter(gtk.FileFilter):
 
         pattern = "*.urd"
         self.add_pattern(pattern)
-        self.set_name(_("UMIT Regular Diff (%s)") % pattern)
+        self.set_name(_("Umit Regular Diff (%s)") % pattern)
 
 class HtmlDiffiesFileFilter(gtk.FileFilter):
     def __init__(self):
@@ -62,7 +62,7 @@ class HtmlDiffiesFileFilter(gtk.FileFilter):
 
         pattern = "*.html"
         self.add_pattern(pattern)
-        self.set_name(_("UMIT HTML Diff (%s)") % pattern)
+        self.set_name(_("Umit HTML Diff (%s)") % pattern)
 
 class ProfileFileChooserDialog(gtk.FileChooserDialog):
     def __init__(self, title="", parent=None,

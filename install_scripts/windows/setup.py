@@ -126,15 +126,15 @@ setup(name = 'umit',
       author_email = 'adriano@umitproject.org, cleber@globalred.com.br',
       maintainer = 'Adriano Monteiro',
       maintainer_email = 'adriano@umitproject.org',
-      description = """UMIT is a network scanning frontend, developed in \
+      description = """Umit is a network scanning frontend, developed in \
 Python and GTK and was started with the sponsoring of Google's Summer of \
 Code.""",
       long_description = """The project goal is to develop a network scanning \
 frontend that is really useful for advanced users and easy to be used by \
-newbies. With UMIT, a network admin could create scan profiles for faster and \
+newbies. With Umit, a network admin could create scan profiles for faster and \
 easier network scanning or even compare scan results to easily see any \
 changes. A regular user will also be able to construct powerful scans with \
-UMIT command creator wizards.""",
+Umit command creator wizards.""",
       version = VERSION,
       scripts = ['umit'],
       packages = ['', 'umitCore', 'umitGUI', 'higwidgets'],

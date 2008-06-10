@@ -84,7 +84,7 @@ class Wizard(HIGWindow):
         self.add(self.main_vbox)
         
         self.__create_wizard_widgets()
-        self.set_title(_("UMIT Command constructor wizard"))
+        self.set_title(_("Umit Command constructor wizard"))
         
         self.main_vbox._pack_expand_fill(self.directions['Start'])
         self.set_notebook(None)
@@ -355,7 +355,7 @@ class FinishPage(HIGVBox):
         HIGVBox.__init__(self)
         self.set_spacing(12)
         
-        self.description = HIGEntryLabel(_("""UMIT generated the nmap command. \
+        self.description = HIGEntryLabel(_("""Umit generated the nmap command. \
 Click Apply to finish this wizard."""))
         spacer = hig_box_space_holder()
         self.bar = ApplyBar()
@@ -414,7 +414,7 @@ class StartPage(HIGVBox):
         
         sec_vbox = HIGVBox()
         
-        self.description = HIGEntryLabel(_("""UMIT allow user to construct \
+        self.description = HIGEntryLabel(_("""Umit allow user to construct \
 powerful commands in two distinct ways:"""))
         self.novice_radio = gtk.RadioButton(None, _('Novice'))
         self.expert_radio = gtk.RadioButton(self.novice_radio, _('Expert'))

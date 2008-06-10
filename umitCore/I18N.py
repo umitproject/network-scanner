@@ -74,4 +74,4 @@ def enc(string):
     return string
 
 if __name__ == '__main__':
-    print _('UMIT - Take the red pill')
+    print _('Umit - Take the red pill')

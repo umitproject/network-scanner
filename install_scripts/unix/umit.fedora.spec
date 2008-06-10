@@ -14,9 +14,9 @@ Buildroot: /tmp/umitrpm
 %define py_compile %{python} /opt/python2.4/lib/python2.4/py_compile.py
 
 %description
-UMIT is the newest network scanning frontend, and it's been developed in Python and GTK and was started with the sponsoring of Google's Summer of Code.
+Umit is the newest network scanning frontend, and it's been developed in Python and GTK and was started with the sponsoring of Google's Summer of Code.
 
-The project goal is to develop a network scanning frontend that is really useful for advanced users and easy to be used by newbies. With UMIT, a network admin could create scan profiles for faster and easier network scanning or even compare scan results to easily see any changes. A regular user will also be able to construct powerful scans with UMIT command creator wizards.
+The project goal is to develop a network scanning frontend that is really useful for advanced users and easy to be used by newbies. With Umit, a network admin could create scan profiles for faster and easier network scanning or even compare scan results to easily see any changes. A regular user will also be able to construct powerful scans with Umit command creator wizards.
 
 
 %prep

@@ -37,7 +37,7 @@ from umitCore.I18N import _
 class About(HIGWindow):
     def __init__(self):
         HIGWindow.__init__(self)
-        self.set_title(_("About UMIT"))
+        self.set_title(_("About Umit"))
         self.set_position(gtk.WIN_POS_CENTER)
         
         self.__create_widgets()
@@ -58,10 +58,10 @@ class About(HIGWindow):
                 self.d[chr(i+c)] = chr((i+13) % 26 + c)
         
         self.lbl_program_version = gtk.Label("""\
-<span size='30000' weight='heavy'>UMIT %s</span>""" % VERSION)
+<span size='30000' weight='heavy'>Umit %s</span>""" % VERSION)
         
         self.lbl_program_description = gtk.Label(\
-            _("""UMIT is network scanning frontend frontend,
+            _("""Umit is network scanning frontend frontend,
 developed in PyGTK by Adriano Monteiro 
 Marques <adriano@umitproject.org>
 and was sponsored by Google during the
@@ -132,7 +132,7 @@ Insecure.Com LLC. and (C) 2007-2008 Adriano Monteiro Marques</small>")
 class Credits(HIGWindow):
     def __init__(self):
         HIGWindow.__init__(self)
-        self.set_title(_("UMIT credits"))
+        self.set_title(_("Umit credits"))
         self.set_size_request(-1, 450)
         self.set_position(gtk.WIN_POS_CENTER)
         
@@ -332,6 +332,7 @@ Devtar Singh <devtar@gmail.com>
 
 Brazilian Portuguese:
 Adriano Monteiro Marques <adriano@umitproject.org>
+Rodolfo da Silva Carvalho <rodolfo@umitproject.org>
 
 Italian:
 Francesco Piccinno <stack.box@gmail.com>

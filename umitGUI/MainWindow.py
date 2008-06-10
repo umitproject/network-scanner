@@ -261,7 +261,7 @@ class MainWindow(UmitMainWindow):
                           about_icon,
                           _('_About'),
                           '<Control>a',
-                          _("About UMIT"),
+                          _("About Umit"),
                           self._show_about_cb
                           ),
 
@@ -1013,7 +1013,7 @@ documentation in our Support & Development section."""))
 
 class NonRootWarning (HIGAlertDialog):
     def __init__(self):
-        warning_text = _('''You are trying to run UMIT with a non-root user!\n
+        warning_text = _('''You are trying to run Umit with a non-root user!\n
 Some nmap options need root privileges to work.''')
 
         HIGAlertDialog.__init__(self, message_format=_('Non root user'),
