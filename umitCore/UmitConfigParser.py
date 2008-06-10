@@ -42,8 +42,8 @@ class UmitConfigParser(ConfigParser):
     def read(self, filename):
         log.debug(">>> Trying to parse: %s" % filename)
 
-        self.filename = ConfigParser.read(self, filename)
-        return self.filename
+        self.filenames = ConfigParser.read(self, filename)
+        return self.filenames
 
     def readfp(self, fp, filename=None):
         ConfigParser.readfp(self, fp, filename)
@@ -53,9 +53,9 @@ class UmitConfigParser(ConfigParser):
     def save_changes(self):
         if self.filenames:
             filename = None
-            if type(self.filenames) == type(""):
+            if isinstance(self.filenames, basestring):
                 filename = self.filenames
-            elif type(self.filenames) == type([]) and len(self.filenames) == 1:
+            elif isinstance(self.filenames, list) and len(self.filenames) == 1:
                 filename = self.filenames[0]
             else:
                 raise Exception("Wrong filename %s" % self.filenames)
