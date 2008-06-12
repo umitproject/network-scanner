@@ -1,6 +1,6 @@
 !define py2exeOutputDir 'dist'
 !define exe             'Umit.exe'
-!define icon            'C:\Umit\share\icons\umit_48.ico'
+!define icon            'C:\Umit\share\icons\umit\umit_48.ico'
 !define compressor      'lzma'  ;one of 'zlib', 'bzip2', 'lzma'
 !define onlyOneInstance
 

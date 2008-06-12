@@ -38,11 +38,11 @@ from umitCore.Version import VERSION
 # These directories are relative to the installation or dist directory
 # Ex: python setup.py install --prefix=/tmp/umit
 # Will create the directory /tmp/umit with the following directories
-pixmaps_dir = os.path.join('share', 'pixmaps')
-icons_dir = os.path.join('share', 'icons')
-locale_dir = os.path.join('share', 'umit', 'locale')
+pixmaps_dir = os.path.join('share', 'pixmaps', 'umit')
+icons_dir = os.path.join('share', 'icons', 'umit')
+locale_dir = os.path.join('share', 'locale')
 config_dir = os.path.join('share', 'umit', 'config')
-docs_dir = os.path.join('share', 'umit', 'docs')
+docs_dir = os.path.join('share', 'doc', 'umits')
 misc_dir = os.path.join('share', 'umit', 'misc')
 
 def mo_find(result, dirname, fnames):
@@ -142,7 +142,8 @@ Umit command creator wizards.""",
       zipfile=None,
       cmdclass = {"py2exe":umit_py2exe},
       windows = [{"script" : "umit",
-                  "icon_resources" : [(1, os.path.join("share", "icons", "umit_48.ico"))]}],
+                  "icon_resources" : [(1, os.path.join(icons_dir,
+                                                       "umit_48.ico"))]}],
       options = {"py2exe":{"compressed":1,
                            "optimize":2,
                            "packages":"encodings",

@@ -116,6 +116,7 @@ speed experience. Download it at http://psyco.sf.net/"""))
 
         import gobject
         from umitGUI.Splash import Splash
+        log.info(">>> Pixmaps path: %s" % Path.pixmaps_dir)
 
         if not is_maemo():
             pixmap_d = Path.pixmaps_dir

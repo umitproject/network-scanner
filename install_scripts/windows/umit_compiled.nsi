@@ -4,13 +4,13 @@
 ;!define MUI_ICON "share\icons\umit_32.ico" # Installer icon
 ;!define MUI_UNICON "share\icons\trash_32.ico" # Uninstaller icon
 !define MUI_HEADERIMAGE
-!define MUI_HEADERIMAGE_BITMAP "share\pixmaps\splash.bmp"
-!define MUI_HEADERIMAGE_UNBITMAP "share\pixmaps\splash.bmp"
+!define MUI_HEADERIMAGE_BITMAP "share\pixmaps\umit\splash.bmp"
+!define MUI_HEADERIMAGE_UNBITMAP "share\pixmaps\umit\splash.bmp"
 !define MUI_ABORTWARNING
 !define MUI_UNABORTWARNING
 
 !define APPLICATION_NAME "Umit"
-!define APPLICATION_VERSION "0.9.5RC1"
+!define APPLICATION_VERSION "0.9.5RC2"
 !define WINPCAP "winpcap-nmap-4.01.exe"
 
 Name "${APPLICATION_NAME}"
@@ -53,7 +53,7 @@ Section "Umit" SecUmit
   File COPYING_NMAP
   File COPYING_WINPCAP
   File README
-  File share\icons\umit_*.ico
+  File share\icons\umit\umit_*.ico
 
   File /r dist\*.*
 

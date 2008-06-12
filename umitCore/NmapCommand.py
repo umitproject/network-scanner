@@ -21,6 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import sys
+sys.path.append(".")
 import os
 import re
 import threading
@@ -431,7 +432,7 @@ if __name__ == '__main__':
     unittest.TextTestRunner().run(unittest.TestLoader().\
                                   loadTestsFromTestCase(SplitQuotedTest))
 
-    scan = NmapCommand('%s -T4 -iL "/home/adriano/umit/test/targets\ teste"' % \
+    scan = NmapCommand('%s -T4 192.168.0.101"' % \
                        nmap_command_path)
     scan.run_scan()
 
