@@ -47,7 +47,7 @@ xcopy %GTKDir%\share\gtkthemeselector\*.* %DistDir%\share\gtkthemeselector\ /S >
 xcopy %GTKDir%\share\themes\Default\*.* %DistDir%\share\themes\Default /S >> %Output%
 xcopy %GTKDir%\share\themes\MS-Windows\*.* %DistDir%\share\themes\MS-Windows /S >> %Output%
 xcopy %GTKDir%\share\xml\*.* %DistDir%\share\xml\ /S >> %Output%
-xcopy %GTKDir%\bin\*.dll %DistDir% /S >> %Output%
+xcopy %GTKDir%\bin\*.dll %UmitDir% /S >> %Output%
 
 
 echo Creating Nmap dist dirs...

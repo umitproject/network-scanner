@@ -98,6 +98,22 @@ class UmitExceptionHook(object):
 
 
 if not UMIT_DEVELOPMENT:
+    
+    from tempfile import mktemp
+    # Generating temporary files names
+    stdout_output = mktemp()
+    stderr_output = mktemp()
+
+    old_stdout = sys.stdout
+    old_stderr = sys.stderr
+
+    _stdout = open(stdout_output, "w")
+    _stderr = open(stderr_output, "w")
+
+    sys.stdout = _stdout
+    sys.stderr = _stderr
+
+    
     sys.excepthook = UmitExceptionHook()
 
 def main(args):
