@@ -250,7 +250,7 @@ Rodolfo da Silva Carvalho <rodolfo@umitproject.org>"""))
 
         b = self.soc2008_text.get_buffer()
         b.set_text(_("""Packet Manipulation Backend
-Bartosz Adam Skowron <getxsick@gmail.com>
+Bartosz Adam Skowron <getxsick@umitproject.org>
 
 Quick Scan:
 Daniel Mendes Cassiano <danielcassiano@gmail.com>
@@ -302,7 +302,7 @@ Luis Antonio Bastião Silva <luis.kop@gmail.com>
 Rodolfo da Silva Carvalho <rodolfo@umitproject.org>
 
 Beta testers for 0.9.5RC1:
-Bartosz Adam Skowron <getxsick@gmail.com>
+Bartosz Adam Skowron <getxsick@umitproject.org>
 Denis Kurov <deniskurov@gmail.com>
 Devtar Singh <devtar@gmail.com>
 Drew Miller <securitygeek@fribble.org>
@@ -338,7 +338,7 @@ Italian:
 Francesco Piccinno <stack.box@gmail.com>
 
 Polish:
-Bartosz Adam Skowron <getxsick@gmail.com>
+Bartosz Adam Skowron <getxsick@umitproject.org>
 
 Portuguese Portugal:
 Luis Antonio Bastião Silva <luis.kop@gmail.com>
