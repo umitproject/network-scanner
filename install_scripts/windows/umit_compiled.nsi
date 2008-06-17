@@ -456,7 +456,7 @@ FunctionEnd
 
 !define APPLICATION_NAME "Umit"
 !define APPLICATION_VERSION "0.9.5RC2"
-!define WINPCAP "winpcap-nmap-4.01.exe"
+!define WINPCAP "WinPcap_4_0_2.exe"
 
 Name "${APPLICATION_NAME}"
 InstallDir "$PROGRAMFILES\${APPLICATION_NAME}\"
