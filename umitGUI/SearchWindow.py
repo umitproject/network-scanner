@@ -95,7 +95,6 @@ class SearchWindow(BaseSearchWindow, object):
     def open_selected(self, widget=None, path=None,
                       view_column=None, extra=None):
         # This avoids dialog to be closed for no results.
-        import pdb;pdb.set_trace()
         if len(self.results) <= 0:
             dia = HIGAlertDialog(
                 parent=self,
