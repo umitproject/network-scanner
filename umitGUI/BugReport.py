@@ -35,7 +35,7 @@ from umitCore.I18N import _
 
 class BugReport(HIGDialog):
     def __init__(self, title=_('Bug Report'), summary=None, description=None,
-                 category=None, crashreport=False):
+                 category=None, crashreport=False, description_dialog=None):
         HIGDialog.__init__(self, title=title, 
             buttons=(gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
                 gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL))
@@ -43,14 +43,17 @@ class BugReport(HIGDialog):
         self.set_position(gtk.WIN_POS_CENTER_ALWAYS)
         
         self.crashreport = crashreport
-        
+        self.description_dialog = description_dialog
         self._create_widgets()
         self._set_category_list()
         self._pack_widgets()
         self._connect_widgets()
-        
         self.summary = summary or ''
-        self.description = description or ''
+        self.description_report = description
+        if self.description_dialog==None:
+            self.description = description or ''
+        else:
+            self.description = description_dialog or ''
         self.category = category or ''
 
     def _set_category_list(self):
@@ -193,7 +196,10 @@ class BugReport(HIGDialog):
 
         bug_register.component = self.category_id
         bug_register.summary = self.summary
-        bug_register.details = self.description
+        if self.description_report!=None:
+            bug_register.details = self.description_report
+        else:
+            bug_register.details = self.description.replace("\n", "[[BR]]")
         bug_register.reporter = self.email
         
         bug_page = None
@@ -251,11 +257,9 @@ class BugReport(HIGDialog):
 
     def set_summary(self, summary):
         self.summary_entry.set_text(summary)
-
     def get_description(self):
         buff = self.description_text.get_buffer()
         return buff.get_text(buff.get_start_iter(), buff.get_end_iter())
-
     def set_description(self, description):
         self.description_text.get_buffer().set_text(description)
 
@@ -279,9 +283,11 @@ class BugReport(HIGDialog):
     email = property(get_email, set_email)
 
 class CrashReport(BugReport):
-    def __init__(self, summary, description, title=_('Crash Report')):
+    def __init__(self, summary, description, title=_('Crash Report'),\
+                 description_dialog=None):
         BugReport.__init__(self, title, summary, description,
-                           "CrashReport", True)
+                           "CrashReport", True, 
+                           description_dialog=description_dialog)
     
 if __name__ == "__main__":
     c = BugReport()

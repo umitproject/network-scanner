@@ -57,18 +57,30 @@ class UmitExceptionHook(object):
             d.run()
             d.destroy()
             return
-
         crash_text = cgitb.text((etype, emsg, etb))
-        extrainfo = "%-17s %s\n%-17s %s\n%-17s %s\n%-17s %s\n" % (
+        crash_text_dialog = crash_text
+        crash_text= "{{{\n" + crash_text + "\n}}}"
+        
+        #Dialog info
+        extrainfo_dialog = "%-17s %s\n%-17s %s\n%-17s %s\n%-17s %s\n" % (
             "sys.platform", sys.platform, "os.name", os.name, 
             "Gtk version", '.'.join(map(str, gtk.gtk_version)), 
             "Umit version", VERSION)
-        crashmsg = "Crash Report\n%s\n%s\nDescription\n%s\n%s" % ('=' * 10, 
+        crashmsg_dialog = "Crash Report\n%s\n%s\nDescription\n%s\n%s" % \
+                        ('=' * 10, extrainfo_dialog, '-' * 20,\
+                         crash_text_dialog)
+        
+        extrainfo = "%-17s %s\n[[BR]]%-17s %s\n[[BR]]%-17s %s\n[[BR]]%-17s %s[[BR]]\n" % (
+            "sys.platform", sys.platform, "os.name", os.name, 
+            "Gtk version", '.'.join(map(str, gtk.gtk_version)), 
+            "Umit version", VERSION)
+        crashmsg = "Crash Report\n[[BR]]%s[[BR]]\n[[BR]]%s\nDescription\n%s\n%s" % ('=' * 10, 
             extrainfo, '-' * 20, crash_text)
 
         try:
             try:
-                cwin = CrashReport("Umit Crash - '%s'" % emsg, crashmsg)
+                cwin = CrashReport("Umit Crash - '%s'" % emsg, crashmsg,
+                                   description_dialog=crashmsg_dialog)
                 cwin.show_all()
                 while True: 
                     # keeping running while bug report is not sent successfully,
@@ -82,7 +94,7 @@ class UmitExceptionHook(object):
                         break
             except:
                 tempfd, tempname = tempfile.mkstemp()
-                os.write(tempfd, crashmsg)
+                os.write(tempfd, crashmsg_dialog)
                 d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                     message_format=_("Bug not reported"),
                     secondary_text=_("A critical error occourried during "
