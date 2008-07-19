@@ -8,6 +8,13 @@ recursive-include share/locale/pl_PL/LC_MESSAGES/ *.mo
 recursive-include share/locale/pt_BR/LC_MESSAGES/ *.mo
 recursive-include share/locale/pt_PT/LC_MESSAGES/ *.mo
 recursive-include share/locale/zh_CN/LC_MESSAGES/ *.mo
+recursive-include share/locale/id/ *.po
+recursive-include share/locale/it/ *.po
+recursive-include share/locale/ms/ *.po
+recursive-include share/locale/pl_PL/ *.po
+recursive-include share/locale/pt_BR/ *.po
+recursive-include share/locale/pt_PT/ *.po
+recursive-include share/locale/zh_CN/ *.po
 recursive-include share/doc/umit *.html
 recursive-include share/doc/umit/comparing_results *.xml
 recursive-include share/doc/umit/profile_editor *.xml

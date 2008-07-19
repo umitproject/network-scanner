@@ -27,13 +27,14 @@ import re
 from distutils.core import setup
 from distutils.command.install import install
 from distutils.command.sdist import sdist
+from distutils.command.build import build
 from distutils import log, dir_util
 
 from glob import glob
 from stat import *
 
 from umitCore.Version import VERSION
-
+from umitCore import msgfmt
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
 # These directories are relative to the installation or dist directory
@@ -46,16 +47,21 @@ config_dir = os.path.join('share', 'umit', 'config')
 docs_dir = os.path.join('share', 'doc', 'umit')
 misc_dir = os.path.join('share', 'umit', 'misc')
 
-
-def mo_find(result, dirname, fnames):
+def extension_find(result, dirname, fnames, suffix):
     files = []
     for f in fnames:
         p = os.path.join(dirname, f)
-        if os.path.isfile(p) and f.endswith(".mo"):
+        if os.path.isfile(p) and f.endswith(suffix):
             files.append(p)
         
     if files:
         result.append((dirname, files))
+
+def mo_find(result, dirname, fnames):
+    return extension_find(result, dirname, fnames, ".mo")
+
+def po_find(result, dirname, fnames):
+    return extension_find(result, dirname, fnames, ".po")
 
 
 ################################################################################
@@ -74,8 +80,10 @@ data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
 
                (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))), 
 
-               (icons_dir, glob(os.path.join('share', 'icons', '*.ico'))+
-                           glob(os.path.join('share', 'icons', '*.png'))),
+               (icons_dir, glob(os.path.join('share', 'icons', 'umit',
+                                             '*.ico'))+
+                           glob(os.path.join('share', 'icons', 'umit', 
+                                             '*.png'))),
 
                (docs_dir, glob(os.path.join(docs_dir, '*.html'))+
                           glob(os.path.join(docs_dir,
@@ -95,12 +103,32 @@ data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
 os.path.walk(locale_dir, mo_find, data_files)
 
 
-
 ################################################################################
 # Distutils subclasses
 
+class umit_build(build):
+    def build_mo_files(self):
+        """Build mo files from po and put it into LC_MESSAGES """
+        tmp = [] 
+        os.path.walk(locale_dir, po_find, tmp)
+        for (path, t) in tmp:
+            full_path = os.path.join(path , "LC_MESSAGES", "umit.mo")
+            self.mkpath(os.path.dirname(full_path))
+            self.announce("Compiling %s -> %s" % (t[0],full_path))
+            msgfmt.make(t[0], full_path, False)
+        # like guess
+        os.path.walk(locale_dir, mo_find, data_files)
+    def run(self):
+        self.build_mo_files()
+        build.run(self)
+
+
+
+
 class umit_install(install):
     def run(self):
+        # Add i18n files to data_files list
+        os.path.walk(locale_dir, mo_find, data_files)
         install.run(self)
 
         self.set_perms()
@@ -230,9 +258,17 @@ print
         print
 
 
+
 class umit_sdist(sdist):
+    def delete_mo_files(self):
+        """ Remove *.mo files """
+        tmp = [] 
+        os.path.walk(locale_dir, mo_find, tmp)
+        for (path, t) in tmp:
+            os.remove(t[0])
     def run(self):
         self.keep_temp = 1
+        self.delete_mo_files()
         sdist.run(self)
         self.finish_banner()
 
@@ -270,4 +306,5 @@ Umit command creator wizards.""",
       packages = ['', 'umitCore', 'umitGUI', 'higwidgets'],
       data_files = data_files,
       cmdclass = {"install":umit_install,
+                  "build":umit_build,
                   "sdist":umit_sdist})
