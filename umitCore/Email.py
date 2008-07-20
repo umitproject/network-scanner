@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
 # Copyright (C) 2005-2006 Insecure.Com LLC.
 # Copyright (C) 2007-2008 Adriano Monteiro Marques
 #
