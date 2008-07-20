@@ -34,7 +34,7 @@ from glob import glob
 from stat import *
 
 from umitCore.Version import VERSION
-from umitCore import msgfmt
+from utils import msgfmt
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
 # These directories are relative to the installation or dist directory
@@ -70,6 +70,7 @@ def po_find(result, dirname, fnames):
 svg = glob(os.path.join('share', 'pixmaps', '*.svg'))
 data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
                              glob(os.path.join(pixmaps_dir, '*.png')) +
+			     glob(os.path.join(pixmaps_dir, '*.xpm')) +
                              glob(os.path.join(pixmaps_dir, 'umit.o*'))),
 
                (config_dir, [os.path.join(config_dir, 'umit.conf')] +
@@ -107,6 +108,12 @@ os.path.walk(locale_dir, mo_find, data_files)
 # Distutils subclasses
 
 class umit_build(build):
+    def delete_mo_files(self):
+        """ Remove *.mo files """
+        tmp = [] 
+        os.path.walk(locale_dir, mo_find, tmp)
+        for (path, t) in tmp:
+            os.remove(t[0])
     def build_mo_files(self):
         """Build mo files from po and put it into LC_MESSAGES """
         tmp = [] 
@@ -119,6 +126,7 @@ class umit_build(build):
         # like guess
         os.path.walk(locale_dir, mo_find, data_files)
     def run(self):
+        self.delete_mo_files()
         self.build_mo_files()
         build.run(self)
 
@@ -260,18 +268,33 @@ print
 
 
 class umit_sdist(sdist):
-    def delete_mo_files(self):
-        """ Remove *.mo files """
-        tmp = [] 
-        os.path.walk(locale_dir, mo_find, tmp)
-        for (path, t) in tmp:
-            os.remove(t[0])
+    def read_manifest_no_mo(self):
+	""" Read Manifest without mo files """
+	manifest = open(self.manifest)
+	while 1:
+	    line = manifest.readline()
+	    if line == '':
+		break 
+	    if line[-1] == '\n':
+		line = line[0:-1]
+	    if line.find("umit.mo")!=-1:
+		self.filelist.files.remove(line)
     def run(self):
         self.keep_temp = 1
-        self.delete_mo_files()
-        sdist.run(self)
+	from distutils.filelist import FileList
+        #Rewrite: sdist.run(self)
+        self.manifest = "MANIFEST"
+        self.filelist = FileList()
+        self.check_metadata()	
+        self.get_file_list()
+	## Exclude mo files:
+	self.read_manifest_no_mo()
+        if self.manifest_only:
+            return 
+        self.make_distribution()
+        
         self.finish_banner()
-
+    
     def finish_banner(self):
         print 
         print "%s The packages for Umit %s are in ./dist %s" % \
