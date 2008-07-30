@@ -1,4 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2008 UMIT PROJECT
 # BARTOSZ SKOWRON <getxsick@umitproject.org>, 2008
 #
