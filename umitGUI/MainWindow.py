@@ -810,7 +810,7 @@ been parsed. You can not save the result yet.'))
             # Say that the scan is still running
             alert = HIGAlertDialog(message_format=_('Scan is running'),
                                    secondary_text=_('The scan process is not \
-finished yet. wait until the scan is finished and then try to save it again.'))
+finished yet. Rait until the scan is finished and then try to save it again.'))
             alert.run()
             alert.destroy()
 
