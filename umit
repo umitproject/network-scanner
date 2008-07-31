@@ -34,7 +34,7 @@ from umitCore.I18N import _
 from umitCore.Version import VERSION
 #########################
 
-UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
+UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", False)
 
 class UmitExceptionHook(object):
     def __call__(self, etype, emsg, etb):
@@ -49,6 +49,43 @@ class UmitExceptionHook(object):
             sys.exit(-1)
         warnings.resetwarnings()
 
+        # Getting dependencies versions
+        import higwidgets
+        import umitCore
+        import umitGUI
+
+        gtk_version = "%s.%s.%s" % gtk.gtk_version
+        pygtk_version = "%s.%s.%s" % gtk.ver
+        higwidgets_version = getattr(higwidgets, "__version__", "< 0.9.5")
+        python_version = sys.version
+        nmap_version = os.popen2("nmap -V")[1].read().strip("\n")
+        osuname = " ".join(os.uname())
+        umit_version = VERSION
+        umitCore_version = getattr(umitCore, "__version__", "< 0.9.5")
+        umitGUI_version = getattr(umitGUI, "__version__", "< 0.9.5")
+
+        versions = _("""
+Versions:
+---
+GTK: %s
+PyGTK: %s
+HIGWidgets: %s
+Python: %s
+Nmap: %s
+Operating System: %s
+Umit: %s
+UmitCore: %s
+UmitGUI: %s
+---""") % (gtk_version,
+           pygtk_version,
+           higwidgets_version,
+           python_version,
+           nmap_version,
+           osuname,
+           umit_version,
+           umitCore_version,
+           umitGUI_version)
+
         if etype == ImportError:
             d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                 message_format=_("Import error"),
@@ -59,7 +96,7 @@ class UmitExceptionHook(object):
             return
         crash_text = cgitb.text((etype, emsg, etb))
         crash_text_dialog = crash_text
-        crash_text= "{{{\n" + crash_text + "\n}}}"
+        crash_text= "{{{\n%s\n%s\n}}}" % (versions, crash_text)
         
         #Dialog info
         extrainfo_dialog = "%-17s %s\n%-17s %s\n%-17s %s\n%-17s %s\n" % (

@@ -31,6 +31,8 @@ This is mostly implemented by subclassing from the GTK classes, and
 providing defaults that better match the HIG specifications/recomendations.
 """
 
+__version__ = "0.9.5"
+
 from gtkutils import *
 from higboxes import *
 from higbuttons import *

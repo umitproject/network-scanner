@@ -155,11 +155,13 @@ this instead: '%s'" % str(id))
     
     def get_ports(self):
         return self._ports
+
     def set_extraports(self, port_list):
         self._extraports = port_list
-    
+
     def get_extraports(self):
         return self._extraports
+
     # HOSTNAMES
     def set_hostnames(self, hostname_list):
         self._hostnames = hostname_list
