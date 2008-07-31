@@ -9,7 +9,7 @@
       <surname>Marques</surname>
       <copyright>
         <year>2006</year>
-	<holder>Adriano Monteiro Marques</holder>
+        <holder>Adriano Monteiro Marques</holder>
       </copyright>
     </author>
   </artheader>
@@ -76,7 +76,7 @@
     <procedure>
       <title>Acces from the Main Menu</title>
       <step>Go to the <emphasis>Main Menu</emphasis> (the one on the top of the application),
-	<guimenu>File</guimenu>-&gt;<guimenuitem>New Scan</guimenuitem>.</step>
+      <guimenu>File</guimenu>-&gt;<guimenuitem>New Scan</guimenuitem>.</step>
     </procedure>
   </section>
 
@@ -106,57 +106,127 @@
     create a new profile, or to change an existing one. After selecting a target and 
     a profile, you can customize the command that will actually run, by editing it
     directly in the command field.</para>
-    <para>There is a known issue regarding</para>
-    <para># Nmap Output refresh</para>
+    <para>There is a known issue regarding changing the command manually and then
+    trying to change the target using the target entry. If you try to do that, you'll
+    end losing the changes you've done manually.</para>
+    <para>After Selecting the proper target, profile and making your manual tunning,
+    you're ready to click the scan button. As the scanning takes a considerable time
+    to finish, Umit will keep refreshing the scan output so you can follow the scan
+    execution and status.</para>
     <section>
       <title>Known issues</title>
 
-      <para># Non-root user</para>
-      <para># Overlapping two scans, by clicking twice on the Start Scan button</para>
+      <para><emphasis>Non-root user:</emphasis> If you're running Umit with a non-root
+      user in a Unix like operating system, you're likely to face some problems while
+      trying to execute the scan with options that require root privilege. In this case,
+      Umit will return a message saying that the scan failed because you have used a option
+      that requires root privileges.</para>
     </section>
   </section>
 
   <section>
     <title>Making Umit usefull enough for your every-day scanning</title>
 
-    <para># Quick list of usefull features for network administrators</para>
+    <para>You may still be asking yourself "Why shoul I use Umit, instead of Nmap in the 
+    command line". To put it simple: Because time is money. Umit's main goal is to help
+    you save your time. Here are some goodies that helps you save your time while having
+    to analyse a scan result and get useful informations from it.</para>
 
     <section>
       <title>The Hosts/Services View</title>
 
-      <para># What does it show</para>
-      <para># How to put in order?</para>
+      <para>After running finishing the execution of a scan, you'll see two buttons at
+      the left side of the window, right bellow the command field in your scan tab:
+      "<emphasis>Hosts</emphasis>" and "<emphasis>Services</emphasis>". Those buttons 
+      change the way you order and view the scan results, by listing either the hosts 
+      found or the services found.</para>
+  
+      <para>If you're looking for hosts, and then want to see 
+      what kind of services these hosts are providing, then you should use the 
+      <emphasis>Hosts button</emphasis>, which is selected by <emphasis>default
+      </emphasis>. This mode will show a list all hosts found, with an icon representing
+      the operating system of the host (if it was recognized) and its hostname (if resolved,
+      or its IP address). From that list, you can select one or more hosts, and see what
+      services they're providing at the <emphasis>Ports/Hosts</emphasis> tab.</para>
+  
+      <para>If what you need is to find what hosts are providing a given service,
+      like <emphasis>SSH</emphasis>, for example, then you should use the <emphasis>
+      Services button</emphasis>, which will show a list of all services found during
+      scan execution. By clicking in a service in that list, you'll see what hosts
+      are providing the selected service in the <emphasis>Ports/Hosts</emphasis> tab.</para>
+      
+      <para>Ordering is quite simple. Click on the header of the column you want to have
+      the results ordered, and the ordering sequence will change accordingly. You're
+      also allowed to move columns arround and change their precedence in the listing.</para>
     </section>
 
     <section>
-      <title>The Ports/Hosts Page</title>
+      <title>The Ports/Hosts Tab</title>
 
-      <para># What does it show</para>
-      <para># Sorting</para>
-      <para># Grouping</para>
+      <para>This tab holds either a listing of found ports, for the selected host(s) or
+      a listsing of found hosts, for the selected service(s). It all depends on which
+      visualization mode you're in. While in <emphasis>Hosts</emphasis> mode, you'll see
+      a list of what ports the selected host(s) are providing. If you select more than
+      one host, the listing will change from list to tree view mode, and you'll be able
+      to compare easily the different ports and services open among the selected hosts.</para>
+      <para>If you're in <emphasis>Services</emphasis> mode, then you'll see a list of
+      hosts providing the selected service(s). If you selected more than one service, the listing
+      will change for list to tree view, and you'll be able to compare what hosts are providing
+      the selected services easily.</para>
     </section>
 
     <section>
-      <title>Nmap Output Page</title>
+      <title>Nmap Output Tab</title>
 
-      <para># The Highlight mode</para>
-      <para># How to change colors</para>
-      <para># How does it works the automatic refresh</para>
+      <para>For those who are terminal addicted, there is the <emphasis>Nmap Output
+      </emphasis> tab, which shows the regular nmap output almost like everyone is used
+      to see: unparsed and plain text, but with colored highlights! So, even if you really
+      prefer the regular output, you still have a reason to use Umit instead of the
+      command line. </para>
+      <para>If you want to disable the highlight, click the check box right bellow the
+      Nmap output result. If you want to change the colors, click the <emphasis>
+      Preferences</emphasis> button, and customize it according to your taste.</para>
     </section>
 
     <section>
-      <title>Scan Details Page</title>
+      <title>Scan Details Tab</title>
 
-      <para># What informations are expected to be there</para>
+      <para>The <emphasis>Scan Details</emphasis> tab holds some informations regarding
+      the scan that you won't find on regular nmap outputs. There you can find the
+      command that has generated that result, the date and time that the scan has
+      started and finished, a list of all scanned ports, etc.</para>
     </section>
 
     <section>
-      <title>Host Details Page</title>
+      <title>Host Details Tab</title>
 
-      <para># How does it works</para>
-      <para># Comments</para>
-      <para># The Host Status</para>
-      <para># The icons (os and vl)</para>
+      <para>This tab shows details regarding the host you have selected in the host list,
+      while in <emphasis>Host Mode</emphasis>. The <emphasis>Host Details</emphasis> tab
+      works the same way the <emphasis>Ports/Hosts</emphasis> page, letting you select
+      one or more hosts at a time and having their details show at the same time there.</para>
+      <para>If you're in <emphasis>Services Mode</emphasis>, this tab will show the details
+      of the hosts that are providing the selected service.</para>
+      
+      <para>If you want to save any commentary for a given host, just click the <emphasis>
+      Comments</emphasis> expander, and write the commentary inside the text input that
+      will appear. If you save the scan result, the commentary will be saved as well.</para>
+      
+      <para>Two of the coolest features of Umit are the <empahsis>Operating System Icon
+      </emphasis> and the <emphasis>Vulnerability Level Icon</emphasis>.</para>
+      <para>If the scan
+      has recognized the host's operating system, then an Icon representing the
+      operating system is shown inside the host's detail. This helps you easily figure out
+      what operating system is running in a given host in a glance.</para>
+      <para>The <emphasis>Vulnerability Level Icon</emphasis> represents graphically
+      the level of vulnerability of a given host, based in the number of open ports it
+      have.</para>
+      <para><emphasis>We, at Umit, know that the amount of open ports isn't an accure way to
+      grade a host's vulnerability level, but at this time Umit doesn't feature a better
+      and more accurate meaning for detecting the host's vulnerabilitty level.</emphasis></para>
+      <para>There are five vulnerability levels, represented by the following icons ordered
+      by the less vulnerable to the more vulnerable level: the <emphasis>vault</emphasis>,
+      the <emphasis>chest</emphasis>, the <emphasis>box</emphasis>, the <emphasis>swiss 
+      cheese</emphasis> and the <emphasis>bomb</emphasis>.</para>
     </section>
   </section>
 
