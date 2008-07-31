@@ -466,7 +466,6 @@ class ScanNotebookPage(HIGVBox):
         self.get_parent().set_tab_title(self, label)
     
     def start_scan_cb(self, widget=None):
-        raise Exception("Wuhul!")
         if not self.toolbar.scan_button.get_property("sensitive"):
             return
 
