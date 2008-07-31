@@ -93,8 +93,20 @@
   <section>
     <title>Conducting a scan</title>
     
-    <para># Selecting the profile</para>
-    <para># Customizing the command that is going to be executed</para>
+    <para>A profile is a set of options that is going to be used during the scan
+    process against the target(s) specified. Profiles are customizable through the
+    <emphasis>Profile Editor Window</emphasis>. After specifying a target, select
+    one of the profiles in the profile list, and watch the command in the field
+    get changed according to the profile selected. This is awesome if you always
+    have to run a scan with the same set of options. If you are a newbie, this is
+    awesome too, because you can use one of the preset profiles according to your
+    need.</para>
+    <para>Sometimes we need to fine tune a specific profile for a specific occasion
+    that is not likely to occour very often. In this case, it is not a good idea to
+    create a new profile, or to change an existing one. After selecting a target and 
+    a profile, you can customize the command that will actually run, by editing it
+    directly in the command field.</para>
+    <para>There is a known issue regarding</para>
     <para># Nmap Output refresh</para>
     <section>
       <title>Known issues</title>

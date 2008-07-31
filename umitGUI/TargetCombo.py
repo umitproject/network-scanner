@@ -32,6 +32,7 @@ class TargetCombo(gtk.ComboBoxEntry):
         self.child.set_completion(self.completion)
         self.completion.set_model(self.get_model())
         self.completion.set_text_column(0)
+        self.changed_handler = None
 
         self.update()
 

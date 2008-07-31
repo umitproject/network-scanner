@@ -344,8 +344,8 @@ class ScanNotebookPage(HIGVBox):
         self.toolbar.scan_button.set_sensitive(False)
         self.empty_target = _("<target>")
         
-        self.toolbar.target_entry.connect('changed', 
-            self.refresh_command_target)
+        self.toolbar.target_entry.changed_handler = self.toolbar.target_entry.\
+            connect('changed', self.refresh_command_target)
         self.toolbar.profile_entry.connect('changed', self.refresh_command)
 
         self.toolbar.scan_button.connect('clicked', self.start_scan_cb)
@@ -485,8 +485,13 @@ class ScanNotebookPage(HIGVBox):
         elif profile:
             self.set_tab_label(profile)
 
-        if target != '':    
+        if target != '':
             self.toolbar.add_new_target(target)
+            
+            # TODO: Fix this workarround. The following line will set back the
+            # correct command to be executed after the refresh_command_target
+            # method that will be called by the targetcombo update method.
+            self.command_toolbar.command = command
 
         if (command.find("-iR") == -1 and command.find("-iL") == -1):
             if command.find("<target>") > 0:
