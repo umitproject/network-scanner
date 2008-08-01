@@ -211,8 +211,9 @@
       Comments</emphasis> expander, and write the commentary inside the text input that
       will appear. If you save the scan result, the commentary will be saved as well.</para>
       
-      <para>Two of the coolest features of Umit are the <empahsis>Operating System Icon
-      </emphasis> and the <emphasis>Vulnerability Level Icon</emphasis>.</para>
+      <para>Two of the coolest features of Umit are the <emphasis>Operating System Icon
+      </emphasis> and the <emphasis>Vulnerability Level Icon</emphasis>.
+      </para>
       <para>If the scan
       has recognized the host's operating system, then an Icon representing the
       operating system is shown inside the host's detail. This helps you easily figure out
