@@ -216,7 +216,7 @@ class MainWindow(UmitMainWindow):
                     ('Delete Profile', 
                      gtk.STOCK_PROPERTIES, 
                      _('_Delete Selected Profile'), 
-                     '<Control>d', 
+                     '<Control>m', 
                      _('Delete selected scan profile'), 
                      self._delete_scan_profile_cb), 
 
