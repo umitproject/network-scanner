@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: umit Anderson\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-31 13:07+WEST\n"
-"PO-Revision-Date: 2008-07-31 18:46-0300\n"
+"PO-Revision-Date: 2008-08-01 19:37-0300\n"
 "Last-Translator: Rodolfo Carvalho <rodolfo@rcarvalho.eti.br>\n"
 "Language-Team: Portuguese/Brazil <umit@globalred.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -864,9 +864,8 @@ msgid "Count"
 msgstr "Contar"
 
 #: umitGUI/DiffCompare.py:961
-#, fuzzy
 msgid "Property remained <b>U</b>nchanged"
-msgstr "Propriedade permanece Não-Modificada"
+msgstr "Propriedade permanece Não-Modificada (<b>U</b>)"
 
 #: umitGUI/DiffCompare.py:964
 msgid "Property was <b>A</b>dded"
@@ -1787,9 +1786,8 @@ msgid "Any os class"
 msgstr "Qualquer classe de o.s."
 
 #: umitGUI/SearchGUI.py:67
-#, fuzzy
 msgid "Any os match"
-msgstr "Qualquer classe de S.O."
+msgstr "Qualquer compatibilidade de S.O."
 
 #: umitGUI/SearchGUI.py:68
 msgid "Any"
@@ -1852,9 +1850,8 @@ msgid "OS class"
 msgstr "Classe de S.O."
 
 #: umitGUI/SearchGUI.py:187
-#, fuzzy
 msgid "OS match"
-msgstr "Classe de S.O."
+msgstr "Compatibilidade de S.O."
 
 #: umitGUI/SearchGUI.py:197
 msgid "Local files"
