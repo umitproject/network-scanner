@@ -455,8 +455,8 @@ FunctionEnd
 !define MUI_UNABORTWARNING
 
 !define APPLICATION_NAME "Umit"
-!define APPLICATION_VERSION "0.9.5RC2"
-!define WINPCAP "WinPcap_4_0_2.exe"
+!define APPLICATION_VERSION "0.9.5"
+!define WINPCAP "winpcap-nmap-4.02.exe"
 
 Name "${APPLICATION_NAME}"
 InstallDir "$PROGRAMFILES\${APPLICATION_NAME}\"
@@ -501,6 +501,11 @@ Section "Umit" SecUmit
   File share\icons\umit\umit_*.ico
 
   File /r dist\*.*
+
+  File "install_scripts\windows\win_dependencies\vcredist_x86.exe"
+  ExecWait "$INSTDIR\vcredist_x86.exe /q"
+  Delete "$INSTDIR\vcredist_x86.exe"
+
 
   File "install_scripts\windows\win_dependencies\${WINPCAP}"
   ExecWait "$INSTDIR\${WINPCAP}"
