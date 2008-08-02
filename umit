@@ -34,7 +34,7 @@ from umitCore.I18N import _
 from umitCore.Version import VERSION
 #########################
 
-UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", False)
+UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
 
 class UmitExceptionHook(object):
     def __call__(self, etype, emsg, etb):
@@ -95,7 +95,7 @@ UmitGUI: %s
             d.destroy()
             return
         crash_text = cgitb.text((etype, emsg, etb))
-        crash_text_dialog = crash_text
+        crash_text_dialog = "\n%s\n%s\n" % (versions, crash_text)
         crash_text= "{{{\n%s\n%s\n}}}" % (versions, crash_text)
         
         #Dialog info
