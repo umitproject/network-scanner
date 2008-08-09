@@ -86,6 +86,8 @@ class BugRegister(object):
                                  "cc":self.cc,
                                  "reporter":self.reporter,
                                  "attachment":self.input_file,
+                                 "status":"new",
+                                 "action":"create",
                                  "submit":self.submit})
 
         request = urllib2.Request(trac_new_ticket, data)
