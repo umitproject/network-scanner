@@ -3,7 +3,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: pl_PT\n"
+"Project-Id-Version: pl_PL\n"
 "POT-Creation-Date: 2008-07-31 13:07+WEST\n"
 "PO-Revision-Date: 2008-07-31 23:31+0100\n"
 "Last-Translator: Bartosz SKOWRON <getxsick@umitproject.org>\n"
