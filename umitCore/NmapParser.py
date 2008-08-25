@@ -331,6 +331,7 @@ umitCore.NmapParser.get_ipv6 instead."))
     osmatch = property(get_osmatch, set_osmatch)
     ports = property(get_ports, set_ports)
     ports_used = property(get_ports_used, set_ports_used)
+    extraports = property(get_extraports, set_extraports)
     uptime = property(get_uptime, set_uptime)
     hostnames = property(get_hostnames, set_hostnames)
     tcptssequence = property(get_tcptssequence, set_tcptssequence)
@@ -348,6 +349,7 @@ umitCore.NmapParser.get_ipv6 instead."))
     _osmatch = []
     _ports = []
     _ports_used = []
+    _extraports = []
     _uptime = {}
     _hostnames = []
     _tcptssequence = {}
