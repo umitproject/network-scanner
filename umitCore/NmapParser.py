@@ -5,6 +5,8 @@
 # Copyright (C) 2007-2008 Adriano Monteiro Marques
 #
 # Author: Adriano Monteiro Marques <adriano@umitproject.org>
+#         João Paulo de Souza Medeiros <ignotus21@gmail.com>
+#         Luis A. Bastiao Silva <luis.kop@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,6 +35,8 @@ from xml.sax.xmlreader import AttributesImpl as Attributes
 
 from umitCore.I18N import _
 from umitCore.UmitLogging import log
+
+import string
 
 months = ('',_('January'),
              _('February'),
@@ -136,7 +140,32 @@ this instead: '%s'" % str(id))
     
     def get_ports_used(self):
         return self._ports_used
+    
+    # TRACEROUTE
+    def set_trace(self, trace):
+        self._trace = trace
 
+    def get_trace(self):
+        return self._trace
+
+    def set_hops(self, hops):
+        self._hops = hops
+
+    def get_hops(self):
+        return self._hops
+
+    def get_hop_by_ttl(self, ttl):
+        for hop in self._hops:
+            if ttl == string.atoi(hop['ttl']):
+                return hop
+        return None
+    def get_number_of_hops(self):
+        count = 0
+        for hop in self._hops:
+            if string.atoi(hop['ttl']) > count:
+                count = string.atoi(hop['ttl'])
+        return count
+    
     # UPTIME
     # FORMAT: {"seconds":"", "lastboot":""}
     def set_uptime(self, uptime):
@@ -342,6 +371,8 @@ umitCore.NmapParser.get_ipv6 instead."))
     state = property(get_state, set_state)
     comment = property(get_comment, set_comment)
     services = property(get_services)
+    trace = property(get_trace, set_trace)
+    hops = property(get_hops, set_hops)
 
     _id = 0
     _tcpsequence = {}
@@ -637,6 +668,14 @@ umitCore.NmapParser.get_ipv6 instead."))
     def get_hosts(self):
         return self.nmap.get('hosts', None)
 
+    # TRACEROUTE
+    def get_hops(self):
+        return self.nmap.get('hops', None)
+
+    def get_trace(self):
+        return self.nmap.get('trace', None)
+    
+    
     def get_runstats(self):
         return self.nmap.get('runstats', None)
 
@@ -744,7 +783,9 @@ umitCore.NmapParser.get_ipv6 instead."))
     comments = property(get_comments)
     start = property(get_start, set_start)
     scan_name = property(get_scan_name, set_scan_name)
-
+    trace = property(get_trace)
+    hops = property(get_hops)
+    
     _num_services = None
     _services_scanned = None
 
@@ -760,7 +801,10 @@ class NmapParserSAX(ParserBasics, ContentHandler):
         self.in_port = False
         self.in_os = False
         self.list_extraports = []
-
+        
+        # Creating a traceroute condition
+        self.in_trace = False
+        
         self.nmap_xml_file = None
         self.unsaved = False
 
@@ -912,7 +956,14 @@ class NmapParserSAX(ParserBasics, ContentHandler):
     def _parse_host_ipidsequence(self, attrs):
         self.host_info.set_ipidsequence(self._parsing(attrs, ['class',
                                                               'values']))
+    def _parse_host_trace(self, attrs):
+        self.host_info.set_trace(self._parsing(attrs, ['port', 'proto']))
 
+    def _parse_host_trace_hop(self, attrs):
+        self.list_hop.append(self._parsing(attrs, \
+                                           ['ttl', 'rtt', 'ipaddr', 'host']))
+
+        
     def startElement(self, name, attrs):
         if name == "nmaprun":
             self._parse_nmaprun(attrs)
@@ -974,6 +1025,14 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             self._parse_host_tcptssequence(attrs)
         elif self.in_host and name == "ipidsequence":
             self._parse_host_ipidsequence(attrs)
+        # Creating a traceroute condition
+        elif self.in_host and name == "trace":
+            self.in_trace = True
+            self.list_hop = []
+            self._parse_host_trace(attrs)
+
+        elif self.in_trace and name == "hop":
+            self._parse_host_trace_hop(attrs)
 
 
     def endElement(self, name):
@@ -1003,6 +1062,13 @@ class NmapParserSAX(ParserBasics, ContentHandler):
 
             del(self.list_portused)
             del(self.list_osclass)
+        # Creating a traceroute condition
+        elif self.in_host and name == "trace":
+            self.in_trace = False
+            self.host_info.set_hops(self.list_hop)
+
+            del(self.list_hop)
+
 
     def write_xml(self, xml_file):
         xml_file = self._verify_file(xml_file)
@@ -1303,14 +1369,22 @@ def nmap_parser_sax(nmap_xml_file=""):
 NmapParser = nmap_parser_sax
 
 if __name__ == '__main__':
-    file_to_parse = open("/home/adriano/umit/test/diff1.usr")
+    #file_to_parse = open("/home/adriano/umit/test/diff1.usr")
+    file_to_parse = "../RadialNet/share/sample/nmap_example.xml"
     file_to_write = open("/tmp/teste_write.xml", "w+")
-    
     np = NmapParser(file_to_parse)
     np.parse()
 
     from pprint import pprint
-
+    
+    
+    print "Trace:"
+    for host in np.nmap["hosts"]:
+        number_of_hops =  host.get_number_of_hops()
+        for ttl in range(1, number_of_hops + 1):
+            hop = host.get_hop_by_ttl(ttl)
+            print hop
+        
     print "Comment:",
     pprint(np.nmap["hosts"][-1].comment)
     #comment = property(get_comment, set_comment)
