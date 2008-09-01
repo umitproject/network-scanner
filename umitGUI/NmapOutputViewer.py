@@ -201,13 +201,10 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
         else:
             self.nmap_highlight.enable = 0
 
-        self.text_buffer.move_mark(self.mark, self.text_buffer.get_start_iter())
         self.update_output_colors()
 
     def show_output_properties(self, widget):
         nmap_out_prop = NmapOutputProperties(self.text_view)
-        #nmap_out_prop.connect("response", self.update_output_colors)
-
         nmap_out_prop.run()
         
         for prop in nmap_out_prop.property_names:
@@ -245,10 +242,11 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
         # TODO: Foreach in all tabs to update ?
         self.__create_tags()
 
-        self.text_buffer.move_mark(self.mark, self.text_buffer.get_start_iter())
         self.update_output_colors()
     
     def update_output_colors(self, dialog=None, response_id=None):
+        self.text_buffer.move_mark(self.mark, self.text_buffer.get_start_iter())
+
         buff = self.text_view.get_buffer()
         tag_table = buff.get_tag_table()
         

@@ -585,6 +585,15 @@ class ScanNotebookPage(HIGVBox):
         
         try:
             self.command_execution.run_scan()
+        except OSError, msg:
+            warn_dialog = HIGAlertDialog(
+                message_format=_("Nmap couldn't be found"),
+                secondary_text=_("Umit couldn't find Nmap. Maybe you don't "
+                                 "have it installed, or you need to set your"
+                                 "PATH environment variable."),
+                type=gtk.MESSAGE_ERROR)
+            warn_dialog.run()
+            warn_dialog.destroy()
         except Exception, msg:
             warn_dialog = HIGAlertDialog(
                 message_format=_("Command is missing!"),
@@ -780,18 +789,20 @@ class ScanNotebookPage(HIGVBox):
                 self.scan_result.scan_host_view.host_list.get_iter_root())
 
         self.scan_result.scan_host_view.set_services(self.services.keys())
-            
-        try:
+
+        saved_output = self.parsed.get_nmap_output()
+        if saved_output == "":
             # And them, we update the nmap output! ;)
             self.scan_result.scan_result_notebook.nmap_output.\
                 nmap_output.refresh_output()
-        except:
+        else:
             # Put saved nmap output
             self.scan_result.scan_result_notebook.nmap_output.\
                         nmap_output.text_buffer.\
-                        set_text('\n'.join(self.parsed.get_nmap_output().\
-                                           split('\\n')))
-            
+                        set_text('\n'.join(saved_output.split('\\n')))
+            self.scan_result.scan_result_notebook.nmap_output.nmap_output.\
+                update_output_colors()
+
         target = self.parsed.get_target()
             
         if target != '':
