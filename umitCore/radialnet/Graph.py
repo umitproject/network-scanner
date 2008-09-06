@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (C) 2007 Adriano Monteiro Marques
 #
 # Author: João Paulo de Souza Medeiros <ignotus21@gmail.com>
