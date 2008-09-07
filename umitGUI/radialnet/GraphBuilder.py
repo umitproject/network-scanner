@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#Copyright (C) 2008 Adriano Monteiro Marques.
+# Copyright (C) 2008 Adriano Monteiro Marques.
 #
 # Author: João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #         Luis A. Bastiao Silva <luis.kop@gmail.com>
@@ -51,7 +51,8 @@ class GraphBuilder(Graph):
         Make a Graph
         """
         #Get Hosts 
-        #hosts = 
+        hosts = parse.get_hosts()
+        print hosts
         
         nodes = list()
         index = 1
@@ -73,6 +74,7 @@ def main():
     parser.parse()
     
     graph = GraphBuilder()
+    graph.make(parser)
     
 
 if __name__=="__main__":

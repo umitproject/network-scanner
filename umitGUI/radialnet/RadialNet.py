@@ -1,6 +1,6 @@
 # vim: set fileencoding=utf-8 :
 
-# Copyright (C) 2007, 2008 Insecure.Com LLC.
+# Copyright (C) 2007 Adriano Monteiro Marques
 #
 # Author: João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
@@ -25,8 +25,6 @@ import copy
 import gobject
 
 import util.drawing as drawing
-import util.geometry as geometry
-import util.misc as misc
 
 from core.Coordinate import PolarCoordinate, CartesianCoordinate
 from core.Interpolation import Linear2DInterpolator
@@ -1167,11 +1165,11 @@ class RadialNet(gtk.DrawingArea):
             type = node.get_info('device_type')
 
             if type in SQUARE_TYPES:
-                if geometry.is_in_square(point, radius, center) == True:
+                if RadialNet.is_in_square(point, radius, center) == True:
                     return node, center
 
             else:
-                if geometry.is_in_circle(point, radius, center) == True:
+                if RadialNet.is_in_circle(point, radius, center) == True:
                     return node, center
 
         return None
@@ -1227,9 +1225,9 @@ class RadialNet(gtk.DrawingArea):
                     # getting connections and fixing multiple fathers
                     children = self.__graph.get_node_connections(node)
 
-                    misc.list_difference_update(children, old_nodes)
-                    misc.list_difference_update(children, tmp_nodes)
-                    misc.list_difference_update(children, new_nodes)
+                    RadialNet.list_difference_update(children, old_nodes)
+                    RadialNet.list_difference_update(children, tmp_nodes)
+                    RadialNet.list_difference_update(children, new_nodes)
 
                     # dropping foreign children
                     foreign_children = list()
@@ -1239,16 +1237,16 @@ class RadialNet(gtk.DrawingArea):
                         if child.get_draw_info('grouped'):
                             foreign_children.append(child)
 
-                    misc.list_difference_update(children, foreign_children)
+                    RadialNet.list_difference_update(children, foreign_children)
 
-                    children = misc.sort_children(children, node)
+                    children = RadialNet.sort_children(children, node)
 
                 # setting father foreign
                 for child in children:
                     child.set_draw_info({'father':node})
 
                 node.set_draw_info({'children':children})
-                misc.list_update(tmp_nodes, children)
+                RadialNet.list_update(tmp_nodes, children)
 
             # check group influence in number of rings
             for node in tmp_nodes:
@@ -1259,8 +1257,8 @@ class RadialNet(gtk.DrawingArea):
                     break
 
             # update new nodes set
-            misc.list_update(new_nodes, tmp_nodes)
-            misc.list_difference_update(new_nodes, old_nodes)
+            RadialNet.list_update(new_nodes, tmp_nodes)
+            RadialNet.list_difference_update(new_nodes, old_nodes)
 
             ring += 1
 
@@ -1309,10 +1307,10 @@ class RadialNet(gtk.DrawingArea):
 
                         min += child_total
 
-                misc.list_update(tmp_nodes, children)
+                RadialNet.list_update(tmp_nodes, children)
 
             new_nodes = list()
-            misc.list_update(new_nodes, tmp_nodes)
+            RadialNet.list_update(new_nodes, tmp_nodes)
 
 
     def __symmetric_layout(self):
@@ -1349,10 +1347,10 @@ class RadialNet(gtk.DrawingArea):
 
                         min += factor
 
-                misc.list_update(tmp_nodes, children)
+                RadialNet.list_update(tmp_nodes, children)
 
             new_nodes = list()
-            misc.list_update(new_nodes, tmp_nodes)
+            RadialNet.list_update(new_nodes, tmp_nodes)
 
 
     @graph_is_not_empty
@@ -1467,11 +1465,11 @@ class RadialNet(gtk.DrawingArea):
                 rf, tf = node.get_draw_info('final_coordinate')
 
                 # normalization [0, 360]
-                ti = geometry.normalize_angle(ti)
-                tf = geometry.normalize_angle(tf)
+                ti = RadialNet.normalize_angle(ti)
+                tf = RadialNet.normalize_angle(tf)
 
                 # against longest path
-                ti, tf = geometry.calculate_short_path(ti, tf)
+                ti, tf = RadialNet.calculate_short_path(ti, tf)
 
                 # main node goes direct to center (no arc)
                 if node == self.__graph.get_main_node(): tf = ti
@@ -1672,7 +1670,198 @@ class RadialNet(gtk.DrawingArea):
         self.__reverse_sorted_nodes = copy.copy(nodes)
         self.__reverse_sorted_nodes.reverse()
 
+    ###### Static Methods ############
+    
+    # Misc
+    def list_difference_update(list, difference):
+        """
+        """
+        for item in difference:
+    
+            if item in list:
+                list.remove(item)
+    
+    
+    def list_update(list, append):
+        """
+        """
+        for item in append:
+    
+            if item not in list:
+                list.append(item)
+    
+    
+    def swap(list, a, b):
+        """
+        """
+        list[a], list[b] = list[b], list[a]
+    
+    
+    def sort_children(children, father):
+        """
+        """
+        if len(children) < 2:
+            return children
+    
+        # create angle reference
+        f_x, f_y = father.get_cartesian_coordinate()
+    
+        for child in children:
+    
+            c_x, c_y = child.get_cartesian_coordinate()
+            _, angle = CartesianCoordinate(c_x - f_x, c_y - f_y).to_polar()
+    
+            child.set_draw_info({'angle_from_father': math.degrees(angle)})
+    
+        return sort_children_by_angle(children)
+    
+    
+    def sort_children_by_angle(children):
+        """
+        """
+        if len(children) < 2:
+            return children
+    
+        vector = list()
+        vector.append(children.pop())
+    
+        for a in children:
+    
+            theta_a = normalize_angle(a.get_draw_info('angle_from_father'))
+    
+            for i in range(len(vector) -1, -1, -1):
+    
+                b = vector[i]
+    
+                theta_b = normalize_angle(b.get_draw_info('angle_from_father'))
+    
+                if theta_b <= theta_a <= theta_b + 180:
+    
+                    vector.insert(i + 1, a)
+                    break
+    
+            else:
+                vector.insert(0, a)
+    
+        return vector
+    
+    # End of misc
+    
+    # Geometry
+    
+    def is_in_square(point, half_side, center=(0, 0)):
+        """
+        """
+        x, y = point
+        a, b = center
+    
+        if a + half_side >= x >= a - half_side:
+            if b + half_side >= y >= b - half_side:
+                return True
+    
+        return False
 
+    
+    def is_in_circle(point, radius=1, center=(0, 0)):
+        """
+        """
+        x, y = point
+        a, b = center
+    
+        if ((x - a)**2 + (y - b)**2) <= (radius**2):
+            return True
+    
+        return False
+    
+    
+    def atan_scale(point, scale_ceil):
+        """
+        """
+        new_point = float(10.0 * point / scale_ceil) - 5
+        return math.atan(abs(new_point))
+    
+    
+    def normalize_angle(angle):
+        """
+        """
+        new_angle = 360.0 * (float(angle / 360) - int(angle / 360))
+    
+        if new_angle < 0:
+            return 360 + new_angle
+    
+        return new_angle
+    
+    
+    def is_between_angles(a, b, c):
+        """
+        """
+        a = normalize_angle(a)
+        b = normalize_angle(b)
+        c = normalize_angle(c)
+    
+        if a > b:
+    
+            if c >= a and c <= 360 or c <= b:
+                return True
+    
+            return False
+    
+        else:
+    
+            if c >= a and c <= b:
+                return True
+    
+            return False
+    
+    
+    def angle_distance(a, b):
+        """
+        """
+        distance = abs(normalize_angle(a) - normalize_angle(b))
+    
+        if distance > 180:
+            return 360 - distance
+    
+        return distance
+    
+    
+    def calculate_short_path(iangle, fangle):
+        """
+        """
+        if iangle - fangle > 180:
+            fangle += 360
+    
+        if iangle - fangle < -180:
+            fangle -= 360
+    
+        return iangle, fangle
+    
+    
+    def angle_from_object(distance, size):
+        """
+        """
+        return math.degrees(math.atan2(size / 2.0, distance))
+        
+    # End of Geometry
+    
+    ########### End of Static Methods ##############
+    
+    list_difference_update = staticmethod(list_difference_update)
+    list_update = staticmethod(list_update)
+    swap = staticmethod(swap)
+    sort_children = staticmethod(sort_children)
+    sort_children_by_angle = staticmethod(sort_children_by_angle)
+    
+    is_in_square = staticmethod(is_in_square)
+    is_in_circle = staticmethod(is_in_circle)
+    atan_scale = staticmethod(atan_scale)
+    normalize_angle = staticmethod(normalize_angle)
+    is_between_angles = staticmethod(is_between_angles)
+    angle_distance = staticmethod(angle_distance)
+    calculate_short_path = staticmethod(calculate_short_path)
+    angle_from_object = staticmethod(angle_from_object)
+    
+    
 
 class NetNode(Node):
     """
@@ -1820,7 +2009,7 @@ class NetNode(Node):
         
         distance = self.get_coordinate_radius()
         size = self.get_draw_info('radius') * 2
-        own_angle = geometry.angle_from_object(distance, size)
+        own_angle = RadialNet.angle_from_object(distance, size)
 
         self.set_draw_info({'children_need':sum_angle})
         self.set_draw_info({'space_need':max(sum_angle, own_angle)})
