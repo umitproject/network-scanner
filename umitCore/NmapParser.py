@@ -390,6 +390,8 @@ umitCore.NmapParser.get_ipv6 instead."))
     _mac = {}
     _state = ''
     _comment = ''
+    _trace = []
+    _hops = []
 
 
 class ParserBasics(object):
