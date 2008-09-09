@@ -23,7 +23,7 @@ import math
 import gobject
 
 import bestwidgets as bw
-import util.drawing as drawing
+import higwidgets.drawing as drawing
 
 from umitCore.radialnet.Coordinate import PolarCoordinate
 from umitGUI.radialnet.RadialNet import *

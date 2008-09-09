@@ -24,13 +24,12 @@ import time
 import copy
 import gobject
 
-import util.drawing as drawing
 
-from core.Coordinate import PolarCoordinate, CartesianCoordinate
-from core.Interpolation import Linear2DInterpolator
-from core.Graph import Graph, Node
-from gui.NodeWindow import NodeWindow
-from gui.Image import Icons
+from umitCore.radialnet.Coordinate import PolarCoordinate, CartesianCoordinate
+from umitCore.radialnet.Interpolation import Linear2DInterpolator
+from umitCore.radialnet.Graph import Graph, Node
+from umitGUI.radialnet.NodeWindow import NodeWindow
+from umitGUI.radialnet.Image import Icons
 
 
 REGION_COLORS = [(1.0, 0.0, 0.0), (1.0, 1.0, 0.0), (0.0, 1.0, 0.0)]

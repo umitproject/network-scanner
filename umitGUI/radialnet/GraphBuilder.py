@@ -25,7 +25,7 @@ A GraphBuilder is a class that make a Graph across NmapParser
 """
 
 from umitCore.radialnet.Graph import *
-#from umitGUI.radialnet.RadialNet import NetNode
+from umitGUI.radialnet.RadialNet import NetNode
 
 
 COLORS = [(0.0, 1.0, 0.0),
@@ -70,7 +70,7 @@ class GraphBuilder(Graph):
 # Test Develpment
 def main():
     from umitCore.NmapParser import NmapParser
-    parser = NmapParser("RadialNet/share/sample/nmap_example.xml")
+    parser = NmapParser("RadialNet2/share/sample/nmap_example.xml")
     parser.parse()
     
     graph = GraphBuilder()

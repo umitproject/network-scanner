@@ -24,7 +24,7 @@ import gobject
 
 import bestwidgets as bw
 
-from gui.NodeNotebook import NodeNotebook
+from umitGUI.radialnet.NodeNotebook import NodeNotebook
 
 
 HOSTS_COLORS = ['#d5ffd5', '#ffffd5', '#ffd5d5']
