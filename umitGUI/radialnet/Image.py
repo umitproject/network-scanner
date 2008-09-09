@@ -22,8 +22,7 @@ import os
 import sys
 import gtk
 
-from core.Path import path
-
+from umitCore.Paths import Path
 
 class Image:
     """
@@ -71,8 +70,7 @@ class Pixmaps(Image):
     def __init__(self):
         """
         """
-        Image.__init__(self, os.path.join(path.get_dirbase(),
-                                          "share/pixmaps"))
+        Image.__init__(self, Path.pixmaps_dir)
 
 
 
@@ -82,8 +80,10 @@ class Icons(Image):
     def __init__(self):
         """
         """
-        Image.__init__(self, os.path.join(path.get_dirbase(),
-                                          "share/pixmaps/icons"))
+        
+        # Note integration:  May be icons shound't live within pixmaps_dir
+        Image.__init__(self, os.path.join(Path.pixmaps_dir,
+                                          "icons"))
 
 
 
@@ -93,5 +93,9 @@ class Application(Image):
     def __init__(self):
         """
         """
-        Image.__init__(self, os.path.join(path.get_dirbase(),
-                                          "share/pixmaps/application"))
+        
+        # Note integration:  May be icons shound't live within pixmaps_dir
+        # And may be this class is useless now.
+        # TODO: Is it useless?
+        Image.__init__(self, os.path.join(Path.pixmaps_dir,
+                                          "application"))

@@ -63,6 +63,10 @@ class GraphBuilder(Graph):
 
         self.__set_default_values(node)
         
+        # for each host in hosts just mount the graph
+        for host in hosts:
+            print hosts
+        
         
         
         
