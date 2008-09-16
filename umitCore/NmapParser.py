@@ -133,6 +133,18 @@ this instead: '%s'" % str(id))
         if self._osmatch:
             return self._osmatch
         return {}
+    
+    # OS FINGERPRINT
+    def set_osfingerprint(self, fingerprint):
+        if type(fingerprint) == type([]):
+            self._osfingerprint = fingerprint[0]
+        else:
+            self._osfingerprint = fingerprint
+    
+    def get_osfingerprint(self):
+        if self._osfingerprint:
+            return self._osfingerprint
+        return {}
 
     # PORTS USED
     def set_ports_used(self, ports):
@@ -358,6 +370,7 @@ umitCore.NmapParser.get_ipv6 instead."))
     tcpsequence = property(get_tcpsequence, set_tcpsequence)
     osclasses = property(get_osclasses, set_osclasses)
     osmatch = property(get_osmatch, set_osmatch)
+    osfingerprint = property(get_osfingerprint, set_osfingerprint)
     ports = property(get_ports, set_ports)
     ports_used = property(get_ports_used, set_ports_used)
     extraports = property(get_extraports, set_extraports)
@@ -373,11 +386,13 @@ umitCore.NmapParser.get_ipv6 instead."))
     services = property(get_services)
     trace = property(get_trace, set_trace)
     hops = property(get_hops, set_hops)
+    
 
     _id = 0
     _tcpsequence = {}
     _osclasses = []
     _osmatch = []
+    _osfingerprint = {}
     _ports = []
     _ports_used = []
     _extraports = []
@@ -932,6 +947,10 @@ class NmapParserSAX(ParserBasics, ContentHandler):
                                                        'osfamily',
                                                        'osgen',
                                                        'accuracy']))
+    
+    def _parse_host_osfingerprint(self, attrs):
+        self.host_info.set_osfingerprint(self._parsing(attrs, ['fingerprint']))
+        
 
     def _parsing(self, attrs, attrs_list):
         # Returns a dict with the attributes of a given tag with the
@@ -962,8 +981,8 @@ class NmapParserSAX(ParserBasics, ContentHandler):
         self.host_info.set_trace(self._parsing(attrs, ['port', 'proto']))
 
     def _parse_host_trace_hop(self, attrs):
-        self.list_hop.append(self._parsing(attrs, \
-                                           ['ttl', 'rtt', 'ipaddr', 'host']))
+        tmp = self._parsing(attrs, ['ttl', 'rtt', 'ipaddr', 'host'])
+        self.list_hop.append(tmp)
 
         
     def startElement(self, name, attrs):
@@ -1019,6 +1038,8 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             self._parse_host_portused(attrs)
         elif self.in_host and self.in_os and name == "osclass":
             self._parse_host_osclass(attrs)
+        elif self.in_host and self.in_os and name == "osfingerprint":
+            self._parse_host_osfingerprint(attrs)
         elif self.in_host and name == "uptime":
             self._parse_host_uptime(attrs)
         elif self.in_host and name == "tcpsequence":
@@ -1027,12 +1048,11 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             self._parse_host_tcptssequence(attrs)
         elif self.in_host and name == "ipidsequence":
             self._parse_host_ipidsequence(attrs)
-        # Creating a traceroute condition
+        # Creating a traceroute condition 
         elif self.in_host and name == "trace":
             self.in_trace = True
             self.list_hop = []
             self._parse_host_trace(attrs)
-
         elif self.in_trace and name == "hop":
             self._parse_host_trace_hop(attrs)
 
@@ -1254,6 +1274,14 @@ class NmapParserSAX(ParserBasics, ContentHandler):
                     Attributes(dict(name = host.osmatch.get("name", ""),
                                 accuracy = host.osmatch.get("accuracy", ""))))
                 self.write_parser.endElement("osmatch")
+            
+            ## Osfingerprint element
+            if type(host.osfingerprint) == type({}):
+                self.write_parser.startElement("osfingerprint", 
+                    Attributes(dict(fingerprint = \
+                                    host.osfingerprint.get("fingerprint", ""))))
+                self.write_parser.endElement("osfingerprint")
+            
 
             self.write_parser.endElement("os")
             # End of OS element
@@ -1372,7 +1400,7 @@ NmapParser = nmap_parser_sax
 
 if __name__ == '__main__':
     #file_to_parse = open("/home/adriano/umit/test/diff1.usr")
-    file_to_parse = "../RadialNet/share/sample/nmap_example.xml"
+    file_to_parse = "RadialNet2/share/sample/nmap_example.xml"
     file_to_write = open("/tmp/teste_write.xml", "w+")
     np = NmapParser(file_to_parse)
     np.parse()
@@ -1382,6 +1410,7 @@ if __name__ == '__main__':
     
     print "Trace:"
     for host in np.nmap["hosts"]:
+        print host.get_osfingerprint()
         number_of_hops =  host.get_number_of_hops()
         for ttl in range(1, number_of_hops + 1):
             hop = host.get_hop_by_ttl(ttl)
@@ -1442,7 +1471,7 @@ if __name__ == '__main__':
     print "State:",
     pprint(np.nmap["hosts"][-1].state)
     #state = property(get_state, set_state)
-
+    np.write_xml("../hahah.xml")
 
     """
     print "Profile:", np.profile
