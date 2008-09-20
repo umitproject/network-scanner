@@ -119,7 +119,7 @@ class GraphBuilder(Graph):
 
         host_osfingerprint = host.get_osfingerprint()
         host_osclasses = host.get_osclasses()
-        host_osmatches = host.get_osmatch()
+        host_osmatches = host.get_osmatches()
         host_portsused = host.get_ports_used()
         
         os['fingerprint'] = host_osfingerprint['fingerprint']
@@ -148,21 +148,21 @@ class GraphBuilder(Graph):
                 os_classes.append(os_class)
 
             os['classes'] = os_classes
-        #if len(host_osmatches) > 0:
+        if len(host_osmatches) > 0:
 
-            #os_matches = []
+            os_matches = []
 
-            #for host_osmatch in host_osmatches:
+            for host_osmatch in host_osmatches:
 
-                #os_match = {}
-
-                #os_match['name'] = host_osmatch['name']
-                #os_match['accuracy'] = int(host_osmatch['accuracy'])
+                os_match = {}
+                print host_osmatch
+                os_match['name'] = host_osmatch['name']
+                os_match['accuracy'] = int(host_osmatch['accuracy'])
                 #os_match['db_line'] = int(host_osmatch['line'])
 
-                #os_matches.append(os_match)
+                os_matches.append(os_match)
 
-            #os['matches'] = os_matches
+            os['matches'] = os_matches
         if len(host_portsused) > 0:
 
             os_portsused = []
@@ -302,44 +302,35 @@ class GraphBuilder(Graph):
     
         #node.set_info({'extraports':all_extraports})
     
-        ## getting traceroute information
-        #xml_trace = host.search_children('trace', first=True)
+        # getting traceroute information
+        trace = host.get_trace()
+        if trace != []:
     
-        #if xml_trace != None:
+            host_hops = host.get_hops()
+            print host_hops
+            trace = {}
+            hops = []
     
-            #xml_hops = xml_trace.search_children('hop')
+            for host_hop in host_hops:
+                hop = host_hop
+                hostname = host_hop['host']
+                hop['hostname'] = (hostname, '')[hostname == None]
+                if hop.has_key('host'):
+                    hop.pop('host')
     
-            #trace = {}
-            #hops = []
+                hops.append(hop)
     
-            #for xml_hop in xml_hops:
+            trace['hops'] = hops
     
-                #hop = {}
-    
-                #hop['ip'] = xml_hop.get_attr('ipaddr')
-                #hop['ttl'] = int(xml_hop.get_attr('ttl'))
-                #hop['rtt'] = xml_hop.get_attr('rtt')
-    
-                #hostname = xml_hop.get_attr('host')
-                #hop['hostname'] = (hostname, '')[hostname == None]
-    
-                #hops.append(hop)
-    
-            #trace['hops'] = hops
-            #trace['port'] = xml_trace.get_attr('port')
-            #trace['protocol'] = xml_trace.get_attr('proto')
-    
-            #node.set_info({'trace':trace})
+            node.set_info({'trace':trace})
 
-    
-    
-    
         
     def make(self, parse):
         """
         Make a Graph
         """
         #Get Hosts 
+        print "---"
         hosts = parse.get_hosts()
         
         nodes = list()
@@ -353,6 +344,7 @@ class GraphBuilder(Graph):
         
         # for each host in hosts just mount the graph
         for host in hosts:
+            print host
             trace = host.get_trace()
             # if host has traceroute information mount graph
             if trace != []:
@@ -442,7 +434,7 @@ class GraphBuilder(Graph):
 # Test Develpment
 def main():
     from umitCore.NmapParser import NmapParser
-    parser = NmapParser("RadialNet2/share/sample/nmap_example.xml")
+    parser = NmapParser("../../umit-within-radialnet/RadialNet2/share/sample/nmap_example.xml")
     #parser = NmapParser("RadialNet2/share/sample/no_trace.xml")
     parser.parse()
     
