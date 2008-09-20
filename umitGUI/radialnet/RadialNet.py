@@ -1712,7 +1712,7 @@ class RadialNet(gtk.DrawingArea):
     
             child.set_draw_info({'angle_from_father': math.degrees(angle)})
     
-        return sort_children_by_angle(children)
+        return RadialNet.sort_children_by_angle(children)
     
     
     def sort_children_by_angle(children):
@@ -1726,13 +1726,15 @@ class RadialNet(gtk.DrawingArea):
     
         for a in children:
     
-            theta_a = normalize_angle(a.get_draw_info('angle_from_father'))
+            theta_a = RadialNet.normalize_angle(\
+                a.get_draw_info('angle_from_father'))
     
             for i in range(len(vector) -1, -1, -1):
     
                 b = vector[i]
     
-                theta_b = normalize_angle(b.get_draw_info('angle_from_father'))
+                theta_b = RadialNet.normalize_angle(\
+                    b.get_draw_info('angle_from_father'))
     
                 if theta_b <= theta_a <= theta_b + 180:
     

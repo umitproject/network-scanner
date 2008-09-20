@@ -121,15 +121,15 @@ class GraphBuilder(Graph):
         host_osclasses = host.get_osclasses()
         host_osmatches = host.get_osmatches()
         host_portsused = host.get_ports_used()
-        
-        os['fingerprint'] = host_osfingerprint['fingerprint']
+        if host_osfingerprint.has_key('fingerprint'):
+            os['fingerprint'] = host_osfingerprint['fingerprint']
         if len(host_osclasses) > 0:
 
             types = ['router', 'wap', 'switch', 'firewall']
 
-            for type in types:
-                if type in host_osclasses[0]['type'].lower():
-                    node.set_info({'device_type': type})
+            for _type in types:
+                if _type in host_osclasses[0]['type'].lower():
+                    node.set_info({'device_type': _type})
 
             os_classes = []
 
@@ -157,7 +157,10 @@ class GraphBuilder(Graph):
                 os_match = {}
                 print host_osmatch
                 os_match['name'] = host_osmatch['name']
-                os_match['accuracy'] = int(host_osmatch['accuracy'])
+                if host_osmatch.has_key('accuracy') and \
+                   type(host_osmatch['accuracy']) == type(0):
+                    os_match['accuracy'] = int(host_osmatch['accuracy'])
+                # TODO:
                 #os_match['db_line'] = int(host_osmatch['line'])
 
                 os_matches.append(os_match)
@@ -186,7 +189,8 @@ class GraphBuilder(Graph):
         if host_tcpsequence != {}:
     
             tcp = host_tcpsequence
-            tcp['index'] = int(host_tcpsequence['index'])
+            if type(host_tcpsequence['index']) == type(0):
+                tcp['index'] = int(host_tcpsequence['index'])
             tcp['class'] = host_tcpsequence['class']
             tcp['values'] = host_tcpsequence['values'].split(',')
             tcp['difficulty'] = host_tcpsequence['difficulty']
@@ -330,7 +334,6 @@ class GraphBuilder(Graph):
         Make a Graph
         """
         #Get Hosts 
-        print "---"
         hosts = parse.get_hosts()
         
         nodes = list()
