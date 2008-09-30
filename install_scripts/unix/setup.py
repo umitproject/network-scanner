@@ -197,8 +197,8 @@ print
             if re_sys.match(ucontent[line]):
                 uline = line + 1
                 break
-
-	ucontent.insert(uline, "sys.path = ['%s'] + sys.path\n" % modules)
+    
+        ucontent.insert(uline, "sys.path.insert(0,('%s')\n " % modules )
 
         ufile = open(umit, "w")
         ufile.writelines(ucontent)
