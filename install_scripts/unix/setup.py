@@ -198,7 +198,7 @@ print
                 uline = line + 1
                 break
     
-        ucontent.insert(uline, "sys.path.insert(0,('%s')\n " % modules )
+        ucontent.insert(uline, "sys.path.insert(0,'%s')\n" % modules )
 
         ufile = open(umit, "w")
         ufile.writelines(ucontent)
