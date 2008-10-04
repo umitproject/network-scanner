@@ -121,8 +121,10 @@ class GraphBuilder(Graph):
         host_osclasses = host.get_osclasses()
         host_osmatches = host.get_osmatches()
         host_portsused = host.get_ports_used()
+        os['fingerprint'] = ""
         if host_osfingerprint.has_key('fingerprint'):
             os['fingerprint'] = host_osfingerprint['fingerprint']
+        
         if len(host_osclasses) > 0:
 
             types = ['router', 'wap', 'switch', 'firewall']
@@ -230,61 +232,81 @@ class GraphBuilder(Graph):
             node.set_info({'filtered': True})
     
         # getting ports information
-        #xml_ports = host.search_children('port', deep=True)
-        #xml_extraports = host.search_children('extraports', deep=True)
    
-        host_ports = host.get_ports()
+        _host_ports = host.get_ports()
         host_extraports = host.get_extraports()
-        print host_ports
         ports = list()
-    
-        for host_port in host_ports:
-    
+      
+        host_ports = _host_ports[0]
+        for i in _host_ports:
+            if i.has_key('port'):
+                host_ports = i
+                break
+            
+        if host_ports.has_key('port'):
+            host_port = host_ports['port']
             port = dict()
             state = dict()
             scripts = list()
             service = dict()
-    
-            #xml_state = xml_port.search_children('state', True, True)
-            #xml_scripts = xml_port.search_children('script', deep=True)
-            #xml_service = xml_port.search_children('service', True, True)
-    
-            #port['id'] = int(xml_port.get_attr('portid'))
-            #port['protocol'] = xml_port.get_attr('protocol')
-    
-            #if xml_state != None:
-                #for key in xml_state.get_keys():
-                    #state[key] = xml_state.get_attr(key)
-    
-            #for script in xml_scripts:
-    
-                #scripts.append(dict())
-    
-                #for key in script.get_keys():
-                    #scripts[-1][key] = script.get_attr(key)
-    
-            #if xml_service != None:
-                #for key in xml_service.get_keys():
-                    #service[key] = xml_service.get_attr(key)
             
-            #port['state'] = state
-            #port['scripts'] = scripts
-            #port['service'] = service
+            for port in host_port:
+                #xml_service = xml_port.search_children('service', True, True)
     
-            #ports.append(port)
+                port['id'] = int(port['portid'])
     
-        #node.set_info({'ports':ports})
+                # TODO: Needs more fields in NmapParser
+                if port.has_key('port_state'):
+                    state['state'] = port['port_state']
+                    
+                    # Remove useless (key, value) 
+                    port.pop('port_state')
+
+                # TODO: Not ready to integrate right now 
+                #for script in xml_scripts:
+        
+                    #scripts.append(dict())
+        
+                    #for key in script.get_keys():
+                        #scripts[-1][key] = script.get_attr(key)
+                
+                # TODO: Get another information - NmapParser update need.
+                if port.has_key('service_name'):
+                    service['name'] = port['service_name']
+                    service['version'] = port['service_version']
+                    service['method'] = port['service_method']
+                    service['product'] = port['service_product']
+                    service['extrainfo'] = port['service_extrainfo']
+                    service['conf'] = port['service_conf']
+                    
+                    # Remove useless (key, values)
+                    port.pop('service_name')
+                    port.pop('service_version')
+                    port.pop('service_method')
+                    port.pop('service_product')
+                    port.pop('service_extrainfo')
+                    port.pop('service_conf')
+                    
+                    
+                port['state'] = state
+                port['scripts'] = {}
+                port['service'] = service
     
-        #all_extraports = list()
+            ports.append(port)
     
-        #for xml_extraport in xml_extraports:
+        node.set_info({'ports':ports})
     
-            #extraports = dict()
-            #extraports['count'] = int(xml_extraport.get_attr('count'))
-            #extraports['state'] = xml_extraport.get_attr('state')
-            #extraports['reason'] = list()
-            #extraports['all_reason'] = list()
+        all_extraports = list()
+        print host_extraports
+        for extraports in host_extraports:
     
+            extraports['count'] = int(extraports['count'])
+            extraports['reason'] = list()
+            extraports['all_reason'] = list()
+   
+            
+            # TODO: implement this
+            
             #xml_extrareasons = xml_extraport.search_children('extrareasons',
                                                              #deep=True)
     
@@ -302,22 +324,21 @@ class GraphBuilder(Graph):
     
                     #extraports['all_reason'][-1][key] = value
     
-            #all_extraports.append(extraports)
+            all_extraports.append(extraports)
     
-        #node.set_info({'extraports':all_extraports})
+        node.set_info({'extraports':all_extraports})
     
         # getting traceroute information
         trace = host.get_trace()
-        if trace != []:
+        if trace != {}:
     
             host_hops = host.get_hops()
-            print host_hops
-            trace = {}
             hops = []
     
             for host_hop in host_hops:
                 hop = host_hop
                 hostname = host_hop['host']
+                hop['ttl'] = int(hop['ttl'])
                 hop['hostname'] = (hostname, '')[hostname == None]
                 if hop.has_key('host'):
                     hop.pop('host')
@@ -325,6 +346,7 @@ class GraphBuilder(Graph):
                 hops.append(hop)
     
             trace['hops'] = hops
+            trace['protocol'] = trace['proto']
     
             node.set_info({'trace':trace})
 
@@ -347,7 +369,6 @@ class GraphBuilder(Graph):
         
         # for each host in hosts just mount the graph
         for host in hosts:
-            print host
             trace = host.get_trace()
             # if host has traceroute information mount graph
             if trace != []:
@@ -359,13 +380,13 @@ class GraphBuilder(Graph):
                 
                 # getting nodes of host by ttl
                 for ttl in range(1, max(ttls) + 1):
-                        
                     if ttl in ttls:
     
                         hop = host.get_hop_by_ttl(ttl)
-                        
                         # FIXME: Protect if hop == None
                         for node in nodes:
+                            if hop.has_key('ipaddr'):
+                                hop['ip'] = hop['ipaddr']
                             if hop['ipaddr'] == node.get_info('ip'):
                                 break
     
