@@ -157,14 +157,13 @@ class GraphBuilder(Graph):
             for host_osmatch in host_osmatches:
 
                 os_match = {}
-                print host_osmatch
                 os_match['name'] = host_osmatch['name']
                 if host_osmatch.has_key('accuracy') and \
-                   type(host_osmatch['accuracy']) == type(0):
+                   type(host_osmatch['accuracy']) != type(0):
                     os_match['accuracy'] = int(host_osmatch['accuracy'])
-                # TODO:
+                # TODO/FIXME:
                 #os_match['db_line'] = int(host_osmatch['line'])
-
+                os_match['db_line'] = 0 
                 os_matches.append(os_match)
 
             os['matches'] = os_matches
@@ -173,8 +172,8 @@ class GraphBuilder(Graph):
             os_portsused = []
 
             for host_portused in host_portsused:
+                host_portused['protocol'] = host_portused['proto']
                 host_portused['id'] = int(host_portused['portid'])
-
                 os_portsused.append(host_portused)
 
             os['used_ports'] = os_portsused
@@ -191,7 +190,7 @@ class GraphBuilder(Graph):
         if host_tcpsequence != {}:
     
             tcp = host_tcpsequence
-            if type(host_tcpsequence['index']) == type(0):
+            if type(host_tcpsequence['index']) != type(0):
                 tcp['index'] = int(host_tcpsequence['index'])
             tcp['class'] = host_tcpsequence['class']
             tcp['values'] = host_tcpsequence['values'].split(',')
