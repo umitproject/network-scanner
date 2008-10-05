@@ -329,7 +329,7 @@ class GraphBuilder(Graph):
     
         # getting traceroute information
         trace = host.get_trace()
-        if trace != {}:
+        if trace != []:
     
             host_hops = host.get_hops()
             hops = []
