@@ -27,6 +27,8 @@ from higwidgets.higboxes import HIGVBox, HIGHBox, hig_box_space_holder
 from higwidgets.higlabels import HIGEntryLabel
 from higwidgets.higtables import HIGTable
 
+from umitGUI.Icons import get_os_logo
+
 from umitCore.I18N import _
 
 na = _('Not available')
@@ -39,6 +41,9 @@ class ScanHostDetailsPage(HIGExpander):
         self.hbox._pack_expand_fill(self.host_details)
 
 class HostDetails(HIGVBox):
+    os_table = None
+    os_hbox = None
+
     def __init__(self):
         HIGVBox.__init__(self)
         
@@ -173,10 +178,10 @@ class HostDetails(HIGVBox):
         self._pack_noexpand_nofill(self.host_status_expander)
 
     def set_os_image(self, image):
-            self.os_image.set_from_stock(image,gtk.ICON_SIZE_DIALOG)
+        self.os_image.set_from_stock(image, gtk.ICON_SIZE_DIALOG)
     
     def set_vulnerability_image(self, image):
-        self.vulnerability_image.set_from_stock(image,gtk.ICON_SIZE_DIALOG)
+        self.vulnerability_image.set_from_stock(image, gtk.ICON_SIZE_DIALOG)
 
     def set_addresses(self, address):
         self.address_expander.set_use_markup(True)
@@ -236,58 +241,123 @@ class HostDetails(HIGVBox):
             
             self.hostnames_expander.add(hbox)
             self._pack_noexpand_nofill(self.hostnames_expander)
-    
-    def set_os(self, os):
-        if os:
-            self.os_expander.set_use_markup(True)
-            self.os_expander.set_expanded(True)
-            table, hbox = self.create_table_hbox()
-            progress = gtk.ProgressBar()
+
+    def os_selection_changed(self, widget):
+        current_selection = widget.get_active_text()
+        self.set_os_image(get_os_logo(current_selection))
+        
+        for os_match in self.current_os_list:
+            if type(os_match) == type({}) and \
+               current_selection == os_match.get('name', None):
+                self.os_progress.set_fraction(float(os_match['accuracy'])/100.0)
+                self.os_progress.set_text(os_match['accuracy'] + "%")
+                self.os_progress.set_sensitive(True)
+                break
+        else:
+            self.os_progress.set_fraction(0.0)
+            self.os_progress.set_text(_("Not Available"))
+            self.os_progress.set_sensitive(False)
+
+    def set_os_list(self, os_list, os_match):
+        # Creating the main widgets for this section
+        self.os_expander.set_use_markup(True)
+        self.os_expander.set_expanded(True)
+        self.os_table, self.os_hbox = self.create_table_hbox()
+        self.os_progress = gtk.ProgressBar()
+        
+        # Setting the current match's details in the widgets
+        if len(os_list) > 1:
+            self.os_list = gtk.combo_box_new_text()
             
-            try:
-                progress.set_fraction(float(os['accuracy'])/100.0)
-                progress.set_text(os['accuracy']+'%')
-            except:progress.set_text(_('Not Available'))
+            model = self.os_list.get_model()
+            [model.append([os['name']]) for os in os_list if os.has_key("name")]
+            self.os_list.set_active(0)
             
-            table.attach(HIGEntryLabel(_('Name:')),0,1,0,1)
-            table.attach(HIGEntryLabel(os['name']),1,2,0,1)
-            
-            table.attach(HIGEntryLabel(_('Accuracy:')),0,1,1,2)
-            table.attach(progress,1,2,1,2)
-            
-            y1=2;y2=3
-            
-            try:
-                self.set_ports_used(os['portsused'])
-                table.attach(self.portsused_expander,0,2,y1,y2)
-                y1+=1;y2+=1
-            except:pass
-            
-            try:
-                self.set_osclass(os['osclass'])
-                self.osclass_expander.set_use_markup(True)
-                table.attach(self.osclass_expander,0,2,y1,y2)
-            except:pass
-            
-            self.os_expander.add(hbox)
-            self._pack_noexpand_nofill(self.os_expander)
-    
-    def set_ports_used(self, ports):
+            # In case we have the os selection changed, we need to change the
+            # icon and the current accuracy. Also, we need to save the selection
+            # in the usr result.
+            self.os_list.connect("changed", self.os_selection_changed)
+        else:
+            self.os_list = HIGEntryLabel(os_match.get("name", "Not Available"))
+        
+        self.os_table.attach(HIGEntryLabel(_('Name:')), 0, 1, 0, 1)
+        self.os_table.attach(self.os_list, 1, 2, 0, 1)
+        
+        # Setting current os_match accuracy
+        if os_match.has_key("accuracy"):
+            self.os_progress.set_fraction(float(os_match['accuracy']) / 100.0)
+            self.os_progress.set_text(os_match['accuracy'] + '%')
+            self.os_progress.set_sensitive(True)
+        else:
+            self.os_progress.set_sensitive(False)
+            self.os_progress.set_text(_('Not Available'))
+        
+        self.os_table.attach(HIGEntryLabel(_('Accuracy:')), 0, 1, 1, 2)
+        self.os_table.attach(self.os_progress, 1, 2, 1, 2)
+        
+        ###################
+        ## Setting the list of matches and the list of ports used in the scan
+        if os_match.has_key("portsused"):
+            self.set_ports_used(os_match["portsused"])
+            self.portsused_expander.set_sensitive(True)
+        else:
+            # In case we don't have any port, we still show the expander widget
+            # but in a non-sensitive manner
+            self.portsused_expander.set_sensitive(False)
+        self.os_table.attach(self.portsused_expander, 0, 2, 2, 3)
+        
+        if os_match.has_key('osclass'):
+            self.set_osclass(os_match['osclass'])
+            self.osclass_expander.set_sensitive(True)
+        else:
+            self.osclass_expander.set_sensitive(False)
+        self.osclass_expander.set_use_markup(True)
+        self.os_table.attach(self.osclass_expander, 0, 2, 3, 4)
+        
+        self.os_expander.add(self.os_hbox)
+        self._pack_noexpand_nofill(self.os_expander)
+        
+        # Saving os_list and os_match for latter access
+        self.current_os_list = os_list
+        self.current_os_match = os_match
+
+    def set_ports_used(self, ports=None):
+        # Removing old childs
+        child = self.portsused_expander.get_child()
+        if child != None:
+            self.portsused_expander.remove(child)
+        
+        if ports == None:
+            self.portsused_expander.set_sensitive(False)
+            return
+        else:
+            self.portsused_expander.set_sensitive(True)
+        
         self.portsused_expander.set_use_markup(True)
         table, hbox = self.create_table_hbox()
         
-        y1=0;y2=1
+        y1=0
+        y2=1
         
         for p in ports:
-            table.attach(HIGEntryLabel(_('Port-Protocol-State:')),0,1,y1,y2)
+            table.attach(HIGEntryLabel(_('Port-Protocol-State:')), 0, 1, y1, y2)
             table.attach(HIGEntryLabel(p['portid']+' - '+p['proto']+' - '+\
-                                       p['state']),1,2,y1,y2)
-            y1+=1;y2+=1
+                                       p['state']), 1, 2, y1, y2)
+            y1+=1
+            y2+=1
         
         self.portsused_expander.add(hbox)
-    
-    def set_osclass(self, osclass):
-        if osclass:
+
+    def set_osclass(self, osclass=None):
+        child = self.osclass_expander.get_child()
+        if child != None:
+            self.osclass_expander.remove(child)
+        
+        if osclass == None:
+            self.osclass_expander.set_sensitive(False)
+            return
+        else:
+            self.osclass_expander.set_sensitive(True)
             self.osclass_expander.set_use_markup(True)
             table, hbox = self.create_table_hbox()
             

@@ -741,42 +741,42 @@ class ScanNotebookPage(HIGVBox):
                 return
         elif parsed_result:
             self.parsed = parsed_result
-
+        
         if int(self.parsed.get_hosts_up()):
             for host in self.parsed.get_hosts():
                 hostname = host.get_hostname()
                 host_page = self.set_host_details(host)
                 list_states = ["open", "filtered", "open|filtered"]
-
+                
                 for service in host.services:
                     name = service["service_name"]
                     state = service["port_state"]
-
+                    
                     if state not in list_states:
                         continue
                     
                     if name not in self.services.keys():
                         self.services[name] = {"hosts":[]}
-
+                    
                     hs = {"host": host, "page": host_page, "hostname": hostname}
                     hs.update(service)
                         
                     self.services[name]["hosts"].append(hs)
                     
                 self.hosts[hostname] = {'host': host, 'page': host_page}
-                    
+                
                 host_details = self.hosts[hostname]['page'].host_details
                 host_info = self.hosts[hostname]['host']
-                    
+                
                 try:
                     host_details.set_os_image(
                         get_os_logo(host.get_osmatch()['name']))
                 except:
                     host_details.set_os_image(get_os_logo(''))
-                    
+                
                 host_details.set_vulnerability_image(get_vulnerability_logo(
                     host_info.get_open_ports()))
-                    
+                
                 icon = None
                 try:icon = get_os_icon(host.get_osmatch()['name'])
                 except:icon = get_os_icon('')
@@ -1110,20 +1110,20 @@ class ScanNotebookPage(HIGVBox):
                                       'uptime':uptime['seconds'],
                                       'lastboot':uptime['lastboot']})
 
-        
+
         ipv4 = host.get_ip().get('addr', '') 
         ipv6 = host.get_ipv6().get('addr', '')
         mac = host.get_mac().get('addr', '')
         
         host_details.set_addresses({'ipv4': ipv4, 'ipv6': ipv6, 'mac': mac}) 
         host_details.set_hostnames(host.get_hostnames())
-        
+
         os = host.get_osmatch()
         if os:
             os['portsused'] = host.get_ports_used()
             os['osclass'] = host.get_osclasses()
-        
-        host_details.set_os(os)
+
+        host_details.set_os_list(host.get_osmatches(), os)
         host_details.set_tcpseq(host.get_tcpsequence())
         host_details.set_ipseq(host.get_ipidsequence())
         host_details.set_tcptsseq(host.get_tcptssequence())

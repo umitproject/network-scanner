@@ -121,6 +121,16 @@ this instead: '%s'" % str(id))
     
     def get_osclasses(self):
         return self._osclasses
+   
+    # OS MATCHES
+    def set_osmatches(self, matches):
+        if type(matches) == type([]):
+            self._osmatches = matches
+    
+    def get_osmatches(self):
+        if self._osmatches:
+            return self._osmatches
+        return []
     
     # OS MATCH
     def set_osmatch(self, match):
@@ -370,6 +380,7 @@ umitCore.NmapParser.get_ipv6 instead."))
     tcpsequence = property(get_tcpsequence, set_tcpsequence)
     osclasses = property(get_osclasses, set_osclasses)
     osmatch = property(get_osmatch, set_osmatch)
+    osmatches = property(get_osmatches, set_osclasses)
     osfingerprint = property(get_osfingerprint, set_osfingerprint)
     ports = property(get_ports, set_ports)
     ports_used = property(get_ports_used, set_ports_used)
@@ -392,6 +403,7 @@ umitCore.NmapParser.get_ipv6 instead."))
     _tcpsequence = {}
     _osclasses = []
     _osmatch = []
+    _osmatches = []
     _osfingerprint = {}
     _ports = []
     _ports_used = []
@@ -935,7 +947,16 @@ class NmapParserSAX(ParserBasics, ContentHandler):
         self.dic_port["service_extrainfo"] = attrs.get("extrainfo", "")
 
     def _parse_host_osmatch(self, attrs):
-        self.host_info.set_osmatch(self._parsing(attrs, ['name', 'accuracy']))
+        tmp = self._parsing(attrs, ['name', 'accuracy'])
+        if tmp != {} and self.list_osmatches == []:
+            self.host_info.set_osmatch(tmp)
+        elif tmp != {} and tmp.has_key('accuracy'):
+            last_osmatch = self.host_info.get_osmatch()
+            if last_osmatch.has_key('accuracy') and \
+               tmp['accuracy'] > last_osmatch['accuracy']:
+                self.host_info.set_osmatch(tmp)
+            
+        self.list_osmatches.append(tmp)
 
     def _parse_host_portused(self, attrs):
         self.list_portused.append(self._parsing(attrs, 
@@ -1032,6 +1053,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             self.in_os = True
             self.list_portused = []
             self.list_osclass = []
+            self.list_osmatches = []
         elif self.in_host and self.in_os and name == "osmatch":
             self._parse_host_osmatch(attrs)
         elif self.in_host and self.in_os and name == "portused":
@@ -1081,9 +1103,12 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             self.in_os = False
             self.host_info.set_ports_used(self.list_portused)
             self.host_info.set_osclasses(self.list_osclass)
+            self.host_info.set_osmatches(self.list_osmatches)
 
             del(self.list_portused)
             del(self.list_osclass)
+            del(self.list_osmatches)
+            
         # Creating a traceroute condition
         elif self.in_host and name == "trace":
             self.in_trace = False
@@ -1269,11 +1294,12 @@ class NmapParserSAX(ParserBasics, ContentHandler):
                     self.write_parser.endElement("osclass")
 
             ## Osmatch elements
-            if type(host.osmatch) == type({}):
-                self.write_parser.startElement("osmatch",
-                    Attributes(dict(name = host.osmatch.get("name", ""),
-                                accuracy = host.osmatch.get("accuracy", ""))))
-                self.write_parser.endElement("osmatch")
+            for om in host.osmatches:
+                if type(om) == type({}):
+                    self.write_parser.startElement("osmatch",
+                        Attributes(dict(name = om.get("name", ""),
+                                    accuracy = om.get("accuracy", ""))))
+                    self.write_parser.endElement("osmatch")
             
             ## Osfingerprint element
             if type(host.osfingerprint) == type({}):
@@ -1400,7 +1426,8 @@ NmapParser = nmap_parser_sax
 
 if __name__ == '__main__':
     #file_to_parse = open("/home/adriano/umit/test/diff1.usr")
-    file_to_parse = "RadialNet2/share/sample/nmap_example.xml"
+    file_to_parse = \
+        "../../umit-within-radialnet/RadialNet2/share/sample/nmap_example.xml"
     file_to_write = open("/tmp/teste_write.xml", "w+")
     np = NmapParser(file_to_parse)
     np.parse()
@@ -1410,12 +1437,14 @@ if __name__ == '__main__':
     
     print "Trace:"
     for host in np.nmap["hosts"]:
-        print host.get_osfingerprint()
-        number_of_hops =  host.get_number_of_hops()
-        for ttl in range(1, number_of_hops + 1):
-            hop = host.get_hop_by_ttl(ttl)
-            print hop
-        
+        print host.get_osmatches()
+        print host.get_osmatch()
+        #print host.get_osfingerprint()
+        #number_of_hops =  host.get_number_of_hops()
+        #for ttl in range(1, number_of_hops + 1):
+            #hop = host.get_hop_by_ttl(ttl)
+            #print hop
+            
     print "Comment:",
     pprint(np.nmap["hosts"][-1].comment)
     #comment = property(get_comment, set_comment)

@@ -33,7 +33,6 @@ class TargetList(object):
         except:
             self.target_list_file = False
 
-        #import pdb; pdb.set_trace()
         if self.target_list_file and \
             (access(self.target_list_file, R_OK and W_OK) or \
              access(dirname(self.target_list_file), R_OK and W_OK)):
