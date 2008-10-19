@@ -326,6 +326,7 @@ Ok to continue, or Cancel to go back to Profile Editor.'))
         self.update_profile_entry()
 
     def update_profile_entry(self):
+        page = None
         for i in xrange(self.scan_notebook.get_n_pages()):
             page = self.scan_notebook.get_nth_page(i)
 
@@ -339,7 +340,8 @@ Ok to continue, or Cancel to go back to Profile Editor.'))
             elif self.deleted and length == 0:
                 page.toolbar.profile_entry.child.set_text("")
 
-        page.toolbar.profile_entry.update()
+        if page != None:
+            page.toolbar.profile_entry.update()
 
         #page.toolbar.scan_profile.profile_entry.child.\
         #    set_text(self.profile_name_entry.get_text())
