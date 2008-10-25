@@ -42,6 +42,7 @@ from umitGUI.FileChoosers import SaveResultsFileChooserDialog
 from umitGUI.ScanNotebook import ScanNotebook, ScanNotebookPage
 from umitGUI.ProfileEditor import ProfileEditor
 from umitGUI.Wizard import Wizard
+from umitGUI.ProfileManager import ProfileManager
 from umitGUI.About import About
 from umitGUI.DiffCompare import DiffWindow
 from umitGUI.SearchWindow import SearchWindow
@@ -216,9 +217,16 @@ class MainWindow(UmitMainWindow):
                     ('Delete Profile', 
                      gtk.STOCK_PROPERTIES, 
                      _('_Delete Selected Profile'), 
-                     '<Control>m', 
+                     '', 
                      _('Delete selected scan profile'), 
                      self._delete_scan_profile_cb), 
+                    
+                    ('Profile Manager',
+                     gtk.STOCK_DND_MULTIPLE,
+                     _('Profile Manager'),
+                     '<Control>m',
+                     _('Use to manage profiles'),
+                     self._profile_manager),            
 
                      ('New Profile with Selected',
                       gtk.STOCK_PROPERTIES,
@@ -304,6 +312,8 @@ class MainWindow(UmitMainWindow):
             <menuitem action='New Profile with Selected'/>
             <menuitem action='Edit Profile'/>
             <menuitem action='Delete Profile'/> 
+            <separator/>
+            <menuitem action='Profile Manager'/>
             </menu>
 
             <menu action='Help'>
@@ -903,6 +913,11 @@ access to this path.'))
         """
         return self.scan_notebook.add_scan_page(data)
 
+    def _profile_manager(self,p):
+        """ Show Profile Manager """
+        pm = ProfileManager()
+        pm.show_all()
+    
     def _new_scan_profile_cb(self, p):
         pe = ProfileEditor()
         pe.set_notebook(self.scan_notebook)
