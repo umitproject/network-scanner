@@ -1184,6 +1184,8 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             # Address elements
             ## IPv4
             if type(host.ip) == type({}):
+                ## Remove None value items
+                self.__remove_none_keys(host.ip)
                 self.write_parser.startElement("address",
                             Attributes(dict(addr=host.ip.get("addr", ""),
                                         vendor=host.ip.get("vendor", ""),
@@ -1234,14 +1236,16 @@ class NmapParserSAX(ParserBasics, ContentHandler):
                 ## Extraports elements
                 for ext in ps["extraports"]:
                     if type(ext) == type({}):
+                        self.__remove_none_keys(ext)
                         self.write_parser.startElement("extraports",
-                            Attributes(dict(count = ext.get("count", ""),
+                            Attributes(dict(count = str(ext.get("count", "")),
                                             state = ext.get("state", ""))))
                         self.write_parser.endElement("extraports")
 
                 ## Port elements
                 for p in ps["port"]:
                     if type(p) == type({}):
+                        self.__remove_none_keys(p)
                         self.write_parser.startElement("port",
                             Attributes(dict(portid = p.get("portid", ""),
                                             protocol = p.get("protocol", ""))))
@@ -1276,6 +1280,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             ## Ports used elements
             for pu in host.ports_used:
                 if type(pu) == type({}):
+                    self.__remove_none_keys(pu)
                     self.write_parser.startElement("portused",
                                 Attributes(dict(state = pu.get("state", ""),
                                                 proto = pu.get("proto", ""),
@@ -1285,6 +1290,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             ## Osclass elements
             for oc in host.osclasses:
                 if type(oc) == type({}):
+                    self.__remove_none_keys(oc)
                     self.write_parser.startElement("osclass",
                         Attributes(dict(vendor = oc.get("vendor", ""),
                                         osfamily = oc.get("osfamily", ""),
@@ -1296,6 +1302,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             ## Osmatch elements
             for om in host.osmatches:
                 if type(om) == type({}):
+                    self.__remove_none_keys(om)
                     self.write_parser.startElement("osmatch",
                         Attributes(dict(name = om.get("name", ""),
                                     accuracy = om.get("accuracy", ""))))
@@ -1303,6 +1310,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             
             ## Osfingerprint element
             if type(host.osfingerprint) == type({}):
+                self.__remove_none_keys(host.osfingerprint)
                 self.write_parser.startElement("osfingerprint", 
                     Attributes(dict(fingerprint = \
                                     host.osfingerprint.get("fingerprint", ""))))
@@ -1405,7 +1413,15 @@ class NmapParserSAX(ParserBasics, ContentHandler):
                 raise Exception("File descriptor is not able to write!")
             else:
                 return xml_file
-
+    
+    def __remove_none_keys(self, dic):
+        pop_list = []
+        for k in dic:
+            if dic[k] == None:
+                pop_list.append(k)
+        for k in pop_list:
+            dic.pop(k)
+            
     def set_unsaved(self):
         self.unsaved = True
 
