@@ -26,7 +26,6 @@ from zipfile import ZipFile, BadZipfile, ZIP_DEFLATED
 from xml.dom.minidom import parseString, getDOMImplementation
 from tempfile import mktemp
 
-from umitGUI.Icons import get_pixbuf
 from umitPlugin.Parser import Parser
 from umitPlugin.Atoms import StringFile
 
@@ -150,8 +149,6 @@ class PluginReader(object):
     def get_logo(self, w=64, h=64):
         "@return a gtk.dk.Pixbuf"
 
-        import gtk
-
         try:
             # TODO: eliminate the mktemp workaround
             
@@ -160,12 +157,17 @@ class PluginReader(object):
             f.write(self.file.read('data/logo.png'))
             f.close()
 
+            import gtk
+
             p = gtk.gdk.pixbuf_new_from_file_at_size(name, w, h)
             
             os.remove(name)
 
             return p
         except Exception, err:
+
+            from umitGUI.Icons import get_pixbuf
+
             return get_pixbuf('extension_normal', w, h)
 
     def get_path(self):
