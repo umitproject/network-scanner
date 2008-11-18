@@ -31,6 +31,7 @@ from umitCore.UmitConf import is_maemo
 from umitCore.I18N import _
 from umitCore.UmitLogging import log
 
+from umitPlugin.Engine import PluginEngine
 
 # Script found at http://www.py2exe.org/index.cgi/HowToDetermineIfRunningFromExe
 import imp
@@ -45,7 +46,8 @@ def main_is_frozen():
 
 class App:
     def __init__(self, args=sys.argv):
-        pass
+        # Initialite the PluginEngine
+        PluginEngine()
 
     def __parse_cmd_line(self):
         pass

@@ -245,6 +245,9 @@ def create_user_dir(config_file, user_home):
            and access(user_home, R_OK and W_OK)\
            and not exists(user_dir):
         mkdir(user_dir)
+        mkdir(join(user_dir, "plugins"))
+        mkdir(join(user_dir, "plugins-download"))
+        mkdir(join(user_dir, "plugins-temp"))
         log.debug(">>> Umit user dir successfully created! %s" % user_dir)
     else:
         log.warning(">>> No permissions to create user dir!")

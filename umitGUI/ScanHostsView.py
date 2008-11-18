@@ -26,6 +26,8 @@ from types import StringTypes
 from higwidgets.higboxes import HIGVBox
 from umitCore.I18N import _
 
+from umitPlugin.Engine import PluginEngine
+
 SCANNING = _("Scanning")
 
 class ScanHostsView(HIGVBox, object):
@@ -46,6 +48,8 @@ class ScanHostsView(HIGVBox, object):
 
         self.host_view.show_all()
         self.service_view.show_all()
+        
+        PluginEngine().core.emit('ScanHostsView-created', self)
     
     def _create_widgets(self):
         # Mode buttons

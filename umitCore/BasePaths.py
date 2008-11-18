@@ -43,6 +43,7 @@ LOCALE_DIR = os.path.join(main_dir, "share", "locale")
 MISC_DIR = os.path.join(main_dir, "share", "umit", "misc")
 ICONS_DIR = os.path.join(main_dir, "share", "icons", "umit")
 PIXMAPS_DIR = os.path.join(main_dir, "share", "pixmaps", "umit")
+PLUGINS_DIR = os.path.join(main_dir, "share", "umit", "plugins")
 DOCS_DIR = os.path.join(main_dir, "share", "doc", "umit")
 
 base_paths = dict(config_file = 'umit.conf',
@@ -57,6 +58,7 @@ base_paths = dict(config_file = 'umit.conf',
                   umit_opf = 'umit.opf',
                   umit_opt = 'umit.opt',
                   pixmaps_dir = PIXMAPS_DIR,
+                  plugins_dir = PLUGINS_DIR,
                   i18n_dir = LOCALE_DIR,
                   i18n_message_file = 'umit.mo',
                   scan_results_extension = 'usr',  # comes from umit scan result

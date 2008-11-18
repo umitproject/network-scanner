@@ -45,6 +45,8 @@ from umitCore.Paths import Path
 from umitCore.UmitLogging import log
 from umitCore.I18N import _
 
+from umitPlugin.Engine import PluginEngine
+
 from types import StringTypes
 
 icon_dir = Path.pixmaps_dir
@@ -284,6 +286,10 @@ class ScanNotebook(HIGNotebook):
 
 
 class ScanNotebookPage(HIGVBox):
+    __gsignals__ = {
+        'scan-finished' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, ())
+    }
+
     def __init__(self):
         HIGVBox.__init__(self)
 
@@ -318,6 +324,8 @@ class ScanNotebookPage(HIGVBox):
         
         self._pack_noexpand_nofill(self.top_box)
         self._pack_expand_fill(self.scan_result)
+
+        PluginEngine().core.emit('ScanNotebookPage-created', self)
 
     def target_focus(self):
         self.toolbar.target_entry.child.grab_focus()
@@ -644,6 +652,7 @@ class ScanNotebookPage(HIGVBox):
             return True
         else:
             self.parse_result(self.command_execution.get_xml_output_file())
+            self.emit("scan-finished")
             return False
 
     def load_result(self, file_to_parse):
@@ -1271,6 +1280,8 @@ class ScanResultNotebook(HIGNotebook):
         self.append_page(self.nmap_output_page, gtk.Label(_('Nmap Output')))
         self.append_page(self.host_details_page, gtk.Label(_('Host Details')))
         self.append_page(self.scan_details_page, gtk.Label(_('Scan Details')))
+
+        PluginEngine().core.emit('ScanResultNotebook-created', self)
 
     def get_nmap_output(self):
         return self.nmap_output.get_map_output()

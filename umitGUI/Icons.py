@@ -52,6 +52,11 @@ icon_names = (
     'vl_4',
     'vl_5')
 
+plugins_icons = (
+    'extension',
+    'paths'
+)
+
 pixmap_path = Path.pixmaps_dir
 if pixmap_path:
     # This is a generator that returns file names for pixmaps in the order they
@@ -61,6 +66,17 @@ if pixmap_path:
         yield '%s_%s.png' % (icon_name, size)
 
     iconfactory = gtk.IconFactory()
+    for icon_name in plugins_icons:
+        for type, size in (('small', 16), ('normal', 32)):
+            key = '%s_%s' % (icon_name, type)
+            try:
+                pixbuf = gtk.gdk.pixbuf_new_from_file(
+                   os.path.join(pixmap_path, "%s-%d.png" % (icon_name, size))
+                )
+                iconfactory.add(key, gtk.IconSet(pixbuf))
+            except gobject.GError:
+                continue
+
     for icon_name in icon_names:
         for type, size in (('icon', '32'), ('logo', '75')):
             key = '%s_%s' % (icon_name, type)
@@ -150,3 +166,22 @@ def get_vulnerability_logo(open_ports):
         return 'vl_4_logo'
     else:
         return 'vl_5_logo'
+
+def get_pixbuf(stock_id, w=None, h=None):
+    "Get the pixbuf for a stock item defined in icons"
+
+    name, size = stock_id.split("_")
+
+    if size == "small":
+        size = 16
+    elif size == "normal":
+        size = 32
+    else:
+        raise Exception("Could not determine the pixel size")
+
+    fname = os.path.join(pixmap_path, "%s-%d.png" % (name, size))
+
+    if w and h:
+        return gtk.gdk.pixbuf_new_from_file_at_size(fname, w, h)
+    else:
+        return gtk.gdk.pixbuf_new_from_file(fname)

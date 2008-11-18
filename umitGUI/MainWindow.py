@@ -56,6 +56,9 @@ from umitCore.UmitOptionParser import option_parser
 from umitCore.UmitConf import SearchConfig, is_maemo
 from umitCore.UmitDB import Scans, UmitDB
 
+from umitPlugin.Window import PluginWindow
+from umitPlugin.Engine import PluginEngine
+
 root = False
 try:
     if sys.platform == 'win32':
@@ -93,6 +96,7 @@ class MainWindow(UmitMainWindow):
         UmitMainWindow.__init__(self)
         self.set_title(_("Umit"))
 
+        self._plugin_win = PluginWindow()
         self._icontheme = gtk.IconTheme()
         self.main_accel_group = gtk.AccelGroup()
 
@@ -113,6 +117,8 @@ class MainWindow(UmitMainWindow):
         # invocation. sigh.
         self._profile_filechooser_dialog = None
         self._results_filechooser_dialog = None
+
+        self._prepare_first_scan()
 
         # Loading files passed as argument
         files = option_parser.get_open_results()
@@ -234,6 +240,13 @@ class MainWindow(UmitMainWindow):
                       '<Control>r',
                       _('Use the selected scan profile to create another'),
                       self._new_scan_profile_with_selected_cb),
+                      
+                      ('Extensions',
+                       gtk.STOCK_INFO,
+                       _('_Extensions'),
+                       '<Control>e',
+                       _('Extensions manager'),
+                       self._show_plugin_manager),
 
                       ('Quit',
                        gtk.STOCK_QUIT,
@@ -305,6 +318,8 @@ class MainWindow(UmitMainWindow):
             <menuitem action='Wizard'/>
             <menuitem action='Compare Results'/>
             <menuitem action='Search Scan'/>
+            <separator/>
+            <menuitem action='Extensions'/>
             </menu>
 
             <menu action='Profile'>
@@ -366,7 +381,10 @@ class MainWindow(UmitMainWindow):
                 page = self._load(parsed_result=results[result][1],
                                   title=results[result][1].scan_name)
                 page.status.set_search_loaded()
-
+    
+    def _show_plugin_manager(self, widget, data=None):
+        self._plugin_win.show()
+    
     def _close_scan_cb(self, widget, data=None):
         # data can be none, if the current page is to be closed
         if data == None:
@@ -378,7 +396,7 @@ class MainWindow(UmitMainWindow):
         page = self.scan_notebook.get_nth_page(page_num)
         filename = None
 
-        if page == None:
+        if page == None or not isinstance(page, ScanNotebookPage):
             return True
 
         if page.status.unsaved_unchanged \
@@ -595,6 +613,22 @@ to close current Scan Tab?'),
         self.scan_notebook = ScanNotebook()
         self.scan_notebook.close_scan_cb = self._close_scan_cb
         self.scan_notebook.title_edited_cb = self._title_edited_cb
+        
+        if is_maemo():
+            # No padding. We need space!
+            self.vbox.pack_start(self.scan_notebook, True, True, 0)
+        else:
+            self.vbox.pack_start(self.scan_notebook, True, True, 4)
+
+        # Conencting ScanNotebook Callbacks
+        self.scan_notebook.connect("page-removed", self._update_when_removed)
+        self.scan_notebook.connect("page-added", self._update_when_added)
+    
+    def _prepare_first_scan(self):
+        # Load here becouse some plugins require some signals
+        # Set the mainwindow and load the selected plugins
+        PluginEngine().core.mainwindow = self
+        PluginEngine().load_selected_plugins()
 
         page = self._new_scan_cb()
         self.scan_notebook.show_all()
@@ -626,17 +660,6 @@ to close current Scan Tab?'),
             page.command_toolbar.command = "nmap " + " ".join(nmap)
             page.toolbar.scan_button.set_sensitive(True)
             page.start_scan_cb()
-
-
-        if is_maemo():
-            # No padding. We need space!
-            self.vbox.pack_start(self.scan_notebook, True, True, 0)
-        else:
-            self.vbox.pack_start(self.scan_notebook, True, True, 4)
-
-        # Conencting ScanNotebook Callbacks
-        self.scan_notebook.connect("page-removed", self._update_when_removed)
-        self.scan_notebook.connect("page-added", self._update_when_added)
 
     def _update_when_removed(self, notebook, child, pagenum):
         self._update_main_menu()
@@ -1002,6 +1025,9 @@ documentation in our Support & Development section."""))
         else:
             # Cleaning up data base
             UmitDB().cleanup(SearchConfig().converted_save_time)
+
+            # Saving the plugins
+            PluginEngine().plugins.save_changes()
 
             gtk.main_quit()
 

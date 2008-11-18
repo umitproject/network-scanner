@@ -27,9 +27,10 @@ higwidgets/higbuttons.py
    button related classes
 """
 
-__all__ = ['HIGMixButton', 'HIGButton']
+__all__ = ['HIGMixButton', 'HIGButton', 'HIGArrowButton', 'MiniButton']
 
 import gtk
+import gobject
 
 class HIGMixButton (gtk.HBox):
     def __init__(self, title, stock):
@@ -73,3 +74,80 @@ class HIGToggleButton(gtk.ToggleButton):
             self.set_use_stock(True)
         else:
             gtk.ToggleButton.__init__(self)
+
+class MiniButton(gtk.Button):
+    def __init__(self, stock, size=gtk.ICON_SIZE_MENU):
+        super(MiniButton, self).__init__()
+
+        self.img = gtk.image_new_from_stock(stock, size)
+
+        hbox = gtk.HBox(False, 2)
+        hbox.pack_start(self.img)
+        hbox.show_all()
+
+        self.add(hbox)
+        self.set_size_request(*self.img.size_request())
+
+class HIGArrowButton(gtk.Button):
+    __gsignals__ = {
+        'force-clicked' : (gobject.SIGNAL_RUN_LAST, None, ())
+    }
+
+    def __init__(self, orient):
+        super(HIGArrowButton, self).__init__()
+        
+        # Fascist mode!
+        self.arrow = gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_ETCHED_IN)
+
+        # No genocide yet :)
+        self._active = False
+        self.orientation = orient
+
+        self.add(self.arrow)
+
+    def set_orientation(self, orient):
+        shadow = self.arrow.get_property("shadow-type")
+
+        if orient == gtk.ORIENTATION_HORIZONTAL:
+            self.orient = gtk.ORIENTATION_HORIZONTAL
+
+            if self.get_active():
+                self.arrow.set(gtk.ARROW_LEFT, shadow)
+            else:
+                self.arrow.set(gtk.ARROW_RIGHT, shadow)
+        else:
+            self.orient = gtk.ORIENTATION_VERTICAL
+
+            if self.get_active():
+                self.arrow.set(gtk.ARROW_UP, shadow)
+            else:
+                self.arrow.set(gtk.ARROW_DOWN, shadow)
+
+    def do_button_press_event(self, event):
+        if event.button == 3:
+            self.emit('force-clicked')
+
+        return gtk.Button.do_button_press_event(self, event)
+
+    def get_orientation(self):
+        return self.orient
+
+    def set_shadow(self, value):
+        direction = self.arrow.get_property("arrow-type")
+        self.arrow.set(direction, value)
+
+    def get_shadow(self, value):
+        return self.arrow.get_property("shadow-type")
+
+    def get_active(self):
+        return self._active
+
+    def set_active(self, val):
+        self._active = val
+        self.orientation = self.orientation
+
+    orientation = property(get_orientation, set_orientation)
+    shadow_type = property(get_shadow, set_shadow)
+    active      = property(get_active, set_active)
+
+gobject.type_register(HIGArrowButton)

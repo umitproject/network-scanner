@@ -21,6 +21,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 import re
+import os
 
 from types import StringTypes
 from ConfigParser import NoSectionError, NoOptionError
@@ -536,6 +537,55 @@ class DiffColors(object):
     added = property(get_added, set_added)
     modified = property(get_modified, set_modified)
     not_present = property(get_not_present, set_not_present)
+
+class Plugins(object):
+    def __init__(self):
+        self.parser = Path.config_parser
+        self.section_name = "plugins"
+        self.separator = os.pathsep
+
+        if not self.parser.has_section(self.section_name):
+            self.create_section()
+
+    def save_changes(self):
+        self.parser.save_changes()
+
+    def create_section(self):
+        from os.path import join
+        self.paths = [join(Path.config_dir, "plugins")]
+        self.plugins = ""
+
+    def __get_it(self, p_name):
+        value = None
+
+        try:     value = self.parser.get(self.section_name, p_name)
+        except:  pass
+        finally: return self.sanity_settings(value)
+
+    def __set_it(self, property_name, settings):
+        settings = self.sanity_settings(settings)
+        self.parser.set(self.section_name, property_name, settings)
+
+    def sanity_settings(self, settings):
+        # FIXME: more sensed :D
+        if not settings:
+            return ""
+        return settings
+
+    def get_paths(self):
+        return filter(None, self.__get_it("paths").split(self.separator))
+
+    def set_paths(self, settings):
+        self.__set_it("paths", self.separator.join(settings))
+
+    def get_plugins(self):
+        return filter(None, self.__get_it("plugins").split(self.separator))
+
+    def set_plugins(self, settings):
+        self.__set_it("plugins", self.separator.join(settings))
+
+    paths = property(get_paths, set_paths)
+    plugins = property(get_plugins, set_plugins)
 
 # Exceptions
 class ProfileNotFound:
