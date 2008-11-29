@@ -6,6 +6,7 @@
 #
 # Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #         Cleber Rodrigues <cleber.gnu@gmail.com>
+#         João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
 # This library is free software; you can redistribute it and/or modify 
 # it under the terms of the GNU Lesser General Public License as published 
@@ -27,11 +28,12 @@ higwidgets/higexpanders.py
    expanders related classes
 """
 
-__all__ = ['HIGExpander']
+__all__ = ['HIGExpander', 'HIGExpanderRNet']
 
 import gtk
 
 from higwidgets.higboxes import HIGHBox, hig_box_space_holder
+from higwidgets.higlabels import HIGSectionLabel
 
 class HIGExpander(gtk.Expander):
     def __init__(self, label):
@@ -48,3 +50,31 @@ class HIGExpander(gtk.Expander):
 	
     def get_container(self):
         return self.hbox
+
+#class needed to maintain compatibility of RadialNet with higwidgets
+class HIGExpanderRNet(gtk.Expander):
+    def __init__(self, label=''):
+        gtk.Expander.__init__(self)
+
+        self.__label = HIGSectionLabel(label)
+        self.set_label_widget(self.__label)
+
+        self.__alignment = gtk.Alignment(0, 0, 1, 1)
+        self.__alignment.set_padding(12, 0, 24, 0)
+
+        self.add(self.__alignment)
+
+
+    def _set_label_text(self, text):
+        self.__label._set_text(text)
+
+
+    def _add(self, widget):
+        if len(self.__alignment.get_children()) > 0:
+            self.__alignment.remove(self.__alignment.get_children()[0])
+
+        self.__alignment.add(widget)
+
+
+    def _no_padding(self):
+        self.__alignment.set_padding(0, 0, 0, 0)

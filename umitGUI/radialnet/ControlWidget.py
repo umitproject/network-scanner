@@ -22,12 +22,15 @@ import gtk
 import math
 import gobject
 
-import bestwidgets as bw
+#import bestwidgets as bw
 import higwidgets.drawing as drawing
 
 from umitCore.radialnet.Coordinate import PolarCoordinate
 from umitGUI.radialnet.RadialNet import *
 
+from higwidgets.higboxes import HIGBox, HIGHBox, HIGVBox, HIGScrolledWindow
+from higwidgets.higexpanders import HIGExpanderRNet
+from higwidgets.higtables import HIGTableRNet
 
 OPTIONS = ['address',
            'hostname',
@@ -41,13 +44,13 @@ REFRESH_RATE = 500
 
 
 
-class ControlWidget(bw.BWVBox):
+class ControlWidget(HIGVBox):
     """
     """
     def __init__(self, radialnet):
         """
         """
-        bw.BWVBox.__init__(self)
+        HIGVBox.__init__(self)
         self.set_border_width(6)
 
         self.radialnet = radialnet
@@ -63,20 +66,20 @@ class ControlWidget(bw.BWVBox):
         self.__layout = ControlLayout(self.radialnet)
         self.__view = ControlView(self.radialnet)
 
-        self.bw_pack_start_noexpand_nofill(self.__action)
-        self.bw_pack_start_noexpand_nofill(self.__interpolation)
-        self.bw_pack_start_noexpand_nofill(self.__layout)
-        self.bw_pack_start_noexpand_nofill(self.__view)
+        self._pack_noexpand_nofill(self.__action)
+        self._pack_noexpand_nofill(self.__interpolation)
+        self._pack_noexpand_nofill(self.__layout)
+        self._pack_noexpand_nofill(self.__view)
 
 
 
-class ControlAction(bw.BWExpander):
+class ControlAction(HIGExpanderRNet):
     """
     """
     def __init__(self, radialnet):
         """
         """
-        bw.BWExpander.__init__(self, 'Action')
+        HIGExpanderRNet.__init__(self, 'Action')
         self.set_expanded(True)
 
         self.radialnet = radialnet
@@ -87,9 +90,9 @@ class ControlAction(bw.BWExpander):
     def __create_widgets(self):
         """
         """
-        self.__tbox = bw.BWTable(1, 4)
-        self.__tbox.bw_set_spacing(0)
-        self.__vbox = bw.BWVBox()
+        self.__tbox = HIGTableRNet(1, 4)
+        self.__tbox._set_spacing(0)
+        self.__vbox = HIGVBox()
 
         self.__tooltips = gtk.Tooltips()
 
@@ -125,15 +128,15 @@ class ControlAction(bw.BWExpander):
         self.__region_color.connect('changed', self.__change_region)
         self.__region_color.set_active(self.radialnet.get_region_color())
 
-        self.__tbox.bw_attach_next(self.__jump_to)
-        self.__tbox.bw_attach_next(self.__info)
-        self.__tbox.bw_attach_next(self.__group)
-        self.__tbox.bw_attach_next(self.__region)
+        self.__tbox._attach_next(self.__jump_to)
+        self.__tbox._attach_next(self.__info)
+        self.__tbox._attach_next(self.__group)
+        self.__tbox._attach_next(self.__region)
 
-        self.__vbox.bw_pack_start_noexpand_nofill(self.__tbox)
-        self.__vbox.bw_pack_start_noexpand_nofill(self.__region_color)
+        self.__vbox._pack_noexpand_nofill(self.__tbox)
+        self.__vbox._pack_noexpand_nofill(self.__region_color)
 
-        self.bw_add(self.__vbox)
+        self._add(self.__vbox)
 
         self.__jump_to.set_active(True)
         self.__region_color.set_no_show_all(True)
@@ -353,13 +356,13 @@ class ControlVariableWidget(gtk.DrawingArea):
 
 
 
-class ControlVariable(bw.BWHBox):
+class ControlVariable(HIGHBox):
     """
     """
     def __init__(self, name, get_function, set_function, increment=1):
         """
         """
-        bw.BWHBox.__init__(self, spacing=0)
+        HIGHBox.__init__(self, spacing=0)
 
         self.__increment_pass = increment
         self.__increment_time = 200
@@ -398,9 +401,9 @@ class ControlVariable(bw.BWHBox):
                                     self.__increment_pass)
         self.__right_button.connect('released', self.__released)
 
-        self.bw_pack_start_noexpand_nofill(self.__left_button)
-        self.bw_pack_start_expand_fill(self.__control)
-        self.bw_pack_start_noexpand_nofill(self.__right_button)
+        self._pack_noexpand_nofill(self.__left_button)
+        self._pack_expand_fill(self.__control)
+        self._pack_noexpand_nofill(self.__right_button)
 
 
     def __pressed(self, widget, increment):
@@ -431,13 +434,13 @@ class ControlVariable(bw.BWHBox):
 
 
 
-class ControlFisheye(bw.BWVBox):
+class ControlFisheye(HIGVBox):
     """
     """
     def __init__(self, radialnet):
         """
         """
-        bw.BWVBox.__init__(self)
+        HIGVBox.__init__(self)
         self.set_border_width(6)
 
         self.radialnet = radialnet
@@ -449,7 +452,7 @@ class ControlFisheye(bw.BWVBox):
     def __create_widgets(self):
         """
         """
-        self.__params = bw.BWHBox()
+        self.__params = HIGHBox()
 
         self.__fisheye_label = gtk.Label('<b>Fisheye</b> on ring')
         self.__fisheye_label.set_use_markup(True)
@@ -476,15 +479,15 @@ class ControlFisheye(bw.BWVBox):
         self.__spread_spin = gtk.SpinButton(self.__spread)
         self.__spread_spin.set_digits(2)
 
-        self.__params.bw_pack_start_noexpand_nofill(self.__fisheye_label)
-        self.__params.bw_pack_start_noexpand_nofill(self.__ring_spin)
-        self.__params.bw_pack_start_expand_fill(self.__ring_scale)
-        self.__params.bw_pack_start_noexpand_nofill(self.__interest_label)
-        self.__params.bw_pack_start_noexpand_nofill(self.__interest_spin)
-        self.__params.bw_pack_start_noexpand_nofill(self.__spread_label)
-        self.__params.bw_pack_start_noexpand_nofill(self.__spread_spin)
+        self.__params._pack_noexpand_nofill(self.__fisheye_label)
+        self.__params._pack_noexpand_nofill(self.__ring_spin)
+        self.__params._pack_expand_fill(self.__ring_scale)
+        self.__params._pack_noexpand_nofill(self.__interest_label)
+        self.__params._pack_noexpand_nofill(self.__interest_spin)
+        self.__params._pack_noexpand_nofill(self.__spread_label)
+        self.__params._pack_noexpand_nofill(self.__spread_spin)
 
-        self.bw_pack_start_noexpand_nofill(self.__params)
+        self._pack_noexpand_nofill(self.__params)
 
         self.__ring.connect('value_changed', self.__change_ring)
         self.__interest.connect('value_changed', self.__change_interest)
@@ -577,13 +580,13 @@ class ControlFisheye(bw.BWVBox):
 
 
 
-class ControlInterpolation(bw.BWExpander):
+class ControlInterpolation(HIGExpanderRNet):
     """
     """
     def __init__(self, radialnet):
         """
         """
-        bw.BWExpander.__init__(self, 'Interpolation')
+        HIGExpanderRNet.__init__(self, 'Interpolation')
 
         self.radialnet = radialnet
 
@@ -593,7 +596,7 @@ class ControlInterpolation(bw.BWExpander):
     def __create_widgets(self):
         """
         """
-        self.__vbox = bw.BWVBox()
+        self.__vbox = HIGVBox()
 
         self.__cartesian_radio = gtk.RadioButton(None, 'Cartesian')
         self.__polar_radio = gtk.RadioButton(self.__cartesian_radio, 'Polar')
@@ -604,11 +607,11 @@ class ControlInterpolation(bw.BWExpander):
                                    self.__change_system,
                                    INTERPOLATION_POLAR)
 
-        self.__system_box = bw.BWHBox()
-        self.__system_box.bw_pack_start_noexpand_nofill(self.__polar_radio)
-        self.__system_box.bw_pack_start_noexpand_nofill(self.__cartesian_radio)
+        self.__system_box = HIGHBox()
+        self.__system_box._pack_noexpand_nofill(self.__polar_radio)
+        self.__system_box._pack_noexpand_nofill(self.__cartesian_radio)
 
-        self.__frames_box = bw.BWHBox()
+        self.__frames_box = HIGHBox()
         self.__frames_label = gtk.Label('Frames')
         self.__frames_label.set_alignment(0.0, 0.5)
         self.__frames = gtk.Adjustment(self.radialnet.get_number_of_frames(),
@@ -617,13 +620,13 @@ class ControlInterpolation(bw.BWExpander):
                                        1)
         self.__frames.connect('value_changed', self.__change_frames)
         self.__frames_spin = gtk.SpinButton(self.__frames)
-        self.__frames_box.bw_pack_start_expand_fill(self.__frames_label)
-        self.__frames_box.bw_pack_start_noexpand_nofill(self.__frames_spin)
+        self.__frames_box._pack_expand_fill(self.__frames_label)
+        self.__frames_box._pack_noexpand_nofill(self.__frames_spin)
 
-        self.__vbox.bw_pack_start_noexpand_nofill(self.__frames_box)
-        self.__vbox.bw_pack_start_noexpand_nofill(self.__system_box)
+        self.__vbox._pack_noexpand_nofill(self.__frames_box)
+        self.__vbox._pack_noexpand_nofill(self.__system_box)
 
-        self.bw_add(self.__vbox)
+        self._add(self.__vbox)
 
         gobject.timeout_add(REFRESH_RATE, self.__update_animation)
 
@@ -664,13 +667,13 @@ class ControlInterpolation(bw.BWExpander):
 
 
 
-class ControlLayout(bw.BWExpander):
+class ControlLayout(HIGExpanderRNet):
     """
     """
     def __init__(self, radialnet):
         """
         """
-        bw.BWExpander.__init__(self, 'Layout')
+        HIGExpanderRNet.__init__(self, 'Layout')
 
         self.radialnet = radialnet
 
@@ -680,7 +683,7 @@ class ControlLayout(bw.BWExpander):
     def __create_widgets(self):
         """
         """
-        self.__hbox = bw.BWHBox()
+        self.__hbox = HIGHBox()
 
         self.__layout = gtk.combo_box_new_text()
         self.__layout.append_text('Symmetric')
@@ -690,10 +693,10 @@ class ControlLayout(bw.BWExpander):
         self.__force = gtk.ToolButton(gtk.STOCK_REFRESH)
         self.__force.connect('clicked', self.__force_update)
 
-        self.__hbox.bw_pack_start_expand_fill(self.__layout)
-        self.__hbox.bw_pack_start_noexpand_nofill(self.__force)
+        self.__hbox._pack_expand_fill(self.__layout)
+        self.__hbox._pack_noexpand_nofill(self.__force)
 
-        self.bw_add(self.__hbox)
+        self._add(self.__hbox)
 
         self.__check_layout()
 
@@ -728,13 +731,13 @@ class ControlLayout(bw.BWExpander):
 
 
 
-class ControlRingGap(bw.BWVBox):
+class ControlRingGap(HIGVBox):
     """
     """
     def __init__(self, radialnet):
         """
         """
-        bw.BWVBox.__init__(self)
+        HIGVBox.__init__(self)
 
         self.radialnet = radialnet
 
@@ -757,12 +760,12 @@ class ControlRingGap(bw.BWVBox):
         self.__spin = gtk.SpinButton(self.__adjustment)
         self.__spin.connect('value_changed', self.__change_lower)
 
-        self.__lower_hbox = bw.BWHBox()
-        self.__lower_hbox.bw_pack_start_expand_fill(self.__label)
-        self.__lower_hbox.bw_pack_start_noexpand_nofill(self.__spin)
+        self.__lower_hbox = HIGHBox()
+        self.__lower_hbox._pack_expand_fill(self.__label)
+        self.__lower_hbox._pack_noexpand_nofill(self.__spin)
 
-        self.bw_pack_start_noexpand_nofill(self.__radius)
-        self.bw_pack_start_noexpand_nofill(self.__lower_hbox)
+        self._pack_noexpand_nofill(self.__radius)
+        self._pack_noexpand_nofill(self.__lower_hbox)
 
 
     def __change_lower(self, widget):
@@ -773,13 +776,13 @@ class ControlRingGap(bw.BWVBox):
 
 
 
-class ControlOptions(bw.BWScrolledWindow):
+class ControlOptions(HIGScrolledWindow):
     """
     """
     def __init__(self, radialnet):
         """
         """
-        bw.BWScrolledWindow.__init__(self)
+        HIGScrolledWindow.__init__(self)
 
         self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_ALWAYS)
         self.set_shadow_type(gtk.SHADOW_NONE)
@@ -874,13 +877,13 @@ class ControlOptions(bw.BWScrolledWindow):
 
 
 
-class ControlView(bw.BWExpander):
+class ControlView(HIGExpanderRNet):
     """
     """
     def __init__(self, radialnet):
         """
         """
-        bw.BWExpander.__init__(self, 'View')
+        HIGExpanderRNet.__init__(self, 'View')
         self.set_expanded(True)
 
         self.radialnet = radialnet
@@ -891,7 +894,7 @@ class ControlView(bw.BWExpander):
     def __create_widgets(self):
         """
         """
-        self.__vbox = bw.BWVBox(spacing=0)
+        self.__vbox = HIGVBox(spacing=0)
 
         self.__zoom = ControlVariable('Zoom',
                                       self.radialnet.get_zoom,
@@ -903,12 +906,12 @@ class ControlView(bw.BWExpander):
         self.__options = ControlOptions(self.radialnet)
         self.__options.set_border_width(0)
 
-        self.__vbox.bw_pack_start_expand_nofill(self.__options)
-        self.__vbox.bw_pack_start_noexpand_nofill(self.__navigation)
-        self.__vbox.bw_pack_start_noexpand_nofill(self.__zoom)
-        self.__vbox.bw_pack_start_noexpand_nofill(self.__ring_gap)
+        self.__vbox._pack_expand_nofill(self.__options)
+        self.__vbox._pack_noexpand_nofill(self.__navigation)
+        self.__vbox._pack_noexpand_nofill(self.__zoom)
+        self.__vbox._pack_noexpand_nofill(self.__ring_gap)
 
-        self.bw_add(self.__vbox)
+        self._add(self.__vbox)
 
 
 

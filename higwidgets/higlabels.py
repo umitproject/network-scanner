@@ -6,6 +6,7 @@
 #
 # Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #         Cleber Rodrigues <cleber.gnu@gmail.com>
+#         João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
 # This library is free software; you can redistribute it and/or modify 
 # it under the terms of the GNU Lesser General Public License as published 
@@ -42,6 +43,9 @@ class HIGSectionLabel(gtk.Label):
             self.set_justify(gtk.JUSTIFY_LEFT)
             self.set_alignment(0, 0.50)
             self.set_line_wrap(True)
+
+    def _set_text(self, text):
+        self.set_markup("<b>%s</b>" % (text))
 
 class HIGHintSectionLabel(gtk.HBox, object):
     """
@@ -118,6 +122,15 @@ class HIGDialogLabel(gtk.Label):
         self.set_justify(gtk.JUSTIFY_CENTER)
         self.set_use_underline(True)
         self.set_use_markup(True)
+        self.set_line_wrap(True)
+
+class HIGLabel(gtk.Label):
+    def __init__(self, text=''):
+        gtk.Label.__init__(self)
+
+        self.set_text(text)
+        self.set_justify(gtk.JUSTIFY_LEFT)
+        self.set_alignment(0, 0.50)
         self.set_line_wrap(True)
 
 if __name__ == "__main__":

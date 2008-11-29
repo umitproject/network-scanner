@@ -296,7 +296,7 @@ class GraphBuilder(Graph):
         node.set_info({'ports':ports})
     
         all_extraports = list()
-        print host_extraports
+        #print host_extraports
         for extraports in host_extraports:
     
             extraports['count'] = int(extraports['count'])
@@ -433,7 +433,7 @@ class GraphBuilder(Graph):
             
             
             for node in nodes:
-                if ip['addr'] == node.get_info('ip'):
+                if ip.has_key('addr') and ip['addr'] == node.get_info('ip'):
                     break
     
             else:

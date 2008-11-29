@@ -22,10 +22,11 @@ import re
 import gtk
 import gobject
 
-import bestwidgets as bw
+#import bestwidgets as bw
 
 from umitGUI.radialnet.NodeNotebook import NodeNotebook
 
+from higwidgets.higwindows import HIGMainWindow
 
 HOSTS_COLORS = ['#d5ffd5', '#ffffd5', '#ffd5d5']
 
@@ -37,13 +38,13 @@ IP_RE = '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$'
 
 
 
-class HostsViewer(bw.BWMainWindow):
+class HostsViewer(HIGMainWindow):
     """
     """
     def __init__(self, nodes):
         """
         """
-        bw.BWMainWindow.__init__(self)
+        HIGMainWindow.__init__(self)
         self.set_title('Hosts Viewer')
         self.set_default_size(DIMENSION[0], DIMENSION[1])
 

@@ -36,6 +36,7 @@ from umitGUI.ScanHostsView import ScanHostsView, SCANNING
 from umitGUI.ScanOpenPortsPage import ScanOpenPortsPage
 from umitGUI.ScanRunDetailsPage import ScanRunDetailsPage
 from umitGUI.ScanNmapOutputPage import ScanNmapOutputPage
+from umitGUI.ScanMapperPage import ScanMapperPage
 from umitGUI.Icons import get_os_icon, get_os_logo, get_vulnerability_logo
 
 from umitCore.NmapCommand import NmapCommand
@@ -346,6 +347,7 @@ class ScanNotebookPage(HIGVBox):
 
     def __create_scan_result(self):
         self.scan_result = ScanResult()
+        self.scan_result.set_parse(self.parsed)
 
     def __create_toolbar(self):
         self.toolbar = ScanToolbar()
@@ -673,7 +675,12 @@ class ScanNotebookPage(HIGVBox):
         self.status.set_parsing_result()
         ####
         self._parse(file_to_parse=file_to_parse)
-
+        
+        ###
+        # Updating Topology
+        self.scan_result.set_parse(self.parsed)
+        ###
+        
         ####
         # Setting status to unsaved_unchanged
         self.status.set_unsaved_unchanged()
@@ -1212,13 +1219,15 @@ class ScanNotebookPage(HIGVBox):
 class ScanResult(gtk.HPaned):
     def __init__(self):
         gtk.HPaned.__init__(self)
-        
+        self.parsed = None
         self.scan_host_view = ScanHostsView()
         self.scan_result_notebook = ScanResultNotebook()
 
         self.pack1(self.scan_host_view, True, False)
         self.pack2(self.scan_result_notebook, True, False)
-
+    def set_parse(self, parse):
+        self.parsed = parse
+        self.scan_result_notebook.set_parse(self.parsed)
     def set_nmap_output(self, msg):
         nmap_output = self.scan_result_notebook.nmap_output.nmap_output
         nmap_output.text_view.get_buffer().set_text(msg)
@@ -1280,7 +1289,15 @@ class ScanResultNotebook(HIGNotebook):
         self.append_page(self.nmap_output_page, gtk.Label(_('Nmap Output')))
         self.append_page(self.host_details_page, gtk.Label(_('Host Details')))
         self.append_page(self.scan_details_page, gtk.Label(_('Scan Details')))
+        self.append_page(self.scan_mapper, gtk.Label(_('Topology')))
 
+        self.parsed = None
+        
+    def set_parse(self, parse):
+        self.parsed = parse
+        self.scan_mapper.set_parse(self.parsed)
+        self.scan_mapper.create_widgets()
+        
         PluginEngine().core.emit('ScanResultNotebook-created', self)
 
     def get_nmap_output(self):
@@ -1299,6 +1316,7 @@ class ScanResultNotebook(HIGNotebook):
         self.scan_details_page = HIGScrolledWindow()
         self.scan_details_vbox = HIGVBox()
         self.host_details_vbox = HIGVBox()
+        self.scan_mapper = self.__create_mapper()
         
         self.open_ports = ScanOpenPortsPage()
         self.nmap_output = ScanNmapOutputPage()
@@ -1317,7 +1335,10 @@ class ScanResultNotebook(HIGNotebook):
         
         self.scan_details_page.add_with_viewport(self.scan_details_vbox)
         self.scan_details_vbox._pack_expand_fill(self.scan_details)
-    
+    def __create_mapper(self):
+        page = ScanMapperPage()
+        
+        return page
     def __nmap_output_refreshing(self):
         self.connect('switch-page', self.refresh_cb)
     

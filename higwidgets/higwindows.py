@@ -6,6 +6,7 @@
 #
 # Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #         Cleber Rodrigues <cleber.gnu@gmail.com>
+#         João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
 # This library is free software; you can redistribute it and/or modify 
 # it under the terms of the GNU Lesser General Public License as published 
@@ -28,6 +29,34 @@ higwidgets/higwindows.py
 """
 
 import gtk
+from higwidgets import gtk_version_minor
+
+PRIMARY_TEXT_MARKUP = '<span weight="bold" size="larger">%s</span>'
+
+class HIGAlertDialog(gtk.MessageDialog):
+    def __init__(self, parent=None, flags=0, type=gtk.MESSAGE_INFO,
+                 buttons=gtk.BUTTONS_OK,
+                 primary_text=None,
+                 secondary_text=None):
+
+        gtk.MessageDialog.__init__(self, parent, flags, type, buttons)
+
+        self.connect('response', self.__destroy)
+
+        self.set_resizable(False)
+
+        self.set_title("Alert")
+        self.set_markup(PRIMARY_TEXT_MARKUP % primary_text)
+
+        if secondary_text:
+
+            # GTK up to version 2.4 does not have secondary_text
+            if gtk_version_minor > 4:
+                self.format_secondary_text(secondary_text)
+
+
+    def __destroy(self, dialog, id):
+        self.destroy()
 
 class HIGWindow(gtk.Window):
     """HIGFied Window"""
@@ -38,3 +67,5 @@ class HIGWindow(gtk.Window):
 # The Application main window should have no borders...
 # so it should be really a gtk.Window
 HIGMainWindow = gtk.Window
+
+

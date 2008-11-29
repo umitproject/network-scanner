@@ -4,6 +4,7 @@
 # Copyright (C) 2005 Insecure.Com LLC.
 #
 # Author: Guilherme Polo <ggpolo@gmail.com>
+#         João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
 # This library is free software; you can redistribute it and/or modify 
 # it under the terms of the GNU Lesser General Public License as published 
@@ -43,6 +44,34 @@ class HIGFrame(gtk.Frame):
 
     def _set_label(self, label):
         self._flabel.set_markup("<b>%s</b>" % label)
+
+#class needed to maintain compatibility of RadialNet with higwidgets 
+class HIGFrameRNet(gtk.Frame):
+    def __init__(self, label=''):
+        gtk.Frame.__init__(self)
+
+        self.set_border_width(3)
+        self.set_shadow_type(gtk.SHADOW_NONE)
+
+        self.__alignment = gtk.Alignment(0, 0, 1, 1)
+        self.__alignment.set_padding(12, 0, 24, 0)
+
+        self.add(self.__alignment)
+
+        self.bw_set_label(label)
+
+
+    def _set_label(self, label):
+        self.set_label("<b>%s</b>" % label)
+        self.get_label_widget().set_use_markup(True)
+
+
+    def _add(self, widget):
+        self.__alignment.add(widget)
+
+
+    def _remove(self, widget):
+        self.__alignment.remove(widget)
 
 # Demo
 if __name__ == "__main__":

@@ -33,6 +33,7 @@ import gtk
 
 #from higlabels import *
 #from higentries import *
+from higwidgets.higboxes import HIGBox
 
 class HIGTable(gtk.Table):
     """
@@ -56,3 +57,56 @@ class HIGTable(gtk.Table):
             
     def attach_entry(self, widget, x0, x, y0, y):
         self.attach(widget, x0, x, y0, y, xoptions=gtk.FILL|gtk.EXPAND)
+
+class HIGTableRNet(gtk.Table, HIGBox):
+    def __init__(self, rows=1, columns=1, homogeneous=False):
+        gtk.Table.__init__(self, rows, columns, homogeneous)
+        self._set_spacing(12)
+
+        self.__rows = rows
+        self.__columns = columns
+
+        self.__last_point = (0, 0)
+
+
+    def _set_spacing(self, spacing):
+        self.set_row_spacings(spacing)
+        self.set_col_spacings(spacing)
+
+
+    def _resize(self, rows, columns):
+        self.__rows = rows
+        self.__columns = columns
+
+        self.resize(rows, columns)
+
+
+    def _attach_next(self,
+                     child,
+                     xoptions=gtk.EXPAND|gtk.FILL,
+                     yoptions=gtk.EXPAND|gtk.FILL,
+                     xpadding=0,
+                     ypadding=0):
+        row, column = self.__last_point
+
+        if row != self.__rows:
+
+            self.attach(child,
+                        column,
+                        column + 1,
+                        row,
+                        row + 1,
+                        xoptions,
+                        yoptions,
+                        xpadding,
+                        ypadding)
+
+            if column + 1 == self.__columns:
+
+                column = 0
+                row += 1
+
+            else:
+                column += 1
+
+            self.__last_point = (row, column)

@@ -22,8 +22,13 @@ import gtk
 import pango
 import gobject
 
-import bestwidgets as bw
+#import bestwidgets as bw
 
+from higwidgets.higboxes import HIGBox, HIGHBox, HIGVBox, HIGScrolledWindow
+from higwidgets.higexpanders import HIGExpanderRNet
+from higwidgets.higlabels import HIGLabel, HIGSectionLabel
+from higwidgets.higtables import HIGTableRNet
+from higwidgets.higtextviewers import HIGTextEditor
 
 PORTS_HEADER = ['Port', 'Protocol', 'State', 'Service', 'Method']
 EXTRAPORTS_HEADER = ['Count', 'State', 'Reasons']
@@ -82,9 +87,9 @@ class NodeNotebook(gtk.Notebook):
         self.__trace_page = TraceroutePage(self.__node)
 
         # packing notebook elements
-        self.append_page(self.__system_page, bw.BWLabel('General'))
-        self.append_page(self.__services_page, bw.BWLabel('Services'))
-        self.append_page(self.__trace_page, bw.BWLabel('Traceroute'))
+        self.append_page(self.__system_page, HIGLabel('General'))
+        self.append_page(self.__services_page, HIGLabel('Services'))
+        self.append_page(self.__trace_page, HIGLabel('Traceroute'))
 
 
 
@@ -110,27 +115,27 @@ class ServicesPage(gtk.Notebook):
         self.__cell = gtk.CellRendererText()
 
         # texteditor widgets
-        self.__texteditor = bw.BWTextEditor()
-        self.__texteditor.bw_modify_font(self.__font)
-        self.__texteditor.bw_set_editable(False)
+        self.__texteditor = HIGTextEditor()
+        self.__texteditor._modify_font(self.__font)
+        self.__texteditor._set_editable(False)
         self.__texteditor.set_border_width(0)
 
         self.__select_combobox = gtk.combo_box_new_text()
         self.__select_combobox.connect('changed', self.__change_text_value)
 
-        self.__viewer = bw.BWVBox(spacing=6)
+        self.__viewer = HIGVBox(spacing=6)
         self.__viewer.set_border_width(6)
 
-        self.__viewer.bw_pack_start_noexpand_nofill(self.__select_combobox)
-        self.__viewer.bw_pack_start_expand_fill(self.__texteditor)
+        self.__viewer._pack_noexpand_nofill(self.__select_combobox)
+        self.__viewer._pack_expand_fill(self.__texteditor)
 
         self.__text = list()
 
         # ports information
         number_of_ports = len(self.__node.get_info('ports'))
-        self.__ports_label = bw.BWLabel('Ports (%s)' % number_of_ports)
+        self.__ports_label = HIGLabel('Ports (%s)' % number_of_ports)
 
-        self.__ports_scroll = bw.BWScrolledWindow()
+        self.__ports_scroll = HIGScrolledWindow()
 
         self.__ports_store = gtk.TreeStore(gobject.TYPE_INT,
                                            gobject.TYPE_STRING,
@@ -241,7 +246,7 @@ class ServicesPage(gtk.Notebook):
         # extraports information
         number_of_xports = 0
 
-        self.__xports_scroll = bw.BWScrolledWindow()
+        self.__xports_scroll = HIGScrolledWindow()
 
         self.__xports_store = gtk.TreeStore(gobject.TYPE_INT,
                                             gobject.TYPE_STRING,
@@ -292,13 +297,13 @@ class ServicesPage(gtk.Notebook):
             self.__xports_treeview.append_column(self.__xports_column[i])
 
         xports_label_text = 'Extraports (%s)' % number_of_xports
-        self.__xports_label = bw.BWLabel(xports_label_text)
+        self.__xports_label = HIGLabel(xports_label_text)
 
         self.__xports_scroll.add_with_viewport(self.__xports_treeview)
 
         self.append_page(self.__ports_scroll, self.__ports_label)
         self.append_page(self.__xports_scroll, self.__xports_label)
-        self.append_page(self.__viewer, bw.BWLabel('Special fields'))
+        self.append_page(self.__viewer, HIGLabel('Special fields'))
 
         if len(self.__text) > 0:
             self.__select_combobox.set_active(0)
@@ -309,17 +314,17 @@ class ServicesPage(gtk.Notebook):
         """
         id = self.__select_combobox.get_active()
 
-        self.__texteditor.bw_set_text(self.__text[id])
+        self.__texteditor._set_text(self.__text[id])
 
 
 
-class SystemPage(bw.BWScrolledWindow):
+class SystemPage(HIGScrolledWindow):
     """
     """
     def __init__(self, node):
         """
         """
-        bw.BWScrolledWindow.__init__(self)
+        HIGScrolledWindow.__init__(self)
 
         self.__node = node
         self.__font = pango.FontDescription('Monospace')
@@ -330,22 +335,22 @@ class SystemPage(bw.BWScrolledWindow):
     def __create_widgets(self):
         """
         """
-        self.__vbox = bw.BWVBox()
+        self.__vbox = HIGVBox()
         self.__vbox.set_border_width(6)
 
         self.__cell = gtk.CellRendererText()
 
-        self.__general_frame = bw.BWExpander('General information')
-        self.__sequences_frame = bw.BWExpander('Sequences')
-        self.__os_frame = bw.BWExpander('Operating System')
+        self.__general_frame = HIGExpanderRNet('General information')
+        self.__sequences_frame = HIGExpanderRNet('Sequences')
+        self.__os_frame = HIGExpanderRNet('Operating System')
 
-        self.__sequences_frame.bw_add(gtk.Label('No sequence information.'))
-        self.__os_frame.bw_add(gtk.Label('No OS information.'))
+        self.__sequences_frame._add(gtk.Label('No sequence information.'))
+        self.__os_frame._add(gtk.Label('No OS information.'))
 
         # general information widgets
-        self.__general = bw.BWTable(3, 2)
+        self.__general = HIGTableRNet(3, 2)
 
-        self.__address_label = bw.BWSectionLabel('Address:')
+        self.__address_label = HIGSectionLabel('Address:')
         self.__address_list = gtk.combo_box_entry_new_text()
         self.__address_list.child.set_editable(False)
 
@@ -361,14 +366,14 @@ class SystemPage(bw.BWScrolledWindow):
 
         self.__address_list.set_active(0)
 
-        self.__general.bw_attach_next(self.__address_label,
-                                      yoptions=gtk.FILL,
-                                      xoptions=gtk.FILL)
-        self.__general.bw_attach_next(self.__address_list, yoptions=gtk.FILL)
+        self.__general._attach_next(self.__address_label,
+                                    yoptions=gtk.FILL,
+                                    xoptions=gtk.FILL)
+        self.__general._attach_next(self.__address_list, yoptions=gtk.FILL)
 
         if self.__node.get_info('hostnames') != None:
 
-            self.__hostname_label = bw.BWSectionLabel('Hostname:')
+            self.__hostname_label = HIGSectionLabel('Hostname:')
             self.__hostname_list = gtk.combo_box_entry_new_text()
             self.__hostname_list.child.set_editable(False)
 
@@ -379,47 +384,47 @@ class SystemPage(bw.BWScrolledWindow):
 
             self.__hostname_list.set_active(0)
 
-            self.__general.bw_attach_next(self.__hostname_label,
-                                          yoptions=gtk.FILL,
-                                          xoptions=gtk.FILL)
-            self.__general.bw_attach_next(self.__hostname_list,
-                                          yoptions=gtk.FILL)
+            self.__general._attach_next(self.__hostname_label,
+                                        yoptions=gtk.FILL,
+                                        xoptions=gtk.FILL)
+            self.__general._attach_next(self.__hostname_list,
+                                        yoptions=gtk.FILL)
 
         if self.__node.get_info('uptime') != None:
 
-            self.__uptime_label = bw.BWSectionLabel('Last boot:')
+            self.__uptime_label = HIGSectionLabel('Last boot:')
 
             seconds = self.__node.get_info('uptime')['seconds']
             lastboot = self.__node.get_info('uptime')['lastboot']
 
             text = '%s (%s seconds).' % (lastboot, seconds)
 
-            self.__uptime_value = bw.BWLabel(text)
+            self.__uptime_value = HIGLabel(text)
             self.__uptime_value.set_selectable(True)
             self.__uptime_value.set_line_wrap(False)
 
-            self.__general.bw_attach_next(self.__uptime_label,
-                                          yoptions=gtk.FILL,
-                                          xoptions=gtk.FILL)
-            self.__general.bw_attach_next(self.__uptime_value,
-                                          yoptions=gtk.FILL)
+            self.__general._attach_next(self.__uptime_label,
+                                        yoptions=gtk.FILL,
+                                        xoptions=gtk.FILL)
+            self.__general._attach_next(self.__uptime_value,
+                                        yoptions=gtk.FILL)
 
-        self.__general_frame.bw_add(self.__general)
+        self.__general_frame._add(self.__general)
         self.__general_frame.set_expanded(True)
 
         # sequences information widgets
-        self.__sequences = bw.BWTable(5, 3)
+        self.__sequences = HIGTableRNet(5, 3)
 
         sequences = self.__node.get_info('sequences')
 
         if len(sequences) > 0:
 
-            self.__sequences.attach(bw.BWSectionLabel('Class'), 1, 2, 0, 1)
-            self.__sequences.attach(bw.BWSectionLabel('Values'), 2, 3, 0, 1)
+            self.__sequences.attach(HIGSectionLabel('Class'), 1, 2, 0, 1)
+            self.__sequences.attach(HIGSectionLabel('Values'), 2, 3, 0, 1)
 
-            self.__sequences.attach(bw.BWSectionLabel('TCP *'), 0, 1, 1, 2)
-            self.__sequences.attach(bw.BWSectionLabel('IP ID'), 0, 1, 2, 3)
-            self.__sequences.attach(bw.BWSectionLabel('TCP Timestamp'),
+            self.__sequences.attach(HIGSectionLabel('TCP *'), 0, 1, 1, 2)
+            self.__sequences.attach(HIGSectionLabel('IP ID'), 0, 1, 2, 3)
+            self.__sequences.attach(HIGSectionLabel('TCP Timestamp'),
                                     0,
                                     1,
                                     3,
@@ -428,7 +433,7 @@ class SystemPage(bw.BWScrolledWindow):
             # tcp sequence values
             tcp = sequences['tcp']
 
-            tcp_class = bw.BWLabel(tcp['class'])
+            tcp_class = HIGLabel(tcp['class'])
             tcp_class.set_selectable(True)
 
             self.__sequences.attach(tcp_class, 1, 2, 1, 2)
@@ -442,7 +447,7 @@ class SystemPage(bw.BWScrolledWindow):
 
             self.__sequences.attach(tcp_values, 2, 3, 1, 2)
 
-            tcp_note = bw.BWLabel()
+            tcp_note = HIGLabel()
             tcp_note.set_selectable(True)
             tcp_note.set_line_wrap(False)
             tcp_note.set_alignment(1.0, 0.5)
@@ -453,7 +458,7 @@ class SystemPage(bw.BWScrolledWindow):
             # ip id sequence values
             ip_id = sequences['ip_id']
 
-            ip_id_class = bw.BWLabel(ip_id['class'])
+            ip_id_class = HIGLabel(ip_id['class'])
             ip_id_class.set_selectable(True)
 
             self.__sequences.attach(ip_id_class, 1, 2, 2, 3)
@@ -470,7 +475,7 @@ class SystemPage(bw.BWScrolledWindow):
             # tcp sequence values
             tcp_ts = sequences['tcp_ts']
 
-            tcp_ts_class = bw.BWLabel(tcp_ts['class'])
+            tcp_ts_class = HIGLabel(tcp_ts['class'])
             tcp_ts_class.set_selectable(True)
 
             self.__sequences.attach(tcp_ts_class, 1, 2, 3, 4)
@@ -486,7 +491,7 @@ class SystemPage(bw.BWScrolledWindow):
 
                 self.__sequences.attach(tcp_ts_values, 2, 3, 3, 4)
 
-            self.__sequences_frame.bw_add(self.__sequences)
+            self.__sequences_frame._add(self.__sequences)
 
         # operating system information widgets
         self.__os = gtk.Notebook()
@@ -498,7 +503,7 @@ class SystemPage(bw.BWScrolledWindow):
 
             if os.has_key('matches'):
 
-                self.__match_scroll = bw.BWScrolledWindow()
+                self.__match_scroll = HIGScrolledWindow()
 
                 self.__match_store = gtk.ListStore(gobject.TYPE_INT,
                                                    gobject.TYPE_STRING,
@@ -535,11 +540,11 @@ class SystemPage(bw.BWScrolledWindow):
 
                 self.__match_scroll.add_with_viewport(self.__match_treeview)
 
-                self.__os.append_page(self.__match_scroll, bw.BWLabel('Match'))
+                self.__os.append_page(self.__match_scroll, HIGLabel('Match'))
 
             if os.has_key('classes'):
 
-                self.__class_scroll = bw.BWScrolledWindow()
+                self.__class_scroll = HIGScrolledWindow()
 
                 self.__class_store = gtk.ListStore(gobject.TYPE_INT,
                                                    gobject.TYPE_STRING,
@@ -585,20 +590,20 @@ class SystemPage(bw.BWScrolledWindow):
 
                 self.__class_scroll.add_with_viewport(self.__class_treeview)
 
-                self.__os.append_page(self.__class_scroll, bw.BWLabel('Class'))
+                self.__os.append_page(self.__class_scroll, HIGLabel('Class'))
 
-            self.__fp_viewer = bw.BWTextEditor()
-            self.__fp_viewer.bw_modify_font(self.__font)
-            self.__fp_viewer.bw_set_editable(False)
-            self.__fp_viewer.bw_set_text(os['fingerprint'])
+            self.__fp_viewer = HIGTextEditor()
+            self.__fp_viewer._modify_font(self.__font)
+            self.__fp_viewer._set_editable(False)
+            self.__fp_viewer._set_text(os['fingerprint'])
 
-            self.__fp_ports = bw.BWHBox()
-            self.__fp_label = bw.BWSectionLabel('Used ports:')
+            self.__fp_ports = HIGHBox()
+            self.__fp_label = HIGSectionLabel('Used ports:')
 
             self.__fp_ports_list = gtk.combo_box_entry_new_text()
             self.__fp_ports_list.child.set_editable(False)
 
-            self.__fp_vbox = bw.BWVBox()
+            self.__fp_vbox = HIGVBox()
 
             if os.has_key('used_ports'):
 
@@ -611,32 +616,32 @@ class SystemPage(bw.BWScrolledWindow):
 
                 self.__fp_ports_list.set_active(0)
 
-                self.__fp_ports.bw_pack_start_noexpand_nofill(self.__fp_label)
-                self.__fp_ports.bw_pack_start_expand_fill(self.__fp_ports_list)
+                self.__fp_ports._pack_noexpand_nofill(self.__fp_label)
+                self.__fp_ports._pack_expand_fill(self.__fp_ports_list)
 
-                self.__fp_vbox.bw_pack_start_noexpand_nofill(self.__fp_ports)
+                self.__fp_vbox._pack_noexpand_nofill(self.__fp_ports)
 
-            self.__os.append_page(self.__fp_viewer, bw.BWLabel('Fingerprint'))
-            self.__fp_vbox.bw_pack_start_expand_fill(self.__os)
+            self.__os.append_page(self.__fp_viewer, HIGLabel('Fingerprint'))
+            self.__fp_vbox._pack_expand_fill(self.__os)
 
-            self.__os_frame.bw_add(self.__fp_vbox)
+            self.__os_frame._add(self.__fp_vbox)
             self.__os_frame.set_expanded(True)
 
-        self.__vbox.bw_pack_start_noexpand_nofill(self.__general_frame)
-        self.__vbox.bw_pack_start_expand_fill(self.__os_frame)
-        self.__vbox.bw_pack_start_noexpand_nofill(self.__sequences_frame)
+        self.__vbox._pack_noexpand_nofill(self.__general_frame)
+        self.__vbox._pack_expand_fill(self.__os_frame)
+        self.__vbox._pack_noexpand_nofill(self.__sequences_frame)
 
         self.add_with_viewport(self.__vbox)
 
 
 
-class TraceroutePage(bw.BWVBox):
+class TraceroutePage(HIGVBox):
     """
     """
     def __init__(self, node):
         """
         """
-        bw.BWVBox.__init__(self)
+        HIGVBox.__init__(self)
         self.set_border_width(6)
 
         self.__node = node
@@ -660,7 +665,7 @@ class TraceroutePage(bw.BWVBox):
 
             self.__cell = gtk.CellRendererText()
 
-            self.__trace_scroll = bw.BWScrolledWindow()
+            self.__trace_scroll = HIGScrolledWindow()
             self.__trace_scroll.set_border_width(0)
 
             self.__trace_store = gtk.ListStore(gobject.TYPE_INT,
@@ -724,8 +729,8 @@ class TraceroutePage(bw.BWVBox):
                                  self.__node.get_info('trace')['protocol'],
                                  len(self.__node.get_info('trace')['hops']))
 
-            self.__trace_label = bw.BWLabel(TRACE_TEXT % self.__trace_info)
+            self.__trace_label = HIGLabel(TRACE_TEXT % self.__trace_info)
             self.__trace_label.set_use_markup(True)
 
-            self.bw_pack_start_expand_fill(self.__trace_scroll)
-            self.bw_pack_start_noexpand_nofill(self.__trace_label)
+            self._pack_expand_fill(self.__trace_scroll)
+            self._pack_noexpand_nofill(self.__trace_label)

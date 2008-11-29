@@ -6,6 +6,7 @@
 #
 # Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #         Cleber Rodrigues <cleber.gnu@gmail.com>
+#         João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
 # This library is free software; you can redistribute it and/or modify 
 # it under the terms of the GNU Lesser General Public License as published 
@@ -38,6 +39,19 @@ class HIGBox(gtk.Box):
     def _pack_expand_fill(self, widget):
         self.pack_start(widget, expand=True, fill=True)
 
+    # Methods included for RadialNet integration
+    def _pack_expand_nofill(self, widget):
+        self.pack_start(widget, expand=True, fill=False)
+
+    def _pack_end_noexpand_nofill(self, widget):
+        self.pack_end(widget, expand=False, fill=False)
+
+    def _pack_end_expand_fill(self, widget):
+        self.pack_end(widget, expand=True, fill=True)
+
+    def _pack_end_expand_nofill(self, widget):
+        self.pack_end(widget, expand=True, fill=False)
+
 class HIGHBox(gtk.HBox, HIGBox):
     def __init__(self, homogeneous=False, spacing=12):
         gtk.HBox.__init__(self, homogeneous, spacing)
@@ -69,3 +83,17 @@ class HIGSpacer(HIGHBox):
 
 def hig_box_space_holder():
     return gtk.Label("    ")
+
+
+class HIGStatusbar(gtk.Statusbar, HIGBox):
+    def __init__(self, homogeneous=False, spacing=12):
+        gtk.HBox.__init__(self, homogeneous, spacing)
+
+
+class HIGScrolledWindow(gtk.ScrolledWindow):
+    def __init__(self):
+        gtk.ScrolledWindow.__init__(self)
+        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.set_shadow_type(gtk.SHADOW_NONE)
+        self.set_border_width(6)
+

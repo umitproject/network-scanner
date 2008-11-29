@@ -6,6 +6,7 @@
 #
 # Author: Adriano Monteiro Marques <adriano@umitproject.org>
 #         Cleber Rodrigues <cleber.gnu@gmail.com>
+#         João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
 # This library is free software; you can redistribute it and/or modify 
 # it under the terms of the GNU Lesser General Public License as published 
@@ -27,7 +28,8 @@ higwidgets/higbuttons.py
    button related classes
 """
 
-__all__ = ['HIGMixButton', 'HIGButton', 'HIGArrowButton', 'MiniButton']
+__all__ = ['HIGMixButton', 'HIGButton', 'HIGArrowButton', 'MiniButton', 'HIGStockButton', 
+           'HIGToggleButton', 'HIGToggleStockButton']
 
 import gtk
 import gobject
@@ -74,6 +76,34 @@ class HIGToggleButton(gtk.ToggleButton):
             self.set_use_stock(True)
         else:
             gtk.ToggleButton.__init__(self)
+
+class HIGStockButton(gtk.Button):
+    """
+    """
+    def __init__(self, stock, text=None, size=gtk.ICON_SIZE_BUTTON):
+        """
+        """
+        gtk.Button.__init__(self, text)
+
+        self.__size = size
+
+        self.__image = gtk.Image()
+        self.__image.set_from_stock(stock, self.__size)
+        self.set_image(self.__image)
+
+class HIGToggleStockButton(gtk.ToggleButton):
+    """
+    """
+    def __init__(self, stock, text=None, size=gtk.ICON_SIZE_BUTTON):
+        """
+        """
+        gtk.ToggleButton.__init__(self, text)
+
+        self.__size = size
+
+        self.__image = gtk.Image()
+        self.__image.set_from_stock(stock, self.__size)
+        self.set_image(self.__image)
 
 class MiniButton(gtk.Button):
     def __init__(self, stock, size=gtk.ICON_SIZE_MENU):

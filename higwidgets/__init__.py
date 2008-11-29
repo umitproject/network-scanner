@@ -31,7 +31,12 @@ This is mostly implemented by subclassing from the GTK classes, and
 providing defaults that better match the HIG specifications/recomendations.
 """
 
-__version__ = "0.9.5"
+__version__ = "1.0A-svn"
+
+# added to RadialNet compatibility
+import gtk
+
+gtk_version_major, gtk_version_minor, gtk_version_release = gtk.gtk_version
 
 from gtkutils import *
 from higboxes import *

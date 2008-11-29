@@ -21,7 +21,7 @@
 import gtk
 import gobject
 
-import bestwidgets as bw
+#import bestwidgets as bw
 from umitGUI.radialnet.HostsViewer import HostsViewer
 
 

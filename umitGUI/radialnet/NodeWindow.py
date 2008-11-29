@@ -21,25 +21,28 @@
 import gtk
 import pango
 
-import bestwidgets as bw
+#import bestwidgets as bw
 import higwidgets.drawing as drawing
 
 from umitGUI.radialnet.Image import Application
 from umitGUI.radialnet.NodeNotebook import NodeNotebook
 
+from higwidgets.higboxes import HIGBox, HIGHBox, HIGVBox
+from higwidgets.higlabels import HIGSectionLabel
+from higwidgets.higwindows import HIGWindow
 
 DIMENSION_NORMAL = (600, 400)
 DIMENSION_SHADED = (200, 24)
 
 
 
-class NodeWindow(bw.BWWindow):
+class NodeWindow(HIGWindow):
     """
     """
     def __init__(self, node, position, parent):
         """
         """
-        bw.BWWindow.__init__(self, gtk.WINDOW_POPUP)
+        HIGWindow.__init__(self, gtk.WINDOW_POPUP)
         self.set_decorated(False)
         self.set_keep_above(True)
         self.set_skip_taskbar_hint(True)
@@ -77,8 +80,8 @@ class NodeWindow(bw.BWWindow):
     def __create_widgets(self):
         """
         """
-        self.__content = bw.BWVBox()
-        self.__head = bw.BWHBox(spacing=2)
+        self.__content = HIGVBox()
+        self.__head = HIGHBox(spacing=2)
 
         self.__notebook = NodeNotebook(self.__node)
 
@@ -101,7 +104,7 @@ class NodeWindow(bw.BWWindow):
 
         self.__title += self.__node.get_info('ip')
 
-        self.__title_label = bw.BWSectionLabel(self.__title)
+        self.__title_label = HIGSectionLabel(self.__title)
         self.__title_label.modify_font(self.__title_font)
 
         # icon to collapse window
@@ -121,14 +124,14 @@ class NodeWindow(bw.BWWindow):
         self.__close_box.add_events(gtk.gdk.BUTTON_PRESS_MASK)
 
         # packing head elements
-        self.__head.bw_pack_start_noexpand_nofill(self.__color_box)
-        self.__head.bw_pack_start_expand_fill(self.__title_label)
-        self.__head.bw_pack_start_noexpand_nofill(self.__collapse_box)
-        self.__head.bw_pack_start_noexpand_nofill(self.__close_box)
+        self.__head._pack_start_noexpand_nofill(self.__color_box)
+        self.__head._pack_expand_fill(self.__title_label)
+        self.__head._pack_start_noexpand_nofill(self.__collapse_box)
+        self.__head._pack_start_noexpand_nofill(self.__close_box)
 
         # packing all to content
-        self.__content.bw_pack_start_noexpand_nofill(self.__head)
-        self.__content.bw_pack_start_expand_fill(self.__notebook)
+        self.__content._pack_start_noexpand_nofill(self.__head)
+        self.__content._pack_expand_fill(self.__notebook)
 
         # add context to window
         self.add(self.__content)
