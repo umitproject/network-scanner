@@ -20,7 +20,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-from os import R_OK, W_OK, access, mkdir, getcwd, environ, getcwd
+from os import R_OK, W_OK, access, mkdir, getcwd, environ, getcwd, makedirs
 from os.path import exists, join, split, abspath, dirname
 from tempfile import mktemp
 from types import StringTypes
@@ -153,6 +153,15 @@ user home: %s" % config_file)
         self.icons_dir = ICONS_DIR
         self.misc_dir = MISC_DIR
         self.docs_dir = DOCS_DIR
+
+        for plug_path in ('plugins', 'plugins-download', 'plugins-temp'):
+            dir_path = join(config_dir, plug_path)
+
+            try:
+                if not exists(dir_path):
+                    makedirs(dir_path)
+            except:
+                pass
 
         log.debug(">>> Config file: %s" % config_file)
         log.debug(">>> Locale: %s" % self.locale_dir)
