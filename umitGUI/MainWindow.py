@@ -939,6 +939,7 @@ access to this path.'))
     def _profile_manager(self,p):
         """ Show Profile Manager """
         pm = ProfileManager()
+        pm.set_notebook(self.scan_notebook)
         pm.show_all()
     
     def _new_scan_profile_cb(self, p):

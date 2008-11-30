@@ -55,7 +55,8 @@ class ProfileManager(HIGWindow):
         self.add(self.vbox_main)
         self.__fill_widgets()
         self.__pack_widgets()
-
+	self.__scan_notebook = None
+    
     
     def __create_widgets(self):
         
@@ -193,11 +194,13 @@ class ProfileManager(HIGWindow):
 	    # Edit profile selected    
 	    if self.get_selected_profile() != None:
 		pe = ProfileEditor(self.get_selected_profile())
+		pe.set_notebook(self.__scan_notebook)
 		pe.set_profilemanager(self.model)
 		pe.show_all()
 	else:
 	    # New Profile
 	    pe = ProfileEditor()
+	    pe.set_notebook(self.__scan_notebook)
 	    pe.set_profilemanager(self.model)
 	    pe.show_all()
 	    self._reload_profile_list()
@@ -271,7 +274,9 @@ class ProfileManager(HIGWindow):
             self.model.set_value(myiter, 0, command)
 	    self.model.set_value(myiter,1, self.profiles.get_hint(command))
 	    #self.model.append([command,self.profiles.get_hint(command)])
-
+	    
+    def set_notebook(self, notebook):
+	self.__scan_notebook = notebook
     def quit(self, widget):
 	self.destroy()
     
