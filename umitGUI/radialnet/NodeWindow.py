@@ -124,13 +124,13 @@ class NodeWindow(HIGWindow):
         self.__close_box.add_events(gtk.gdk.BUTTON_PRESS_MASK)
 
         # packing head elements
-        self.__head._pack_start_noexpand_nofill(self.__color_box)
+        self.__head._pack_noexpand_nofill(self.__color_box)
         self.__head._pack_expand_fill(self.__title_label)
-        self.__head._pack_start_noexpand_nofill(self.__collapse_box)
-        self.__head._pack_start_noexpand_nofill(self.__close_box)
+        self.__head._pack_noexpand_nofill(self.__collapse_box)
+        self.__head._pack_noexpand_nofill(self.__close_box)
 
         # packing all to content
-        self.__content._pack_start_noexpand_nofill(self.__head)
+        self.__content._pack_noexpand_nofill(self.__head)
         self.__content._pack_expand_fill(self.__notebook)
 
         # add context to window

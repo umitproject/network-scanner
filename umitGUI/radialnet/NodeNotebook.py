@@ -148,7 +148,6 @@ class ServicesPage(gtk.Notebook):
         self.__ports_treeview = gtk.TreeView(self.__ports_store)
 
         for port in self.__node.get_info('ports'):
-
             color = SERVICE_COLORS[port['state']['state']]
 
             if port['service'].has_key('name'):
