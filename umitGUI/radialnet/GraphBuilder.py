@@ -187,26 +187,19 @@ class GraphBuilder(Graph):
         
         sequences = {}
     
-        if host_tcpsequence != {}:
+        if host_tcpsequence:
+            if host_tcpsequence['index']:
+                host_tcpsequence['index'] = int(host_tcpsequence['index'])
+            host_tcpsequence['values'] = host_tcpsequence['values'].split(',')
+            sequences['tcp'] = host_tcpsequence
     
-            tcp = host_tcpsequence
-            if type(host_tcpsequence['index']) != type(0):
-                tcp['index'] = int(host_tcpsequence['index'])
-            tcp['class'] = host_tcpsequence['class']
-            tcp['values'] = host_tcpsequence['values'].split(',')
-            tcp['difficulty'] = host_tcpsequence['difficulty']
-    
-            sequences['tcp'] = tcp
-    
-        if host_ipidsequence != {}:
-    
+        if host_ipidsequence:
             ip_id = host_ipidsequence
             ip_id['values'] = host_ipidsequence['values'].split(',')
     
             sequences['ip_id'] = ip_id
     
-        if host_tcptssequence != {}:
-    
+        if host_tcptssequence:
             if host_tcptssequence.has_key('values') and \
                host_tcptssequence['values'] != None:
                 host_tcptssequence['values'] = \
