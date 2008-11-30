@@ -82,7 +82,7 @@ class RadialNet(gtk.DrawingArea):
         self.__number_of_frames = 60
 
         self.__scale = 1.0
-        self.__rotate = 0
+        self.__rotate = 225
         self.__translation = (0, 0)
 
         self.__button1_press = False
