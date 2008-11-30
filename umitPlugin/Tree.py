@@ -444,7 +444,7 @@ class PluginsTree(object):
             return module
 
     def load_directory(self, modpath):
-        if os.environ.get('UMIT_DEVELOPMENT', False):
+        if not os.environ.get('UMIT_DEVELOPMENT', False):
             log.error("This method should not be called in release.")
             return
 
