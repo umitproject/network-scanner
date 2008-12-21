@@ -459,7 +459,7 @@ class PluginsTree(object):
         sys.path.insert(0, os.path.abspath(modpath))
 
         if start_file in sys.modules:
-            sys.modules.pop(pkg.start_file)
+            sys.modules.pop(start_file)
 
         try:
             __builtin__.__import__ = hook_import
