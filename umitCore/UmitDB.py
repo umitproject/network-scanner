@@ -22,6 +22,8 @@
 
 import md5
 
+from umitCore.I18N import _
+
 sqlite = None
 OperationalError = None
 try:
