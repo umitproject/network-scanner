@@ -97,5 +97,5 @@ class Application(Image):
         # Note integration:  May be icons shound't live within pixmaps_dir
         # And may be this class is useless now.
         # TODO: Is it useless?
-        Image.__init__(self, os.path.join(Path.pixmaps_dir,
+        Image.__init__(self, os.path.join(Path.pixmaps_dir,"radialnet",
                                           "application"))
