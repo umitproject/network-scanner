@@ -713,8 +713,8 @@ class DiffTree(HIGVBox, object):
                      parsed2.hosts_up)
         self.diff_it(parent, "", _("Hosts Down"), parsed1.hosts_down,
                      parsed2.hosts_down)
-        self.diff_it(parent, "", _("Hosts Scanned"), parsed1.hosts_scanned,
-                     parsed2.hosts_scanned)
+        self.diff_it(parent, "", _("Hosts Scanned"), parsed1.hosts_total,
+                     parsed2.hosts_total)
         self.diff_it(parent, "", _("Finish date"), parsed1.formated_finish_date,
                      parsed2.formated_finish_date)
 
@@ -758,109 +758,62 @@ class DiffTree(HIGVBox, object):
                          _("LastBoot"),
                          host.uptime.get("lastboot", ""),
                          host2.uptime.get("lastboot", ""))
+            # XXX Comparing only the last os match
+            h_match = {}
+            h2_match = {}
+            if host.osmatch:
+                h_match = host.osmatch[-1]
+            if host2.osmatch:
+                h2_match = host2.osmatch[-1]
             self.diff_it(parent,
                          "",
                          _("OS Match"),
-                         host.osmatch.get("name", ""),
-                         host2.osmatch.get("name", ""))
+                         h_match.get("name", ""),
+                         h2_match.get("name", ""))
 
 
-            host_ports = host.ports[:]
-            host2_ports = host2.ports[:]
-            for port in xrange(len(host_ports)):
-                # Making sure that extraports1 will get a sanity 
-                # value to be processed
-                try:
-                    extraports1 = host_ports[port].get("extraports", [])
-                except:
-                    extraports1 = {}
-                else:
-                    if len(extraports1) == 0:
-                        extraports1 = {}
-                    elif len(extraports1) == 1:
-                        extraports1 = extraports1[0]
+            # XXX only the first extraports are being compared
+            extraports1 = {}
+            extraports2 = {}
+            if host.extraports:
+                extraports1 = host.extraports[0]
+            if host2.extraports:
+                extraports2 = host2.extraports[0]
 
-                # Making sure that extraports2 will get a sanity
-                # value to be processed
-                try:
-                    extraports2 = host2_ports[port].get("extraports", [])
-                except:
-                    extraports2 = {}
-                else:
-                    if len(extraports2) == 0:
-                        extraports2 = {}
-                    elif len(extraports2) == 1:
-                        extraports2 = extraports2[0]
+            if extraports1 and extraports2:
+                self.add_extraports_diff(parent, "",
+                        extraports1, extraports2)
+            elif extraports1 and not extraports2:
+                self.add_extraports_diff(parent, "N",
+                        extraports1, extraports2)
+            elif not extraports1 and extraports2:
+                self.add_extraports_diff(parent, "A",
+                        extraports1, extraports2)
 
-                
-                if extraports1 and extraports2:
-                    self.add_extraports_diff(parent,
-                                             "",
-                                             extraports1,
-                                             extraports2)
-                elif extraports1 and not extraports2:
-                    self.add_extraports_diff(parent,
-                                             "N",
-                                             extraports1,
-                                             extraports2)
-                elif not extraports1 and extraports2:
-                    self.add_extraports_diff(parent,
-                                             "A",
-                                             extraports1,
-                                             extraports2)
+            section =  _("Ports")
+            parent = self.append_parent(parent, section, "")
 
-                section =  _("Ports")
-                parent = self.append_parent(parent, section, "")
+            ports1 = host.ports[:]
+            ports2 = host2.ports[:]
 
+            for p1 in ports1:
+                if not p1:
+                    continue
 
-                # Making sure that ports1 will get a sanity
-                # value to be processed
-                try:
-                    ports1 = host_ports[port].get("port", [])
-                except:
-                    ports1 = {}
-                else:
-                    if len(ports1) == 0:
-                        ports1 = {}
-                    elif len(ports1) == 1:
-                        ports1 = ports1[0]
+                p2 = [port2 for port2 in ports2 \
+                        if port2.get("portid", "a") == p1.get("portid", "b")]
 
-                # Making sure that ports2 will get a sanity
-                # value to be processed
-                try:
-                    ports2 = host2_ports[port].get("port", [])
-                except:
-                    ports2 = {}
-                else:
-                    if len(ports2) == 0:
-                        ports2 = [{}]
-                    elif len(ports2) == 1:
-                        ports2 = ports2[0]
-                
-                if type(ports2)!= type([]):
-                    ports2 = [ports2]
+                if p2: # Removing found port
+                    ports2.remove(p2[0])
 
-                if type(ports1) != type([]):
-                    ports1 = [ports1]
+                if p1 and p2:
+                    self.add_port_diff(parent, "", p1, p2[0])
+                elif p1 and not p2:
+                    self.add_port_diff(parent, "N", p1, {})
 
-                for p1 in ports1:
-                    if not p1:
-                        continue
+            for p2 in ports2: # If there is something left...
+                self.add_port_diff(parent, "A", {}, p2)
 
-                    p2 = [port2 for port2 in ports2 \
-                          if port2.get("portid", "a") == p1.get("portid", "b")]
-                    
-                    if p2: # Removing found port
-                        ports2.remove(p2[0])
-
-                    if p1 and p2:
-                        self.add_port_diff(parent, "", p1, p2[0])
-                    elif p1 and not p2:
-                        self.add_port_diff(parent, "N", p1, {})
-
-                for p2 in ports2: # If there is something left...
-                    self.add_port_diff(parent, "A", {}, p2)
-            
 
     def add_port_diff(self, port_parent, state, port1, port2):
         if (port1 or port2) and (type(port1) == type({})) and\
@@ -872,32 +825,32 @@ class DiffTree(HIGVBox, object):
             parent = self.append_parent(port_parent, section, state)
 
             self.diff_it(parent, "",
-                         _("State"), port1.get("port_state", ""),
-                         port2.get("port_state", ""))
+                         _("State"), port1.get("state", ""),
+                         port2.get("state", ""))
             
             self.diff_it(parent, "",
-                         _("Service Name"), port1.get("service_name", ""),
-                         port2.get("service_name", ""))
+                         _("Service Name"), port1.get("name", ""),
+                         port2.get("name", ""))
                 
             self.diff_it(parent, "",
-                         _("Product"), port1.get("service_product", ""),
-                         port2.get("service_product", ""))
+                         _("Product"), port1.get("product", ""),
+                         port2.get("product", ""))
             
             self.diff_it(parent, "",
-                         _("Service Version"), port1.get("service_version", ""),
-                         port2.get("service_version", ""))
+                         _("Service Version"), port1.get("version", ""),
+                         port2.get("version", ""))
             
             self.diff_it(parent, "",
                          _("Protocol"), port1.get("protocol", ""),
                          port2.get("protocol", ""))
                 
             self.diff_it(parent, "",
-                         _("Extra Info"), port1.get("service_extrainfo", ""),
-                         port2.get("service_extrainfo", ""))
+                         _("Extra Info"), port1.get("extrainfo", ""),
+                         port2.get("extrainfo", ""))
             
             self.diff_it(parent, "",
-                         _("Service Conf"), port1.get("service_conf", ""),
-                         port2.get("service_conf", ""))
+                         _("Service Conf"), port1.get("conf", ""),
+                         port2.get("conf", ""))
 
             # Last parent status modification
             if state.upper() == "A":

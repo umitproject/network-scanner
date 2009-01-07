@@ -148,7 +148,12 @@ class ServicesPage(gtk.Notebook):
         self.__ports_treeview = gtk.TreeView(self.__ports_store)
 
         for port in self.__node.get_info('ports'):
-            color = SERVICE_COLORS[port['state']['state']]
+            pstate = port['state']['state']
+            if pstate:
+                color = SERVICE_COLORS[port['state']['state']]
+            else:
+                # XXX port state is not always available
+                color = '#fff'
 
             if port['service'].has_key('name'):
                 service_name = port['service']['name']
@@ -355,10 +360,10 @@ class SystemPage(HIGScrolledWindow):
 
         for address in self.__node.get_info('addresses'):
 
-            params = address['type'], address['addr']
+            params = address['addrtype'], address['addr']
             address_text = SYSTEM_ADDRESS_TEXT % params
 
-            if address['vendor'] != None:
+            if address.get('vendor', None):
                 address_text += " (%s)" % address['vendor']
 
             self.__address_list.append_text(address_text)
@@ -432,7 +437,7 @@ class SystemPage(HIGScrolledWindow):
             # tcp sequence values
             tcp = sequences['tcp']
 
-            tcp_class = HIGLabel(tcp['class'])
+            tcp_class = HIGLabel(tcp.get('class', ''))
             tcp_class.set_selectable(True)
 
             self.__sequences.attach(tcp_class, 1, 2, 1, 2)
@@ -450,7 +455,9 @@ class SystemPage(HIGScrolledWindow):
             tcp_note.set_selectable(True)
             tcp_note.set_line_wrap(False)
             tcp_note.set_alignment(1.0, 0.5)
-            tcp_note.set_markup(TCP_SEQ_NOTE % (tcp['index'], tcp['difficulty']))
+            if tcp['index']:
+                tcp_note.set_markup(
+                        TCP_SEQ_NOTE % (tcp['index'], tcp['difficulty']))
 
             self.__sequences.attach(tcp_note, 0, 3, 4, 5)
 
@@ -479,7 +486,7 @@ class SystemPage(HIGScrolledWindow):
 
             self.__sequences.attach(tcp_ts_class, 1, 2, 3, 4)
 
-            if tcp_ts['values'] != None:
+            if tcp_ts.get('values', None) is not None:
 
                 tcp_ts_values = gtk.combo_box_entry_new_text()
 
@@ -512,7 +519,9 @@ class SystemPage(HIGScrolledWindow):
                 self.__match_treeview = gtk.TreeView(self.__match_store)
 
                 for os_match in os['matches']:
-
+                    if 'accuracy' not in os_match:
+                        # this may happen with older .usr
+                        continue
                     self.__match_store.append([os_match['accuracy'],
                                                os_match['name'],
                                                os_match['db_line'],

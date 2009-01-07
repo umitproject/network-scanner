@@ -758,8 +758,8 @@ class ScanNotebookPage(HIGVBox):
         elif parsed_result:
             self.parsed = parsed_result
         
-        if int(self.parsed.get_hosts_up()):
-            for host in self.parsed.get_hosts():
+        if int(self.parsed.hosts_up):
+            for host in self.parsed.hosts:
                 hostname = host.get_hostname()
                 host_page = self.set_host_details(host)
                 list_states = ["open", "filtered", "open|filtered"]
@@ -955,17 +955,17 @@ class ScanNotebookPage(HIGVBox):
             })
         
         run_details.set_general_info(
-            {'start': self.parsed.get_formated_date(),
-             'finish': self.parsed.get_formated_finish_date(),
-             'hosts_up': str(self.parsed.get_hosts_up()),
-             'hosts_down': str(self.parsed.get_hosts_down()),
-             'hosts_scanned': str(self.parsed.get_hosts_scanned()),
-             'open_ports': str(self.parsed.get_open_ports()),
-             'filtered_ports': str(self.parsed.get_filtered_ports()),
-             'closed_ports': str(self.parsed.get_closed_ports())
+            {'start': self.parsed.formated_date,
+             'finish': self.parsed.formated_finish_date,
+             'hosts_up': str(self.parsed.hosts_up),
+             'hosts_down': str(self.parsed.hosts_down),
+             'hosts_scanned': str(self.parsed.hosts_total),
+             'open_ports': str(self.parsed.open_ports),
+             'filtered_ports': str(self.parsed.filtered_ports),
+             'closed_ports': str(self.parsed.closed_ports)
             })
              
-        run_details.set_scan_infos(self.parsed.get_scaninfo())
+        run_details.set_scan_infos(self.parsed.scaninfo)
         
         return run_details
     
@@ -1114,11 +1114,11 @@ class ScanNotebookPage(HIGVBox):
             self._save_comment, host.id)
 
         
-        self.comments[host.get_hostname()] = host.get_comment()
+        self.comments[host.get_hostname()] = host.comment
         
-        uptime = host.get_uptime()
+        uptime = host.uptime
 
-        host_details.set_host_status({'state':host.get_state(),
+        host_details.set_host_status({'state':host.status['state'],
                                       'open':str(host.get_open_ports()),
                                       'filtered':str(host.get_filtered_ports()),
                                       'closed':str(host.get_closed_ports()),
@@ -1127,22 +1127,30 @@ class ScanNotebookPage(HIGVBox):
                                       'lastboot':uptime['lastboot']})
 
 
-        ipv4 = host.get_ip().get('addr', '') 
-        ipv6 = host.get_ipv6().get('addr', '')
-        mac = host.get_mac().get('addr', '')
+        ipv4, ipv6, mac = '', '', ''
+        for addr in host.address:
+            addrtype, addr = addr['addrtype'], addr['addr']
+            if addrtype == 'ipv4':
+                ipv4 = addr
+            elif addrtype == 'ipv6':
+                ipv6 = addr
+            elif addrtype == 'mac':
+                mac = addr
         
-        host_details.set_addresses({'ipv4': ipv4, 'ipv6': ipv6, 'mac': mac}) 
-        host_details.set_hostnames(host.get_hostnames())
+        host_details.set_addresses({'ipv4': ipv4, 'ipv6': ipv6, 'mac': mac})
+        host_details.set_hostnames(host.hostnames)
 
-        os = host.get_osmatch()
-        if os:
-            os['portsused'] = host.get_ports_used()
-            os['osclass'] = host.get_osclasses()
+        # XXX
+        os = {}
+        if host.osmatch:
+            os = host.osmatch[0]
+            os['portsused'] = host.portused
+            os['osclass'] = host.osclass
 
-        host_details.set_os_list(host.get_osmatches(), os)
-        host_details.set_tcpseq(host.get_tcpsequence())
-        host_details.set_ipseq(host.get_ipidsequence())
-        host_details.set_tcptsseq(host.get_tcptssequence())
+        host_details.set_os_list(host.osmatch, os)
+        host_details.set_tcpseq(host.tcpsequence)
+        host_details.set_ipseq(host.ipidsequence)
+        host_details.set_tcptsseq(host.tcptssequence)
         
         return host_page
     
@@ -1150,19 +1158,14 @@ class ScanNotebookPage(HIGVBox):
         host_page = self.scan_result.scan_result_notebook.open_ports.host
         host_page.switch_port_to_list_store()
         
-        p = host.get_ports()
-        ports = []
-        for port in p:
-            ports += port['port']
-        
         host_page.clear_port_list()
-        for p in ports:
-            host_page.add_port([self.findout_service_icon(p),
-                                int(p.get('portid', '0')),
-                                p.get('protocol', ''),
-                                p.get('port_state', ''),
-                                p.get('service_name', ''),
-                                p.get('service_product', '')])
+        for port in host.ports:
+            host_page.add_port([self.findout_service_icon(port),
+                                int(port.get('portid', '0')),
+                                port.get('protocol', ''),
+                                port.get('state', ''),
+                                port.get('name', ''),
+                                port.get('product', '')])
 
     def set_single_service_host(self, service):
         host_page = self.scan_result.scan_result_notebook.open_ports.host

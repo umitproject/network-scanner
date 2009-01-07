@@ -22,6 +22,7 @@
 
 import gtk
 import os.path
+import calendar
 
 from higwidgets.higwindows import HIGWindow
 from higwidgets.higboxes import HIGVBox
@@ -37,7 +38,6 @@ from types import StringTypes
 
 from umitCore.I18N import _
 from umitCore.UmitLogging import log
-from umitCore.NmapParser import months
 from umitCore.SearchResult import SearchDir, SearchDB, SearchTabs
 from umitCore.UmitConf import SearchConfig
 
@@ -462,7 +462,7 @@ tab before start the search"))
         try:
             date = localtime(float(parsed_result.start))
             date_field = "%02d %s %04d" % (date[2],
-                                           months[date[1]][:3],
+                                           calendar.month_name[date[1]][:3],
                                            date[0])
         except ValueError:
             date_field = _("Unknown")
@@ -732,9 +732,8 @@ class Date(gtk.HBox, object):
 
     def set_date(self, date):
         # Localtime Format: (year, month, day)
-        self.date_button.set_label("%02d %s %04d" % (date[2],
-                                                     months[date[1]][:3],
-                                                     date[0]))
+        self.date_button.set_label("%02d %s %04d" % (
+            date[2], calendar.month_name[date[1]][:3], date[0]))
         self._date = date
 
     def get_date(self):

@@ -158,21 +158,18 @@ class SearchResult(object):
         
         ports = []
         
-        for p in self.parsed_scan.ports:
-            for port_dic in p:
-                for portid in port_dic["port"]:
-                    if self.port_open and portid["port_state"] == "open":
-                        ports.append(portid["portid"])
-                    elif self.port_filtered and\
-                         portid["port_state"] == "filtered":
-                        ports.append(portid["portid"])
-                    elif self.port_closed and portid["port_state"] == "closed":
-                        ports.append(portid["portid"])
-                    elif not self.port_open and \
-                             not self.port_filtered and \
-                             not self.port_closed:
-                        # In case every port state is False, add every port
-                        ports.append(portid["portid"])
+        for port in self.parsed_scan.ports:
+            if self.port_open and portid["state"] == "open":
+                ports.append(portid["portid"])
+            elif self.port_filtered and portid["state"] == "filtered":
+                ports.append(portid["portid"])
+            elif self.port_closed and portid["state"] == "closed":
+                ports.append(portid["portid"])
+            elif not self.port_open and \
+                    not self.port_filtered and \
+                    not self.port_closed:
+                # In case every port state is False, add every port
+                ports.append(portid["portid"])
 
         for keyport in port:
             if keyport not in ports:
@@ -186,13 +183,10 @@ class SearchResult(object):
             return True
         
         services = []
-        for first in self.parsed_scan.ports:
-            for ports in first:
-                for port in ports["port"]:
-                    if port.has_key('service_name'):
-                        if port["service_name"] not in services:
-                            services.append(port["service_name"])
-                        
+        for port in self.parsed_scan.ports:
+            if 'name' in port and port['name'] not in services:
+                services.append(port["service_name"])
+
         if service in services:
             return True # Given service name matched current result
         return False # Given service name didn't match current result
@@ -220,12 +214,15 @@ class SearchResult(object):
         return False
 
     def match_osmatch(self, osmatch):
+        # XXX only the last osmatch is being used
         log.debug("Match osmatch: %s" % osmatch)
         if osmatch == "" or osmatch == "*":
             return True
 
         for host in self.parsed_scan.hosts:
-            match = host.osmatch.get("name", False)
+            if not host.osmatch:
+                continue
+            match = host.osmatch[-1].get("name", False)
             if match and fnmatch(match.lower(), "*%s*" % osmatch.lower()):
                 return True
         return False
@@ -341,9 +338,8 @@ class SearchTabs(SearchResult, object):
                     parsed = NmapParser()
                     parsed.set_xml_file(scan_file)
                     parsed.parse()
-                    parsed.set_scan_name("Unsaved " + \
-                                         sbook_page.get_tab_label())
-                    parsed.set_unsaved()
+                    parsed.scan_name = "Unsaved " + sbook_page.get_tab_label()
+                    parsed.unsaved = True
                 except:
                     pass
                 else:

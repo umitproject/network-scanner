@@ -284,7 +284,7 @@ class HostDetails(HIGVBox):
         self.os_table.attach(self.os_list, 1, 2, 0, 1)
         
         # Setting current os_match accuracy
-        if os_match.has_key("accuracy"):
+        if os_match.get("accuracy", ''):
             self.os_progress.set_fraction(float(os_match['accuracy']) / 100.0)
             self.os_progress.set_text(os_match['accuracy'] + '%')
             self.os_progress.set_sensitive(True)
@@ -373,7 +373,7 @@ class HostDetails(HIGVBox):
                 table.attach(HIGEntryLabel(o['type']),0,1,y1,y2)
                 table.attach(HIGEntryLabel(o['vendor']),1,2,y1,y2)
                 table.attach(HIGEntryLabel(o['osfamily']),2,3,y1,y2)
-                table.attach(HIGEntryLabel(o['osgen']),3,4,y1,y2)
+                table.attach(HIGEntryLabel(o.get('osgen', '')),3,4,y1,y2)
                 
                 progress = gtk.ProgressBar()
                 progress.set_text(o['accuracy']+'%')
@@ -387,13 +387,13 @@ class HostDetails(HIGVBox):
         if tcpseq:
             self.tcp_expander.set_use_markup(True)
             table, hbox = self.create_table_hbox()
-            
+
             combo = gtk.combo_box_new_text()
             for v in tcpseq['values'].split(','):
                 combo.append_text(v)
-            
+
             table.attach(HIGEntryLabel(_('Class:')),0,1,0,1)
-            table.attach(HIGEntryLabel(tcpseq['class']),1,2,0,1)
+            table.attach(HIGEntryLabel(tcpseq.get('class', '')),1,2,0,1)
             
             table.attach(HIGEntryLabel(_('Difficulty:')),0,1,1,2)
             table.attach(HIGEntryLabel(tcpseq['difficulty']),1,2,1,2)
@@ -430,10 +430,10 @@ class HostDetails(HIGVBox):
         if tcptsseq:
             self.tcpts_expander.set_use_markup(True)
             table, hbox = self.create_table_hbox()
-            
+
             combo = gtk.combo_box_new_text()
-            
-            for i in tcptsseq['values'].split(','):
+
+            for i in tcptsseq.get('values', '').split(','):
                 combo.append_text(i)
             
             table.attach(HIGEntryLabel(_('Class:')),0,1,0,1)

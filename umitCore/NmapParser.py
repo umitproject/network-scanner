@@ -23,412 +23,225 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 import re
-import os
-import os.path
 import time
+import calendar
 
-from types import StringTypes
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 from xml.sax.saxutils import XMLGenerator
-from xml.sax.xmlreader import AttributesImpl as Attributes
+from xml.sax.xmlreader import AttributesImpl
 
-from umitCore.I18N import _
-from umitCore.UmitLogging import log
+UNKNOWN = "Unknown"
 
-import string
-
-months = ('',_('January'),
-             _('February'),
-             _('March'),
-             _('April'),
-             _('May'),
-             _('June'),
-             _('July'),
-             _('August'),
-             _('September'),
-             _('October'),
-             _('November'),
-             _('December'),)
+class AttributesImplDict(dict, AttributesImpl):
+    pass
 
 class HostInfo(object):
-    def __init__(self, id):
-        self.id = id
-    
+    def __init__(self, host_id):
+        self.osclass = []
+        self.osmatch = []
+        self.osfingerprint = []
+        self.portused = []
+        self.ports = []
+        self.extraports = []
+        self.tcpsequence = {}
+        self.hostnames = []
+        self.tcptssequence = {}
+        self.ipidsequence = {}
+        self.trace = {'port': '', 'proto': '', 'hop': []}
+        self.status = {}
+        self.address = []
+        self.hostscript = []
+
+        # Umit extension
+        self.id = host_id
+        self.comment = ''
+
+        self.nmap_host = {
+                'status': {'state': '', 'reason': ''},
+                'smurf': {'responses': ''},
+                'times': {'to': '', 'srtt': '', 'rttvar': ''},
+                'hostscript': [],
+                'distance': {'value': ''},
+                'trace': {'port': '', 'proto': '', 'hop': []},
+                'address': [],
+                'hostnames': [],
+                'ports': [],
+                'uptime': {'seconds': '', 'lastboot': ''},
+                'tcpsequence': {'index': '', 'values': '', 'class': ''},
+                'tcptssequence': {'values': '', 'class': ''},
+                'ipidsequence': {'values': '', 'class': ''},
+                'os': {}
+                }
+
     # Host ID
     def get_id(self):
-        if self._id != 0:
+        try:
             return self._id
-        raise Exception("Id was not set yet.")
+        except AttributeError:
+            raise Exception("Id was not set yet.")
 
-    def set_id(self, id):
-        if type(id) == type(0):
-            self._id = id
-        elif type(id) in StringTypes:
-            try:
-                self._id = int(id)
-            except:
-                raise Exception("Id invalid! Id must be an integer, \
-but received this instead: '%s'" % str(id))
-        else:
-            raise Exception("Id invalid! Id must be an integer, but received \
-this instead: '%s'" % str(id))
-    
-    # TCP SEQUENCE
-    def set_tcpsequence(self, sequence):
-        if type(sequence) == type([]):
-            self._tcpsequence = sequence[0]
-        else:
-            self._tcpsequence = sequence
-    
-    def get_tcpsequence(self):
-        if self._tcpsequence:
-            return self._tcpsequence
-        return {}
-
-    # TCPTS SEQUENCE
-    def set_tcptssequence(self, sequence):
-        if type(sequence) == type([]):
-            self._tcptssequence = sequence[0]
-        else:
-            self._tcptssequence = sequence
-    
-    def get_tcptssequence(self):
-        if self._tcptssequence:
-            return self._tcptssequence
-        return {}
+    def set_id(self, host_id):
+        try:
+            self._id = int(host_id)
+        except (TypeError, ValueError):
+            raise Exception("Invalid id! It must represent an integer, "
+                    "received %r" % host_id)
 
     # VENDOR
     def get_vendor(self):
-        try:return self._mac['vendor']
-        except:return _('Unknown')
+        vendor = UNKNOWN
+        for address in self.address:
+            if address['addrtype'] != 'mac':
+                continue
+            try:
+                vendor = address['vendor']
+                break
+            except KeyError:
+                pass
 
-    # IP ID SEQUENCE
-    def set_ipidsequence(self, sequence):
-        if type(sequence) == type([]):
-            self._ipidsequence = sequence[0]
-        else:
-            self._ipidsequence = sequence
-    
-    def get_ipidsequence(self):
-        if self._ipidsequence:
-            return self._ipidsequence
-        return {}
+        return vendor
 
-    # OS CLASSES
-    def set_osclasses(self, classes):
-        self._osclasses = classes
-    
-    def get_osclasses(self):
-        return self._osclasses
-   
-    # OS MATCHES
-    def set_osmatches(self, matches):
-        if type(matches) == type([]):
-            self._osmatches = matches
-    
-    def get_osmatches(self):
-        if self._osmatches:
-            return self._osmatches
-        return []
-    
-    # OS MATCH
-    def set_osmatch(self, match):
-        if type(match) == type([]):
-            self._osmatch = match[0]
-        else:
-            self._osmatch = match
-    
-    def get_osmatch(self):
-        if self._osmatch:
-            return self._osmatch
-        return {}
-    
-    # OS FINGERPRINT
-    def set_osfingerprint(self, fingerprint):
-        if type(fingerprint) == type([]):
-            self._osfingerprint = fingerprint[0]
-        else:
-            self._osfingerprint = fingerprint
-    
-    def get_osfingerprint(self):
-        if self._osfingerprint:
-            return self._osfingerprint
-        return {}
-
-    # PORTS USED
-    def set_ports_used(self, ports):
-        self._ports_used = ports
-    
-    def get_ports_used(self):
-        return self._ports_used
-    
     # TRACEROUTE
-    def set_trace(self, trace):
-        self._trace = trace
-
-    def get_trace(self):
-        return self._trace
-
-    def set_hops(self, hops):
-        self._hops = hops
-
-    def get_hops(self):
-        return self._hops
-
     def get_hop_by_ttl(self, ttl):
-        for hop in self._hops:
-            if ttl == string.atoi(hop['ttl']):
+        for hop in self.trace['hop']:
+            if ttl == int(hop['ttl']):
                 return hop
         return None
+
     def get_number_of_hops(self):
         count = 0
-        for hop in self._hops:
-            if string.atoi(hop['ttl']) > count:
-                count = string.atoi(hop['ttl'])
+        for hop in self.trace['hop']:
+            if int(hop['ttl']) > count:
+                count = int(hop['ttl'])
         return count
-    
+
     # UPTIME
     # FORMAT: {"seconds":"", "lastboot":""}
     def set_uptime(self, uptime):
         self._uptime = uptime
-    
+
     def get_uptime(self):
         if self._uptime:
             return self._uptime
-        
+
         # Avoid empty dict return
-        return {"seconds":"", "lastboot":""}
-
-    # PORTS
-    def set_ports(self, port_list):
-        self._ports = port_list
-    
-    def get_ports(self):
-        return self._ports
-
-    def set_extraports(self, port_list):
-        self._extraports = port_list
-
-    def get_extraports(self):
-        return self._extraports
-
-    # HOSTNAMES
-    def set_hostnames(self, hostname_list):
-        self._hostnames = hostname_list
-    
-    def get_hostnames(self):
-        return self._hostnames
-
-    # IP
-    def set_ip_address(self, addr):
-        log.warning(_("umitCore.NmapParser.set_ip_address deprecated! Use \
-umitCore.NmapParser.set_ip instead."))
-        self.set_ip(addr)
-    
-    def get_ip_address(self):
-        log.warning(_("umitCore.NmapParser.get_ip_address deprecated! Use \
-umitCore.NmapParser.get_ip instead."))
-        return self.get_ip()
-
-    def set_ip(self, addr):
-        self._ip = addr
-
-    def get_ip(self):
-        return self._ip
-
-    # COMMENT
-    def get_comment(self):
-        return self._comment
-    
-    def set_comment(self, comment):
-        self._comment = comment
-
-    # MAC
-    def set_mac_address(self, addr):
-        log.warning(_("umitCore.NmapParser.set_mac_address deprecated! Use \
-umitCore.NmapParser.set_mac instead."))
-        self.set_mac(addr)
-    
-    def get_mac_address(self):
-        log.warning(_("umitCore.NmapParser.get_mac_address deprecated! Use \
-umitCore.NmapParser.get_mac instead."))
-        return self.get_mac()
-
-    def set_mac(self, addr):
-        self._mac = addr
-
-    def get_mac(self):
-        return self._mac
-
-    # IPv6
-    def set_ipv6_address(self, addr):
-        log.warning(_("umitCore.NmapParser.set_ipv6_address deprecated! Use \
-umitCore.NmapParser.set_ipv6 instead."))
-        self.set_ipv6(addr)
-    
-    def get_ipv6_address(self):
-        log.warning(_("umitCore.NmapParser.get_ipv6_address deprecated! Use \
-umitCore.NmapParser.get_ipv6 instead."))
-        return self.get_ipv6()
-
-    def set_ipv6(self, addr):
-        self._ipv6 = addr
-
-    def get_ipv6(self):
-        return self._ipv6
-
-    # STATE
-    def set_state(self, status):
-        self._state = status
-    
-    def get_state(self):
-        return self._state
+        return {'seconds': '', 'lastboot': ''}
 
     # HOSTNAME
     def get_hostname(self):
-        hostname = ''
-        try:
-            hostname = self._hostnames[0]['hostname'] + ' '
-        except:
-            pass
+        hostname = []
 
-        # FIXME: Check if i can return the 'addr' key directly from get_ip,
-        # get_ipv6 and get_mac
-        if self.ip:
-            hostname += self._ip['addr']
-        elif self.ipv6:
-            hostname += self._ipv6['addr']
-        elif self.mac:
-            hostname += self._mac['addr']
-        else:
-            hostname = _('Unknown Host')
-        
-        return hostname
+        if self.hostnames:
+            try:
+                hostname.append(self.hostnames[0]['name'])
+            except KeyError:
+                pass
+
+        for addr in self.address:
+            if addr['addrtype'] == 'mac':
+                format = '(%s)'
+            else:
+                format = '%s'
+            hostname.append(format % addr['addr'])
+
+        return ' '.join(hostname) or UNKNOWN
 
     def get_open_ports(self):
-        ports = self.get_ports()
-        open = 0
-        
-        for i in ports:
-            port = i['port']
-            for p in port:
-                if re.findall('open', p['port_state']):
-                    open+=1
-        
-        return open
-    
+        open_count = 0
+        for port in self.ports:
+            if port['state'] == 'open':
+                open_count += 1
+
+        return open_count
+
     def get_filtered_ports(self):
-        ports = self.get_ports()
-        extraports = self.get_extraports()
-        filtered = 0
-        
-        for i in ports:
-            port = i['port']
-            for p in port:
-                if re.findall('filtered', p['port_state']):
-                    filtered+=1
-        for extra in extraports:
-            if extra["state"] == "filtered":
-                filtered += int(extra["count"])
-        return filtered
-    
+        filtered_count = 0
+        for port in self.ports:
+            if port['state'] == 'filtered':
+                filtered_count += 1
+        for extra in self.extraports:
+            if extra['state'] == 'filtered':
+                filtered_count += int(extra['count'])
+
+        return filtered_count
+
     def get_closed_ports(self):
-        ports = self.get_ports()
-        extraports = self.get_extraports()
-        closed = 0
-        
-        for i in ports:
-            port = i['port']
-            for p in port:
-                if re.findall('closed', p['port_state']):
-                    closed+=1
-        for extra in extraports:
-            if extra["state"] == "closed":
-                closed += int(extra["count"])
-        return closed
-    
+        closed_count = 0
+        for port in self.ports:
+            if port['state'] == 'closed':
+                closed_count += 1
+        for extra in self.extraports:
+            if extra['state'] == 'closed':
+                closed_count += int(extra['count'])
+
+        return closed_count
+
     def get_scanned_ports(self):
-        ports = self.get_ports()
-        extraports = self.get_extraports()
-        scanned = 0
-        
-        for i in ports:
-            port = i['port']
-            for p in port:
-                scanned+=1
-        for extra in extraports:
-            scanned += int(extra["count"])
+        scanned = len(self.ports)
+        for extra in self.extraports:
+            scanned += int(extra['count'])
+
         return scanned
 
     def get_services(self):
         services = []
         for port in self.ports:
-            for p in port.get("port", []):
-                services.append({"service_name":p.get("service_name",
-                                                      _("unknown")),
-                                 "portid":p.get("portid", ""),
-                                 "service_version":p.get("service_version",
-                                                         _("Unknown version")),
-                                 "service_product":p.get("service_product", ""),
-                                 "port_state":p.get("port_state", _("Unknown")),
-                                 "protocol":p.get("protocol", "")})
+            services.append({
+                'service_name': port.get('name', UNKNOWN),
+                'portid': port.get('portid', ''),
+                'service_version': port.get('version', UNKNOWN),
+                'service_product': port.get('product', ''),
+                'port_state': port.get('state', UNKNOWN),
+                'protocol': port.get('protocol', '')})
         return services
+
+    def _get_status_state(self):
+        return self.status.get('state', '')
+
+    def _get_type_address(self, addrtype):
+        for addr in self.address:
+            if addr['addrtype'] == addrtype:
+                return addr
+
+    def _get_ipv4(self):
+        return self._get_type_address('ipv4')
+
+    def _get_ipv6(self):
+        return self._get_type_address('ipv6')
+
+    def _get_mac(self):
+        return self._get_type_address('mac')
 
     # Properties
     id = property(get_id, set_id)
-    tcpsequence = property(get_tcpsequence, set_tcpsequence)
-    osclasses = property(get_osclasses, set_osclasses)
-    osmatch = property(get_osmatch, set_osmatch)
-    osmatches = property(get_osmatches, set_osclasses)
-    osfingerprint = property(get_osfingerprint, set_osfingerprint)
-    ports = property(get_ports, set_ports)
-    ports_used = property(get_ports_used, set_ports_used)
-    extraports = property(get_extraports, set_extraports)
     uptime = property(get_uptime, set_uptime)
-    hostnames = property(get_hostnames, set_hostnames)
-    tcptssequence = property(get_tcptssequence, set_tcptssequence)
-    ipidsequence = property(get_ipidsequence, set_ipidsequence)
-    ip = property(get_ip, set_ip)
-    ipv6 = property(get_ipv6, set_ipv6)
-    mac = property(get_mac, set_mac)
-    state = property(get_state, set_state)
-    comment = property(get_comment, set_comment)
     services = property(get_services)
-    trace = property(get_trace, set_trace)
-    hops = property(get_hops, set_hops)
-    
+    state = property(_get_status_state, doc="Get the host status state")
+    ip = property(_get_ipv4, doc="Return the first ipv4 address found")
+    ipv6 = property(_get_ipv6, doc="Return the first ipv6 address found")
+    mac = property(_get_mac, doc="Return the first mac address found")
 
-    _id = 0
-    _tcpsequence = {}
-    _osclasses = []
-    _osmatch = []
-    _osmatches = []
-    _osfingerprint = {}
-    _ports = []
-    _ports_used = []
-    _extraports = []
     _uptime = {}
-    _hostnames = []
-    _tcptssequence = {}
-    _ipidsequence = {}
-    _ip = {}
-    _ipv6 = {}
-    _mac = {}
-    _state = ''
-    _comment = ''
-    _trace = []
-    _hops = []
 
 
 class ParserBasics(object):
     def __init__ (self):
-        self.nmap = {'nmaprun':{},\
-                     'scaninfo':[],\
-                     'verbose':'',\
-                     'debugging':'',\
-                     'hosts':[],\
-                     'runstats':{}}
+        self.nmap = {
+                'nmaprun': {},
+                'runstats': {
+                    'finished': {},
+                    'hosts': {'up': '', 'down': '', 'total': ''}
+                    },
+                'verbose': {'level': ''},
+                'debugging': {'level': ''},
+                'scaninfo': [],
+                'taskbegin': [],
+                'taskprogress': [],
+                'taskend': [],
+                #'host': [],
+                'hosts': []
+                }
 
     def set_host_comment(self, host_id, comment):
         for host in self.nmap['hosts']:
@@ -436,63 +249,63 @@ class ParserBasics(object):
                 host.comment = comment
                 break
         else:
-            raise Exception("Comment could not be saved! Host not \
-found at NmapParser!")
+            raise Exception("Comment could not be saved! Host not "
+                    "found at NmapParser!")
 
     def get_host_comment(self, host_id):
         for host in self.nmap.get('hosts', []):
             if host.id == host_id:
                 return host.comment
         else:
-            raise Exception("Comment could not be saved! Host not \
-found at NmapParser!")
+            raise Exception("Comment could not be saved! Host not "
+                    "found at NmapParser!")
 
     def get_profile(self):
         return self.nmap['nmaprun'].get('profile', '')
 
     def set_profile(self, profile):
         self.nmap['nmaprun']['profile'] = profile
-    
+
     def get_profile_name(self):
         return self.nmap['nmaprun'].get('profile_name', '')
 
     def set_profile_name(self, name):
         self.nmap['nmaprun']['profile_name'] = name
-    
+
     def get_profile_description(self):
         return self.nmap['nmaprun'].get('description', '')
 
     def set_profile_description(self, description):
         self.nmap['nmaprun']['description'] = description
-    
+
     def get_profile_hint(self):
         return self.nmap['nmaprun'].get('hint', '')
 
     def set_profile_hint(self, hint):
         self.nmap['nmaprun']['hint'] = hint
-    
+
     def get_profile_annotation(self):
         return self.nmap['nmaprun'].get('annotation', '')
 
     def set_profile_annotation(self, annotation):
         self.nmap['nmaprun']['annotation'] = annotation
-    
+
     def get_profile_options(self):
         options = self.nmap['nmaprun'].get('options', '')
-        if type(options) == type([]):
+        if isinstance(options, list):
             return ','.join(options)
-        elif type(options) in StringTypes:
+        elif isinstance(options, basestring):
             return options
 
     def set_profile_options(self, options):
-        if (type(options) == type([])) or (type(options) in StringTypes):
+        if isinstance(options, (list, basestring)):
             self.nmap['nmaprun']['options'] = options
-        elif type(options) == type({}):
+        elif isinstance(options, dict):
             self.nmap['nmaprun']['options'] = options.keys()
         else:
-            raise Exception("Profile option error: wrong argument format! \
-Need a string or list.")
-    
+            raise Exception("Profile option error: wrong argument format! "
+                    "Need a string, list or dict.")
+
     def get_target(self):
         return self.nmap['nmaprun'].get('target', '')
 
@@ -504,74 +317,60 @@ Need a string or list.")
 
     def set_nmap_output(self, nmap_output):
         self.nmap['nmaprun']['nmap_output'] = nmap_output
-    
+
     def get_debugging_level (self):
-        return self.nmap.get('debugging', '')
+        return self.nmap['debugging'].get('level', '')
 
     def set_debugging_level(self, level):
-        self.nmap['debugging'] = level
-    
+        self.nmap['debugging']['level'] = level
+
+    def set_debugging(self, debug):
+        self.nmap['debugging'] = debug
+
     def get_verbose_level (self):
-        return self.nmap.get('verbose', '')
+        return self.nmap['verbose'].get('level', '')
 
     def set_verbose_level(self, level):
-        self.nmap['verbose'] = level
-    
+        self.nmap['verbose']['level'] = level
+
+    def set_verbose(self, verbose):
+        self.nmap['verbose'] = verbose
+
     def get_scaninfo(self):
-        return self.nmap.get('scaninfo', '')
+        return self.nmap.get('scaninfo', [])
 
     def set_scaninfo(self, info):
         self.nmap['scaninfo'] = info
-    
-    def get_services_scanned (self):
-        if self._services_scanned == None:
-            return self._services_scanned
-        
-        services = []
-        for scan in self.nmap.get('scaninfo', []):
-            services.append(scan['services'])
 
-        self._services_scanned = ','.join(services)
-        return self._services_scanned
+    def append_scaninfo(self, info):
+        self.nmap['scaninfo'].append(info)
 
-    def set_services_scanned (self, services_scanned):
-        self._services_scanned = services_scanned
+    def get_services_scanned(self):
+        services = [scan['services'] for scan in self.nmap.get('scaninfo', [])]
+        return ','.join(services)
 
-    def get_nmap_command (self):
+    def get_nmap_command(self):
         return self._verify_output_options(self.nmap['nmaprun'].get('args', ''))
 
     def set_nmap_command(self, command):
         self.nmap['nmaprun']['args'] = self._verify_output_options(command)
 
-    def get_scan_type (self):
-        types = []
-        for t in self.nmap.get('scaninfo', []):
-            types.append(t['type'])
-        return types
+    def get_scan_type(self):
+        return [stype['type'] for stype in self.nmap.get('scaninfo', [])]
 
     def get_protocol (self):
-        protocols = []
-        for proto in self.nmap.get('scaninfo', []):
-            protocols.append(proto['protocol'])
-        return protocols
+        return [proto['protocol'] for proto in self.nmap.get('scaninfo', [])]
 
-    def get_num_services (self):
-        if self._num_services == None:
-            return self._num_services
-        
+    def get_num_services(self):
         num = 0
-        for n in self.nmap.get('scaninfo', []):
-            num += int(n['numservices'])
+        for sinfo in self.nmap.get('scaninfo', []):
+            num += int(sinfo['numservices'])
 
-        self._num_services = num
-        return self._num_services
+        return num
 
-    def set_num_services (self, num_services):
-        self._num_services = num_services
-
-    def get_date (self):
+    def get_date(self):
         epoch = int(self.nmap['nmaprun'].get('start', '0'))
-        return time.localtime (epoch)
+        return time.localtime(epoch)
 
     def get_start(self):
         return self.nmap['nmaprun'].get('start', '0')
@@ -583,200 +382,159 @@ Need a string or list.")
         if type(date) == type(int):
             self.nmap['nmaprun']['start'] = date
         else:
-            raise Exception("Wrong date format. Date should be saved \
-in epoch format!")
-    
+            raise Exception("Wrong date format. Date should be saved "
+                    "in epoch format!")
+
     def get_open_ports(self):
-        ports = 0
+        open_count = 0
+        for host in self.nmap.get('hosts', []):
+            open_count += host.get_open_ports()
 
-        for h in self.nmap.get('hosts', []):
-            ports += h.get_open_ports()
-
-        return ports
+        return open_count
 
     def get_filtered_ports(self):
-        ports = 0
+        filtered_count = 0
+        for host in self.nmap.get('hosts', []):
+            filtered_count += host.get_filtered_ports()
 
-        for h in self.nmap.get('hosts', []):
-            ports += h.get_filtered_ports()
-
-
-        log.debug(">>> EXTRAPORTS: %s" % str(self.list_extraports))
-
-        return ports
+        return filtered_count
 
     def get_closed_ports(self):
-        ports = 0
-        
-        for h in self.nmap['hosts']:
-            ports += h.get_closed_ports()
+        closed_count = 0
+        for host in self.nmap['hosts']:
+            closed_count += host.get_closed_ports()
 
-        return ports
+        return closed_count
 
     def get_formated_date(self):
         date = self.get_date()
-        return "%s %s, %s - %s:%s" % (months[date[1]], 
-                                      str(date[2]), 
+        return '%s %s, %s - %s:%s' % (calendar.month_name[date[1]],
+                                      str(date[2]),
                                       str(date[0]),
-                                      str(date[3]).zfill(2), 
+                                      str(date[3]).zfill(2),
                                       str(date[4]).zfill(2))
 
-    def get_scanner (self):
+    def get_scanner(self):
         return self.nmap['nmaprun'].get('scanner', '')
 
     def set_scanner(self, scanner):
         self.nmap['nmaprun']['scanner'] = scanner
-    
+
     def get_scanner_version (self):
         return self.nmap['nmaprun'].get('version', '')
 
     def set_scanner_version(self, version):
         self.nmap['nmaprun']['version'] = version
 
-    # IPv4
-    def get_ipv4_addresses (self):
-        log.warning(_("umitCore.NmapParser.get_ipv4_address deprecated! Use \
-umitCore.NmapParser.get_ipv4 instead."))
-        return self.get_ipv4()
-
-    def get_ipv4(self):
+    ## Addresses
+    def get_type_addresses(self, addrtype):
         addresses = []
         for host in self.nmap.get('hosts', []):
-            try:
-                addresses.append(host.get_ip().get('addr', ''))
-            except:
-                pass
-        
+            for addr in host.address:
+                if addr['addrtype'] == addrtype:
+                    addresses.append(addr['addr'])
         return addresses
+
+    # IPv4
+    def get_ipv4_addresses(self):
+        return self.get_type_addresses('ipv4')
 
     # MAC
-    def get_mac_addresses (self):
-        log.warning(_("umitCore.NmapParser.get_mac_address deprecated! Use \
-umitCore.NmapParser.get_mac instead."))
-        return self.get_mac()
-
-    def get_mac(self):
-        addresses = []
-        for host in self.nmap.get('hosts', []):
-            try:
-                addresses.append(host.get_mac().get('addr', ''))
-            except:
-                pass
-        
-        return addresses
+    def get_mac_addresses(self):
+        return self.get_type_addresses('mac')
 
     # IPv6
-    def get_ipv6_addresses (self):
-        log.warning(_("umitCore.NmapParser.get_ipv6_address deprecated! Use \
-umitCore.NmapParser.get_ipv6 instead."))
-        return self.get_ipv6()
+    def get_ipv6_addresses(self):
+        return self.get_type_addresses('ipv6')
 
-    def get_ipv6(self):
-        addresses = []
-        for host in self.nmap.get('hosts', []):
-            try:
-                addresses.append(host.get_ipv6().get('addr', ''))
-            except:
-                pass
 
-        return addresses
-
-    def get_hostnames (self):
+    def get_hostnames(self):
         hostnames = []
         for host in self.nmap.get('hosts', []):
-            hostnames += host.get_hostnames()
+            hostnames.extend(host.hostnames)
         return hostnames
 
     def get_ports(self):
         ports = []
         for port in self.nmap.get('hosts', []):
-            ports.append(port.get_ports())
-        
+            ports.append(port.ports)
+
         return ports
 
     def get_hosts(self):
         return self.nmap.get('hosts', None)
 
-    # TRACEROUTE
-    def get_hops(self):
-        return self.nmap.get('hops', None)
-
-    def get_trace(self):
-        return self.nmap.get('trace', None)
-    
-    
     def get_runstats(self):
         return self.nmap.get('runstats', None)
 
     def set_runstats(self, stats):
         self.nmap['runstats'] = stats
-    
+
     def get_hosts_down(self):
-        return int(self.nmap['runstats'].get('hosts_down', '0'))
+        return self.nmap['runstats']['hosts'].get('down', 0)
 
     def set_hosts_down(self, down):
-        self.nmap['runstats']['hosts_down'] = int(down)
-    
+        self.nmap['runstats']['hosts']['down'] = int(down)
+
     def get_hosts_up(self):
-        return int(self.nmap['runstats'].get('hosts_up', '0'))
+        return self.nmap['runstats']['hosts'].get('up', 0)
 
     def set_hosts_up(self, up):
-        self.nmap['runstats']['hosts_up'] = int(up)
-    
-    def get_hosts_scanned(self):
-        return int(self.nmap['runstats'].get('hosts_scanned', '0'))
+        self.nmap['runstats']['hosts']['up'] = int(up)
 
-    def set_hosts_scanned(self, scanned):
-        self.nmap['runstats']['hosts_scanned'] = int(scanned)
-    
-    def get_finish_time (self):
-        return time.localtime(int(self.nmap['runstats'].get('finished_time',
-                                                            '0')))
+    def get_hosts_total(self):
+        return self.nmap['runstats']['hosts'].get('total', 0)
+
+    def set_hosts_total(self, scanned):
+        self.nmap['runstats']['hosts']['total'] = int(scanned)
+
+    def get_finish_time(self):
+        return self.nmap['runstats']['finished'].get('timestr', '')
 
     def set_finish_time(self, finish):
-        self.nmap['runstats']['finished_time'] = int(finish)
+        self.nmap['runstats']['finished']['timestr'] = finish
 
-    def get_finish_epoc_time(self):
-        return int(self.nmap['runstats'].get('finished_time', '0'))
+    def get_finish_epoch_time(self):
+        return time.localtime(self.nmap['runstats']['finished'].get('time', 0))
 
-    def set_finish_epoc_time(self, time):
-        self.nmap['runstats']['finished_time'] = time
+    def set_finish_epoch_time(self, epoch_time):
+        self.nmap['runstats']['finished']['time'] = float(epoch_time)
 
     def get_scan_name(self):
-        return self.nmap.get("scan_name", "")
+        return self.nmap.get('scan_name', '')
 
     def set_scan_name(self, scan_name):
-        self.nmap["scan_name"] = scan_name
-    
+        self.nmap['scan_name'] = scan_name
+
     def get_formated_finish_date(self):
-        date = self.get_finish_time()
-        return "%s %s, %s - %s:%s" % (months[date[1]], 
-                                      str(date[2]), 
+        date = self.finish_epoch_time
+        return '%s %s, %s - %s:%s' % (calendar.month_name[date[1]],
+                                      str(date[2]),
                                       str(date[0]),
-                                      str(date[3]).zfill(2), 
+                                      str(date[3]).zfill(2),
                                       str(date[4]).zfill(2))
 
-    def _verify_output_options (self, command):
-        found = re.findall ('(-o[XGASN]{1}) {0,1}', command)
-        splited = command.split (' ')
-        
+    def _verify_output_options(self, command):
+        found = re.findall('(-o[XGASN]{1}) {0,1}', command)
+        splited = command.split(' ')
+
         if found:
             for option in found:
                 pos = splited.index(option)
-                del(splited[pos+1])
-                del(splited[pos])
-        
-        return ' '.join (splited)
+                del splited[pos+1]
+                del splited[pos]
+
+        return ' '.join(splited)
 
     def get_comments(self):
         return [host.comment for host in self.nmap['hosts']]
 
     profile = property(get_profile, set_profile)
     profile_name = property(get_profile_name, set_profile_name)
-    profile_description = property(get_profile_description, 
+    profile_description = property(get_profile_description,
                                    set_profile_description)
     profile_hint = property(get_profile_hint, set_profile_hint)
-    profile_annotation = property(get_profile_annotation, 
+    profile_annotation = property(get_profile_annotation,
                                   set_profile_annotation)
     profile_options = property(get_profile_options, set_profile_options)
     target = property(get_target, set_target)
@@ -784,11 +542,11 @@ umitCore.NmapParser.get_ipv6 instead."))
     debugging_level = property(get_debugging_level, set_debugging_level)
     verbose_level = property(get_verbose_level, set_verbose_level)
     scaninfo = property(get_scaninfo, set_scaninfo)
-    services_scanned = property(get_services_scanned, set_services_scanned)
+    services_scanned = property(get_services_scanned)
     nmap_command = property(get_nmap_command, set_nmap_command)
     scan_type = property(get_scan_type)
     protocol = property(get_protocol)
-    num_services = property(get_num_services, set_num_services)
+    num_services = property(get_num_services)
     date = property(get_date, set_date)
     open_ports = property(get_open_ports)
     filtered_ports = property(get_filtered_ports)
@@ -796,27 +554,22 @@ umitCore.NmapParser.get_ipv6 instead."))
     formated_date = property(get_formated_date)
     scanner = property(get_scanner, set_scanner)
     scanner_version = property(get_scanner_version, set_scanner_version)
-    ipv4 = property(get_ipv4)
-    mac = property(get_mac)
-    ipv6 = property(get_ipv6)
+    ipv4 = property(get_ipv4_addresses)
+    mac = property(get_mac_addresses)
+    ipv6 = property(get_ipv6_addresses)
     hostnames = property(get_hostnames)
     ports = property(get_ports)
     hosts = property(get_hosts)
     runstats = property(get_runstats, set_runstats)
     hosts_down = property(get_hosts_down, set_hosts_down)
     hosts_up = property(get_hosts_up, set_hosts_up)
-    hosts_scanned = property(get_hosts_scanned, set_hosts_scanned)
+    hosts_total = property(get_hosts_total, set_hosts_total)
     finish_time = property(get_finish_time, set_finish_time)
-    finish_epoc_time = property(get_finish_epoc_time, set_finish_epoc_time)
+    finish_epoch_time = property(get_finish_epoch_time, set_finish_epoch_time)
     formated_finish_date = property(get_formated_finish_date)
     comments = property(get_comments)
     start = property(get_start, set_start)
     scan_name = property(get_scan_name, set_scan_name)
-    trace = property(get_trace)
-    hops = property(get_hops)
-    
-    _num_services = None
-    _services_scanned = None
 
 
 class NmapParserSAX(ParserBasics, ContentHandler):
@@ -829,11 +582,11 @@ class NmapParserSAX(ParserBasics, ContentHandler):
         self.in_ports = False
         self.in_port = False
         self.in_os = False
-        self.list_extraports = []
-        
-        # Creating a traceroute condition
         self.in_trace = False
-        
+
+        # _tmp_port is used while parsing a port entity
+        self._tmp_port = {}
+
         self.nmap_xml_file = None
         self.unsaved = False
 
@@ -845,10 +598,9 @@ class NmapParserSAX(ParserBasics, ContentHandler):
 
     def parse(self):
         if self.nmap_xml_file:
-            if type(self.nmap_xml_file) in StringTypes:
+            if isinstance(self.nmap_xml_file, basestring):
                 self.parser.parse(self.nmap_xml_file)
             else:
-                log.debug(">>> XML content: %s" % self.nmap_xml_file.read())
                 self.nmap_xml_file.seek(0)
                 self.parser.parse(self.nmap_xml_file)
 
@@ -857,264 +609,123 @@ class NmapParserSAX(ParserBasics, ContentHandler):
         else:
             raise Exception("There's no file to be parsed!")
 
-    def _parse_nmaprun(self, attrs):
-        run_tag = "nmaprun"
-        
-        self.nmap[run_tag]["nmap_output"] = attrs.get("nmap_output", "")
-        self.nmap[run_tag]["profile"] = attrs.get("profile", "")
-        self.nmap[run_tag]["profile_name"] = attrs.get("profile_name", "")
-        self.nmap[run_tag]["hint"] = attrs.get("hint", "")
-        self.nmap[run_tag]["description"] = attrs.get("description", "")
-        self.nmap[run_tag]["annotation"] = attrs.get("annotation", "")
-        self.nmap[run_tag]["options"] = attrs.get("options", "")
-        self.nmap[run_tag]["target"] = attrs.get("target", "")
-        self.nmap[run_tag]["start"] = attrs.get("start", "")
-        self.nmap[run_tag]["args"] = attrs.get("args", "")
-        self.nmap[run_tag]["scanner"] = attrs.get("scanner", "")
-        self.nmap[run_tag]["version"] = attrs.get("version", "")
-        self.nmap[run_tag]["xmloutputversion"] = attrs.get("xmloutputversion", 
-                                                           "")
-        self.nmap["scan_name"] = attrs.get("scan_name", "")
-
-    def _parse_scaninfo(self, attrs):
-        dic = {}
-        
-        dic["type"] = attrs.get("type", "")
-        dic["protocol"] = attrs.get("protocol", "")
-        dic["numservices"] = attrs.get("numservices", "")
-        dic["services"] = attrs.get("services", "")
-        
-        self.nmap["scaninfo"].append(dic)
-
-    def _parse_verbose(self, attrs):
-        self.nmap["verbose"] = attrs.get("level", "")
-
-    def _parse_debugging(self, attrs):
-        self.nmap["debugging"] = attrs.get("level", "")
-
-    def _parse_runstats_finished(self, attrs):
-        self.nmap["runstats"]["finished_time"] = attrs.get("time", "")
-
-    def _parse_runstats_hosts(self, attrs):
-        self.nmap["runstats"]["hosts_up"] = attrs.get("up", "")
-        self.nmap["runstats"]["hosts_down"] = attrs.get("down", "")
-        self.nmap["runstats"]["hosts_scanned"] = attrs.get("total", "")
-
     def generate_id(self):
         self.id_sequence += 1
         return self.id_sequence
 
+    def _parse_nmaprun(self, attrs):
+        d = self.nmap['nmaprun']
+
+        self.scanner = attrs.get('scanner', '')
+        self.scanner_version = attrs.get('version', '')
+        self.start = attrs.get('start', '')
+        self.nmap_command = attrs.get('args', '')
+        d['xmloutputversion'] = attrs.get('xmloutputversion', '')
+
+        # Umit extension
+        self.nmap_output = attrs.get('nmap_output', '')
+        self.profile = attrs.get('profile', '')
+        self.profile_name = attrs.get('profile_name', '')
+        self.profile_hint = attrs.get('hint', '')
+        self.profile_description = attrs.get('description', '')
+        self.profile_annotation = attrs.get('annotation', '')
+        self.profile_options = attrs.get('options', '')
+        self.target = attrs.get('target', '')
+        self.scan_name = attrs.get('scan_name', '')
+
+    def _parse_runstats_finished(self, attrs):
+        self.finish_time = attrs.get('timestr', '')
+        self.finish_epoch_time = attrs.get('time', 0)
+
+    def _parse_runstats_hosts(self, attrs):
+        self.hosts_up = attrs.get('up', 0)
+        self.hosts_down = attrs.get('down', 0)
+        self.hosts_total = attrs.get('total', 0)
+
     def _parse_host(self, attrs):
         self.host_info = HostInfo(self.generate_id())
-        self.host_info.comment = attrs.get("comment", "")
-
-    def _parse_host_status(self, attrs):
-        self.host_info.set_state(attrs.get("state", ""))
-
-    def _parse_host_address(self, attrs):
-        address_attributes = {"type":attrs.get("addrtype", ""),
-                              "vendor":attrs.get("vendor", ""),
-                              "addr":attrs.get("addr", "")}
-
-        if address_attributes["type"] == "ipv4":
-            self.host_info.set_ip(address_attributes)
-        elif address_attributes["type"] == "ipv6":
-            self.host_info.set_ipv6(address_attributes)
-        elif address_attributes["type"] == "mac":
-            self.host_info.set_mac(address_attributes)
-
-    def _parse_host_hostname(self, attrs):
-        self.list_hostnames.append({"hostname":attrs.get("name", ""),
-                                    "hostname_type":attrs.get("type", "")})
-
-    def _parse_host_extraports(self, attrs):
-        self.list_extraports.append({"state":attrs.get("state", ""),
-                                     "count":attrs.get("count", "")})
-
-    def _parse_host_port(self, attrs):
-        self.dic_port = {"protocol":attrs.get("protocol", ""), 
-                         "portid":attrs.get("portid", "")}
-
-    def _parse_host_port_state(self, attrs):
-        self.dic_port["port_state"] = attrs.get("state", "")
-
-    def _parse_host_port_service(self, attrs):
-        self.dic_port["service_name"] = attrs.get("name", "")
-        self.dic_port["service_method"] = attrs.get("method", "")
-        self.dic_port["service_conf"] = attrs.get("conf", "")
-        self.dic_port["service_product"] = attrs.get("product", "")
-        self.dic_port["service_version"] = attrs.get("version", "")
-        self.dic_port["service_extrainfo"] = attrs.get("extrainfo", "")
-
-    def _parse_host_osmatch(self, attrs):
-        tmp = self._parsing(attrs, ['name', 'accuracy'])
-        if tmp != {} and self.list_osmatches == []:
-            self.host_info.set_osmatch(tmp)
-        elif tmp != {} and tmp.has_key('accuracy'):
-            last_osmatch = self.host_info.get_osmatch()
-            if last_osmatch.has_key('accuracy') and \
-               tmp['accuracy'] > last_osmatch['accuracy']:
-                self.host_info.set_osmatch(tmp)
-            
-        self.list_osmatches.append(tmp)
-
-    def _parse_host_portused(self, attrs):
-        self.list_portused.append(self._parsing(attrs, 
-                                                ['state','proto','portid']))
-
-    def _parse_host_osclass(self, attrs):
-        self.list_osclass.append(self._parsing(attrs, ['type',
-                                                       'vendor',
-                                                       'osfamily',
-                                                       'osgen',
-                                                       'accuracy']))
-    
-    def _parse_host_osfingerprint(self, attrs):
-        self.host_info.set_osfingerprint(self._parsing(attrs, ['fingerprint']))
-        
-
-    def _parsing(self, attrs, attrs_list):
-        # Returns a dict with the attributes of a given tag with the
-        # atributes names as keys and their respective values
-        dic = {}
-        for at in attrs_list:
-            dic[at] = attrs.get(at, "")
-        return dic
-
-    def _parse_host_uptime(self, attrs):
-        self.host_info.set_uptime(self._parsing(attrs, ["seconds", "lastboot"]))
+        # Umit extension
+        self.host_info.comment = attrs.get('comment', '')
 
 
-    def _parse_host_tcpsequence(self, attrs):
-        self.host_info.set_tcpsequence(self._parsing(attrs, ['index',
-                                                             'class',
-                                                             'difficulty',
-                                                             'values']))
-    
-    def _parse_host_tcptssequence(self, attrs):
-        self.host_info.set_tcptssequence(self._parsing(attrs, ['class',
-                                                               'values']))
-
-    def _parse_host_ipidsequence(self, attrs):
-        self.host_info.set_ipidsequence(self._parsing(attrs, ['class',
-                                                              'values']))
-    def _parse_host_trace(self, attrs):
-        self.host_info.set_trace(self._parsing(attrs, ['port', 'proto']))
-
-    def _parse_host_trace_hop(self, attrs):
-        tmp = self._parsing(attrs, ['ttl', 'rtt', 'ipaddr', 'host'])
-        self.list_hop.append(tmp)
-
-        
     def startElement(self, name, attrs):
-        if name == "nmaprun":
+        attrs = AttributesImplDict(attrs)
+
+        if name == 'nmaprun':
             self._parse_nmaprun(attrs)
-        elif name == "scaninfo":
-            self._parse_scaninfo(attrs)
-        elif name == "verbose":
-            self._parse_verbose(attrs)
-        elif name == "debugging":
-            self._parse_debugging(attrs)
-        elif name == "runstats":
+
+        elif name in ('verbose', 'debugging'):
+            getattr(self, 'set_%s' % name)(attrs.copy())
+
+        elif name in ('scaninfo', 'taskbegin', 'taskprogress', 'taskend'):
+            self.nmap[name].append(attrs.copy())
+
+        # Parse runstats
+        elif name == 'runstats':
             self.in_run_stats = True
-        elif self.in_run_stats and name == "finished":
+        elif self.in_run_stats and name == 'finished':
             self._parse_runstats_finished(attrs)
-        elif self.in_run_stats and name == "hosts":
+        elif self.in_run_stats and name == 'hosts':
             self._parse_runstats_hosts(attrs)
-        elif name == "host":
+
+        # Parse hosts
+        elif name == 'host':
             self.in_host = True
             self._parse_host(attrs)
-            self.list_ports = []
-        elif self.in_host and name == "status":
-            self._parse_host_status(attrs)
-        elif self.in_host and name == "address":
-            self._parse_host_address(attrs)
-        elif self.in_host and name == "hostnames":
+        elif self.in_host and name in ('status', 'times', 'smurf', 'distance',
+                'uptime', 'tcpsequence', 'tcptssequence', 'ipidsequence'):
+            setattr(self.host_info, name, attrs.copy())
+        elif self.in_host and name in ('address', 'hostscript'):
+            getattr(self.host_info, name).append(attrs.copy())
+        elif self.in_host and name == 'hostnames':
             self.in_hostnames = True
-            self.list_hostnames = []
-        elif self.in_host and self.in_hostnames and name == "hostname":
-            self._parse_host_hostname(attrs)
-        elif self.in_host and name == "ports":
-            self.list_extraports = []
-            self.list_port = []
+        elif self.in_host and self.in_hostnames and name == 'hostname':
+            self.host_info.hostnames.append(attrs.copy())
+        # port
+        elif self.in_host and name == 'ports':
             self.in_ports = True
-        elif self.in_host and self.in_ports and name == "extraports":
-            self._parse_host_extraports(attrs)
-        elif self.in_host and self.in_ports and name == "port":
+        elif self.in_host and self.in_ports and name == 'extraports':
+            # XXX extrareasons not supported yet
+            self.host_info.extraports.append(attrs.copy())
+        elif self.in_host and self.in_ports and name == 'port':
             self.in_port = True
-            self._parse_host_port(attrs)
+            self._tmp_port.update(attrs)
         elif self.in_host and self.in_ports and \
-             self.in_port and name == "state":
-            self._parse_host_port_state(attrs)
-        elif self.in_host and self.in_ports and \
-             self.in_port and name == "service":
-            self._parse_host_port_service(attrs)
-        elif self.in_host and name == "os":
+                self.in_port and name in ('state', 'service'):
+            self._tmp_port.update(attrs)
+        # os
+        elif self.in_host and name == 'os':
             self.in_os = True
-            self.list_portused = []
-            self.list_osclass = []
-            self.list_osmatches = []
-        elif self.in_host and self.in_os and name == "osmatch":
-            self._parse_host_osmatch(attrs)
-        elif self.in_host and self.in_os and name == "portused":
-            self._parse_host_portused(attrs)
-        elif self.in_host and self.in_os and name == "osclass":
-            self._parse_host_osclass(attrs)
-        elif self.in_host and self.in_os and name == "osfingerprint":
-            self._parse_host_osfingerprint(attrs)
-        elif self.in_host and name == "uptime":
-            self._parse_host_uptime(attrs)
-        elif self.in_host and name == "tcpsequence":
-            self._parse_host_tcpsequence(attrs)
-        elif self.in_host and name == "tcptssequence":
-            self._parse_host_tcptssequence(attrs)
-        elif self.in_host and name == "ipidsequence":
-            self._parse_host_ipidsequence(attrs)
-        # Creating a traceroute condition 
-        elif self.in_host and name == "trace":
+        elif self.in_host and self.in_os and name in ('osmatch',
+                'osclass', 'portused', 'osfingerprint'):
+            getattr(self.host_info, name).append(attrs.copy())
+        # trace
+        elif self.in_host and name == 'trace':
             self.in_trace = True
-            self.list_hop = []
-            self._parse_host_trace(attrs)
-        elif self.in_trace and name == "hop":
-            self._parse_host_trace_hop(attrs)
+            self.host_info.trace.update(attrs.copy())
+        elif self.in_trace and name == 'hop':
+            self.host_info.trace['hop'].append(attrs.copy())
 
 
     def endElement(self, name):
-        if name == "runstats":
+        if name == 'runstats':
             self.in_run_stats = False
-        elif name == "host":
+        elif name == 'host':
             self.in_host = False
-            self.host_info.set_ports(self.list_ports)
-            self.nmap["hosts"].append(self.host_info)
-            del(self.list_ports)
-        elif self.in_host and name == "hostnames":
+            self.nmap['hosts'].append(self.host_info)
+            del self.host_info
+        elif self.in_host and name == 'hostnames':
             self.in_hostnames = False
-            self.host_info.set_hostnames(self.list_hostnames)
-        elif self.in_host and name == "ports":
+        elif self.in_host and name == 'ports':
             self.in_ports = False
-            self.list_ports.append({"extraports":self.list_extraports,
-                                    "port":self.list_port})
-            self.host_info.set_extraports(self.list_extraports)
-        elif self.in_host and self.in_ports and name == "port":
+        elif self.in_host and self.in_ports and name == 'port':
             self.in_port = False
-            self.list_port.append(self.dic_port)
-            del(self.dic_port)
-        elif self.in_host and self.in_os and name == "os":
+            self.host_info.ports.append(self._tmp_port.copy())
+            self._tmp_port.clear()
+        elif self.in_host and self.in_os and name == 'os':
             self.in_os = False
-            self.host_info.set_ports_used(self.list_portused)
-            self.host_info.set_osclasses(self.list_osclass)
-            self.host_info.set_osmatches(self.list_osmatches)
-
-            del(self.list_portused)
-            del(self.list_osclass)
-            del(self.list_osmatches)
-            
-        # Creating a traceroute condition
-        elif self.in_host and name == "trace":
+        elif self.in_host and name == 'trace':
             self.in_trace = False
-            self.host_info.set_hops(self.list_hop)
-
-            del(self.list_hop)
 
 
     def write_xml(self, xml_file):
@@ -1143,245 +754,237 @@ class NmapParserSAX(ParserBasics, ContentHandler):
         self._write_runstats()
 
         # End of the xml file:
-        self.write_parser.endElement("nmaprun")
+        self.write_parser.endElement('nmaprun')
         self.write_parser.endDocument()
 
     def _write_runstats(self):
         ##################
         # Runstats element
-        self.write_parser.startElement("runstats", Attributes(dict()))
+        self.write_parser.startElement('runstats', AttributesImpl(dict()))
 
         ## Finished element
-        self.write_parser.startElement("finished",
-                        Attributes(dict(time = str(self.finish_epoc_time))))
-        self.write_parser.endElement("finished")
+        self.write_parser.startElement('finished',
+                        AttributesImpl(dict(
+                            time=str(time.mktime(self.finish_epoch_time)),
+                            timestr=self.finish_time)))
+        self.write_parser.endElement('finished')
 
         ## Hosts element
-        self.write_parser.startElement("hosts",
-                            Attributes(dict(up = str(self.hosts_up),
-                                            down = str(self.hosts_down),
-                                            total = str(self.hosts_scanned))))
-        self.write_parser.endElement("hosts")
+        self.write_parser.startElement('hosts',
+                AttributesImpl(dict(
+                    up=str(self.hosts_up),
+                    down=str(self.hosts_down),
+                    total=str(self.hosts_total))))
+        self.write_parser.endElement('hosts')
 
 
-        self.write_parser.endElement("runstats")
+        self.write_parser.endElement('runstats')
         # End of Runstats element
         #########################
 
     def _write_hosts(self):
         for host in self.hosts:
             # Start host element
-            self.write_parser.startElement("host",
-                                Attributes(dict(comment=host.comment)))
+            self.write_parser.startElement('host',
+                                AttributesImpl(dict(comment=host.comment)))
 
             # Status element
-            self.write_parser.startElement("status",
-                                Attributes(dict(state=host.state)))
-            self.write_parser.endElement("status")
+            self.write_parser.startElement('status',
+                                AttributesImpl(dict(
+                                    state=host.status['state'])))
+            self.write_parser.endElement('status')
 
 
             ##################
             # Address elements
-            ## IPv4
-            if type(host.ip) == type({}):
-                ## Remove None value items
-                self.__remove_none_keys(host.ip)
-                self.write_parser.startElement("address",
-                            Attributes(dict(addr=host.ip.get("addr", ""),
-                                        vendor=host.ip.get("vendor", ""),
-                                        addrtype=host.ip.get("type", ""))))
-                self.write_parser.endElement("address")
-
-            ## IPv6
-            if type(host.ipv6) == type({}):
-                self.write_parser.startElement("address",
-                            Attributes(dict(addr=host.ipv6.get("addr", ""),
-                                        vendor=host.ipv6.get("vendor", ""),
-                                        addrtype=host.ipv6.get("type", ""))))
-                self.write_parser.endElement("address")
-
-            ## MAC
-            if type(host.mac) == type({}):
-                self.write_parser.startElement("address",
-                            Attributes(dict(addr=host.mac.get("addr", ""),
-                                        vendor=host.mac.get("vendor", ""),
-                                        addrtype=host.mac.get("type", ""))))
-                self.write_parser.endElement("address")
+            for address in host.address:
+                self.__remove_none_keys(address) # XXX when is this needed ?
+                self.write_parser.startElement('address',
+                            AttributesImpl(dict(
+                                addr=address.get('addr', ''),
+                                vendor=address.get('vendor', ''),
+                                addrtype=address.get('addrtype', ''))))
+                self.write_parser.endElement('address')
             # End of Address elements
             #########################
 
 
             ###################
             # Hostnames element
-            self.write_parser.startElement("hostnames", Attributes({}))
+            self.write_parser.startElement('hostnames', AttributesImpl({}))
 
             for hname in host.hostnames:
                 if type(hname) == type({}):
-                    self.write_parser.startElement("hostname",
-                            Attributes(dict(name = hname.get("hostname", ""),
-                                        type = hname.get("hostname_type", ""))))
-                    
-                    self.write_parser.endElement("hostname")
+                    self.write_parser.startElement('hostname',
+                            AttributesImpl(
+                                dict(name = hname.get('hostname', ''),
+                                     type = hname.get('hostname_type', ''))))
 
-            self.write_parser.endElement("hostnames")
+                    self.write_parser.endElement('hostname')
+
+            self.write_parser.endElement('hostnames')
             # End of Hostnames element
             ##########################
 
 
             ###############
             # Ports element
-            self.write_parser.startElement("ports", Attributes({}))
+            self.write_parser.startElement('ports', AttributesImpl({}))
 
-            for ps in host.ports:
-                ## Extraports elements
-                for ext in ps["extraports"]:
-                    if type(ext) == type({}):
-                        self.__remove_none_keys(ext)
-                        self.write_parser.startElement("extraports",
-                            Attributes(dict(count = str(ext.get("count", "")),
-                                            state = ext.get("state", ""))))
-                        self.write_parser.endElement("extraports")
+            ## Extraports elements
+            for export in host.extraports:
+                self.__remove_none_keys(export)
+                self.write_parser.startElement('extraports',
+                        AttributesImpl(dict(
+                            count=str(export.get('count', '')),
+                            state=export.get('state', ''))))
+                self.write_parser.endElement('extraports')
 
-                ## Port elements
-                for p in ps["port"]:
-                    if type(p) == type({}):
-                        self.__remove_none_keys(p)
-                        self.write_parser.startElement("port",
-                            Attributes(dict(portid = p.get("portid", ""),
-                                            protocol = p.get("protocol", ""))))
+            ## Port elements
+            for port in host.ports:
+                self.__remove_none_keys(port)
+                self.write_parser.startElement('port',
+                    AttributesImpl(dict(
+                        portid = port.get('portid', ''),
+                        protocol = port.get('protocol', ''))))
 
-                        ### Port state
-                        self.write_parser.startElement("state",
-                            Attributes(dict(state=p.get("port_state", ""))))
-                        self.write_parser.endElement("state")
+                ### Port state
+                self.write_parser.startElement('state',
+                        AttributesImpl(dict(state=port.get('state', ''))))
+                self.write_parser.endElement('state')
 
-                        ### Port service info
-                        self.write_parser.startElement("service",
-                            Attributes(dict(conf = p.get("service_conf", ""),
-                                    method = p.get("service_method", ""),
-                                    name = p.get("service_name", ""),
-                                    product = p.get("service_product", ""),
-                                    version = p.get("service_version", ""),
-                                    extrainfo = p.get("service_extrainfo", "")\
-                                )))
-                        self.write_parser.endElement("service")
+                ### Port service info
+                self.write_parser.startElement('service',
+                        AttributesImpl(dict(
+                            conf=port.get('conf', ''),
+                            method=port.get('method', ''),
+                            name=port.get('name', ''),
+                            product=port.get('product', ''),
+                            version=port.get('version', ''),
+                            extrainfo=port.get('extrainfo', '')
+                            )))
+                self.write_parser.endElement('service')
 
-                        self.write_parser.endElement("port")
+                self.write_parser.endElement('port')
 
-            self.write_parser.endElement("ports")
+            self.write_parser.endElement('ports')
             # End of Ports element
             ######################
 
 
             ############
             # OS element
-            self.write_parser.startElement("os", Attributes({}))
-            
+            self.write_parser.startElement('os', AttributesImpl({}))
+
             ## Ports used elements
-            for pu in host.ports_used:
+            for pu in host.portused:
                 if type(pu) == type({}):
                     self.__remove_none_keys(pu)
-                    self.write_parser.startElement("portused",
-                                Attributes(dict(state = pu.get("state", ""),
-                                                proto = pu.get("proto", ""),
-                                                portid = pu.get("portid", ""))))
-                    self.write_parser.endElement("portused")
+                    self.write_parser.startElement('portused',
+                                AttributesImpl(dict(state = pu.get('state', ''),
+                                                proto = pu.get('proto', ''),
+                                                portid = pu.get('portid', ''))))
+                    self.write_parser.endElement('portused')
 
             ## Osclass elements
-            for oc in host.osclasses:
+            for oc in host.osclass:
                 if type(oc) == type({}):
                     self.__remove_none_keys(oc)
-                    self.write_parser.startElement("osclass",
-                        Attributes(dict(vendor = oc.get("vendor", ""),
-                                        osfamily = oc.get("osfamily", ""),
-                                        type = oc.get("type", ""),
-                                        osgen = oc.get("osgen", ""),
-                                        accuracy = oc.get("accuracy", ""))))
-                    self.write_parser.endElement("osclass")
+                    self.write_parser.startElement('osclass',
+                        AttributesImpl(dict(vendor = oc.get('vendor', ''),
+                                        osfamily = oc.get('osfamily', ''),
+                                        type = oc.get('type', ''),
+                                        osgen = oc.get('osgen', ''),
+                                        accuracy = oc.get('accuracy', ''))))
+                    self.write_parser.endElement('osclass')
 
             ## Osmatch elements
-            for om in host.osmatches:
+            for om in host.osmatch:
                 if type(om) == type({}):
                     self.__remove_none_keys(om)
-                    self.write_parser.startElement("osmatch",
-                        Attributes(dict(name = om.get("name", ""),
-                                    accuracy = om.get("accuracy", ""))))
-                    self.write_parser.endElement("osmatch")
-            
+                    self.write_parser.startElement('osmatch',
+                        AttributesImpl(dict(name = om.get('name', ''),
+                                    accuracy = om.get('accuracy', ''))))
+                    self.write_parser.endElement('osmatch')
+
             ## Osfingerprint element
             if type(host.osfingerprint) == type({}):
                 self.__remove_none_keys(host.osfingerprint)
-                self.write_parser.startElement("osfingerprint", 
-                    Attributes(dict(fingerprint = \
-                                    host.osfingerprint.get("fingerprint", ""))))
-                self.write_parser.endElement("osfingerprint")
-            
+                self.write_parser.startElement('osfingerprint',
+                    AttributesImpl(dict(
+                        fingerprint=host.osfingerprint.get('fingerprint', ''))))
+                self.write_parser.endElement('osfingerprint')
 
-            self.write_parser.endElement("os")
+
+            self.write_parser.endElement('os')
             # End of OS element
             ###################
 
             # Uptime element
             if type(host.uptime) == type({}):
-                self.write_parser.startElement("uptime",
-                    Attributes(dict(seconds = host.uptime.get("seconds", ""),
-                                lastboot = host.uptime.get("lastboot", ""))))
-                self.write_parser.endElement("uptime")
+                self.write_parser.startElement('uptime',
+                    AttributesImpl(dict(
+                        seconds = host.uptime.get('seconds', ''),
+                        lastboot = host.uptime.get('lastboot', ''))))
+                self.write_parser.endElement('uptime')
 
             #####################
             # Sequences elementes
             ## TCP Sequence element
             # Cannot use dict() here, because of the 'class' attribute.
             if type(host.tcpsequence) == type({}):
-                self.write_parser.startElement("tcpsequence",
-                    Attributes({"index":host.tcpsequence.get("index", ""),
-                            "class":host.tcpsequence.get("class", ""),
-                            "difficulty":host.tcpsequence.get("difficulty", ""),
-                            "values":host.tcpsequence.get("values", "")}))
-                self.write_parser.endElement("tcpsequence")
+                self.write_parser.startElement('tcpsequence',
+                    AttributesImpl({
+                        'index': host.tcpsequence.get('index', ''),
+                        'class': host.tcpsequence.get('class', ''),
+                        'difficulty': host.tcpsequence.get('difficulty', ''),
+                        'values': host.tcpsequence.get('values', '')}))
+                self.write_parser.endElement('tcpsequence')
 
             ## IP ID Sequence element
             if type(host.ipidsequence) == type({}):
-                self.write_parser.startElement("ipidsequence",
-                    Attributes({"class":host.ipidsequence.get("class", ""),
-                                "values":host.ipidsequence.get("values", "")}))
-                self.write_parser.endElement("ipidsequence")
+                self.write_parser.startElement('ipidsequence',
+                    AttributesImpl({
+                        'class': host.ipidsequence.get('class', ''),
+                        'values': host.ipidsequence.get('values', '')}))
+                self.write_parser.endElement('ipidsequence')
 
             ## TCP TS Sequence element
             if type(host.tcptssequence) == type({}):
-                self.write_parser.startElement("tcptssequence",
-                    Attributes({"class":host.tcptssequence.get("class", ""),
-                            "values":host.tcptssequence.get("values", "")}))
-                self.write_parser.endElement("tcptssequence")
+                self.write_parser.startElement('tcptssequence',
+                    AttributesImpl({
+                        'class': host.tcptssequence.get('class', ''),
+                        'values': host.tcptssequence.get('values', '')}))
+                self.write_parser.endElement('tcptssequence')
             # End of sequences elements
             ###########################
 
             # End host element
-            self.write_parser.endElement("host")
+            self.write_parser.endElement('host')
 
     def _write_debugging(self):
-        self.write_parser.startElement("debugging", Attributes(dict(
+        self.write_parser.startElement('debugging', AttributesImpl(dict(
                                             level=str(self.debugging_level))))
-        self.write_parser.endElement("debugging")
+        self.write_parser.endElement('debugging')
 
     def _write_verbose(self):
-        self.write_parser.startElement("verbose", Attributes(dict(
+        self.write_parser.startElement('verbose', AttributesImpl(dict(
                                             level=str(self.verbose_level))))
-        self.write_parser.endElement("verbose")
+        self.write_parser.endElement('verbose')
 
     def _write_scaninfo(self):
         for scan in self.scaninfo:
             if type(scan) == type({}):
-                self.write_parser.startElement("scaninfo",
-                    Attributes(dict(type = scan.get("type", ""),
-                                    protocol = scan.get("protocol", ""),
-                                    numservices = scan.get("numservices", ""),
-                                    services = scan.get("services", ""))))
-                self.write_parser.endElement("scaninfo")
+                self.write_parser.startElement('scaninfo',
+                    AttributesImpl(dict(type = scan.get('type', ''),
+                                    protocol = scan.get('protocol', ''),
+                                    numservices = scan.get('numservices', ''),
+                                    services = scan.get('services', ''))))
+                self.write_parser.endElement('scaninfo')
 
     def _write_nmaprun(self):
-        self.write_parser.startElement("nmaprun",
-                Attributes(dict(annotation = str(self.profile_annotation),
+        self.write_parser.startElement('nmaprun',
+                AttributesImpl(dict(annotation = str(self.profile_annotation),
                                 args = str(self.nmap_command),
                                 description = str(self.profile_description),
                                 hint = str(self.profile_hint),
@@ -1397,41 +1000,30 @@ class NmapParserSAX(ParserBasics, ContentHandler):
                                 scan_name = str(self.scan_name))))
 
     def _verify_file(self, xml_file):
-        if type(xml_file) in StringTypes:
-            if os.access(os.path.split(xml_file)[0], os.W_OK):
-                xml_file = open(xml_file, "w")
+        # let errors be raised
+        if isinstance(xml_file, basestring):
+            xml_file = open(xml_file, 'w')
+            xml_file.seek(0)
+            return xml_file
+        else:
+            mode = xml_file.mode
+            if mode in ('r+', 'w', 'w+'):
                 xml_file.seek(0)
-                return xml_file
-            else:
-                raise Exception("Don't have write permissions to given path.")
-        elif type(xml_file) not in StringTypes:
-            try:
-                mode = xml_file.mode
-                if mode == "r+" or mode == "w" or mode == "w+":
-                    xml_file.seek(0)
-            except IOError:
-                raise Exception("File descriptor is not able to write!")
-            else:
-                return xml_file
-    
+            return xml_file
+
     def __remove_none_keys(self, dic):
-        pop_list = []
-        for k in dic:
-            if dic[k] == None:
-                pop_list.append(k)
-        for k in pop_list:
-            dic.pop(k)
-            
-    def set_unsaved(self):
-        self.unsaved = True
+        for k in dic.keys():
+            if k is None:
+                dic.pop(k)
 
     def is_unsaved(self):
         return self.unsaved
 
+
 def nmap_parser_sax(nmap_xml_file=""):
     parser = make_parser()
     nmap_parser = NmapParserSAX()
-    
+
     parser.setContentHandler(nmap_parser)
     nmap_parser.set_parser(parser)
     nmap_parser.set_xml_file(nmap_xml_file)
@@ -1439,122 +1031,3 @@ def nmap_parser_sax(nmap_xml_file=""):
     return nmap_parser
 
 NmapParser = nmap_parser_sax
-
-if __name__ == '__main__':
-    #file_to_parse = open("/home/adriano/umit/test/diff1.usr")
-    file_to_parse = \
-        "../../umit-within-radialnet/RadialNet2/share/sample/nmap_example.xml"
-    file_to_write = open("/tmp/teste_write.xml", "w+")
-    np = NmapParser(file_to_parse)
-    np.parse()
-
-    from pprint import pprint
-    
-    
-    print "Trace:"
-    for host in np.nmap["hosts"]:
-        print host.get_osmatches()
-        print host.get_osmatch()
-        #print host.get_osfingerprint()
-        #number_of_hops =  host.get_number_of_hops()
-        #for ttl in range(1, number_of_hops + 1):
-            #hop = host.get_hop_by_ttl(ttl)
-            #print hop
-            
-    print "Comment:",
-    pprint(np.nmap["hosts"][-1].comment)
-    #comment = property(get_comment, set_comment)
-
-    print "TCP sequence:",
-    pprint(np.nmap["hosts"][-1].tcpsequence)
-    #tcpsequence = property(get_tcpsequence, set_tcpsequence)
-
-    print "TCP TS sequence:",
-    pprint(np.nmap["hosts"][-1].tcptssequence)
-    #tcptssequence = property(get_tcptssequence, set_tcptssequence)
-
-    print "IP ID sequence:",
-    pprint(np.nmap["hosts"][-1].ipidsequence)
-    #ipidsequence = property(get_ipidsequence, set_ipidsequence)
-
-    print "Uptime:",
-    pprint(np.nmap["hosts"][-1].uptime)
-    #uptime = property(get_uptime, set_uptime)
-
-    print "OS Match:",
-    pprint(np.nmap["hosts"][-1].osmatch)
-    #osmatch = property(get_osmatch, set_osmatch)
-
-    print "Ports:",
-    pprint(np.nmap["hosts"][-1].ports)
-    #ports = property(get_ports, set_ports)
-
-    print "Ports used:",
-    pprint(np.nmap["hosts"][-1].ports_used)
-    #ports_used = property(get_ports_used, set_ports_used)
-
-    print "OS Class:",
-    pprint(np.nmap["hosts"][-1].osclasses)
-    #osclasses = property(get_osclasses, set_osclasses)
-
-    print "Hostnames:",
-    pprint(np.nmap["hosts"][-1].hostnames)
-    #hostnames = property(get_hostnames, set_hostnames)
-
-    print "IP:",
-    pprint(np.nmap["hosts"][-1].ip)
-    #ip = property(get_ip, set_ip)
-
-    print "IPv6:",
-    pprint(np.nmap["hosts"][-1].ipv6)
-    #ipv6 = property(get_ipv6, set_ipv6)
-
-    print "MAC:",
-    pprint(np.nmap["hosts"][-1].mac)
-    #mac = property(get_mac, set_mac)
-
-    print "State:",
-    pprint(np.nmap["hosts"][-1].state)
-    #state = property(get_state, set_state)
-    np.write_xml("../hahah.xml")
-
-    """
-    print "Profile:", np.profile
-    print "Profile name:", np.profile_name
-    print "Profile description:", np.profile_description
-    print "Profile hint:", np.profile_hint
-    print "Profile annotation:", np.profile_annotation
-    print "Profile options:", np.profile_options
-    print "Target:", np.target
-    print "Nmap output:", np.nmap_output
-    print "Debugging:", np.debugging_level
-    print "Verbose:", np.verbose_level
-    print "Scaninfo:", np.scaninfo
-    print "Services scanned:", np.services_scanned
-    print "Nmap command:", np.nmap_command
-    print "Scan type:", np.scan_type
-    print "Protocol:", np.protocol
-    print "Num services:", np.num_services
-    print "Date:", np.date
-    print "Open ports:", np.open_ports
-    print "Filtered ports:", np.filtered_ports
-    print "Closed ports:", np.closed_ports
-    print "Formated date:", np.formated_date
-    print "Scanner:", np.scanner
-    print "Scanner version:", np.scanner_version
-    print "IPv4:", np.ipv4
-    print "MAC:", np.mac
-    print "IPv6:", np.ipv6
-    print "Hostnames", np.hostnames
-    print "Ports:", np.ports
-    print "Hosts:", np.hosts
-    print "Runstats:", np.runstats
-    print "Hosts down:", np.hosts_down
-    print "Hosts up:", np.hosts_up
-    print "Hosts scanned:", np.hosts_scanned
-    print "Finished time:", np.finish_time
-    print "Finished epoc time:", np.finish_epoc_time
-    print "Formated finish date:", np.formated_finish_date
-    print "Comments:", np.comments
-    print "Start:", np.start
-    """

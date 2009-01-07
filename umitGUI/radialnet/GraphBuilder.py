@@ -50,10 +50,8 @@ class GraphBuilder(Graph):
     def __calc_vulnerability_level(self, node, host):
         """
         """
-        ports = host.get_ports()
-        number_ports = 0 
-        for port in ports:
-            number_ports = number_ports + len(port['port'])
+        ports = host.ports
+        number_ports = len(host.ports)
     
         node.set_info({'number_of_scanned_ports': number_ports})
     
@@ -80,10 +78,15 @@ class GraphBuilder(Graph):
                             'radius':radius})
     
         # getting address and hostnames
-        host_addresses = host.get_ip()
+        for addr in host.address:
+            if addr['addrtype'] == 'ipv4':
+                host_addresses = addr
+                break
+        else:
+            host_addresses = {}
         if host_addresses.has_key('vendor') and host_addresses['vendor'] == '':
             host_addresses['vendor'] = None
-            
+
         addresses = list()
     
         addresses.append(host_addresses)
@@ -91,19 +94,12 @@ class GraphBuilder(Graph):
         node.set_info({'addresses': addresses})
         node.set_info({'ip': addresses[0]['addr']})
     
-        host_hostnames = host.get_hostnames()
-        if len(host_hostnames) > 0:
-    
+        host_hostnames = host.hostnames
+        if host_hostnames:
             hostnames = list()
-    
             for host_hostname in host_hostnames:
-    
-                hostname = dict()
-    
-                hostname['name'] = host_hostname['hostname']
-                hostname['type'] = host_hostname['hostname_type']
-    
-                hostnames.append(hostname)
+                hostnames.append(host_hostname.copy())
+
             node.set_info({'hostnames': hostnames})
             node.set_info({'hostname': hostnames[0]['name']})
     
@@ -117,14 +113,14 @@ class GraphBuilder(Graph):
     
         os = {}
 
-        host_osfingerprint = host.get_osfingerprint()
-        host_osclasses = host.get_osclasses()
-        host_osmatches = host.get_osmatches()
-        host_portsused = host.get_ports_used()
+        host_osfingerprint = host.osfingerprint
+        host_osclasses = host.osclass
+        host_osmatches = host.osmatch
+        host_portsused = host.portused
         os['fingerprint'] = ""
-        if host_osfingerprint.has_key('fingerprint'):
-            os['fingerprint'] = host_osfingerprint['fingerprint']
-        
+        if host_osfingerprint and host_osfingerprint[0].has_key('fingerprint'):
+            os['fingerprint'] = host_osfingerprint[0]['fingerprint']
+
         if len(host_osclasses) > 0:
 
             types = ['router', 'wap', 'switch', 'firewall']
@@ -151,15 +147,13 @@ class GraphBuilder(Graph):
 
             os['classes'] = os_classes
         if len(host_osmatches) > 0:
-
             os_matches = []
 
             for host_osmatch in host_osmatches:
 
                 os_match = {}
                 os_match['name'] = host_osmatch['name']
-                if host_osmatch.has_key('accuracy') and \
-                   type(host_osmatch['accuracy']) != type(0):
+                if host_osmatch.get('accuracy', None):
                     os_match['accuracy'] = int(host_osmatch['accuracy'])
                 # TODO/FIXME:
                 #os_match['db_line'] = int(host_osmatch['line'])
@@ -180,10 +174,10 @@ class GraphBuilder(Graph):
 
         node.set_info({'os': os})
     
-        # getting sequences information
-        host_tcpsequence = host.get_tcpsequence()
-        host_ipidsequence = host.get_ipidsequence()
-        host_tcptssequence = host.get_tcptssequence()
+        # getting (copies of) sequences information
+        host_tcpsequence = host.tcpsequence.copy()
+        host_ipidsequence = host.ipidsequence.copy()
+        host_tcptssequence = host.tcptssequence.copy()
         
         sequences = {}
     
@@ -200,19 +194,18 @@ class GraphBuilder(Graph):
             sequences['ip_id'] = ip_id
     
         if host_tcptssequence:
-            if host_tcptssequence.has_key('values') and \
-               host_tcptssequence['values'] != None:
+            if host_tcptssequence.get('values', None):
                 host_tcptssequence['values'] = \
-                                  host_tcptssequence['values'].split(',')
+                        host_tcptssequence['values'].split(',')
     
             sequences['tcp_ts'] = host_tcptssequence
-    
+
         node.set_info({'sequences': sequences})
     
         # host is host filtered
         filtered = False
         
-        host_filtered = host.get_state()
+        host_filtered = host.status['state']
         if host_filtered=="filtered":
             filtered=True
         
@@ -224,74 +217,42 @@ class GraphBuilder(Graph):
             node.set_info({'filtered': True})
     
         # getting ports information
-   
-        _host_ports = host.get_ports()
-        host_extraports = host.get_extraports()
-        ports = list()
-      
-        host_ports = _host_ports[0]
-        for i in _host_ports:
-            if i.has_key('port'):
-                host_ports = i
-                break
-            
-        if host_ports.has_key('port'):
-            host_port = host_ports['port']
-            port = dict()
-            state = dict()
-            scripts = list()
-            service = dict()
-            
-            for port in host_port:
-                #xml_service = xml_port.search_children('service', True, True)
-    
-                port['id'] = int(port['portid'])
-    
-                # TODO: Needs more fields in NmapParser
-                if port.has_key('port_state'):
-                    state['state'] = port['port_state']
-                    
-                    # Remove useless (key, value) 
-                    port.pop('port_state')
 
-                # TODO: Not ready to integrate right now 
-                #for script in xml_scripts:
-        
-                    #scripts.append(dict())
-        
-                    #for key in script.get_keys():
-                        #scripts[-1][key] = script.get_attr(key)
-                
-                # TODO: Get another information - NmapParser update need.
-                if port.has_key('service_name'):
-                    service['name'] = port['service_name']
-                    service['version'] = port['service_version']
-                    service['method'] = port['service_method']
-                    service['product'] = port['service_product']
-                    service['extrainfo'] = port['service_extrainfo']
-                    service['conf'] = port['service_conf']
-                    
-                    # Remove useless (key, values)
-                    port.pop('service_name')
-                    port.pop('service_version')
-                    port.pop('service_method')
-                    port.pop('service_product')
-                    port.pop('service_extrainfo')
-                    port.pop('service_conf')
-                    
-                    
-                port['state'] = state
-                port['scripts'] = {}
-                port['service'] = service
-    
+        host_ports = host.ports
+        host_extraports = host.extraports
+        ports = []
+
+        for port in host_ports:
+            port = port.copy() # Do not change the original port
+            port['id'] = int(port['portid'])
+            # TODO: Not ready to integrate right now 
+            #for script in xml_scripts:
+                #scripts.append(dict())
+                #for key in script.get_keys():
+                    #scripts[-1][key] = script.get_attr(key)
+
+            service = {}
+            # TODO: Get another information - NmapParser update need.
+            if 'name' in port:
+                service['name'] = port.pop('name')
+                service['version'] = port.pop('version', '')
+                service['method'] = port.pop('method', '')
+                service['product'] = port.pop('product', '')
+                service['extrainfo'] = port.pop('extrainfo', '')
+                service['conf'] = port.pop('conf', '')
+
+            port['state'] = {'state': port['state']}
+            port['scripts'] = {}
+            port['service'] = service
+
             ports.append(port)
-    
+
         node.set_info({'ports':ports})
-    
+
         all_extraports = list()
         #print host_extraports
         for extraports in host_extraports:
-    
+            extraports = extraports.copy() # Do not change the original eport
             extraports['count'] = int(extraports['count'])
             extraports['reason'] = list()
             extraports['all_reason'] = list()
@@ -321,18 +282,18 @@ class GraphBuilder(Graph):
         node.set_info({'extraports':all_extraports})
     
         # getting traceroute information
-        trace = host.get_trace()
-        if trace != []:
+        trace = host.trace
+        if trace and trace['hop']:
     
-            host_hops = host.get_hops()
+            host_hops = trace['hop']
             hops = []
     
             for host_hop in host_hops:
                 hop = host_hop
-                hostname = host_hop['host']
+                hostname = host_hop.get('host', None)
                 hop['ttl'] = int(hop['ttl'])
                 hop['hostname'] = (hostname, '')[hostname == None]
-                if hop.has_key('host'):
+                if 'host' in hop:
                     hop.pop('host')
     
                 hops.append(hop)
@@ -361,13 +322,13 @@ class GraphBuilder(Graph):
         
         # for each host in hosts just mount the graph
         for host in hosts:
-            trace = host.get_trace()
+            trace = host.trace
             # if host has traceroute information mount graph
-            if trace != []:
+            if trace and trace['hop']:
                 
                 prev_node = nodes[0]
                 
-                hops = host.get_hops()
+                hops = trace['hop']
                 ttls = [int(hop['ttl']) for hop in hops]
                 
                 # getting nodes of host by ttl
@@ -422,9 +383,12 @@ class GraphBuilder(Graph):
         # for each full scanned host
         for host in hosts:
     
-            ip = host.get_ip()
-            
-            
+            for addr in host.address:
+                if addr['addrtype'] == 'ipv4':
+                    ip = addr
+                    break
+            else:
+                ip = {}
             for node in nodes:
                 if ip.has_key('addr') and ip['addr'] == node.get_info('ip'):
                     break
