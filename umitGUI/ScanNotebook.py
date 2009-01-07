@@ -349,6 +349,12 @@ class ScanNotebookPage(HIGVBox):
         self.scan_result = ScanResult()
         self.scan_result.set_parse(self.parsed)
 
+        self.host_view_selection = self.scan_result.get_host_selection()
+        self.service_view_selection = self.scan_result.get_service_selection()
+
+        self.host_view_selection.connect('changed', self.update_host_info)
+        self.service_view_selection.connect('changed', self.update_service_info)
+
     def __create_toolbar(self):
         self.toolbar = ScanToolbar()
         self.toolbar.scan_button.set_sensitive(False)
@@ -703,15 +709,10 @@ class ScanNotebookPage(HIGVBox):
         log.debug(">>> XML output file that is going to be "
             "parsed: %s" % file_to_parse)
         
-        self.host_view_selection = self.scan_result.get_host_selection()
-        self.service_view_selection = self.scan_result.get_service_selection()
-        
         # All hosts details pages
         self.host_pages = []
         self.changes = True
         
-        self.host_view_selection.connect('changed', self.update_host_info)
-        self.service_view_selection.connect('changed', self.update_service_info)
         self.scan_result.scan_host_view.clear_host_list()
         self.hosts = {}
         self.services = {}
