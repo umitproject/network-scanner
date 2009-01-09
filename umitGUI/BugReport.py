@@ -208,7 +208,7 @@ class BugReport(HIGDialog):
             assert bug_page
         except:
             import traceback
-            print traceback.extract_tb()
+            traceback.print_exc()
             cancel_dialog = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                 message_format=_("Bug not reported!"),
                 secondary_text=_("The bug description could not be "
