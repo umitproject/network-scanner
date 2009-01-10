@@ -558,9 +558,13 @@ class Plugins(object):
     def __get_it(self, p_name):
         value = None
 
-        try:     value = self.parser.get(self.section_name, p_name)
-        except:  pass
-        finally: return self.sanity_settings(value)
+        try:
+            try:
+                value = self.parser.get(self.section_name, p_name)
+            except:
+                pass
+        finally:
+            return self.sanity_settings(value)
 
     def __set_it(self, property_name, settings):
         settings = self.sanity_settings(settings)
