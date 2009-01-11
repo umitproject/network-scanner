@@ -438,7 +438,7 @@ class Console (gtk.ScrolledWindow):
     
         start,end = self.text.get_buffer().get_bounds()
 
-        if style==None:
+        if style is None:
             self.text.get_buffer().insert (end, line)
         else:
             self.text.get_buffer().insert_with_tags_by_name (end, line, style)
