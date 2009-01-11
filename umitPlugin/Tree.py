@@ -63,11 +63,12 @@ def hook_import(lib, globals=None, locals=None, fromlist=None, level=-1):
             
             try:
                 sys.path.insert(0, path)
-                
-                return original_import(name.replace(get_config_vars("SO")[0], ""), \
-                                         level=0)
-            except Exception, exc:
-                continue
+
+                try:
+                    return original_import(name.replace(get_config_vars("SO")[0], ""), \
+                                             level=0)
+                except Exception, exc:
+                    continue
             finally:
                 sys.path.pop(0)
 
@@ -488,7 +489,6 @@ class PluginsTree(object):
         finally:
             __builtin__.__import__ = original_import
 
-
     def __load_hook(self, pkg):
         """
         This is the real load procedure of plugin.
@@ -518,13 +518,14 @@ class PluginsTree(object):
             sys.modules.pop(pkg.start_file)
 
         try:
-            # We add to modules to avoid deleting and stop working plugin ;)
-            sys.plugins_path.insert(0, pkg)
-            module = self.__cache_import(pkg)
-        
-        except Exception, err:
-            sys.plugins_path.pop(0)
-            raise PluginException(pkg, str(err))
+            try:
+                # We add to modules to avoid deleting and stop working plugin ;)
+                sys.plugins_path.insert(0, pkg)
+                module = self.__cache_import(pkg)
+            
+            except Exception, err:
+                sys.plugins_path.pop(0)
+                raise PluginException(pkg, str(err))
         
         finally:
             # Check that
@@ -543,7 +544,7 @@ class PluginsTree(object):
                     ret.append(inst)
                 except Exception, err:
                     log.critical("Error while starting %s from %s:" % (plug, pkg))
-                    log.critical(err)
+                    log.critical(generate_traceback())
                     log.critical("Ignoring instance.")
 
             if not ret:

@@ -19,7 +19,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import sys
-import os, os.path
+import os
+import os.path
 
 from umitPlugin.Core import Core
 from umitPlugin.Atoms import Singleton
@@ -37,7 +38,7 @@ class Plugin(object):
     Plugin base class
     """
     def start(self, reader):
-        "This is the main for your plugin"
+        "This is the main for your plugin (reader could be None if testing)"
         pass
 
     def stop(self):
