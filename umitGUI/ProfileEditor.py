@@ -215,7 +215,7 @@ class ProfileEditor(HIGWindow):
         give a model of treeview to update profile manager
         after run wizard
         """
-	assert model != None
+	assert model is not None
 	
         self.model = model 
         self.profilemanager = True 
@@ -371,7 +371,7 @@ Ok to continue, or Cancel to go back to Profile Editor.'))
             elif self.deleted and length == 0:
                 page.toolbar.profile_entry.child.set_text("")
 
-        if page != None:
+        if page is not None:
             page.toolbar.profile_entry.update()
 
         #page.toolbar.scan_profile.profile_entry.child.\

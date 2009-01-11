@@ -208,7 +208,7 @@ class NmapCommand(object):
 the command before trying to start scan!")
 
     def scan_state(self):
-        if self.command_process == None:
+        if self.command_process is None:
             raise Exception("Scan is not running yet!")
 
         state = self.command_process.poll()
@@ -218,7 +218,7 @@ the command before trying to start scan!")
         # new content come to be buffered
         #self.command_buffer += self.command_process.stdout.read()
 
-        if state == None:
+        if state is None:
             return True # True means that the process is still running
         elif state == 0:
             return False # False means that the process had a successful exit

@@ -391,7 +391,7 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
     def refresh_output(self, widget=None):
         log.debug("Refresh nmap output")
         
-        if self.nmap_output_file != None:
+        if self.nmap_output_file is not None:
             nmap_of = open(self.nmap_output_file, "r")
 
             new_output = nmap_of.read()

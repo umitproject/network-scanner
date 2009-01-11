@@ -81,5 +81,5 @@ class ScanMapperPage(HIGVBox):
         self.__radialnet.set_graph(self.__graph)
     def set_parse(self, parse):
         self.__parser = parse
-        if self.__radialnet!=None:
+        if self.__radialnet is not None:
             self.__radialnet.set_graph(self.__graph)

@@ -324,10 +324,10 @@ class HostDetails(HIGVBox):
     def set_ports_used(self, ports=None):
         # Removing old childs
         child = self.portsused_expander.get_child()
-        if child != None:
+        if child is not None:
             self.portsused_expander.remove(child)
         
-        if ports == None:
+        if ports is None:
             self.portsused_expander.set_sensitive(False)
             return
         else:
@@ -350,10 +350,10 @@ class HostDetails(HIGVBox):
 
     def set_osclass(self, osclass=None):
         child = self.osclass_expander.get_child()
-        if child != None:
+        if child is not None:
             self.osclass_expander.remove(child)
         
-        if osclass == None:
+        if osclass is None:
             self.osclass_expander.set_sensitive(False)
             return
         else:

@@ -50,7 +50,7 @@ class BugReport(HIGDialog):
         self._connect_widgets()
         self.summary = summary or ''
         self.description_report = description
-        if self.description_dialog==None:
+        if self.description_dialog is None:
             self.description = description or ''
         else:
             self.description = description_dialog or ''
@@ -196,7 +196,7 @@ class BugReport(HIGDialog):
 
         bug_register.component = self.category_id
         bug_register.summary = self.summary
-        if self.description_report!=None:
+        if self.description_report is not None:
             bug_register.details = self.description_report
         else:
             bug_register.details = self.description.replace("\n", "[[BR]]")

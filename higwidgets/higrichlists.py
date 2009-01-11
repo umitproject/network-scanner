@@ -290,7 +290,7 @@ class PluginRow(HIGRichRow):
         If not defined don't update
         """
         
-        if value != None:
+        if value is not None:
             self._message = value
             
             # Used to update the label
@@ -427,7 +427,7 @@ class HIGRichList(gtk.ScrolledWindow):
 
         @return True if selection was changed
         """
-        assert row != None
+        assert row is not None
 
         if self.prev_sel:
             self.prev_sel.active = False

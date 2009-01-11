@@ -292,7 +292,7 @@ class GraphBuilder(Graph):
                 hop = host_hop
                 hostname = host_hop.get('host', None)
                 hop['ttl'] = int(hop['ttl'])
-                hop['hostname'] = (hostname, '')[hostname == None]
+                hop['hostname'] = (hostname, '')[hostname is None]
                 if 'host' in hop:
                     hop.pop('host')
     
@@ -336,7 +336,7 @@ class GraphBuilder(Graph):
                     if ttl in ttls:
     
                         hop = host.get_hop_by_ttl(ttl)
-                        # FIXME: Protect if hop == None
+                        # FIXME: Protect if hop is None
                         for node in nodes:
                             if hop.has_key('ipaddr'):
                                 hop['ip'] = hop['ipaddr']
@@ -353,7 +353,7 @@ class GraphBuilder(Graph):
                             node.set_info({'ip':hop['ipaddr']})
                             node.set_draw_info({'color':(1,1,1),
                                                 'radius':NONE_RADIUS})
-                            if hop.has_key('host') and hop['host'] != None:
+                            if hop.has_key('host') and hop['host'] is not None:
                                 node.set_info(\
                                     {'hostname':hop['host']})
     

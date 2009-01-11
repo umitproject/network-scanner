@@ -71,7 +71,7 @@ class BugRegister(object):
         trac_session = self.__get_cookie(f.headers, "trac_session")
         # Get value of __FORM_TOKEN
         trac_form = self.__get_cookie(f.headers, "trac_form_token")
-        if (trac_form == None or trac_session == None ):
+        if (trac_form is None or trac_session is None):
             return None 
 
         data = urllib.urlencode({"summary":self.summary,

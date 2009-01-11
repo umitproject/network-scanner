@@ -76,7 +76,7 @@ class Node(object):
         @rtype: mixed
         @return: The requested information
         """
-        if info == None:
+        if info is None:
             return self.__information
 
         if self.__information.has_key(info):
@@ -255,7 +255,7 @@ class Graph:
             self.__edges.append(Edge(connection))
 
         # then add new weigth value
-        if weigth != None:
+        if weigth is not None:
 
             edge = self.get_connection(a, b)
             edge.add_weigth(weigth)
@@ -319,8 +319,8 @@ class Graph:
 
             mean = edge.get_weigths_mean()
 
-            if mean != None:
-                if mean > max_value or max_value == None:
+            if mean is not None:
+                if mean > max_value or max_value is None:
                     max_value = mean
 
         self.__max_edge_mean_value = max_value
@@ -335,8 +335,8 @@ class Graph:
 
             mean = edge.get_weigths_mean()
 
-            if mean != None:
-                if mean < min_value or min_value == None:
+            if mean is not None:
+                if mean < min_value or min_value is None:
                     min_value = mean
 
         self.__min_edge_mean_value = min_value

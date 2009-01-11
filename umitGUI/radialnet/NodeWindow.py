@@ -99,7 +99,7 @@ class NodeWindow(HIGWindow):
         # title with the node ip and hostname
         self.__title = ""
 
-        if self.__node.get_info('hostname') != None:
+        if self.__node.get_info('hostname') is not None:
             self.__title = self.__node.get_info('hostname') + ' - '
 
         self.__title += self.__node.get_info('ip')

@@ -73,7 +73,7 @@ class HostsViewer(HIGMainWindow):
     def change_notebook(self, node):
         """
         """
-        if self.__view != None:
+        if self.__view is not None:
             self.__view.destroy()
 
         self.__view = NodeNotebook(node)
@@ -122,7 +122,7 @@ class HostsList(gtk.ScrolledWindow):
 
             host = node.get_info('ip')
 
-            if node.get_info('hostname') != None:
+            if node.get_info('hostname') is not None:
                 host = node.get_info('hostname')
 
             self.__hosts_store.append([i,

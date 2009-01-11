@@ -69,7 +69,7 @@ class Splash(gtk.Window):
         return False
 
     def set_bg(self, widget, event, mask, pixmap):
-        if self.window != None:
+        if self.window is not None:
             self.window.set_back_pixmap(pixmap, False)
         else:
             gobject.idle_add(self.set_bg, widget, event, mask, pixmap)

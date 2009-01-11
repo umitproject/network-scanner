@@ -375,7 +375,7 @@ class SystemPage(HIGScrolledWindow):
                                     xoptions=gtk.FILL)
         self.__general._attach_next(self.__address_list, yoptions=gtk.FILL)
 
-        if self.__node.get_info('hostnames') != None:
+        if self.__node.get_info('hostnames') is not None:
 
             self.__hostname_label = HIGSectionLabel('Hostname:')
             self.__hostname_list = gtk.combo_box_entry_new_text()
@@ -394,7 +394,7 @@ class SystemPage(HIGScrolledWindow):
             self.__general._attach_next(self.__hostname_list,
                                         yoptions=gtk.FILL)
 
-        if self.__node.get_info('uptime') != None:
+        if self.__node.get_info('uptime') is not None:
 
             self.__uptime_label = HIGSectionLabel('Last boot:')
 
@@ -505,7 +505,7 @@ class SystemPage(HIGScrolledWindow):
 
         os = self.__node.get_info('os')
 
-        if os != None:
+        if os is not None:
 
             if os.has_key('matches'):
 
@@ -660,7 +660,7 @@ class TraceroutePage(HIGVBox):
     def __create_widgets(self):
         """
         """
-        if self.__node.get_info('trace') == None:
+        if self.__node.get_info('trace') is None:
 
             self.__trace_label = gtk.Label(NO_TRACE_TEXT)
             self.pack_start(self.__trace_label, True, True)

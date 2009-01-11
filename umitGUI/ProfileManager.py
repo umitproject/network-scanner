@@ -167,7 +167,7 @@ class ProfileManager(HIGWindow):
         """
         Change a nmap command at command entry
         """
-	assert widget_tv != None
+	assert widget_tv is not None
 	# it call __init__ because when wizard or profile are open,  
 	# need update profiles
 	self.profiles.__init__()
@@ -186,13 +186,13 @@ class ProfileManager(HIGWindow):
 	"""
 	Open Profile Editor with a Selected or Non-Selected(New) Item
 	"""
-	assert widget != None
+	assert widget is not None
 	
 	#widget = HIGButton()
 	
 	if widget.get_label() == "gtk-edit":
 	    # Edit profile selected    
-	    if self.get_selected_profile() != None:
+	    if self.get_selected_profile() is not None:
 		pe = ProfileEditor(self.get_selected_profile())
 		pe.set_notebook(self.__scan_notebook)
 		pe.set_profilemanager(self.model)
@@ -209,11 +209,11 @@ class ProfileManager(HIGWindow):
 	"""
 	Copy selected Profile
 	"""
-	if self.get_selected_profile() == None:
+	if self.get_selected_profile() is None:
 	    return None
 	d = ProfileName(_("Insert a profile name"))
 	profile_name = d.run()
-	if profile_name == None:
+	if profile_name is None:
 	    return None
 	#get commands of selected profile
 	profile_selected = self.get_selected_profile()
@@ -248,7 +248,7 @@ class ProfileManager(HIGWindow):
         """
         delete profile 
         """
-	if self.get_selected_profile() == None:
+	if self.get_selected_profile() is None:
 	    return None
 	self.profiles.remove_profile(self.get_selected_profile())
 	#Update treeview

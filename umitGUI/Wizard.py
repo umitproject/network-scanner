@@ -338,7 +338,7 @@ for this profile.'))
 
             current_page = self.notebook.get_nth_page(\
                 self.notebook.get_current_page())
-            if current_page == None:
+            if current_page is None:
                 current_page = self.notebook.add_scan_page(target)
 
             current_page.execute_command(cmd)

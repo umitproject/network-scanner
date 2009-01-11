@@ -43,10 +43,10 @@ LANG, ENC = locale.getdefaultlocale()
 ERRORS = "ignore"
 
 # If not correct locale could be retrieved, set en_US.utf8 as default
-if ENC == None:
+if ENC is None:
     ENC = "utf8"
 
-if LANG == None:
+if LANG is None:
     LANG = "en_US"
 
 try:

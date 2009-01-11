@@ -387,7 +387,7 @@ class MainWindow(UmitMainWindow):
     
     def _close_scan_cb(self, widget, data=None):
         # data can be none, if the current page is to be closed
-        if data == None:
+        if data is None:
             page_num = self.scan_notebook.get_current_page()
         # but can also be this page's content, which will be used
         # to find this page number
@@ -396,7 +396,7 @@ class MainWindow(UmitMainWindow):
         page = self.scan_notebook.get_nth_page(page_num)
         filename = None
 
-        if page == None or not isinstance(page, ScanNotebookPage):
+        if page is None or not isinstance(page, ScanNotebookPage):
             return True
 
         if page.status.unsaved_unchanged \
@@ -721,7 +721,7 @@ to close current Scan Tab?'),
         if it's not empty and shouldn't be used to load a result. Returns True,
         if it's ok to be used, and False if it's not.
         """
-        if page == None \
+        if page is None \
            or page.status.saved\
            or page.status.unsaved_unchanged\
            or page.status.unsaved_changed\
@@ -951,7 +951,7 @@ access to this path.'))
     def _edit_scan_profile_cb(self, p):
         page = self.scan_notebook.get_nth_page\
              (self.scan_notebook.get_current_page())
-        if page == None:
+        if page is None:
             return
 
         profile = page.toolbar.selected_profile
@@ -965,7 +965,7 @@ access to this path.'))
         page = self.scan_notebook.get_nth_page\
              (self.scan_notebook.get_current_page())
 
-        if page == None:
+        if page is None:
             return
 
         profile = page.toolbar.selected_profile
@@ -978,7 +978,7 @@ access to this path.'))
         page = self.scan_notebook.get_nth_page(\
             self.scan_notebook.get_current_page())
 
-        if page == None:
+        if page is None:
             return
 
         profile = page.toolbar.selected_profile
