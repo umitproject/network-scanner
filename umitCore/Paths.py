@@ -283,8 +283,8 @@ def copy_config_file(filename, dir_origin, dir_destiny):
 
     if not exists(destiny):
         # Quick copy
-        origin_file = open(origin, 'r')
-        destiny_file = open(destiny, 'w')
+        origin_file = open(origin, 'rb')
+        destiny_file = open(destiny, 'wb')
         destiny_file.write(origin_file.read())
         origin_file.close()
         destiny_file.close()
