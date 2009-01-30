@@ -1,8 +1,0 @@
-Created higwidgets/higframe.py
-
-Added directory umitInventory/
-  umitInventory/ is holding initial tests for Inventory data handling right now.
-
-Modified umitGUI/MainWindow.py to include a new Top-Level menu "Inventory".
-  This menu includes two options "add hosts" and "view inventory", both options
-  aren't doing nothing at all right now.
