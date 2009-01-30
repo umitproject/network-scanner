@@ -32,17 +32,6 @@ from umitCore.UmitLogging import log
 from umitCore.UmitConfigParser import UmitConfigParser
 from umitCore.I18N import _
 
-# Check if running on Maemo
-MAEMO = False
-try:
-    import hildon
-    MAEMO = True
-except ImportError:
-    pass
-
-def is_maemo():
-    return MAEMO
-
 class UmitConf(object):
     def __init__(self):
         self.parser = Path.config_parser

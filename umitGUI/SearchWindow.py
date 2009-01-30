@@ -25,7 +25,7 @@ import gtk
 from umitGUI.SearchGUI import SearchGUI
 
 from umitCore.I18N import _
-from umitCore.UmitConf import is_maemo
+from umitCore.Utils import is_maemo
 
 from higwidgets.higboxes import HIGVBox
 from higwidgets.higbuttons import HIGButton

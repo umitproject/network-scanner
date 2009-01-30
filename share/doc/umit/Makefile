@@ -26,7 +26,11 @@ VPATH = comparing_results \
 	nse_facilitator \
 	scanning \
 	searching \
-	wizard 
+	wizard \
+	nisearch \
+	nigraphs \
+	scheduler \
+	smtpsetup
 
 OUTDIR = .
 XSL = /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl
@@ -48,5 +52,7 @@ clean:
 	@rm -f $(OUTDIR)/scanning.html
 	@rm -f $(OUTDIR)/searching.html
 	@rm -f $(OUTDIR)/wizard.html
-
-
+	@rm -f $(OUTDIR)/nisearch.html
+	@rm -f $(OUTDIR)/nigraphs.html
+	@rm -f $(OUTDIR)/scheduler.html
+	@rm -f $(OUTDIR)/smtpsetup.html

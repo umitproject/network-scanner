@@ -187,7 +187,7 @@ class OptionTab(object):
         if self.update_func:
             self.update_func()
     
-                 
+
 class OptionBuilder(object):
     def __init__(self, xml_file, constructor, update_func):
         """ OptionBuilder(xml_file, constructor)

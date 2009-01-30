@@ -1,0 +1,67 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook v4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+
+<article>
+  <artheader>
+    <title>UMIT Network Inventory - Search</title>
+    <author>
+      <firstname>Guilherme</firstname>
+      <surname>Polo</surname>
+      <copyright>
+        <year>2007</year>
+	<holder>Guilherme Polo</holder>
+      </copyright>
+    </author>
+  </artheader>
+
+  <section>
+    <title>Introduction</title>
+    <para>The Network Inventory search system is designed to find devices
+    in Inventories. It searches based on Ports, Services, 
+    Changes that happened, IP, MAC, Hostname, OS Match, OS Classes 
+    and Fingerprint info.
+    </para>
+  </section>
+
+  <section>
+    <title>Performing a search</title>
+    <para>To search for something, just type whatever you want in the bar
+    placed at the top of Network Inventory and hit 'Enter' or click on that
+    icon search. Actually, to find devices it is important to follow some
+    very important rules.</para>
+
+    <para>To find devices based on port, you should search for something like
+    this: port 80. Then it will search for devices containing port 80 in
+    any state. If you want to search for devices containing only ports higher
+    than 1024, you should do: port > 1024. The port syntax allows you to use
+    the operators: '>', '&#060;', '==', '!=', '>=' and '&#060;='. But you
+    can't use more than one at once.</para>
+
+    <para>To find devices based on service, you should search for something
+    like this: service apache. And will search for a service with that name.
+    </para>
+
+    <para>To find devices based on some change, you should search for something
+    like this: change somechangetext.</para>
+
+    <para>To search based on things like hostname, ip, and others, you just
+    type the text. Searching devices by a valid ip is the fastest way to find
+    them right now.</para>
+  </section>
+  
+  <section>
+    <title>Bugs</title>
+
+    <para>As your scan number grows in your Inventories, you will feel the
+    pain when you try to search for devices. Also, you may get angry when
+    you notice the search system is not really smart. And it may contain very
+    ugly bugs right now. Now that you know all the bad news, you can hear
+    the good ones =)</para>
+    <para>The search will get smarter eventually, when pysqlite starts 
+    supporting FTS (Full Text Search) on some new version. Things
+    to attempt speeding up the results were not possible to be done 
+    in time for Google Summer of Code 2007, but will be implemented
+    as time and some other things allows.</para>
+  </section>
+
+</article>

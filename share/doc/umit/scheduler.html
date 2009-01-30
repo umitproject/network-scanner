@@ -1,0 +1,75 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>UMIT Scheduler</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article" lang="en"><div class="titlepage"><div><div><h1 class="title"><a name="id2962709"></a>UMIT Scheduler</h1></div><div><div class="author"><h3 class="author"><span class="firstname">Guilherme</span> <span class="surname">Polo</span></h3></div></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#id2962128">Introduction</a></span></dt><dt><span class="section"><a href="#new_schema">Setting up a Schedule</a></span></dt><dt><span class="section"><a href="#new_scheduling">Creating a new Scheduling Profile</a></span></dt><dt><span class="section"><a href="#id2972995">Crontab, some more info</a></span></dt><dt><span class="section"><a href="#id2964492">Starting Scheduler</a></span></dt><dt><span class="section"><a href="#root_start">Starting Scheduler as root</a></span></dt><dt><span class="section"><a href="#sched_stop">Stopping Scheduler</a></span></dt><dt><span class="section"><a href="#id2960934">Missing feature</a></span></dt></dl></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2962128"></a>Introduction</h2></div></div></div><p>The "Scan Scheduler Editor" is the place where you will schedule
+    scans to run on background without you noticing. You may save the scan
+    output to a file or send it to one or more emails. It is possible to let
+    it enabled or disabled, and it may be auto-added to the Network
+    Inventory if you toggle on "Add to the Inventory".</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="new_schema"></a>Setting up a Schedule</h2></div></div></div><p>It is pretty straightforward to set up a new scan schedule. Follows
+    a table that explains everything you may see on "Scan Scheduler Editor"
+    window.</p><div class="table"><a name="id2948643"></a><p class="title"><b>Table 1. Fields explanation</b></p><div class="table-contents"><table summary="Fields explanation" border="1"><colgroup><col><col></colgroup><thead><tr><th align="center">Field</th><th align="center">Meaning</th></tr></thead><tbody><tr><td>Schema name</td><td>Defines an unique name for the Scan Schedule that is being 
+          created, you may name it like "network scan", "local scan", etc.
+          This field is very important! If you choose to add this schedule
+          to the Inventory, the Inventory's name will be the Schema name.
+          </td></tr><tr><td>Scan Profile</td><td>These profiles are the profiles you created in UMIT, they
+          define scan options.</td></tr><tr><td>Command</td><td>Command is the scan command that will be used in this 
+          schedule.</td></tr><tr><td>Scheduling Profile</td><td>You need to choose one of the available Scheduling Profiles.
+          This defines when the schema command will be executed. Clicking on
+          "Edit Profiles" will open the Scheduling Profiles Editor.</td></tr></tbody></table></div></div><br class="table-break"><div class="table"><a name="id2957198"></a><p class="title"><b>Table 2. Schema Settings</b></p><div class="table-contents"><table summary="Schema Settings" border="1"><colgroup><col><col></colgroup><thead><tr><th align="center">Option</th><th align="center">Meaning</th></tr></thead><tbody><tr><td>Save outputs to</td><td>If you choose to save output, you will need to 
+          specify an output directory. A directory is required because a 
+          schedule is likely to be executed several times, so the file output
+          is a combination of directory output, schema name and number of
+          outputs for that schema.</td></tr><tr><td>Send output to email</td><td>If you choose to send output to a email, you will need to
+          specify one or more recipients. Example: me@domain.com or 
+          me@domain.com,her@domain.com. You also need to choose one of the
+          available SMTP Schemas, if there is no SMTP Schema created yet you
+          will need to open "SMTP Setup" window and create one so you can use
+          it here.</td></tr><tr><td>Add to the Inventory</td><td>If you toggle on this option, the scan output will be added
+          to the Network Inventory, according to the previous explanation
+          given on "Schema Name".</td></tr><tr><td>Enabled</td><td>If you toggle on "Enabled", this schema will run on 
+          scheduled time if the Scheduler is running. Otherwise, it will 
+          just exist but will never be executed (you may come back later 
+          and Enable it).</td></tr></tbody></table></div></div><br class="table-break"><p>After filling all the required fields, you may click on "Apply".
+    If no error dialog appeared, your new Scan Schedule was created sucessfully.
+    Clicking on "OK" will do the same, but will close "Scan Scheduler Editor"
+    afterwards. Clicking on "Close" will discard the schema you were 
+    creating and will close the window.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="new_scheduling"></a>Creating a new Scheduling Profile</h2></div></div></div><p>To create a new scheduling profile you need to set an unique name for
+    it, and a cron time format. UMIT comes with some scheduling profiles 
+    for those that aren't familiar with cron.</p><p>After filling all the required fields, you may click on "Apply".
+    If no error dialog appeared, your new Scheduling Profile was created 
+    sucessfully. Clicking on "OK" will do the same, but will 
+    close "Scheduling Profiles Editor" afterwards. Clicking on "Close" will 
+    discard the profile you were creating and will close the window.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2972995"></a>Crontab, some more info</h2></div></div></div><p>http://www.opengroup.org/onlinepubs/009695399/utilities/crontab.html
+    </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2964492"></a>Starting Scheduler</h2></div></div></div><p>When you see a "red ball" in UMIT interface, it means the 
+    <span class="application">Scheduler</span> is stopped. Clicking on it will 
+    start <span class="application">Scheduler</span>, or will display a Warning 
+    telling some advice.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="root_start"></a>Starting Scheduler as root</h2></div></div></div><p>To start the <span class="application">Scheduler</span> as root you have 
+    some options, some will be described here. First option, and not the best, 
+    would be running <span class="application">UMIT</span> as root, so when you 
+    start the <span class="application">Scheduler</span> it will be started as root.
+    <span class="emphasis"><em>IF YOU START IT WITH ROOT INSIDE UMIT, IT WILL USE ROOT
+    CONFIG FILES!*</em></span></p><p>The second option is "harder" to do, but better. You need to open a 
+    terminal, and use sudo or any other tool that can preserve environment. The
+    command will be like this:</p><p>
+    <span class="command"><strong>sudo umit-scheduler start
+    </strong></span></p><p>And the <span class="application">Scheduler</span> will start.
+    
+    To stop it later, you may do:</p><p>
+    <span class="command"><strong>sudo umit-scheduler stop
+    </strong></span></p><p>umit-scheduler is installed in the same directory as umit, so
+    it should be on your path already.</p><p>* <span class="application">UMIT</span> keeps config files for each user
+    that runs it. If you always use it as a user called 'john', for example,
+    your database will be inside, for example, /home/john/.umit/umitng.db.
+    So, when you run it as root, it uses /root/.umit/umitng.db, and 'john'
+    doesn't see the changes in root database, neither root sees changes in
+    john's database (usually). But, if you want to start the
+    <span class="application">Scheduler</span> with root and tell it to use someone
+    else <span class="application">UMIT</span> config files, you may do so. The final
+    command will be like this:</p><p>
+    <span class="command"><strong>umit-scheduler start /home/john/.umit</strong></span></p><p>
+    <span class="command"><strong>umit-scheduler stop /home/john/.umit</strong></span></p><p>If you want to start <span class="application">Scheduler</span> at 
+    system startup, you will have to write that path you especified 
+    (/home/john/.umit) inside umit-scheduler in a var called CONFIG_DIR
+    </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sched_stop"></a>Stopping Scheduler</h2></div></div></div><p>When you see a "green ball" in <span class="application">UMIT</span> 
+    interface, it means the <span class="application">Scheduler</span> is running. 
+    Clicking on it will stop <span class="application">Scheduler</span>, except in 
+    the case you do not have permission to stop it, then a Warning will 
+    be shown.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2960934"></a>Missing feature</h2></div></div></div><p>Sending emails always include scan output attached, I plan on 
+    adding an option for just sending a notice that scan finished.</p></div></div></body></html>

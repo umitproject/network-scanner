@@ -1,0 +1,3 @@
+Run database_setup.py from this directory.
+
+database_setup.py is used to create a clean new generation database for umit.

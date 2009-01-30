@@ -299,40 +299,45 @@ for this profile.'))
     def finish_back(self, widget, finish, back):
         self.main_vbox.remove(finish)
         finish.hide()
-        
+
         self.main_vbox._pack_expand_fill(self.directions[back])
         self.directions[back].show_all()
-    
+
     def constructor_page(self):
         pass
-    
+
     def save_profile(self, widget):
         command = self.constructor.get_command('%s')
-        
+
         if self.directions['Choose'].profile_radio.get_active():
             profile_name = self.directions['Profile'].profile_entry.get_text()
-            
+
             hint = self.directions['Profile'].hint_entry.get_text()
-            
+
             buffer = self.directions['Profile'].description_text.get_buffer()
             description = buffer.get_text(buffer.get_start_iter(),\
                                           buffer.get_end_iter())
-            
+
             buffer = self.directions['Profile'].annotation_text.get_buffer()
             annotation = buffer.get_text(buffer.get_start_iter(),\
                                           buffer.get_end_iter())
-            
+
             self.profile.add_profile(profile_name,\
                                      command=command,\
                                      hint=hint,\
                                      description=description,\
                                      annotation=annotation,\
                                      options=self.constructor.get_options())
-            
-            for i in xrange(self.notebook.get_n_pages()):
+
+            notebook_n_pages = 0
+            if self.notebook:
+                notebook_n_pages = self.notebook.get_n_pages()
+
+            for i in xrange(notebook_n_pages):
                 page = self.notebook.get_nth_page(i)
                 page.toolbar.profile_entry.update()
-        else:
+
+        elif self.notebook:
             target = self.directions['Choose'].target_entry.get_text()
             cmd = command % target
 
@@ -347,7 +352,7 @@ for this profile.'))
                                 directions['Choose'].target_entry.get_text()
             current_page.command_toolbar.command_entry.command = cmd
             current_page.command_toolbar.set_command(cmd)
-        
+
         self.close_wizard()
 
 class FinishPage(HIGVBox):

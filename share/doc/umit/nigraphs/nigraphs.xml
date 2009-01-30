@@ -1,0 +1,49 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook v4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+
+<article>
+  <artheader>
+    <title>UMIT Network Inventory - Graphs</title>
+    <author>
+      <firstname>Guilherme</firstname>
+      <surname>Polo</surname>
+      <copyright>
+        <year>2007</year>
+	<holder>Guilherme Polo</holder>
+      </copyright>
+    </author>
+  </artheader>
+
+  <section>
+    <title>Introduction</title>
+
+    <para>The graphs you will find under the tab named as 'Timeline' were
+    created to help you, of course. It is an easier way to visualize all
+    changes to all your Inventories, also, you can filter some Categories
+    and view just some others. Selecting something on it will show all the
+    changes in the selected range, and will also display percentage statistics
+    on the bar graph placed on the top right.</para>
+
+    <para>This was created to explain Bar graph colour meaning.</para>
+
+    <section>
+      <title>Bar graph</title>
+      <para>Yet simple, it may cause confusion about its coloring. That is why
+      a section was created for it. When a selection happens the Bar display
+      changes its colour. It uses the colour from the Category with more 
+      changes, except if the Category is 'Nothing'. If the Category with
+      most changes is the 'Nothing', the colour from the next Category with 
+      most changes is selected to be used as the background color.
+      The only chance to use the background color from the Category 'Nothing'
+      is in the case that the current selection has only data for this
+      category.</para>
+    
+    </section>
+
+    <section>
+      <title>Bugs</title>
+      
+      <para>None that I'm aware of.</para>
+    </section>
+  </section>
+</article>

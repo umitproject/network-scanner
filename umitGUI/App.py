@@ -27,7 +27,7 @@ import sys
 
 from umitCore.Paths import Path
 from umitCore.UmitOptionParser import option_parser
-from umitCore.UmitConf import is_maemo
+from umitCore.Utils import is_maemo
 from umitCore.I18N import _
 from umitCore.UmitLogging import log
 
@@ -53,8 +53,12 @@ class App:
         pass
 
     def __create_show_main_window(self):
-        from umitGUI.MainWindow import MainWindow
-        self.main_window = MainWindow()
+        if option_parser.get_inventory():
+            from umitInventory.Viewer import InventoryViewer
+            self.main_window = InventoryViewer()
+        else:
+            from umitGUI.MainWindow import MainWindow
+            self.main_window = MainWindow()
         
         if is_maemo():
             import hildon

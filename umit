@@ -147,7 +147,6 @@ UmitGUI: %s
 
 
 if not UMIT_DEVELOPMENT:
-    
     from tempfile import mktemp
     # Generating temporary files names
     stdout_output = mktemp()
@@ -170,6 +169,7 @@ def main(args):
     from umitCore.Paths import Path
     Path.set_umit_conf(os.path.split(args[0])[0])
     #################################
+    Path.set_running_path(os.path.abspath(os.path.dirname(sys.argv[0])))
 
     from umitGUI.App import App
 

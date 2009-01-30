@@ -209,33 +209,32 @@ class ProfileEditor(HIGWindow):
         tab.fill_table(table, True)
 
         self.notebook.append_page(vbox, gtk.Label(tab_name))
-        
+
     def set_profilemanager(self, model):
         """
         give a model of treeview to update profile manager
         after run wizard
         """
-	assert model is not None
-	
-        self.model = model 
-        self.profilemanager = True 
-    
+        assert model is not None
+
+        self.model = model
+        self.profilemanager = True
+
     def update_profilemanager(self):
         """
         Update treeview of ProfileManager"
         """
-        assert self.profilemanager;
-	
-	profiles = self.profile.sections()
+        assert self.profilemanager
+
+        profiles = self.profile.sections()
         profiles.sort()
-	self.model.clear()
-	
-       
+        self.model.clear()
+
         for command in profiles:
             myiter = self.model.insert_before(None, None)
             self.model.set_value(myiter, 0, command)
-	    self.model.set_value(myiter,1, self.profile.get_hint(command))      
-        
+	    self.model.set_value(myiter,1, self.profile.get_hint(command))
+
 
     def save_profile(self, widget=None):
         if self.profile_name:
@@ -272,10 +271,10 @@ for this profile.'))
                                  annotation=annotation,\
                                  options=self.constructor.get_options())
         self.deleted = False
-	
+
 	if self.profilemanager:
-	    self.update_profilemanager()	
-	
+	    self.update_profilemanager()
+
         self.on_cancel()
 
     def on_show(self, widget=None):

@@ -1,0 +1,191 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# Copyright (C) 2007 Insecure.Com LLC.
+#
+# Author: Guilherme Polo <ggpolo@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+"""
+Core Scheduler Controller
+"""
+
+# If you want to start Scheduler at system startup, please, especify here
+# umit config dir
+# CONFIG_DIR = /home/myuser/.umit
+CONFIG_DIR = ''
+
+import os
+import sys
+import signal
+import subprocess
+
+from umitCore.I18N import _
+from umitCore.UmitLogging import log
+from umitCore.Paths import Path
+from umitCore.Utils import check_process
+import umitCore.Scheduler as Scheduler
+
+HOME_CONF = None
+RUNNING_FILE = None
+
+def setup_homedir(usethis):
+    """
+    Setting umit home directory.
+    """
+    Path.set_umit_conf(usethis, True)
+
+    global HOME_CONF, RUNNING_FILE
+
+    HOME_CONF = os.path.split(Path.get_umit_conf())[0]
+    RUNNING_FILE = os.path.join(HOME_CONF, 'schedrunning')
+
+
+def usage():
+    """
+    Show help
+    """
+    print _("Use: %s start|stop|cleanup <config_dir>" % (__file__, ))
+
+
+def kill(pid):
+    """
+    Kill a process.
+    """
+    if sys.platform == "win32":
+        import win32gui
+        import win32api
+        import win32con
+
+        handle = win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS, False, pid)
+        win32gui.SendMessage(handle, win32con.WM_CLOSE, 0, 0 ) # testing
+        win32api.TerminateProcess(handle, -1)
+        win32api.CloseHandle(handle)
+
+        log.debug(">>> Process (%d) stopped." % pid)
+    else:
+        try:
+            os.kill(pid, signal.SIGTERM)
+            log.debug(">>> Process (%d) stopped." % pid)
+        except OSError, err:
+            log.debug(">>> Process already stopped, or this user didn't \
+start it. Error: %s" % err)
+            return 1
+
+
+def remove_controlfile():
+    """
+    Tries to delete RUNNING_FILE.
+    """
+    try:
+        os.remove(RUNNING_FILE)
+    except OSError, err:
+        # maybe control file just got deleted
+        log.critical(">>> Tried removing %s file, got: %s" % (RUNNING_FILE, 
+                                                              err))
+
+
+def cleanup():
+    """
+    Do necessary cleanup.
+    """
+    try:
+        pid = int(open(RUNNING_FILE, 'r').read())
+    except IOError:
+        # control file is not present
+        log.debug(">>> No cleanup needed, you can start the Scheduler.")
+        return
+        
+    log.debug(">>> Cleanup needed..")
+    log.debug(">>> Checking if Scheduler process with pid %d is still \
+running" % pid)
+
+    if check_process(pid):  # process is running
+        log.debug(">>> Scheduler running, stopping it..")
+        ret = kill(pid)
+        if not ret: # process is stopped now
+            remove_controlfile()
+
+        else:
+            log.critical(">>> Scheduler is still running and you do not \
+have permission to cleanup it and start another instance.")
+            return 1
+
+    else: # process is not running
+        log.debug(">>> Scheduler is stopped already, removing control file..")
+        remove_controlfile()
+        
+    log.debug(">>> Cleanup finished")
+   
+
+def start():
+    """
+    Start scheduler
+    """
+    if cleanup(): # scheduler instance is running and you cant start another.
+        sys.exit(0) 
+
+    process = subprocess.Popen([sys.executable, Scheduler.__file__, 
+                                sys.path[0], 'start', HOME_CONF])
+
+    pid = process.pid
+
+    log.debug(">>> Starting Scheduler..")
+    log.debug(">>> Writing pid (%d) to %s" % (pid, RUNNING_FILE))
+
+    f_run = open(RUNNING_FILE, 'w')
+    f_run.write("%d" % pid)
+    f_run.close()
+
+
+def stop():
+    """
+    Stop Scheduler process
+    """
+    if not os.path.isfile(RUNNING_FILE): # control file doesn't exist
+        log.critical(">>> Control file for Scheduler is not available, so, \n\
+Scheduler shouldn't be running. Try starting it, or run this in cleanup mode.")
+        sys.exit(0)
+
+    log.debug(">>> Stoping Scheduler")
+
+    cleanup()
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2 or len(sys.argv) > 3:
+        usage()
+        sys.exit(0)
+
+    if CONFIG_DIR: # forcing especified dir
+        setup_homedir(CONFIG_DIR)
+    else:
+        try:
+            setup_homedir(sys.argv[2])
+        except IndexError: # no path especified
+            setup_homedir(os.path.join(os.path.expanduser("~"), '.umit'))
+
+    cmds = {"start": start,
+            "stop": stop,
+            "cleanup": cleanup
+           }
+
+    try:
+        cmds[sys.argv[1]]()
+    except KeyError, e:
+        print "Invalid command especified: %s" % e
+        usage()
+

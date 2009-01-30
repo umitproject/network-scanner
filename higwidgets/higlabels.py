@@ -8,19 +8,19 @@
 #         Cleber Rodrigues <cleber.gnu@gmail.com>
 #         João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
-# This library is free software; you can redistribute it and/or modify 
-# it under the terms of the GNU Lesser General Public License as published 
-# by the Free Software Foundation; either version 2.1 of the License, or 
+# This library is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published
+# by the Free Software Foundation; either version 2.1 of the License, or
 # (at your option) any later version.
 #
-# This library is distributed in the hope that it will be useful, but 
+# This library is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public 
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
 # License for more details.
 #
-# You should have received a copy of the GNU Lesser General Public License 
-# along with this library; if not, write to the Free Software Foundation, 
-# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this library; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 """
 higwidgets/higlabels.py
@@ -28,7 +28,8 @@ higwidgets/higlabels.py
    labels related classes
 """
 
-__all__ = ['HIGSectionLabel', 'HIGHintSectionLabel', 'HIGEntryLabel', 'HIGDialogLabel']
+__all__ = ['HIGSectionLabel', 'HIGHintSectionLabel', 'HIGEntryLabel',
+        'HIGDialogLabel']
 
 import gtk
 
@@ -49,8 +50,8 @@ class HIGSectionLabel(gtk.Label):
 
 class HIGHintSectionLabel(gtk.HBox, object):
     """
-    Bold label used to define sections, with a little icon that shows up a hint when mouse is
-    over it.
+    Bold label used to define sections, with a little icon that shows up
+    a hint when mouse is over it.
     """
     def __init__(self, text=None, hint=None):
         gtk.HBox.__init__(self)
@@ -67,7 +68,8 @@ class Hint(gtk.EventBox, object):
         self.hint = hint
 
         self.hint_image = gtk.Image()
-        self.hint_image.set_from_stock(gtk.STOCK_DIALOG_INFO, gtk.ICON_SIZE_SMALL_TOOLBAR)
+        self.hint_image.set_from_stock(gtk.STOCK_DIALOG_INFO,
+                gtk.ICON_SIZE_SMALL_TOOLBAR)
 
         self.add(self.hint_image)
         
@@ -82,18 +84,18 @@ class HintWindow(gtk.Window):
         gtk.Window.__init__(self, gtk.WINDOW_POPUP)
         self.set_position(gtk.WIN_POS_MOUSE)
         bg_color = gtk.gdk.color_parse("#fbff99")
-        
+
         self.modify_bg(gtk.STATE_NORMAL, bg_color)
 
         self.event = gtk.EventBox()
         self.event.modify_bg(gtk.STATE_NORMAL, bg_color)
         self.event.set_border_width(10)
         self.event.connect("button-press-event", self.close)
-        
+
         self.hint_label = gtk.Label(hint)
         self.hint_label.set_use_markup(True)
         self.hint_label.set_line_wrap(True)
-        
+
         self.event.add(self.hint_label)
         self.add(self.event)
 

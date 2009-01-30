@@ -40,11 +40,12 @@ from umitGUI.ScanMapperPage import ScanMapperPage
 from umitGUI.Icons import get_os_icon, get_os_logo, get_vulnerability_logo
 
 from umitCore.NmapCommand import NmapCommand
-from umitCore.UmitConf import CommandProfile, ProfileNotFound, is_maemo
+from umitCore.UmitConf import CommandProfile, ProfileNotFound
 from umitCore.NmapParser import NmapParser
 from umitCore.Paths import Path
 from umitCore.UmitLogging import log
 from umitCore.I18N import _
+from umitCore.Utils import is_maemo
 
 from umitPlugin.Engine import PluginEngine
 
@@ -758,13 +759,13 @@ class ScanNotebookPage(HIGVBox):
                 return
         elif parsed_result:
             self.parsed = parsed_result
-        
+
         if int(self.parsed.hosts_up):
             for host in self.parsed.hosts:
                 hostname = host.get_hostname()
                 host_page = self.set_host_details(host)
                 list_states = ["open", "filtered", "open|filtered"]
-                
+
                 for service in host.services:
                     name = service["service_name"]
                     state = service["port_state"]
@@ -1152,7 +1153,7 @@ class ScanNotebookPage(HIGVBox):
         host_details.set_tcpseq(host.tcpsequence)
         host_details.set_ipseq(host.ipidsequence)
         host_details.set_tcptsseq(host.tcptssequence)
-        
+
         return host_page
     
     def set_single_host_port(self, host):

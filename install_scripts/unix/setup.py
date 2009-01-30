@@ -46,6 +46,7 @@ locale_dir = os.path.join('share', 'locale')
 config_dir = os.path.join('share', 'umit', 'config')
 docs_dir = os.path.join('share', 'doc', 'umit')
 misc_dir = os.path.join('share', 'umit', 'misc')
+sql_dir = os.path.join('share', 'umit', 'sql')
 
 def extension_find(result, dirname, fnames, suffix):
     files = []
@@ -76,8 +77,23 @@ data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
                (config_dir, [os.path.join(config_dir, 'umit.conf')] +
                             [os.path.join(config_dir, 'scan_profile.usp')] +
                             [os.path.join(config_dir, 'umit_version')] +
+                            [os.path.join(config_dir, 'umit.db')] + 
+                            [os.path.join(config_dir, 'umitng.db')] + 
+                            [os.path.join(config_dir, 
+                                          'timeline-settings.conf')] + 
+                            [os.path.join(config_dir, 
+                                          'tl_colors_evt_std.conf')] + 
+                            [os.path.join(config_dir, 
+                                          'scheduler-schemas.conf')] + 
+                            [os.path.join(config_dir, 
+                                          'scheduler-profiles.conf')] + 
+                            [os.path.join(config_dir, 'scheduler.log')] + 
+                            [os.path.join(config_dir, 'smtp-schemas.conf')] + 
                             glob(os.path.join(config_dir, '*.xml'))+
                             glob(os.path.join(config_dir, '*.txt'))),
+
+               # umitDB SQL
+               (sql_dir, glob(os.path.join("umitDB/sql", "*.sql"))),
 
                (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))), 
 
@@ -97,6 +113,8 @@ data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
                                             'searching', '*.xml'))+
                           glob(os.path.join(docs_dir,
                                             'wizard', '*.xml'))+
+                          glob(os.path.join(docs_dir, 'scheduler', '*.xml')) +
+                          glob(os.path.join(docs_dir, 'smtpsetup', '*.xml')) +
                           glob(os.path.join(docs_dir,
                                             'screenshots', '*.png')))]
 
@@ -296,7 +314,7 @@ class umit_sdist(sdist):
         self.finish_banner()
     
     def finish_banner(self):
-        print 
+        print
         print "%s The packages for Umit %s are in ./dist %s" % \
               ("#" * 10, VERSION, "#" * 10)
         print
@@ -325,8 +343,9 @@ easier network scanning or even compare scan results to easily see any \
 changes. A regular user will also be able to construct powerful scans with \
 Umit command creator wizards.""",
       version = VERSION,
-      scripts = ['umit'],
-      packages = ['', 'umitCore', 'umitGUI', 'higwidgets'],
+      scripts = ['umit', 'umit-scheduler'],
+      packages = ['', 'umitCore', 'umitDB', 'umitGUI', 'umitInventory',
+                  'higwidgets'],
       data_files = data_files,
       cmdclass = {"install":umit_install,
                   "build":umit_build,

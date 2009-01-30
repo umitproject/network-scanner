@@ -21,10 +21,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-import gtk
-
-import sys
 import os
+import gtk
+import sys
 from os.path import split, isfile, join, abspath, exists
 import xml.sax.saxutils
 
@@ -47,29 +46,28 @@ from umitGUI.About import About
 from umitGUI.DiffCompare import DiffWindow
 from umitGUI.SearchWindow import SearchWindow
 from umitGUI.BugReport import BugReport
+from umitGUI.SchedulerControl import SchedControl
+from umitGUI.SchedulerEdit import SchedSchemaEditor
+from umitGUI.SMTPSetup import SMTPSetup
 
 from umitCore.Paths import Path
 from umitCore.RecentScans import recent_scans
 from umitCore.UmitLogging import log
 from umitCore.I18N import _
 from umitCore.UmitOptionParser import option_parser
-from umitCore.UmitConf import SearchConfig, is_maemo
+from umitCore.UmitConf import SearchConfig
 from umitCore.UmitDB import Scans, UmitDB
+from umitCore.Utils import amiroot, is_maemo
+from umitCore.DataDecay import remove_old_data
+import umitCore.Scheduler as Scheduler
+
+from umitDB.XMLStore import XMLStore
+from umitInventory.Viewer import InventoryViewer
 
 from umitPlugin.Window import PluginWindow
 from umitPlugin.Engine import PluginEngine
 
-root = False
-try:
-    if sys.platform == 'win32':
-        root = True
-    elif is_maemo():
-        root = True
-    elif os.getuid() == 0:
-        root = True
-except: pass
-
-
+root = amiroot()
 UmitMainWindow = None
 hildon = None
 
@@ -104,12 +102,16 @@ class MainWindow(UmitMainWindow):
 
         self.add(self.vbox)
 
-        self.connect ('delete-event', self._exit_cb)
+        self.connect('delete-event', self._exit_cb)
+
+        self.schedctrl = SchedControl(None)
         self._create_ui_manager()
         self._create_menubar()
         self._create_toolbar()
         self._create_scan_notebook()
         self._verify_root()
+
+        self.running_ni = False
 
         # These dialogs should be instanciated on demand
         # Unfortunately, due to a GTK bug on the filefilters (or our own
@@ -132,6 +134,18 @@ class MainWindow(UmitMainWindow):
     def _verify_root(self):
         if not root:
             non_root = NonRootWarning()
+            
+    def _get_running_ni(self):
+        """
+        Return True if there is a Network Inventory open.
+        """
+        return self.__niwin
+    
+    def _set_running_ni(self, running):
+        """
+        Set to True if Network Inventory is running, otherwise, False.
+        """
+        self.__niwin = running
 
     def _create_ui_manager(self):
         self.ui_manager = gtk.UIManager()
@@ -266,6 +280,40 @@ class MainWindow(UmitMainWindow):
                         _('Compare Scan Results using Diffies'),
                         self._load_diff_compare_cb),
 
+            # Network Inventory
+            ('Inventory', None, _('_Inventory'), None),
+
+            ('Add Scan Inv', 
+                gtk.STOCK_ADD,
+                _('_Add scan to Inventory'), None,
+                _("Add finished scan on current tab to Network Inventory"),
+                self._add_scan_inv
+            ),
+
+            ('Open Inv',
+                None,
+                _('Network _Inventory'),
+                "<Shift><Control>I",
+                _("Run Network Inventory"),
+                self._open_inv
+            ),
+
+            # Scan Scheduler
+            ('Scheduler', None, _('_Scheduler'), None),
+            
+            ('Sched Control', self.schedctrl.stock_icon,
+             self.schedctrl.status_text,
+             None, self.schedctrl.status_text,
+             self.schedctrl._scheduler_control),
+            
+            ('Sched Editor', None, _('_Editor'),
+             None, _("Open Scheduler Editor"),
+             self._open_schededit),
+            
+            # SMTP Setup
+            ('SMTP Setup', None, _("SMTP Setup"),
+             None, _("Open SMTP Accounts editor"),
+             self._open_smtpsetup),
 
                         # Top Level
                         ('Help', None, _('_Help'), None),
@@ -320,7 +368,16 @@ class MainWindow(UmitMainWindow):
             <menuitem action='Search Scan'/>
             <separator/>
             <menuitem action='Extensions'/>
+            <menuitem action='SMTP Setup'/>
+            <menu action='Scheduler'>
+                <menuitem action='Sched Editor' />
+                <menuitem action='Sched Control' />
             </menu>
+            <menu action='Inventory'>
+                <menuitem action='Add Scan Inv'/>
+                <menuitem action='Open Inv'/>
+            </menu>
+			</menu>
 
             <menu action='Profile'>
             <menuitem action='New Profile'/>
@@ -345,6 +402,8 @@ class MainWindow(UmitMainWindow):
             <toolitem action='Save Scan'/>
             <toolitem action='Open Scan'/>
             <separator/>
+            <toolitem action='Sched Control'/>
+            <separator/>
             <toolitem action='Report a bug'/>
             <toolitem action='Show Help'/>
             </toolbar>
@@ -360,7 +419,91 @@ class MainWindow(UmitMainWindow):
 
         self.ui_manager.insert_action_group(self.main_action_group, 0)
         self.ui_manager.add_ui_from_string(self.default_ui)
+ 
+        self.schedctrl.ui_action = self.main_action_group.get_action(
+                'Sched Control')
 
+    def _open_schededit(self, action):
+        """
+        Open Scheduler Schemas Editor.
+        """
+        win = SchedSchemaEditor()
+        win.show_all()
+
+    def _open_smtpsetup(self, action):
+        """
+        Open SMTP Accounts Editor.
+        """
+        win = SMTPSetup()
+        win.show_all()
+        
+    def _open_inv(self, action):
+        """
+        Open Inventories visualizer.
+        """
+        if self.running_ni:
+            return
+        
+        self.niwin = InventoryViewer(self)
+        self.niwin.show_all()
+        self.running_ni = True
+
+    def _add_scan_inv(self, action):
+        """
+        Add scan to inventory.
+        """
+        current_page = self.scan_notebook.get_nth_page(self.scan_notebook.get_current_page())
+
+        try:
+            status = current_page.status
+        except:
+            alert = HIGAlertDialog(message_format=_('No scan tab'),
+                    secondary_text=_('There is no scan tab or scan result \
+been shown. Run a scan and then try to add hosts.'))
+            alert.run()
+            alert.destroy()
+            return None
+        
+        if status.get_status() in [ "scan_failed", "unknown", "empty",
+                                    "scanning", "parsing_result" ]:
+
+            run_something_text = _("You tried to add a scan to the Inventory, \
+but there isn't a finished scan on active tab!")
+
+            dlg = HIGAlertDialog(self, message_format=_('No scan tab'),
+                                 secondary_text=run_something_text)
+            dlg.run()
+            dlg.destroy()
+            return None
+
+        # if we got to this point, it should be possible to add this scan
+        inventory_title = self.scan_notebook.get_tab_title(current_page)
+
+        xml_scanfile = mktemp()
+        f = open(xml_scanfile, "w")
+        current_page.parsed.write_xml(f)
+        f.close()
+
+        log.debug("Adding scan to inventory database..")
+
+        xmlstore = XMLStore(Path.umitdb_ng, False)
+        try:
+            xmlstore.store(xml_scanfile, current_page.parsed, inventory_title)
+        finally:
+            # close connection to the inventory's database
+            xmlstore.close()
+        os.remove(xml_scanfile)
+        log.debug("Insertion finished")
+
+        dlg = HIGAlertDialog(self, message_format=_('Insertion finished!'),
+                             secondary_text=_("Scan has been added to the \
+inventory %s." % inventory_title))
+        dlg.run()
+        dlg.destroy()
+        
+        if self.running_ni: # update inventory viewer
+            self.niwin._update_viewer()
+            
     def _show_bug_report(self, widget):
         bug = BugReport()
         bug.show_all()
@@ -1030,6 +1173,9 @@ documentation in our Support & Development section."""))
             # Saving the plugins
             PluginEngine().plugins.save_changes()
 
+            # Remove old data from database
+            remove_old_data()
+
             gtk.main_quit()
 
     def _load_diff_compare_cb (self, widget=None, extra=None):
@@ -1053,7 +1199,11 @@ documentation in our Support & Development section."""))
         self.diff_window.show_all()
 
 
-class NonRootWarning (HIGAlertDialog):
+    # Properties
+    running_ni = property(_get_running_ni, _set_running_ni)
+
+
+class NonRootWarning(HIGAlertDialog):
     def __init__(self):
         warning_text = _('''You are trying to run Umit with a non-root user!\n
 Some nmap options need root privileges to work.''')

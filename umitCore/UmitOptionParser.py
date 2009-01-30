@@ -32,13 +32,12 @@ class UmitOptionParser(OptionParser):
         OptionParser.__init__(self)
 
         ## Network Inventory (GUI)
-        ### This option should raise the Network Inventory window 
+        ### This option should raise the Network Inventory window
         ### with the last used inventory
-        self.add_option("-i", "--inventory", 
+        self.add_option("-i", "--inventory",
                         default=False,
                         action="store_true",
-                        help=_("*NOT IMPLEMENTED* - Start Umit and go \
-straight to Network Inventory window."))
+                        help=_("Start Umit Network Inventory."))
 
         ## Run nmap with args (GUI)
         ### Open Umit and runs nmap with specified args. The positional 

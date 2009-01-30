@@ -163,6 +163,7 @@ class NmapCommand(object):
         os.remove(self.xml_output)
         os.remove(self.normal_output)
         os.remove(self.stdout_output)
+        os.remove(self.stderr_output)
 
     def kill(self):
         log.debug(">>> Killing scan process %s" % self.command_process.pid)
@@ -283,6 +284,16 @@ execution!\n'%s'" % self.command_stderr)
         error_desc.close()
         return error
 
+    def __del__(self):
+        """
+        Remove temp files if they are still present.
+        """
+        try:
+            self.close()
+        except OSError:
+            # files removed already, good =)
+            pass
+
     command = property(get_command, set_command)
     _command = None
 
@@ -300,7 +311,7 @@ class CommandConstructor:
             # this certainly shouldn't be added
             return
         self.options[option_name] = (args, level)
-        
+
 
     def remove_option(self, option_name):
         if option_name in self.options.keys():
@@ -436,6 +447,11 @@ if __name__ == '__main__':
                        nmap_command_path)
     scan.run_scan()
 
-    while scan.scan_state():
-        print ">>>", scan.get_normal_output()
+    try:
+        while scan.scan_state():
+            print ">>>", scan.get_normal_output()
+    except Exception:
+        print "Exception caught"
+
+    print ">>>", scan.get_normal_output()
     print "Scan is finished!"

@@ -6,19 +6,19 @@
 # Author: Guilherme Polo <ggpolo@gmail.com>
 #         João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
-# This library is free software; you can redistribute it and/or modify 
-# it under the terms of the GNU Lesser General Public License as published 
-# by the Free Software Foundation; either version 2.1 of the License, or 
+# This library is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published
+# by the Free Software Foundation; either version 2.1 of the License, or
 # (at your option) any later version.
 #
-# This library is distributed in the hope that it will be useful, but 
+# This library is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public 
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
 # License for more details.
 #
-# You should have received a copy of the GNU Lesser General Public License 
-# along with this library; if not, write to the Free Software Foundation, 
-# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this library; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 """
 higwidgets/higframe.py
@@ -45,7 +45,7 @@ class HIGFrame(gtk.Frame):
     def _set_label(self, label):
         self._flabel.set_markup("<b>%s</b>" % label)
 
-#class needed to maintain compatibility of RadialNet with higwidgets 
+#class needed to maintain compatibility of RadialNet with higwidgets
 class HIGFrameRNet(gtk.Frame):
     def __init__(self, label=''):
         gtk.Frame.__init__(self)
@@ -90,5 +90,5 @@ if __name__ == "__main__":
 
     w.connect('destroy', lambda d: gtk.main_quit())
     w.show_all()
-    
+
     gtk.main()

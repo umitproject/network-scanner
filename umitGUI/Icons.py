@@ -28,7 +28,6 @@ import sys
 import os.path
 
 from umitCore.Paths import Path
-from umitCore.UmitConf import is_maemo
 from umitCore.UmitLogging import log
 
 icon_names = (
@@ -130,7 +129,7 @@ def get_os(os_match, type):
         elif re.findall('[nN][eE][tT][bB][sS][dD]', os_match):
             # NetBSD icon
             return 'default_%s'%type
-        elif re.findall('[sS][oO][lL][aA][rR][iI][sS]',os_match):
+        elif re.findall('[sS][oO][lL][aA][rR][iI][sS]', os_match):
             # Solaris icon
             return 'solaris_%s'%type
         elif re.findall('[oO][pP][eE][nN].*[sS][oO][lL][aA][rR][iI][sS]',\

@@ -21,7 +21,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 import os
-import os.path
 import sys
 
 
@@ -70,6 +69,22 @@ base_paths = dict(config_file = 'umit.conf',
                                              HOME],
                   i18n_search_sequence = [os.path.join(CURRENT_DIR, LOCALE_DIR), HOME],
                   umitdb = "umit.db",
+
+                  # new generation database
+                  umitdb_ng = "umitng.db",
+
+                  # timeline configuration
+                  tl_conf = "timeline-settings.conf",
+                  tl_colors_std = "tl_colors_evt_std.conf",
+                  
+                  # scheduler
+                  sched_schemas = "scheduler-schemas.conf",
+                  sched_profiles = "scheduler-profiles.conf",
+                  sched_log = "scheduler.log",
+
+                  # smtp
+                  smtp_schemas = "smtp-schemas.conf",
+
                   services = "nmap-services",
                   services_dump = "services.dmp",
                   os_db = "nmap-os-db",

@@ -1,0 +1,221 @@
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook v4.4//EN"
+  "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+
+<article>
+  <artheader>
+    <title>UMIT Scheduler</title>
+    <author>
+      <firstname>Guilherme</firstname>
+      <surname>Polo</surname>
+      <copyright>
+        <year>2007</year>
+	<holder>Guilherme Polo</holder>
+      </copyright>
+    </author>
+  </artheader>
+
+  <section>
+    <title>Introduction</title>
+    <para>The "Scan Scheduler Editor" is the place where you will schedule
+    scans to run on background without you noticing. You may save the scan
+    output to a file or send it to one or more emails. It is possible to let
+    it enabled or disabled, and it may be auto-added to the Network
+    Inventory if you toggle on "Add to the Inventory".</para>
+  </section>
+
+  <section id="new_schema">
+    <title>Setting up a Schedule</title>
+    <para>It is pretty straightforward to set up a new scan schedule. Follows
+    a table that explains everything you may see on "Scan Scheduler Editor"
+    window.</para>
+
+    <table>
+      <title>Fields explanation</title>
+      <tgroup cols="2">
+      <colspec colname="Field"/>
+      <colspec colname="Meaning"/>
+      <thead>
+        <row>
+          <entry align="center">Field</entry>
+          <entry align="center">Meaning</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry>Schema name</entry>
+          <entry>Defines an unique name for the Scan Schedule that is being 
+          created, you may name it like "network scan", "local scan", etc.
+          This field is very important! If you choose to add this schedule
+          to the Inventory, the Inventory's name will be the Schema name.
+          </entry>
+        </row>
+        <row>
+          <entry>Scan Profile</entry>
+          <entry>These profiles are the profiles you created in UMIT, they
+          define scan options.</entry>
+        </row>
+        <row>
+          <entry>Command</entry>
+          <entry>Command is the scan command that will be used in this 
+          schedule.</entry>
+        </row>
+        <row>
+          <entry>Scheduling Profile</entry>
+          <entry>You need to choose one of the available Scheduling Profiles.
+          This defines when the schema command will be executed. Clicking on
+          "Edit Profiles" will open the Scheduling Profiles Editor.</entry>
+        </row>
+      </tbody>
+      </tgroup>
+    </table>
+
+    <table>
+      <title>Schema Settings</title>
+      <tgroup cols="2">
+      <colspec colname="Field"/>
+      <colspec colname="Meaning"/>
+      <thead>
+        <row>
+          <entry align="center">Option</entry>
+          <entry align="center">Meaning</entry>
+        </row>
+      </thead>
+      
+      <tbody>
+        <row>
+          <entry>Save outputs to</entry>
+          <entry>If you choose to save output, you will need to 
+          specify an output directory. A directory is required because a 
+          schedule is likely to be executed several times, so the file output
+          is a combination of directory output, schema name and number of
+          outputs for that schema.</entry>
+        </row>
+        <row>
+          <entry>Send output to email</entry>
+          <entry>If you choose to send output to a email, you will need to
+          specify one or more recipients. Example: me@domain.com or 
+          me@domain.com,her@domain.com. You also need to choose one of the
+          available SMTP Schemas, if there is no SMTP Schema created yet you
+          will need to open "SMTP Setup" window and create one so you can use
+          it here.</entry>
+        </row>
+        <row>
+          <entry>Add to the Inventory</entry>
+          <entry>If you toggle on this option, the scan output will be added
+          to the Network Inventory, according to the previous explanation
+          given on "Schema Name".</entry>
+        </row>
+        <row>
+          <entry>Enabled</entry>
+          <entry>If you toggle on "Enabled", this schema will run on 
+          scheduled time if the Scheduler is running. Otherwise, it will 
+          just exist but will never be executed (you may come back later 
+          and Enable it).</entry>
+        </row>
+      </tbody>
+      </tgroup>
+    </table>
+
+    <para>After filling all the required fields, you may click on "Apply".
+    If no error dialog appeared, your new Scan Schedule was created sucessfully.
+    Clicking on "OK" will do the same, but will close "Scan Scheduler Editor"
+    afterwards. Clicking on "Close" will discard the schema you were 
+    creating and will close the window.</para>
+  
+  </section>
+  
+  <section id="new_scheduling">
+    <title>Creating a new Scheduling Profile</title>
+    <para>To create a new scheduling profile you need to set an unique name for
+    it, and a cron time format. UMIT comes with some scheduling profiles 
+    for those that aren't familiar with cron.</para>
+
+    <para>After filling all the required fields, you may click on "Apply".
+    If no error dialog appeared, your new Scheduling Profile was created 
+    sucessfully. Clicking on "OK" will do the same, but will 
+    close "Scheduling Profiles Editor" afterwards. Clicking on "Close" will 
+    discard the profile you were creating and will close the window.</para>
+  </section>
+  
+  <section>
+    <title>Crontab, some more info</title>
+    <para>http://www.opengroup.org/onlinepubs/009695399/utilities/crontab.html
+    </para>
+  </section>
+  
+  <section>
+    <title>Starting Scheduler</title>
+    <para>When you see a "red ball" in UMIT interface, it means the 
+    <application>Scheduler</application> is stopped. Clicking on it will 
+    start <application>Scheduler</application>, or will display a Warning 
+    telling some advice.</para>
+  </section>
+  
+  <section id="root_start">
+    <title>Starting Scheduler as root</title>
+    <para>To start the <application>Scheduler</application> as root you have 
+    some options, some will be described here. First option, and not the best, 
+    would be running <application>UMIT</application> as root, so when you 
+    start the <application>Scheduler</application> it will be started as root.
+    <emphasis>IF YOU START IT WITH ROOT INSIDE UMIT, IT WILL USE ROOT
+    CONFIG FILES!*</emphasis></para>
+    <para>The second option is "harder" to do, but better. You need to open a 
+    terminal, and use sudo or any other tool that can preserve environment. The
+    command will be like this:</para>
+    
+    <para>
+    <command>sudo umit-scheduler start
+    </command></para>
+    
+    <para>And the <application>Scheduler</application> will start.
+    
+    To stop it later, you may do:</para>
+    
+    <para>
+    <command>sudo umit-scheduler stop
+    </command></para>
+    
+    <para>umit-scheduler is installed in the same directory as umit, so
+    it should be on your path already.</para>
+    
+    <para>* <application>UMIT</application> keeps config files for each user
+    that runs it. If you always use it as a user called 'john', for example,
+    your database will be inside, for example, /home/john/.umit/umitng.db.
+    So, when you run it as root, it uses /root/.umit/umitng.db, and 'john'
+    doesn't see the changes in root database, neither root sees changes in
+    john's database (usually). But, if you want to start the
+    <application>Scheduler</application> with root and tell it to use someone
+    else <application>UMIT</application> config files, you may do so. The final
+    command will be like this:</para>
+    
+    <para>
+    <command>umit-scheduler start /home/john/.umit</command></para>
+    
+    <para>
+    <command>umit-scheduler stop /home/john/.umit</command></para>
+    
+    <para>If you want to start <application>Scheduler</application> at 
+    system startup, you will have to write that path you especified 
+    (/home/john/.umit) inside umit-scheduler in a var called CONFIG_DIR
+    </para>
+    
+  </section>
+  
+  <section id="sched_stop">
+    <title>Stopping Scheduler</title>
+    <para>When you see a "green ball" in <application>UMIT</application> 
+    interface, it means the <application>Scheduler</application> is running. 
+    Clicking on it will stop <application>Scheduler</application>, except in 
+    the case you do not have permission to stop it, then a Warning will 
+    be shown.</para>
+  </section>
+
+  <section>
+    <title>Missing feature</title>
+
+    <para>Sending emails always include scan output attached, I plan on 
+    adding an option for just sending a notice that scan finished.</para>
+  </section>
+
+</article>
