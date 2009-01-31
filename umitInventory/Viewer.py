@@ -53,6 +53,7 @@ from umitInventory.DataRemoval import ConfigureDataRemoval, RemoveOldData
 from umitInventory.SchedulerLog import SchedLog
 from umitInventory.SettingsWin import NISettings
 from umitInventory.About import About
+from umitInventory.InventoryException import NoInventory
 
 umitdb = Path.umitdb_ng
 inventory_info = _("Info")
@@ -471,7 +472,7 @@ class InventoryViewer(HIGMainWindow):
 
         # update Edit Inventories menu
         new_inventories = set(inventories).difference(set(self.inventories))
-        self.inventory = inventories
+        self.inventories = inventories
 
         for inv in new_inventories:
             self.main_action_group.add_actions([("_" + inv, None, inv,
@@ -756,7 +757,10 @@ class InventoryViewer(HIGMainWindow):
         """
         Open inventory for editing.
         """
-        w = NewInventory(event.get_name()[1:], edit_mode=True)
+        try:
+            w = NewInventory(event.get_name()[1:], edit_mode=True)
+        except NoInventory:
+            return
         w.show_all()
 
 

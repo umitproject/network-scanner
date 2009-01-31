@@ -30,6 +30,8 @@ from umitGUI.ProfileCombo import ProfileCombo
 from umitGUI.Wizard import Wizard
 
 from umitInventory.HostDiscovery import HostDiscovery
+from umitInventory.InventoryCommonDialog import NoScheduleDlg
+from umitInventory.InventoryException import NoInventory
 
 from higwidgets.higdialogs import HIGAlertDialog
 from higwidgets.higwindows import HIGWindow
@@ -160,6 +162,12 @@ class NewInventory(HIGWindow):
         """
         inv = ConfigParser()
         inv.read(Path.sched_schemas)
+
+        if not inv.has_section(inventory):
+            dlg = NoScheduleDlg()
+            dlg.run()
+            dlg.destroy()
+            raise NoInventory(inventory)
 
         self.invname.set_text(inventory)
         for item in inv.items(inventory):

@@ -26,16 +26,16 @@ import gobject
 import traceback
 from ConfigParser import ConfigParser, NoSectionError
 
-from higwidgets.higdialogs import HIGAlertDialog
-
 from umitDB.XMLStore import XMLStore
 from umitCore.Paths import Path
 from umitCore.I18N import _
 from umitCore.NmapCommand import NmapCommand
 from umitGUI.GenericAlertDialogs import GenericAlert
 from umitGUI.Icons import get_os_icon
+
 from umitInventory.NewInventory import NewInventory
 from umitInventory.InventoryLoad import InventoryLoad
+from umitInventory.InventoryCommonDialog import NoScheduleDlg
 
 INVENTORY_INFO = _("Info")
 (IPV4, IPV6, MAC, HOSTNAME) = range(4)
@@ -125,7 +125,7 @@ class InventoryTree(gtk.Notebook):
 
     def fill_tree(self):
         """
-        Fill inventory tree list.
+        Fill inventory tree list and return the inventories that filled it.
         """
         self.invdata = self.invdataload.load_from_db()
 
@@ -189,21 +189,7 @@ class InventoryTree(gtk.Notebook):
         schemas.read(Path.sched_schemas)
 
         if not schemas.has_section(inv):
-            # inventory without schedule, this happens when:
-            # - someone "creates" the inventory while adding a finished scan
-            #   from umit to the inventory viewer;
-            # - someone smart uses a database from somewhere else without
-            #   updating other files like schemas file.
-            dlg = HIGAlertDialog(None,
-                message_format=_("Inventory without scheduling profile."),
-                secondary_text=_("This Inventory was created when a scan "
-                    "realized in UMIT was requested to be added to the "
-                    "Network Inventory Viewer, so there is no scheduling "
-                    "profile for it."
-                    "\n\n\This Inventory is not editable."
-                    "\n\n(If the mentioned reason above is incorrect, either "
-                    "you have a database from somewhere else or report \n"
-                    "as bug)"))
+            dlg = NoScheduleDlg()
             dlg.run()
             dlg.destroy()
             return
