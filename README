@@ -1,77 +1,100 @@
-Introduction:
+Introduction
 
-    Umit Interface Editor is a editor of XML of UMIT. This tool is develpment in 
-    Python too like the own UMIT and using a wrapper of GTK+ : PyGTK. 
-    The aim of UIE is edit the XML that generate Profile Editor and Wizard. 
-    With this tool UMIT is more powerful tool and can edit on the fly your own interface, 
-    adding, remove new feautures of nmap or do modifications as user wish.  
+   Umit is a network scanning frontend.
 
+   Umit is developed in the Python programming language, and its
+   interface is built with the GTK Toolkit. It's also worth to mention
+   that the initial development is sponsored by Google's Summer of Code.
 
-    My project is mainly in umitInterfaceEditor/ and in umitGUI ProfileManager and others modifications at umitGUI and umitCore. 
-    umitInterfaceEditor is a software to run inside UMIT. So I need do a tarball of all my branch. 
-    With this new tool users can manage better the options of the powerful and great nmap adding the    newest options of nmap to UMIT front-end without edit manually xml files. 
+   The project goal is to develop a network scanning frontend that is really
+   useful for advanced users and easy to be used by newbies. With Umit, a
+   network admin can create scan profiles for faster and easier network
+   scanning and even compare scan results to easily see any changes. New
+   users can also construct powerful scans with Umit command creator
+   wizard.
 
-   
-Get the last version of my project:
+Installation
 
+   Umit is available for multiple platforms. It has been successfully
+   tested on the following platforms/flavors:
+     * Ubuntu 5.04 Hoary Hedgeog
+     * Red Hat Enterprise Linux 4
+     * OpenBSD 3.7
+     * Microsoft Windows 2000
+     * Microsoft Windows XP
+     * Apple MacOS X 10.4 (Tiger)
 
-    I'll continuing improve all the time my project and fixing bugs. So I advice you to get the 
-    last version of my project. See the references [8] too. 
-    svn co https://umit.svn.sourceforge.net/svnroot/umit/branch/k0p umitInterfaceEditor
+   The installation instructions are somewhat different for each
+   platform.
 
+Default (source) Installation
 
-Installation: 
-
-    Linux:
-    as root: 
-    python setup.py install --prefix=/usr  
-
-    Windows:
-    Download the source code and run directly. 
-
-
-    UMIT run in a lot of plataforms. I test Umit Interface Editor only at Linux and Windows. 
-
-Dependences:
+   The Umit's source package are provided in such a way that, if you have
+   all the required software, it will run 'out-of-the-tarball'.
 
    The list of required software follows:
      * [1]Python 2.4 or higher
      * [2]GTK+ 2.6 or higher
      * [3]PyGTK 2.6 or higher
-     * [4]Python bindings for Cairo
      * [4]nmap itself and its requirements
-     * [5]PySQLite2, included since Python 2.5
+     * [5]PySQLite2
      * [10]Psyco (optional)
 
-Use:
+   After unpacking the source distribution do one of the following:
+     * Double click the umit file
+     * Call the Python interpreter on the umit file
 
-    Run from branch:
-    
-        Windows / Unix / Mac OSX 
+GNU/Linux Installation
 
-        python umit -e 
-    
-        or 
-        
-        run python umit and go to menu Profile -> Interface Editor and see also Profile Manager 
+   Unpack the source package, and get inside the extracted directory.
 
+   # Extracting  gziped tarball
+   $ tar xvzf umit-0.9.1.tar.gz
 
+   # Extracting bziped tarball
+   $ tar xvjf umit-0.9.1.tar.bz2
 
-References:
-
-    [1] . http://developer.gnome.org/projects/gup/hig/
-    [2] . http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/
-    [3] . http://www.diveintopython.org/
-    [4] . http://www.pythonbrasil.com.br/moin.cgi/TestDrivenDevelopment
-    [5] . http://live.gnome.org/PyGTK/TestingUsingGuitest
-    [6] . http://python.developpez.com/cours/pygtktutorial/php/pygtken/index.php
-
-    [7] . http://umitproject.blogspot.com/
-    [8] . http://www.kop-labs.com/umit/
+   # Extracting ziped source
+   $ unzip umit-0.9.1.zip
 
 
-Thanks:
+   After extracting the sources, get inside the extracted dir:
+   $ cd umit-0.9.1
 
-Thanks to other students of GSoC on UMIT, people of channel #pygtk at GNOME IRC Network 
-and thank to Adriano (my mentor) that help ever that I needed. 
+   And then, run the command bellow as root:
+   # python setup.py install
 
+
+   This should be enough to get Umit installed.
+   To run Umit:
+   $ umit
+
+   
+   If you want to define the path where Umit should be installed, do:
+   $ python setup.py install --prefix /path/to/umit_dir
+
+   After that, put the /path/to/umit_dir/bin directory created in your PATH:
+   $ export PATH=$PATH:/path/to/umit_dir/bin
+
+   Or, put line above inside your ~/.bash_profile, ~/.bashrc or ~/.profile
+   (depending on your system) and this will get executed everytime you login.
+   After putting the bin directory in the PATH, execute Umit:
+   $ umit.pyw
+
+
+Microsoft Windows Installation
+
+   For the Microsoft Windows platform, ready to run installers are
+   available. Download them from the [6]Umit website.
+
+
+Links:
+
+[1] Python official website - http://www.python.org
+[2] GTK official website - http://www.gtk.org
+[3] PyGTK official website - http://www.pygtk.org
+[4] Nmap official website - http://www.insecure.org/nmap
+[5] PySQLite2 official website - http://initd.org/tracker/pysqlite
+[6] Umit website - http://www.umitproject.org
+[9] Umit blog - http://blog.umitproject.org
+[10] Pysco website - http://psyco.sourceforge.net
