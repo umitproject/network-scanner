@@ -312,7 +312,6 @@ class CommandConstructor:
             return
         self.options[option_name] = (args, level)
 
-
     def remove_option(self, option_name):
         if option_name in self.options.keys():
             self.options.pop(option_name)

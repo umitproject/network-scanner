@@ -62,7 +62,7 @@ class UmitConfigParser(ConfigParser):
             self.write(open(filename, 'w'))
         elif self.fp:
             self.write(self.fp)
-
+            
     def write(self, fp):
         '''Write alphabetically sorted config files'''
         if self._defaults:

@@ -23,6 +23,7 @@
 from types import StringTypes
 from xml.dom import minidom
 
+
 class NmapOptions:
     '''Manipulate an xml file with the nmap options, retrieving it's informa-
     tions. This Class doesn't write information inside the xml file yet!
@@ -71,7 +72,7 @@ class NmapOptions:
     def get_arguments (self, option):
         return self.__get_cutted_list \
                (self.__ga_opt (option, 'arguments'))
-    
+       
     def get_need_root (self, option):
         need = self.__ga_opt (option, 'need_root')
         
@@ -79,17 +80,21 @@ class NmapOptions:
             return False
         else:
             return True
-
+    def get_arg_type(self, option):
+        return self.__ga_opt (option, 'arg_type')
+        
     def get_option (self, option):
         return {'name':option,
                 'option':self.get_command_option(option),
                 'hint':self.get_hint(option),
                 'arguments':self.get_arguments(option),
+                'arg_type':self.get_arg_type(option), 
                 'need_root':self.get_need_root(option)}
     
     def get_options_list (self):
         return self.__get_list (self.options)
     
+   
     # Private Methods
     def __ga_opt (self, element_name, attribute_name):
         '''Get option elements attributes'''
@@ -105,6 +110,8 @@ class NmapOptions:
     
     def __get_list (self, dict):
         return [element for element in dict.keys()]
+    
+
     
     def __get_nmap_options (self):
         elements = self.option_xml.getElementsByTagName\
@@ -122,8 +129,8 @@ class NmapOptions:
         elements_dict = {}
         for element in list_of_elements:
             elements_dict [element.getAttribute ('name')] = element
-        
         return elements_dict
+    
 
 # Exceptions
 class OptionNotFound (Exception):

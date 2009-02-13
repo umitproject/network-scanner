@@ -196,7 +196,6 @@ class Credits(HIGWindow):
         
         self.design_scroll.add(self.design_text)
         self.design_text.set_wrap_mode(gtk.WRAP_NONE)
-
         self.soc2007_scroll.add(self.soc2007_text)
         self.soc2007_text.set_wrap_mode(gtk.WRAP_NONE)
 
@@ -322,6 +321,52 @@ Túlio Gonçalves <tulhera@gmail.com>
 Initial attempt on Maemo port:
 Adriano Monteiro Marques <adriano@umitproject.org>
 Osvaldo Santana Neto <osantana@gmail.com>"""))
+
+        b = self.soc2007_text.get_buffer()
+        b.set_text("""Independent Features:
+Adriano Monteiro Marques <py.adriano@gmail.com>
+Frederico Silva Ribeiro <fredegart@gmail.com>
+
+Network Inventory:
+Guilherme Henrique Polo Gonçalves <ggpolo@gmail.com>
+
+Umit Radial Mapper:
+João Paulo de Souza Medeiros <ignotus21@gmail.com>
+
+Profile/Wizard interface editor:
+Luis Antonio Bastião Silva <luis.kop@gmail.com>
+
+NSE Facilitator:
+Maxim I. Gavrilov <lovelymax@gmail.com>
+
+Nmap Python Wrapper:
+Pavel Klemenkov <parser@cs.msu.su>
+
+Umit Web:
+Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>
+
+Summer of Code's projects Design:
+Virgílio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>""")
+
+        b = self.contributors_text.get_buffer()
+        b.set_text("""Sponsored by (SoC 2005, 2006 and 2007):
+Google <code.summer@gmail.com>
+
+Mentor of SoC 2005 and 2006:
+Fyodor <fyodor@insecure.org>
+
+Initial development:
+Adriano Monteiro Marques <py.adriano@gmail.com>
+Cleber Rodrigues Rosa Junior <cleber.gnu@gmail.com>
+
+Beta testers:
+Drew Miller <securitygeek@fribble.org>
+Regis Kuramoto Dias <kuramotobm@gmail.com>
+Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>
+
+Initial attempt on Maemo port:
+Adriano Monteiro Marques <py.adriano@gmail.com>
+Osvaldo Santana Neto <osantana@gmail.com>""")
         
         b = self.translation_text.get_buffer()
         b.set_text(_("""Bahasa Indonesia:

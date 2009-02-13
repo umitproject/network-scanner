@@ -58,7 +58,7 @@ class Wizard(HIGWindow):
                                      self.update_command)
         
         self.target = '<target>'
-        
+        self.profilemanager = False 
         self.title_markup = "<span size='16500' weight='heavy'>%s</span>"
         self.directions = {'Start':self.start_page(),
                            'Choose':self.choose_page(),
@@ -292,6 +292,7 @@ for this profile.'))
         finish.bar.help.connect('clicked', self._show_help)
         finish.bar.back.connect('clicked', self.finish_back,
                                 finish, self.options.groups[-1])
+        finish.bar.back.connect('clicked', self.finish_back, finish, self.options.groups[-1])
         finish.bar.apply.connect('clicked', self.save_profile)
 
         return finish
@@ -305,7 +306,34 @@ for this profile.'))
 
     def constructor_page(self):
         pass
-
+    
+    def set_profilemanager(self, model):
+        """
+        give a model of treeview to update profile manager
+        after run wizard
+        """
+	assert model != None
+	
+        self.model = model 
+        self.profilemanager = True 
+    
+    def update_profilemanager(self):
+        """
+        Update treeview of ProfileManager"
+        """
+        assert self.profilemanager;
+	
+	profiles = self.profile.sections()
+        profiles.sort()
+	self.model.clear()
+	
+       
+        for command in profiles:
+            myiter = self.model.insert_before(None, None)
+            self.model.set_value(myiter, 0, command)
+	    self.model.set_value(myiter,1, self.profile.get_hint(command))
+        
+    
     def save_profile(self, widget):
         command = self.constructor.get_command('%s')
 
@@ -321,7 +349,6 @@ for this profile.'))
             buffer = self.directions['Profile'].annotation_text.get_buffer()
             annotation = buffer.get_text(buffer.get_start_iter(),\
                                           buffer.get_end_iter())
-
             self.profile.add_profile(profile_name,\
                                      command=command,\
                                      hint=hint,\
@@ -336,7 +363,6 @@ for this profile.'))
             for i in xrange(notebook_n_pages):
                 page = self.notebook.get_nth_page(i)
                 page.toolbar.profile_entry.update()
-
         elif self.notebook:
             target = self.directions['Choose'].target_entry.get_text()
             cmd = command % target
@@ -352,7 +378,8 @@ for this profile.'))
                                 directions['Choose'].target_entry.get_text()
             current_page.command_toolbar.command_entry.command = cmd
             current_page.command_toolbar.set_command(cmd)
-
+	if self.profilemanager:
+	    self.update_profilemanager()
         self.close_wizard()
 
 class FinishPage(HIGVBox):

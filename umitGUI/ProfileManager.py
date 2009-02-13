@@ -350,6 +350,4 @@ if __name__=="__main__":
     pm = ProfileManager()
     pm.show_all()
     gtk.main()
-    
-        
-        
+

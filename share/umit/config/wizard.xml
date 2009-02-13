@@ -42,26 +42,26 @@
     <option_check label="ICMP timestamp request" option="ICMP timestamp"/>
     <option_check label="ICMP netmask request" option="ICMP netmask"/>
     <option_check label="Default ping type" option="Default ping"/>
-    <option_check label="ACK ping" option="TCP ACK" arg_type="str"/>
-    <option_check label="SYN ping" option="TCP SYN" arg_type="str"/>
-    <option_check label="UDP probes" option="UDP Probe" arg_type="str"/>
+    <option_check label="ACK ping" option="TCP ACK" />
+    <option_check label="SYN ping" option="TCP SYN" />
+    <option_check label="UDP probes" option="UDP Probe" />
   </Ping>
   <Target label="Target options">
-    <option_check label="Excluded hosts/networks" option="Excluded hosts/networks" arg_type="str"/>
-    <option_check label="Ports to scan" option="Ports to scan" arg_type="str"/>
+    <option_check label="Excluded hosts/networks" option="Excluded hosts/networks" />
+    <option_check label="Ports to scan" option="Ports to scan" />
     <option_check label="Only scan ports listed on services" option="Scan services ports"/>
   </Target>
   <Source label="Source options">
-    <option_check label="Use decoys to hide identity" option="Use decoys" arg_type="str"/>
-    <option_check label="Set source IP address" option="Set source IP" arg_type="str"/>
-    <option_check label="Set source port" option="Set source port" arg_type="str"/>
+    <option_check label="Use decoys to hide identity" option="Use decoys" />
+    <option_check label="Set source IP address" option="Set source IP" />
+    <option_check label="Set source port" option="Set source port" />
   </Source>
   <Other label="Other options">
-    <option_check label="Extra options definied by user" option="Extra" arg_type="str"/>
-    <option_check label="Set IPv4 time to live (ttl)" option="Set IPv4 ttl" arg_type="str"/>
+    <option_check label="Extra options definied by user" option="Extra" />
+    <option_check label="Set IPv4 time to live (ttl)" option="Set IPv4 ttl" />
     <option_check label="Fragment IP packets" option="Fragment IP Packets"/>
-    <option_check label="Verbosity level" option="Verbose" arg_type="level"/>
-    <option_check label="Debugging level" option="Debug" arg_type="level"/>
+    <option_check label="Verbosity level" option="Verbose" />
+    <option_check label="Debugging level" option="Debug" />
     <option_check label="Watch packets" option="Watch packets"/>
   </Other>
 </interface>

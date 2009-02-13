@@ -237,7 +237,7 @@ class DiffWindow(gtk.Window):
     def _show_help(self, action):
         webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "help.html"),
                         new=2)
-
+        
     def _create_widgets(self):
         self.main_vbox = HIGVBox()
         self.hbox_mode = HIGHBox()

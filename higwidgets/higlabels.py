@@ -44,6 +44,12 @@ class HIGSectionLabel(gtk.Label):
             self.set_justify(gtk.JUSTIFY_LEFT)
             self.set_alignment(0, 0.50)
             self.set_line_wrap(True)
+    def set_new_text(self,text):
+        self.set_markup("<b>%s</b>" % (text))
+        self.set_justify(gtk.JUSTIFY_LEFT)
+        self.set_alignment(0, 0.50)
+        self.set_line_wrap(True)
+        
 
     def _set_text(self, text):
         self.set_markup("<b>%s</b>" % (text))
@@ -62,6 +68,21 @@ class HIGHintSectionLabel(gtk.HBox, object):
         self.pack_start(self.label, False, False)
         self.pack_start(self.hint, False, False, 5)
 
+class HIGHintLabel(gtk.HBox, object):
+    """
+    Label used to define sections, with a little icon that shows up a hint when mouse is
+    over it.
+    """
+    def __init__(self, text=None, hint=None):
+        gtk.HBox.__init__(self)
+
+        self.label = gtk.Label(text)
+        self.hint = Hint(hint)
+
+        self.pack_start(self.label, False, False)
+        self.pack_start(self.hint, False, False, 5)
+
+
 class Hint(gtk.EventBox, object):
     def __init__(self, hint):
         gtk.EventBox.__init__(self)
@@ -78,6 +99,7 @@ class Hint(gtk.EventBox, object):
     def show_hint(self, widget, event=None):
         hint_window = HintWindow(self.hint)
         hint_window.show_all()
+
     
 class HintWindow(gtk.Window):
     def __init__(self, hint):

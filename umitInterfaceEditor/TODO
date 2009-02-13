@@ -1,0 +1,268 @@
++---------------------------------------------------------+
+| TODO                                                    |
++---------------------------------------------------------+
+
+* Merge to trunk and Documentate code to make easy integration.
+* Fix the trouble with a focus and complete selectborder around items
+* Buttons in Edit Option List - Move Down Move Up
+* Update at items at menubar and add error messages 
+* [Working] Add keys to interface
+* [Working: see Changelog] Continuing fix bugs 
+* [Done] Port/test to Python 2.5
+* Add new feutete to edit label of section
+* Add more editing tools at the proprieties box (more double click go to 
+  option mode with the clicked option selected ) 
+* Improve Wizard Edit Mode
+* [Working] ProfileCore and OptionCore writeXML improve - SAX
+* Change implemantaton of BoxEditable - a DoubleList with widgets/ProfileOption 
+  connect for preview and foward 
+
+
+
+
+##############################################################################
+GSOC
+
+#XXX important to verify : 
+- arg_type is necessary at profile_editor.xml and wizard.xml?
+- do a file with all widgets used at Profile Editor and Wizard like
+	option_check,option_list and others 
+- Profile.py - review targets 
+
+17/08/2007:
+
+
+
+
+#13/08/2007:
+
+- First step I intend fix some bugs with Profile Editor mode like table spaces 
+and others like write in XML file. Other very important bug to fix is in 
+OptionCheck- delete border and add a big border to SpecialHBox! 
+- Solve TROUBLES with the CAN_FOCUS on ProfileEdit Mode - it's a hole ! 
+- After that I'll fix some bugs with the tools and add new connections with the
+buttons and interaction among Profile Editor Mode and Profile Core with new 
+functions added to the toolbars like changes and add new Option List. (It need 
+do a new window like a dialog to edit OptionList)
+- I'll use the ProfileEdit/NotebookEditable and BoxEditable to do a Wizard Edit
+Mode. So it's a spread widely of ProfileEdit and the each pages of Wizard should
+be a number on the Notebook. 
+- Options Edit Mode - add to the Command Manager (Do a Commands too)
+- I would like create some preview to Options Editor Mode
+
+
+
+
+#TODO 09/10  @ 08/2007: 
+
+- Finish Profile Editor Mode
+- Do Wizard Edit Mode. 
+
+
+
+#TODO 07/08/2007: 
+
+
+- Fixed bug when update ProprietiesBox when change Edit-Mode 
+- Auto-open in last EditMode 
+    { 
+	   - Don't remove childs
+	   - Hide/Show childs
+	}
+- Finish Proprieties Box
+
+
+
+
+
+
+#TODO 03/08/2007
+
+- Write ProfileCore ( Support Move and fix eventuals bugs with Add!!)
+- Integration of ProfileCore in Moves options and Sections
+
+
+
+#TODO 01/08/2007
+
+- Do ToolBarInterface(Move items and sections, add sections and remove)
+- Finished Proprieties Box (Change label, fill OptionList, etc)
+- Add interact with XML
+
+
+
+
+
+#TODO 25/07/2007
+
+- Fix bug of select only item at Profile
+- Add delete event (when delete a voidplace appears) 
+
+
+
+
+#TODO 23/24/25  @ 07/2007
+
+
+- Write the ProfileCore
+- Ajust ProfileCore with OptionsCore
+- Add sublclass of Command at OptionsManager and integrate with UndoRedo Manager
+- Create the BoxEditable that contains a filled Profiles able to modify 
+- Clean up at the UIE code (separate better public and private API )
+
+
+
+
+
+#TODO report 
+#
+- Finish ProfileCore (working with profile and wizard)
+- Fixed some bugs with CommandManager (Undo/Redo)
+- Add new featerus at Proprieties Box
+- Do BoxEditable and all items can be edited and filled.
+- Add / Remove options at Profile and Wizard
+- Clean up (Private/Public API of my modules)
+
+I intend at the final of this week have a interface ready to tests. I will working hard to can do it.
+
+##################
+
+
+
+#TODO 20/21/22  @ 07/2007
+#
+
+- Implement a UndoRedo Manager
+- Create a Subclass of Command for each action already done to test UndoRedo
+- Create a Proprieties box 
+- Icons at Design Toolbox
+- Fix drag-n-drop at design toolbox (get and received)
+
+
+#TODO 17/07/2007
+
+# OptionList
+- Changes Notebook of 'Option List' to a treeview with fixed columns (done)
+- Create a Notebook that wrappes 'Option List'; 'Widgets ' (done) 
+- Create a Preview - OptionPreview 
+	- Create a ProprietiesBox of each option selected
+- Create a drag-n-drop between OptionList and EditArea and 
+  Widgets List and EditArea(done a part, I'm working on RedoUndo Commands)
+
+
+
+
+
+##TODO 23/07/2007
+#
+
+## Umit Interface Editor
+
+# Option tab at UIE 
+- I will create a preview of option - OptionPreview
+- I will improve the OptionDisplay and fix some bugs with expand, etc.
+- Modification of XML structure - able to group options
+# Profile tab at UIE 
+- Finish EditableNotebook to groups 
+- Create a list of generic widgets to use in 'Profile Editor'
+- EditArea - Create events drag-n-drop 
+- Create the drag-n-drop events at OptionList
+- Begin Undo/Redo 
+
+
+########################3###################################################
+
+
+##TODO 09/07/2007
+
+##  OptionsCore 
+#ListOptions 
+- Implementation of remove_option()
+	I'm looking for the element that I can remove. I need the element
+	to do removeChild of root tree of doc xml.
+- Fix bugs at add_option()
+	List of arguments, only get one, etc.
+- Teste write_file() function 
+	PrettyPrint function may be not a good solution, thought xml.dom.ext I write to xml file.
+- CleanUp
+
+#OptionsCore 
+- Clean up
+- Bug fixing 
+
+
+#OptionManager
+- Add/Remove and Edit options features 
+
+#UIE
+- Put Options working 
+
+
+
+#TODO list for this week (2-9/07/2007):
+
+#Umit Interface Editor 
+
+- Contruction of a class to write in options.xml(OptionCore)
+	NmapOptions class only support read xml.
+	May be I use the same structure of NmapOptions and add new class Options
+	or change a implemantation of than. 
+- Update interface and add new feuterues
+	Look around toolbar and menubar and add and remove options the can be 
+	necessary, and so do functions to them begin work.
+- Improve a treeview edit mode, put a icon, etc.
+	A way to change Edit Mode from options to Profile is through a treeview
+	I'll improve visual add a intuitive icons
+- Finish OptionManager
+- Fix Columns on top of Option List
+- Continuing work on Selectable widgets 
+
+
+#Profile Manager
+
+- Add a pop-up menu to add/remove hint information 
+- Fix columns header on top of Profile Manager
+- Clean up of old options
+
+#Umit 
+
+- Add a option to start Umit Interface Editor on Umit 
+
+
+
+
+
+
+
+#############################################################################
+
+
+
+
+##Tricks
+
+
+#XML Write: 
+http://docs.python.org/lib/dom-objects.html
+
+#Trouble with Paned, view: 
+umitGUI/DiffCompare.py
+
+# gtk.Label method to multi-line and break-line 
+http://pygtk.org/docs/pygtk/class-gtklabel.html#method-gtklabel--set-line-wrap
+
+# table attach to two columns
+table.attach(label, 0, 2, 0, 1)
+
+#Glade code - selectable widgets
+search for events 
+glade-app.c
+
+# XML 
+miniDOM don't works very fine with a longs files
+sax is a good alternative
+
+
+#GDB
+gdb --args python yourprogram.py --g-fatal-warnings
+then type run at the prompt, the program will start, make sure it triggers the crash and then type backtrace in the gdb prompt when it does

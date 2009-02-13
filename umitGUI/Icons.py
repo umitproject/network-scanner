@@ -30,8 +30,9 @@ import os.path
 from umitCore.Paths import Path
 from umitCore.UmitLogging import log
 
-icon_names = (
-# Operating Systems
+
+icon_names = (\
+    # Operating Systems
     'default',
     'freebsd',
     'irix',
@@ -55,6 +56,7 @@ plugins_icons = (
     'extension',
     'paths'
 )
+
 
 pixmap_path = Path.pixmaps_dir
 if pixmap_path:

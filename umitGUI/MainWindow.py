@@ -40,6 +40,7 @@ from umitGUI.FileChoosers import ResultsFileChooserDialog
 from umitGUI.FileChoosers import SaveResultsFileChooserDialog
 from umitGUI.ScanNotebook import ScanNotebook, ScanNotebookPage
 from umitGUI.ProfileEditor import ProfileEditor
+from umitGUI.ProfileManager import ProfileManager
 from umitGUI.Wizard import Wizard
 from umitGUI.ProfileManager import ProfileManager
 from umitGUI.About import About
@@ -49,6 +50,8 @@ from umitGUI.BugReport import BugReport
 from umitGUI.SchedulerControl import SchedControl
 from umitGUI.SchedulerEdit import SchedSchemaEditor
 from umitGUI.SMTPSetup import SMTPSetup
+
+from umitInterfaceEditor.Main import umitInterfaceEditor
 
 from umitCore.Paths import Path
 from umitCore.RecentScans import recent_scans
@@ -247,6 +250,13 @@ class MainWindow(UmitMainWindow):
                      '<Control>m',
                      _('Use to manage profiles'),
                      self._profile_manager),            
+                    
+                    ('Interface Editor',
+                     gtk.STOCK_DND_MULTIPLE,
+                     _('Interface Editor'),
+                     '<Control>n',
+                     _('Use to edit profile/wizard'),
+                     self._uie),   
 
                      ('New Profile with Selected',
                       gtk.STOCK_PROPERTIES,
@@ -386,6 +396,7 @@ class MainWindow(UmitMainWindow):
             <menuitem action='Delete Profile'/> 
             <separator/>
             <menuitem action='Profile Manager'/>
+            <menuitem action='Interface Editor'/>
             </menu>
 
             <menu action='Help'>
@@ -1078,7 +1089,18 @@ access to this path.'))
         - Untitled scan
         """
         return self.scan_notebook.add_scan_page(data)
+        ## Integration UIE
+        # Put focus at the target combo, so user can open umit and start writing the target
+        # page.target_focus()
 
+        # return page
+        
+    def _uie(self, p):
+        uie = umitInterfaceEditor()
+        uie.show_all()
+    def _profile_manager(self,p):
+        pm = ProfileManager()
+        pm.show_all()
     def _profile_manager(self,p):
         """ Show Profile Manager """
         pm = ProfileManager()
@@ -1098,6 +1120,8 @@ access to this path.'))
             return
 
         profile = page.toolbar.selected_profile
+       
+        
 
         pe = ProfileEditor(profile)
         pe.set_notebook(self.scan_notebook)

@@ -120,11 +120,9 @@ class App:
             print e.message
             sys.exit(-1)
         warnings.resetwarnings()
-
         import gobject
         from umitGUI.Splash import Splash
         log.info(">>> Pixmaps path: %s" % Path.pixmaps_dir)
-
         if not is_maemo():
             pixmap_d = Path.pixmaps_dir
             if pixmap_d:

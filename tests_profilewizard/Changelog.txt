@@ -1,0 +1,2 @@
+22-04-2007  Luis Bastiao Silva
+	* First tests of Profile and Wizard Editor

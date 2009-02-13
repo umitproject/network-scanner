@@ -408,10 +408,10 @@ class ScanNotebookPage(HIGVBox):
         self.scan_result.set_sensitive(True)
     
     def refresh_command_target(self, widget):
-        log.debug(">>> Refresh Command Target")
+        #log.debug(">>> Refresh Command Target")
 
         profile = self.toolbar.selected_profile
-        log.debug(">>> Profile: %s" % profile)
+        #log.debug(">>> Profile: %s" % profile)
         
         if profile != '':
             target = self.toolbar.selected_target
@@ -795,6 +795,7 @@ class ScanNotebookPage(HIGVBox):
                 host_details.set_vulnerability_image(get_vulnerability_logo(
                     host_info.get_open_ports()))
                 
+                    
                 icon = None
                 try:icon = get_os_icon(host.get_osmatch()['name'])
                 except:icon = get_os_icon('')
@@ -1154,6 +1155,7 @@ class ScanNotebookPage(HIGVBox):
         host_details.set_ipseq(host.ipidsequence)
         host_details.set_tcptsseq(host.tcptssequence)
 
+        
         return host_page
     
     def set_single_host_port(self, host):
