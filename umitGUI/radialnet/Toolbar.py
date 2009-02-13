@@ -23,6 +23,8 @@ import gobject
 
 #import bestwidgets as bw
 from umitGUI.radialnet.HostsViewer import HostsViewer
+from higwidgets.higwindows import HIGWindow
+from umitCore.I18N import _
 
 
 SHOW = True
@@ -227,8 +229,17 @@ class Toolbar(gtk.Toolbar):
         """
         """
         if self.__fullscreen.get_active():
-            self.__window.fullscreen()
+            self.__fullscreen_window = HIGWindow()
+            self.__notebook = self.__window.get_parent()
+            self.__window.reparent( self.__fullscreen_window )
+            self.__fullscreen_window.show()
+            """self.__fullscreen_window.show_all()
+            """
+            self.__fullscreen_window.fullscreen()
 
         else:
-            self.__window.unfullscreen()
-
+            self.__window.reparent(self.__notebook)
+            self.__notebook.set_tab_label_text(self.__window, _('Topology'))
+            self.__notebook.set_current_page(
+                    self.__notebook.page_num(self.__window))
+            self.__fullscreen_window.hide()
