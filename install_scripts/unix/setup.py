@@ -65,7 +65,7 @@ def po_find(result, dirname, fnames):
     return extension_find(result, dirname, fnames, ".po")
 
 
-################################################################################
+###############################################################################
 # Installation variables
 
 svg = glob(os.path.join('share', 'pixmaps', '*.svg'))
@@ -77,29 +77,29 @@ data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
                (config_dir, [os.path.join(config_dir, 'umit.conf')] +
                             [os.path.join(config_dir, 'scan_profile.usp')] +
                             [os.path.join(config_dir, 'umit_version')] +
-                            [os.path.join(config_dir, 'umit.db')] + 
-                            [os.path.join(config_dir, 'umitng.db')] + 
-                            [os.path.join(config_dir, 
-                                          'timeline-settings.conf')] + 
-                            [os.path.join(config_dir, 
-                                          'tl_colors_evt_std.conf')] + 
-                            [os.path.join(config_dir, 
-                                          'scheduler-schemas.conf')] + 
-                            [os.path.join(config_dir, 
-                                          'scheduler-profiles.conf')] + 
-                            [os.path.join(config_dir, 'scheduler.log')] + 
-                            [os.path.join(config_dir, 'smtp-schemas.conf')] + 
+                            [os.path.join(config_dir, 'umit.db')] +
+                            [os.path.join(config_dir, 'umitng.db')] +
+                            [os.path.join(config_dir,
+                                          'timeline-settings.conf')] +
+                            [os.path.join(config_dir,
+                                          'tl_colors_evt_std.conf')] +
+                            [os.path.join(config_dir,
+                                          'scheduler-schemas.conf')] +
+                            [os.path.join(config_dir,
+                                          'scheduler-profiles.conf')] +
+                            [os.path.join(config_dir, 'scheduler.log')] +
+                            [os.path.join(config_dir, 'smtp-schemas.conf')] +
                             glob(os.path.join(config_dir, '*.xml'))+
                             glob(os.path.join(config_dir, '*.txt'))),
 
                # umitDB SQL
                (sql_dir, glob(os.path.join("umitDB/sql", "*.sql"))),
 
-               (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))), 
+               (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))),
 
                (icons_dir, glob(os.path.join('share', 'icons', 'umit',
                                              '*.ico'))+
-                           glob(os.path.join('share', 'icons', 'umit', 
+                           glob(os.path.join('share', 'icons', 'umit',
                                              '*.png'))),
 
                (docs_dir, glob(os.path.join(docs_dir, '*.html'))+
@@ -128,13 +128,13 @@ os.path.walk(locale_dir, mo_find, data_files)
 class umit_build(build):
     def delete_mo_files(self):
         """ Remove *.mo files """
-        tmp = [] 
+        tmp = []
         os.path.walk(locale_dir, mo_find, tmp)
         for (path, t) in tmp:
             os.remove(t[0])
     def build_mo_files(self):
         """Build mo files from po and put it into LC_MESSAGES """
-        tmp = [] 
+        tmp = []
         os.path.walk(locale_dir, po_find, tmp)
         for (path, t) in tmp:
             full_path = os.path.join(path , "LC_MESSAGES", "umit.mo")
@@ -215,7 +215,7 @@ print
             if re_sys.match(ucontent[line]):
                 uline = line + 1
                 break
-    
+
         ucontent.insert(uline, "sys.path.insert(0,'%s')\n" % modules )
 
         ufile = open(umit, "w")
@@ -278,7 +278,7 @@ print
         pf.close()
 
     def finish_banner(self):
-        print 
+        print
         print "%s Thanks for using Umit %s %s" % \
               ("#"*10, VERSION, "#"*10)
         print
@@ -286,33 +286,34 @@ print
 
 
 class umit_sdist(sdist):
+
     def read_manifest_no_mo(self):
-	""" Read Manifest without mo files """
-	manifest = open(self.manifest)
-	while 1:
-	    line = manifest.readline()
-	    if line == '':
-		break 
-	    if line[-1] == '\n':
-		line = line[0:-1]
-	    if line.find("umit.mo")!=-1:
-		self.filelist.files.remove(line)
+        """Read Manifest without mo file."""
+        for line in open(self.manifest):
+            if not line:
+                break
+
+            if line[-1] == '\n':
+                line = line[:-1]
+            if line.find('umit.mo') != -1:
+                self.filelist.files.remove(line)
+
     def run(self):
+        from distutils.filelist import FileList
         self.keep_temp = 1
-	from distutils.filelist import FileList
         #Rewrite: sdist.run(self)
         self.manifest = "MANIFEST"
         self.filelist = FileList()
-        self.check_metadata()	
+        self.check_metadata()
         self.get_file_list()
-	## Exclude mo files:
-	self.read_manifest_no_mo()
+        ## Exclude mo files:
+        self.read_manifest_no_mo()
         if self.manifest_only:
-            return 
+            return
         self.make_distribution()
-        
+
         self.finish_banner()
-    
+
     def finish_banner(self):
         print
         print "%s The packages for Umit %s are in ./dist %s" % \
