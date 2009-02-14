@@ -44,7 +44,7 @@ class BugRegister(object):
         self.cc = ""
         self.reporter = "user"
         self.keywords = "user crash"
-        self.milestore = "Umit 0.9.5"
+        self.milestore = "Umit 1.0beta1"
         self.version = "current svn"
         self.assigned_to = "boltrix"
         self.component = "Documentation"
@@ -74,19 +74,19 @@ class BugRegister(object):
         if (trac_form is None or trac_session is None):
             return None 
 
-        data = urllib.urlencode({"summary":self.summary,
+        data = urllib.urlencode({"field_summary":self.summary,
                                  "__FORM_TOKEN":trac_form,
-                                 "type":self.type,
-                                 "description":self.details,
-                                 "milestone":self.milestore,
-                                 "component":self.component,
-                                 "version":self.version,
-                                 "keywords":self.keywords,
-                                 "owner":self.assigned_to,
+                                 "field_type":self.type,
+                                 "field_description":self.details,
+                                 "field_milestone":self.milestore,
+                                 "field_component":self.component,
+                                 "field_version":self.version,
+                                 "field_keywords":self.keywords,
+                                 #"owner":self.assigned_to,
                                  "cc":self.cc,
-                                 "reporter":self.reporter,
-                                 "attachment":self.input_file,
-                                 "status":"new",
+                                 "author":self.reporter,
+                                 #"attachment":self.input_file,
+                                 "field_status":"new",
                                  "action":"create",
                                  "submit":self.submit})
 

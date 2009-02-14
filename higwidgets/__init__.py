@@ -31,7 +31,7 @@ This is mostly implemented by subclassing from the GTK classes, and
 providing defaults that better match the HIG specifications/recomendations.
 """
 
-__version__ = "1.0A-svn"
+__version__ = "1.0beta1"
 
 # added to RadialNet compatibility
 import gtk

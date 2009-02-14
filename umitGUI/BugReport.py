@@ -59,8 +59,8 @@ class BugReport(HIGDialog):
     def _set_category_list(self):
         # Obtained at bug tracker page source code
         
-        self.category_list.append(["Umit 0.9.5",
-                                   "Umit 0.9.5"])
+        self.category_list.append(["Umit 1.0beta1",
+                                   "Umit 1.0beta1"])
         self.category_list.append(["umitCore","umitCore"])
         self.category_list.append(["umitGUI","umitGUI"])
         self.category_list.append(["CrashReport","CrashReport"])
@@ -68,8 +68,6 @@ class BugReport(HIGDialog):
         self.category_list.append(["umitWeb","umitWeb"])
         self.category_list.append(["InterfaceEditor", "InterfaceEditor"])
         self.category_list.append(["website","website"])
-        self.category_list.append(["Umit GNU/Linux 0.1 ALPHA 1",
-                                   "Umit GNU/Linux 0.1 ALPHA 1"])
         
     def _create_widgets(self):
         self.category_label = HIGHintSectionLabel(_("Category (optional)"),
