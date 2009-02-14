@@ -20,7 +20,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-import md5
+
+try:
+    from hashlib import md5
+except:
+    # Python 2.4
+    import md5
+
 
 from umitCore.I18N import _
 
