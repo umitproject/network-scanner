@@ -90,7 +90,7 @@ UmitGUI: %s
             d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                 message_format=_("Import error"),
                 secondary_text=_("\nA required module was not "
-                    "found.\n\nError: %s" % emsg))
+                    "found.\n\nError:") + " %s" % emsg)
             d.run()
             d.destroy()
             return
