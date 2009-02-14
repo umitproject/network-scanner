@@ -23,7 +23,7 @@
 
 try:
     from hashlib import md5
-except:
+except ImportError:
     # Python 2.4
     import md5
 
