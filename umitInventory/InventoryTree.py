@@ -52,6 +52,12 @@ if os.path.isdir(Path.pixmaps_dir):
     factory.add(NI_INVENTORY_ROOT_ICON, gtk.IconSet(pixbuf))
     factory.add_default()
 
+def get_plural(count):
+    if count == 0 or count > 1:
+        return _("s")
+    else:
+        return _("")
+
 class InventoryTree(gtk.Notebook):
     """
     A Notebook that holds a ScrolledWindow that holds a TreeView that holds
@@ -75,10 +81,10 @@ class InventoryTree(gtk.Notebook):
         self.show_related_to = { }
 
         self.tooltips = gtk.Tooltips()
-        self.control_title = gtk.Label(_("%s (0)" % title))
+        self.control_title = gtk.Label("%s (0)" % title)
         self.treestore = gtk.TreeStore(gtk.gdk.Pixbuf, str)
         self.treeview = gtk.TreeView(self.treestore)
-        self.tcolumn = gtk.TreeViewColumn(_("%s (0)" % title))
+        self.tcolumn = gtk.TreeViewColumn("%s (0)" % title)
 
         # icon
         render_pixbuf = gtk.CellRendererPixbuf()
@@ -185,7 +191,7 @@ class InventoryTree(gtk.Notebook):
 
             self.show_related_to[inventory] = relations
 
-        self.set_title(_("My Inventories (%d)" % len(tr)))
+        self.set_title(_("My Inventories") + (" (%d)" % len(tr)))
         self.treeview.expand_all()
 
         return invs
@@ -222,10 +228,11 @@ class InventoryTree(gtk.Notebook):
 
         except NoSectionError, err:
             dlg = GenericAlert(_("Scan will not run!"),
-                _("You tried running scan for Inventory '%s',"
-                "\nbut it has no data in Scheduler schemas file, neither in "
-                "database.\n\nError returned: %s" % (inventory, err)),
-                    buttons={1: (gtk.RESPONSE_OK, gtk.STOCK_OK)})
+                _("You tried running scan for Inventory") +
+                (" %r,\n" % inventory) +
+                _("but it has no data in Scheduler schemas file, neither in "
+                    "database.\n\nError returned:") + (" %s" % err),
+                buttons={1: (gtk.RESPONSE_OK, gtk.STOCK_OK)})
             dlg.run()
             dlg.destroy()
 
@@ -261,9 +268,9 @@ class InventoryTree(gtk.Notebook):
 
             self.running_scans[scan] = inv
             running_scans = len(self.running_scans)
-            self.daddy._write_statusbar(_("%d scan%s running" % (running_scans,
-                running_scans > 1 and 's' or '')))
-
+            plural = get_plural(running_scans)
+            self.daddy._write_statusbar(("%d " % running_scans) +
+                    _("scan") + plural + _(" running"))
 
     def _check_scans(self):
         """
@@ -279,10 +286,11 @@ class InventoryTree(gtk.Notebook):
                 # probably a scan with args that requires root and a
                 # normal user tried running.
                 dlg = GenericAlert(_("Scan failed to run!"),
-                    _("You tried running scan for Inventory '%s',"
-                    "\nbut it returned the following:\n\n%s" % (
-                        inventory, err)), buttons={1: (gtk.RESPONSE_OK,
-                        gtk.STOCK_OK)})
+                        (_("You tried running scan for Inventory") +
+                            (" %r,\n" % inventory) +
+                            _("but it returned the following") +
+                            (":\n\n%s" % err)),
+                        buttons={1: (gtk.RESPONSE_OK, gtk.STOCK_OK)})
                 dlg.run()
                 dlg.destroy()
                 todelete.append(scan)
@@ -296,11 +304,12 @@ class InventoryTree(gtk.Notebook):
                 except Exception:
                     # failed while adding scan to the database
                     dlg = GenericAlert(_("Database couldn't be updated!"),
-                            _("The scan for the Inventory %r finished but "
-                                "its results couldn't be added to the "
-                                "database.\n\n%s" % (inventory,
-                                    traceback.format_exc())),
-                                buttons={1: (gtk.RESPONSE_OK, gtk.STOCK_OK)})
+                            (_("The scan for the Inventory") +
+                                (" %r " % inventory) +
+                                _("finished but it couldn't be added to the "
+                                    "database.") +
+                                ("\n\n%s" % traceback.format_exc())),
+                            buttons={1: (gtk.RESPONSE_OK, gtk.STOCK_OK)})
                     dlg.run()
                     dlg.destroy()
                 finally:
@@ -312,8 +321,9 @@ class InventoryTree(gtk.Notebook):
             del self.running_scans[td]
 
         running_scans = len(self.running_scans)
-        self.daddy._write_statusbar(_("%d scan%s running" % (running_scans,
-            running_scans > 1 and 's' or '')))
+        plural = get_plural(running_scans)
+        self.daddy._write_statusbar(
+                ("%d " % running_scans) + _("scan") + plural + _(" running"))
 
         if not self.running_scans:
             # all scans completed
@@ -357,7 +367,8 @@ class InventoryTree(gtk.Notebook):
 
             opts_menu.add(gtk.SeparatorMenuItem())
 
-            radiogroup = gtk.RadioMenuItem(None, _("View by %s" % SHOW_BY[3]))
+            radiogroup = gtk.RadioMenuItem(None,
+                    _("View by") + (" %s" % SHOW_BY[3]))
             if self.show_hosts_by == 3:
                 radiogroup.set_active(True)
             radiogroup.connect('toggled', self.set_show_hosts_by, 3)
@@ -367,7 +378,7 @@ class InventoryTree(gtk.Notebook):
                     opts_menu.add(radiogroup)
                 else:
                     opt_item = gtk.RadioMenuItem(radiogroup,
-                        _("View by %s" % showby))
+                        _("View by") + (" %s" % showby))
 
                     if self.show_hosts_by == indx:
                         opt_item.set_active(True)

@@ -49,7 +49,7 @@ class ChangesDiff(gtk.VBox):
 
         # header
         self.top_title = gtk.Label()
-        self.top_title.set_markup(_("<b>%s</b>" % EMPTY))
+        self.top_title.set_markup("<b>%s</b>" % EMPTY)
         self.legend_btn = gtk.Button(_("L"))
         self.legend_btn.connect('clicked', self._open_legend_dlg)
 
@@ -197,7 +197,8 @@ class ChangesDiff(gtk.VBox):
                 else:
                     status = "Unchanged"
 
-            pr = self.diff_tree.append(r, [status[0], _("Port %d" % key), "",
+            pr = self.diff_tree.append(r, [status[0],
+                _("Port") + (" %d" % key), "",
                 "", "", self.colors.get_hex_color(status[0])])
 
             for k, v in values.items():
@@ -235,7 +236,8 @@ class ChangesDiff(gtk.VBox):
 
             status = "Added"
 
-            pr = self.diff_tree.append(r, [status[0], _("Port %d" % key), "",
+            pr = self.diff_tree.append(r, [status[0],
+                _("Port") + (" %d" % key), "",
                 "", "", self.colors.get_hex_color(status[0])])
             for k, v in values.items():
                 if v:
@@ -341,7 +343,7 @@ class ChangesDiff(gtk.VBox):
                 status = "Not_present"
 
             oscr = self.diff_tree.append(r, [status[0],
-                _("Accuracy %d%%" % key), "", "", "",
+                _("Accuracy") + (" %d%%" % key), "", "", "",
                 self.colors.get_hex_color(status[0])])
             roots[key] = oscr
 
@@ -386,7 +388,7 @@ class ChangesDiff(gtk.VBox):
 
             elif not key in o_keys:
                 oscr = self.diff_tree.append(r, [status[0],
-                    _("Accuracy %d%%" % key), "", "", "",
+                    _("Accuracy") + (" %d%%" % key), "", "", "",
                     self.colors.get_hex_color(status[0])])
 
                 for item in osc_n[key]:

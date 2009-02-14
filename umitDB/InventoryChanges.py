@@ -251,15 +251,15 @@ class UpdateChanges:
 
             verb, plural = self.conjugate(info_changes, False)
             ports_str = ', '.join([str(p) for p in info_changes])
-            host_diff = ''.join([host_diff,
-                _("Port%s %s %s changed info!" % (plural, ports_str, verb))])
+            host_diff = ''.join([host_diff, _("Port"), plural, ports_str,
+                verb, _("changed info")])
 
         # compare fpinfoNs
         # dont consider uptime and lastboot in fingerprint (will probably
         # not consider others too)
         if fpinfo1 and (fpinfo1[2:] != fpinfo2[2:]):
             space = host_diff and ' ' or ''
-            common_text = _('%sFingerprint, ') % space
+            common_text = space + _("Fingerprint, ")
             ports_only = False
             if fp_only is None:
                 fp_only = True
@@ -320,10 +320,10 @@ class UpdateChanges:
 
         if len(alist) > 1:
             verb = verbs[0]
-            plural = _('s')
+            plural = _("s")
         else:
             verb = verbs[1]
-            plural = _('')
+            plural = _("")
 
         return verb, plural
 

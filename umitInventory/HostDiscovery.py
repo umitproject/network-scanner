@@ -369,8 +369,9 @@ class HostDiscovery(gtk.Window):
         Show error dialog for invalid network(s).
         """
         dlg = HIGAlertDialog(self, message_format=_('Invalid network(s).'),
-            secondary_text=_("There is some invalid character in "
-                "network: %s, please check it." % network))
+            secondary_text=(
+                _("There is some invalid character in network") +
+                    (" %r" % network) + _("please verify.")))
         dlg.run()
         dlg.destroy()
 

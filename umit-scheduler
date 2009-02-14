@@ -58,7 +58,7 @@ def usage():
     """
     Show help
     """
-    print _("Use: %s start|stop|cleanup <config_dir>" % (__file__, ))
+    print _("Use:") + (" %s start|stop|cleanup <config_dir>" % __file__)
 
 
 def kill(pid):

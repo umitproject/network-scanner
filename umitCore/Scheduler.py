@@ -591,9 +591,15 @@ Reason: %s" % (schema.schema_name , err))
 
                     email = Email(mailfrom, recipients, server, None,
                                   user, passwd, tls, port)
-                    email.sendmail(_("UMIT: Status Report for scheduled \
-schema \"%s\"" % opts[3]), _("There was a scheduled job that finished \
-now: %s\nFollows an attachment of job output." % curr_time), new_file_output)
+                    email.sendmail(
+                            subject=(
+                                _("UMIT: Status Report for scheduled schema") +
+                                " %r " % opts[3]),
+                            msg=(
+                                _("There was a scheduled job that just "
+                                    "finished:") + (" %s\n" % curr_time) +
+                                _("Follows an attachment of the job output.")),
+                            attach=new_file_output)
                     os.remove(new_file_output)
 
                 if int(opts[4]): # add to inventory

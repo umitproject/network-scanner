@@ -43,7 +43,7 @@ class TLChangesTree(gtk.HBox):
 
         self.treestore = gtk.TreeStore(str)
         self.treeview = gtk.TreeView(self.treestore)
-        self.tcolumn = gtk.TreeViewColumn(_("%s (0)" % LISTCHANGES))
+        self.tcolumn = gtk.TreeViewColumn("%s (0)" % LISTCHANGES)
         cell = gtk.CellRendererText()
         self.tcolumn.pack_start(cell, True)
         self.tcolumn.add_attribute(cell, 'text', 0)
@@ -237,7 +237,7 @@ class TLChangesTree(gtk.HBox):
                 self.treestore[inv_root][0] = "%s (%d)" % (inventory,
                     curr_changes_sum)
 
-        self.tcolumn.set_title(_("%s (%d)" % (LISTCHANGES, changes_sum)))
+        self.tcolumn.set_title("%s (%d)" % (LISTCHANGES, changes_sum))
 
 
     def __layout(self):

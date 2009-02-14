@@ -42,16 +42,16 @@ class About(HIGWindow):
     def __init__(self):
         HIGWindow.__init__(self)
 
-        self.lbl_program_version = gtk.Label(_("""
-<span size='30000' weight='heavy'>UMIT %s</span>
-<span size='10000' weight='heavy'>Network Inventory Build %s</span>""" % (
-            VERSION, __version__)))
+        self.lbl_program_version = gtk.Label(
+                ("<span size='30000' weight='heavy'>UMIT %s</span>" % VERSION) +
+                ("\n<span size='10000' weight='heavy'>Network Inventory ") +
+                _("Build") + (" %s</span>" % __version__))
 
-        self.lbl_program_description = gtk.Label(_("""
-UMIT Network Inventory and UMIT Scheduler are UMIT
-extensions developed by %s
-and was sponsored by Google during the Summer of Code 2007.
-Thanks Google!""" % __author__))
+        self.lbl_program_description = gtk.Label(
+                _("UMIT Network Inventory and UMIT Scheduler are UMIT\n") +
+                _("extensions developed by") + (" %s\n" % __author__) +
+                _("and was sponsored by Google during the Summer of Code "
+                    "2007.\nThanks Google!"))
 
         self.lbl_copyright = gtk.Label("<small>%s</small>" % __copyright__)
         self.logo_img = gtk.Image()

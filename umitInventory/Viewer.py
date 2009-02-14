@@ -155,7 +155,7 @@ class InventoryNB(gtk.Notebook):
         """
         title_eb = gtk.EventBox()
 
-        label = gtk.Label(_("%s" % title))
+        label = gtk.Label(title)
         label.show()
 
         title_hbox = gtk.HBox(False)
@@ -308,7 +308,7 @@ class InventoryViewer(HIGMainWindow):
         if not title in self.invnbpages_titles:
             # create new notebook to hold this Inventory
             newinvnb = InventoryNB(self)
-            self.invnb.append_page(newinvnb, gtk.Label(_("%s" % title)))
+            self.invnb.append_page(newinvnb, gtk.Label(title))
 
             self.invnbpages_titles.append(title)
             self.invnbpages_objects.append(newinvnb)
@@ -355,15 +355,16 @@ class InventoryViewer(HIGMainWindow):
 
         # scan info
         hb = gtk.HBox()
-        hb.pack_start(gtk.Label(_("Scan count: %d" % len(scans))), False,
-            False, 0)
+        hb.pack_start(gtk.Label(_("Scan count:") + (" %d" % len(scans))),
+                False, False, 0)
         box.pack_start(hb, False, False, 0)
 
         hb = gtk.HBox()
         last_scan_date = self.invdb.get_finish_timestamp_for_scan_from_db(
-            last_scan_id)
-        hb.pack_start(gtk.Label(_("Last scan date: %s" % last_scan_date)),
-            False, False, 0)
+                last_scan_id)
+        hb.pack_start(
+                gtk.Label(_("Last scan date:") + (" %s" % last_scan_date)),
+                False, False, 0)
         box.pack_start(hb, False, False, 0)
 
         details = self.invdb.get_scan_details_for_scan_from_db(scans[0][0])
@@ -382,13 +383,14 @@ class InventoryViewer(HIGMainWindow):
 
         # hosts info
         hb = gtk.HBox()
-        hb.pack_start(gtk.Label(_("Hosts: %s" % (
-            ', '.join(host[0] for host in hosts)))), False, False, 0)
+        hb.pack_start(gtk.Label(
+            _("Hosts: ") +
+            ', '.join([host[0] for host in hosts])), False, False, 0)
         box.pack_start(hb, False, False, 0)
 
         hb = gtk.HBox()
-        hb.pack_start(gtk.Label(_("Host count: %s" % len(hosts))), False,
-            False, 0)
+        hb.pack_start(gtk.Label(_("Host count:") + (" %s" % len(hosts))),
+                False, False, 0)
         box.pack_start(hb, False, False, 0)
 
         sw = gtk.ScrolledWindow()
@@ -540,10 +542,14 @@ class InventoryViewer(HIGMainWindow):
 
             # layout
             matches = len(args[1])
-            plural = (matches > 1 or matches == 0) and 's' or ''
+            if matches > 1 or matches == 0:
+                plural = _("s")
+            else:
+                plural = _("")
             upper_title = gtk.Label()
-            upper_title.set_markup(_("<b>%d result%s found.</b>" % (
-                matches, plural)))
+            upper_title.set_markup(
+                    ("<b>%d " % plural) + _("result") + plural + _(" found.") +
+                    "</b>")
             hutbox = HIGHBox()
             hutbox._pack_noexpand_nofill(upper_title)
             sw = HIGScrolledWindow()

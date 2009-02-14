@@ -6,6 +6,6 @@ class NoInventory(Exception):
 
     def __str__(self):
         if self.missing_inventory:
-            return _("No inventory named %r" % self.missing_inventory)
+            return _("No inventory named") + (" %r" % self.missing_inventory)
         else:
             return ''
