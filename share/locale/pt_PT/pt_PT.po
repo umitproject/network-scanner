@@ -1881,7 +1881,7 @@ msgstr "O UMIT gerou um comando do nmap. Clica Applicar para finalizar."
 
 #: umitGUI/Wizard.py:373
 msgid "Please, enter the profile name, and optionally, enter a hint, description and annotation for this new profile"
-msgstr "Por favor indique o nome do perfil, optcionalmente uma dica, descrição e anotação para o novo perfil "
+msgstr "Por favor indique o nome do perfil, opcionalmente uma dica, descrição e anotação para o novo perfil "
 
 #: umitGUI/Wizard.py:417
 msgid "Umit allow user to construct powerful commands in two distinct ways:"
