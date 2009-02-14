@@ -21,6 +21,7 @@
 Inventory Tree
 """
 
+import os
 import gtk
 import gobject
 import traceback
@@ -40,6 +41,16 @@ from umitInventory.InventoryCommonDialog import NoScheduleDlg
 INVENTORY_INFO = _("Info")
 (IPV4, IPV6, MAC, HOSTNAME) = range(4)
 SHOW_BY = _("IPv4"), _("IPv6"), _("MAC"), _("Hostname")
+
+NI_INVENTORY_ROOT_ICON = 'root_inventory'
+if os.path.isdir(Path.pixmaps_dir):
+    # XXX This is asking for a module
+    icon_path = os.path.join(Path.pixmaps_dir,
+            'networkinventory', 'root_inventory.png')
+    factory = gtk.IconFactory()
+    pixbuf = gtk.gdk.pixbuf_new_from_file(icon_path)
+    factory.add(NI_INVENTORY_ROOT_ICON, gtk.IconSet(pixbuf))
+    factory.add_default()
 
 class InventoryTree(gtk.Notebook):
     """
@@ -138,7 +149,7 @@ class InventoryTree(gtk.Notebook):
         for inventory, addrs in self.invdata.items():
             invs.append(inventory)
 
-            root = tr.append(None, [self.render_icon("root_inventory",
+            root = tr.append(None, [self.render_icon(NI_INVENTORY_ROOT_ICON,
                 gtk.ICON_SIZE_MENU), '%s' % inventory])
 
             relations = { }
