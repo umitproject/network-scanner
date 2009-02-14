@@ -60,9 +60,9 @@ plugins_icons = (
 
 pixmap_path = Path.pixmaps_dir
 if pixmap_path:
-    # This is a generator that returns file names for pixmaps in the order they
-    # should be tried.
     def get_pixmap_file_names(icon_name, size):
+        """This is a generator that returns file names for pixmaps in
+        the order they should be tried."""
         yield '%s.svg' % icon_name
         yield '%s_%s.png' % (icon_name, size)
 
