@@ -43,7 +43,7 @@ when remove button is pressed at Option Edit Mode
 
 class DependenceOption(HIGDialog):
     def __init__(self, option, restructfiles, profile, wizard):
-        HIGDialog.__init__(self, _('Dependence of Option %s ' % option ))
+        HIGDialog.__init__(self, _('Dependence of Option ') + option )
 	self.set_size_request(-1,300)
         self.restructfiles = restructfiles
 	self._profile = profile
