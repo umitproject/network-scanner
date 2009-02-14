@@ -506,9 +506,12 @@ but there isn't a finished scan on active tab!")
         os.remove(xml_scanfile)
         log.debug("Insertion finished")
 
-        dlg = HIGAlertDialog(self, message_format=_('Insertion finished!'),
-                             secondary_text=_("Scan has been added to the \
-inventory %s." % inventory_title))
+        dlg = HIGAlertDialog(self,
+                message_format=_('Insertion finished!'),
+                secondary_text=(
+                    _("Scan has been added to the") +
+                    " %r " % inventory_title +
+                    _("inventory.")))
         dlg.run()
         dlg.destroy()
         
