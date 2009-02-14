@@ -20,12 +20,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
+import re
 import urllib
 import urllib2
-from urllib2 import Request, urlopen, URLError, HTTPError
-
 from tempfile import mktemp
-import re
+
+from umitCore.Version import VERSION
 
 trac_site="http://trac.umitproject.org/"
 trac_new_ticket=trac_site + "newticket"
@@ -44,7 +44,7 @@ class BugRegister(object):
         self.cc = ""
         self.reporter = "user"
         self.keywords = "user crash"
-        self.milestore = "Umit 1.0beta1"
+        self.milestone = "Umit %s" % VERSION
         self.version = "current svn"
         self.assigned_to = "boltrix"
         self.component = "Documentation"

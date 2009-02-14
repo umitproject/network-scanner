@@ -59,8 +59,8 @@ class BugReport(HIGDialog):
     def _set_category_list(self):
         # Obtained at bug tracker page source code
         
-        self.category_list.append(["Umit 1.0beta1",
-                                   "Umit 1.0beta1"])
+        self.category_list.append(["Umit %s" % VERSION,
+                                   "Umit %s" % VERSION])
         self.category_list.append(["umitCore","umitCore"])
         self.category_list.append(["umitGUI","umitGUI"])
         self.category_list.append(["CrashReport","CrashReport"])
