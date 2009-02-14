@@ -18,10 +18,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import gtk
-import gobject
 
 from higwidgets.higwindows import HIGWindow
-from higwidgets.higboxes import HIGVBox, HIGHBox
+from higwidgets.higboxes import HIGVBox
 
 from higwidgets.higanimates import HIGAnimatedBar
 from higwidgets.higtoolbars import HIGToolBar, HIGToolItem
@@ -35,9 +34,7 @@ from umitPlugin.Engine import PluginEngine
 from Network import *
 
 from umitCore.I18N import _
-from umitCore.Paths import Path
 
-import os, os.path
 
 class PluginWindow(HIGWindow):
     def __init__(self):

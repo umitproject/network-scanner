@@ -18,7 +18,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-import sys
 import os
 import os.path
 
@@ -27,9 +26,7 @@ from umitPlugin.Atoms import Singleton
 from umitPlugin.Tree import PluginsTree, PluginException
 from umitPlugin.Containers import PluginReader, BadPlugin
 
-from umitCore.I18N import _
 from umitCore.Paths import Path
-from umitCore.Version import VERSION
 from umitCore.UmitConf import Plugins
 from umitCore.UmitLogging import log
 

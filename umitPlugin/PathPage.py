@@ -21,11 +21,9 @@
 The path page for PluginWindow
 """
 
-import os
 import gtk
 
 from umitCore.I18N import _
-from umitCore.Paths import Path
 from umitGUI.Icons import get_pixbuf
 from umitPlugin.Engine import PluginEngine
 

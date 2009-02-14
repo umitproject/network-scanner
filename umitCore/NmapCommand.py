@@ -29,15 +29,16 @@ import unittest
 
 from tempfile import mktemp
 from types import StringTypes
-try:
-    from subprocess import Popen, PIPE
-except ImportError, e:
-    raise ImportError(str(e) + ".\n" + _("Python 2.4 or later is required."))
 
 from umitCore.NmapOptions import NmapOptions
 from umitCore.OptionsConf import options_file
 from umitCore.UmitLogging import log
-from umitCore.I18N import _, enc
+from umitCore.I18N import _
+
+try:
+    from subprocess import Popen, PIPE
+except ImportError, e:
+    raise ImportError(str(e) + ".\n" + _("Python 2.4 or later is required."))
 
 # shell_state = True avoids python to open a terminal to execute nmap.exe
 # shell_state = False is needed to run correctly at Linux

@@ -140,8 +140,6 @@ class OptionNotFound (Exception):
         return "No option named '"+self.option+"' found!"
 
 if __name__ == '__main__':
-    from pprint import pprint
-    
     teste = NmapOptions ('options.xml')
     print teste.get_command_option('Min parallel hosts', '5')
     print teste.get_options_list()
