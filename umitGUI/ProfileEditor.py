@@ -52,6 +52,7 @@ class ProfileEditor(HIGWindow):
         self.__pack_widgets()
         
         self.scan_notebook = None
+	self.profilemanager = None
         
         self.profile = CommandProfile()
         
