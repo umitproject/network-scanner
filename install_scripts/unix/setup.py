@@ -345,7 +345,7 @@ changes. A regular user will also be able to construct powerful scans with \
 Umit command creator wizards.""",
       version = VERSION,
       scripts = ['umit', 'umit-scheduler'],
-      packages = ['', 'umitCore', 'umitDB', 'umitGUI', 'umitInventory',
+      packages = ['', 'umitCore','umitCore.radialnet', 'umitDB', 'umitGUI', 'umitInventory',
                   'umitPlugin', 'umitGUI.radialnet', 'umitInterfaceEditor',
                   'umitInterfaceEditor.selectborder', 'higwidgets'],
       data_files = data_files,
