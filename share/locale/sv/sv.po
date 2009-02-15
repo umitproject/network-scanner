@@ -5,18 +5,1241 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: umit\n"
-"POT-Creation-Date: 2008-07-31 13:07+WEST\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-02-15 14:43-0300\n"
 "PO-Revision-Date: 2009-02-02 00:28+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: umitCore/Diff.py:34
-#: umitCore/DiffHtml.py:135
-#: umitCore/I18N.py:77
+#: umitInventory/About.py:48
+msgid "Build"
+msgstr ""
+
+#: umitInventory/About.py:51
+msgid "UMIT Network Inventory and UMIT Scheduler are UMIT\n"
+msgstr ""
+
+#: umitInventory/About.py:52
+msgid "extensions developed by"
+msgstr ""
+
+#: umitInventory/About.py:53
+msgid ""
+"and was sponsored by Google during the Summer of Code 2007.\n"
+"Thanks Google!"
+msgstr ""
+
+#: umitInventory/About.py:71 umitInventory/Viewer.py:675
+msgid "About UMIT Network Inventory"
+msgstr ""
+
+#: umitInventory/Calendar.py:32
+msgid "January"
+msgstr "Januari"
+
+#: umitInventory/Calendar.py:32
+msgid "February"
+msgstr "Februari"
+
+#: umitInventory/Calendar.py:32
+msgid "March"
+msgstr "Mars"
+
+#: umitInventory/Calendar.py:32
+msgid "April"
+msgstr "April"
+
+#: umitInventory/Calendar.py:32
+msgid "May"
+msgstr "Maj"
+
+#: umitInventory/Calendar.py:33
+msgid "June"
+msgstr "Juni"
+
+#: umitInventory/Calendar.py:33
+msgid "July"
+msgstr "Juli"
+
+#: umitInventory/Calendar.py:33
+msgid "August"
+msgstr "Augusti"
+
+#: umitInventory/Calendar.py:33
+msgid "September"
+msgstr "September"
+
+#: umitInventory/Calendar.py:34
+msgid "October"
+msgstr "Oktober"
+
+#: umitInventory/Calendar.py:34
+msgid "November"
+msgstr "November"
+
+#: umitInventory/Calendar.py:34
+msgid "December"
+msgstr "December"
+
+#: umitInventory/Calendar.py:37
+#, fuzzy
+msgid "Monday"
+msgstr "Maj"
+
+#: umitInventory/Calendar.py:37
+msgid "Tuesday"
+msgstr ""
+
+#: umitInventory/Calendar.py:37
+msgid "Wednesday"
+msgstr ""
+
+#: umitInventory/Calendar.py:37
+msgid "Thursday"
+msgstr ""
+
+#: umitInventory/Calendar.py:38
+msgid "Friday"
+msgstr ""
+
+#: umitInventory/Calendar.py:38
+msgid "Saturday"
+msgstr ""
+
+#: umitInventory/Calendar.py:38
+#, fuzzy
+msgid "Sunday"
+msgstr "Sammandrag"
+
+#: umitInventory/ChangesDiff.py:31
+msgid "Nothing being shown."
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:32 umitGUI/ScanHostDetailsPage.py:258
+#: umitGUI/ScanHostDetailsPage.py:293
+msgid "Not Available"
+msgstr "Inte tillgänglig"
+
+#: umitInventory/ChangesDiff.py:35
+#, fuzzy
+msgid "Status"
+msgstr "Tillstånd"
+
+#: umitInventory/ChangesDiff.py:35 umitGUI/DiffCompare.py:564
+#: umitInterfaceEditor/Main.py:548
+msgid "Section"
+msgstr "Avsnitt"
+
+#: umitInventory/ChangesDiff.py:35 umitGUI/DiffCompare.py:565
+msgid "Property"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:36
+msgid "Previous value"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:36 umitGUI/DiffCompare.py:567
+msgid "Current value"
+msgstr "Aktuellt värde"
+
+#: umitInventory/ChangesDiff.py:53
+msgid "L"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:121
+#, fuzzy
+msgid "No data"
+msgstr "Ingen avsökningsflik"
+
+#: umitInventory/ChangesDiff.py:122
+msgid "No data available for this host on this date"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:181 umitInventory/TLBase.py:45
+#: umitGUI/DiffCompare.py:793
+msgid "Ports"
+msgstr "Portar"
+
+#: umitInventory/ChangesDiff.py:201 umitInventory/ChangesDiff.py:240
+#: umitDB/InventoryChanges.py:252 umitDB/InventoryChanges.py:338
+#: umitGUI/SMTPSetup.py:65 umitGUI/ScanOpenPortsPage.py:65
+#: umitGUI/ScanOpenPortsPage.py:85
+msgid "Port"
+msgstr "Port"
+
+#: umitInventory/ChangesDiff.py:260 umitGUI/DiffCompare.py:861
+msgid "Extraports"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:269 umitInventory/ChangesDiff.py:270
+#: umitInventory/ChangesDiff.py:281
+#, fuzzy
+msgid "count"
+msgstr "Antal"
+
+#: umitInventory/ChangesDiff.py:298 umitInventory/TLBase.py:44
+#: umitDB/Search.py:113
+msgid "Fingerprint"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:301
+msgid "Uptime"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:304 umitGUI/ScanHostDetailsPage.py:59
+msgid "TCP Sequence"
+msgstr "TCP-sekvens"
+
+#: umitInventory/ChangesDiff.py:307 umitGUI/ScanHostDetailsPage.py:61
+msgid "TCP TS Sequence"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:310 umitGUI/ScanHostDetailsPage.py:60
+msgid "IP ID Sequence"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:325 umitDB/InventoryChanges.py:283
+#: umitDB/Search.py:107
+#, fuzzy
+msgid "OS Classes"
+msgstr "Klass:"
+
+#: umitInventory/ChangesDiff.py:346 umitInventory/ChangesDiff.py:391
+#: umitGUI/ScanHostDetailsPage.py:368
+msgid "Accuracy"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:352 umitInventory/ChangesDiff.py:370
+#: umitInventory/ChangesDiff.py:386 umitInventory/ChangesDiff.py:395
+#: umitGUI/ScanHostDetailsPage.py:58
+msgid "OS Class"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:411 umitDB/Search.py:104
+#: umitGUI/DiffCompare.py:770
+msgid "OS Match"
+msgstr ""
+
+#: umitInventory/ChangesDiff.py:534
+#, fuzzy
+msgid "TCP Sequence Class"
+msgstr "TCP-sekvens"
+
+#: umitInventory/ChangesDiff.py:535
+#, fuzzy
+msgid "TCP Sequence Index"
+msgstr "TCP-sekvens"
+
+#: umitInventory/ChangesDiff.py:536
+#, fuzzy
+msgid "TCP Sequence Difficulty"
+msgstr "TCP-sekvens"
+
+#: umitInventory/ChangesDiff.py:538
+#, fuzzy
+msgid "TCP Sequence Value"
+msgstr "TCP-sekvens"
+
+#: umitInventory/ChangesDiff.py:540
+#, fuzzy
+msgid "IP ID Sequence Class"
+msgstr "TCP-sekvens"
+
+#: umitInventory/ChangesDiff.py:542
+#, fuzzy
+msgid "IP ID Sequence Value"
+msgstr "TCP-sekvens"
+
+#: umitInventory/ChangesDiff.py:545
+#, fuzzy
+msgid "TCP TS Sequence Class"
+msgstr "TCP-sekvens"
+
+#: umitInventory/ChangesDiff.py:547
+#, fuzzy
+msgid "TCP TS Sequence Value"
+msgstr "TCP-sekvens"
+
+#: umitInventory/ChangesList.py:95 umitInventory/ChangesList.py:324
+#: umitInventory/ChangesList.py:344
+msgid "Inventories"
+msgstr ""
+
+#: umitInventory/ChangesList.py:97 umitGUI/ScriptManager.py:362
+msgid "Categories"
+msgstr ""
+
+#: umitInventory/ChangesList.py:221 umitInventory/TLBase.py:41
+#: umitInventory/Viewer.py:530
+msgid "Inventory"
+msgstr ""
+
+#: umitInventory/ChangesList.py:221
+#, fuzzy
+msgid "Host address"
+msgstr "Värdnamn"
+
+#: umitInventory/ChangesList.py:222
+msgid "Category"
+msgstr ""
+
+#: umitInventory/ChangesList.py:222
+#, fuzzy
+msgid "Short change description"
+msgstr "Tjänstebeskrivning"
+
+#: umitInventory/ChangesList.py:223
+msgid "Change date"
+msgstr ""
+
+#: umitInventory/ChangesList.py:320 umitGUI/ScriptManager.py:335
+msgid "Refresh"
+msgstr ""
+
+#: umitInventory/ChangesList.py:325
+msgid "Timeline for this host"
+msgstr ""
+
+#: umitInventory/ChangesList.py:345
+#, fuzzy
+msgid "Options"
+msgstr "Alternativ"
+
+#: umitInventory/ChangesList.py:402 umitInventory/Timeline.py:68
+msgid "Viewing"
+msgstr ""
+
+#: umitInventory/ChangesList.py:403
+msgid "of"
+msgstr ""
+
+#: umitInventory/ChangesList.py:405
+#, fuzzy
+msgid "Nothing to view"
+msgstr "Ingenting att spara"
+
+#: umitInventory/DataRemoval.py:44
+msgid "Delete data older than"
+msgstr ""
+
+#: umitInventory/DataRemoval.py:45
+#, fuzzy
+msgid "days"
+msgstr "Dygn"
+
+#: umitInventory/DataRemoval.py:50
+msgid "Set value as 0 to disable data removal"
+msgstr ""
+
+#: umitInventory/DataRemoval.py:81
+msgid "Configure Inventory Data Removal"
+msgstr ""
+
+#: umitInventory/DataRemoval.py:117
+msgid "<b>Please wait...</b>"
+msgstr ""
+
+#: umitInventory/DataRemoval.py:119
+msgid "Removing data from Network Inventory database"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:145
+#, fuzzy
+msgid "Host Discovery"
+msgstr "Värddetaljer"
+
+#: umitInventory/HostDiscovery.py:155
+msgid "Detect network(s)"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:158
+msgid "Add new entry"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:160
+msgid "Find hosts"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:163 umitInventory/HostDiscovery.py:336
+#: umitInventory/HostDiscovery.py:369
+#, fuzzy
+msgid "Target list"
+msgstr "Mål"
+
+#: umitInventory/HostDiscovery.py:169 umitInventory/Viewer.py:530
+#: umitGUI/DiffCompare.py:744 umitGUI/ScanHostsView.py:67
+#: umitGUI/ScanOpenPortsPage.py:63 umitGUI/SearchGUI.py:298
+msgid "Host"
+msgstr "Värd"
+
+#: umitInventory/HostDiscovery.py:170
+msgid "Network"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:178
+msgid "Remove from list"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:191
+msgid "Add new entry for a network"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:193
+msgid "Try to detect network(s)"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:195
+msgid "Find hosts in entered network(s)"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:197
+msgid "Remove selection from target list"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:271
+#, fuzzy
+msgid "No network(s) detected."
+msgstr "Ingen värd markerad!"
+
+#: umitInventory/HostDiscovery.py:272
+msgid ""
+"You will need to especify the network(s) yourself before detecting hosts."
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:308
+msgid "No network."
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:309
+msgid "You need to specify at least one network to search for hosts."
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:334 umitInventory/InventoryTree.py:267
+#: umitInventory/InventoryTree.py:318
+#, fuzzy
+msgid "scan"
+msgstr "Sök av"
+
+#: umitInventory/HostDiscovery.py:338
+#, fuzzy
+msgid "running"
+msgstr "Söker av"
+
+#: umitInventory/HostDiscovery.py:379
+msgid "Invalid network(s)."
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:381
+msgid "There is some invalid character in network"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:382
+msgid "please verify."
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:409
+msgid "Network list"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:414
+msgid "Sample 192.168.254.0/24"
+msgstr ""
+
+#: umitInventory/HostDiscovery.py:439
+#, fuzzy
+msgid "Use target list"
+msgstr "Ingen målvärd!"
+
+#: umitInventory/InventoryCommonDialog.py:12
+msgid "Inventory without scheduling profile."
+msgstr ""
+
+#: umitInventory/InventoryCommonDialog.py:14
+msgid ""
+"This Inventory was created when a scan realized in UMIT was requested to be "
+"added to the Network Inventory Viewer, so there is no scheduling profile for "
+"it.\n"
+"\n"
+"This Inventory is not editable.\n"
+"\n"
+"(If the mentioned reason above is incorrect, either you have a database from "
+"somewhere else or report as bug)"
+msgstr ""
+
+#: umitInventory/InventoryException.py:9
+msgid "No inventory named"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:42 umitInventory/Viewer.py:61
+msgid "Info"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:44 umitGUI/SearchGUI.py:149
+msgid "IPv4"
+msgstr "IPv4"
+
+#: umitInventory/InventoryTree.py:44 umitGUI/SearchGUI.py:150
+msgid "IPv6"
+msgstr "IPv6"
+
+#: umitInventory/InventoryTree.py:44 umitDB/Search.py:110
+#: umitGUI/SearchGUI.py:148
+msgid "MAC"
+msgstr "MAC"
+
+#: umitInventory/InventoryTree.py:44 umitDB/Search.py:101
+#: umitGUI/ScanOpenPortsPage.py:82
+msgid "Hostname"
+msgstr "Värdnamn"
+
+#: umitInventory/InventoryTree.py:62 umitInventory/InventoryTree.py:189
+msgid "My Inventories"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:225
+#, fuzzy
+msgid "Scan will not run!"
+msgstr "Avsökningen är inte färdig än!"
+
+#: umitInventory/InventoryTree.py:226 umitInventory/InventoryTree.py:283
+msgid "You tried running scan for Inventory"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:228
+msgid ""
+"but it has no data in Scheduler schemas file, neither in database.\n"
+"\n"
+"Error returned:"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:267 umitInventory/InventoryTree.py:320
+#, fuzzy
+msgid " running"
+msgstr "Söker av"
+
+#: umitInventory/InventoryTree.py:282
+msgid "Scan failed to run!"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:285
+msgid "but it returned the following"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:300
+msgid "Database couldn't be updated!"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:301
+msgid "The scan for the Inventory"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:303
+msgid "finished but it couldn't be added to the database."
+msgstr ""
+
+#: umitInventory/InventoryTree.py:354
+msgid "Expand All"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:358
+msgid "Collapse All"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:365 umitInventory/InventoryTree.py:375
+msgid "View by"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:409
+#, python-format
+msgid "Edit %s"
+msgstr ""
+
+#: umitInventory/InventoryTree.py:412
+msgid "Run scan now"
+msgstr ""
+
+#: umitInventory/NewInventory.py:65
+msgid "Editing Inventory"
+msgstr ""
+
+#: umitInventory/NewInventory.py:67
+msgid "New Inventory"
+msgstr ""
+
+#: umitInventory/NewInventory.py:77
+msgid "Inventory's name"
+msgstr ""
+
+#: umitInventory/NewInventory.py:80
+#, fuzzy
+msgid "in use"
+msgstr "Minuter"
+
+#: umitInventory/NewInventory.py:82 umitGUI/SchedulerEdit.py:99
+msgid "Enabled"
+msgstr ""
+
+#: umitInventory/NewInventory.py:85
+msgid "Use default scan options"
+msgstr ""
+
+#: umitInventory/NewInventory.py:91
+msgid "Use advanced scan options"
+msgstr ""
+
+#: umitInventory/NewInventory.py:92 umitGUI/SchedulerEdit.py:73
+#, fuzzy
+msgid "Scan Profile"
+msgstr "Profil"
+
+#: umitInventory/NewInventory.py:100
+#, fuzzy
+msgid "Command Wizard"
+msgstr "_Kommandoguide"
+
+#: umitInventory/NewInventory.py:103 umitInventory/NewInventory.py:521
+#: umitGUI/DiffCompare.py:698 umitGUI/ProfileEditor.py:104
+#: umitGUI/SchedulerEdit.py:79 umitGUI/Wizard.py:141 umitGUI/Wizard.py:473
+msgid "Command"
+msgstr "Kommando"
+
+#: umitInventory/NewInventory.py:109
+#, fuzzy
+msgid "Scan target"
+msgstr "Avsökningstyp:"
+
+#: umitInventory/NewInventory.py:111
+msgid "Use host discovery"
+msgstr ""
+
+#: umitInventory/NewInventory.py:114 umitGUI/SchedulerEdit.py:82
+#: umitGUI/SchedulerEdit.py:518
+#, fuzzy
+msgid "Scheduling Profile"
+msgstr "Borttagning av profil"
+
+#: umitInventory/NewInventory.py:119 umitGUI/SchedulerEdit.py:86
+#, fuzzy
+msgid "Edit Profiles"
+msgstr "Profil"
+
+#: umitInventory/NewInventory.py:131
+msgid "nmap -T Aggressive -sV -n -O -v target"
+msgstr ""
+
+#: umitInventory/NewInventory.py:323 umitInventory/NewInventory.py:343
+#: umitInventory/NewInventory.py:363
+msgid "New Inventory - Error while creating."
+msgstr ""
+
+#: umitInventory/NewInventory.py:324
+msgid "You tried to use an existing Inventory name or you didn't specify one."
+msgstr ""
+
+#: umitInventory/NewInventory.py:333
+msgid "New Inventory - Error  while creating."
+msgstr ""
+
+#: umitInventory/NewInventory.py:334
+msgid "You didn't specify any target."
+msgstr ""
+
+#: umitInventory/NewInventory.py:344
+msgid "You need to toggle \"Use default scan options\" or specify a command."
+msgstr ""
+
+#: umitInventory/NewInventory.py:364
+msgid ""
+"It seems you removed <target> from the Scan command entry, you need to leave "
+"it somewhere there."
+msgstr ""
+
+#: umitInventory/NewInventory.py:529
+msgid "Changes in command won't be saved!"
+msgstr ""
+
+#: umitInventory/RefreshDialog.py:35
+msgid "Refresh Time"
+msgstr ""
+
+#: umitInventory/RefreshDialog.py:39 umitInventory/TLBase.py:80
+#: umitCore/UmitConf.py:160
+msgid "Minutes"
+msgstr "Minuter"
+
+#: umitInventory/SchedulerLog.py:81
+msgid "Scheduler Log"
+msgstr ""
+
+#: umitInventory/SearchBar.py:54
+msgid "Search term"
+msgstr ""
+
+#: umitInventory/SearchBar.py:65
+#, fuzzy
+msgid "Find devices"
+msgstr "Tjänster"
+
+#: umitInventory/SearchBar.py:88 umitInventory/SearchBar.py:92
+#, fuzzy
+msgid "Search in"
+msgstr "Sökfönster"
+
+#: umitInventory/SearchBar.py:89 umitInventory/SearchBar.py:93
+msgid "All Inventories"
+msgstr ""
+
+#: umitInventory/SearchBar.py:130
+msgid "Impossible to perform search."
+msgstr ""
+
+#: umitInventory/SearchBar.py:131
+msgid ""
+"Connection to the database isn't established. There are some possible "
+"reasons: your UMIT database could be corrupted, missing, or something more "
+"strange, or, you aren't running this inside UMIT.\n"
+"\n"
+"If you suspect this is a bug, please report it."
+msgstr ""
+
+#: umitInventory/SearchBar.py:145
+msgid "Specify an Inventory."
+msgstr ""
+
+#: umitInventory/SearchBar.py:146
+msgid "You need to select one or All Inventories in order to perform a search."
+msgstr ""
+
+#: umitInventory/SettingsWin.py:43
+msgid "Timeline Settings"
+msgstr ""
+
+#: umitInventory/SettingsWin.py:44
+msgid "Timeline view mode"
+msgstr ""
+
+#: umitInventory/SettingsWin.py:45
+msgid "Timeline view kind"
+msgstr ""
+
+#: umitInventory/SettingsWin.py:49
+#, fuzzy
+msgid "Devices tab"
+msgstr "Tjänster"
+
+#: umitInventory/SettingsWin.py:50 umitInventory/Viewer.py:690
+msgid "Place close button"
+msgstr ""
+
+#: umitInventory/SettingsWin.py:52 umitGUI/ScriptManager.py:358
+#, fuzzy
+msgid "Statusbar"
+msgstr "Värdstatus"
+
+#: umitInventory/SettingsWin.py:53
+msgid "Show tips"
+msgstr ""
+
+#: umitInventory/SettingsWin.py:153
+msgid "Network Inventory Settings"
+msgstr ""
+
+#: umitInventory/TLBarDisplay.py:35
+#, fuzzy
+msgid "No Selection"
+msgstr "Avsnitt"
+
+#: umitInventory/TLBarDisplay.py:36
+#, fuzzy
+msgid "No Changes"
+msgstr "Spara ändringar"
+
+#: umitInventory/TLBarDisplay.py:37
+msgid "Changes Statistics"
+msgstr ""
+
+#: umitInventory/TLBase.py:40
+#, fuzzy
+msgid "Nothing"
+msgstr "Ingenting att spara"
+
+#: umitInventory/TLBase.py:42
+#, fuzzy
+msgid "Availability"
+msgstr "Inte tillgänglig"
+
+#: umitInventory/TLBase.py:43
+#, fuzzy
+msgid "Several"
+msgstr "Allmänt"
+
+#: umitInventory/TLBase.py:49 umitInventory/TLBase.py:70
+msgid "Changes Sum"
+msgstr ""
+
+#: umitInventory/TLBase.py:54
+msgid "Yearly View"
+msgstr ""
+
+#: umitInventory/TLBase.py:55
+msgid "Monthly View"
+msgstr ""
+
+#: umitInventory/TLBase.py:56
+msgid "Daily View"
+msgstr ""
+
+#: umitInventory/TLBase.py:57
+msgid "Hourly View"
+msgstr ""
+
+#: umitInventory/TLBase.py:63
+#, fuzzy
+msgid "Year"
+msgstr "År"
+
+#: umitInventory/TLBase.py:64 umitGUI/SchedulerEdit.py:529
+#, fuzzy
+msgid "Month"
+msgstr "Månader"
+
+#: umitInventory/TLBase.py:65
+#, fuzzy
+msgid "Day"
+msgstr "Dygn"
+
+#: umitInventory/TLBase.py:66 umitGUI/SchedulerEdit.py:525
+#, fuzzy
+msgid "Hour"
+msgstr "Timmar"
+
+#: umitInventory/TLBase.py:71
+msgid "By Category"
+msgstr ""
+
+#: umitInventory/TLBase.py:77 umitCore/UmitConf.py:158
+msgid "Months"
+msgstr "Månader"
+
+#: umitInventory/TLBase.py:78 umitCore/UmitConf.py:156
+msgid "Days"
+msgstr "Dygn"
+
+#: umitInventory/TLBase.py:79 umitCore/UmitConf.py:155
+msgid "Hours"
+msgstr "Timmar"
+
+#: umitInventory/TLBase.py:223
+msgid "end of a week"
+msgstr ""
+
+#: umitInventory/TLBase.py:223
+msgid "end of 12 hours period"
+msgstr ""
+
+#: umitInventory/TLBase.py:224
+msgid "end of half hour period"
+msgstr ""
+
+#: umitInventory/TLBase.py:224
+msgid "end of a minute"
+msgstr ""
+
+#: umitInventory/TLBase.py:227
+msgid "Each point break represents "
+msgstr ""
+
+#: umitInventory/TLBase.py:273
+#, fuzzy, python-format
+msgid "Year %s"
+msgstr "År"
+
+#: umitInventory/TLChangesTree.py:25
+#, fuzzy
+msgid "View all changes"
+msgstr "Spara ändringar"
+
+#: umitInventory/TLChangesTree.py:26
+msgid "Changes listing"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:32
+#: umitInventory/TLGraphPreferences.py:208
+#: umitInventory/TLGraphPreferences.py:211
+#: umitInventory/TLGraphPreferences.py:296 umitInventory/TLGraphToolbar.py:43
+msgid "Custom"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:32
+#: umitInventory/TLGraphPreferences.py:179
+#: umitInventory/TLGraphPreferences.py:189
+#: umitInventory/TLGraphPreferences.py:292
+msgid "Standard"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:32
+#: umitInventory/TLGraphPreferences.py:179
+#: umitInventory/TLGraphPreferences.py:190
+#: umitInventory/TLGraphPreferences.py:293
+msgid "Best Performance"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:33
+#: umitInventory/TLGraphPreferences.py:179
+#: umitInventory/TLGraphPreferences.py:192
+#: umitInventory/TLGraphPreferences.py:294
+msgid "Best Visual"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:52
+msgid "Graph Preferences Editor"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:62 umitGUI/DiffCompare.py:684
+#: umitGUI/ProfileEditor.py:154 umitGUI/ProfileWizardEditor.py:236
+#: umitGUI/SearchGUI.py:126 umitGUI/Wizard.py:472
+msgid "Profile"
+msgstr "Profil"
+
+#: umitInventory/TLGraphPreferences.py:65
+msgid "Horizontal divisors"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:70
+msgid "<b>Points higlight</b>"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:71
+#, fuzzy
+msgid "On Selection"
+msgstr "Avsnitt"
+
+#: umitInventory/TLGraphPreferences.py:73
+#, fuzzy
+msgid "Always"
+msgstr "Dygn"
+
+#: umitInventory/TLGraphPreferences.py:74
+msgid "Boundary points only"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:76
+msgid "Every point"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:77
+msgid "Show balloons on selection"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:79
+msgid "Draw vertical lines"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:80
+#, fuzzy
+msgid "Dashed"
+msgstr "Dygn"
+
+#: umitInventory/TLGraphPreferences.py:82
+msgid "Solid"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:84
+msgid "Gradient background"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:85
+msgid "Vertical gradient"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:87
+msgid "Horizontal gradient"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:89
+msgid "On selection do progressive fill"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:91
+msgid "Solid fill"
+msgstr ""
+
+#: umitInventory/TLGraphPreferences.py:93
+msgid "Gradient fill"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:39
+msgid "Refresh Now"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:39
+msgid "Refresh Enabled"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:40
+msgid "Refresh Every minute"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:41
+msgid "Refresh Every 5 minutes"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:42
+msgid "Refresh Every hour"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:114
+msgid "Select visualization"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:136
+msgid "Line Graph"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:136
+msgid "Area Graph"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:138
+msgid "Select a graph style"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:153
+msgid "Visible"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:153
+#, fuzzy
+msgid "Hidden"
+msgstr "Tips"
+
+#: umitInventory/TLGraphToolbar.py:155
+msgid "Graph visibility"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:176
+msgid "Graph Preferences"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:181
+msgid "Edit Graph Preferences"
+msgstr ""
+
+#: umitInventory/TLGraphToolbar.py:260
+msgid "Graph Refresh"
+msgstr ""
+
+#: umitInventory/Timeline.py:56
+msgid "Number of events"
+msgstr ""
+
+#: umitInventory/Utils.py:5 umitDB/InventoryChanges.py:324
+msgid "s"
+msgstr ""
+
+#: umitInventory/Viewer.py:360
+#, fuzzy
+msgid "Scan count:"
+msgstr "Avsökningstyp:"
+
+#: umitInventory/Viewer.py:368
+msgid "Last scan date:"
+msgstr ""
+
+#: umitInventory/Viewer.py:374
+#, fuzzy
+msgid "Scan args"
+msgstr "Sök av "
+
+#: umitInventory/Viewer.py:374
+msgid "XML output version"
+msgstr ""
+
+#: umitInventory/Viewer.py:374
+#, fuzzy
+msgid "Verbose"
+msgstr "Informationsnivå:"
+
+#: umitInventory/Viewer.py:375 umitGUI/DiffCompare.py:694
+msgid "Debugging"
+msgstr "Felsökning"
+
+#: umitInventory/Viewer.py:375
+#, fuzzy
+msgid "Scanner name"
+msgstr "Söker av"
+
+#: umitInventory/Viewer.py:375 umitGUI/DiffCompare.py:700
+msgid "Scanner version"
+msgstr ""
+
+#: umitInventory/Viewer.py:389
+#, fuzzy
+msgid "Hosts: "
+msgstr "Värdar"
+
+#: umitInventory/Viewer.py:394
+msgid "Host count:"
+msgstr ""
+
+#: umitInventory/Viewer.py:519
+msgid "A page was open at Historic tab!"
+msgstr ""
+
+#: umitInventory/Viewer.py:531
+msgid "First Matched Category"
+msgstr ""
+
+#: umitInventory/Viewer.py:531
+msgid "Entry Date"
+msgstr ""
+
+#: umitInventory/Viewer.py:547
+#, fuzzy
+msgid "result"
+msgstr "Resultat"
+
+#: umitInventory/Viewer.py:550
+msgid " found."
+msgstr ""
+
+#: umitInventory/Viewer.py:569
+#, fuzzy, python-format
+msgid "Search: %s"
+msgstr "Sökfönster"
+
+#: umitInventory/Viewer.py:608 umitGUI/ScriptManager.py:308
+#: umitInterfaceEditor/Main.py:536
+#, fuzzy
+msgid "_File"
+msgstr "_Profil"
+
+#: umitInventory/Viewer.py:609
+#, fuzzy
+msgid "_Edit"
+msgstr "A_vsluta"
+
+#: umitInventory/Viewer.py:610 umitGUI/MainWindow.py:312
+msgid "_Scheduler"
+msgstr ""
+
+#: umitInventory/Viewer.py:611 umitInventory/Viewer.py:664
+#: umitGUI/MainWindow.py:329 umitGUI/MainWindow.py:349
+msgid "_Help"
+msgstr "_Hjälp"
+
+#: umitInventory/Viewer.py:613
+msgid "Tool_bar"
+msgstr ""
+
+#: umitInventory/Viewer.py:614
+#, fuzzy
+msgid "Devices _tab"
+msgstr "Tjänster"
+
+#: umitInventory/Viewer.py:615
+msgid "_Inventories"
+msgstr ""
+
+#: umitInventory/Viewer.py:619
+msgid "_New Inventory"
+msgstr ""
+
+#: umitInventory/Viewer.py:620
+msgid "Create new Inventory"
+msgstr ""
+
+#: umitInventory/Viewer.py:624
+#, fuzzy
+msgid "Close Device tab"
+msgstr "Stäng aktuell avsökningsflik"
+
+#: umitInventory/Viewer.py:625
+#, fuzzy
+msgid "Close current host tab"
+msgstr "Stäng aktuell avsökningsflik"
+
+#: umitInventory/Viewer.py:629
+#, fuzzy
+msgid "Close Inventory tab"
+msgstr "Stäng aktuell avsökningsflik"
+
+#: umitInventory/Viewer.py:630
+#, fuzzy
+msgid "Close current Inventory tab"
+msgstr "Stäng aktuell avsökningsflik"
+
+#: umitInventory/Viewer.py:634 umitGUI/MainWindow.py:277
+#: umitGUI/ProfileWizardEditor.py:353 umitInterfaceEditor/Main.py:540
+msgid "_Quit"
+msgstr "A_vsluta"
+
+#: umitInventory/Viewer.py:635
+msgid "Close Network Inventory"
+msgstr ""
+
+#: umitInventory/Viewer.py:640 umitInventory/Viewer.py:641
+msgid "Data Removal"
+msgstr ""
+
+#: umitInventory/Viewer.py:645 umitInventory/Viewer.py:646
+msgid "Startup settings"
+msgstr ""
+
+#: umitInventory/Viewer.py:652
+msgid "Scheduler log"
+msgstr ""
+
+#: umitInventory/Viewer.py:653
+msgid "View Scheduler log"
+msgstr ""
+
+#: umitInventory/Viewer.py:665 umitGUI/MainWindow.py:351
+msgid "Shows the application help"
+msgstr ""
+
+#: umitInventory/Viewer.py:669 umitGUI/MainWindow.py:333
+msgid "_Report a bug"
+msgstr "_Rapportera ett fel"
+
+#: umitInventory/Viewer.py:670 umitGUI/MainWindow.py:335
+msgid "Report a bug"
+msgstr "Rapportera ett fel"
+
+#: umitInventory/Viewer.py:674 umitGUI/MainWindow.py:341
+#: umitInterfaceEditor/Main.py:575
+msgid "_About"
+msgstr "_Om"
+
+#: umitInventory/Viewer.py:683
+msgid "Show ti_ps"
+msgstr ""
+
+#: umitInventory/Viewer.py:684
+msgid "Enable disable tip showing"
+msgstr ""
+
+#: umitInventory/Viewer.py:691
+msgid "Place a close button upon tab creation"
+msgstr ""
+
+#: umitInventory/Viewer.py:893
+msgid "UMIT Network Inventory"
+msgstr ""
+
+#: umitInventory/Viewer.py:932
+msgid " Historic "
+msgstr ""
+
+#: umitInventory/Viewer.py:933
+msgid " Timeline "
+msgstr ""
+
+#: umitCore/Diff.py:34 umitCore/DiffHtml.py:135 umitCore/I18N.py:77
 msgid "Umit - Take the red pill"
 msgstr "Umit - Ta det röda pillret"
 
@@ -24,8 +1247,7 @@ msgstr "Umit - Ta det röda pillret"
 msgid "http://www.umitproject.org"
 msgstr "http://www.umitproject.org"
 
-#: umitCore/Diff.py:37
-#: umitCore/DiffHtml.py:136
+#: umitCore/Diff.py:37 umitCore/DiffHtml.py:136
 msgid "This diff was generated by Umit"
 msgstr "Denna diff genererades av Umit"
 
@@ -49,187 +1271,413 @@ msgstr "Ändringar i denna fil kan göra att Umit inte kan läsa den."
 msgid "Regular Text Diff: "
 msgstr ""
 
-#: umitCore/NmapCommand.py:35
+#: umitCore/NmapCommand.py:41
 msgid "Python 2.4 or later is required."
 msgstr "Python 2.4 eller senare krävs."
 
-#: umitCore/NmapParser.py:37
-msgid "January"
-msgstr "Januari"
+#: umitCore/Scheduler.py:596
+msgid "UMIT: Status Report for scheduled schema"
+msgstr ""
 
-#: umitCore/NmapParser.py:38
-msgid "February"
-msgstr "Februari"
+#: umitCore/Scheduler.py:599
+msgid "There was a scheduled job that just finished:"
+msgstr ""
 
-#: umitCore/NmapParser.py:39
-msgid "March"
-msgstr "Mars"
+#: umitCore/Scheduler.py:601
+msgid "Follows an attachment of the job output."
+msgstr ""
 
-#: umitCore/NmapParser.py:40
-msgid "April"
-msgstr "April"
-
-#: umitCore/NmapParser.py:41
-msgid "May"
-msgstr "Maj"
-
-#: umitCore/NmapParser.py:42
-msgid "June"
-msgstr "Juni"
-
-#: umitCore/NmapParser.py:43
-msgid "July"
-msgstr "Juli"
-
-#: umitCore/NmapParser.py:44
-msgid "August"
-msgstr "Augusti"
-
-#: umitCore/NmapParser.py:45
-msgid "September"
-msgstr "September"
-
-#: umitCore/NmapParser.py:46
-msgid "October"
-msgstr "Oktober"
-
-#: umitCore/NmapParser.py:47
-msgid "November"
-msgstr "November"
-
-#: umitCore/NmapParser.py:48
-msgid "December"
-msgstr "December"
-
-#: umitCore/NmapParser.py:100
-#: umitCore/NmapParser.py:321
-#: umitGUI/ScanNotebook.py:1165
-#: umitGUI/ScanNotebook.py:1180
-#: umitGUI/ScanNotebook.py:1182
-#: umitGUI/SearchGUI.py:468
-msgid "Unknown"
-msgstr "Okänt"
-
-#: umitCore/NmapParser.py:172
-msgid "umitCore.NmapParser.set_ip_address deprecated! Use umitCore.NmapParser.set_ip instead."
-msgstr "umitCore.NmapParser.set_ip_address är föråldrad! Använd umitCore.NmapParser.set_ip istället."
-
-#: umitCore/NmapParser.py:177
-msgid "umitCore.NmapParser.get_ip_address deprecated! Use umitCore.NmapParser.get_ip instead."
-msgstr "umitCore.NmapParser.get_ip_address är föråldrad! Använd umitCore.NmapParser.get_ip istället."
-
-#: umitCore/NmapParser.py:196
-msgid "umitCore.NmapParser.set_mac_address deprecated! Use umitCore.NmapParser.set_mac instead."
-msgstr "umitCore.NmapParser.set_mac_address är föråldrad! Använd umitCore.NmapParser.set_mac istället."
-
-#: umitCore/NmapParser.py:201
-#: umitCore/NmapParser.py:590
-msgid "umitCore.NmapParser.get_mac_address deprecated! Use umitCore.NmapParser.get_mac instead."
-msgstr "umitCore.NmapParser.get_mac_address är föråldrad! Använd umitCore.NmapParser.get_mac istället."
-
-#: umitCore/NmapParser.py:213
-msgid "umitCore.NmapParser.set_ipv6_address deprecated! Use umitCore.NmapParser.set_ipv6 instead."
-msgstr "umitCore.NmapParser.set_ipv6_address är föråldrad! Använd umitCore.NmapParser.set_ipv6 istället."
-
-#: umitCore/NmapParser.py:218
-#: umitCore/NmapParser.py:606
-msgid "umitCore.NmapParser.get_ipv6_address deprecated! Use umitCore.NmapParser.get_ipv6 instead."
-msgstr "umitCore.NmapParser.get_ipv6_address är föråldrad! Använd umitCore.NmapParser.get_ipv6 istället."
-
-#: umitCore/NmapParser.py:252
-msgid "Unknown Host"
-msgstr "Okänd värd"
-
-#: umitCore/NmapParser.py:316
-msgid "unknown"
-msgstr "okänd"
-
-#: umitCore/NmapParser.py:319
-msgid "Unknown version"
-msgstr "Okänd version"
-
-#: umitCore/NmapParser.py:574
-msgid "umitCore.NmapParser.get_ipv4_address deprecated! Use umitCore.NmapParser.get_ipv4 instead."
-msgstr "umitCore.NmapParser.get_ipv4_address är föråldrad! Använd umitCore.NmapParser.get_ipv4 istället."
-
-#: umitCore/UmitConf.py:165
-msgid "Hours"
-msgstr "Timmar"
-
-#: umitCore/UmitConf.py:166
-msgid "Days"
-msgstr "Dygn"
-
-#: umitCore/UmitConf.py:167
+#: umitCore/UmitConf.py:157
 msgid "Weeks"
 msgstr "Veckor"
 
-#: umitCore/UmitConf.py:168
-msgid "Months"
-msgstr "Månader"
-
-#: umitCore/UmitConf.py:169
+#: umitCore/UmitConf.py:159
 msgid "Years"
 msgstr "År"
 
-#: umitCore/UmitConf.py:170
-msgid "Minutes"
-msgstr "Minuter"
-
-#: umitCore/UmitConf.py:171
+#: umitCore/UmitConf.py:161
 msgid "Seconds"
 msgstr "Sekunder"
 
-#: umitCore/UmitDB.py:35
-msgid "No module named dbapi2.pysqlite2 or sqlite3"
+#: umitCore/UmitDB.py:43
+#, fuzzy
+msgid ""
+"No module named pysqlite2 or sqlite3.\n"
+"            Please install pysqlite2 or sqlite3."
 msgstr "Ingen modul med namnet dbapi2.pysqlite2 eller sqlite3"
 
 #: umitCore/UmitOptionParser.py:40
-msgid "*NOT IMPLEMENTED* - Start Umit and go straight to Network Inventory window."
+msgid "Start Umit Network Inventory."
 msgstr ""
 
-#: umitCore/UmitOptionParser.py:50
+#: umitCore/UmitOptionParser.py:49
 msgid "Open Umit and runs a Nmap scan with specified args."
 msgstr "Öppna Umit och kör en Nmap-avsökning med angivna argument."
 
-#: umitCore/UmitOptionParser.py:58
-msgid "Open Umit with the specified profile selected. If combined with the -t (--target) option, open Umit and automatically run the profile against the specified target."
+#: umitCore/UmitOptionParser.py:57
+msgid ""
+"Open Umit with the specified profile selected. If combined with the -t (--"
+"target) option, open Umit and automatically run the profile against the "
+"specified target."
 msgstr ""
 
-#: umitCore/UmitOptionParser.py:67
-msgid "*NOT IMPLEMENTED* - Open the diff compare window, in compare mode comparing the two given scan result files (Nmap XML output or usr (Umit Scan Result) file)."
+#: umitCore/UmitOptionParser.py:66
+msgid ""
+"*NOT IMPLEMENTED* - Open the diff compare window, in compare mode comparing "
+"the two given scan result files (Nmap XML output or usr (Umit Scan Result) "
+"file)."
 msgstr ""
 
-#: umitCore/UmitOptionParser.py:76
-msgid "*NOT IMPLEMENTED* - Open the diff compare window, in text mode comparing the two given scan result files (Nmap XML output or usr, Umit Scan Result)."
+#: umitCore/UmitOptionParser.py:75
+msgid ""
+"*NOT IMPLEMENTED* - Open the diff compare window, in text mode comparing the "
+"two given scan result files (Nmap XML output or usr, Umit Scan Result)."
 msgstr ""
 
-#: umitCore/UmitOptionParser.py:86
-msgid "*NOT IMPLEMENTED* - Take two scan result files (Nmap XML output or usr, Umit Scan Result), make a text diff and print it in the terminal without openning Umit Interface."
+#: umitCore/UmitOptionParser.py:85
+msgid ""
+"*NOT IMPLEMENTED* - Take two scan result files (Nmap XML output or usr, Umit "
+"Scan Result), make a text diff and print it in the terminal without openning "
+"Umit Interface."
 msgstr ""
 
-#: umitCore/UmitOptionParser.py:97
-msgid "*NOT IMPLEMENTED* - Run Umit and go straight to NSE Facilitator Interface. You may specify nse scripts as arguments if you want use them."
+#: umitCore/UmitOptionParser.py:96
+msgid ""
+"*NOT IMPLEMENTED* - Run Umit and go straight to NSE Facilitator Interface. "
+"You may specify nse scripts as arguments if you want use them."
 msgstr ""
 
-#: umitCore/UmitOptionParser.py:108
-msgid "Specify a target to be used along with other options. If specified alone, opens Umit with the target field filled with the specified target"
+#: umitCore/UmitOptionParser.py:107
+msgid ""
+"Specify a target to be used along with other options. If specified alone, "
+"opens Umit with the target field filled with the specified target"
 msgstr ""
 
-#: umitCore/UmitOptionParser.py:123
-msgid "Specify a scan result file in Nmap XML Output or Umit Scan Result file. Can be used more than once to specify several scan result files."
+#: umitCore/UmitOptionParser.py:122
+msgid ""
+"Specify a scan result file in Nmap XML Output or Umit Scan Result file. Can "
+"be used more than once to specify several scan result files."
 msgstr ""
 
-#: umitCore/UmitOptionParser.py:132
+#: umitCore/UmitOptionParser.py:131
 msgid "*NOT IMPLEMENTED* - Open Umit showing the given file at Umit Mapper"
 msgstr ""
 
-#: umitCore/UmitOptionParser.py:139
-msgid "Increase verbosity of the output. May be used more than once to get even more verbosity"
+#: umitCore/UmitOptionParser.py:138
+msgid ""
+"Increase verbosity of the output. May be used more than once to get even "
+"more verbosity"
 msgstr ""
 
-#: umitGUI/About.py:40
-#: umitGUI/MainWindow.py:264
+#: umitPlugin/Network.py:49
+#, python-format
+msgid ">>> safecall(): Ignoring exception %s"
+msgstr ""
+
+#: umitPlugin/Network.py:109
+#, python-format
+msgid ">>> Calling get_url() for %s"
+msgstr ""
+
+#: umitPlugin/PathPage.py:154
+msgid "Select a Plugin path"
+msgstr ""
+
+#: umitPlugin/PathPage.py:199
+msgid ""
+"Remember that you have to restart UMIT to changes makes. Plugins disable "
+"pending."
+msgstr ""
+
+#: umitPlugin/PathPage.py:206
+msgid "Need UMIT restart to disable."
+msgstr ""
+
+#: umitPlugin/PluginPage.py:57
+#, fuzzy
+msgid "Find updates"
+msgstr "Minuter"
+
+#: umitPlugin/PluginPage.py:59
+msgid "Install updates"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:61
+#, fuzzy
+msgid "Skip"
+msgstr "ip"
+
+#: umitPlugin/PluginPage.py:63
+msgid "Restart UMIT"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:135
+msgid ""
+"Remember that you have to restart UMIT to make new version of plugins to be "
+"loaded correctly."
+msgstr ""
+
+#: umitPlugin/PluginPage.py:154
+msgid "Update skipped"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:189
+msgid "<b>Downloading updates ...</b>"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:228
+msgid "Update phase complete. Now restart UMIT to changes make effects."
+msgstr ""
+
+#: umitPlugin/PluginPage.py:257
+msgid "Waiting ..."
+msgstr ""
+
+#: umitPlugin/PluginPage.py:270
+msgid "No plugins provides update url. Cannot procede."
+msgstr ""
+
+#: umitPlugin/PluginPage.py:284
+#, python-format
+msgid "<b>Looking for %d updates ...</b>"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:336
+msgid "<b>No updates found</b>"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:348
+#, python-format
+msgid "<b>Updates found: %d</b>"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:353
+#, python-format
+msgid "<b>Updates found: %d with %d errors</b>"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:393
+msgid "<b>Preferences</b>"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:394
+msgid "Visit homepage"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:395
+#, fuzzy, python-format
+msgid "About %s"
+msgstr "_Om"
+
+#: umitPlugin/PluginPage.py:397
+msgid "Enable"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:397
+msgid "Disable"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:398
+msgid "Uninstall"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:468
+msgid "Disabling Plugin"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:469
+#, python-format
+msgid "Do you want to disable %s plugin?"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:481
+msgid "Can not disable Plugin"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:482
+#, python-format
+msgid ""
+"%s\n"
+"Do you want to force the unload phase for %s plugin?"
+msgstr ""
+
+#: umitPlugin/PluginPage.py:512
+#, python-format
+msgid "Unable to uninstall %s plugin."
+msgstr ""
+
+#: umitPlugin/PluginPage.py:520
+#, python-format
+msgid "No preferences for %s"
+msgstr ""
+
+#: umitPlugin/Tree.py:93
+#, python-format
+msgid "Unable to load %s"
+msgstr ""
+
+#: umitPlugin/Tree.py:288
+msgid "Plugin already loaded."
+msgstr ""
+
+#: umitPlugin/Update.py:200
+msgid "Checking validity ..."
+msgstr ""
+
+#: umitPlugin/Update.py:217 umitPlugin/Update.py:229
+msgid "Updated. Restart to take effect"
+msgstr ""
+
+#: umitPlugin/Update.py:220
+#, fuzzy
+msgid "Corrupted file."
+msgstr "Välj fil"
+
+#: umitPlugin/Update.py:265
+msgid "Downloading ..."
+msgstr ""
+
+#: umitPlugin/Update.py:298
+#, python-format
+msgid "Cannot find newer version (%s)"
+msgstr ""
+
+#: umitPlugin/Update.py:333
+#, python-format
+msgid "Version %s avaiable but need manual update."
+msgstr ""
+
+#: umitPlugin/Update.py:335
+#, python-format
+msgid "Version %s avaiable but need manual downgrade."
+msgstr ""
+
+#: umitPlugin/Update.py:338
+#, fuzzy, python-format
+msgid "Version %s avaiable."
+msgstr "Inte tillgänglig"
+
+#: umitPlugin/Update.py:347
+msgid "Unable to parse latest.xml"
+msgstr ""
+
+#: umitPlugin/Update.py:349
+msgid "No applicable updates found"
+msgstr ""
+
+#: umitPlugin/Window.py:46
+msgid "Plugin Manager"
+msgstr ""
+
+#: umitPlugin/Window.py:82
+#, fuzzy
+msgid "Extensions"
+msgstr "Filändelse"
+
+#: umitPlugin/Window.py:82
+#, fuzzy
+msgid "Paths"
+msgstr "Portar"
+
+#: umitDB/InventoryChanges.py:111
+#, fuzzy
+msgid "Host down"
+msgstr "Värd %s"
+
+#: umitDB/InventoryChanges.py:165
+msgid "Host added to the Inventory."
+msgstr ""
+
+#: umitDB/InventoryChanges.py:255
+msgid "changed info"
+msgstr ""
+
+#: umitDB/InventoryChanges.py:263
+msgid "Fingerprint, "
+msgstr ""
+
+#: umitDB/InventoryChanges.py:271
+msgid "OS Match, "
+msgstr ""
+
+#: umitDB/InventoryChanges.py:281
+msgid "and OS Classes"
+msgstr ""
+
+#: umitDB/InventoryChanges.py:291
+#, fuzzy
+msgid " changed."
+msgstr "Spara ändringar"
+
+#: umitDB/InventoryChanges.py:306
+msgid "No noticeables changes since last sucessfull scan."
+msgstr ""
+
+#: umitDB/InventoryChanges.py:335
+#, fuzzy
+msgid "closed"
+msgstr "Stängd"
+
+#: umitDB/InventoryChanges.py:336
+#, fuzzy
+msgid "open"
+msgstr "Öppen"
+
+#: umitDB/InventoryChanges.py:337
+#, fuzzy
+msgid "now"
+msgstr "Okänt"
+
+#: umitDB/InventoryChanges.py:339
+#, fuzzy
+msgid "and"
+msgstr "Kommando"
+
+#: umitDB/Search.py:26
+#, fuzzy
+msgid "change"
+msgstr "Spara ändringar"
+
+#: umitDB/Search.py:26
+#, fuzzy
+msgid "changes"
+msgstr "Spara ändringar"
+
+#: umitDB/Search.py:27
+#, fuzzy
+msgid "port"
+msgstr "Port"
+
+#: umitDB/Search.py:27
+#, fuzzy
+msgid "ports"
+msgstr "Portar"
+
+#: umitDB/Search.py:27
+#, fuzzy
+msgid "service"
+msgstr "Tjänst"
+
+#: umitDB/Search.py:177 umitGUI/SearchGUI.py:168
+msgid "Port number"
+msgstr "Portnummer"
+
+#: umitDB/Search.py:204
+#, fuzzy
+msgid "Service name"
+msgstr "Tjänstenamn"
+
+#: umitDB/Search.py:211
+#, fuzzy
+msgid "Service info"
+msgstr "Tjänsteversion"
+
+#: umitDB/Search.py:238
+#, fuzzy
+msgid "Changes"
+msgstr "Spara ändringar"
+
+#: umitGUI/About.py:40 umitGUI/MainWindow.py:343
 msgid "About Umit"
 msgstr "Om Umit"
 
@@ -259,7 +1707,7 @@ msgstr ""
 msgid "Written by"
 msgstr "Skrivet av"
 
-#: umitGUI/About.py:182
+#: umitGUI/About.py:182 umitInterfaceEditor/Main.py:408
 msgid "Design"
 msgstr "Design"
 
@@ -283,13 +1731,13 @@ msgstr "Översättningar"
 msgid "Maemo"
 msgstr "Maemo"
 
-#: umitGUI/About.py:222
+#: umitGUI/About.py:227
 msgid ""
 "Operating System and Vulnerability Icons:\n"
 "Takeshi Alexandre Gondo <sinistrofumanchu@yahoo.com.br>\n"
 "\n"
 "Logo, Application Icons, Splash screen and Umit GNU/Linux theme:\n"
-"Virg\303\255lio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>\n"
+"Virgílio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>\n"
 "\n"
 "The Umit Project Web Site Design:\n"
 "Joao Paulo Pacheco <jp.pacheco@gmail.com>"
@@ -298,25 +1746,25 @@ msgstr ""
 "Takeshi Alexandre Gondo <sinistrofumanchu@yahoo.com.br>\n"
 "\n"
 "Logotyp, programikoner, startbild och Umit GNU/Linux-tema:\n"
-"Virg\303\255lio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>\n"
+"Virgílio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>\n"
 "\n"
 "Design av Umit-projektets webbplats:\n"
 "Joao Paulo Pacheco <jp.pacheco@gmail.com>"
 
-#: umitGUI/About.py:232
+#: umitGUI/About.py:237
 msgid ""
 "Independent Features:\n"
 "Adriano Monteiro Marques <adriano@umitproject.org>\n"
 "Frederico Silva Ribeiro <fredegart@gmail.com>\n"
 "\n"
 "Network Inventory:\n"
-"Guilherme Henrique Polo Gon\303\247alves <ggpolo@gmail.com>\n"
+"Guilherme Henrique Polo Gonçalves <ggpolo@gmail.com>\n"
 "\n"
 "Umit Radial Mapper:\n"
-"Jo\303\243o Paulo de Souza Medeiros <ignotus21@gmail.com>\n"
+"João Paulo de Souza Medeiros <ignotus21@gmail.com>\n"
 "\n"
 "Profile/Wizard interface editor:\n"
-"Luis Antonio Basti\303\243o Silva <luis.kop@gmail.com>\n"
+"Luis Antonio Bastião Silva <luis.kop@gmail.com>\n"
 "\n"
 "NSE Facilitator:\n"
 "Maxim I. Gavrilov <lovelymax@gmail.com>\n"
@@ -325,7 +1773,7 @@ msgid ""
 "Rodolfo da Silva Carvalho <rodolfo@umitproject.org>"
 msgstr ""
 
-#: umitGUI/About.py:252
+#: umitGUI/About.py:257
 msgid ""
 "Packet Manipulation Backend\n"
 "Bartosz Adam Skowron <getxsick@umitproject.org>\n"
@@ -340,16 +1788,16 @@ msgid ""
 "Francesco Piccinno <stack.box@gmail.com>\n"
 "\n"
 "Preferences Window and Interface Editor improvements:\n"
-"Luis Antonio Basti\303\243o Silva <luis.kop@gmail.com>\n"
+"Luis Antonio Bastião Silva <luis.kop@gmail.com>\n"
 "\n"
 "UmitWeb Improvements and Independent Features:\n"
 "Rodolfo da Silva Carvalho <rodolfo@umitproject.org>\n"
 "\n"
 "Umit GNU/Linux:\n"
-"T\303\272lio Gon\303\247alves <tulhera@gmail.com>"
+"Túlio Gonçalves <tulhera@gmail.com>"
 msgstr ""
 
-#: umitGUI/About.py:274
+#: umitGUI/About.py:279
 msgid ""
 "Sponsored by (SoC 2005, 2006, 2007 and 2008):\n"
 "Google <code.summer@gmail.com>\n"
@@ -373,13 +1821,17 @@ msgid ""
 "Kris Katterjohn <katterjohn@gmail.com>\n"
 "\n"
 "The Umit Project WebSite:\n"
-"AbraoBarbosa dos Santos Neto <abraobsn@gmail.com>\n"
+"Abrao Barbosa dos Santos Neto <abraobsn@gmail.com>\n"
 "Adriano Monteiro Marques <adriano@umitproject.org>\n"
 "Heitor de Lima Matos <heitordelima@hotmail.com>\n"
 "Joao Paulo Pacheco <jp.pacheco@gmail.com>\n"
-"Jo\303\243o Paulo de Souza Medeiros <ignotus21@gmail.com>\n"
-"Luis Antonio Basti\303\243o Silva <luis.kop@gmail.com>\n"
+"João Paulo de Souza Medeiros <ignotus21@gmail.com>\n"
+"Luis Antonio Bastião Silva <luis.kop@gmail.com>\n"
 "Rodolfo da Silva Carvalho <rodolfo@umitproject.org>\n"
+"\n"
+"Helpers:\n"
+"Daniel Mendes Cassiano <danielcassiano@gmail.com>\n"
+"Luiz Paulo de Souza Medeiros <luizpaulo13@gmail.com>\n"
 "\n"
 "Beta testers for 0.9.5RC1:\n"
 "Bartosz Adam Skowron <getxsick@umitproject.org>\n"
@@ -389,22 +1841,24 @@ msgid ""
 "Francesco Piccinno <stack.box@gmail.com>\n"
 "Igor Feghali <ifeghali@php.net>\n"
 "Joao Paulo Pacheco <jp.pacheco@gmail.com>\n"
-"Luis Antonio Basti\303\243o Silva <luis.kop@gmail.com>\n"
+"Luis Antonio Bastião Silva <luis.kop@gmail.com>\n"
 "Rodolfo da Silva Carvalho <rodolfo@umitproject.org>\n"
+"Regis Kuramoto Dias <kuramotobm@gmail.com>\n"
 "<ray-solomon@excite.com>\n"
 "<jah@zadkiel.plus.com>\n"
 "<epatterson@directapps.com>\n"
 "\n"
 "Special thanks to our GSoC volunteers heroes:\n"
 "Daniel Mendes Cassiano <danielcassiano@gmail.com>\n"
-"T\303\272lio Gon\303\247alves <tulhera@gmail.com>\n"
+"Túlio Gonçalves <tulhera@gmail.com>\n"
 "\n"
 "Initial attempt on Maemo port:\n"
 "Adriano Monteiro Marques <adriano@umitproject.org>\n"
 "Osvaldo Santana Neto <osantana@gmail.com>"
 msgstr ""
 
-#: umitGUI/About.py:327
+#: umitGUI/About.py:364
+#, fuzzy
 msgid ""
 "Bahasa Indonesia:\n"
 "Devtar Singh <devtar@gmail.com>\n"
@@ -423,11 +1877,15 @@ msgid ""
 "Bartosz Adam Skowron <getxsick@umitproject.org>\n"
 "\n"
 "Portuguese Portugal:\n"
-"Luis Antonio Basti\303\243o Silva <luis.kop@gmail.com>\n"
+"Luis Antonio Bastião Silva <luis.kop@gmail.com>\n"
 "\n"
 "Simplified Chinese:\n"
 "Devtar Singh <devtar@gmail.com>\n"
-"Haoyu Bai <baihaoyu@gmail.com>"
+"Haoyu Bai <baihaoyu@gmail.com>\n"
+"\n"
+"Swedish:\n"
+"Daniel Nylander <po@danielnylander.se>\n"
+"\n"
 msgstr ""
 "Indonesiska:\n"
 "Devtar Singh <devtar@gmail.com>\n"
@@ -446,7 +1904,7 @@ msgstr ""
 "Bartosz Adam Skowron <getxsick@umitproject.org>\n"
 "\n"
 "Portugisiska:\n"
-"Luis Antonio Basti\303\243o Silva <luis.kop@gmail.com>\n"
+"Luis Antonio Bastião Silva <luis.kop@gmail.com>\n"
 "\n"
 "Förenklad kinesiska:\n"
 "Devtar Singh <devtar@gmail.com>\n"
@@ -455,91 +1913,175 @@ msgstr ""
 "Svenska:\n"
 "Daniel Nylander <po@danielnylander.se>"
 
-#: umitGUI/App.py:90
+#: umitGUI/App.py:97
 msgid "RUNNING WITHOUT PSYCO!"
 msgstr "KÖR UTAN PSYCO!"
 
-#: umitGUI/App.py:91
-msgid "Psyco is a module that speeds up the execution of this application. It is not a requirement, and Umit runs perfectly with or without it, but you're encourajed to install it to have a better speed experience. Download it at http://psyco.sf.net/"
+#: umitGUI/App.py:98
+msgid ""
+"Psyco is a module that speeds up the execution                     of this "
+"#application. It is not a requirement, and Umit runs "
+"perfectly                     with or #without it, but you're encourajed to "
+"install it to have a better                     speed ex#perience. Download "
+"it at http://psyco.sf.net/"
 msgstr ""
 
 #: umitGUI/BugReport.py:37
 msgid "Bug Report"
 msgstr "Felrapport"
 
-#: umitGUI/BugReport.py:75
+#: umitGUI/BugReport.py:73
 msgid "Category (optional)"
 msgstr "Kategori (valfri)"
 
-#: umitGUI/BugReport.py:76
-msgid "If you know in which section of the program is the bug, please, select it from the choosebox. If you don't know what section to choose, leave it blank."
+#: umitGUI/BugReport.py:74
+msgid ""
+"If you know in which section of the program is the bug, please, select it "
+"from the choosebox. If you don't know what section to choose, leave it blank."
 msgstr ""
 
-#: umitGUI/BugReport.py:82
+#: umitGUI/BugReport.py:80 umitGUI/CrashReport.py:56
 msgid "Email"
 msgstr "E-postadress"
 
-#: umitGUI/BugReport.py:83
-msgid "Please inform a valid e-mail address from where you can be reached to be notified when the bug gets fixed. Not used for other purposes."
+#: umitGUI/BugReport.py:81
+msgid ""
+"Please inform a valid e-mail address from where you can be reached to be "
+"notified when the bug gets fixed. Not used for other purposes."
 msgstr ""
 
-#: umitGUI/BugReport.py:88
+#: umitGUI/BugReport.py:86
 msgid "Summary"
 msgstr "Sammandrag"
 
-#: umitGUI/BugReport.py:89
-msgid "This should be a quick description of the issue. Try to be clear and concise."
+#: umitGUI/BugReport.py:87
+msgid ""
+"This should be a quick description of the issue. Try to be clear and concise."
 msgstr ""
 
-#: umitGUI/BugReport.py:93
-#: umitGUI/ProfileEditor.py:122
-#: umitGUI/Wizard.py:378
+#: umitGUI/BugReport.py:91 umitGUI/CrashReport.py:61
+#: umitGUI/ProfileEditor.py:117 umitGUI/ScriptManager.py:366
+#: umitGUI/Wizard.py:410
 msgid "Description"
 msgstr "Beskrivning"
 
-#: umitGUI/BugReport.py:94
-msgid "This is where you should write about the bug, describing it as clear as possible and giving as many informations as you can along with your system informations, like: Which operating system are you using? Which Nmap version do you have installed?"
+#: umitGUI/BugReport.py:92
+msgid ""
+"This is where you should write about the bug, describing it as clear as "
+"possible and giving as many informations as you can along with your system "
+"informations, like: Which operating system are you using? Which Nmap version "
+"do you have installed?"
 msgstr ""
 
-#: umitGUI/BugReport.py:103
-msgid "This Bug Report dialog allows you to easily tell us about a problem that you may have found on Umit. Doing so, you help us to help you, by fixing and improving Umit faster than usual."
+#: umitGUI/BugReport.py:101
+msgid ""
+"This Bug Report dialog allows you to easily tell us about a problem that you "
+"may have found on Umit. Doing so, you help us to help you, by fixing and "
+"improving Umit faster than usual."
 msgstr ""
 
-#: umitGUI/BugReport.py:186
+#: umitGUI/BugReport.py:184 umitGUI/CrashReport.py:119
 msgid "Bug report is incomplete!"
 msgstr ""
 
-#: umitGUI/BugReport.py:187
-msgid "The bug report is incomplete. You must inform a description that explains clearly what is happening and a valid e-mail, so you can be contacted when the bug gets fixed."
+#: umitGUI/BugReport.py:185
+msgid ""
+"The bug report is incomplete. You must inform a description that explains "
+"clearly what is happening and a valid e-mail, so you can be contacted when "
+"the bug gets fixed."
 msgstr ""
 
-#: umitGUI/BugReport.py:213
+#: umitGUI/BugReport.py:211 umitGUI/CrashReport.py:139
 msgid "Bug not reported!"
 msgstr ""
 
-#: umitGUI/BugReport.py:214
-msgid "The bug description could not be reported. This problem may be caused by the lack of Internet access or indisponibility of the bug tracker server. Please, verify your internet access, and then try to report the bug once again."
+#: umitGUI/BugReport.py:212
+msgid ""
+"The bug description could not be reported. This problem may be caused by the "
+"lack of Internet access or indisponibility of the bug tracker server. "
+"Please, verify your internet access, and then try to report the bug once "
+"again."
 msgstr ""
 
-#: umitGUI/BugReport.py:224
+#: umitGUI/BugReport.py:222 umitGUI/CrashReport.py:148
 msgid "Bug sucessfully reported!"
 msgstr ""
 
-#: umitGUI/BugReport.py:225
-msgid "The bug description was sucessfully reported. A web page with detailed description about this report will be opened in your default web browser now."
+#: umitGUI/BugReport.py:223
+msgid ""
+"The bug description was sucessfully reported. A web page with detailed "
+"description about this report will be opened in your default web browser now."
 msgstr ""
 
-#: umitGUI/BugReport.py:238
+#: umitGUI/BugReport.py:236 umitGUI/CrashReport.py:162
 msgid "Could not open default Web Browser"
 msgstr ""
 
-#: umitGUI/BugReport.py:239
-msgid "Umit was unable to open your default web browser to show the bug tracker page with the report status. Try visiting Umit's bug tracker page to see if your bug was reported."
+#: umitGUI/BugReport.py:237
+msgid ""
+"Umit was unable to open your default web browser to show the bug tracker "
+"page with the report status. Try visiting Umit's bug tracker page to see if "
+"your bug was reported."
 msgstr ""
 
-#: umitGUI/BugReport.py:286
+#: umitGUI/BugReport.py:284 umitGUI/CrashReport.py:37
 msgid "Crash Report"
 msgstr "Kraschrapport"
+
+#: umitGUI/CrashReport.py:53
+msgid "Only Umit project members should read this bug report"
+msgstr ""
+
+#: umitGUI/CrashReport.py:57
+msgid ""
+"Please, inform a valid e-mail address, from where you can be reached to be "
+"notified when the bug get fixed. Not used for other purposes."
+msgstr ""
+
+#: umitGUI/CrashReport.py:62
+msgid ""
+"This is where you should really write about the bug, describing it as clear "
+"as possible, and giving as many informations as you can along with your "
+"system informations, like: Which operating system you're using? Which Nmap "
+"version you have insalled?"
+msgstr ""
+
+#: umitGUI/CrashReport.py:70
+msgid ""
+"This Bug Report dialog, allows you to easily tell us about a problem that "
+"you may have found on Umit. Doing so, you help us to help you, by fixing and "
+"improving Umit faster than usual."
+msgstr ""
+
+#: umitGUI/CrashReport.py:120
+msgid ""
+"The bug report is incomplete. You must inform a description that explains "
+"clearly what is happening and a valid e-mail, so you can be contacted when "
+"the bug get fixed."
+msgstr ""
+
+#: umitGUI/CrashReport.py:140
+msgid ""
+"The bug description could not be reported. This problem may be caused by the "
+"lack of Internet Access or indisponibility of the bug tracker server. "
+"Please, verify your internet access, and then try to report the bug once "
+"again."
+msgstr ""
+
+#: umitGUI/CrashReport.py:149
+msgid ""
+"The bug description was sucessfully reported. A web page with detailed "
+"description about this report is going to be openned in your default web "
+"browser."
+msgstr ""
+
+#: umitGUI/CrashReport.py:163
+msgid ""
+"Umit was unable to open your default web browser to show the bug tracker "
+"page with the report status. Try to visit the Umit's bug tracker page to see "
+"if your bug was reported (you won't see if you marked the check box that "
+"makes the report private)."
+msgstr ""
 
 #: umitGUI/DiffCompare.py:85
 msgid "Scan Result"
@@ -558,19 +2100,20 @@ msgid "File is not a Umit Scan Result"
 msgstr ""
 
 #: umitGUI/DiffCompare.py:158
-msgid "Selected file is not a Umit Scan Result file. Umit can not parse this file. Please, select another."
+msgid ""
+"Selected file is not a Umit Scan Result file. Umit can not parse this file. "
+"Please, select another."
 msgstr ""
 
-#: umitGUI/DiffCompare.py:171
+#: umitGUI/DiffCompare.py:171 umitGUI/ScriptManager.py:269
 msgid "Can not open selected file"
 msgstr "Kan inte öppna valda filen"
 
-#: umitGUI/DiffCompare.py:172
+#: umitGUI/DiffCompare.py:172 umitGUI/ScriptManager.py:270
 msgid "Umit can not open selected file. Please, select another."
 msgstr "Umit kan inte öppna vald fil. Välj en annan."
 
-#: umitGUI/DiffCompare.py:212
-#: umitGUI/MainWindow.py:243
+#: umitGUI/DiffCompare.py:212 umitGUI/MainWindow.py:288
 msgid "Compare Results"
 msgstr "Jämför resultat"
 
@@ -582,8 +2125,7 @@ msgstr "Öppna i webbläsare"
 msgid "Enable colored diffies"
 msgstr ""
 
-#: umitGUI/DiffCompare.py:252
-#: umitGUI/DiffCompare.py:949
+#: umitGUI/DiffCompare.py:252 umitGUI/DiffCompare.py:902
 msgid "Color Descriptions"
 msgstr "Färgbeskrivning"
 
@@ -607,32 +2149,13 @@ msgstr "Du måste välja två olika avsökningar för att generera en diff."
 msgid "Diff Result"
 msgstr ""
 
-#: umitGUI/DiffCompare.py:564
-msgid "Section"
-msgstr "Avsnitt"
-
-#: umitGUI/DiffCompare.py:565
-msgid "Property"
-msgstr ""
-
 #: umitGUI/DiffCompare.py:566
 msgid "Original value"
 msgstr "Ursprungligt värde"
 
-#: umitGUI/DiffCompare.py:567
-msgid "Current value"
-msgstr "Aktuellt värde"
-
 #: umitGUI/DiffCompare.py:682
 msgid "Umit Info"
 msgstr ""
-
-#: umitGUI/DiffCompare.py:684
-#: umitGUI/ProfileEditor.py:162
-#: umitGUI/SearchGUI.py:126
-#: umitGUI/Wizard.py:440
-msgid "Profile"
-msgstr "Profil"
 
 #: umitGUI/DiffCompare.py:685
 msgid "Profile Name"
@@ -642,9 +2165,7 @@ msgstr "Profilnamn"
 msgid "Profile Options"
 msgstr "Profilalternativ"
 
-#: umitGUI/DiffCompare.py:689
-#: umitGUI/SearchGUI.py:147
-#: umitGUI/Wizard.py:445
+#: umitGUI/DiffCompare.py:689 umitGUI/SearchGUI.py:147 umitGUI/Wizard.py:477
 msgid "Target"
 msgstr "Mål"
 
@@ -652,27 +2173,11 @@ msgstr "Mål"
 msgid "Nmap Info"
 msgstr ""
 
-#: umitGUI/DiffCompare.py:694
-msgid "Debugging"
-msgstr "Felsökning"
-
 #: umitGUI/DiffCompare.py:696
 msgid "Verbosity"
 msgstr ""
 
-#: umitGUI/DiffCompare.py:698
-#: umitGUI/ProfileEditor.py:109
-#: umitGUI/Wizard.py:141
-#: umitGUI/Wizard.py:441
-msgid "Command"
-msgstr "Kommando"
-
-#: umitGUI/DiffCompare.py:700
-msgid "Scanner version"
-msgstr ""
-
-#: umitGUI/DiffCompare.py:703
-#: umitGUI/ScanRunDetailsPage.py:191
+#: umitGUI/DiffCompare.py:703 umitGUI/ScanRunDetailsPage.py:191
 msgid "Scan Info"
 msgstr ""
 
@@ -704,16 +2209,9 @@ msgstr ""
 msgid "Finish date"
 msgstr ""
 
-#: umitGUI/DiffCompare.py:744
-#: umitGUI/ScanHostsView.py:63
-#: umitGUI/ScanOpenPortsPage.py:63
-#: umitGUI/SearchGUI.py:298
-msgid "Host"
-msgstr "Värd"
-
-#: umitGUI/DiffCompare.py:746
-#: umitGUI/DiffCompare.py:748
+#: umitGUI/DiffCompare.py:746 umitGUI/DiffCompare.py:748
 #: umitGUI/DiffCompare.py:750
+#, python-format
 msgid "Host %s"
 msgstr "Värd %s"
 
@@ -725,236 +2223,292 @@ msgstr "Kommentar"
 msgid "LastBoot"
 msgstr ""
 
-#: umitGUI/DiffCompare.py:763
-msgid "OS Match"
-msgstr ""
-
-#: umitGUI/DiffCompare.py:812
-msgid "Ports"
-msgstr "Portar"
-
-#: umitGUI/DiffCompare.py:875
-#: umitGUI/DiffCompare.py:914
-#: umitGUI/ScanOpenPortsPage.py:67
-#: umitGUI/ScanOpenPortsPage.py:86
+#: umitGUI/DiffCompare.py:828 umitGUI/DiffCompare.py:867
+#: umitGUI/ScanOpenPortsPage.py:67 umitGUI/ScanOpenPortsPage.py:86
 msgid "State"
 msgstr "Tillstånd"
 
-#: umitGUI/DiffCompare.py:879
-#: umitGUI/ServiceFingerprintReport.py:57
+#: umitGUI/DiffCompare.py:832 umitGUI/ServiceFingerprintReport.py:57
 msgid "Service Name"
 msgstr "Tjänstenamn"
 
-#: umitGUI/DiffCompare.py:883
-#: umitGUI/SearchGUI.py:170
+#: umitGUI/DiffCompare.py:836 umitGUI/SearchGUI.py:170
 msgid "Product"
 msgstr "Produkt"
 
-#: umitGUI/DiffCompare.py:887
+#: umitGUI/DiffCompare.py:840
 msgid "Service Version"
 msgstr "Tjänsteversion"
 
-#: umitGUI/DiffCompare.py:891
-#: umitGUI/ScanOpenPortsPage.py:66
+#: umitGUI/DiffCompare.py:844 umitGUI/ScanOpenPortsPage.py:66
 #: umitGUI/ScanOpenPortsPage.py:84
 msgid "Protocol"
 msgstr "Protokoll"
 
-#: umitGUI/DiffCompare.py:895
+#: umitGUI/DiffCompare.py:848
 msgid "Extra Info"
 msgstr ""
 
-#: umitGUI/DiffCompare.py:899
+#: umitGUI/DiffCompare.py:852
 msgid "Service Conf"
 msgstr ""
 
-#: umitGUI/DiffCompare.py:908
-msgid "Extraports"
-msgstr ""
-
-#: umitGUI/DiffCompare.py:912
+#: umitGUI/DiffCompare.py:865
 msgid "Count"
 msgstr "Antal"
 
-#: umitGUI/DiffCompare.py:961
+#: umitGUI/DiffCompare.py:914
 msgid "Property remained <b>U</b>nchanged"
 msgstr ""
 
-#: umitGUI/DiffCompare.py:964
+#: umitGUI/DiffCompare.py:917
 msgid "Property was <b>A</b>dded"
 msgstr ""
 
-#: umitGUI/DiffCompare.py:967
+#: umitGUI/DiffCompare.py:920
 msgid "Property was <b>M</b>odified"
 msgstr ""
 
-#: umitGUI/DiffCompare.py:970
+#: umitGUI/DiffCompare.py:923
 msgid "Property is <b>N</b>ot present"
 msgstr ""
 
 #: umitGUI/FileChoosers.py:33
+#, python-format
 msgid "All Files (%s)"
 msgstr "Alla filer (%s)"
 
 #: umitGUI/FileChoosers.py:41
+#, python-format
 msgid "Umit Scan Profile (%s)"
 msgstr ""
 
 #: umitGUI/FileChoosers.py:49
+#, python-format
 msgid "Umit Scan Results (%s)"
 msgstr ""
 
 #: umitGUI/FileChoosers.py:57
+#, python-format
 msgid "Umit Regular Diff (%s)"
 msgstr ""
 
 #: umitGUI/FileChoosers.py:65
+#, python-format
 msgid "Umit HTML Diff (%s)"
 msgstr "Umit HTML-diff (%s)"
 
-#: umitGUI/MainWindow.py:93
+#: umitGUI/MainWindow.py:98
 msgid "Umit"
 msgstr "Umit"
 
-#: umitGUI/MainWindow.py:155
+#: umitGUI/MainWindow.py:179
 msgid "Sc_an"
 msgstr "_Sök av"
 
-#: umitGUI/MainWindow.py:159
+#: umitGUI/MainWindow.py:183
 msgid "_Command Wizard"
 msgstr "_Kommandoguide"
 
-#: umitGUI/MainWindow.py:161
+#: umitGUI/MainWindow.py:185
 msgid "Open nmap command constructor wizard"
 msgstr ""
 
-#: umitGUI/MainWindow.py:166
+#: umitGUI/MainWindow.py:190
 msgid "_Save Scan"
 msgstr "_Spara avsökning"
 
-#: umitGUI/MainWindow.py:168
+#: umitGUI/MainWindow.py:192
 msgid "Save current scan results"
 msgstr "Spara aktuella avsökningsresultat"
 
-#: umitGUI/MainWindow.py:173
+#: umitGUI/MainWindow.py:197
 msgid "_Open Scan"
 msgstr "_Öppna avsökning"
 
-#: umitGUI/MainWindow.py:175
+#: umitGUI/MainWindow.py:199
 msgid "Open the results of a previous scan"
 msgstr "Öppna resultatet för en tidigare avsökning"
 
-#: umitGUI/MainWindow.py:179
+#: umitGUI/MainWindow.py:203
 msgid "_Tools"
 msgstr "Ver_ktyg"
 
-#: umitGUI/MainWindow.py:183
+#: umitGUI/MainWindow.py:207
 msgid "_New Scan"
 msgstr "_Ny avsökning"
 
-#: umitGUI/MainWindow.py:185
+#: umitGUI/MainWindow.py:209
 msgid "Create a new Scan Tab"
 msgstr "Skapa en ny avsökningsflik"
 
-#: umitGUI/MainWindow.py:190
+#: umitGUI/MainWindow.py:214
 msgid "Close Scan"
 msgstr "Stäng avsökning"
 
-#: umitGUI/MainWindow.py:192
+#: umitGUI/MainWindow.py:216
 msgid "Close current scan tab"
 msgstr "Stäng aktuell avsökningsflik"
 
-#: umitGUI/MainWindow.py:197
+#: umitGUI/MainWindow.py:221
 msgid "New _Profile"
 msgstr "Ny _profil"
 
-#: umitGUI/MainWindow.py:199
+#: umitGUI/MainWindow.py:223
 msgid "Create a new scan profile"
 msgstr "Skapa en ny avsökningsprofil"
 
-#: umitGUI/MainWindow.py:204
+#: umitGUI/MainWindow.py:228
 msgid "Search Scan Results"
 msgstr ""
 
-#: umitGUI/MainWindow.py:206
+#: umitGUI/MainWindow.py:230
 msgid "Search for a scan result"
 msgstr "Sök efter ett avsökningsresultat"
 
-#: umitGUI/MainWindow.py:211
+#: umitGUI/MainWindow.py:235
 msgid "_Edit Selected Profile"
 msgstr "R_edigera markerad profil"
 
-#: umitGUI/MainWindow.py:213
+#: umitGUI/MainWindow.py:237
 msgid "Edit selected scan profile"
 msgstr "Redigera vald avsökningsprofil"
 
-#: umitGUI/MainWindow.py:218
+#: umitGUI/MainWindow.py:242
 msgid "_Delete Selected Profile"
 msgstr "_Ta bort markerad profil"
 
-#: umitGUI/MainWindow.py:220
+#: umitGUI/MainWindow.py:244
 msgid "Delete selected scan profile"
 msgstr "Ta bort vald avsökningsprofil"
 
-#: umitGUI/MainWindow.py:225
+#: umitGUI/MainWindow.py:249
+#, fuzzy
+msgid "Profile Manager"
+msgstr "Profilnamn"
+
+#: umitGUI/MainWindow.py:251
+#, fuzzy
+msgid "Use to manage profiles"
+msgstr "Namnlös profil"
+
+#: umitGUI/MainWindow.py:256
+#, fuzzy
+msgid "Interface Editor"
+msgstr "Profilredigerare"
+
+#: umitGUI/MainWindow.py:258
+msgid "Use to edit profile/wizard"
+msgstr ""
+
+#: umitGUI/MainWindow.py:263
 msgid "New P_rofile with Selected"
 msgstr ""
 
-#: umitGUI/MainWindow.py:227
+#: umitGUI/MainWindow.py:265
 msgid "Use the selected scan profile to create another"
 msgstr ""
 
-#: umitGUI/MainWindow.py:232
-msgid "_Quit"
-msgstr "A_vsluta"
+#: umitGUI/MainWindow.py:270
+#, fuzzy
+msgid "_Extensions"
+msgstr "Filändelse"
 
-#: umitGUI/MainWindow.py:234
+#: umitGUI/MainWindow.py:272
+msgid "Extensions manager"
+msgstr ""
+
+#: umitGUI/MainWindow.py:279
 msgid "Quit this application"
 msgstr "Avsluta programmet"
 
-#: umitGUI/MainWindow.py:239
+#: umitGUI/MainWindow.py:284
 msgid "_Profile"
 msgstr "_Profil"
 
-#: umitGUI/MainWindow.py:245
+#: umitGUI/MainWindow.py:290
 msgid "Compare Scan Results using Diffies"
 msgstr ""
 
-#: umitGUI/MainWindow.py:250
-#: umitGUI/MainWindow.py:270
-msgid "_Help"
-msgstr "_Hjälp"
-
-#: umitGUI/MainWindow.py:254
-msgid "_Report a bug"
-msgstr "_Rapportera ett fel"
-
-#: umitGUI/MainWindow.py:256
-msgid "Report a bug"
-msgstr "Rapportera ett fel"
-
-#: umitGUI/MainWindow.py:262
-msgid "_About"
-msgstr "_Om"
-
-#: umitGUI/MainWindow.py:272
-msgid "Shows the application help"
+#: umitGUI/MainWindow.py:294
+msgid "_Inventory"
 msgstr ""
 
-#: umitGUI/MainWindow.py:380
-#: umitGUI/MainWindow.py:426
+#: umitGUI/MainWindow.py:298
+msgid "_Add scan to Inventory"
+msgstr ""
+
+#: umitGUI/MainWindow.py:299
+msgid "Add finished scan on current tab to Network Inventory"
+msgstr ""
+
+#: umitGUI/MainWindow.py:305
+msgid "Network _Inventory"
+msgstr ""
+
+#: umitGUI/MainWindow.py:307
+msgid "Run Network Inventory"
+msgstr ""
+
+#: umitGUI/MainWindow.py:319
+msgid "_Editor"
+msgstr ""
+
+#: umitGUI/MainWindow.py:320
+msgid "Open Scheduler Editor"
+msgstr ""
+
+#: umitGUI/MainWindow.py:324
+msgid "SMTP Setup"
+msgstr ""
+
+#: umitGUI/MainWindow.py:325
+msgid "Open SMTP Accounts editor"
+msgstr ""
+
+#: umitGUI/MainWindow.py:471 umitGUI/MainWindow.py:484
+#: umitGUI/MainWindow.py:966
+msgid "No scan tab"
+msgstr "Ingen avsökningsflik"
+
+#: umitGUI/MainWindow.py:472
+msgid ""
+"There is no scan tab or scan result been shown. Run a scan and then try to "
+"add hosts."
+msgstr ""
+
+#: umitGUI/MainWindow.py:481
+msgid ""
+"You tried to add a scan to the Inventory, but there isn't a finished scan on "
+"active tab!"
+msgstr ""
+
+#: umitGUI/MainWindow.py:510
+msgid "Insertion finished!"
+msgstr ""
+
+#: umitGUI/MainWindow.py:512
+msgid "Scan has been added to the"
+msgstr ""
+
+#: umitGUI/MainWindow.py:514
+#, fuzzy
+msgid "inventory."
+msgstr "Katalog"
+
+#: umitGUI/MainWindow.py:565 umitGUI/MainWindow.py:611
 msgid "Close anyway"
 msgstr "Stäng ändå"
 
-#: umitGUI/MainWindow.py:387
+#: umitGUI/MainWindow.py:572
 msgid "Save changes on"
 msgstr "Spara ändringar i"
 
-#: umitGUI/MainWindow.py:390
+#: umitGUI/MainWindow.py:575
 msgid "Save changes"
 msgstr "Spara ändringar"
 
-#: umitGUI/MainWindow.py:392
+#: umitGUI/MainWindow.py:577
 msgid ""
 "The given scan has unsaved changes.\n"
 "What do you want to do?"
@@ -962,114 +2516,114 @@ msgstr ""
 "Angiven avsökning innehåller osparade ändringar.\n"
 "Vad vill du göra?"
 
-#: umitGUI/MainWindow.py:433
-#: umitGUI/MainWindow.py:436
+#: umitGUI/MainWindow.py:618 umitGUI/MainWindow.py:621
 msgid "Trying to close"
 msgstr "Försöker att stänga"
 
-#: umitGUI/MainWindow.py:438
+#: umitGUI/MainWindow.py:623
 msgid ""
 "The page you are trying to close has a scan running at the background.\n"
 "What do you want to do?"
 msgstr ""
 
-#: umitGUI/MainWindow.py:467
+#: umitGUI/MainWindow.py:652
 msgid "Closing current Scan Tab"
 msgstr "Stänger aktuell avsökningsflik"
 
-#: umitGUI/MainWindow.py:468
+#: umitGUI/MainWindow.py:653
 msgid "Are you sure you want to close current Scan Tab?"
 msgstr ""
 
-#: umitGUI/MainWindow.py:746
-#: umitGUI/MainWindow.py:890
+#: umitGUI/MainWindow.py:936 umitGUI/MainWindow.py:1080
 msgid "Permission denied"
 msgstr "Åtkomst nekas"
 
-#: umitGUI/MainWindow.py:747
+#: umitGUI/MainWindow.py:937
 msgid "Don't have read access to the path"
 msgstr ""
 
-#: umitGUI/MainWindow.py:753
+#: umitGUI/MainWindow.py:943
 msgid "Could not load result"
 msgstr "Kunde inte läsa in resultatet"
 
-#: umitGUI/MainWindow.py:754
-msgid "An unidentified error occouried and the scan result was unable to be loaded properly."
+#: umitGUI/MainWindow.py:944
+msgid ""
+"An unidentified error occouried and the scan result was unable to be loaded "
+"properly."
 msgstr ""
 
-#: umitGUI/MainWindow.py:776
-msgid "No scan tab"
-msgstr "Ingen avsökningsflik"
-
-#: umitGUI/MainWindow.py:777
-msgid "There is no scan tab or scan result been shown. Run a scan and then try to save it."
+#: umitGUI/MainWindow.py:967
+msgid ""
+"There is no scan tab or scan result been shown. Run a scan and then try to "
+"save it."
 msgstr ""
 
-#: umitGUI/MainWindow.py:788
-#: umitGUI/MainWindow.py:795
-#: umitGUI/MainWindow.py:844
+#: umitGUI/MainWindow.py:978 umitGUI/MainWindow.py:985
+#: umitGUI/MainWindow.py:1034
 msgid "Nothing to save"
 msgstr "Ingenting att spara"
 
-#: umitGUI/MainWindow.py:789
-#: umitGUI/MainWindow.py:845
+#: umitGUI/MainWindow.py:979 umitGUI/MainWindow.py:1035
 msgid "No scan on this tab. Start a scan an then try again"
 msgstr ""
 
-#: umitGUI/MainWindow.py:796
+#: umitGUI/MainWindow.py:986
 msgid "The scan has failed! There is nothing to be saved."
 msgstr "Avsökningen har misslyckats! Det finns ingenting att spara."
 
-#: umitGUI/MainWindow.py:803
+#: umitGUI/MainWindow.py:993
 msgid "Parsing the result"
 msgstr "Tolkar resultatet"
 
-#: umitGUI/MainWindow.py:804
+#: umitGUI/MainWindow.py:994
 msgid "The result is still been parsed. You can not save the result yet."
 msgstr ""
 
-#: umitGUI/MainWindow.py:811
+#: umitGUI/MainWindow.py:1001
 msgid "Scan is running"
 msgstr ""
 
-#: umitGUI/MainWindow.py:812
-msgid "The scan process is not finished yet. wait until the scan is finished and then try to save it again."
+#: umitGUI/MainWindow.py:1002
+msgid ""
+"The scan process is not finished yet. Rait until the scan is finished and "
+"then try to save it again."
 msgstr ""
 
-#: umitGUI/MainWindow.py:822
+#: umitGUI/MainWindow.py:1012
 msgid "Save Scan"
 msgstr "Spara avsökning"
 
-#: umitGUI/MainWindow.py:861
+#: umitGUI/MainWindow.py:1051
 msgid "Can't save file"
 msgstr "Kan inte spara filen"
 
-#: umitGUI/MainWindow.py:862
+#: umitGUI/MainWindow.py:1052
 msgid "Can't open file to write"
 msgstr "Kan inte öppna fil för att skriva"
 
-#: umitGUI/MainWindow.py:891
+#: umitGUI/MainWindow.py:1081
 msgid "Don't have write access to this path."
 msgstr ""
 
-#: umitGUI/MainWindow.py:956
+#: umitGUI/MainWindow.py:1165
 msgid "The text above is this action's name"
 msgstr ""
 
-#: umitGUI/MainWindow.py:974
+#: umitGUI/MainWindow.py:1183
 msgid "Couldn't find documentation files!"
 msgstr "Kunde inte hitta dokumentationsfilerna!"
 
-#: umitGUI/MainWindow.py:976
-msgid "Umit couldn't find the documentation files. Please, go to Umit's website and have the latest documentation in our Support & Development section."
+#: umitGUI/MainWindow.py:1185
+msgid ""
+"Umit couldn't find the documentation files. Please, go to Umit's website and "
+"have the latest documentation in our Support & Development section."
 msgstr ""
 
-#: umitGUI/MainWindow.py:1005
+#: umitGUI/MainWindow.py:1220
 msgid "Scan "
 msgstr "Sök av "
 
-#: umitGUI/MainWindow.py:1016
+#: umitGUI/MainWindow.py:1235
 msgid ""
 "You are trying to run Umit with a non-root user!\n"
 "\n"
@@ -1079,15 +2633,17 @@ msgstr ""
 "\n"
 "Vissa nmap-alternativ behöver rootbehörighet för att fungera."
 
-#: umitGUI/MainWindow.py:1019
+#: umitGUI/MainWindow.py:1238
 msgid "Non root user"
 msgstr "Icke-rootanvändare"
 
-#: umitGUI/MainWindow.py:1028
-msgid "You run the umit with nmap option and didn't specified a valid target (see the umit options)"
+#: umitGUI/MainWindow.py:1247
+msgid ""
+"You run the umit with nmap option and didn't specified a valid target (see "
+"the umit options)"
 msgstr ""
 
-#: umitGUI/MainWindow.py:1031
+#: umitGUI/MainWindow.py:1250
 msgid "Non valid target"
 msgstr ""
 
@@ -1155,14 +2711,14 @@ msgstr "Aktivera färgmarkering av Nmap-utdata"
 msgid "Operating System Fingerprint Report"
 msgstr ""
 
-#: umitGUI/OSFingerprintReport.py:62
-#: umitGUI/ServiceFingerprintReport.py:51
+#: umitGUI/OSFingerprintReport.py:62 umitGUI/ServiceFingerprintReport.py:51
 msgid "Submitted by (optional)"
 msgstr "Inskickat av (valfritt)"
 
-#: umitGUI/OSFingerprintReport.py:63
-#: umitGUI/ServiceFingerprintReport.py:52
-msgid "Enter your name and e-mail address if we can contact you with any questions. (kept private, used for nothing else)"
+#: umitGUI/OSFingerprintReport.py:63 umitGUI/ServiceFingerprintReport.py:52
+msgid ""
+"Enter your name and e-mail address if we can contact you with any questions. "
+"(kept private, used for nothing else)"
 msgstr ""
 
 #: umitGUI/OSFingerprintReport.py:68
@@ -1170,7 +2726,16 @@ msgid "Target OS/device info"
 msgstr ""
 
 #: umitGUI/OSFingerprintReport.py:69
-msgid "<b>The more details the better!</b> For UNIX machines, '<i>uname -a</i>' often gives the proper version number. On Linux, please also specify the distribution version (such asRedhat 9.0) if you are using a vendor-provided kernel. For Windows, the '<i>winver</i>' command (if available) should show you any service pack information. If a Windows target has no service packs installed, please say so explicitly. For appliances/embedded devices, please mention the model number and what it is (printer, webcam, DSL router, VOIP phone, etc). Try to provide the architecture (X86, SPARC, etc.) where appropriate."
+msgid ""
+"<b>The more details the better!</b> For UNIX machines, '<i>uname -a</i>' "
+"often gives the proper version number. On Linux, please also specify the "
+"distribution version (such asRedhat 9.0) if you are using a vendor-provided "
+"kernel. For Windows, the '<i>winver</i>' command (if available) should show "
+"you any service pack information. If a Windows target has no service packs "
+"installed, please say so explicitly. For appliances/embedded devices, please "
+"mention the model number and what it is (printer, webcam, DSL router, VOIP "
+"phone, etc). Try to provide the architecture (X86, SPARC, etc.) where "
+"appropriate."
 msgstr ""
 
 #: umitGUI/OSFingerprintReport.py:80
@@ -1181,17 +2746,24 @@ msgstr ""
 msgid "Please select the Device/OS info from this alphabetized choosebox"
 msgstr ""
 
-#: umitGUI/OSFingerprintReport.py:87
-#: umitGUI/ServiceFingerprintReport.py:80
+#: umitGUI/OSFingerprintReport.py:87 umitGUI/ServiceFingerprintReport.py:80
 msgid "Notes"
 msgstr "Anteckningar"
 
 #: umitGUI/OSFingerprintReport.py:88
-msgid "Fill with further info on the device, any special network conditions, etc."
+msgid ""
+"Fill with further info on the device, any special network conditions, etc."
 msgstr ""
 
 #: umitGUI/OSFingerprintReport.py:94
-msgid "This form allows you to contribute new operating system fingerprints to the Nmap database. Thanks for helping! <b>Please do not fill this out unless you are sure that you know what application is running on the machine you are submitting</b>. Incorrect entries can pollute the database. By submitting fingerprints you are transfering any copyright interest in the data to Fyodor so that he can modify it, relicense it, incorporate it into programs such as Nmap, etc."
+msgid ""
+"This form allows you to contribute new operating system fingerprints to the "
+"Nmap database. Thanks for helping! <b>Please do not fill this out unless you "
+"are sure that you know what application is running on the machine you are "
+"submitting</b>. Incorrect entries can pollute the database. By submitting "
+"fingerprints you are transfering any copyright interest in the data to "
+"Fyodor so that he can modify it, relicense it, incorporate it into programs "
+"such as Nmap, etc."
 msgstr ""
 
 #: umitGUI/OSFingerprintReport.py:158
@@ -1199,7 +2771,9 @@ msgid "Operating System Fingerprint report is incomplete!"
 msgstr ""
 
 #: umitGUI/OSFingerprintReport.py:160
-msgid "The Operating System Fingerprint report is incomplete. Please, try to provide as much information as possible."
+msgid ""
+"The Operating System Fingerprint report is incomplete. Please, try to "
+"provide as much information as possible."
 msgstr ""
 
 #: umitGUI/OSFingerprintReport.py:180
@@ -1207,7 +2781,11 @@ msgid "Operating System Fingerprint not registered!"
 msgstr ""
 
 #: umitGUI/OSFingerprintReport.py:182
-msgid "The Operating System Fingerprint could not be registered. This problem may be caused by the lack of Internet Access or indisponibility of the fingerprint server. Please, verify your internet access, and then try to register the operating system fingerprint once again."
+msgid ""
+"The Operating System Fingerprint could not be registered. This problem may "
+"be caused by the lack of Internet Access or indisponibility of the "
+"fingerprint server. Please, verify your internet access, and then try to "
+"register the operating system fingerprint once again."
 msgstr ""
 
 #: umitGUI/OSFingerprintReport.py:191
@@ -1215,10 +2793,13 @@ msgid "Operating System Fingerprint sucessfully registered!"
 msgstr ""
 
 #: umitGUI/OSFingerprintReport.py:193
-msgid "The Operating System Fingerprint was sucessfully registered. A web page with detailed description about this registration is going to be openned in your default web browser."
+msgid ""
+"The Operating System Fingerprint was sucessfully registered. A web page with "
+"detailed description about this registration is going to be openned in your "
+"default web browser."
 msgstr ""
 
-#: umitGUI/OptionBuilder.py:313
+#: umitGUI/OptionBuilder.py:413
 msgid "Choose file"
 msgstr "Välj fil"
 
@@ -1226,341 +2807,453 @@ msgstr "Välj fil"
 msgid "Profile Editor"
 msgstr "Profilredigerare"
 
-#: umitGUI/ProfileEditor.py:102
+#: umitGUI/ProfileEditor.py:94
 msgid "Help not implemented"
 msgstr ""
 
-#: umitGUI/ProfileEditor.py:103
+#: umitGUI/ProfileEditor.py:95
 msgid "Umit help is not implemented yet."
 msgstr ""
 
-#: umitGUI/ProfileEditor.py:117
+#: umitGUI/ProfileEditor.py:112
 msgid "Profile Information"
 msgstr "Profilinformation"
 
-#: umitGUI/ProfileEditor.py:118
-#: umitGUI/Wizard.py:376
+#: umitGUI/ProfileEditor.py:113 umitGUI/Wizard.py:408
 msgid "Profile name"
 msgstr "Profilnamn"
 
-#: umitGUI/ProfileEditor.py:120
-#: umitGUI/Wizard.py:377
+#: umitGUI/ProfileEditor.py:115 umitGUI/ProfileManager.py:81
+#: umitGUI/Wizard.py:409
 msgid "Hint"
 msgstr "Tips"
 
-#: umitGUI/ProfileEditor.py:125
-#: umitGUI/Wizard.py:379
+#: umitGUI/ProfileEditor.py:121 umitGUI/Wizard.py:411
 msgid "Annotation"
 msgstr "Kommentar"
 
-#: umitGUI/ProfileEditor.py:219
-#: umitGUI/Wizard.py:267
+#: umitGUI/ProfileEditor.py:246 umitGUI/Wizard.py:267
 msgid "Unnamed profile"
 msgstr "Namnlös profil"
 
-#: umitGUI/ProfileEditor.py:220
-#: umitGUI/Wizard.py:268
+#: umitGUI/ProfileEditor.py:247 umitGUI/Wizard.py:268
 msgid "You must provide a name for this profile."
 msgstr ""
 
-#: umitGUI/ProfileEditor.py:271
+#: umitGUI/ProfileEditor.py:296
 msgid "Deleting Profile"
 msgstr "Borttagning av profil"
 
-#: umitGUI/ProfileEditor.py:272
-msgid "Your profile is going to be deleted! Click Ok to continue, or Cancel to go back to Profile Editor."
-msgstr "Din profil är på väg att tas bort! Klicka OK för att fortsätta eller Avbryt för att gå tillbaka till Profilredigeraren."
+#: umitGUI/ProfileEditor.py:297
+msgid ""
+"Your profile is going to be deleted! Click Ok to continue, or Cancel to go "
+"back to Profile Editor."
+msgstr ""
+"Din profil är på väg att tas bort! Klicka OK för att fortsätta eller Avbryt "
+"för att gå tillbaka till Profilredigeraren."
 
-#: umitGUI/ScanHostDetailsPage.py:32
-#: umitGUI/ScanRunDetailsPage.py:38
+#: umitGUI/ProfileManager.py:78 umitInterfaceEditor/Main.py:296
+#: umitInterfaceEditor/Tools.py:573
+#, fuzzy
+msgid "Name"
+msgstr "Namn:"
+
+#: umitGUI/ProfileManager.py:214
+#, fuzzy
+msgid "Insert a profile name"
+msgstr "Profilnamn"
+
+#: umitGUI/ProfileManager.py:286
+#, fuzzy
+msgid "Profile's Name"
+msgstr "Profilnamn"
+
+#: umitGUI/ProfileManager.py:324
+msgid "Change"
+msgstr ""
+
+#: umitGUI/ProfileManager.py:338 umitGUI/ScanToolbar.py:89
+msgid "Profile:"
+msgstr "Profil:"
+
+#: umitGUI/ProfileWizardEditor.py:52
+#, fuzzy
+msgid "Profile and Wizard Editor"
+msgstr "Profilredigerare"
+
+#: umitGUI/ProfileWizardEditor.py:147 umitGUI/ProfileWizardEditor.py:318
+msgid "Group List"
+msgstr ""
+
+#: umitGUI/ProfileWizardEditor.py:238
+msgid "Wizard"
+msgstr ""
+
+#: umitGUI/ProfileWizardEditor.py:257
+#, fuzzy
+msgid "Option of List"
+msgstr "Alternativ"
+
+#: umitGUI/ProfileWizardEditor.py:351
+msgid "_Manage"
+msgstr ""
+
+#: umitGUI/ProfileWizardEditor.py:352
+#, fuzzy
+msgid "_Open"
+msgstr "Öppen"
+
+#: umitGUI/ProfileWizardEditor.py:352 umitGUI/SearchGUI.py:816
+msgid "Open"
+msgstr "Öppen"
+
+#: umitGUI/ProfileWizardEditor.py:353 umitGUI/ScriptManager.py:327
+#: umitInterfaceEditor/Main.py:540
+#, fuzzy
+msgid "Quit"
+msgstr "A_vsluta"
+
+#: umitGUI/ProfileWizardEditor.py:354 umitGUI/ProfileWizardEditor.py:355
+#: umitGUI/ScriptManager.py:343 umitInterfaceEditor/Main.py:541
+msgid "Edit"
+msgstr ""
+
+#: umitGUI/ProfileWizardEditor.py:355 umitInterfaceEditor/Main.py:542
+#, fuzzy
+msgid "Undo"
+msgstr "Tillverkare"
+
+#: umitGUI/SMTPSetup.py:49
+msgid "SMTP Account Editor"
+msgstr ""
+
+#: umitGUI/SMTPSetup.py:59
+#, fuzzy
+msgid "Schema name"
+msgstr "Tjänstenamn"
+
+#: umitGUI/SMTPSetup.py:63
+#, fuzzy
+msgid "Server"
+msgstr "Tjänst"
+
+#: umitGUI/SMTPSetup.py:68
+msgid "Mail from"
+msgstr ""
+
+#: umitGUI/SMTPSetup.py:71
+msgid "Servers requires authentication"
+msgstr ""
+
+#: umitGUI/SMTPSetup.py:73
+#, fuzzy
+msgid "Username"
+msgstr "värdnamn"
+
+#: umitGUI/SMTPSetup.py:75
+msgid "Password"
+msgstr ""
+
+#: umitGUI/SMTPSetup.py:80
+msgid "Use TLS Encryption"
+msgstr ""
+
+#: umitGUI/SMTPSetup.py:190 umitGUI/SMTPSetup.py:201
+msgid "SMTP Schema - Error while saving."
+msgstr ""
+
+#: umitGUI/SMTPSetup.py:192
+msgid "You need to specify an username and password for this SMTP Schema."
+msgstr ""
+
+#: umitGUI/SMTPSetup.py:203
+msgid ""
+"The following fields need to be filled: Schema Name, Server, Port and Mail "
+"from."
+msgstr ""
+
+#: umitGUI/ScanHostDetailsPage.py:34 umitGUI/ScanRunDetailsPage.py:38
 msgid "Not available"
 msgstr "Inte tillgänglig"
 
-#: umitGUI/ScanHostDetailsPage.py:48
+#: umitGUI/ScanHostDetailsPage.py:53
 msgid "Host Status"
 msgstr "Värdstatus"
 
-#: umitGUI/ScanHostDetailsPage.py:49
+#: umitGUI/ScanHostDetailsPage.py:54
 msgid "Addresses"
 msgstr "Adresser"
 
-#: umitGUI/ScanHostDetailsPage.py:50
+#: umitGUI/ScanHostDetailsPage.py:55
 msgid "Hostnames"
 msgstr "Värdnamn"
 
-#: umitGUI/ScanHostDetailsPage.py:51
+#: umitGUI/ScanHostDetailsPage.py:56
 msgid "Operating System"
 msgstr "Operativsystem"
 
-#: umitGUI/ScanHostDetailsPage.py:52
+#: umitGUI/ScanHostDetailsPage.py:57
 msgid "Ports used"
 msgstr "Portar använda"
 
-#: umitGUI/ScanHostDetailsPage.py:53
-msgid "OS Class"
-msgstr ""
-
-#: umitGUI/ScanHostDetailsPage.py:54
-msgid "TCP Sequence"
-msgstr "TCP-sekvens"
-
-#: umitGUI/ScanHostDetailsPage.py:55
-msgid "IP ID Sequence"
-msgstr ""
-
-#: umitGUI/ScanHostDetailsPage.py:56
-msgid "TCP TS Sequence"
-msgstr ""
-
-#: umitGUI/ScanHostDetailsPage.py:57
+#: umitGUI/ScanHostDetailsPage.py:62
 msgid "Comments"
 msgstr "Kommentarer"
 
-#: umitGUI/ScanHostDetailsPage.py:62
+#: umitGUI/ScanHostDetailsPage.py:67
 msgid "State:"
 msgstr "Tillstånd:"
 
-#: umitGUI/ScanHostDetailsPage.py:65
-#: umitGUI/ScanRunDetailsPage.py:74
+#: umitGUI/ScanHostDetailsPage.py:70 umitGUI/ScanRunDetailsPage.py:74
 msgid "Open ports:"
 msgstr "Öppna portar:"
 
-#: umitGUI/ScanHostDetailsPage.py:68
-#: umitGUI/ScanRunDetailsPage.py:77
+#: umitGUI/ScanHostDetailsPage.py:73 umitGUI/ScanRunDetailsPage.py:77
 msgid "Filtered ports:"
 msgstr "Filtrerade portar:"
 
-#: umitGUI/ScanHostDetailsPage.py:71
-#: umitGUI/ScanRunDetailsPage.py:80
+#: umitGUI/ScanHostDetailsPage.py:76 umitGUI/ScanRunDetailsPage.py:80
 msgid "Closed ports:"
 msgstr "Stängda portar:"
 
-#: umitGUI/ScanHostDetailsPage.py:74
+#: umitGUI/ScanHostDetailsPage.py:79
 msgid "Scanned ports:"
 msgstr ""
 
-#: umitGUI/ScanHostDetailsPage.py:77
+#: umitGUI/ScanHostDetailsPage.py:82
 msgid "Up time:"
 msgstr ""
 
-#: umitGUI/ScanHostDetailsPage.py:80
+#: umitGUI/ScanHostDetailsPage.py:85
 msgid "Last boot:"
 msgstr ""
 
-#: umitGUI/ScanHostDetailsPage.py:85
+#: umitGUI/ScanHostDetailsPage.py:90
 msgid "IPv4:"
 msgstr "IPv4:"
 
-#: umitGUI/ScanHostDetailsPage.py:88
+#: umitGUI/ScanHostDetailsPage.py:93
 msgid "IPv6:"
 msgstr "IPv6:"
 
-#: umitGUI/ScanHostDetailsPage.py:91
+#: umitGUI/ScanHostDetailsPage.py:96
 msgid "MAC:"
 msgstr "MAC:"
 
-#: umitGUI/ScanHostDetailsPage.py:94
+#: umitGUI/ScanHostDetailsPage.py:99
 msgid "Vendor:"
 msgstr "Tillverkare:"
 
-#: umitGUI/ScanHostDetailsPage.py:232
+#: umitGUI/ScanHostDetailsPage.py:237
 msgid "Name - Type:"
 msgstr "Namn - Typ:"
 
-#: umitGUI/ScanHostDetailsPage.py:250
-msgid "Not Available"
-msgstr "Inte tillgänglig"
-
-#: umitGUI/ScanHostDetailsPage.py:252
+#: umitGUI/ScanHostDetailsPage.py:283 umitInterfaceEditor/OptionManager.py:131
 msgid "Name:"
 msgstr "Namn:"
 
-#: umitGUI/ScanHostDetailsPage.py:255
+#: umitGUI/ScanHostDetailsPage.py:295
 msgid "Accuracy:"
 msgstr ""
 
-#: umitGUI/ScanHostDetailsPage.py:282
+#: umitGUI/ScanHostDetailsPage.py:343
 msgid "Port-Protocol-State:"
 msgstr ""
 
-#: umitGUI/ScanHostDetailsPage.py:294
+#: umitGUI/ScanHostDetailsPage.py:364 umitInterfaceEditor/Tools.py:579
 msgid "Type"
 msgstr "Typ"
 
-#: umitGUI/ScanHostDetailsPage.py:295
+#: umitGUI/ScanHostDetailsPage.py:365
 msgid "Vendor"
 msgstr "Tillverkare"
 
-#: umitGUI/ScanHostDetailsPage.py:296
+#: umitGUI/ScanHostDetailsPage.py:366
 msgid "OS Family"
 msgstr ""
 
-#: umitGUI/ScanHostDetailsPage.py:297
+#: umitGUI/ScanHostDetailsPage.py:367
 msgid "OS Generation"
 msgstr ""
 
-#: umitGUI/ScanHostDetailsPage.py:298
-msgid "Accuracy"
-msgstr ""
-
-#: umitGUI/ScanHostDetailsPage.py:325
-#: umitGUI/ScanHostDetailsPage.py:350
-#: umitGUI/ScanHostDetailsPage.py:369
+#: umitGUI/ScanHostDetailsPage.py:395 umitGUI/ScanHostDetailsPage.py:420
+#: umitGUI/ScanHostDetailsPage.py:439
 msgid "Class:"
 msgstr "Klass:"
 
-#: umitGUI/ScanHostDetailsPage.py:328
+#: umitGUI/ScanHostDetailsPage.py:398
 msgid "Difficulty:"
 msgstr ""
 
-#: umitGUI/ScanHostDetailsPage.py:331
+#: umitGUI/ScanHostDetailsPage.py:401
 msgid "Index:"
 msgstr "Index:"
 
-#: umitGUI/ScanHostDetailsPage.py:334
-#: umitGUI/ScanHostDetailsPage.py:353
-#: umitGUI/ScanHostDetailsPage.py:372
+#: umitGUI/ScanHostDetailsPage.py:404 umitGUI/ScanHostDetailsPage.py:423
+#: umitGUI/ScanHostDetailsPage.py:442
 msgid "Values:"
 msgstr "Värden:"
 
-#: umitGUI/ScanHostsView.py:29
+#: umitGUI/ScanHostsView.py:31
 msgid "Scanning"
 msgstr "Söker av"
 
-#: umitGUI/ScanHostsView.py:52
+#: umitGUI/ScanHostsView.py:56
 msgid "Hosts"
 msgstr "Värdar"
 
-#: umitGUI/ScanHostsView.py:53
+#: umitGUI/ScanHostsView.py:57
 msgid "Services"
 msgstr "Tjänster"
 
-#: umitGUI/ScanHostsView.py:62
-#: umitGUI/SearchGUI.py:335
+#: umitGUI/ScanHostsView.py:66 umitGUI/SearchGUI.py:335
 msgid "OS"
 msgstr "OS"
 
-#: umitGUI/ScanHostsView.py:70
-#: umitGUI/ScanOpenPortsPage.py:68
-#: umitGUI/ScanOpenPortsPage.py:81
-#: umitGUI/SearchGUI.py:169
+#: umitGUI/ScanHostsView.py:74 umitGUI/ScanOpenPortsPage.py:68
+#: umitGUI/ScanOpenPortsPage.py:81 umitGUI/SearchGUI.py:169
 #: umitGUI/SearchGUI.py:319
 msgid "Service"
 msgstr "Tjänst"
 
-#: umitGUI/ScanNotebook.py:261
+#: umitGUI/ScanNotebook.py:265
+#, python-format
 msgid "untitled_scan%s"
 msgstr "namnlös_avsökning%s"
 
-#: umitGUI/ScanNotebook.py:345
+#: umitGUI/ScanNotebook.py:362
 msgid "<target>"
 msgstr "<mål>"
 
-#: umitGUI/ScanNotebook.py:454
+#: umitGUI/ScanNotebook.py:471
 msgid "Profile not found!"
 msgstr "Profilen hittades inte!"
 
-#: umitGUI/ScanNotebook.py:455
-msgid "The profile name you selected/typed couldn't be found, and probably doesn't exist. Please, check the profile name and try again."
+#: umitGUI/ScanNotebook.py:472
+msgid ""
+"The profile name you selected/typed couldn't be found, and probably doesn't "
+"exist. Please, check the profile name and try again."
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:494
+#: umitGUI/ScanNotebook.py:516
 msgid "No Target Host!"
 msgstr "Ingen målvärd!"
 
-#: umitGUI/ScanNotebook.py:495
-msgid "Target specification is mandatory. Either by an address in the target input box or through the '-iR' and '-iL' nmap options. Aborting scan."
+#: umitGUI/ScanNotebook.py:517
+msgid ""
+"Target specification is mandatory. Either by an address in the target input "
+"box or through the '-iR' and '-iL' nmap options. Aborting scan."
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:509
+#: umitGUI/ScanNotebook.py:531
 msgid "Empty Nmap Command!"
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:510
-msgid "There is no command to execute! Maybe the selected/typed profile doesn't exist. Please, check the profile name or type the nmap command you would like to execute."
+#: umitGUI/ScanNotebook.py:532
+msgid ""
+"There is no command to execute! Maybe the selected/typed profile doesn't "
+"exist. Please, check the profile name or type the nmap command you would "
+"like to execute."
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:562
+#: umitGUI/ScanNotebook.py:584
 msgid "Scan has not finished yet"
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:563
-msgid "Another scan is running in the background. To start another scan and kill the old one, click Ok. To wait for the conclusion of the old scan, choose Cancel."
+#: umitGUI/ScanNotebook.py:585
+msgid ""
+"Another scan is running in the background. To start another scan and kill "
+"the old one, click Ok. To wait for the conclusion of the old scan, choose "
+"Cancel."
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:585
+#: umitGUI/ScanNotebook.py:607
+msgid "Nmap couldn't be found"
+msgstr ""
+
+#: umitGUI/ScanNotebook.py:608
+msgid ""
+"Umit couldn't find Nmap. Maybe you don't have it installed, or you need to "
+"set yourPATH environment variable."
+msgstr ""
+
+#: umitGUI/ScanNotebook.py:616
 msgid "Command is missing!"
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:586
-msgid "It seems that your profile's command is missing or something else went wrong. Please, try to remove and recreate your profile."
+#: umitGUI/ScanNotebook.py:617
+msgid ""
+"It seems that your profile's command is missing or something else went "
+"wrong. Please, try to remove and recreate your profile."
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:707
+#: umitGUI/ScanNotebook.py:739
 msgid "Couldn't retrieve the error raised by the command!"
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:710
+#: umitGUI/ScanNotebook.py:742
 msgid "Unknown error!"
 msgstr "Okänt fel!"
 
-#: umitGUI/ScanNotebook.py:717
+#: umitGUI/ScanNotebook.py:749
 msgid "Root privileges are needed!"
 msgstr "Root-behörighet krävs!"
 
-#: umitGUI/ScanNotebook.py:723
+#: umitGUI/ScanNotebook.py:755
 msgid "An unexpected error occourried!"
 msgstr "Ett oväntat fel inträffade!"
 
-#: umitGUI/ScanNotebook.py:876
+#: umitGUI/ScanNotebook.py:911
+#, python-format
 msgid "you network scan discovered an unknown fingerprint sent by the host %s"
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:882
-msgid "your network scan discovered several unknown fingerprints sent by the follwoing hosts: "
+#: umitGUI/ScanNotebook.py:917
+msgid ""
+"your network scan discovered several unknown fingerprints sent by the "
+"follwoing hosts: "
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:893
+#: umitGUI/ScanNotebook.py:928
 msgid "Unrecognized Services/OS Fingerprints Found!"
 msgstr ""
 
-#: umitGUI/ScanNotebook.py:1254
+#: umitGUI/ScanNotebook.py:1204 umitGUI/ScanNotebook.py:1219
+#: umitGUI/ScanNotebook.py:1221 umitGUI/SearchGUI.py:468
+msgid "Unknown"
+msgstr "Okänt"
+
+#: umitGUI/ScanNotebook.py:1295
 msgid "Ports / Hosts"
 msgstr "Portar / Värdar"
 
-#: umitGUI/ScanNotebook.py:1255
+#: umitGUI/ScanNotebook.py:1296
 msgid "Nmap Output"
 msgstr "Nmap-utdata"
 
-#: umitGUI/ScanNotebook.py:1256
+#: umitGUI/ScanNotebook.py:1297
 msgid "Host Details"
 msgstr "Värddetaljer"
 
-#: umitGUI/ScanNotebook.py:1257
+#: umitGUI/ScanNotebook.py:1298
 msgid "Scan Details"
 msgstr "Avsökningsdetaljer"
 
-#: umitGUI/ScanNotebook.py:1279
+#: umitGUI/ScanNotebook.py:1299 umitGUI/radialnet/Toolbar.py:242
+msgid "Topology"
+msgstr ""
+
+#: umitGUI/ScanNotebook.py:1331
 msgid "No host selected!"
 msgstr "Ingen värd markerad!"
 
-#: umitGUI/ScanNotebook.py:1282
+#: umitGUI/ScanNotebook.py:1334
 msgid "Scan is not finished yet!"
 msgstr "Avsökningen är inte färdig än!"
 
-#: umitGUI/ScanOpenPortsPage.py:65
-#: umitGUI/ScanOpenPortsPage.py:85
-msgid "Port"
-msgstr "Port"
-
-#: umitGUI/ScanOpenPortsPage.py:69
-#: umitGUI/ScanOpenPortsPage.py:88
+#: umitGUI/ScanOpenPortsPage.py:69 umitGUI/ScanOpenPortsPage.py:88
 msgid "Version"
 msgstr "Version"
-
-#: umitGUI/ScanOpenPortsPage.py:82
-msgid "Hostname"
-msgstr "Värdnamn"
 
 #: umitGUI/ScanOpenPortsPage.py:87
 msgid "Server product"
@@ -1586,8 +3279,7 @@ msgstr ""
 msgid "General Info"
 msgstr ""
 
-#: umitGUI/ScanRunDetailsPage.py:43
-#: umitGUI/ScanToolbar.py:38
+#: umitGUI/ScanRunDetailsPage.py:43 umitGUI/ScanToolbar.py:38
 msgid "Command:"
 msgstr "Kommando:"
 
@@ -1639,8 +3331,7 @@ msgstr ""
 msgid "Services:"
 msgstr "Tjänster:"
 
-#: umitGUI/ScanToolbar.py:59
-#: umitGUI/SearchGUI.py:107
+#: umitGUI/ScanToolbar.py:59 umitGUI/SearchGUI.py:107
 msgid "Scan"
 msgstr "Sök av"
 
@@ -1648,15 +3339,329 @@ msgstr "Sök av"
 msgid "Target:"
 msgstr "Mål:"
 
-#: umitGUI/ScanToolbar.py:89
-msgid "Profile:"
-msgstr "Profil:"
+#: umitGUI/SchedulerControl.py:38
+msgid "Start Scheduler"
+msgstr ""
+
+#: umitGUI/SchedulerControl.py:39
+msgid "Stop Scheduler"
+msgstr ""
+
+#: umitGUI/SchedulerControl.py:60 umitGUI/SchedulerControl.py:96
+msgid "Scheduler Controller"
+msgstr ""
+
+#: umitGUI/SchedulerControl.py:61
+msgid ""
+"You are requesting to start Scheduler as a normal user.\n"
+"\n"
+"In case some scheduled scan contains any \n"
+"options that requires root previlegies they will end \n"
+"up not running.\n"
+"\n"
+"If you don't want to start the Scheduler now, \n"
+"select Cancel, if you want to run it as a normal user \n"
+"anyway, select OK, otherwise, select Help to learn \n"
+"how you can start it as root."
+msgstr ""
+
+#: umitGUI/SchedulerControl.py:97
+msgid ""
+"You don't have permission to stop the Scheduler, for more\n"
+"information select Help, otherwise, just select OK to close this \n"
+"dialog."
+msgstr ""
+
+#: umitGUI/SchedulerControl.py:177
+msgid "Scheduler is not running!"
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:57
+msgid "Scan Scheduler Editor"
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:67
+#, fuzzy
+msgid "Schema Name"
+msgstr "Tjänstenamn"
+
+#: umitGUI/SchedulerEdit.py:90
+#, fuzzy
+msgid "Save outputs to"
+msgstr "Spara resultat för"
+
+#: umitGUI/SchedulerEdit.py:92
+msgid "..."
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:94
+msgid "Send output to email"
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:96
+msgid "SMTP Schema"
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:98
+msgid "Add to the Inventory"
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:258
+#, fuzzy
+msgid "Select a directory"
+msgstr "Välj avsökningsresultat"
+
+#: umitGUI/SchedulerEdit.py:277 umitGUI/SchedulerEdit.py:291
+#: umitGUI/SchedulerEdit.py:305
+msgid "Scheduling Schema - Error while saving."
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:279
+msgid ""
+"There is some error in at least one of the following fields: \"Schema name"
+"\", \"Command\" or \"Scheduling Profile\"\n"
+"\n"
+"Check if \"Schema name\" is not empty.\n"
+"Check if \"Command\" does contain \"<target>\" on it.\n"
+"Check if there is some \"Scheduling Profile\" selected."
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:293
+msgid "You need to create a a SMTP Schema for sending email."
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:307
+msgid "You especified an invalid directory to save scans output."
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:507
+#, fuzzy
+msgid "Scheduling Profiles Editor"
+msgstr "Profilredigerare"
+
+#: umitGUI/SchedulerEdit.py:522
+msgid "Schedule"
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:523
+#, fuzzy
+msgid "Minute"
+msgstr "Minuter"
+
+#: umitGUI/SchedulerEdit.py:527
+msgid "Day of month"
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:531
+#, fuzzy
+msgid "Weekday"
+msgstr "Veckor"
+
+#: umitGUI/SchedulerEdit.py:607 umitGUI/SchedulerEdit.py:629
+msgid "Scheduling Profile - Error while saving"
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:609
+msgid "You need to specify a name for Profile."
+msgstr ""
+
+#: umitGUI/SchedulerEdit.py:631
+msgid "Check your cron syntax and try to save again."
+msgstr ""
+
+#: umitGUI/ScriptManager.py:147
+#, fuzzy
+msgid "No descriptions"
+msgstr "Färgbeskrivning"
+
+#: umitGUI/ScriptManager.py:148
+msgid "unnamed"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:150 umitGUI/ScriptManager.py:154
+msgid "untagged"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:261
+#, fuzzy
+msgid "Select Script"
+msgstr "Välj avsökning"
+
+#: umitGUI/ScriptManager.py:277
+msgid "File is not a NSE script file"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:278
+#, fuzzy
+msgid ""
+"Selected file is not a NSE script file. Umit can not parse this file. "
+"Please, select another."
+msgstr "Umit kan inte öppna vald fil. Välj en annan."
+
+#: umitGUI/ScriptManager.py:282
+msgid "Select Scripts Directory"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:292
+msgid "Can not find any NSE script files in the directory"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:293
+#, fuzzy
+msgid ""
+"Umit can not find any NSE script files in the selected directory. Please, "
+"select another."
+msgstr "Umit kan inte öppna vald fil. Välj en annan."
+
+#: umitGUI/ScriptManager.py:301
+msgid "Script Manager"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:311 umitGUI/ScriptManager.py:619
+msgid "Add File..."
+msgstr ""
+
+#: umitGUI/ScriptManager.py:312
+msgid "Add single script file"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:315 umitGUI/ScriptManager.py:623
+#, fuzzy
+msgid "Add Directory..."
+msgstr "Katalog"
+
+#: umitGUI/ScriptManager.py:316
+msgid "Add directory with script files"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:319 umitGUI/ScriptManager.py:627
+msgid "Add URL File..."
+msgstr ""
+
+#: umitGUI/ScriptManager.py:320
+msgid "Add single script file from Web"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:323 umitGUI/ScriptManager.py:631
+msgid "Add URL Base..."
+msgstr ""
+
+#: umitGUI/ScriptManager.py:324
+msgid "Add base with script files from Web"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:328
+msgid "Quit from Script Manager"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:330
+msgid "_View"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:332
+#, fuzzy
+msgid "_Settings"
+msgstr "Avsnitt"
+
+#: umitGUI/ScriptManager.py:336
+msgid "Refresh scripts list"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:339
+#, fuzzy
+msgid "Search"
+msgstr "Mars"
+
+#: umitGUI/ScriptManager.py:340
+msgid "Search necessory scripts"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:344
+#, fuzzy
+msgid "Edit selected script"
+msgstr "Redigera vald avsökningsprofil"
+
+#: umitGUI/ScriptManager.py:347
+msgid "Preferences"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:348
+msgid "Script Manager settings"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:354
+#, fuzzy
+msgid "Toolbar"
+msgstr "Ver_ktyg"
+
+#: umitGUI/ScriptManager.py:355
+msgid "Show/hide toolbar"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:359
+msgid "Show/hide statusbar"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:363
+msgid "Show/hide Categories sidebar"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:367
+#, fuzzy
+msgid "Show/hide Description sidebar"
+msgstr "Tjänstebeskrivning"
+
+#: umitGUI/ScriptManager.py:497
+msgid "All"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:601
+msgid "Script Manager Preferences"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:613
+msgid "Scripts Catalog"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:635
+msgid "Remove..."
+msgstr ""
+
+#: umitGUI/ScriptManager.py:645
+#, fuzzy
+msgid "Text Editor"
+msgstr "Profilredigerare"
+
+#: umitGUI/ScriptManager.py:648
+#, fuzzy
+msgid "Internal Editor"
+msgstr "Profilredigerare"
+
+#: umitGUI/ScriptManager.py:651
+#, fuzzy
+msgid "External Editor"
+msgstr "Profilredigerare"
+
+#: umitGUI/ScriptManager.py:667
+msgid "Catalog"
+msgstr ""
+
+#: umitGUI/ScriptManager.py:668
+#, fuzzy
+msgid "Editor"
+msgstr "Profilredigerare"
+
+#: umitGUI/ScriptManager.py:698
+msgid "Select Necessory Scripts"
+msgstr ""
 
 #: umitGUI/Search.py:65
+#, python-format
 msgid "File: %s"
 msgstr "Fil: %s"
 
 #: umitGUI/Search.py:73
+#, python-format
 msgid "Searching inside '%s'"
 msgstr ""
 
@@ -1716,7 +3721,7 @@ msgstr "Datum"
 msgid "General search parameters"
 msgstr ""
 
-#: umitGUI/SearchGUI.py:125
+#: umitGUI/SearchGUI.py:125 umitInterfaceEditor/Tools.py:587
 msgid "Option"
 msgstr "Alternativ"
 
@@ -1728,25 +3733,9 @@ msgstr "Nyckelord"
 msgid "Host search parameters"
 msgstr ""
 
-#: umitGUI/SearchGUI.py:148
-msgid "MAC"
-msgstr "MAC"
-
-#: umitGUI/SearchGUI.py:149
-msgid "IPv4"
-msgstr "IPv4"
-
-#: umitGUI/SearchGUI.py:150
-msgid "IPv6"
-msgstr "IPv6"
-
 #: umitGUI/SearchGUI.py:165
 msgid "Service search parameters"
 msgstr ""
-
-#: umitGUI/SearchGUI.py:168
-msgid "Port number"
-msgstr "Portnummer"
 
 #: umitGUI/SearchGUI.py:171
 msgid "Port state"
@@ -1805,26 +3794,25 @@ msgid "No search method selected!"
 msgstr ""
 
 #: umitGUI/SearchGUI.py:402
-msgid "Umit can search results on directories or inside it's own database. Please, select a method by choosing a directory or by checking the search data base option at the 'Search options' tab before start the search"
+msgid ""
+"Umit can search results on directories or inside it's own database. Please, "
+"select a method by choosing a directory or by checking the search data base "
+"option at the 'Search options' tab before start the search"
 msgstr ""
 
-#: umitGUI/SearchGUI.py:785
+#: umitGUI/SearchGUI.py:784
 msgid "/"
 msgstr "/"
 
 #: umitGUI/SearchGUI.py:817
-msgid "Open"
-msgstr "Öppen"
-
-#: umitGUI/SearchGUI.py:818
 msgid "Filtered"
 msgstr "Filtrerad"
 
-#: umitGUI/SearchGUI.py:819
+#: umitGUI/SearchGUI.py:818
 msgid "Closed"
 msgstr "Stängd"
 
-#: umitGUI/SearchGUI.py:864
+#: umitGUI/SearchGUI.py:863
 msgid "Choose the path to search in"
 msgstr ""
 
@@ -1845,7 +3833,10 @@ msgid "Service Fingerprint Report"
 msgstr ""
 
 #: umitGUI/ServiceFingerprintReport.py:58
-msgid "E.g. smtp, pop-3, http, domain, ssh, etc. Umit tries to automaticly fill this field for you, based on the Nmap \"SERVICE\" output field. If it is correct, you don't need to worry about filling out this field. "
+msgid ""
+"E.g. smtp, pop-3, http, domain, ssh, etc. Umit tries to automaticly fill "
+"this field for you, based on the Nmap \"SERVICE\" output field. If it is "
+"correct, you don't need to worry about filling out this field. "
 msgstr ""
 
 #: umitGUI/ServiceFingerprintReport.py:64
@@ -1853,7 +3844,10 @@ msgid "Platform/OS"
 msgstr "Plattform/OS"
 
 #: umitGUI/ServiceFingerprintReport.py:65
-msgid "The operating system or embedded device the service is running on - Examples are \"Linux 2.4.X\", \"Windows XP\", \"Cisco 3640 router\", \"Netgear MR814 WAP\""
+msgid ""
+"The operating system or embedded device the service is running on - Examples "
+"are \"Linux 2.4.X\", \"Windows XP\", \"Cisco 3640 router\", \"Netgear MR814 "
+"WAP\""
 msgstr ""
 
 #: umitGUI/ServiceFingerprintReport.py:70
@@ -1861,15 +3855,32 @@ msgid "Service Description"
 msgstr "Tjänstebeskrivning"
 
 #: umitGUI/ServiceFingerprintReport.py:72
-msgid "Please try to include vendor name, app name, and version number as applicable. It is OK to leave this blank for embedded devices where you have described the hardware above and don't have any further details on the service name/version. Here are a few examples: ISC Bind 9.2.2, Sendmail 8.12.9/8.10.2, Microsoft Exchange 5.5.2656.59, Network Associates WebShield 4.5"
+msgid ""
+"Please try to include vendor name, app name, and version number as "
+"applicable. It is OK to leave this blank for embedded devices where you have "
+"described the hardware above and don't have any further details on the "
+"service name/version. Here are a few examples: ISC Bind 9.2.2, Sendmail "
+"8.12.9/8.10.2, Microsoft Exchange 5.5.2656.59, Network Associates WebShield "
+"4.5"
 msgstr ""
 
 #: umitGUI/ServiceFingerprintReport.py:81
-msgid "Further info on the device or service, any special customizations, etc. If it isn't obvious, please let me know what the service is (Virus scanning email gateway, Gnutella-protocol P2P app, print server web configuration port, etc"
+msgid ""
+"Further info on the device or service, any special customizations, etc. If "
+"it isn't obvious, please let me know what the service is (Virus scanning "
+"email gateway, Gnutella-protocol P2P app, print server web configuration "
+"port, etc"
 msgstr ""
 
 #: umitGUI/ServiceFingerprintReport.py:89
-msgid "This form allows you to contribute new service/version fingerprints to the Nmap database. Thanks for helping! <b>Please do not fill this out unless you are sure that you know what application is running on the machine you are submitting</b>. Incorrect entries can pollute the database. By submitting fingerprints you are transfering any copyright interest in the data to Fyodor so that he can modify it, relicense it, incorporate it into programs such as Nmap, etc."
+msgid ""
+"This form allows you to contribute new service/version fingerprints to the "
+"Nmap database. Thanks for helping! <b>Please do not fill this out unless you "
+"are sure that you know what application is running on the machine you are "
+"submitting</b>. Incorrect entries can pollute the database. By submitting "
+"fingerprints you are transfering any copyright interest in the data to "
+"Fyodor so that he can modify it, relicense it, incorporate it into programs "
+"such as Nmap, etc."
 msgstr ""
 
 #: umitGUI/ServiceFingerprintReport.py:157
@@ -1877,7 +3888,9 @@ msgid "Service Fingerprint report is incomplete!"
 msgstr ""
 
 #: umitGUI/ServiceFingerprintReport.py:159
-msgid "The Service Fingerprint report is incomplete. Please, try to provide as much information as possible."
+msgid ""
+"The Service Fingerprint report is incomplete. Please, try to provide as much "
+"information as possible."
 msgstr ""
 
 #: umitGUI/ServiceFingerprintReport.py:180
@@ -1885,7 +3898,11 @@ msgid "Service Fingerprint not registered!"
 msgstr ""
 
 #: umitGUI/ServiceFingerprintReport.py:182
-msgid "The Service Fingerprint could not be registered. This problem may be caused by the lack of Internet Access or indisponibility of the fingerprint server. Please, verify your internet access, and then try to register the service fingerprint once again."
+msgid ""
+"The Service Fingerprint could not be registered. This problem may be caused "
+"by the lack of Internet Access or indisponibility of the fingerprint server. "
+"Please, verify your internet access, and then try to register the service "
+"fingerprint once again."
 msgstr ""
 
 #: umitGUI/ServiceFingerprintReport.py:191
@@ -1893,7 +3910,10 @@ msgid "Service Fingerprint sucessfully registered!"
 msgstr ""
 
 #: umitGUI/ServiceFingerprintReport.py:193
-msgid "The Service Fingerprint was sucessfully registered. A web page with detailed description about this registration is going to be openned in your default web browser."
+msgid ""
+"The Service Fingerprint was sucessfully registered. A web page with detailed "
+"description about this registration is going to be openned in your default "
+"web browser."
 msgstr ""
 
 #: umitGUI/Wizard.py:87
@@ -1908,27 +3928,408 @@ msgstr ""
 msgid "You must provide a target to be scanned."
 msgstr "Du måste ange ett mål att söka av."
 
-#: umitGUI/Wizard.py:358
+#: umitGUI/Wizard.py:390
 msgid "Umit generated the nmap command. Click Apply to finish this wizard."
 msgstr ""
 
-#: umitGUI/Wizard.py:373
-msgid "Please, enter the profile name, and optionally, enter a hint, description and annotation for this new profile"
+#: umitGUI/Wizard.py:405
+msgid ""
+"Please, enter the profile name, and optionally, enter a hint, description "
+"and annotation for this new profile"
 msgstr ""
 
-#: umitGUI/Wizard.py:417
+#: umitGUI/Wizard.py:449
 msgid "Umit allow user to construct powerful commands in two distinct ways:"
 msgstr ""
 
-#: umitGUI/Wizard.py:419
+#: umitGUI/Wizard.py:451
 msgid "Novice"
 msgstr "Nybörjare"
 
-#: umitGUI/Wizard.py:420
+#: umitGUI/Wizard.py:452
 msgid "Expert"
 msgstr "Expert"
 
-#: umitGUI/Wizard.py:438
-msgid "You wish to create a new profile, or just want to quickly create a command and run it once?"
+#: umitGUI/Wizard.py:470
+msgid ""
+"You wish to create a new profile, or just want to quickly create a command "
+"and run it once?"
 msgstr ""
 
+#: umitInterfaceEditor/DependencesOption.py:46
+msgid "Dependence of Option "
+msgstr ""
+
+#: umitInterfaceEditor/DependencesOption.py:54
+msgid ""
+"There is a problem deleting this option. This options have dependences.  "
+msgstr ""
+
+#: umitInterfaceEditor/DependencesOption.py:55
+msgid ""
+"Are you sure that can remove this option? Dependences should be removed too"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:76
+msgid "Umit Interface Editor - v0.1"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:229
+#, fuzzy
+msgid "Edit Modes"
+msgstr "Textläge"
+
+#: umitInterfaceEditor/Main.py:237
+#, fuzzy
+msgid "Option List"
+msgstr "Alternativ"
+
+#: umitInterfaceEditor/Main.py:410
+#, fuzzy
+msgid "Proprieties"
+msgstr "Portar"
+
+#: umitInterfaceEditor/Main.py:537
+#, fuzzy
+msgid "_Save"
+msgstr "_Spara avsökning"
+
+#: umitInterfaceEditor/Main.py:537
+#, fuzzy
+msgid "Save"
+msgstr "Tillstånd"
+
+#: umitInterfaceEditor/Main.py:538
+#, fuzzy
+msgid "_Save all"
+msgstr "_Spara avsökning"
+
+#: umitInterfaceEditor/Main.py:538
+#, fuzzy
+msgid "Save all"
+msgstr "Spara avsökning"
+
+#: umitInterfaceEditor/Main.py:542
+msgid "_Undo"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:543
+msgid "_Redo"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:543
+#, fuzzy
+msgid "Redo"
+msgstr "Tillverkare"
+
+#: umitInterfaceEditor/Main.py:544
+msgid "View"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:545
+msgid "_Right Bar"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:546
+msgid "Right Bar"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:547
+#, fuzzy
+msgid "Tools"
+msgstr "Ver_ktyg"
+
+#: umitInterfaceEditor/Main.py:549
+#, fuzzy
+msgid "Items"
+msgstr "Anteckningar"
+
+#: umitInterfaceEditor/Main.py:550
+msgid "_Label"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:551
+msgid "Insert label"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:552
+#, fuzzy
+msgid "_New Section"
+msgstr "_Ny avsökning"
+
+#: umitInterfaceEditor/Main.py:553
+#, fuzzy
+msgid "New Section"
+msgstr "Avsnitt"
+
+#: umitInterfaceEditor/Main.py:554
+msgid "_Remove Section Label"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:555
+msgid "Remove Section Label"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:556 umitInterfaceEditor/Tools.py:186
+#, fuzzy
+msgid "_Remove Section"
+msgstr "Avsnitt"
+
+#: umitInterfaceEditor/Main.py:557 umitInterfaceEditor/Tools.py:187
+#, fuzzy
+msgid "Remove Section"
+msgstr "Avsnitt"
+
+#: umitInterfaceEditor/Main.py:558
+msgid "_Add new voidplace"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:559
+msgid "Add new voidplace"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:560
+#, fuzzy
+msgid "_Remove Option"
+msgstr "Profilalternativ"
+
+#: umitInterfaceEditor/Main.py:561
+msgid "Remove option"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:562
+msgid "_Remove voidplace"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:563
+msgid "Remove voidplace"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:564
+#, fuzzy
+msgid "_Add option selected"
+msgstr "Ingen värd markerad!"
+
+#: umitInterfaceEditor/Main.py:565
+#, fuzzy
+msgid "Add option selected"
+msgstr "Ingen värd markerad!"
+
+#: umitInterfaceEditor/Main.py:566 umitInterfaceEditor/Tools.py:180
+msgid "_Move Section Left"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:567 umitInterfaceEditor/Tools.py:181
+msgid "Move Section Left"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:568 umitInterfaceEditor/Tools.py:182
+msgid "_Move Section Right"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:569 umitInterfaceEditor/Tools.py:183
+msgid "Move Section Right"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:570
+msgid "_Move Item Down"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:571
+msgid "Move Item Down"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:572
+msgid "_Move Item Up"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:573
+msgid "Move Item Up"
+msgstr ""
+
+#: umitInterfaceEditor/Main.py:574
+#, fuzzy
+msgid "Help"
+msgstr "_Hjälp"
+
+#: umitInterfaceEditor/Main.py:575
+#, fuzzy
+msgid "About"
+msgstr "_Om"
+
+#: umitInterfaceEditor/OptionManager.py:136
+#, fuzzy
+msgid "Hint:"
+msgstr "Tips"
+
+#: umitInterfaceEditor/OptionManager.py:141
+msgid "Need root"
+msgstr ""
+
+#: umitInterfaceEditor/OptionManager.py:146
+#, fuzzy
+msgid "Options:"
+msgstr "Alternativ"
+
+#: umitInterfaceEditor/OptionManager.py:155
+msgid "Arguments:"
+msgstr ""
+
+#: umitInterfaceEditor/OptionManager.py:187
+msgid "Arguments"
+msgstr ""
+
+#: umitInterfaceEditor/OptionManager.py:189
+msgid "Insert the description to argument:"
+msgstr ""
+
+#: umitInterfaceEditor/OptionManager.py:355
+msgid "Invalid option "
+msgstr ""
+
+#: umitInterfaceEditor/OptionManager.py:446
+msgid "ERROR"
+msgstr ""
+
+#: umitInterfaceEditor/OptionManager.py:447
+msgid "Option do not exists"
+msgstr ""
+
+#: umitInterfaceEditor/OptionManager.py:469
+msgid "Invalid name option "
+msgstr ""
+
+#: umitInterfaceEditor/PageNotebook.py:68
+#: umitInterfaceEditor/PageNotebook.py:145
+msgid "Add/Remove Voidplace"
+msgstr ""
+
+#: umitInterfaceEditor/PageNotebook.py:198
+msgid "Move item"
+msgstr ""
+
+#: umitInterfaceEditor/PageNotebook.py:350
+msgid "Add/Remove Option"
+msgstr ""
+
+#: umitInterfaceEditor/PageNotebook.py:435
+msgid "Add/Remove Page"
+msgstr ""
+
+#: umitInterfaceEditor/Profile.py:74
+msgid "Add Label"
+msgstr ""
+
+#: umitInterfaceEditor/Profile.py:124
+msgid "Move Page"
+msgstr ""
+
+#: umitInterfaceEditor/Tools.py:175
+msgid "_Move up"
+msgstr ""
+
+#: umitInterfaceEditor/Tools.py:175
+msgid "Move up"
+msgstr ""
+
+#: umitInterfaceEditor/Tools.py:177
+msgid "_Move down"
+msgstr ""
+
+#: umitInterfaceEditor/Tools.py:178
+msgid "Move down"
+msgstr ""
+
+#: umitInterfaceEditor/Tools.py:184
+#, fuzzy
+msgid "_Add Section"
+msgstr "Avsnitt"
+
+#: umitInterfaceEditor/Tools.py:185
+#, fuzzy
+msgid "Add Section"
+msgstr "Avsnitt"
+
+#: umitInterfaceEditor/Tools.py:188 umitInterfaceEditor/Tools.py:189
+msgid "Add Place"
+msgstr ""
+
+#: umitInterfaceEditor/Tools.py:190 umitInterfaceEditor/Tools.py:191
+#, fuzzy
+msgid "Remove Option"
+msgstr "Profilalternativ"
+
+#: umitInterfaceEditor/Tools.py:243
+#, fuzzy
+msgid "Select a Option "
+msgstr "Välj avsökning"
+
+#: umitInterfaceEditor/Tools.py:297
+msgid "Change Label"
+msgstr ""
+
+#: umitInterfaceEditor/Tools.py:362
+msgid "Update OptionList"
+msgstr ""
+
+#: umitInterfaceEditor/Tools.py:613
+msgid "List of items"
+msgstr ""
+
+#~ msgid ""
+#~ "umitCore.NmapParser.set_ip_address deprecated! Use umitCore.NmapParser."
+#~ "set_ip instead."
+#~ msgstr ""
+#~ "umitCore.NmapParser.set_ip_address är föråldrad! Använd umitCore."
+#~ "NmapParser.set_ip istället."
+
+#~ msgid ""
+#~ "umitCore.NmapParser.get_ip_address deprecated! Use umitCore.NmapParser."
+#~ "get_ip instead."
+#~ msgstr ""
+#~ "umitCore.NmapParser.get_ip_address är föråldrad! Använd umitCore."
+#~ "NmapParser.get_ip istället."
+
+#~ msgid ""
+#~ "umitCore.NmapParser.set_mac_address deprecated! Use umitCore.NmapParser."
+#~ "set_mac instead."
+#~ msgstr ""
+#~ "umitCore.NmapParser.set_mac_address är föråldrad! Använd umitCore."
+#~ "NmapParser.set_mac istället."
+
+#~ msgid ""
+#~ "umitCore.NmapParser.get_mac_address deprecated! Use umitCore.NmapParser."
+#~ "get_mac instead."
+#~ msgstr ""
+#~ "umitCore.NmapParser.get_mac_address är föråldrad! Använd umitCore."
+#~ "NmapParser.get_mac istället."
+
+#~ msgid ""
+#~ "umitCore.NmapParser.set_ipv6_address deprecated! Use umitCore.NmapParser."
+#~ "set_ipv6 instead."
+#~ msgstr ""
+#~ "umitCore.NmapParser.set_ipv6_address är föråldrad! Använd umitCore."
+#~ "NmapParser.set_ipv6 istället."
+
+#~ msgid ""
+#~ "umitCore.NmapParser.get_ipv6_address deprecated! Use umitCore.NmapParser."
+#~ "get_ipv6 instead."
+#~ msgstr ""
+#~ "umitCore.NmapParser.get_ipv6_address är föråldrad! Använd umitCore."
+#~ "NmapParser.get_ipv6 istället."
+
+#~ msgid "Unknown Host"
+#~ msgstr "Okänd värd"
+
+#~ msgid "unknown"
+#~ msgstr "okänd"
+
+#~ msgid "Unknown version"
+#~ msgstr "Okänd version"
+
+#~ msgid ""
+#~ "umitCore.NmapParser.get_ipv4_address deprecated! Use umitCore.NmapParser."
+#~ "get_ipv4 instead."
+#~ msgstr ""
+#~ "umitCore.NmapParser.get_ipv4_address är föråldrad! Använd umitCore."
+#~ "NmapParser.get_ipv4 istället."
