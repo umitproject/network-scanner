@@ -174,7 +174,7 @@ Umit command creator wizards.""",
           "compressed": 1,
           "optimize": 2,
           "packages": "encodings",
-          "includes": ("pango, gobject, pickle, bz2, encodings, "
+          "includes": ("pango, atk, gobject, pickle, bz2, encodings, "
               "encodings.*, cairo, pangocairo, psyco")
           }}
       )
