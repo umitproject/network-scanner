@@ -44,6 +44,7 @@ locale_dir = os.path.join('share', 'locale')
 config_dir = os.path.join('share', 'umit', 'config')
 docs_dir = os.path.join('share', 'doc', 'umits')
 misc_dir = os.path.join('share', 'umit', 'misc')
+sql_dir = os.path.join('share', 'umit', 'sql')
 
 def mo_find(result, dirname, fnames):
     files = []
