@@ -46,12 +46,3 @@ hint =
 options = Verbose
 command = nmap -v %s
 annotation = 
-
-[Wassabi]
-description = 
-hint = 
-ports to scan = 2000,2222
-annotation = 
-command = nmap -v -v -v -v -v  -p2000,2222 -n --packet-trace -d -d -d -d -d  -T Aggressive -P0 %s
-options = Verbose,Ports to scan,Disable reverse DNS resolution,Watch packets,Debug,Aggressive,Ping after Scan
-
