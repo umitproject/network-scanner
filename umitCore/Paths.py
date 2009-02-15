@@ -184,7 +184,7 @@ class Paths(object):
                     config_dir = result['config_dir']
                     config_file = result['config_file']
                     log.debug(">>> Using recently created config files in \
-user home: %s" % config_file)
+                                user home: %s" % config_file)
                 else:
                     raise Exception()
             except:
