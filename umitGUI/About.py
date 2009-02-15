@@ -215,7 +215,14 @@ class Credits(HIGWindow):
     
     def set_text(self):
         b = self.written_by_text.get_buffer()
-        b.set_text("""Adriano Monteiro Marques <adriano@umitproject.org>""")
+        b.set_text("""Adriano Monteiro Marques <adriano@umitproject.org>
+Guilherme Polo <gpolo@gmail.com>
+João Medeiros <ignotus21@gmail.com>
+Francesco Piccinno <stack.box@gmail.com>
+Luís A. Bastião Silva <luis.kop@gmail.com>
+Bartosz Skowron <getxsick@gmail.com>
+
+        """)
         
         b = self.design_text.get_buffer()
         b.set_text(_("""Operating System and Vulnerability Icons:
@@ -292,13 +299,17 @@ David Fifield <david@bamsoftware.com>
 Kris Katterjohn <katterjohn@gmail.com>
 
 The Umit Project WebSite:
-AbraoBarbosa dos Santos Neto <abraobsn@gmail.com>
+Abrao Barbosa dos Santos Neto <abraobsn@gmail.com>
 Adriano Monteiro Marques <adriano@umitproject.org>
 Heitor de Lima Matos <heitordelima@hotmail.com>
 Joao Paulo Pacheco <jp.pacheco@gmail.com>
 João Paulo de Souza Medeiros <ignotus21@gmail.com>
 Luis Antonio Bastião Silva <luis.kop@gmail.com>
 Rodolfo da Silva Carvalho <rodolfo@umitproject.org>
+
+Helpers:
+Daniel Mendes Cassiano <danielcassiano@gmail.com>
+Luiz Paulo de Souza Medeiros <luizpaulo13@gmail.com>
 
 Beta testers for 0.9.5RC1:
 Bartosz Adam Skowron <getxsick@umitproject.org>
@@ -390,7 +401,12 @@ Luis Antonio Bastião Silva <luis.kop@gmail.com>
 
 Simplified Chinese:
 Devtar Singh <devtar@gmail.com>
-Haoyu Bai <baihaoyu@gmail.com>"""))
+Haoyu Bai <baihaoyu@gmail.com>
+
+Swedish:
+Daniel Nylander <po@danielnylander.se>
+
+"""))
 
         b = self.nokia_text.get_buffer()
         b.set_text("""Adriano Monteiro Marques <adriano@umitproject.org>""")
