@@ -175,6 +175,8 @@ Umit command creator wizards.""",
           "optimize": 2,
           "packages": "encodings",
           "includes": ("pango, atk, gobject, pickle, bz2, encodings, "
-              "encodings.*, cairo, pangocairo, psyco")
+              "encodings.*, cairo, pangocairo"),
+          # Ignore psyco if it is not installed
+          "ignores": ['psyco'],
           }}
       )
