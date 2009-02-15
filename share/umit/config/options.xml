@@ -506,5 +506,17 @@
     name="Script List" 
     need_root="0" 
     option="--script=%s"/>
+  <option 
+    arguments="" 
+    hint="Skip discovery stage altogether" 
+    name="Disable ping" 
+    need_root="1" 
+    option="-PN"/>
+  <option 
+    arguments="" 
+    hint="Sends probes in parallel and is able to determine what sort of probe will be most effective based on scan results" 
+    name="Traceroute" 
+    need_root="1" 
+    option="--traceroute"/>
 
 </nmap_options>

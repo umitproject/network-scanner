@@ -46,3 +46,11 @@ hint =
 options = Verbose
 command = nmap -v %s
 annotation = 
+
+[Quick traceroute]
+description = 
+hint = 
+ports to scan = 80
+annotation = 
+command = nmap -PN -p80 --traceroute %s
+options = Disable ping,Ports to scan,Traceroute

@@ -51,6 +51,8 @@
     <option_check label="ACK ping" option="TCP ACK" />
     <option_check label="SYN ping" option="TCP SYN" />
     <option_check label="UDP probes" option="UDP Probe" />
+	<option_check arg_type="" label="Disable ping" option="Disable ping"/>
+	<option_check arg_type="" label="Traceroute" option="Traceroute"/>
   </Ping>
   <Target label="Target options">
     <option_check label="Excluded hosts/networks" option="Excluded hosts/networks" />
