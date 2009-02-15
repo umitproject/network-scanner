@@ -216,11 +216,12 @@ class Credits(HIGWindow):
     def set_text(self):
         b = self.written_by_text.get_buffer()
         b.set_text("""Adriano Monteiro Marques <adriano@umitproject.org>
+Bartosz Skowron <getxsick@gmail.com>
+Francesco Piccinno <stack.box@gmail.com>
 Guilherme Polo <gpolo@gmail.com>
 João Medeiros <ignotus21@gmail.com>
-Francesco Piccinno <stack.box@gmail.com>
-Luís A. Bastião Silva <luis.kop@gmail.com>
-Bartosz Skowron <getxsick@gmail.com>""")
+Luís A. Bastião Silva <luis.kop@gmail.com>""")
+
         
         b = self.design_text.get_buffer()
         b.set_text(_("""Operating System and Vulnerability Icons:
@@ -323,7 +324,6 @@ Regis Kuramoto Dias <kuramotobm@gmail.com>
 <ray-solomon@excite.com>
 <jah@zadkiel.plus.com>
 <epatterson@directapps.com>
-
 
 Special thanks to our GSoC volunteers heroes:
 Daniel Mendes Cassiano <danielcassiano@gmail.com>
