@@ -24,10 +24,8 @@ import gobject
 
 from umitCore.I18N import _
 
-from umitInventory.TLBase import colors_from_file
-from umitInventory.TLBase import gradient_colors_from_file
+from umitInventory.TLBase import colors_from_file, gradient_colors_from_file
 from umitInventory.TLBase import changes_list
-from umitInventory.TLBase import changes_in_db
 
 PI = 3.1415926535897931
 GOLDENRATIO = 1.618033989
@@ -149,8 +147,7 @@ class TLSelected(gtk.Widget):
             c = self.datagrabber.timerange_changes_count_generic(range_start,
                 range_end, key, self.datagrabber.inventory,
                 self.datagrabber.hostaddr)
-            data[changes_in_db[categories[key][1]]] = c
-
+            data[categories[key][1]] = c
 
         data_keys = data.keys()
         for item in changes_list:
@@ -193,8 +190,9 @@ class TLSelected(gtk.Widget):
             color_from = newcolor[0]
             color_to = newcolor[1]
         else:
-            color_from = colors_from_file()[more_changes.keys()[0]]
-            color_to = gradient_colors_from_file()[more_changes.keys()[0]]
+            color_name = more_changes.keys()[0]
+            color_from = colors_from_file()[color_name]
+            color_to = gradient_colors_from_file()[color_name]
 
         self.newcolor = (color_from, color_to)
         self.newselection = bars_height # set new selection, this will start

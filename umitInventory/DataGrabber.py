@@ -75,7 +75,7 @@ class DataGrabber(ConnectDB, ChangesRetrieve):
         Standard filter to use when we are grabbing data in Changes Sum kind.
         """
         #return {0: (True, view_kind["sum"])}
-        return {0: (True, "Changes Sum")}
+        return {0: (True, 'changes_sum')}
 
 
     def load_changes_for_timerange(self, start, end):

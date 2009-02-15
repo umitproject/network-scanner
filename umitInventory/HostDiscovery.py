@@ -30,6 +30,8 @@ from umitCore.NmapParser import NmapParser
 from umitCore.Paths import Path
 from umitCore.I18N import _
 
+from umitInventory.Utils import append_s
+
 from higwidgets.higbuttons import HIGButton
 from higwidgets.higlabels import HIGEntryLabel
 from higwidgets.higboxes import HIGVBox, HIGHBox, hig_box_space_holder
@@ -322,10 +324,18 @@ class HostDiscovery(gtk.Window):
 
         self.target_model.clear()
         self.hostdetect_btn.set_sensitive(False)
-        p = (self.scount > 1) and 's' or ''
-        self.target_lbl.set_label(
-            _("Target list (%d scan%s running)") % (self.scount, p))
+        self._adjust_target_label()
         gobject.timeout_add(500, self._check_scans)
+
+
+    def _adjust_target_label(self):
+        """Update target_lbl according to the current scount (assumes that
+        scount > 0)."""
+        word = append_s(_("scan"), self.scount)
+        self.target_lbl.set_label(
+                _("Target list") +
+                (" (%d " % self.scount) + word +
+                _("running"))
 
 
     def _check_scans(self):
@@ -349,9 +359,7 @@ class HostDiscovery(gtk.Window):
 
                 self.scount -= 1
                 if self.scount:
-                    p = (self.scount > 1) and 's' or ''
-                    self.target_lbl.set_label(
-                        _("Target list (%d scan%s running)") % (self.scount, p))
+                    self._adjust_target_label()
 
                 # clean up temp files
                 scan.close()

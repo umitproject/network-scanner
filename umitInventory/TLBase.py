@@ -36,32 +36,19 @@ settings_file = Path.tl_conf
 configparser = ConfigParser()
 configparser.read(settings_file)
 
-# this dict may have keys exchanged with values, but before doing this
-# I will need to rework how InventoryChanges selects "change category".
-colors_in_file = {
-    _("Changes Sum"): "changes_sum",
-    _("Nothing"): "nothing",
-    _("Inventory"): "inventory",
-    _("Availability"): "availability",
-    _("Several"): "several",
-    _("Fingerprint"): "fingerprint",
-    _("Ports"): "ports"
-    }
-#
-
 changes_in_db = {
-    _("Nothing"): "nothing",
-    _("Inventory"): "inventory",
-    _("Availability"): "availability",
-    _("Several"): "several",
-    _("Fingerprint"): "fingerprint",
-    _("Ports"): "ports"
-    }
+        'nothing': _("Nothing"),
+        'inventory': _("Inventory"),
+        'availability': _("Availability"),
+        'several': _("Several"),
+        'fingerprint': _("Fingerprint"),
+        'ports': _("Ports")
+        }
 
-changes_list = [
-    "nothing", "inventory", "availability", "several",
-    "fingerprint", "ports"
-    ]
+categories = dict(changes_in_db)
+categories['changes_sum'] = _("Changes Sum")
+
+changes_list = changes_in_db.keys()
 
 view_mode = {
     "yearly": _("Yearly View"),

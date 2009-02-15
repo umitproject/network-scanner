@@ -26,6 +26,7 @@ from umitCore.I18N import _
 from umitCore.UmitLogging import log
 from umitCore.Paths import Path
 from umitInventory.Calendar import months
+from umitInventory.TLBase import changes_in_db
 
 umitdb = Path.umitdb_ng
 
@@ -165,7 +166,6 @@ class ChangesList(gtk.VBox):
         partial = { }
 
         for value in full.values():
-            
             if self.show_states[value[3]]:
                 vnew = list(value)
                 vnew[2] = count
@@ -385,7 +385,7 @@ class ChangesList(gtk.VBox):
         tl = TLHolder(fk_inventory, fk_address)
         tl.show_all()
 
-        title = _("%s/%s") % (self.inventory, self.hostaddr)
+        title = "%s/%s" % (self.inventory, self.hostaddr)
         tab_label = HIGAnimatedTabLabel(title)
         tab_label.show()
         tab_label.connect("close-clicked", close_page, tl)
@@ -396,9 +396,11 @@ class ChangesList(gtk.VBox):
         """
         Update viewing_lbl based on viewing_rows.
         """
-        if len(self.viewing_rows):
-            self.viewing_lbl.set_label(_("Viewing 1-%d of %d") % (
-                len(self.viewing_rows), len(self.viewing_rows)))
+        vrows = len(self.viewing_rows)
+        if vrows:
+            self.viewing_lbl.set_label(
+                    _("Viewing") + (" 1-%d " % vrows) +
+                    _("of") + (" %d" % vrows))
         else:
             self.viewing_lbl.set_label(_("Nothing to view"))
 
@@ -504,7 +506,7 @@ class ChangesList(gtk.VBox):
             text = change[3]
 
             if category == -1: # changes for every category
-                affected = change[4]
+                affected = changes_in_db[change[4]]
                 self.model.append([affected, text,
                     self.format_date(entry_date)])
 

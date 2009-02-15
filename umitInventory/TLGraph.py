@@ -21,7 +21,6 @@ import gtk
 import cairo
 import gobject
 
-from umitInventory.TLBase import colors_in_file
 from umitInventory.TLBase import colors_from_file
 
 PI = 3.1415926535897931
@@ -1044,7 +1043,7 @@ class InteractiveGraph(gtk.Widget):
             cp = self.graphpoints[self.ccount][self.cur_point_indx][k]
 
             cr.save()
-            cr.set_source_rgb(*colors[colors_in_file[self.line_filter[k][1]]])
+            cr.set_source_rgb(*colors[self.line_filter[k][1]])
 
             cr.move_to(*self.cur_point[k])
 
@@ -1133,7 +1132,7 @@ class InteractiveGraph(gtk.Widget):
                     cp = self.graphpoints[key][pind][indx]
 
                     cr.save()
-                    cr.set_source_rgb(*colors[colors_in_file[self.line_filter[indx][1]]])
+                    cr.set_source_rgb(*colors[self.line_filter[indx][1]])
 
                     cr.move_to(*cur_points[indx])
 
@@ -1204,7 +1203,7 @@ class InteractiveGraph(gtk.Widget):
             x = cr.get_current_point()[0]
 
             # stroke every line.
-            color = colors[colors_in_file[self.line_filter[indx][1]]]
+            color = colors[self.line_filter[indx][1]]
             cr.set_source_rgb(*color)
             cr.stroke_preserve()
 
@@ -1314,7 +1313,7 @@ class InteractiveGraph(gtk.Widget):
                         count != self.pts_per_div - 1:
                         continue
 
-                    color = colors[colors_in_file[self.line_filter[indx][1]]]
+                    color = colors[self.line_filter[indx][1]]
                     value = "%d" % self.graph_data[self.selection][count][indx]
                     self.balloons.append((value, color, pt))
 
@@ -1327,7 +1326,7 @@ class InteractiveGraph(gtk.Widget):
                 if self.line_filter and not self.line_filter[indx][0]:
                     continue
 
-                color = colors[colors_in_file[self.line_filter[indx][1]]]
+                color = colors[self.line_filter[indx][1]]
 
                 if self.selection == 0: # startup point
                     pt = self.start_pts[indx]

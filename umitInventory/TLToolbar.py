@@ -26,9 +26,8 @@ import gtk
 from higwidgets.higlabels import HIGEntryLabel
 from higwidgets.higbuttons import HIGButton
 
-from umitInventory.TLBase import colors_in_file
 from umitInventory.TLBase import colors_from_file_gdk
-from umitInventory.TLBase import view_mode_descr
+from umitInventory.TLBase import categories, view_mode_descr
 from umitInventory.ColoredToggleButton import ColoredToggleButton
 
 class FilterBox(gtk.HBox):
@@ -46,7 +45,7 @@ class FilterBox(gtk.HBox):
         gtk.HBox.__init__(self)
 
         self.line_filter = { }
-        self.categories = [ ]
+        self._filter_keys = [ ]
         self.connector = None
         self.buttons = gtk.HBox()
         self.colors = colors_from_file_gdk()
@@ -84,7 +83,7 @@ class FilterBox(gtk.HBox):
         self.__filter = lfilter
 
         if self.line_filter:
-            self.categories = [key for key in self.line_filter.keys()]
+            self._filter_keys = self.line_filter.keys()
             self._setup_top_btns()
 
 
@@ -107,19 +106,22 @@ class FilterBox(gtk.HBox):
         Create and connect filter-buttons.
         """
         # clear self.buttons first
-        [self.buttons.remove(w) for w in self.buttons.get_children()]
+        for w in self.buttons.get_children():
+            self.buttons.remove(w)
 
-        for category in self.categories:
-            cat_name = self.line_filter[category][1]
+        for key in self._filter_keys:
+            color_name = self.line_filter[key][1]
 
             if self.colors:
-                color = self.colors[colors_in_file[cat_name]]
+                color = self.colors[color_name]
             else:
                 color = (0, 0, 0)
 
-            b = ColoredToggleButton(cat_name, color)
-            b.set_active(self.line_filter[category][0])
-            b.connect('toggled', self.update_filter, category, cat_name)
+            category = categories[color_name]
+
+            b = ColoredToggleButton(category, color)
+            b.set_active(self.line_filter[key][0])
+            b.connect('toggled', self.update_filter, key, color_name)
 
             self.buttons.pack_start(b, False, False, 0)
 

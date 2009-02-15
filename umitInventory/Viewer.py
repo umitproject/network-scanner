@@ -54,6 +54,8 @@ from umitInventory.SchedulerLog import SchedLog
 from umitInventory.SettingsWin import NISettings
 from umitInventory.About import About
 from umitInventory.InventoryException import NoInventory
+from umitInventory.Utils import append_s
+
 
 umitdb = Path.umitdb_ng
 inventory_info = _("Info")
@@ -542,13 +544,10 @@ class InventoryViewer(HIGMainWindow):
 
             # layout
             matches = len(args[1])
-            if matches > 1 or matches == 0:
-                plural = _("s")
-            else:
-                plural = _("")
+            word = append_s(_("result"), matches)
             upper_title = gtk.Label()
             upper_title.set_markup(
-                    ("<b>%d " % plural) + _("result") + plural + _(" found.") +
+                    ("<b>%d " % matches) + word + _(" found.") +
                     "</b>")
             hutbox = HIGHBox()
             hutbox._pack_noexpand_nofill(upper_title)

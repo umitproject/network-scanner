@@ -37,6 +37,7 @@ from umitGUI.Icons import get_os_icon
 from umitInventory.NewInventory import NewInventory
 from umitInventory.InventoryLoad import InventoryLoad
 from umitInventory.InventoryCommonDialog import NoScheduleDlg
+from umitInventory.Utils import append_s
 
 INVENTORY_INFO = _("Info")
 (IPV4, IPV6, MAC, HOSTNAME) = range(4)
@@ -51,12 +52,6 @@ if os.path.isdir(Path.pixmaps_dir):
     pixbuf = gtk.gdk.pixbuf_new_from_file(icon_path)
     factory.add(NI_INVENTORY_ROOT_ICON, gtk.IconSet(pixbuf))
     factory.add_default()
-
-def get_plural(count):
-    if count == 0 or count > 1:
-        return _("s")
-    else:
-        return _("")
 
 class InventoryTree(gtk.Notebook):
     """
@@ -268,9 +263,8 @@ class InventoryTree(gtk.Notebook):
 
             self.running_scans[scan] = inv
             running_scans = len(self.running_scans)
-            plural = get_plural(running_scans)
             self.daddy._write_statusbar(("%d " % running_scans) +
-                    _("scan") + plural + _(" running"))
+                    append_s(_("scan"), running_scans) + _(" running"))
 
     def _check_scans(self):
         """
@@ -321,9 +315,9 @@ class InventoryTree(gtk.Notebook):
             del self.running_scans[td]
 
         running_scans = len(self.running_scans)
-        plural = get_plural(running_scans)
+        word = append_s(_("scan"), running_scans)
         self.daddy._write_statusbar(
-                ("%d " % running_scans) + _("scan") + plural + _(" running"))
+                ("%d " % running_scans) + word + _(" running"))
 
         if not self.running_scans:
             # all scans completed

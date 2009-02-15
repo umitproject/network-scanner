@@ -98,7 +98,7 @@ class InventoryLoad(ConnectDB, InventoryRetrieve):
                 continue
 
             scans_ids = self.get_scans_id_for_inventory(invid)
-            
+
             if not scans_ids:
                 # this Inventory has no associated scans with it, one possible
                 # reason: all scans for the Inventory were deleted

@@ -108,7 +108,7 @@ class UpdateChanges:
 
             down_time = self._check_for_downtime(finish_data, base_data)
             for item in down_time[1]:
-                data_dict[item] = (_("Availability"), _("Host down"),
+                data_dict[item] = ("availability", _("Host down"),
                     down_time[0][item], -1, -1)
 
             # load initial data for doing comparison
@@ -161,7 +161,7 @@ class UpdateChanges:
                 date = finish_data[indexes[indx+1]][1]
             
             # now load the first entry
-            data_dict[hostA[0]] = (_("Inventory"),
+            data_dict[hostA[0]] = ('inventory',
                 _("Host added to the Inventory."), date, hostA[1], hostA[1])
 
             self._insert_changes(data_dict, addr, inv_id)
@@ -249,10 +249,11 @@ class UpdateChanges:
             if not ports_only:
                 ports_only = True
 
-            verb, plural = self.conjugate(info_changes, False)
+            word, verb = self.conjugate(_("Port"), info_changes, False)
             ports_str = ', '.join([str(p) for p in info_changes])
-            host_diff = ''.join([host_diff, _("Port"), plural, ports_str,
-                verb, _("changed info")])
+            this_port_diff = ' '.join([
+                word, ports_str, verb, _("changed info")])
+            host_diff = ''.join([host_diff, this_port_diff])
 
         # compare fpinfoNs
         # dont consider uptime and lastboot in fingerprint (will probably
@@ -292,23 +293,23 @@ class UpdateChanges:
         # check diff
         if host_diff:
             if ports_only:
-                affected = _("Ports")
+                affected = 'ports'
             elif fp_only:
-                affected = _("Fingerprint")
+                affected = 'fingerprint'
             else:
-                affected = _("Several")
+                affected = 'several'
 
         else:
             # Nothing here means "Almost nothing", there could be
             # changes in extraports for example.
-            affected = _("Nothing")
+            affected = 'nothing'
             host_diff = _("No noticeables changes since last sucessfull scan.")
 
 
         return (affected, host_diff)
 
 
-    def conjugate(self, alist, toBe=True):
+    def conjugate(self, word, alist, toBe=True):
         """
         Do conjugation based on alist size.
         It expects that alist is not empty.
@@ -320,12 +321,11 @@ class UpdateChanges:
 
         if len(alist) > 1:
             verb = verbs[0]
-            plural = _("s")
+            word += _("s")
         else:
             verb = verbs[1]
-            plural = _("")
 
-        return verb, plural
+        return word, verb
 
 
     def _ports_diff(self, old, new):
@@ -374,15 +374,15 @@ class UpdateChanges:
 
         text = ''
         if closed_ports:
-            verb, plural = self.conjugate(closed_ports)
+            word, verb = self.conjugate(port_text, closed_ports)
             closed_ports = ', '.join([str(p) for p in closed_ports])
-            closed_ports = "%s%s %s %s %s %s." % (port_text, plural,
+            closed_ports = "%s %s %s %s %s." % (word,
                 closed_ports, verb, closed_text, now_text)
 
         if open_ports:
-            verb, plural = self.conjugate(open_ports)
+            word, verb = self.conjugate(port_text, open_ports)
             open_ports = ', '.join([str(p) for p in open_ports])
-            open_ports = "%s%s %s %s %s %s." % (port_text, plural,
+            open_ports = "%s %s %s %s %s." % (word,
                 open_ports, verb, open_text, now_text)
 
         if open_ports and closed_ports:
