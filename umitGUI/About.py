@@ -220,9 +220,7 @@ Guilherme Polo <gpolo@gmail.com>
 João Medeiros <ignotus21@gmail.com>
 Francesco Piccinno <stack.box@gmail.com>
 Luís A. Bastião Silva <luis.kop@gmail.com>
-Bartosz Skowron <getxsick@gmail.com>
-
-        """)
+Bartosz Skowron <getxsick@gmail.com>""")
         
         b = self.design_text.get_buffer()
         b.set_text(_("""Operating System and Vulnerability Icons:
@@ -321,9 +319,11 @@ Igor Feghali <ifeghali@php.net>
 Joao Paulo Pacheco <jp.pacheco@gmail.com>
 Luis Antonio Bastião Silva <luis.kop@gmail.com>
 Rodolfo da Silva Carvalho <rodolfo@umitproject.org>
+Regis Kuramoto Dias <kuramotobm@gmail.com>
 <ray-solomon@excite.com>
 <jah@zadkiel.plus.com>
 <epatterson@directapps.com>
+
 
 Special thanks to our GSoC volunteers heroes:
 Daniel Mendes Cassiano <danielcassiano@gmail.com>
@@ -359,25 +359,6 @@ Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>
 Summer of Code's projects Design:
 Virgílio Carlo de Menezes Vasconcelos <virgiliovasconcelos@gmail.com>""")
 
-        b = self.contributors_text.get_buffer()
-        b.set_text("""Sponsored by (SoC 2005, 2006 and 2007):
-Google <code.summer@gmail.com>
-
-Mentor of SoC 2005 and 2006:
-Fyodor <fyodor@insecure.org>
-
-Initial development:
-Adriano Monteiro Marques <py.adriano@gmail.com>
-Cleber Rodrigues Rosa Junior <cleber.gnu@gmail.com>
-
-Beta testers:
-Drew Miller <securitygeek@fribble.org>
-Regis Kuramoto Dias <kuramotobm@gmail.com>
-Rodolfo da Silva Carvalho <rodolfo.ueg@gmail.com>
-
-Initial attempt on Maemo port:
-Adriano Monteiro Marques <py.adriano@gmail.com>
-Osvaldo Santana Neto <osantana@gmail.com>""")
         
         b = self.translation_text.get_buffer()
         b.set_text(_("""Bahasa Indonesia:
