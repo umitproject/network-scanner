@@ -157,7 +157,7 @@ easier network scanning or even compare scan results to easily see any \
 changes. A regular user will also be able to construct powerful scans with \
 Umit command creator wizards.""",
       version = VERSION,
-      scripts = ['umit'],
+      scripts = ['umit', 'umit-scheduler'],
       packages = ['', 'umitCore','umitCore.radialnet', 'umitDB', 'umitGUI',
           'umitInventory', 'umitPlugin', 'umitGUI.radialnet',
           'umitInterfaceEditor', 'umitInterfaceEditor.selectborder',
@@ -165,6 +165,7 @@ Umit command creator wizards.""",
       data_files = data_files,
       zipfile = None,
       cmdclass = {"py2exe": umit_py2exe},
+      console = [{'scripts': "umit-scheduler"}],
       windows = [{
           "script": "umit",
           "icon_resources": [(1, os.path.join(icons_dir, "umit_48.ico"))]
