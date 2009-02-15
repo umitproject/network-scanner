@@ -606,7 +606,7 @@ class ScanNotebookPage(HIGVBox):
             warn_dialog = HIGAlertDialog(
                 message_format=_("Nmap couldn't be found"),
                 secondary_text=_("Umit couldn't find Nmap. Maybe you don't "
-                                 "have it installed, or you need to set your"
+                                 "have it installed, or you need to set your "
                                  "PATH environment variable."),
                 type=gtk.MESSAGE_ERROR)
             warn_dialog.run()
