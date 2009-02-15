@@ -67,20 +67,39 @@ def mo_find(result, dirname, fnames):
 # are the path in the source base.
 # Ex: [("share/pixmaps", "/umit/trunk/share/pixmaps/test.png")]
 # This will install the test.png file in the installation dir share/pixmaps.
+svg = glob(os.path.join('share', 'pixmaps', '*.svg'))
 data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
                              glob(os.path.join(pixmaps_dir, '*.png')) +
+			     glob(os.path.join(pixmaps_dir, '*.xpm')) +
                              glob(os.path.join(pixmaps_dir, 'umit.o*'))),
 
                (config_dir, [os.path.join(config_dir, 'umit.conf')] +
                             [os.path.join(config_dir, 'scan_profile.usp')] +
                             [os.path.join(config_dir, 'umit_version')] +
+                            [os.path.join(config_dir, 'umit.db')] +
+                            [os.path.join(config_dir, 'umitng.db')] +
+                            [os.path.join(config_dir,
+                                          'timeline-settings.conf')] +
+                            [os.path.join(config_dir,
+                                          'tl_colors_evt_std.conf')] +
+                            [os.path.join(config_dir,
+                                          'scheduler-schemas.conf')] +
+                            [os.path.join(config_dir,
+                                          'scheduler-profiles.conf')] +
+                            [os.path.join(config_dir, 'scheduler.log')] +
+                            [os.path.join(config_dir, 'smtp-schemas.conf')] +
                             glob(os.path.join(config_dir, '*.xml'))+
                             glob(os.path.join(config_dir, '*.txt'))),
 
-               (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))), 
+               # umitDB SQL
+               (sql_dir, glob(os.path.join("umitDB/sql", "*.sql"))),
 
-               (icons_dir, glob(os.path.join('share', 'icons', '*.ico'))+
-                           glob(os.path.join('share', 'icons', '*.png'))),
+               (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))),
+
+               (icons_dir, glob(os.path.join('share', 'icons', 'umit',
+                                             '*.ico'))+
+                           glob(os.path.join('share', 'icons', 'umit',
+                                             '*.png'))),
 
                (docs_dir, glob(os.path.join(docs_dir, '*.html'))+
                           glob(os.path.join(docs_dir,
@@ -93,6 +112,8 @@ data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
                                             'searching', '*.xml'))+
                           glob(os.path.join(docs_dir,
                                             'wizard', '*.xml'))+
+                          glob(os.path.join(docs_dir, 'scheduler', '*.xml')) +
+                          glob(os.path.join(docs_dir, 'smtpsetup', '*.xml')) +
                           glob(os.path.join(docs_dir,
                                             'screenshots', '*.png')))]
 
