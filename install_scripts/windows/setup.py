@@ -20,7 +20,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-import sys
 import os.path
 import os
 
@@ -30,7 +29,7 @@ from glob import glob
 
 from umitCore.Version import VERSION
 
-################################################################################
+##############################################################################
 # Main Variables
 
 # Directories for POSIX operating systems
@@ -57,75 +56,66 @@ def mo_find(result, dirname, fnames):
         result.append((dirname, files))
 
 
-################################################################################
+##############################################################################
 # Installation variables
 
 # What to copy to the destiny
-# Here, we define what should be put inside the directories set in the beginning
-# of this file. This list contain tuples where the first element contains
-# a path to where the other elements of the tuple should be installed.
-# The first element is a path in the INSTALLATION PREFIX, and the other elements
-# are the path in the source base.
+# Here, we define what should be put inside the directories set in the
+# beginning of this file. This list contain tuples where the first element
+# contains a path to where the other elements of the tuple should be installed.
+# The first element is a path in the INSTALLATION PREFIX, and the other
+# elements are the path in the source base.
 # Ex: [("share/pixmaps", "/umit/trunk/share/pixmaps/test.png")]
 # This will install the test.png file in the installation dir share/pixmaps.
 svg = glob(os.path.join('share', 'pixmaps', '*.svg'))
-data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
-                             glob(os.path.join(pixmaps_dir, '*.png')) +
-			     glob(os.path.join(pixmaps_dir, '*.xpm')) +
+data_files = [
+        (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
+            glob(os.path.join(pixmaps_dir, '*.png')) +
+            glob(os.path.join(pixmaps_dir, '*.xpm')) +
+            glob(os.path.join(pixmaps_dir, 'umit.o*')) +
+            glob(os.path.join(pixmaps_dir, 'radialnet', 'application',
+                '*.png')) +
+            glob(os.path.join(pixmaps_dir, 'radialnet', 'icons',
+                '*.png'))),
 
-                             glob(os.path.join(pixmaps_dir, 'umit.o*'))),
+        (config_dir, [os.path.join(config_dir, 'umit.conf')] +
+            [os.path.join(config_dir, 'scan_profile.usp')] +
+            [os.path.join(config_dir, 'umit_version')] +
+            [os.path.join(config_dir, 'umitng.db')] +
+            [os.path.join(config_dir, 'timeline-settings.conf')] +
+            [os.path.join(config_dir, 'tl_colors_evt_std.conf')] +
+            [os.path.join(config_dir, 'scheduler-schemas.conf')] +
+            [os.path.join(config_dir, 'scheduler-profiles.conf')] +
+            [os.path.join(config_dir, 'scheduler.log')] +
+            [os.path.join(config_dir, 'smtp-schemas.conf')] +
+            glob(os.path.join(config_dir, '*.xml'))+
+            glob(os.path.join(config_dir, '*.txt'))),
 
-               (config_dir, [os.path.join(config_dir, 'umit.conf')] +
-                            [os.path.join(config_dir, 'scan_profile.usp')] +
-                            [os.path.join(config_dir, 'umit_version')] +
-                            [os.path.join(config_dir, 'umitng.db')] +
-                            [os.path.join(config_dir,
-                                          'timeline-settings.conf')] +
-                            [os.path.join(config_dir,
-                                          'tl_colors_evt_std.conf')] +
-                            [os.path.join(config_dir,
-                                          'scheduler-schemas.conf')] +
-                            [os.path.join(config_dir,
-                                          'scheduler-profiles.conf')] +
-                            [os.path.join(config_dir, 'scheduler.log')] +
-                            [os.path.join(config_dir, 'smtp-schemas.conf')] +
-                            glob(os.path.join(config_dir, '*.xml'))+
-                            glob(os.path.join(config_dir, '*.txt'))),
-               # Radialnet
-                (os.path.join(pixmaps_dir, 'radialnet', 'application'),                            glob(os.path.join(pixmaps_dir, 'radialnet','application', '*.png')) ),
-                (os.path.join(pixmaps_dir, 'radialnet', 'icons'),                            glob(os.path.join(pixmaps_dir, 'radialnet','icons', '*.png')) ),
-                
-                # Network Inventory 
-                (os.path.join(pixmaps_dir, 'networkinventory'),                            glob(os.path.join(pixmaps_dir, 'networkinventory', '*.png')) ),
-                
-                # InterfaceEditor
-                (os.path.join(pixmaps_dir, 'uie'),                            glob(os.path.join(pixmaps_dir, 'uie', '*.png')) ),
-                
-               # umitDB SQL
-               (sql_dir, glob(os.path.join("umitDB/sql", "*.sql"))),
+        # Network Inventory
+        (os.path.join(pixmaps_dir, 'networkinventory'),
+            glob(os.path.join(pixmaps_dir, 'networkinventory', '*.png'))),
 
-               (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))),
+        # InterfaceEditor
+        (os.path.join(pixmaps_dir, 'uie'),
+            glob(os.path.join(pixmaps_dir, 'uie', '*.png'))),
 
-               (icons_dir, glob(os.path.join('share', 'icons', 'umit',
-                                             '*.ico'))+
-                           glob(os.path.join('share', 'icons', 'umit',
-                                             '*.png'))),
+        # umitDB SQL
+        (sql_dir, glob(os.path.join("umitDB/sql", "*.sql"))),
 
-               (docs_dir, glob(os.path.join(docs_dir, '*.html'))+
-                          glob(os.path.join(docs_dir,
-                                            'comparing_results', '*.xml'))+
-                          glob(os.path.join(docs_dir,
-                                            'profile_editor', '*.xml'))+
-                          glob(os.path.join(docs_dir,
-                                            'scanning', '*.xml'))+
-                          glob(os.path.join(docs_dir,
-                                            'searching', '*.xml'))+
-                          glob(os.path.join(docs_dir,
-                                            'wizard', '*.xml'))+
-                          glob(os.path.join(docs_dir, 'scheduler', '*.xml')) +
-                          glob(os.path.join(docs_dir, 'smtpsetup', '*.xml')) +
-                          glob(os.path.join(docs_dir,
-                                            'screenshots', '*.png')))]
+        (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))),
+
+        (icons_dir, glob(os.path.join('share', 'icons', 'umit', '*.ico')) +
+            glob(os.path.join('share', 'icons', 'umit', '*.png'))),
+
+        (docs_dir, glob(os.path.join(docs_dir, '*.html')) +
+            glob(os.path.join(docs_dir, 'comparing_results', '*.xml')) +
+            glob(os.path.join(docs_dir, 'profile_editor', '*.xml')) +
+            glob(os.path.join(docs_dir, 'scanning', '*.xml')) +
+            glob(os.path.join(docs_dir, 'searching', '*.xml')) +
+            glob(os.path.join(docs_dir, 'wizard', '*.xml')) +
+            glob(os.path.join(docs_dir, 'scheduler', '*.xml')) +
+            glob(os.path.join(docs_dir, 'smtpsetup', '*.xml')) +
+            glob(os.path.join(docs_dir, 'screenshots', '*.png')))]
 
 # Add i18n files to data_files list
 os.path.walk(locale_dir, mo_find, data_files)
@@ -137,7 +127,7 @@ class umit_py2exe(build_exe):
         self.finish_banner()
 
     def finish_banner(self):
-        print 
+        print
         print "%s The compiled version of Umit %s is in ./dist %s" % \
               ("#"*10, VERSION, "#"*10)
         print
@@ -168,26 +158,22 @@ changes. A regular user will also be able to construct powerful scans with \
 Umit command creator wizards.""",
       version = VERSION,
       scripts = ['umit'],
-      packages = ['', 'umitCore','umitCore.radialnet', 'umitDB', 'umitGUI', 'umitInventory',
-                  'umitPlugin', 'umitGUI.radialnet', 'umitInterfaceEditor', 'umitInterfaceEditor.selectborder',
-                  'higwidgets'],
+      packages = ['', 'umitCore','umitCore.radialnet', 'umitDB', 'umitGUI',
+          'umitInventory', 'umitPlugin', 'umitGUI.radialnet',
+          'umitInterfaceEditor', 'umitInterfaceEditor.selectborder',
+          'higwidgets'],
       data_files = data_files,
-      zipfile=None,
-      cmdclass = {"py2exe":umit_py2exe},
-      windows = [{"script" : "umit",
-                  "icon_resources" : [(1, os.path.join(icons_dir,
-                                                       "umit_48.ico"))]}],
-      options = {"py2exe":{"compressed":1,
-                           "optimize":2,
-                           "packages":"encodings",
-                           "includes" : "pango,\
-atk,\
-gobject,\
-pickle,\
-bz2,\
-encodings,\
-encodings.*,\
-cairo,\
-pangocairo,\
-atk,\
-psyco"}})
+      zipfile = None,
+      cmdclass = {"py2exe": umit_py2exe},
+      windows = [{
+          "script": "umit",
+          "icon_resources": [(1, os.path.join(icons_dir, "umit_48.ico"))]
+          }],
+      options = {"py2exe": {
+          "compressed": 1,
+          "optimize": 2,
+          "packages": "encodings",
+          "includes": ("pango, gobject, pickle, bz2, encodings, "
+              "encodings.*, cairo, pangocairo, psyco")
+          }}
+      )
