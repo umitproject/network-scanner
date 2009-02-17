@@ -1,4 +1,4 @@
-# Copyright (C) 2007 Insecure.Com LLC.
+# Copyright (C) 2007 Adriano Monteiro Marques
 #
 # Original author: Adriano Monteiro Marques
 # Now maintained and updated by: Guilherme Polo <ggpolo@gmail.com>

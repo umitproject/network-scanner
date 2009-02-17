@@ -1,4 +1,4 @@
-# Copyright (C) 2007 Insecure.Com LLC.
+# Copyright (C) 2007 Adriano Monteiro Marques
 #
 # Authors:  Guilherme Polo <ggpolo@gmail.com>
 #           Joao Paulo de Souza Medeiros <ignotus21@gmail.com>
