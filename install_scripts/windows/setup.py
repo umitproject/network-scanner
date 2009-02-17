@@ -166,7 +166,7 @@ Umit command creator wizards.""",
       data_files = data_files,
       zipfile = None,
       cmdclass = {"py2exe": umit_py2exe},
-      service = ['umit_scheduler'],
+      service = [{'modules': ['umit_scheduler'], 'cmdline_style': 'custom'}],
       windows = [{
           "script": "umit",
           "icon_resources": [(1, os.path.join(icons_dir, "umit_48.ico"))]

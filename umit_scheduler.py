@@ -39,20 +39,31 @@ from umitCore.Paths import Path
 
 HOME_CONF = None
 RUNNING_FILE = None
-
+if hasattr(sys, 'frozen'):
+    FROZEN_CFG = os.path.join(os.path.dirname(sys.path[0]), ".scheduserhome")
+else:
+    FROZEN_CFG = None
 
 class UMITSchedulerWinService(WindowsService):
     _svc_name_ = 'umit-scheduler'
     _svc_display_name_ = "%s service" % _svc_name_
     _svc_description_ = _svc_display_name_
-    _exe_args_ = None # This is defined at bottom
+    _exe_args_ = None # This is defined at bottom (when not using py2exe)
 
     def __init__(self, args):
         WindowsService.__init__(self, args)
 
     def run(self):
         # _exe_args_ will be our sys.argv when this runs as a Windows service
-        Scheduler.main('start', winhndl=self.hndl_waitstop, *sys.argv[1:])
+        # as long as we don't run under py2exe.
+        if FROZEN_CFG is not None:
+            cfg = open(FROZEN_CFG, 'r')
+            home_path = cfg.read()
+            cfg.close()
+            args = (sys.path[0], home_path)
+        else:
+            args = sys.argv[1:]
+        Scheduler.main('start', winhndl=self.hndl_waitstop, *args)
 
 
 def setup_homedir(usethis):
@@ -71,15 +82,8 @@ def usage():
     """
     Show help
     """
-    try:
-        program_name = __file__
-    except AttributeError:
-        if hasattr(sys, 'frozen'):
-            program_name = sys.executable
-        else:
-            program_name = sys.argv[0]
     print (_("Usage:") +
-            (" %s start|stop|cleanup|running <config_dir>" % program_name))
+            (" %s start|stop|cleanup|running <config_dir>" % __file__))
 
 
 def main(args, verbose=True):
@@ -105,10 +109,11 @@ def main(args, verbose=True):
             usage()
         return 1
 
-if __name__ == "__main__":
+
+def pre_main():
     if len(sys.argv) < 2 or len(sys.argv) > 3:
         usage()
-        sys.exit(0)
+        return 0
 
     if CONFIG_DIR: # forcing especified dir
         setup_homedir(CONFIG_DIR)
@@ -118,4 +123,31 @@ if __name__ == "__main__":
         except IndexError: # no path especified
             setup_homedir(os.path.join(os.path.expanduser("~"), '.umit'))
 
-    sys.exit(main(sys.argv[1:]))
+    return main(sys.argv[1:])
+
+
+if FROZEN_CFG is not None:
+    def write_frozen_cfg():
+        setup_homedir(os.path.join(os.path.expanduser('~'), '.umit'))
+        conf = open(FROZEN_CFG, 'w')
+        conf.write(HOME_CONF)
+        conf.close()
+
+    import win32serviceutil
+    # HandleCommandLine is used by py2exe when defining a service with
+    # cmdline_style as 'custom'
+    def HandleCommandLine():
+        # XXX I will need the user home before starting the Scheduler,
+        # I wish changing UMITSchedulerWinService._exe_args_ would work
+        # here too, but it doesn't. The workaround here is far from
+        # ideal.
+        if sys.argv[1] == 'install':
+            write_frozen_cfg()
+        elif sys.argv[1] in ('start', 'debug'):
+            if not os.path.isfile(FROZEN_CFG):
+                write_frozen_cfg()
+
+        win32serviceutil.HandleCommandLine(UMITSchedulerWinService)
+
+if __name__ == "__main__":
+    sys.exit(pre_main())
