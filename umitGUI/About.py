@@ -218,7 +218,7 @@ class Credits(HIGWindow):
         b.set_text("""Adriano Monteiro Marques <adriano@umitproject.org>
 Bartosz Skowron <getxsick@gmail.com>
 Francesco Piccinno <stack.box@gmail.com>
-Guilherme Polo <gpolo@gmail.com>
+Guilherme Polo <ggpolo@gmail.com>
 João Medeiros <ignotus21@gmail.com>
 Luís A. Bastião Silva <luis.kop@gmail.com>""")
 
