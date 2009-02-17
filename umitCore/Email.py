@@ -31,6 +31,9 @@ from socket import sslerror
 # trouble when running py2exe because it is a lazy import, so we import
 # the correct, and direct, names.
 try:
+    # Make py2exe collect the next module so the next imports succeed.
+    from email import iterators
+
     from email.mime.multipart import MIMEMultipart
     from email.mime.base import MIMEBase
     from email.mime.text import MIMEText
