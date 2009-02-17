@@ -344,11 +344,14 @@ easier network scanning or even compare scan results to easily see any \
 changes. A regular user will also be able to construct powerful scans with \
 Umit command creator wizards.""",
       version = VERSION,
-      scripts = ['umit', 'umit-scheduler'],
-      packages = ['', 'umitCore','umitCore.radialnet', 'umitDB', 'umitGUI', 'umitInventory',
-                  'umitPlugin', 'umitGUI.radialnet', 'umitInterfaceEditor',
-                  'umitInterfaceEditor.selectborder', 'higwidgets'],
+      scripts = ['umit', 'umit_scheduler.py'],
+      packages = [
+          'umitCore', 'umitCore.radialnet', 'umitDB', 'umitGUI',
+          'umitInventory', 'umitPlugin', 'umitGUI.radialnet',
+          'umitInterfaceEditor', 'umitInterfaceEditor.selectborder',
+          'higwidgets'],
       data_files = data_files,
-      cmdclass = {"install":umit_install,
-                  "build":umit_build,
-                  "sdist":umit_sdist})
+      cmdclass = {
+          "install": umit_install,
+          "build": umit_build,
+          "sdist": umit_sdist})

@@ -26,9 +26,26 @@ import sys
 import time
 import signal
 import warnings
+import subprocess
 from ConfigParser import ConfigParser
 
-# There is some bug running more than one scan at same time.
+from umitCore.BGProcess import BGRunner#, WindowsService
+from umitCore.Paths import Path
+from umitCore.UmitLogging import file_log
+from umitCore.I18N import _
+from umitCore.CronParser import CronParser
+from umitCore.NmapCommand import NmapCommand
+from umitCore.Email import Email
+from umitDB.XMLStore import XMLStore
+
+NT = os.name == 'nt'
+if NT:
+    import win32event
+    import servicemanager
+else:
+    servicemanager = lambda: None
+    servicemanager.RunningAsService = lambda: False
+
 
 class Scheduler(object):
     """
@@ -434,6 +451,83 @@ class SchedSchema(object):
     schema_name = property(_get_schema_name)
 
 
+class SchedulerControl(object):
+
+    def __init__(self, running_file=None, home_conf=None, verbose=False,
+            svc_class=None):
+        if running_file is None or home_conf is None:
+            if home_conf is None:
+                home_conf = os.path.split(Path.get_umit_conf())[0]
+            running_file = os.path.join(home_conf, 'schedrunning')
+
+        self.svc_class = svc_class
+        self.running_file = running_file
+        self.home_conf = home_conf
+        self.verbose = verbose
+
+    def start(self, from_gui=False):
+        """Start scheduler."""
+        if NT:
+            bg = BGRunner(self.svc_class)
+            from_gui = False
+        else:
+            if from_gui:
+                # Take care when running from gui
+                running_path = Path.get_running_path()
+                if running_path not in sys.path:
+                    sys.path.append(running_path)
+                starter = __import__('umit_scheduler')
+                subprocess.Popen([sys.executable, starter.__file__, 'start'])
+            else:
+                def post_init():
+                    return main('start', sys.path[0], self.home_conf)
+                bg = BGRunner(self.running_file, post_init)
+
+        if not from_gui:
+            err = bg.start()
+            if err:
+                return self._error(err)
+
+    def stop(self):
+        if NT:
+            bg = BGRunner(self.svc_class)
+        else:
+            bg = BGRunner(self.running_file)
+
+        err = bg.stop()
+        if err:
+            return self._error(err)
+
+    def running(self):
+        if NT:
+            bg = BGRunner(self.svc_class)
+        else:
+            bg = BGRunner(self.running_file)
+
+        return bg.running()
+
+    def cleanup(self, remove_service=False):
+        if NT:
+            bg = BGRunner(self.svc_class)
+            if remove_service:
+                err = bg.remove()
+                if err:
+                    return self._error(err)
+        else:
+            bg = BGRunner(self.running_file)
+
+        err = bg.cleanup()
+        if err:
+            return self._error(err)
+
+    def _error(self, error):
+        if self.verbose:
+            print error
+            return 1
+        else:
+            return error
+
+
 def load_smtp_profile(smtp):
     """
     Load a smtp schema.
@@ -505,7 +599,7 @@ def calc_next_time():
 
 running_scans = { }
 
-def run_scheduler(sched):
+def run_scheduler(sched, winhndl=None):
     """
     Run scheduler forever.
     """
@@ -516,7 +610,14 @@ def run_scheduler(sched):
         current_time = time.time()
 
         if current_time < next_time:
-            time.sleep(next_time - current_time + .1)
+            sleep_time = next_time - current_time + .1
+            if winhndl:
+                stopsignal = win32event.WaitForSingleObject(winhndl,
+                        sleep_time * 1000)
+                if stopsignal == win32event.WAIT_OBJECT_0:
+                    break
+            else:
+                time.sleep(sleep_time)
 
         # check if time has changed by more than two minutes (clock changes)
         if abs(time.time() - next_time) > 120:
@@ -567,8 +668,7 @@ Reason: %s" % (schema.schema_name , err))
                 
                 if opts[2]: # mail output
                     recipients = opts[2].split(',')
-                    log.info("Scan output will be mailed to: \
-%s" % recipients)
+                    log.info("Scan output will be mailed to: %s" % recipients)
 
                     smtp = load_smtp_profile(opts[5])
 
@@ -602,17 +702,17 @@ Reason: %s" % (schema.schema_name , err))
                     os.remove(new_file_output)
 
                 if int(opts[4]): # add to inventory
-                    log.info("Scan results being added to Inventory \
-%s" % opts[3])
+                    log.info("Scan result is being added to Inventory "
+                            "%s" % opts[3])
                     xmlstore = XMLStore(Path.umitdb_ng, False)
                     try:
                         xmlstore.store(scan.get_xml_output_file(),
                                 inventory=opts[3])
                     finally:
                         xmlstore.close() # close connection to the database
-                    log.info("Scan finished insertion on Inventory \
-%s" % opts[3])
-                    
+                    log.info("Scan finished insertion on Inventory "
+                            "%s" % opts[3])
+
                 scan.close() # delete temporary files
                 scount -= 1 # one scan finished
                 del running_scans[running]
@@ -637,10 +737,11 @@ def safe_shutdown(rec_signal, frame):
 
     log.info("Scheduler finished sucessfully!")
 
-    raise SystemExit
+    if rec_signal is not None:
+        raise SystemExit
 
 
-def start(schema_file=None, profile_file=None):
+def start(schema_file=None, profile_file=None, winhndl=None):
     """
     Start scheduler.
     """
@@ -653,40 +754,36 @@ def start(schema_file=None, profile_file=None):
 
     s = Scheduler(schema_file, profile_file)
 
-    log.info("Scheduler started, using schemas file '%s' and scheduling file \
-'%s'" % (schema_file, profile_file))
+    log.info("Scheduler started, using schemas file %r and "
+            "scheduling file %r" % (schema_file, profile_file))
 
     try:
-        run_scheduler(s)
+        run_scheduler(s, winhndl)
     except KeyboardInterrupt:
         # if we are on win32, we should be here in case a WM_CLOSE message
         # was sent.
         safe_shutdown(None, None)
+    else:
+        # run_scheduler should finish normally when running as a Windows
+        # Service
+        safe_shutdown(None, None)
 
 
-def main(cmd, base_path, home_conf):
-    sys.path.insert(0, base_path)
-    from umitCore.Paths import Path
+def main(cmd, base_path, home_conf, winhndl=None):
+    if base_path not in sys.path:
+        sys.path.insert(0, base_path)
     Path.force_set_umit_conf(home_conf)
-
-    from umitCore.UmitLogging import file_log
-    from umitCore.I18N import _
-    from umitCore.CronParser import CronParser
-    from umitCore.NmapCommand import NmapCommand
-    from umitCore.Email import Email
-    from umitDB.XMLStore import XMLStore
-
     log = file_log(Path.sched_log)
 
-    globals().update(locals())
+    globals()['log'] = log
 
-    if os.name == "posix":
-        signal.signal(signal.SIGHUP, safe_shutdown)
-    signal.signal(signal.SIGTERM, safe_shutdown)
-    signal.signal(signal.SIGINT, safe_shutdown)
+    # Trying to adjust signals when running as a windows service won't work
+    # since it needs to be adjusted while on the main thread.
+    if not servicemanager.RunningAsService():
+        if os.name == "posix":
+            signal.signal(signal.SIGHUP, safe_shutdown)
+        signal.signal(signal.SIGTERM, safe_shutdown)
+        signal.signal(signal.SIGINT, safe_shutdown)
 
     cmds = {'start': start}
-    cmds[cmd]()
-
-if __name__ == "__main__":
-    main(*sys.argv)
+    cmds[cmd](winhndl=winhndl)

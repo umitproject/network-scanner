@@ -24,10 +24,6 @@ import platform
 
 # Check if we are on win32
 WIN32 = bool(platform.win32_ver()[0])
-if WIN32:
-    import win32api
-    import win32con
-    import win32process
 
 # Check if we are on Maemo
 MAEMO = False
@@ -36,37 +32,6 @@ try:
     MAEMO = True
 except ImportError:
     pass
-
-def check_process(pid):
-    """
-    Check if a process is still running.
-    Returns True if it is, False otherwise. 
-    It will return -1 in case you are not the owner of process or something
-    else.
-    """
-
-    if WIN32:
-        try:
-            handle = win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS, 
-                                          False, pid)
-        except: # bad PID probably
-            return False
-
-        ret = win32process.GetExitCodeProcess(handle)
-        if ret == win32con.STILL_ACTIVE:
-            return True
-        else:
-            return False
-    else:
-        try:
-            os.kill(pid, 0)
-            return True
-        except OSError, e:
-            if e.errno == errno.ESRCH: # OS Error 3: No such process
-                return False
-            
-            # Could be OS Error 1: Operation not permitted
-            return -1
 
 
 def is_maemo():
@@ -88,7 +53,7 @@ def amiroot():
             root = True
         elif os.getuid() == 0:
             root = True
-    except: 
+    except: # XXX
         pass
 
     return root

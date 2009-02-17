@@ -25,16 +25,25 @@ import os
 import sys
 import gtk
 import gobject
-import subprocess
 import webbrowser
 
 from umitCore.I18N import _
 from umitCore.Paths import Path
-from umitCore.Utils import amiroot, check_process, open_url_as
+from umitCore.Utils import amiroot, open_url_as
+from umitCore.Scheduler import SchedulerControl
 
 from umitGUI.GenericAlertDialogs import GenericAlert
 
-CONTROLLER = os.path.join(Path.get_running_path(), "umit-scheduler")
+if os.name == 'nt':
+    run_path = Path.get_running_path()
+    if run_path not in sys.path:
+        sys.path.append(run_path)
+
+    umit_scheduler = __import__("umit_scheduler")
+    class SchedulerControl(object):
+        def __getattr__(self, name):
+            return lambda *args, **kwargs: umit_scheduler.main([name], False)
+
 START_TEXT = _("Start Scheduler")
 STOP_TEXT = _("Stop Scheduler")
 
@@ -46,6 +55,7 @@ class SchedControl(object):
     def __init__(self, daddy):
         self.ui_action = None
         self.daddy = daddy
+        self.schedcontrol = SchedulerControl()
 
         self.stock_icon, self.status_text = self._sched_status()
         
@@ -70,74 +80,56 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
             resp = alertdlg.run()
 
             if resp == gtk.RESPONSE_OK:
-                subprocess.Popen([sys.executable, CONTROLLER, 'start'])
+                self.schedcontrol.start(from_gui=True)
             elif resp == gtk.RESPONSE_HELP:
-                webbrowser.open("file://%s" % os.path.join(Path.docs_dir, 
-                                                "scheduler.html#root_start"), 
+                webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
+                                                "scheduler.html#root_start"),
                                                 new=open_url_as())
-        
+
             alertdlg.destroy()
-            
         else: # running as root
-            subprocess.Popen([sys.executable, CONTROLLER, 'start'])
-                
-    
+            self.schedcontrol.start(from_gui=True)
+
+
     def stop_scheduler(self):
         """
-        Do necessary checks before stopping Scheduler.
+        Stop scheduler if possible.
         """
-        sched_f = os.path.join(os.path.split(Path.get_umit_conf())[0], 
-                               "schedrunning")
-        
-        pid = open(sched_f, 'r')
-        pid = int(pid.readlines()[0])
-        
-        if check_process(pid) == -1: # user not allowed to stop scheduler
+        err = self.schedcontrol.stop()
+
+        if err: # user not allowed to stop scheduler
             alertdlg = GenericAlert(_("Scheduler Controller"),
-                  _("You don't have permission to stop the Scheduler, for \
-more\ninformation select Help, otherwise, just select OK to close this \n\
-dialog."),
+                    _("The Scheduler couldn't be stopped, reason:\n\n") +
+                    str(err),
                   buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
                            2: (gtk.RESPONSE_OK, gtk.STOCK_OK)})
 
             resp = alertdlg.run()
 
             if resp == gtk.RESPONSE_HELP:
-                webbrowser.open("file://%s" % os.path.join(Path.docs_dir, 
-                                                "scheduler.html#sched_stop"), 
+                webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
+                                                "scheduler.html#sched_stop"),
                                                 new=open_url_as())
-                
+
             alertdlg.destroy()
-            
+
         else:
-            subprocess.Popen([sys.executable, CONTROLLER, 'stop'])
+            self.schedcontrol.stop()
 
     
     def _sched_status(self):
         """
         Return stock icon and text based on scheduler status.
         """
-        try:
-            sched_f = os.path.join(os.path.split(Path.get_umit_conf())[0], 
-                                   "schedrunning")
-            
-            pid = open(sched_f, 'r')
-            pid = int(pid.readlines()[0])
-            running = check_process(pid)
-            
-            if not running:
-                # not running, removing
-                os.remove(sched_f)
-                status = (gtk.STOCK_NO, START_TEXT)
-
+        running = self.schedcontrol.running()
+        if running:
             status = (gtk.STOCK_YES, STOP_TEXT)
-        
-        except IOError:
+        else:
             status = (gtk.STOCK_NO, START_TEXT)
 
         return status
-    
-     
+
+
     def _scheduler_control(self, event):
         """
         Stop/Start scheduler.
@@ -148,9 +140,9 @@ dialog."),
             if self.daddy:
                 self.daddy._clear_tip_statusbar()
             
-        else: 
+        else:
             self.stop_scheduler()
-       
+
 
     def _update_sched_status(self):
         """
@@ -159,7 +151,7 @@ dialog."),
         prev_icon = self.stock_icon
 
         new_icon, new_text = self._sched_status()
-        
+
         self.stock_icon = new_icon
         self.status_text = new_text
 
@@ -176,8 +168,8 @@ dialog."),
             if new_icon == gtk.STOCK_NO:
                 self.daddy._write_statusbar_tip(_("Scheduler is not running!"),
                                                 False)
-        
+
         if not self.stock_icon: # widget deleted
             return False
-        
+
         return True
