@@ -26,11 +26,23 @@ import os.path
 
 from smtplib import SMTP
 from socket import sslerror
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEBase import MIMEBase
-from email.MIMEText import MIMEText
-from email.Utils import formatdate
-from email import Encoders
+# Import the "right" parts from email.
+# Importing email.MIMEMultipart while under Python 2.5 and newer causes
+# trouble when running py2exe because it is a lazy import, so we import
+# the correct, and direct, names.
+try:
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.base import MIMEBase
+    from email.mime.text import MIMEText
+    from email.utils import formatdate
+    from email import encoders as Encoders
+except ImportError:
+    # Python 2.4 and older
+    from email.MIMEMultipart import MIMEMultipart
+    from email.MIMEBase import MIMEBase
+    from email.MIMEText import MIMEText
+    from email.Utils import formatdate
+    from email import Encoders
 
 from umitCore.UmitLogging import log
 
