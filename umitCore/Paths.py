@@ -130,7 +130,7 @@ class Paths(object):
 
         self._parse_and_set_dirs(config_file, config_dir)
 
-    def set_umit_conf(self, base_dir, force=False):
+    def set_umit_conf(self, base_dir):
         main_config_dir = ""
         main_config_file = ""
 

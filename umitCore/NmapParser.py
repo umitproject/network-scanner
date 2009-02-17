@@ -798,7 +798,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             ##################
             # Address elements
             for address in host.address:
-                self.__remove_none_keys(address) # XXX when is this needed ?
+                self.__remove_none(address)
                 self.write_parser.startElement('address',
                             AttributesImpl(dict(
                                 addr=address.get('addr', ''),
@@ -833,7 +833,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
 
             ## Extraports elements
             for export in host.extraports:
-                self.__remove_none_keys(export)
+                self.__remove_none(export)
                 self.write_parser.startElement('extraports',
                         AttributesImpl(dict(
                             count=str(export.get('count', '')),
@@ -842,7 +842,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
 
             ## Port elements
             for port in host.ports:
-                self.__remove_none_keys(port)
+                self.__remove_none(port)
                 self.write_parser.startElement('port',
                     AttributesImpl(dict(
                         portid = port.get('portid', ''),
@@ -879,7 +879,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             ## Ports used elements
             for pu in host.portused:
                 if type(pu) == type({}):
-                    self.__remove_none_keys(pu)
+                    self.__remove_none(pu)
                     self.write_parser.startElement('portused',
                                 AttributesImpl(dict(state = pu.get('state', ''),
                                                 proto = pu.get('proto', ''),
@@ -889,7 +889,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             ## Osclass elements
             for oc in host.osclass:
                 if type(oc) == type({}):
-                    self.__remove_none_keys(oc)
+                    self.__remove_none(oc)
                     self.write_parser.startElement('osclass',
                         AttributesImpl(dict(vendor = oc.get('vendor', ''),
                                         osfamily = oc.get('osfamily', ''),
@@ -901,7 +901,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             ## Osmatch elements
             for om in host.osmatch:
                 if type(om) == type({}):
-                    self.__remove_none_keys(om)
+                    self.__remove_none(om)
                     self.write_parser.startElement('osmatch',
                         AttributesImpl(dict(name = om.get('name', ''),
                                     accuracy = om.get('accuracy', ''))))
@@ -909,7 +909,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
 
             ## Osfingerprint element
             if type(host.osfingerprint) == type({}):
-                self.__remove_none_keys(host.osfingerprint)
+                self.__remove_none(host.osfingerprint)
                 self.write_parser.startElement('osfingerprint',
                     AttributesImpl(dict(
                         fingerprint=host.osfingerprint.get('fingerprint', ''))))
@@ -1011,10 +1011,13 @@ class NmapParserSAX(ParserBasics, ContentHandler):
                 xml_file.seek(0)
             return xml_file
 
-    def __remove_none_keys(self, dic):
-        for k in dic.keys():
-            if k is None:
-                dic.pop(k)
+    def __remove_none(self, dic):
+        # saxutils will have problems if your dic contain any None items
+        # (it will try to use the method replace, for example, which NoneType
+        # doesn't have).
+        for k, v in dic.items():
+            if k is None or v is None:
+                del dic[k]
 
     def is_unsaved(self):
         return self.unsaved

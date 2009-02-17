@@ -7,12 +7,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -26,7 +26,6 @@ import sys
 import time
 import signal
 import warnings
-from os.path import join
 from ConfigParser import ConfigParser
 
 # There is some bug running more than one scan at same time.
@@ -57,7 +56,7 @@ class Scheduler(object):
     
     def check_for_changes(self):
         """
-        If schemas file or profiles file changed since last check, 
+        If schemas file or profiles file changed since last check,
         reparse schemas.
         """
         try:
@@ -396,7 +395,7 @@ class SchedSchema(object):
         return self.__mail
 
 
-    def _set_mailto(self, mail): 
+    def _set_mailto(self, mail):
         """
         Set an email to receive job results.
         """
@@ -629,7 +628,7 @@ def safe_shutdown(rec_signal, frame):
     
     if running_scans:
         scans_count = len(running_scans)
-        log.debug("%d scan%s to cleanup" % (scans_count, 
+        log.debug("%d scan%s to cleanup" % (scans_count,
                                             (scans_count > 1) and 's' or ''))
 
     for args in running_scans.values():
@@ -665,11 +664,10 @@ def start(schema_file=None, profile_file=None):
         safe_shutdown(None, None)
 
 
-if __name__ == "__main__":    
-    sys.path.insert(0, sys.argv[1])
-
+def main(cmd, base_path, home_conf):
+    sys.path.insert(0, base_path)
     from umitCore.Paths import Path
-    Path.set_umit_conf(join(sys.argv[3]), True)
+    Path.force_set_umit_conf(home_conf)
 
     from umitCore.UmitLogging import file_log
     from umitCore.I18N import _
@@ -679,16 +677,16 @@ if __name__ == "__main__":
     from umitDB.XMLStore import XMLStore
 
     log = file_log(Path.sched_log)
-    
-    umitdb_ng = Path.umitdb_ng
+
+    globals().update(locals())
 
     if os.name == "posix":
         signal.signal(signal.SIGHUP, safe_shutdown)
-        
     signal.signal(signal.SIGTERM, safe_shutdown)
     signal.signal(signal.SIGINT, safe_shutdown)
 
-    cmds = { "start": start }
+    cmds = {'start': start}
+    cmds[cmd]()
 
-    cmds[sys.argv[2]]()
-
+if __name__ == "__main__":
+    main(*sys.argv)

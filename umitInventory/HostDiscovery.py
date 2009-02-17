@@ -22,7 +22,6 @@ import re
 import gtk
 import socket
 import gobject
-import platform
 import commands
 
 from umitCore.NmapCommand import NmapCommand
@@ -38,7 +37,7 @@ from higwidgets.higboxes import HIGVBox, HIGHBox, hig_box_space_holder
 from higwidgets.higdialogs import HIGAlertDialog
 from higwidgets.higframe import HIGFrame
 
-PLATFORM = platform.release()
+PLATFORM = os.name
 
 alpha = re.compile('[a-zA-Z]')
 
@@ -54,7 +53,7 @@ def tryto_detect_networks(caller=None):
     """
 
     networks = [ ]
-    if PLATFORM == 'NT':
+    if PLATFORM == 'nt':
         cmd = 'ipconfig'
     else:
         cmd = 'ifconfig'

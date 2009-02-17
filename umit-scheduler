@@ -46,7 +46,7 @@ def setup_homedir(usethis):
     """
     Setting umit home directory.
     """
-    Path.set_umit_conf(usethis, True)
+    Path.force_set_umit_conf(usethis)
 
     global HOME_CONF, RUNNING_FILE
 
@@ -58,7 +58,7 @@ def usage():
     """
     Show help
     """
-    print _("Use:") + (" %s start|stop|cleanup <config_dir>" % __file__)
+    print _("Use:") + (" %s start|stop|cleanup <config_dir>" % sys.argv[0])
 
 
 def kill(pid):
@@ -127,9 +127,9 @@ have permission to cleanup it and start another instance.")
     else: # process is not running
         log.debug(">>> Scheduler is stopped already, removing control file..")
         remove_controlfile()
-        
+
     log.debug(">>> Cleanup finished")
-   
+
 
 def start():
     """
@@ -138,17 +138,18 @@ def start():
     if cleanup(): # scheduler instance is running and you cant start another.
         sys.exit(0) 
 
-    process = subprocess.Popen([sys.executable, Scheduler.__file__, 
-                                sys.path[0], 'start', HOME_CONF])
+    from umitCore import Scheduler
+    from umitCore.BGProcess import run_on_background
 
-    pid = process.pid
+    run_on_background()
 
-    log.debug(">>> Starting Scheduler..")
-    log.debug(">>> Writing pid (%d) to %s" % (pid, RUNNING_FILE))
+    pid = os.getpid()
 
     f_run = open(RUNNING_FILE, 'w')
     f_run.write("%d" % pid)
     f_run.close()
+
+    Scheduler.main('start', sys.path[0], HOME_CONF)
 
 
 def stop():

@@ -126,7 +126,7 @@ class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
             fp_d["lastboot"] = host.uptime["lastboot"]
 
             if host.tcpsequence:
-                fp_d["tcp_sequence_class"] = host.tcpsequence["class"]
+                fp_d["tcp_sequence_class"] = host.tcpsequence.get("class", '')
                 fp_d["tcp_sequence_index"] = host.tcpsequence["index"]
                 fp_d["tcp_sequence_value"] = host.tcpsequence["values"]
                 fp_d["tcp_sequence_difficulty"] = host.tcpsequence["difficulty"]
@@ -235,9 +235,10 @@ class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
             # insert os classes
             for osclass in host.osclass:
                 # get fk_osgen
-                osgen_id = self.get_osgen_id_from_db(osclass["osgen"])
+                osclass_osgen = osclass.get('osgen', '')
+                osgen_id = self.get_osgen_id_from_db(osclass_osgen)
                 if not osgen_id:
-                    self.insert_osgen_db(osclass["osgen"])
+                    self.insert_osgen_db(osclass_osgen)
                     osgen_id = self.get_id_for("osgen")
 
                 # get fk_osfamily
