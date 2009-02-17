@@ -456,8 +456,8 @@ class ParserBasics(object):
 
     def get_ports(self):
         ports = []
-        for port in self.nmap.get('hosts', []):
-            ports.append(port.ports)
+        for host in self.nmap.get('hosts', []):
+            ports.append(host.ports)
 
         return ports
 
