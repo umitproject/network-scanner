@@ -613,7 +613,7 @@ def run_scheduler(sched, winhndl=None):
             sleep_time = next_time - current_time + .1
             if winhndl:
                 stopsignal = win32event.WaitForSingleObject(winhndl,
-                        sleep_time * 1000)
+                        int(sleep_time * 1000))
                 if stopsignal == win32event.WAIT_OBJECT_0:
                     break
             else:
