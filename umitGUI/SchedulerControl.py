@@ -113,9 +113,6 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
 
             alertdlg.destroy()
 
-        else:
-            self.schedcontrol.stop()
-
     
     def _sched_status(self):
         """
