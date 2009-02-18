@@ -40,6 +40,7 @@ from umitDB.XMLStore import XMLStore
 
 NT = os.name == 'nt'
 if NT:
+    import win32api
     import win32event
     import servicemanager
 else:
@@ -525,7 +526,10 @@ class SchedulerControl(object):
             print error
             return 1
         else:
-            return error
+            if NT:
+                return win32api.FormatMessage(error)
+            else:
+                return error
 
 
 def load_smtp_profile(smtp):

@@ -66,6 +66,7 @@ class SchedControl(object):
         """
         Do necessary checks before starting Scheduler.
         """
+        err = None
         if not amiroot(): # running as normal user
             alertdlg = GenericAlert(_("Scheduler Controller"),
                   _("You are requesting to start Scheduler as a normal \
@@ -80,7 +81,7 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
             resp = alertdlg.run()
 
             if resp == gtk.RESPONSE_OK:
-                self.schedcontrol.start(from_gui=True)
+                err = self.schedcontrol.start(from_gui=True)
             elif resp == gtk.RESPONSE_HELP:
                 webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
                                                 "scheduler.html#root_start"),
@@ -88,7 +89,20 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
 
             alertdlg.destroy()
         else: # running as root
-            self.schedcontrol.start(from_gui=True)
+            err = self.schedcontrol.start(from_gui=True)
+
+        if err:
+            alertdlg = GenericAlert(_("Scheduler Controller"),
+                    _("The Scheduler couldn't be started, reason:\n\n") +
+                    str(err),
+                  buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
+                           2: (gtk.RESPONSE_OK, gtk.STOCK_OK)})
+            resp = alertdlg.run()
+            if resp == gtk.RESPONSE_HELP:
+                webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
+                                                "scheduler.html#sched_start"),
+                                                new=open_url_as())
+            alertdlg.destroy()
 
 
     def stop_scheduler(self):
