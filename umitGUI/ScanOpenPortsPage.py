@@ -260,12 +260,12 @@ class HostOpenPorts(HIGVBox):
             self.host_list.append(h)
     
     def add_port(self, port_info):
-        log.debug(">>> Add Port: %s" % port_info)
-        self.port_list.append([""] + port_info)
+        log.debug(">>> Add Port: %s" % str(port_info))
+        self.port_list.append([""] + list(port_info))
 
     def add_host(self, host_info):
-        log.debug(">>> Add Host: %s" % host_info)
-        self.host_list.append([""] + host_info)
+        log.debug(">>> Add Host: %s" % str(host_info))
+        self.host_list.append([""] + list(host_info))
     
     def switch_port_to_list_store(self):
         if self.port_view.get_model() != self.port_list:

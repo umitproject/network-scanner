@@ -287,6 +287,25 @@ class ScanNotebook(HIGNotebook):
         self.get_tab_label(page).set_text(title)
 
 
+def get_port_info(port):
+    """Return port info."""
+    return (
+            int(port.get('portid', '0')),
+            port.get('protocol', ''),
+            port.get('state', ''),
+            port.get('name', ''),
+            port.get('product', ''))
+
+def get_service_info(service):
+    """Return service info."""
+    return (
+            service.get('hostname', ''),
+            int(service.get('portid', '0')),
+            service.get('protocol', ''),
+            service.get('port_state', ''),
+            service.get('service_product', ''),
+            service.get('service_version', ''))
+
 class ScanNotebookPage(HIGVBox):
     __gsignals__ = {
         'scan-finished' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, ())
@@ -1157,19 +1176,16 @@ class ScanNotebookPage(HIGVBox):
 
         
         return host_page
-    
+
     def set_single_host_port(self, host):
         host_page = self.scan_result.scan_result_notebook.open_ports.host
         host_page.switch_port_to_list_store()
-        
+
         host_page.clear_port_list()
         for port in host.ports:
-            host_page.add_port([self.findout_service_icon(port),
-                                int(port.get('portid', '0')),
-                                port.get('protocol', ''),
-                                port.get('state', ''),
-                                port.get('name', ''),
-                                port.get('product', '')])
+            host_page.add_port(
+                    (self.findout_service_icon(port), ) +
+                    get_port_info(port))
 
     def set_single_service_host(self, service):
         host_page = self.scan_result.scan_result_notebook.open_ports.host
@@ -1177,49 +1193,37 @@ class ScanNotebookPage(HIGVBox):
         host_page.clear_host_list()
 
         for h in service:
-            host_page.add_host([self.findout_service_icon(h),
-                                h.get('hostname', ''),
-                                int(h.get('portid', '0')),
-                                h.get('protocol', ''),
-                                h.get('port_state', ''),
-                                h.get('service_product', ''),
-                                h.get('service_version', '')])
-        
-    
+            host_page.add_host(
+                    (self.findout_service_icon(h), ) +
+                    get_service_info(h))
+
     def set_multiple_host_port(self, host_list):
         host_page = self.scan_result.scan_result_notebook.open_ports.host
         host_page.switch_port_to_tree_store()
         host_page.clear_port_tree()
         
         for host in host_list:
-            parent = host_page.port_tree.append(None, 
-                [host['host'].get_hostname(), '', 0, '', '', '', ''])
-            for port in host['host'].get_ports():
-                for p in port.get('port', []):
-                    host_page.port_tree.append(parent,
-                        ['', self.findout_service_icon(p),
-                         int(p.get('portid', "0")),
-                         p.get('protocol', ''),
-                         p.get('port_state', ""),
-                         p.get('service_name', _("Unknown")),
-                         p.get('service_product', "")])
+            host = host['host']
+            parent = host_page.port_tree.append(None,
+                [host.get_hostname(), '', 0, '', '', '', ''])
+            for port in host.ports:
+                host_page.port_tree.append(parent,
+                        ('', self.findout_service_icon(port)) +
+                        get_port_info(port))
 
     def set_multiple_service_host(self, service_list):
         host_page = self.scan_result.scan_result_notebook.open_ports.host
         host_page.switch_host_to_tree_store()
         host_page.clear_host_tree()
-        
+
         for host in service_list:
             parent = host_page.host_tree.append(None, [host['service_name'],
                                                        '','',0,'','', '', ''])
             for h in host['hosts']:
-                host_page.host_tree.append(parent, 
-                    ['', self.findout_service_icon(h), h["hostname"],
-                     int(h.get('portid', "0")), h.get('protocol', ""),
-                     h.get('port_state', _("Unknown")),
-                     h.get('service_product', ''), h.get('service_version', 
-                     _("Unknown"))])
-    
+                host_page.host_tree.append(parent,
+                    ('', self.findout_service_icon(h)) +
+                    get_service_info(h))
+
     def findout_service_icon(self, port_info):
         return gtk.STOCK_YES
 
