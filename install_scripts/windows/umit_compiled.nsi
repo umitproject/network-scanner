@@ -516,6 +516,11 @@ Section "Umit" SecUmit
   CreateShortCut "$SMPROGRAMS\Umit\Umit-Uninstaller.lnk" "$INSTDIR\Umit-Uninstaller.exe" "" $INSTDIR\Umit-Uninstaller.exe
 
   WriteUninstaller "$INSTDIR\Umit-Uninstaller.exe"
+
+  ; umit scheduler
+  FileOpen $0 "$INSTDIR\.scheduserhome" w
+  FileClose $0
+  ExecWait '"$INSTDIR\umit_scheduler.exe" install'
 SectionEnd
 Section "Add to path"
 ;likewise AddToPath could be
@@ -523,8 +528,6 @@ Section "Add to path"
   Push "$INSTDIR\Nmap"
   Call AddToEnvVar
 SectionEnd
-
- 
 
 
 
@@ -539,4 +542,5 @@ Section "Uninstall"
     Push "PATH"
     Push "$INSTDIR\Nmap"
     Call un.RemoveFromEnvVar
+    ExecWait '$INSTDIR\umit_scheduler.exe" remove'
 SectionEnd
