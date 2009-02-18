@@ -30,7 +30,7 @@ class SystemInfo(Plugin):
     def start(self, reader):
         self.reader = reader
 
-        self.sysinfo = self.core.get_need(self.reader, 'SystemInfo')
+        self.sysinfo = Core().get_need(self.reader, 'SystemInfo')
 
         if not self.sysinfo:
             msg = "Cannot use SystemInfo"

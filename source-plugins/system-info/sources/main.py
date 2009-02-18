@@ -32,10 +32,10 @@ def trace(f):
     return update_wrapper(newf, f)
 
 class SystemInfo(Plugin):
-    def start(self, core, reader):
+    def start(self, reader):
         pass
 
-    def stop(self, core):
+    def stop(self):
         pass
 
     @trace
