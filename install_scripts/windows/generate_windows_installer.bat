@@ -47,7 +47,12 @@ xcopy %GTKDir%\share\gtkthemeselector\*.* %DistDir%\share\gtkthemeselector\ /S >
 xcopy %GTKDir%\share\themes\Default\*.* %DistDir%\share\themes\Default /S >> %Output%
 xcopy %GTKDir%\share\themes\MS-Windows\*.* %DistDir%\share\themes\MS-Windows /S >> %Output%
 xcopy %GTKDir%\share\xml\*.* %DistDir%\share\xml\ /S >> %Output%
-xcopy %GTKDir%\bin\*.dll %UmitDir% /S >> %Output%
+REM Manually copying needed DLLs not automatically included by py2exe.
+copy %GTKDir%\bin\bzip2.dll %DistDir% >> %Output%
+copy %GTKDir%\bin\libcroco*.dll %DistDir% >> %Output%
+copy %GTKDir%\bin\libgio*.dll %DistDir% >> %Output%
+copy %GTKDir%\bin\libgsf*.dll %DistDir% >> %Output%
+copy %GTKDir%\bin\librsvg*.dll %DistDir% >> %Output%
 
 
 echo Creating Nmap dist dirs...
