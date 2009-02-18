@@ -537,10 +537,10 @@ SectionEnd
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 Section "Uninstall"
+    ExecWait '$INSTDIR\umit_scheduler.exe" remove'
     RMDir /r "$SMPROGRAMS\Umit"
     RMDir /r "$INSTDIR"
     Push "PATH"
     Push "$INSTDIR\Nmap"
     Call un.RemoveFromEnvVar
-    ExecWait '$INSTDIR\umit_scheduler.exe" remove'
 SectionEnd
