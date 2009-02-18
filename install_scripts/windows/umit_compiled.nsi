@@ -455,7 +455,7 @@ FunctionEnd
 !define MUI_UNABORTWARNING
 
 !define APPLICATION_NAME "Umit"
-!define APPLICATION_VERSION "0.9.5"
+!define APPLICATION_VERSION "1.0beta1"
 !define WINPCAP "winpcap-nmap-4.02.exe"
 
 Name "${APPLICATION_NAME}"
