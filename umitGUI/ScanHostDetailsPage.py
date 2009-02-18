@@ -304,6 +304,7 @@ class HostDetails(HIGVBox):
             # In case we don't have any port, we still show the expander widget
             # but in a non-sensitive manner
             self.portsused_expander.set_sensitive(False)
+        self.portsused_expander.set_use_markup(True)
         self.os_table.attach(self.portsused_expander, 0, 2, 2, 3)
         
         if os_match.has_key('osclass'):
