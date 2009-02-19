@@ -21,8 +21,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
+import os
 import gtk
-from HIGWidgets import HIGSpinner
+
+from higwidgets import HIGSpinner
+
+GREEN_SPINNER_IMG = os.path.join(os.path.dirname(__file__), 'data',
+        'gnome-green-spinner.png')
 
 def test_cache():
     cache = HIGSpinnerCache()
@@ -59,13 +64,12 @@ def test_widget(num_spinners=1):
 
         s.my_index = i
 
-        # This is a HACK, uncomment this if you want to load a animation 
+        # This is a HACK, uncomment this if you want to load a animation
         # from a file
         s.cache.spinner_images.animated_pixbufs = []
-        s.cache.load_animated_from_filename("gnome-green-spinner.png", 36)
+        s.cache.load_animated_from_filename(GREEN_SPINNER_IMG, 36)
         # This is the HACK continuation
-        s.cache.load_static_from_filename("gnome-green-rest.png",
-                                          "gnome-green-rest")
+        s.cache.load_static_from_filename(GREEN_SPINNER_IMG, "gnome-green-rest")
         s.cache.spinner_images.set_rest_pixbuf("gnome-green-rest")
 
         s.cache.spinner_images.set_size(100, 50)
@@ -107,8 +111,11 @@ def test_widget(num_spinners=1):
 
 if __name__ == '__main__':
     import sys
+    spinners = 1
+    if len(sys.argv) > 1:
+        spinners = int(sys.argv[1])
 
-    test_widget(int(sys.argv[1]))
+    test_widget(spinners)
 
     #t = gtk.IconTheme()
     #info = t.lookup_icon("gnome-spinner", -1, 0)
