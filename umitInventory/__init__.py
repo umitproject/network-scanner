@@ -23,6 +23,5 @@ UMIT Network Inventory package.
 
 __author__ = "Guilherme Polo <ggpolo@gmail.com>"
 __date__ = "20 Aug 2007"
-__copyright__ = "Copyright (C) 2007 Insecure.Com LCC"
 __license__ = "GPL"
 __version__ = "630" # more like a build version

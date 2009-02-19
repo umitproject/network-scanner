@@ -30,7 +30,7 @@ from higwidgets.higbuttons import HIGButton
 
 from umitCore.I18N import _
 from umitCore.Paths import Path, VERSION
-from umitInventory import __author__, __version__, __copyright__
+from umitInventory import __author__, __version__
 
 pixmaps_dir = Path.pixmaps_dir
 if pixmaps_dir:
@@ -53,7 +53,6 @@ class About(HIGWindow):
                 _("and was sponsored by Google during the Summer of Code "
                     "2007.\nThanks Google!"))
 
-        self.lbl_copyright = gtk.Label("<small>%s</small>" % __copyright__)
         self.logo_img = gtk.Image()
         self.logo_img.set_from_file(logo)
         self.btn_close = HIGButton(stock=gtk.STOCK_CLOSE)
@@ -71,10 +70,8 @@ class About(HIGWindow):
         self.set_title(_("About UMIT Network Inventory"))
         self.set_position(gtk.WIN_POS_CENTER)
         self.lbl_program_version.set_use_markup(True)
-        self.lbl_copyright.set_use_markup(True)
         self.lbl_program_description.set_justify(gtk.JUSTIFY_CENTER)
 
-        self.lbl_copyright.set_selectable(True)
         self.lbl_program_description.set_selectable(True)
         self.lbl_program_version.set_selectable(True)
 
@@ -89,7 +86,6 @@ class About(HIGWindow):
         main_vbox.pack_start(self.logo_img)
         main_vbox.pack_start(self.lbl_program_version)
         main_vbox.pack_start(self.lbl_program_description)
-        main_vbox.pack_start(self.lbl_copyright)
 
         btns_box.pack_end(self.btn_close)
         main_vbox._pack_noexpand_nofill(btns_box)

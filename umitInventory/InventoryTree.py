@@ -166,15 +166,15 @@ class InventoryTree(gtk.Notebook):
                                      # is selected but not present
 
                 if self.show_hosts_by == HOSTNAME: # default mode
-                    if addr[3]: # check for hosts existance
+                    if addr[3] and addr[3][0]: # check for hostnames existence
                         append_now = addr[3][0] # show first hostname
 
                 elif self.show_hosts_by == IPV6:
-                    if addr[1]: # check for ipv6 existance
+                    if addr[1]: # check for ipv6 existence
                         append_now = addr[1]
 
                 elif self.show_hosts_by == MAC:
-                    if addr[2]: # check for ipv6 existance
+                    if addr[2]: # check for mac existence
                         append_now =  addr[2]
 
                 if len(append_now) > 21:
@@ -196,7 +196,7 @@ class InventoryTree(gtk.Notebook):
         """
         Open Inventory for editing.
         """
-        # checking for inventory existance in schemas file.
+        # checking for inventory existence in schemas file.
         schemas = ConfigParser()
         schemas.read(Path.sched_schemas)
 
