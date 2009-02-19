@@ -43,8 +43,6 @@ class HIGSpinnerImages:
         - self.animated_pixbufs is used for the pixbuffers that make up the animation
         """
 
-        dprint('HIGSpinnerImages::__init__')
-
         # The Nautilus/Epiphany implementation uses a single "rest/quiescent"
         # static pixbuffer. We'd rather allow the developer to choose from
         # multiple static states, such as "done" or "failed".
@@ -66,22 +64,16 @@ class HIGSpinnerImages:
         default_on_rest to True.
         """
 
-        dprint('HIGSpinnerImages::add_static_pixbuf')
-        
         self.static_pixbufs[name] = pixbuf
         if (len(self.static_pixbufs) == 1) or default_on_rest:
             self.set_rest_pixbuf(name)
 
     def add_animated_pixbuf(self, pixbuf):
 
-        dprint('HIGSpinnerImages::add_animated_pixbuf')
-
         self.animated_pixbufs.append(pixbuf)
 
     def set_rest_pixbuf(self, name):
         """Sets the pixbuf that will be used on the default, 'rest' state. """
-
-        dprint('HIGSpinnerImages::set_rest_pixbuf')
 
         if not self.static_pixbufs.has_key(name):
             raise StaticPixbufNotFound
@@ -116,8 +108,6 @@ class HIGSpinnerCache:
     """This hols a copy of the images used on the HIGSpinners instances."""
     def __init__(self):
 
-        dprint('HIGSpinnerCache::__init__')
-        
         # Our own instance of a HIGSpinnerImages
         self.spinner_images = HIGSpinnerImages()
         
