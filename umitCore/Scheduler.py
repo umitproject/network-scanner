@@ -27,6 +27,7 @@ import time
 import signal
 import warnings
 import subprocess
+from datetime import datetime
 from ConfigParser import ConfigParser
 
 from umitCore.BGProcess import BGRunner
@@ -46,6 +47,13 @@ if NT:
 else:
     servicemanager = lambda: None
     servicemanager.RunningAsService = lambda: False
+
+
+def format_asctime(date):
+    """Format a datetime.date almost like time.asctime, except this one
+    doesn't use ':' for the time so it can be used as a filename under
+    Windows."""
+    return datetime.strftime(date, '%a %b %d %Hh%Mm%Ss %Y')
 
 
 class Scheduler(object):
@@ -683,11 +691,11 @@ Reason: %s" % (schema.schema_name , err))
                     passwd = smtp['pass']
                     server = smtp['server']
                     port = smtp['port']
-                    curr_time = time.ctime()
+                    curr_time = format_asctime(datetime.now())
                     orig_output = scan.get_xml_output_file()
                     new_file_output = os.path.join(
                             os.path.dirname(orig_output),
-                            curr_time + "-" + opts[3])
+                            "%s (%s)" % (curr_time, opts[3]))
 
                     fd_wcont = open(new_file_output, 'w')
                     for line in open(orig_output, 'r'):
