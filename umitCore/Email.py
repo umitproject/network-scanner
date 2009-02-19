@@ -31,8 +31,13 @@ from socket import sslerror
 # trouble when running py2exe because it is a lazy import, so we import
 # the correct, and direct, names.
 try:
-    # Make py2exe collect the next module so the next imports succeed.
+    # Make py2exe collect the next two modules so the other following
+    # imports succeed, and, the module also work when sending emails.
+    # (Noticeable just while running the py2exed version, but this is
+    # really a Python issue since it is the one that is using old names
+    # inside the email package causing lazy imports).
     from email import iterators
+    from email import generator
 
     from email.mime.multipart import MIMEMultipart
     from email.mime.base import MIMEBase
