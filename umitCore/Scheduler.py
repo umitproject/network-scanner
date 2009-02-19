@@ -29,7 +29,7 @@ import warnings
 import subprocess
 from ConfigParser import ConfigParser
 
-from umitCore.BGProcess import BGRunner#, WindowsService
+from umitCore.BGProcess import BGRunner
 from umitCore.Paths import Path
 from umitCore.UmitLogging import file_log
 from umitCore.I18N import _
@@ -685,7 +685,9 @@ Reason: %s" % (schema.schema_name , err))
                     port = smtp['port']
                     curr_time = time.ctime()
                     orig_output = scan.get_xml_output_file()
-                    new_file_output = curr_time + "-" + opts[3]
+                    new_file_output = os.path.join(
+                            os.path.dirname(orig_output),
+                            curr_time + "-" + opts[3])
 
                     fd_wcont = open(new_file_output, 'w')
                     for line in open(orig_output, 'r'):
