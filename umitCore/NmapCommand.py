@@ -25,7 +25,6 @@ sys.path.append(".")
 import os
 import re
 import threading
-import unittest
 
 from tempfile import mktemp
 from types import StringTypes
@@ -400,51 +399,8 @@ COMMAND: %s
 """ % (self.error, self.command)
 
 
-
-class SplitQuotedTest(unittest.TestCase):
-    """A unittest class that tests the split_quoted function."""
-
-    def test_split(self):
-        self.assertEqual(split_quoted(''), [])
-        self.assertEqual(split_quoted('a'), ['a'])
-        self.assertEqual(split_quoted('a b c'), 'a b c'.split())
-
-    def test_quotes(self):
-        self.assertEqual(split_quoted('a "b" c'), ['a', 'b', 'c'])
-        self.assertEqual(split_quoted('a "b c"'), ['a', 'b c'])
-        self.assertEqual(split_quoted('a "b c""d e"'), ['a', 'b cd e'])
-        self.assertEqual(split_quoted('a "b c"z"d e"'), ['a', 'b czd e'])
-
-# Testing module functionality! ;-)
 if __name__ == '__main__':
-    #command = CommandConstructor ('option_profile.uop')
-    #print 'Aggressive options:', command.add_option ('Aggressive Options')
-    #print 'UDP Scan:', command.add_option ('Version Detection')
-    #print 'UDP Scan:', command.add_option ('UDP Scan')
-    #command.add_option ('Idle Scan', ['10.0.0.138'])
-    #command.add_option ('UDP Scan')
-    #command.add_option ('ACK scan')
-    #command.remove_option ('Idle Scannn')
-    
-    #print command.get_command ('localhost')
-    #print command.get_command ('localhost')
-    #print command.get_command ('localhost')
-    
-    #from time import sleep
-    
-    #nmap = NmapCommand (command)
-    #executando = nmap.execute_nmap_command ()
-    #print nmap.command
-    #while executando[0].isAlive ():
-    #    print open(executando[3]).read()
-    #    sleep (1)
-    #print open(executando[3]).read()
-
-    unittest.TextTestRunner().run(unittest.TestLoader().\
-                                  loadTestsFromTestCase(SplitQuotedTest))
-
-    scan = NmapCommand('%s -T4 192.168.0.101"' % \
-                       nmap_command_path)
+    scan = NmapCommand('%s -T4 192.168.0.101"' % nmap_command_path)
     scan.run_scan()
 
     try:
