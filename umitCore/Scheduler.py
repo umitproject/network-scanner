@@ -695,7 +695,7 @@ Reason: %s" % (schema.schema_name , err))
                     orig_output = scan.get_xml_output_file()
                     new_file_output = os.path.join(
                             os.path.dirname(orig_output),
-                            "%s (%s)" % (curr_time, opts[3]))
+                            "%s (%s).xml" % (curr_time, opts[3]))
 
                     fd_wcont = open(new_file_output, 'w')
                     for line in open(orig_output, 'r'):
