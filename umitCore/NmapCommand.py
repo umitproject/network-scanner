@@ -314,7 +314,7 @@ class CommandConstructor:
             self.options.pop(option_name)
 
     def get_command(self, target):
-        splited = ['%s' % self._nmap_path]
+        splited = ['nmap']
 
         for option_name in self.options:
             option = self.option_profile.get_option(option_name)
