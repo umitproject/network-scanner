@@ -517,6 +517,9 @@ Section "Umit" SecUmit
 
   WriteUninstaller "$INSTDIR\Umit-Uninstaller.exe"
 
+  ; update nmap path
+  WriteINIStr "$INSTDIR\share\umit\config\umit.conf" paths nmap_command_path "$INSTDIR\Nmap\nmap.exe"
+
   ; umit scheduler
   FileOpen $0 "$INSTDIR\.scheduserhome" w
   FileClose $0
