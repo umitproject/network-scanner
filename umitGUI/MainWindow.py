@@ -468,9 +468,9 @@ class MainWindow(UmitMainWindow):
         try:
             status = current_page.status
         except:
-            alert = HIGAlertDialog(message_format=_('No scan tab'),
-                    secondary_text=_('There is no scan tab or scan result \
-been shown. Run a scan and then try to add hosts.'))
+            alert = HIGAlertDialog(message_format=_("No scan tab"),
+                    secondary_text=_("There is no scan tab or scan result "
+                        "being shown. Run a scan and then retry adding."))
             alert.run()
             alert.destroy()
             return None
@@ -478,10 +478,10 @@ been shown. Run a scan and then try to add hosts.'))
         if status.get_status() in [ "scan_failed", "unknown", "empty",
                                     "scanning", "parsing_result" ]:
 
-            run_something_text = _("You tried to add a scan to the Inventory, \
-but there isn't a finished scan on active tab!")
+            run_something_text = _("You tried adding a scan to the Inventory, "
+                    "but there isn't a finished scan on the active tab!")
 
-            dlg = HIGAlertDialog(self, message_format=_('No scan tab'),
+            dlg = HIGAlertDialog(self, message_format=_("No scan tab"),
                                  secondary_text=run_something_text)
             dlg.run()
             dlg.destroy()
