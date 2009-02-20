@@ -59,16 +59,16 @@ class BugReport(HIGDialog):
     def _set_category_list(self):
         # Obtained at bug tracker page source code
         
-        self.category_list.append(["Umit %s" % VERSION,
-                                   "Umit %s" % VERSION])
+        self.category_list.append(["Umit %s" % VERSION, "Umit %s" % VERSION])
         self.category_list.append(["umitCore","umitCore"])
         self.category_list.append(["umitGUI","umitGUI"])
         self.category_list.append(["CrashReport","CrashReport"])
         self.category_list.append(["Documentation", "Documentation"])
         self.category_list.append(["umitWeb","umitWeb"])
         self.category_list.append(["InterfaceEditor", "InterfaceEditor"])
+        self.category_list.append(["NetworkInventory", "NetworkInventory"])
         self.category_list.append(["website","website"])
-        
+
     def _create_widgets(self):
         self.category_label = HIGHintSectionLabel(_("Category (optional)"),
             _("If you know in which section of the program "
