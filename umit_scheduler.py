@@ -66,11 +66,14 @@ class UMITSchedulerWinService(WindowsService):
         Scheduler.main('start', winhndl=self.hndl_waitstop, *args)
 
 
-def setup_homedir(usethis):
+def setup_homedir(usethis, force=False):
     """
     Setting umit home directory.
     """
-    Path.force_set_umit_conf(usethis)
+    if force:
+        Path.force_set_umit_conf(usethis)
+    else:
+        Path.set_umit_conf(usethis)
 
     global HOME_CONF, RUNNING_FILE
 
@@ -116,19 +119,19 @@ def pre_main():
         return 0
 
     if CONFIG_DIR: # forcing especified dir
-        setup_homedir(CONFIG_DIR)
+        setup_homedir(CONFIG_DIR, force=True)
     else:
         try:
-            setup_homedir(sys.argv[2])
+            setup_homedir(sys.argv[2], force=True)
         except IndexError: # no path especified
-            setup_homedir(os.path.join(os.path.expanduser("~"), '.umit'))
+            setup_homedir(os.path.expanduser("~"))
 
     return main(sys.argv[1:])
 
 
 if FROZEN_CFG is not None:
     def write_frozen_cfg():
-        setup_homedir(os.path.join(os.path.expanduser('~'), '.umit'))
+        setup_homedir(os.path.expanduser('~'))
         conf = open(FROZEN_CFG, 'w')
         conf.write(HOME_CONF)
         conf.close()

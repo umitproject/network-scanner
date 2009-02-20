@@ -120,14 +120,11 @@ class Paths(object):
         if self.config_file_set:
             return self.config_file
 
-    def force_set_umit_conf(self, base_dir):
-        if not os.path.exists(base_dir):
-            return
+    def force_set_umit_conf(self, config_dir):
+        if not os.path.exists(config_dir):
+            raise Exception("Path specified (%r) does not exist" % config_dir)
 
-        main_config_dir = base_dir
-        config_dir = base_dir
-        config_file = os.path.join(base_dir, 'umit.conf')
-
+        config_file = os.path.join(config_dir, base_paths['config_file'])
         self._parse_and_set_dirs(config_file, config_dir)
 
     def set_umit_conf(self, base_dir):
