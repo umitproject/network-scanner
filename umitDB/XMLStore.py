@@ -133,7 +133,8 @@ class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
 
             if host.tcptssequence:
                 fp_d["tcp_ts_sequence_class"] = host.tcptssequence["class"]
-                fp_d["tcp_ts_sequence_value"] = host.tcptssequence["values"]
+                fp_d["tcp_ts_sequence_value"] = host.tcptssequence.get(
+                        "values", '')
 
             if host.ipidsequence:
                 fp_d["ip_id_sequence_class"] = host.ipidsequence["class"]
@@ -157,7 +158,7 @@ class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
             if host.ip:
                 normalize(host.ip)
                 # get fk_vendor
-                if not host.ip.get("vendor", None):
+                if not host.ip.get("vendor"):
                     vendor = empty()
                 else:
                     vendor = host.ip["vendor"]
@@ -181,7 +182,7 @@ class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
             if host.ipv6:
                 normalize(host.ipv6)
                 # get fk_vendor
-                if not host.ipv6["vendor"]:
+                if not host.ipv6.get("vendor"):
                     vendor = empty()
                 else:
                     vendor = host.ipv6["vendor"]
@@ -205,7 +206,7 @@ class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
             if host.mac:
                 normalize(host.mac)
                 # get fk_vendor
-                if not host.ip["vendor"]:
+                if not host.ip.get("vendor"):
                     vendor = empty()
                 else:
                     vendor = host.mac["vendor"]
@@ -254,9 +255,10 @@ class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
                     osvendor_id = self.get_id_for("osvendor")
 
                 # get fk_ostype
-                ostype_id = self.get_ostype_id_from_db(osclass["type"])
+                osclass_type = osclass.get('type', '')
+                ostype_id = self.get_ostype_id_from_db(osclass_type)
                 if not ostype_id:
-                    self.insert_ostype_db(osclass["type"])
+                    self.insert_ostype_db(osclass_type)
                     ostype_id = self.get_id_for("ostype")
 
 
