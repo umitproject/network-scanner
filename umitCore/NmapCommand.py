@@ -20,18 +20,17 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-import sys
-sys.path.append(".")
 import os
 import re
+import sys
 import threading
-
 from tempfile import mktemp
 from types import StringTypes
 
 from umitCore.NmapOptions import NmapOptions
 from umitCore.OptionsConf import options_file
 from umitCore.UmitLogging import log
+from umitCore.Paths import Path
 from umitCore.I18N import _
 
 try:
@@ -43,14 +42,7 @@ except ImportError, e:
 # shell_state = False is needed to run correctly at Linux
 shell_state = (sys.platform == "win32")
 
-nmap_command_path = "nmap"
-# Don't need the line below anymore
-#if sys.platform == "win32":
-#   nmap_command_path = os.path.join(os.path.split(os.path.abspath(\
-#                                      sys.executable))[0], "Nmap", "nmap.exe")
-
 log.debug(">>> Platform: %s" % sys.platform)
-log.debug(">>> Nmap command path: %s" % nmap_command_path)
 
 def split_quoted(s):
     """Like str.split, except that no splits occur inside quoted strings, and
@@ -59,7 +51,7 @@ def split_quoted(s):
                                                     s)]
 
 class NmapCommand(object):
-    def __init__(self, command=None):
+    def __init__(self, command=None, nmap_path=None):
         self.xml_output = mktemp()
         self.normal_output = mktemp()
         self.stdout_output = mktemp()
@@ -81,6 +73,11 @@ class NmapCommand(object):
         self.command_buffer = ""
         self.command_stderr = ""
 
+        self._nmap_path = nmap_path
+        if nmap_path is None:
+            self._nmap_path = Path.nmap_command_path
+        log.debug(">>> Nmap command path: %s" % self._nmap_path)
+
         if command:
             self.command = command
 
@@ -95,7 +92,7 @@ class NmapCommand(object):
     def _verify(self, command):
         command = self._remove_double_space(command)
         command = self._verify_output_options(command)
-        command[0] = nmap_command_path
+        command[0] = self._nmap_path
 
         return command
 
@@ -317,7 +314,7 @@ class CommandConstructor:
             self.options.pop(option_name)
 
     def get_command(self, target):
-        splited = ['%s' % nmap_command_path]
+        splited = ['%s' % self._nmap_path]
 
         for option_name in self.options:
             option = self.option_profile.get_option(option_name)
@@ -400,7 +397,8 @@ COMMAND: %s
 
 
 if __name__ == '__main__':
-    scan = NmapCommand('%s -T4 192.168.0.101"' % nmap_command_path)
+    Path.set_umit_conf(os.path.dirname(sys.argv[0]))
+    scan = NmapCommand('%s -T4 192.168.0.101"' % Path.nmap_command_path)
     scan.run_scan()
 
     try:
