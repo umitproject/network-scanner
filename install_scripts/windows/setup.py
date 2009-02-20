@@ -72,11 +72,7 @@ data_files = [
         (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
             glob(os.path.join(pixmaps_dir, '*.png')) +
             glob(os.path.join(pixmaps_dir, '*.xpm')) +
-            glob(os.path.join(pixmaps_dir, 'umit.o*')) +
-            glob(os.path.join(pixmaps_dir, 'radialnet', 'application',
-                '*.png')) +
-            glob(os.path.join(pixmaps_dir, 'radialnet', 'icons',
-                '*.png'))),
+            glob(os.path.join(pixmaps_dir, 'umit.o*'))),
 
         (config_dir, [os.path.join(config_dir, 'umit.conf')] +
             [os.path.join(config_dir, 'scan_profile.usp')] +
@@ -90,6 +86,13 @@ data_files = [
             [os.path.join(config_dir, 'smtp-schemas.conf')] +
             glob(os.path.join(config_dir, '*.xml'))+
             glob(os.path.join(config_dir, '*.txt'))),
+
+        # Radialnet
+        (os.path.join(pixmaps_dir, 'radialnet', 'application'),
+            glob(os.path.join(pixmaps_dir, 'radialnet', 'application',
+                '*.png'))),
+        (os.path.join(pixmaps_dir, 'radialnet', 'icons'),
+            glob(os.path.join(pixmaps_dir, 'radialnet', 'icons','*.png'))),
 
         # Network Inventory
         (os.path.join(pixmaps_dir, 'networkinventory'),
