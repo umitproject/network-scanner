@@ -332,6 +332,70 @@ for this profile.'))
     def quit_without_saving(self, widget=None):
         self.deleted=False
         self.quit()
+    
+    def on_delete(self, widget=None):
+        if not self.profile_name:
+            return self.on_cancel()
+
+        dialog = HIGDialog(buttons=(gtk.STOCK_OK, gtk.RESPONSE_OK,
+                                    gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL))
+        alert = HIGEntryLabel('<b>'+_("Deleting Profile")+'</b>')
+        text = HIGEntryLabel(_('Your profile is going to be deleted! Click \
+Ok to continue, or Cancel to go back to Profile Editor.'))
+        hbox = HIGHBox()
+        hbox.set_border_width(5)
+        hbox.set_spacing(12)
+
+        vbox = HIGVBox()
+        vbox.set_border_width(5)
+        vbox.set_spacing(12)
+
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_DIALOG_WARNING, gtk.ICON_SIZE_DIALOG)
+
+        vbox.pack_start(alert)
+        vbox.pack_start(text)
+        hbox.pack_start(image)
+        hbox.pack_start(vbox)
+
+        dialog.vbox.pack_start(hbox)
+        dialog.vbox.show_all()
+
+        response = dialog.run()
+        dialog.destroy()
+	
+	if response == gtk.RESPONSE_CANCEL:
+            return None
+
+        self.deleted = True
+        self.profile.remove_profile(self.profile_name)
+        self.on_cancel()
+	
+
+    def on_cancel(self, widget=None):
+        self.destroy()
+        self.update_profile_entry()
+	
+    def update_profile_entry(self):
+        page = None
+        for i in xrange(self.scan_notebook.get_n_pages()):
+            page = self.scan_notebook.get_nth_page(i)
+
+            page.toolbar.profile_entry.update(\
+                self.profile_name_entry.get_text())
+
+            list = page.toolbar.profile_entry.get_model()
+            length = len(list)
+            if self.deleted and length > 0 :
+                page.toolbar.profile_entry.set_active(0)
+            elif self.deleted and length == 0:
+                page.toolbar.profile_entry.child.set_text("")
+
+        if page is not None:
+            page.toolbar.profile_entry.update()
+	
+	
+	
     def remove_profile(self,profile_name=None):
         '''
         Remove current profile 
