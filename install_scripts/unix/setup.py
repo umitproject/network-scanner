@@ -96,6 +96,22 @@ data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
 
                (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))),
 
+                # Radialnet
+                (os.path.join(pixmaps_dir, 'radialnet', 'application'),
+                    glob(os.path.join(pixmaps_dir, 'radialnet', 'application',
+                        '*.png'))),
+                (os.path.join(pixmaps_dir, 'radialnet', 'icons'),
+                    glob(os.path.join(pixmaps_dir, 'radialnet', 'icons','*.png'))),
+        
+                # Network Inventory
+                (os.path.join(pixmaps_dir, 'networkinventory'),
+                    glob(os.path.join(pixmaps_dir, 'networkinventory', '*.png'))),
+        
+                # InterfaceEditor
+                (os.path.join(pixmaps_dir, 'uie'),
+                    glob(os.path.join(pixmaps_dir, 'uie', '*.png'))),               
+               
+               
                (icons_dir, glob(os.path.join('share', 'icons', 'umit',
                                              '*.ico'))+
                            glob(os.path.join('share', 'icons', 'umit',
