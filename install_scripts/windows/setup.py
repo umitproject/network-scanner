@@ -41,7 +41,7 @@ pixmaps_dir = os.path.join('share', 'pixmaps', 'umit')
 icons_dir = os.path.join('share', 'icons', 'umit')
 locale_dir = os.path.join('share', 'locale')
 config_dir = os.path.join('share', 'umit', 'config')
-docs_dir = os.path.join('share', 'doc', 'umits')
+docs_dir = os.path.join('share', 'doc', 'umit')
 misc_dir = os.path.join('share', 'umit', 'misc')
 sql_dir = os.path.join('share', 'umit', 'sql')
 
