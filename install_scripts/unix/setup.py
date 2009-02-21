@@ -77,7 +77,6 @@ data_files = [ (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
                (config_dir, [os.path.join(config_dir, 'umit.conf')] +
                             [os.path.join(config_dir, 'scan_profile.usp')] +
                             [os.path.join(config_dir, 'umit_version')] +
-                            [os.path.join(config_dir, 'umit.db')] +
                             [os.path.join(config_dir, 'umitng.db')] +
                             [os.path.join(config_dir,
                                           'timeline-settings.conf')] +
