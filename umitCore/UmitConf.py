@@ -24,7 +24,7 @@ import re
 import os
 
 from types import StringTypes
-from ConfigParser import NoSectionError, NoOptionError
+from ConfigParser import NoSectionError, NoOptionError, DuplicateSectionError
 
 from umitCore.Paths import Path
 from umitCore.ScanProfileConf import scan_profile_file
@@ -195,15 +195,21 @@ class Profile(UmitConfigParser, object):
 
     def add_profile(self, profile_name, **attributes):
         log.debug(">>> Add Profile '%s': %s" % (profile_name, attributes))
-        try: self.add_section(profile_name)
-        except: return None
-        
-        [self._set_it(profile_name, attr, attributes[attr]) \
-         for attr in attributes if attr != "options"]
+        try:
+            self.add_section(profile_name)
+        except DuplicateSectionError:
+            return None
+
+        for attr in attributes:
+            if attr != "options":
+                self._set_it(profile_name, attr, attributes[attr])
+
         options = attributes["options"]
-        if type(options) in StringTypes:
+        if isinstance(options, basestring):
             self._set_it(profile_name, "options", options)
-        elif type(options) == type({}):
+            # Assuming there are no values for these options
+            options = {}
+        elif isinstance(options, dict):
             self._set_it(profile_name, "options", ",".join(options.keys()))
 
         for opt in options:
