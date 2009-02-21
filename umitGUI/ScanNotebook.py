@@ -575,9 +575,6 @@ class ScanNotebookPage(HIGVBox):
         self.parsed.profile_annotation = profile.get_annotation(profile_name)
         self.parsed.profile_options = profile.get_options(profile_name)
 
-        del(profile) # XXX not needed, will remove on next commit if no one
-                     #     complains.
-
         if hasattr(self, "command_execution"):
             self.parsed.nmap_output = self.command_execution.get_raw_output()
         elif not self.parsed.nmap_output:
