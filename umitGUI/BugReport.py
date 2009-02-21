@@ -226,7 +226,6 @@ class BugReport(HIGDialog):
                     "now."))
             ok_dialog.run()
             ok_dialog.destroy()
-            webbrowser.open(bug_page, autoraise=1)
 
         if bug_page:
             try:

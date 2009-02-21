@@ -95,10 +95,7 @@ class BugRegister(object):
                            trac_form_token=%s" % (trac_session, trac_form))
 
         response = urllib2.urlopen(request)
-
-        tfile = mktemp()
-        open(tfile, "w").write(response.read())
-        return tfile
+        return response.geturl()
 
 if __name__ == "__main__":
     bug = BugRegister()
