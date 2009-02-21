@@ -501,7 +501,10 @@ class SystemPage(HIGScrolledWindow):
 
         # operating system information widgets
         self.__os = gtk.Notebook()
-        self.__os.set_tab_pos(gtk.POS_LEFT)
+        # XXX Setting this custom positioning causes a hard gtk bug (verified
+        # on Windows 7 at least, likely to happen under Vista too. Used
+        # gtk 2.14.7 and gtk 2.12.9 both with pygtk 2.12.1).
+        #self.__os.set_tab_pos(gtk.POS_LEFT)
 
         os = self.__node.get_info('os')
 
