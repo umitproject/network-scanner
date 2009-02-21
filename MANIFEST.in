@@ -5,7 +5,7 @@ recursive-include share/icons/umit *.ico
 recursive-include share/locale umit.mo *.po
 recursive-include share/doc/umit *.html *.xml umit.1
 recursive-include share/doc/umit/screenshots *.png
-recursive-include share/umit/config *.xml *.conf *.usp umit_version
+recursive-include share/umit/config *.xml *.conf *.usp umit_version *.db
 recursive-include share/umit/misc *.dmp
 recursive-include umitCore *.py
 recursive-include umitGUI *.py
