@@ -23,9 +23,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 import os.path
-
 from smtplib import SMTP
 from socket import sslerror
+
 # Import the "right" parts from email.
 # Importing email.MIMEMultipart while under Python 2.5 and newer causes
 # trouble when running py2exe because it is a lazy import, so we import
@@ -54,47 +54,27 @@ except ImportError:
 
 from umitCore.UmitLogging import log
 
+
 class Email(object):
-    """This class is intended to provide a simple interface for sending
-    Umit emails. The mailing system is going to be used for mailing results
-    to users, automatically. The arguments you should care about setting 
-    are as follows:
+    """This class provides a simple interface for sending emails."""
 
-
-    from_addr - The address from which the email should be sent (Required)
-
-    login - If the mail server doesn't do relay, you should authenticate 
-    with a login
-
-    login_passwd - If the mail server doesn't do relay, you should 
-    authenticate on it
-
-    to_addr - The email address to where the scan result should be 
-    sent (Required)
-
-    server - The address of the SMTP server which will deliver the 
-    email (Required)
-
-    localdomain - If you want to send your email using your own domain, 
-    set it here.
-
-    msg - The scan result or msg you want to send (Required)
-
-    tls - True if the server require tls. False if not.
-
-    port - The port which the SMTP server is listening
-
-    subject - The subject of the mail (Required)"""
-
-    def __init__(self,
-                 from_addr,
-                 to_addr,
-                 server,
-                 localdomain=None,
-                 login=None,
-                 login_passwd=None,
-                 tls=False,
-                 port=25):
+    def __init__(self, from_addr, to_addr, server, localdomain=None,
+            login=None, login_passwd=None, tls=False, port=25):
+        """
+        from_addr       The address from which the email should be sent.
+        to_addr         The email address to where the scan result should be
+                        sent.
+        server          The address of the SMTP server which will deliver the
+                        email.
+        localdomain     If you want to send your email using your own domain,
+                        set it here.
+        login           If the mail server doesn't do relay, you should
+                        authenticate with a login.
+        login_passwd    If the mail server doesn't do relay, you should
+                        authenticate on it.
+        tls             True if the server requires tls, false otherwise.
+        port            The port which the SMTP server is listening.
+        """
 
         self.from_addr = from_addr
         self.to_addr = to_addr
@@ -107,8 +87,8 @@ class Email(object):
 
 
     def connect(self):
-        log.debug(">>> Connecting to smtp server at %s:%s as %s" \
-                  % (self.server, self.port, self.localdomain))
+        log.debug(">>> Connecting to smtp server at %s:%s as %s" % (
+            self.server, self.port, self.localdomain))
 
         self.email_server = SMTP(self.server, self.port, self.localdomain)
         log.debug(">>> Connected!")
@@ -119,7 +99,7 @@ class Email(object):
         if self.tls:
             log.debug(">>> STARTTLS")
             self.email_server.starttls()
-            
+
             log.debug(">>> EHLO %s" % self.from_addr)
             self.email_server.ehlo(self.from_addr)
 
@@ -129,6 +109,11 @@ class Email(object):
 
 
     def sendmail(self, subject, msg, attach=False):
+        """
+        subject     The subject of the mail.
+        msg         The message to send.
+        attach      A list of attachments to send, or a single item.
+        """
         try:
             self.email_server
         except AttributeError:
@@ -138,10 +123,11 @@ class Email(object):
             mail = self.create_mail(subject, msg, attach)
             log.debug(">>> SENDMAIL \n%s" % mail.as_string())
 
-            self.email_server.sendmail(self.from_addr, 
-                                       self.to_addr, 
-                                       mail.as_string())
-            
+            self.email_server.sendmail(
+                    self.from_addr,
+                    self.to_addr,
+                    mail.as_string())
+
             log.debug(">>> SENT!")
             return True
         except sslerror:
@@ -164,7 +150,7 @@ class Email(object):
         mail = MIMEMultipart()
         mail['From'] = self.from_addr
 
-        if type(self.to_addr) == type([]):
+        if isinstance(self.to_addr, list):
             mail['To'] = ', '.join(self.to_addr)
         else:
             mail['To'] = self.to_addr
@@ -174,14 +160,14 @@ class Email(object):
         mail.attach(MIMEText(msg))
 
         if attach:
-            if type(attach) == type(""):
+            if isinstance(attach, basestring):
                 attach = (attach,)
-            
+
             for atc in attach:
                 part = MIMEBase('application', "octet-stream")
-                part.set_payload(open(atc,"rb").read())
+                part.set_payload(open(atc, "rb").read())
                 Encoders.encode_base64(part)
-                part.add_header('Content-Disposition', 
+                part.add_header('Content-Disposition',
                         'attachment; filename="%s"' % os.path.basename(atc))
                 mail.attach(part)
 
@@ -189,41 +175,21 @@ class Email(object):
 
 
 if __name__ == "__main__":
-    """msg = '''From: yourgmailhere@gmail.com\r
-To: targetgmailhere@gmail.com\r
-Subject: Farting a lot!\r
-\r
+    email = Email(
+            "from_addr@gmail.com",
+            "to_addr@gmail.com",
+            "smtp.gmail.com",
+            None,
+            "login@gmail.com",
+            "passwd",
+            True,
+            587)
 
-Gotcha!
+    email.sendmail("Teste1", "Mensagem de teste 1", [
+        "/Users/adriano/umit/trunk/umit",
+        "/Users/adriano/umit/trunk/setup.py"])
 
-\n.\n'''
-    
-    email = SMTP("smtp.gmail.com")
-    email.ehlo("yourgmailhere@gmail.com")
-    email.starttls()
-    email.ehlo("yourgmailhere@gmail.com")
-    email.login("yourgmailhere@gmail.com", "yourpasswdhere")
-    email.sendmail("yourgmailhere@gmail.com", "targetgmailhere@gmail.com", msg)
-    email.quit()"""
-    
-    email = Email("from_addr@gmail.com",
-                  "to_addr@gmail.com",
-                  "smtp.gmail.com",
-                  None,
-                  "login@gmail.com",
-                  "passwd",
-                  True)
+    email.sendmail("Teste2", "Mensagem de teste 2",
+            "/Users/adriano/umit/trunk/setup.nsi")
 
-    email.sendmail("Teste1", 
-                   "Mensagem de teste 1", 
-                   ["/Users/adriano/umit/trunk/umit",
-                    "/Users/adriano/umit/trunk/setup.py"])
-
-    email.sendmail("Teste2", 
-                   "Mensagem de teste 2",
-                   "/Users/adriano/umit/trunk/setup.nsi")
-    
-    email.sendmail("Teste3", 
-                   "Mensagem de teste 3")
-
-    del(email)
+    email.sendmail("Teste3", "Mensagem de teste 3")
