@@ -25,6 +25,7 @@
 import os
 import sys
 import signal
+import platform
 
 # used by exception hook
 import cgitb
@@ -34,7 +35,7 @@ from umitCore.I18N import _
 from umitCore.Version import VERSION
 #########################
 
-UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
+UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", False)
 
 class UmitExceptionHook(object):
     def __call__(self, etype, emsg, etb):
@@ -59,7 +60,16 @@ class UmitExceptionHook(object):
         higwidgets_version = getattr(higwidgets, "__version__", "< 0.9.5")
         python_version = sys.version
         nmap_version = os.popen2("nmap -V")[1].read().strip("\n")
-        osuname = " ".join(os.uname())
+        try:
+            osuname = " ".join(os.uname())
+        except AttributeError:
+            # os.uname is not available under Windows, and other unlikely
+            # systems
+            try:
+                osuname = " ".join(platform.win32_ver())
+            except AttributeError:
+                osuname = "UNKNOWN"
+
         umit_version = VERSION
         umitCore_version = getattr(umitCore, "__version__", "< 0.9.5")
         umitGUI_version = getattr(umitGUI, "__version__", "< 0.9.5")
@@ -147,19 +157,19 @@ UmitGUI: %s
 
 
 if not UMIT_DEVELOPMENT:
-    from tempfile import mktemp
+    #from tempfile import mktemp
     # Generating temporary files names
-    stdout_output = mktemp()
-    stderr_output = mktemp()
+    #stdout_output = mktemp()
+    #stderr_output = mktemp()
 
-    old_stdout = sys.stdout
-    old_stderr = sys.stderr
+    #old_stdout = sys.stdout
+    #old_stderr = sys.stderr
 
-    _stdout = open(stdout_output, "w")
-    _stderr = open(stderr_output, "w")
+    #_stdout = open(stdout_output, "w")
+    #_stderr = open(stderr_output, "w")
 
-    sys.stdout = _stdout
-    sys.stderr = _stderr
+    #sys.stdout = _stdout
+    #sys.stderr = _stderr
 
     
     sys.excepthook = UmitExceptionHook()
