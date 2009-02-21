@@ -24,7 +24,7 @@ import os
 import re
 import sys
 import threading
-from tempfile import mktemp
+import tempfile
 from types import StringTypes
 
 from umitCore.NmapOptions import NmapOptions
@@ -37,6 +37,41 @@ try:
     from subprocess import Popen, PIPE
 except ImportError, e:
     raise ImportError(str(e) + ".\n" + _("Python 2.4 or later is required."))
+
+if sys.hexversion < 0x2060000:
+    # Monkey patch tempfile.NamedTemporaryFile to support the delete parameter
+    class _TemporaryFileWrapper(tempfile._TemporaryFileWrapper):
+        def __init__(self, delete=True, *args, **kwargs):
+            self.delete = delete
+            tempfile._TemporaryFileWrapper.__init__(self, *args, **kwargs)
+
+        if os.name != 'nt':
+            def close(self):
+                if not self.close_called:
+                    self.close_called = True
+                    self.file.close()
+                    if self.delete:
+                        os.unlink(self.name)
+
+    def MKNamedTemporaryFile(mode='w+b', bufsize=-1, suffix='',
+            prefix=tempfile.template, dir=None, delete=True):
+        if dir is None:
+            dir = tempfile.gettempdir()
+
+        if 'b' in mode:
+            flags = tempfile._bin_openflags
+        else:
+            flags = tempfile._text_openflags
+
+        if os.name == 'nt' and delete:
+            flags |= os.O_TEMPORARY
+
+        fd, name = tempfile._mkstemp_inner(dir, prefix, suffix, flags)
+        fobj = os.fdopen(fd, mode, bufsize)
+        return _TemporaryFileWrapper(delete, fobj, name)
+
+    tempfile.NamedTemporaryFile = MKNamedTemporaryFile
+
 
 # shell_state = True avoids python to open a terminal to execute nmap.exe
 # shell_state = False is needed to run correctly at Linux
@@ -52,22 +87,16 @@ def split_quoted(s):
 
 class NmapCommand(object):
     def __init__(self, command=None, nmap_path=None):
-        self.xml_output = mktemp()
-        self.normal_output = mktemp()
-        self.stdout_output = mktemp()
-        self.stderr_output = mktemp()
+        self.xml_output = tempfile.NamedTemporaryFile(delete=False)
+        self.normal_output = tempfile.NamedTemporaryFile(delete=False)
+        self.stdout_output = tempfile.NamedTemporaryFile(delete=False)
+        self.stderr_output = tempfile.NamedTemporaryFile(delete=False)
 
         log.debug(">>> Created temporary files:")
-        log.debug(">>> XML OUTPUT: %s" % self.xml_output)
-        log.debug(">>> NORMAL OUTPUT: %s" % self.normal_output)
-        log.debug(">>> STDOUT OUTPUT: %s" % self.stdout_output)
-        log.debug(">>> STDERR OUTPUT: %s" % self.stderr_output)
-
-        # Creating files. Avoid troubles while running at Windows
-        open(self.xml_output,'w').close()
-        open(self.normal_output,'w').close()
-        open(self.stdout_output,'w').close()
-        open(self.stderr_output,'w').close()
+        log.debug(">>> XML OUTPUT: %s" % self.xml_output.name)
+        log.debug(">>> NORMAL OUTPUT: %s" % self.normal_output.name)
+        log.debug(">>> STDOUT OUTPUT: %s" % self.stdout_output.name)
+        log.debug(">>> STDERR OUTPUT: %s" % self.stderr_output.name)
 
         self.command_process = None
         self.command_buffer = ""
@@ -120,11 +149,11 @@ class NmapCommand(object):
 
         # Saving the XML output to a temporary file
         splited.append('-oX')
-        splited.append('%s' % self.xml_output)
+        splited.append('%s' % self.xml_output.name)
 
         # Saving the Normal output to a temporary file
         splited.append('-oN')
-        splited.append('%s' % self.normal_output)
+        splited.append('%s' % self.normal_output.name)
 
         # Disable runtime interaction feature
         #splited.append("--noninteractive")
@@ -154,13 +183,16 @@ class NmapCommand(object):
 
     def close(self):
         # Remove temporary files created
-        self._stdout_handler.close()
-        self._stderr_handler.close()
-
-        os.remove(self.xml_output)
-        os.remove(self.normal_output)
-        os.remove(self.stdout_output)
-        os.remove(self.stderr_output)
+        for fobj in (self.xml_output, self.normal_output, self.stdout_output,
+                self.stderr_output):
+            fobj.close()
+            try:
+                os.remove(fobj.name)
+            except OSError, err:
+                # Under Windows we ignore error 32: The process cannot
+                # access the file because it is being used by another process.
+                if getattr(err, 'winerror', None) != 32:
+                    raise
 
     def kill(self):
         log.debug(">>> Killing scan process %s" % self.command_process.pid)
@@ -187,19 +219,16 @@ class NmapCommand(object):
         if self.command:
             #self.command_process = Popen(self.command, bufsize=1, stdin=PIPE,
             #                             stdout=PIPE, stderr=PIPE)
-            
-            # Because of problems with Windows, I passed only the file 
+
+            # Because of problems with Windows, I passed only the file
             # descriptors to  Popen and set stdin to PIPE
-            # Python problems... Cross-platform execution of process 
+            # Python problems... Cross-platform execution of process
             # should be improved
-            
-            self._stdout_handler = open(self.stdout_output, "w+")
-            self._stderr_handler = open(self.stderr_output, "w+")
-            
+
             self.command_process = Popen(self.command, bufsize=1,
                                          stdin=PIPE,
-                                         stdout=self._stdout_handler.fileno(),
-                                         stderr=self._stderr_handler.fileno(),
+                                         stdout=self.stdout_output.fileno(),
+                                         stderr=self.stderr_output.fileno(),
                                          shell=shell_state)
         else:
             raise Exception("You have no command to run! Please, set \
@@ -227,7 +256,6 @@ the command before trying to start scan!")
             log.critical('%s' % self.command_stderr)
             log.critical("Command that raised the exception: '%s'" % \
                          " ".join(self.command))
-            
             raise Exception("An error occourried during the scan \
 execution!\n'%s'" % self.command_stderr)
 
@@ -238,44 +266,44 @@ execution!\n'%s'" % self.command_stderr)
         pass
 
     def get_raw_output(self):
-        raw_desc = open(self.stdout_output, "r")
+        raw_desc = open(self.stdout_output.name, "r")
         raw_output = raw_desc.readlines()
         
         raw_desc.close()
         return "".join(raw_output)
 
     def get_output(self):
-        output_desc = open(self.stdout_output, "r")
+        output_desc = open(self.stdout_output.name, "r")
         output = output_desc.read()
 
         output_desc.close()
         return output
 
     def get_output_file(self):
-        return self.stdout_output
+        return self.stdout_output.name
 
     def get_normal_output(self):
-        normal_desc = open(self.normal_output, "r")
+        normal_desc = open(self.normal_output.name, "r")
         normal = normal_desc.read()
 
         normal_desc.close()
         return normal
 
     def get_xml_output(self):
-        xml_desc = open(self.xml_output, "r")
+        xml_desc = open(self.xml_output.name, "r")
         xml = xml_desc.read()
 
         xml_desc.close()
         return xml
 
     def get_xml_output_file(self):
-        return self.xml_output
+        return self.xml_output.name
 
     def get_normal_output_file(self):
-        return self.normal_output
+        return self.normal_output.name
 
     def get_error(self):
-        error_desc = open(self.stderr_output, "r")
+        error_desc = open(self.stderr_output.name, "r")
         error = error_desc.read()
 
         error_desc.close()
