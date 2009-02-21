@@ -78,7 +78,7 @@ class BugRegister(object):
                                  "__FORM_TOKEN":trac_form,
                                  "field_type":self.type,
                                  "field_description":self.details,
-                                 "field_milestone":self.milestore,
+                                 "field_milestone":self.milestone,
                                  "field_component":self.component,
                                  "field_version":self.version,
                                  "field_keywords":self.keywords,
