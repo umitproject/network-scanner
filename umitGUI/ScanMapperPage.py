@@ -39,6 +39,7 @@ class ScanMapperPage(HIGVBox):
         
     def create_widgets(self):
         if self.__created:
+            self.__toolbar.enable_tools()
             self.update_graph()
             return
 
@@ -64,6 +65,7 @@ class ScanMapperPage(HIGVBox):
                                         self,
                                         self.__control,
                                         self.__fisheye)
+        self.__toolbar.disable_tools()
         
         
         

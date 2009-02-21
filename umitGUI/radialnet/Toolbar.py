@@ -170,6 +170,11 @@ class Toolbar(gtk.Toolbar):
         self.__control.set_sensitive(True)
         self.__fisheye.set_sensitive(True)
         self.__tools_menu.enable_dependents()
+    
+    def disable_tools(self):
+        self.__tools_menu.disable_dependents()
+    def enable_tools(self):
+        self.__tools_menu.enable_dependents()
 
 
     def __update(self):
