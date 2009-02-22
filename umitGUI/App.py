@@ -95,10 +95,11 @@ class App:
                 self.using_psyco = True
             except:
                 log.warning(_("RUNNING WITHOUT PSYCO!"))
-                log.warning(_("""Psyco is a module that speeds up the execution \
-                    of this #application. It is not a requirement, and Umit runs perfectly \
-                    with or #without it, but you're encourajed to install it to have a better \
-                    speed ex#perience. Download it at http://psyco.sf.net/"""))
+                log.warning(_("Psyco is a module that speeds up the execution "
+                    "of Python applications. It is not a requirement, and "
+                    "Umit will work normally without it, but you're "
+                    "encouraged to install it to have a better speed "
+                    "experience. Download psyco at http://psyco.sf.net/"""))
                 self.using_psyco = False
 
         self.diff = option_parser.get_diff()
