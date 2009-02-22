@@ -515,6 +515,13 @@ Section "Umit" SecUmit
   CreateShortCut "$SMPROGRAMS\Umit\Umit.lnk" "$INSTDIR\umit.exe" "" $INSTDIR\umit_48.ico
   CreateShortCut "$SMPROGRAMS\Umit\Umit-Uninstaller.lnk" "$INSTDIR\Umit-Uninstaller.exe" "" $INSTDIR\Umit-Uninstaller.exe
 
+  ; shortcuts for umit network inventory
+  CreateShortCut "$INSTDIR\Umit Network Inventory.lnk" "$INSTDIR\umit.exe" \
+    "-i" "" "" SW_SHOWNORMAL "" "Start Umit Network Inventory"
+  CreateShortCut "$SMPROGRAMS\Umit\Umit Network Inventory.lnk" \
+    "$INSTDIR\umit.exe" "-i" "" "" SW_SHOWNORMAL "" \
+    "Start Umit Network Inventory"
+
   WriteUninstaller "$INSTDIR\Umit-Uninstaller.exe"
 
   ; update nmap path
@@ -525,6 +532,7 @@ Section "Umit" SecUmit
   FileClose $0
   ExecWait '"$INSTDIR\umit_scheduler.exe" install'
 SectionEnd
+
 Section "Add to path"
 ;likewise AddToPath could be
   Push "PATH"
