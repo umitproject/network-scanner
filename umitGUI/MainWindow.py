@@ -661,7 +661,13 @@ to close current Scan Tab?'),
                 return False
 
         page.close_tab()
-        del(page)
+        # Close (and maybe remove) temporary files.
+        try:
+            page.command_execution.close()
+        except AttributeError:
+            # Page didn't have a scan.
+            pass
+
         self.scan_notebook.remove_page(page_num)
         return True
 
@@ -684,6 +690,13 @@ to close current Scan Tab?'),
             except:
                 log.debug("Error while trying to store result in Data Base!")
 
+        # Remove temp file created, if possible.
+        try:
+            os.remove(filename)
+        except OSError, err:
+            # See umitCore.NmapCommand.close
+            if getattr(err, 'winerror', None) != 32:
+                raise
 
 
     def get_recent_scans(self):
