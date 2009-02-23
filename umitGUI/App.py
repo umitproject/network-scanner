@@ -91,16 +91,17 @@ class App:
         if not os.environ.get('UMIT_DEVELOPMENT', False):
             try:
                 import psyco
-                psyco.profile()
-                self.using_psyco = True
-            except:
+            except ImportError:
                 log.warning(_("RUNNING WITHOUT PSYCO!"))
-                log.warning(_("Psyco is a module that speeds up the execution "
+                log.warning(_("psyco is a module that speeds up the execution "
                     "of Python applications. It is not a requirement, and "
                     "Umit will work normally without it, but you're "
                     "encouraged to install it to have a better speed "
                     "experience. Download psyco at http://psyco.sf.net/"""))
                 self.using_psyco = False
+            else:
+                psyco.profile()
+                self.using_psyco = True
 
         self.diff = option_parser.get_diff()
         if self.diff:
