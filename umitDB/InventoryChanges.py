@@ -139,7 +139,7 @@ class UpdateChanges:
                 osclasses2 = self.invdb.get_osclasses_for_host_from_db(hostB[1])
                 pcdata2 = self.invdb.get_portid_and_fks_for_host_from_db(
                     hostB[1])
-                
+
                 # compare old data against new data
                 category, diff_text = self._compare_data(pdata2, fpinfo2,
                     osmatch2, osclasses2, pcdata2, pdata1, fpinfo1,
@@ -258,7 +258,8 @@ class UpdateChanges:
         # compare fpinfoNs
         # dont consider uptime and lastboot in fingerprint (will probably
         # not consider others too)
-        if fpinfo1 and (fpinfo1[2:] != fpinfo2[2:]):
+        if (fpinfo1 and not fpinfo2) or (not fpinfo1 and fpinfo2) or \
+                (fpinfo1 and fpinfo2 and fpinfo1[2:] != fpinfo2[2:]):
             space = host_diff and ' ' or ''
             common_text = space + _("Fingerprint, ")
             ports_only = False
@@ -283,7 +284,7 @@ class UpdateChanges:
                 common_text = ''.join([common_text, _("OS Classes")])
             fp_only = False
             ports_only = False
-                
+
         if common_text:
             if fp_only or len(common_text) == len(" Fingerprint, "):
                 common_text = common_text[:-2]
@@ -303,7 +304,7 @@ class UpdateChanges:
             # Nothing here means "Almost nothing", there could be
             # changes in extraports for example.
             affected = 'nothing'
-            host_diff = _("No noticeables changes since last sucessfull scan.")
+            host_diff = _("No noticeables changes since last sucessful scan.")
 
 
         return (affected, host_diff)
