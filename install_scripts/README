@@ -1,10 +1,5 @@
 IMPORTANTE MESSAGE FOR DEVELOPERS AND PACKAGE MAINTAINERS:
 
-Every script under this directory is supposed to be executed from the umit
-base dir. Don't get into this directory, nor any other under this one to
-execute any of the scripts, or they're not going to work as expected.
-
-
 Generating windows installer:
 
  1 - Install the required dependencies for windows (including PIL)

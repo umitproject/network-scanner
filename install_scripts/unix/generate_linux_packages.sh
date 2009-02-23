@@ -6,6 +6,11 @@ echo "# Umit Source Packages #"
 echo "########################"
 echo
 
+old_pwd=`pwd`
+script_dir=`pwd`/$0
+script_dir=`dirname $script_dir`
+cd $script_dir/../..
+
 echo "Updating/Creating dumped operating system list..."
 python install_scripts/utils/create_os_list.py
 
@@ -19,3 +24,5 @@ echo "Starting setup.py..."
 cp install_scripts/unix/setup.py .
 python setup.py sdist --formats=gztar,zip,bztar
 rm setup.py MANIFEST
+
+cd $old_pwd
