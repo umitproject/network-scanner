@@ -22,6 +22,8 @@ import gobject
 
 from umitCore.I18N import _
 
+from umitInventory.TLBase import categories
+
 ALLCHANGES = _("View all changes")
 LISTCHANGES = _("Changes listing")
 
@@ -30,14 +32,14 @@ class TLChangesTree(gtk.HBox):
     A treeview that holds Inventory Changes in a timerange by category.
     """
 
-    def __init__(self, connector, datagrabber, categories, inventory,
+    def __init__(self, connector, datagrabber, db_categories, inventory,
         hostaddr):
 
         gtk.HBox.__init__(self)
 
         self.connector = connector
         self.datagrabber = datagrabber
-        self.categories = categories
+        self.db_categories = db_categories
         self.inventory = inventory
         self.hostaddr = hostaddr
 
@@ -65,8 +67,8 @@ class TLChangesTree(gtk.HBox):
         """
         # startup situation
         self.treestore.append(None, [ALLCHANGES])
-        for category in self.categories:
-            self.treestore.append(None, ["%s (0)" % category])
+        for category in self.db_categories:
+            self.treestore.append(None, ["%s (0)" % categories[category]])
 
 
     def _row_activated(self, tview, path, tvcolumn):
@@ -84,7 +86,7 @@ class TLChangesTree(gtk.HBox):
                     self.emit('data-update', 'full', full_load)
 
             elif len(path) == 2:
-                # clicked on View all changes inside a category
+                # clicked on "View all changes" inside a category
                 category_id = path[0]
                 category_load = { }
                 category_load[category_id] = self.fulldata[category_id]
@@ -141,14 +143,14 @@ class TLChangesTree(gtk.HBox):
         """
         Grabs changes from range_start to range_end and then update tree.
         """
-        categories = self.datagrabber.get_categories()
-        self.categories = [value[1] for key, value in categories.items()]
+        db_categories = self.datagrabber.get_categories()
+        self.db_categories = [value[1] for key, value in db_categories.items()]
 
         data = { }
 
         # grab changes in timerange
         self.datagrabber.use_dict_cursor()
-        for key in categories.keys():
+        for key in db_categories.keys():
             if not range_start or not range_end:
                 data[key] = { }
                 continue
@@ -189,11 +191,9 @@ class TLChangesTree(gtk.HBox):
                     inventories[fk_inventory] = inv_name
 
                 # update clean_data
-                #if clean_data[category].has_key(inventories[fk_inventory]):
                 if inventories[fk_inventory] in clean_data[category]:
                     cdata = clean_data[category][inventories[fk_inventory]]
 
-                    #if cdata.has_key(addresses[fk_address]):
                     if addresses[fk_address] in cdata:
                         cdata[addresses[fk_address]] += 1
                     else:
@@ -212,14 +212,14 @@ class TLChangesTree(gtk.HBox):
         self.treestore.clear()
         self.treestore.append(None, [ALLCHANGES])
 
-        for indx, item in enumerate(self.categories):
-            data_lenght = len(data[indx + 1]) # keys starting at 1
-            changes_sum += data_lenght
+        for indx, item in enumerate(self.db_categories):
+            data_length = len(data[indx + 1]) # keys starting at 1
+            changes_sum += data_length
 
-            root = self.treestore.append(None, ["%s (%d)" % (item,
-                data_lenght)])
+            root = self.treestore.append(None, ["%s (%d)" % (categories[item],
+                data_length)])
 
-            if data_lenght > 0:
+            if data_length > 0:
                 self.treestore.append(root, [ALLCHANGES])
 
             for inventory, entries in clean_data[indx + 1].items():

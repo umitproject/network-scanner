@@ -19,14 +19,15 @@
 
 from datetime import datetime
 
-from umitCore.UmitLogging import log
 from umitCore.NmapParser import NmapParser
 
 from umitDB.Connection import ConnectDB
 from umitDB.Store import RawStore
 from umitDB.Retrieve import InventoryRetrieve
 from umitDB.InventoryChanges import UpdateChanges
-from umitDB.Utils import empty, debug, normalize
+from umitDB.Utils import empty, log_debug, normalize
+
+debug = log_debug('umitDB.XMLStore')
 
 class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
     """
@@ -55,7 +56,7 @@ class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
         inventory       -   inventory that scans will be added to, or None
                             to create a new one
         """
-        log.debug(">>> Inserting file(s) into databaseng: ", xml_files)
+        debug("Inserting file(s) into databaseng: %r", xml_files)
 
         if inventory:
             self.invchanges = UpdateChanges(self)
@@ -76,7 +77,7 @@ class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
             self.hosts = self.hosts_from_xml()
 
             if inventory:
-                log.debug(">>> Inserting scan into Inventory '%s'" % inventory)
+                debug("Inserting scan into Inventory %r", inventory)
                 inv_id = self.get_inventory_id_from_db(inventory)
                 if not inv_id: # create new inventory
                     self.insert_inventory_db(inventory)
@@ -85,12 +86,12 @@ class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
 
         if inventory:
             # update list of changes for inventory
-            log.debug(">>> Updating changes for Inventory '%s'" % inventory)
+            debug("Updating changes for Inventory %r", inventory)
             self.invchanges.do_update(inv_id)
 
         self.conn.commit()
 
-        log.debug(xml_files, "inserted into database (hopefully).")
+        debug("%r inserted into database.", xml_files)
 
 
     def hosts_from_xml(self):
@@ -453,7 +454,7 @@ class XMLStore(ConnectDB, InventoryRetrieve, RawStore):
         """
         Parses an existing xml file.
         """
-        debug("Parsing file: %s.." % valid_xml)
+        debug("Parsing file: %r..", valid_xml)
 
         p = NmapParser(valid_xml)
         p.parse()

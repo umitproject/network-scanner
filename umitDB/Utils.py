@@ -19,10 +19,9 @@
 
 """
 Some functions used along databaseng package.
-Note: debug() is deprecrated, should use UmitLogging instead.
 """
 
-DEBUG = False
+from umitCore.UmitLogging import log
 
 def empty():
     """
@@ -31,12 +30,13 @@ def empty():
     return ''
 
 
-def debug(msg):
+def log_debug(name):
     """
     Prints a debug message.
     """
-    if DEBUG:
-        print ">> %s" % msg
+    def _debug(msg, *args):
+        log.debug("%s: %s" % (name, msg), *args)
+    return _debug
 
 
 def normalize(dictun):

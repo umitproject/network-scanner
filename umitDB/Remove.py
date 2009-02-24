@@ -19,10 +19,11 @@
 
 from datetime import datetime, timedelta
 
-from umitCore.UmitLogging import log
-
+from umitDB.Utils import log_debug
 from umitDB.Connection import ConnectDB
 from umitDB.Retrieve import CompositeRetrieve
+
+debug = log_debug('umitDB.Remove')
 
 class ScanRemover(ConnectDB, CompositeRetrieve):
     """
@@ -91,14 +92,14 @@ class ScanRemover(ConnectDB, CompositeRetrieve):
             # nothing to do
             return
 
-        log.debug(">>> Removing UMIT scans older than %d days "
-            "from database.." % older_than)
+        debug("Removing UMIT scans older than %d days "
+            "from database..", older_than)
 
         # remove scans
         for scan_id in to_remove:
             self.remove_scan(scan_id)
 
-        log.debug(">>> Removal completed")
+        debug("Removal completed")
 
 
     def remove_old_inventory_scans(self, older_than=None):
@@ -121,8 +122,8 @@ class ScanRemover(ConnectDB, CompositeRetrieve):
             # nothing to do
             return
 
-        log.debug(">>> Removing Inventory scans older than %d days "
-            "from database.." % older_than)
+        debug("Removing Inventory scans older than %d days "
+            "from database..", older_than)
 
         # remove scans
         for scan_id in scans_ids:
@@ -138,7 +139,7 @@ class ScanRemover(ConnectDB, CompositeRetrieve):
 
         self.conn.commit()
         
-        log.debug(">>> Removal completed")
+        debug("Removal completed")
 
 
     def _remove_fingerprint_info(self, fk_host):

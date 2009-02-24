@@ -18,7 +18,9 @@
 # USA
 
 from umitDB.Utils import empty
-from umitDB.Utils import debug
+from umitDB.Utils import log_debug
+
+debug = log_debug('umitDB.Store')
 
 """
 Missing methods for:
@@ -387,8 +389,8 @@ class RawStore:
         """
         Creates new record in inventory_change_category.
         """
-        debug("Inserting new category '%s' into "
-            "inventory_change_category" % category)
+        debug("Inserting new category %r into inventory_change_category",
+                category)
 
         self.cursor.execute("INSERT INTO inventory_change_category (name) "
             "VALUES (?)", (category, ))

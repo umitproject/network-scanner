@@ -18,11 +18,13 @@
 # USA
 
 from umitCore.I18N import _
-from umitCore.UmitLogging import log
 
+from umitDB.Utils import log_debug
 from umitDB.Connection import ConnectDB
 from umitDB.Store import RawStore
 from umitDB.Retrieve import InventoryRetrieve
+
+debug = log_debug("umitDB.InventoryChanges")
 
 class BadParams(Exception):
     pass
@@ -84,8 +86,8 @@ class UpdateChanges:
                 addr, inv_id)
 
             if not base_data:
-                log.debug("NetworkInventory: Inventory id %d has no data "
-                        "for host address %r yet.", inv_id, addr)
+                debug("Inventory id %d has no data for host address %r yet.",
+                        inv_id, addr)
                 continue
 
             # dict where all data will be stored
@@ -359,8 +361,8 @@ class UpdateChanges:
                 new_value = new_dict[key]
 
                 if value != new_value:
-                    log.debug("NetworkInventory: %s, %s differs "
-                            "but I'm not doing anything", value, new_value)
+                    debug("%s, %s differs but I'm not doing anything",
+                            value, new_value)
 
             else:
                 closed_ports.append(key)
@@ -370,8 +372,8 @@ class UpdateChanges:
                 old_value = old_dict[key]
 
                 if value != old_value:
-                    log.debug("NetworkInventory: %s, %s differs "
-                            "but I'm not doing anything", value, new_value)
+                    debug("NetworkInventory: %s, %s differs but I'm not "
+                            "doing anything", value, new_value)
 
             else:
                 open_ports.append(key)

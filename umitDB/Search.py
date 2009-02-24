@@ -17,11 +17,13 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
 # USA
 
-from umitDB.Utils import debug
+from umitDB.Utils import log_debug
 from umitDB.Connection import ConnectDB
 from umitDB.Retrieve import CompositeRetrieve
 
 from umitCore.I18N import _
+
+debug = log_debug('umitDB.Search')
 
 change_text = (_("change"), _("changes"))
 port_text = (_("port"), _("ports"), _("service"))
@@ -125,8 +127,7 @@ class SearchDB(ConnectDB, CompositeRetrieve):
         """
         Search for ports for host_id.
         """
-        debug("Searching under Ports for %s for host_id %d.." % (query,
-            host_id))
+        debug("Searching under Ports for %s for host_id %d..", query, host_id)
         # a port search query is expected to be something like:
         #  <port_text> <comparison OR Nothing> <something>
 
@@ -215,8 +216,8 @@ class SearchDB(ConnectDB, CompositeRetrieve):
         """
         Search in _inventory_changes for something like query for host_id.
         """
-        debug("Searching under Inventory changes for %s for "
-            "host_id %d.." % (query, host_id))
+        debug("Searching under Inventory changes for %s for host_id %d..",
+                query, host_id)
 
         query = query.split()
         if len(query) < 2 or (not query[0] in change_text):
@@ -242,7 +243,7 @@ class SearchDB(ConnectDB, CompositeRetrieve):
         """
         Search for hostnames like query for host_id.
         """
-        debug("Searching for hostname %s for host_id %d" % (query, host_id))
+        debug("Searching for hostname %s for host_id %d", query, host_id)
 
         hostname = self.cursor.execute("SELECT hostname.name FROM hostname "
             "JOIN _host_hostname ON (_host_hostname.fk_hostname=hostname.pk) "
@@ -257,8 +258,8 @@ class SearchDB(ConnectDB, CompositeRetrieve):
         """
         Search for osmatch like query for host_id.
         """
-        debug("Searching under OS Match for %s for host_id %d.." % (query,
-            host_id))
+        debug("Searching under OS Match for %s for host_id %d..",
+                query, host_id)
 
         match = self.cursor.execute("SELECT name FROM osmatch "
             "WHERE fk_host=? AND name LIKE ?", (host_id,
@@ -272,8 +273,8 @@ class SearchDB(ConnectDB, CompositeRetrieve):
         """
         Search for osclasses like query for host_id.
         """
-        debug("Searching under OS Classes for %s for hots_id %d" % (query,
-            host_id))
+        debug("Searching under OS Classes for %s for hots_id %d",
+                query, host_id)
 
         bquery = '%' + query + '%'
         
@@ -296,7 +297,7 @@ class SearchDB(ConnectDB, CompositeRetrieve):
         """
         Search for MAC like query for host_id.
         """
-        debug("Searching MAC address like %s for host_id %d" % (query, host_id))
+        debug("Searching MAC address like %s for host_id %d", query, host_id)
 
         fk_address = self.cursor.execute("SELECT fk_address "
             "FROM _host_address WHERE fk_host = ?", (host_id, )).fetchall()
@@ -314,8 +315,8 @@ class SearchDB(ConnectDB, CompositeRetrieve):
         """
         Search for query in fingerprint table for host_id.
         """
-        debug("Searching for Fingerprint info like %s for "
-            "host_id %d" % (query, host_id))
+        debug("Searching for Fingerprint info like %s for host_id %d",
+                query, host_id)
 
         bquery = '%' + query + '%'
         self.cursor.execute("SELECT tcp_sequence_class, "

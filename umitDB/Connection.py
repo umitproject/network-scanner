@@ -23,7 +23,9 @@ This handles connections to the database.
 
 from umitDB._database import sql
 from umitDB._database import database
-from umitDB.Utils import debug
+from umitDB.Utils import log_debug
+
+debug = log_debug('umitDB.Connection')
 
 def dict_factory(cursor, row):
     """
@@ -46,7 +48,7 @@ class ConnectDB:
         """
         Open connection to db and acquire a cursor.
         """
-        debug("Openning connection to database; %s" % db)
+        debug("Openning connection to database: %r", db)
 
         if database == 'sqlite':
             self.conn = sql.connect(db,
@@ -89,7 +91,7 @@ class ConnectDB:
         """
         Return last insert rowid in a table. (sqlite only)
         """
-        debug("Getting pk for last insert in table: %s.." % table_name)
+        debug("Getting pk for last insert in table: %r..", table_name)
 
         if database == 'sqlite':
             return self.cursor.execute("SELECT last_insert_rowid() \

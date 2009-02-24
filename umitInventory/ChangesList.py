@@ -430,7 +430,7 @@ class ChangesList(gtk.VBox):
 
         indx = 0
         for category_id, values in data_dict.items():
-            category = self.invdb.get_category_name_by_id(category_id)
+            db_category = self.invdb.get_category_name_by_id(category_id)
 
             for value in values:
                 inventory_id = value["fk_inventory"]
@@ -449,8 +449,10 @@ class ChangesList(gtk.VBox):
                     # filter by Inventory
                     states[inv_name] = True
 
-                self.model.append([inv_name, host_addr, category, text,
-                    self.format_date(entry_date)])
+                self.model.append([
+                    inv_name, host_addr, changes_in_db[db_category], text,
+                    self.format_date(entry_date)
+                    ])
 
                 self.row_data[indx] = [new_hostid, old_hostid, indx, inv_name]
 

@@ -18,7 +18,7 @@
 # USA
 
 from umitDB.Utils import empty
-from umitDB.Utils import debug
+from umitDB.Utils import log_debug
 from umitDB.Utils import normalize
 from umitDB.Connection import ConnectDB
 
@@ -26,6 +26,8 @@ from umitDB.Connection import ConnectDB
 Missing methods for:
     Traceroute retrieval.
 """
+
+debug = log_debug('umitDB.Retrieve')
 
 class RawRetrieve:
     """
@@ -353,7 +355,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         Get all hosts from database that are in fk_scan.
         """
-        debug("Getting hosts from scan id %d.." % fk_scan)
+        debug("Getting hosts from scan id %d..", fk_scan)
 
         ids = self.cursor.execute("SELECT pk FROM host WHERE fk_scan = ?",
             (fk_scan, )).fetchall()
@@ -365,7 +367,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         Get IPV4, IPV6 or MAC for a host.
         """
-        debug("Getting %s address for host id %d.." % (addrtype, fk_host))
+        debug("Getting %s address for host id %d..", addrtype, fk_host)
 
         fk_address = self.cursor.execute("SELECT fk_address "
             "FROM _host_address WHERE fk_host = ?", (fk_host, )).fetchall()
@@ -406,7 +408,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         Get hostnames associated with a host.
         """
-        debug("Getting hostnames for host id %d.." % fk_host)
+        debug("Getting hostnames for host id %d..", fk_host)
 
         fk_hostname = self.cursor.execute("SELECT fk_hostname "
             "FROM _host_hostname WHERE fk_host = ?", (fk_host, )).fetchall()
@@ -448,7 +450,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         Get finish timestamp for a scan.
         """
-        debug("Getting finish timestamp for scan id %d.." % scan)
+        debug("Getting finish timestamp for scan id %d..", scan)
         
         fts = self.cursor.execute("SELECT finish 'as finish [timestamp]' "
             "FROM scan WHERE pk = ?", (scan, )).fetchone()[0]
@@ -460,7 +462,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         Get scan details for a scan.
         """
-        debug("Getting scan details for scan id %d.." % scan)
+        debug("Getting scan details for scan id %d..", scan)
         
         details = self.cursor.execute("SELECT args, xmloutputversion, "
             "verbose, debugging, scanner.name, scanner.version "
@@ -480,7 +482,7 @@ class CompositeRetrieve(RawRetrieve):
         Get only portid and port state from port table, for a host.
         """
         debug("Getting portid and state for host id %d from table "
-            "port.." % host)
+            "port..", host)
     
         pst = self.cursor.execute("SELECT port.portid, port_state.state "
             "FROM port "
@@ -496,7 +498,7 @@ class CompositeRetrieve(RawRetrieve):
         Get portid and fks from port table, for a host.
         """
         debug("Getting portid and foreign keys for host id %d from "
-            "table port.." % host)
+            "table port..", host)
         
         pdata = self.cursor.execute("SELECT portid, fk_service_info, "
             "fk_protocol, fk_port_state FROM port JOIN _host_port ON "
@@ -535,7 +537,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         Get extraports Count for host id.
         """
-        debug("Getting extraports count for host id %d" % host_id)
+        debug("Getting extraports count for host id %d", host_id)
 
         epcount = self.cursor.execute("SELECT extraports.count "
             "FROM extraports WHERE extraports.fk_host = ?",
@@ -548,7 +550,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         Get extraport data for host id (returns Count and State).
         """
-        debug("Getting extraports data for host id %d" % host_id)
+        debug("Getting extraports data for host id %d", host_id)
         
         epdata = self.cursor.execute("SELECT extraports.count, "
             "port_state.state FROM extraports, port_state "
@@ -562,7 +564,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         Get fingerprinto info for a host id.
         """
-        debug("Getting fingerprinto info for host id %d" % host_id)
+        debug("Getting fingerprinto info for host id %d", host_id)
 
         # W: Not using signature field for now.
 
@@ -580,7 +582,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         Get osmatch data for a host id.
         """
-        debug("Getting osmatch for host id %d" % host_id)
+        debug("Getting osmatch for host id %d", host_id)
 
         match = self.cursor.execute("SELECT name, accuracy, line FROM osmatch "
             "WHERE fk_host = ?", (host_id, )).fetchone()
@@ -591,7 +593,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         Get osclasses for a host id.
         """
-        debug("Getting osclasses for host id %d" % host_id)
+        debug("Getting osclasses for host id %d", host_id)
 
         classes = self.cursor.execute("SELECT osclass.accuracy, osgen.gen, "
             "osfamily.family, osvendor.vendor, ostype.type FROM osclass "
@@ -651,7 +653,7 @@ class InventoryRetrieve(CompositeRetrieve):
         """
         Returns inventory name for id.
         """
-        debug("Getting inventory name for id %d.." % inv_id)
+        debug("Getting inventory name for id %d..", inv_id)
         
         name = self.cursor.execute("SELECT name FROM inventory WHERE pk = ?",
             (inv_id, )).fetchone()
@@ -664,7 +666,7 @@ class InventoryRetrieve(CompositeRetrieve):
         """
         Returns inventory id for name.
         """
-        debug("Getting inventory id for name %s.." % name)
+        debug("Getting inventory id for name %s..", name)
 
         i_id = self.cursor.execute("SELECT pk FROM inventory WHERE name = ?",
             (name, )).fetchone()
@@ -677,7 +679,7 @@ class InventoryRetrieve(CompositeRetrieve):
         """
         Return scan arguments for an inventory id.
         """
-        debug("Getting scan arguments for inventory id %d.." % fk_inventory)
+        debug("Getting scan arguments for inventory id %d..", fk_inventory)
 
         args = self.cursor.execute("SELECT args FROM scan "
             "JOIN _inventory_scan ON (scan.pk = _inventory_scan.fk_scan) "
@@ -692,7 +694,7 @@ class InventoryRetrieve(CompositeRetrieve):
         """
         Returns all pks from table scan, where scan is in an inventory.
         """
-        debug("Getting scans for inventory id %d.." % fk_inventory)
+        debug("Getting scans for inventory id %d..", fk_inventory)
         
         ids = self.cursor.execute("SELECT fk_scan FROM _inventory_scan "
             "WHERE fk_inventory = ?", (fk_inventory, )).fetchall()
@@ -705,7 +707,7 @@ class InventoryRetrieve(CompositeRetrieve):
         Get all pks from table host, where host is in fk_scan and host in an
         inventory.
         """
-        debug("Getting hosts from scan id %d.." % fk_scan)
+        debug("Getting hosts from scan id %d..", fk_scan)
 
         ids = self.cursor.execute("SELECT pk FROM host WHERE fk_scan = ? "
             "AND fk_scan IN (SELECT fk_scan FROM _inventory_scan)",
@@ -721,7 +723,7 @@ class InventoryRetrieve(CompositeRetrieve):
         host_address and host is in an especified fk_inventory.
         """
         debug("Getting pks in host with host_address %s and "
-            "fk_inventory %d" % (host_address, fk_inventory))
+            "fk_inventory %d", host_address, fk_inventory)
         
         ids = self.cursor.execute("SELECT host.fk_scan, host.pk "
             "FROM host "
@@ -740,7 +742,7 @@ class InventoryRetrieve(CompositeRetrieve):
         Get all finish timestamps and scan id from scans that are in an
         inventory.
         """
-        debug("Getting finish timestamps for fk_inventory %d" % fk_inventory)
+        debug("Getting finish timestamps for fk_inventory %d", fk_inventory)
         
         data = self.cursor.execute("SELECT scan.pk, "
             "scan.finish as 'finish [timestamp]' FROM scan "
@@ -755,7 +757,7 @@ class InventoryRetrieve(CompositeRetrieve):
         """
         Get inventory_change_category pk based on category name.
         """
-        debug("Getting change_category id for name '%s'" % name)
+        debug("Getting change_category id for name %r", name)
 
         pk = self.cursor.execute("SELECT pk FROM inventory_change_category "
             "WHERE name=?", (name, )).fetchone()
@@ -770,8 +772,8 @@ class InventoryRetrieve(CompositeRetrieve):
         for old_hid against new_hid in a date for fk_inventory.
         """
         debug("Checking if there is a comparison for old hostid %d against "
-            "new hostid %d @ %s for Inventory id %d" % (old_hid, new_hid, date,
-                fk_inventory))
+                "new hostid %d @ %s for Inventory id %d",
+                old_hid, new_hid, date, fk_inventory)
         
         pk = self.cursor.execute("SELECT pk FROM _inventory_changes "
             "WHERE old_hostid=? AND new_hostid=? AND entry_date=? AND "
@@ -785,8 +787,8 @@ class InventoryRetrieve(CompositeRetrieve):
         Returns changes in _inventory_changes for fk_inventory and
         fk_address
         """
-        debug("Getting changes for Inventory id %d and "
-            "Address id %d" % (fk_inventory, fk_address))
+        debug("Getting changes for Inventory id %d and Address id %d",
+                fk_inventory, fk_address)
 
 
         changes = self.cursor.execute("SELECT old_hostid, new_hostid, "
@@ -806,7 +808,7 @@ class InventoryRetrieve(CompositeRetrieve):
         a especific fk_category.
         """
         debug("Getting changes for Inventory id %d, Address id %d and "
-            "Category id %d" % (fk_inventory, fk_address, fk_category))
+                "Category id %d", fk_inventory, fk_address, fk_category)
 
         changes = self.cursor.execute("SELECT old_hostid, new_hostid, "
             "entry_date, short_description FROM _inventory_changes "
@@ -824,8 +826,8 @@ class InventoryRetrieve(CompositeRetrieve):
         a especific fk_category in a time range.
         """
         debug("Getting changes for Inventory id %d, Address id %d and "
-            "Category id %d from %s to %s" % (fk_inventory, fk_address,
-                fk_category, start, end))
+                "Category id %d from %s to %s", fk_inventory, fk_address,
+                fk_category, start, end)
 
         changes = self.cursor.execute("SELECT old_hostid, new_hostid, "
             "entry_date, short_description FROM _inventory_changes "
