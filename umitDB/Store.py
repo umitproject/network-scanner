@@ -267,7 +267,7 @@ class RawStore:
             "tcp_ts_sequence_value", "ip_id_sequence_class",
             "ip_id_sequence_value", "fk_host" )
 
-        data = [fp_d[column] for column in columns]
+        data = [fp_d.get(column) for column in columns]
 
         self.cursor.execute("INSERT INTO fingerprint_info (uptime, lastboot, "
             "tcp_sequence_class, tcp_sequence_index, tcp_sequence_value, "
