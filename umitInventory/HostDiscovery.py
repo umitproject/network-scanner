@@ -22,7 +22,6 @@ import re
 import gtk
 import socket
 import gobject
-import commands
 
 from umitCore.NmapCommand import NmapCommand
 from umitCore.NmapParser import NmapParser
@@ -37,8 +36,6 @@ from higwidgets.higboxes import HIGVBox, HIGHBox, hig_box_space_holder
 from higwidgets.higdialogs import HIGAlertDialog
 from higwidgets.higframe import HIGFrame
 
-PLATFORM = os.name
-
 alpha = re.compile('[a-zA-Z]')
 
 pixmaps_dir = Path.pixmaps_dir
@@ -47,87 +44,171 @@ if pixmaps_dir:
 else:
     logo = None
 
-def tryto_detect_networks(caller=None):
-    """
-    Working on Linux only for now.
-    """
+PLATFORM = os.name
+if PLATFORM == 'nt':
+    import win32com.client
+else:
+    import array
+    import fcntl
+    import struct
+    import platform
 
-    networks = [ ]
-    if PLATFORM == 'nt':
-        cmd = 'ipconfig'
+    bits = platform.architecture()[0]
+    if not bits or bits == '32bit':
+        offset = 32
     else:
-        cmd = 'ifconfig'
+        offset = 40
 
-    # try to get network interface(s) address(es)
-    cmdoutput = commands.getoutput(cmd).split('\n')
-    if not cmdoutput:
-        print "error here"
-        return
+    # Taken from net/if.h
+    IF_NAMESIZE = 16
+    IFF_UP = 0x1
+    IFF_LOOPBACK = 0x8
 
-    for line in cmdoutput:
-        line = line.lstrip()
-        if line.startswith('inet addr'):
-            line = line.split()[1:]
-
-            if line[0].split(':')[1] == '127.0.0.1': # ignore loopback
-                continue
-
-            addr = None
-            mask = None
-            for l in line: # find ip address and subnet mask
-
-                l = l.split(':')
-                if l[0] == 'addr':
-                    addr = l[1]
-                elif l[0] == 'Mask':
-                    mask = l[1]
-
-                if not addr or not mask:
-                    continue
-
-                network = netaddress(addr, mask)
-                networks.append(network)
-
-    if not networks:
-        # "brute force" detection, should work if behind firewall/NAT
-        remote = ("umit.sf.net", 80)
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        ip = None
-        try:
-            s.connect(remote)
-            ip, localport = s.getsockname()
-            s.close()
-        except socket.gaierror, e:
-            print e
-            pass
-
-        if ip:
-            ip_last_dot = ip.rfind('.')
-            ip = ip[:ip_last_dot+1] + '0/24'
-            if ip not in networks:
-                networks.append(ip)
-
-    return networks
+    # Taken from bits/ioctls.h
+    SIOCGIFCONF = 0x8912
+    SIOCGIFFLAGS = 0x8913
+    SIOCGIFNETMASK = 0x891b
 
 
-def netaddress(ipaddr, subnetmask):
-    """
-    Expects an ip address string, aswell a subnet mask, and returns
-    the network address.
-    """
-    ipaddr = ipaddr.split('.')
-    ipaddr = [int(i) for i in ipaddr]
-    subnetmask = subnetmask.split('.')
-    subnetmask = [int(i) for i in subnetmask]
+class NetIface(object):
+    def __init__(self, name, ipv4_addr, netmask):
+        self.name = name
+        self.ipv4_addr = ipv4_addr
+        self.netmask = netmask
+        self.cidr = self._cidr()
 
-    # do binary AND between ipaddr and subnetmask to get network address
-    netaddr = [ ]
-    for indx, i in enumerate(ipaddr):
-        netaddr.append(i & subnetmask[indx])
+    def cidr_netaddress(self):
+        return "%s/%d" % (self.ipv4_addr, self.cidr)
 
-    netaddr = '.'.join([str(i) for i in netaddr]) + '/24'
+    def _cidr(self):
+        """Return CIDR based on the current netmask."""
+        mask = map(int, self.netmask.split('.'))
+        cidr = 0
 
-    return netaddr
+        for n in mask:
+            # Count number of 1's in n
+            count = 0
+            while n:
+                count += n & 1
+                n >>= 1
+            cidr += count
+
+        return cidr
+
+    def __repr__(self):
+        return "<%s addr:%s mask:%s>" % (
+                self.name, self.cidr_netaddress(), self.netmask)
+
+def _is_ipv4(addr):
+    try:
+        map(int, addr.split('.'))
+    except ValueError:
+        return False
+    else:
+        return True
+
+def _nt_get_addresses(no_loopback=True, do_aliases=False):
+    # XXX do_aliases parameters is not used on this function
+    ifaces = []
+
+    # The method used here won't return the loopback interface, but
+    # if the caller really wants one we do it now.
+    if not no_loopback:
+        ifaces.append(NetIface('lo', '127.0.0.1', '255.0.0.0'))
+
+    wmi = win32com.client.GetObject('winmgmts:')
+    # See http://msdn.microsoft.com/en-us/library/aa394217(VS.85).aspx for
+    # more information about the Win32_NetworkAdapterConfiguration WMI class
+    interfaces = wmi.ExecQuery(
+            "SELECT ServiceName, IPAddress, IPSubnet "
+            "FROM Win32_NetworkAdapterConfiguration "
+            "WHERE IPEnabled=TRUE")
+    for iface in interfaces:
+        ipaddress = list(iface.IPAddress)
+        # Starting with Windows Vista, IPAddress contains a mix of ipv4 and
+        # ipv6 addresses.
+        addrs = filter(_is_ipv4, ipaddress)
+        # Now filter the subnets in IPSubnet according to addrs
+        masks = [iface.IPSubnet[ipaddress.index(addr)] for addr in addrs]
+
+        for item in zip(addrs, masks):
+            ifaces.append(NetIface(iface.ServiceName, *item))
+
+    return ifaces
+
+def _unix_get_addresses(no_loopback=True, do_aliases=False):
+    ifaces = []
+
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sockfd = sock.fileno()
+
+    last_len = 0
+    # Initial buffer size guess. 32 is the size of struct ifreq here.
+    size_guess = 10 * 32
+
+    # Find the real required size.
+    while True:
+        ifaces_buf = array.array('B', '\0' * size_guess)
+        mem_addr = ifaces_buf.buffer_info()[0]
+
+        res = fcntl.ioctl(
+                sockfd,
+                SIOCGIFCONF,
+                struct.pack('iL', size_guess, mem_addr))
+        outbytes = struct.unpack('iL', res)[0]
+        if outbytes == last_len:
+            # Success, found the real size.
+            break
+
+        last_len = outbytes
+        # Size needs to be guessed again, or this was the first attempt,
+        # try again with a larger size
+        size_guess += 10 * 32
+
+    for i in range(0, outbytes, offset):
+        # IF_NAMESIZE bytes in ifeq structure are destined to the interface
+        # name
+        name = struct.unpack('%ds' % IF_NAMESIZE,
+                ifaces_buf[i:i + IF_NAMESIZE])[0].split('\0', 1)[0]
+
+        # XXX is this check ok ?
+        if not do_aliases and ':' in name:
+            # Discarding alias
+            continue
+
+       # Get interface flags
+        res = fcntl.ioctl(sockfd, SIOCGIFFLAGS, name + '\0' * offset)
+        flags = struct.unpack('H', res[16:18])[0]
+
+        if not flags & IFF_UP:
+            # Discarding interface, it is down
+            continue
+
+        if no_loopback and flags & IFF_LOOPBACK:
+            # Discarding loopback interface
+            continue
+
+        # Checking for ipv4
+        sa_family = struct.unpack('H',
+                ifaces_buf[i + IF_NAMESIZE:i + IF_NAMESIZE + 2])[0]
+        if sa_family != socket.AF_INET:
+            # Not ipv4, discarding
+            continue
+
+        ip = socket.inet_ntoa(ifaces_buf[i + 20:i + 24])
+        # Find the netmask
+        res = fcntl.ioctl(sockfd, SIOCGIFNETMASK, name + '\0' * offset)
+        netmask = socket.inet_ntoa(res[20:24])
+
+        ifaces.append(NetIface(name, ip, netmask))
+
+    return ifaces
+
+def tryto_detect_networks():
+    if PLATFORM == 'nt':
+        return _nt_get_addresses()
+    else:
+        return _unix_get_addresses()
 
 
 class HostDiscovery(gtk.Window):
@@ -285,7 +366,7 @@ class HostDiscovery(gtk.Window):
                 entries += 1
 
             entry = self.networks_box.get_children()[amount]
-            entry.set_text(nw)
+            entry.set_text(nw.cidr_netaddress())
 
 
     def get_addresses(self, event):
