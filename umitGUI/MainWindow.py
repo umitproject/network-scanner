@@ -368,7 +368,7 @@ class MainWindow(UmitMainWindow):
             <menuitem action='Close Scan'/>
             <menuitem action='Save Scan'/>
             <menuitem action='Open Scan'/>
-            %s
+            %(recentscans)s
             <menuitem action='Quit'/>
             </menu>
 
@@ -700,13 +700,15 @@ to close current Scan Tab?'),
 
 
     def get_recent_scans(self):
+        """Shows the most recent saved scans."""
         r_scans = recent_scans.get_recent_scans_list()
         new_rscan_xml = ''
 
+        # Add the seven most recent saved scans to the menu.
         for scan in r_scans[:7]:
-            scan = scan.replace('\n','')
-            if os.access(split(scan)[0],os.R_OK) and isfile(scan):
-                scan = scan.replace('\n','')
+            scan = scan.replace('\n', '')
+            if os.access(split(scan)[0], os.R_OK) and isfile(scan):
+                scan = scan.replace('\n', '')
                 new_rscan = (scan,
                              None,
                              scan,
@@ -720,7 +722,7 @@ to close current Scan Tab?'),
         else:
             new_rscan_xml += "<separator />\n"
 
-        self.default_ui %= new_rscan_xml
+        self.default_ui %= {'recentscans': new_rscan_xml}
 
     def _create_menubar(self):
         # Get and pack the menubar
