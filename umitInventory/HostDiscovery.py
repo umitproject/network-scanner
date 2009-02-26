@@ -333,7 +333,7 @@ class HostDiscovery(gtk.Window):
         word = append_s(_("scan"), self.scount)
         self.target_lbl.set_label(
                 _("Target list") +
-                (" (%d " % self.scount) + word +
+                (" (%d) " % self.scount) + word +
                 _("running"))
 
 
