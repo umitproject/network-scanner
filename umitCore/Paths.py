@@ -104,6 +104,13 @@ class Paths(object):
         self.misc_dir = MISC_DIR
         self.docs_dir = DOCS_DIR
 
+        log.debug(">>> Config file: %s" % config_file)
+        log.debug(">>> Locale: %s" % self.locale_dir)
+        log.debug(">>> Pixmaps: %s" % self.pixmaps_dir)
+        log.debug(">>> Icons: %s" % self.icons_dir)
+        log.debug(">>> Misc: %s" % self.misc_dir)
+        log.debug(">>> Docs: %s" % self.docs_dir)
+
     def get_running_path(self):
         return self.__runpath
 
@@ -211,13 +218,6 @@ class Paths(object):
                     os.makedirs(dir_path)
             except:
                 pass
-
-        log.debug(">>> Config file: %s" % config_file)
-        log.debug(">>> Locale: %s" % self.locale_dir)
-        log.debug(">>> Pixmaps: %s" % self.pixmaps_dir)
-        log.debug(">>> Icons: %s" % self.icons_dir)
-        log.debug(">>> Misc: %s" % self.misc_dir)
-        log.debug(">>> Docs: %s" % self.docs_dir)
 
     def update_config_dir(self, config_dir):
         # Do any updates of configuration files. Not yet implemented.
