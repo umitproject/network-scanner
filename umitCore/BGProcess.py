@@ -149,8 +149,9 @@ class WindowsService(win32serviceutil.ServiceFramework):
         self.run()
 
 class WindowsServiceController(object):
-    def __init__(self, service_class):
+    def __init__(self, service_class, service_path=None):
         self.service_class = service_class
+        self.service_path = service_path
 
     def running(self):
         """Return True if the service is still running, False otherwise."""
@@ -173,8 +174,19 @@ class WindowsServiceController(object):
                 argv=('', 'remove'))
 
     def install(self):
+        # Always use the complete path to the module containing
+        # service_class so this doesn't fail when starting from Umit.
+        # This should be equivalent to the service class string that would
+        # be generated if we were running umit_scheduler.py from the command
+        # line.
+        if self.service_path:
+            path = os.path.abspath(self.service_path)
+            svc_class_string = "%s.%s" % (
+                    os.path.splitext(path)[0], self.service_class.__name__)
+        else:
+            svc_class_string = None
         return win32serviceutil.HandleCommandLine(self.service_class,
-                argv=('', 'install'))
+                svc_class_string, argv=('', 'install'))
 
     def stop(self):
         return win32serviceutil.HandleCommandLine(self.service_class,

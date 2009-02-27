@@ -463,13 +463,14 @@ class SchedSchema(object):
 class SchedulerControl(object):
 
     def __init__(self, running_file=None, home_conf=None, verbose=False,
-            svc_class=None):
+            svc_class=None, svc_path=None):
         if running_file is None or home_conf is None:
             if home_conf is None:
                 home_conf = os.path.split(Path.get_umit_conf())[0]
             running_file = os.path.join(home_conf, 'schedrunning')
 
         self.svc_class = svc_class
+        self.svc_path = svc_path
         self.running_file = running_file
         self.home_conf = home_conf
         self.verbose = verbose
@@ -477,7 +478,7 @@ class SchedulerControl(object):
     def start(self, from_gui=False):
         """Start scheduler."""
         if NT:
-            bg = BGRunner(self.svc_class)
+            bg = BGRunner(self.svc_class, self.svc_path)
             from_gui = False
         else:
             if from_gui:
