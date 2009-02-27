@@ -123,6 +123,19 @@ data_files = [
 # Add i18n files to data_files list
 os.path.walk(locale_dir, mo_find, data_files)
 
+# win32com changes its __path__ to be able to do imports from
+# win32comext (which is not a python package), but the modulefinder
+# does not handle such situtation and thus win32com.shell (which is
+# really win32comext.shell) cannot be found. Let's fix this here so
+# umitCore.BasePaths still works after we run py2exe over it.
+try:
+    import py2exe.mf as modulefinder
+except ImportError:
+    # This py2exe is too old, will use the standard modulefinder
+    import modulefinder
+import win32com
+for path in win32com.__path__[1:]:
+    modulefinder.AddPackagePath("win32com", path)
 
 class umit_py2exe(build_exe):
     def run(self):
