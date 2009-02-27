@@ -53,13 +53,20 @@ class App:
         pass
 
     def __create_show_main_window(self):
-        if option_parser.get_inventory():
-            from umitInventory.Viewer import InventoryViewer
-            self.main_window = InventoryViewer()
-        else:
-            from umitGUI.MainWindow import MainWindow
-            self.main_window = MainWindow()
-        
+        try:
+            if option_parser.get_inventory():
+                from umitInventory.Viewer import InventoryViewer
+                self.main_window = InventoryViewer()
+            else:
+                from umitGUI.MainWindow import MainWindow
+                self.main_window = MainWindow()
+        except Exception:
+            # If any exception happens at this point we need to stop gtk
+            # so Umit doesn't hang.
+            import gtk
+            gtk.main_quit()
+            raise
+
         if is_maemo():
             import hildon
             self.hildon_app = hildon.Program()
