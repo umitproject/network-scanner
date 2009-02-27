@@ -592,7 +592,7 @@ class ScanNotebookPage(HIGVBox):
         self.disable_widgets()
     
     def execute_command(self, command):
-        log.critical("execute_command %s" % command)
+        log.debug("execute_command %s" % command)
         try:
             alive = self.command_execution.scan_state()
             if alive:
