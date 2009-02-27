@@ -91,11 +91,12 @@ def usage():
 
 
 def main(args, verbose=True):
-    # Quoting paths since they may contain spaces
-    UMITSchedulerWinService._exe_args_ = '"%s" "%s"' % (sys.path[0], HOME_CONF)
-
     schedcontrol = Scheduler.SchedulerControl(RUNNING_FILE, HOME_CONF,
-            verbose, UMITSchedulerWinService)
+            verbose, UMITSchedulerWinService, __file__)
+    # Quoting paths since they may contain spaces
+    UMITSchedulerWinService._exe_args_ = '"%s" "%s"' % (
+            sys.path[0], schedcontrol.home_conf)
+
     cmds = {"start": schedcontrol.start,
             "stop": schedcontrol.stop,
             "cleanup": schedcontrol.cleanup,
