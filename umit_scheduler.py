@@ -33,6 +33,7 @@ import sys
 import signal
 
 from umitCore.BGProcess import WindowsService
+from umitCore.BasePaths import HOME
 from umitCore import Scheduler
 from umitCore.I18N import _
 from umitCore.Paths import Path
@@ -124,14 +125,14 @@ def pre_main():
         try:
             setup_homedir(sys.argv[2], force=True)
         except IndexError: # no path especified
-            setup_homedir(os.path.expanduser("~"))
+            setup_homedir(HOME)
 
     return main(sys.argv[1:])
 
 
 if FROZEN_CFG is not None:
     def write_frozen_cfg():
-        setup_homedir(os.path.expanduser('~'))
+        setup_homedir(HOME)
         conf = open(FROZEN_CFG, 'w')
         conf.write(HOME_CONF)
         conf.close()
