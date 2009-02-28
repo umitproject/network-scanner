@@ -91,7 +91,7 @@ data_files = [
             glob(os.path.join(config_dir, '*.txt'))),
 
         # umitDB SQL
-        (sql_dir, glob(os.path.join('umitDB', 'sql', '*.sql'))),
+        (sql_dir, glob(os.path.join(sql_dir, '*.sql'))),
 
         (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))),
 
@@ -248,7 +248,6 @@ print
                                  S_IRGRP | \
                                  S_IROTH)
 
-
     def fix_paths(self):
         interesting_paths = {"CONFIG_DIR":config_dir,
                              "DOCS_DIR":docs_dir,
@@ -293,7 +292,6 @@ print
         print
 
 
-
 class umit_sdist(sdist):
 
     def read_manifest_no_mo(self):
@@ -328,6 +326,7 @@ class umit_sdist(sdist):
         print "%s The packages for Umit %s are in ./dist %s" % \
               ("#" * 10, VERSION, "#" * 10)
         print
+
 
 ##################### Umit banner ########################
 print

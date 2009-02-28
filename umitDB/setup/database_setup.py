@@ -24,8 +24,11 @@ Setup database for umit.
 import os
 import sys
 
-_UMIT_ROOT = os.path.join(os.pardir, os.pardir)
-_SQL_PATH = os.path.join(os.pardir, 'sql')
+_UMIT_ROOT = os.path.abspath(
+        os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), os.pardir, os.pardir))
+_SQL_PATH = os.path.join(_UMIT_ROOT, 'share', 'umit', 'sql')
+print _UMIT_ROOT, _SQL_PATH
 sys.path.insert(0, _UMIT_ROOT)
 from umitDB._database import sql, database
 

@@ -4,7 +4,8 @@
 # Copyright (C) 2005-2006 Insecure.Com LLC.
 # Copyright (C) 2007-2008 Adriano Monteiro Marques
 #
-# Author: Adriano Monteiro Marques <adriano@umitproject.org>
+# Authors: Adriano Monteiro Marques <adriano@umitproject.org>
+#          Guilherme Polo <ggpolo@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -105,7 +106,7 @@ data_files = [
             glob(os.path.join(pixmaps_dir, 'uie', '*.png'))),
 
         # umitDB SQL
-        (sql_dir, glob(os.path.join("umitDB/sql", "*.sql"))),
+        (sql_dir, glob(os.path.join(sql_dir, '*.sql'))),
 
         (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))),
 
