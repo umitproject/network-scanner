@@ -69,12 +69,14 @@ def mo_find(result, dirname, fnames):
 # This will install the test.png file in the installation dir share/pixmaps.
 svg = glob(os.path.join('share', 'pixmaps', '*.svg'))
 data_files = [
-        (pixmaps_dir, glob(os.path.join(pixmaps_dir, '*.svg')) +
+        (pixmaps_dir,
+            glob(os.path.join(pixmaps_dir, '*.svg')) +
             glob(os.path.join(pixmaps_dir, '*.png')) +
             glob(os.path.join(pixmaps_dir, '*.xpm')) +
             glob(os.path.join(pixmaps_dir, 'umit.o*'))),
 
-        (config_dir, [os.path.join(config_dir, 'umit.conf')] +
+        (config_dir,
+            [os.path.join(config_dir, 'umit.conf')] +
             [os.path.join(config_dir, 'scan_profile.usp')] +
             [os.path.join(config_dir, 'umit_version')] +
             [os.path.join(config_dir, 'umitng.db')] +
@@ -107,10 +109,12 @@ data_files = [
 
         (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))),
 
-        (icons_dir, glob(os.path.join('share', 'icons', 'umit', '*.ico')) +
+        (icons_dir,
+            glob(os.path.join('share', 'icons', 'umit', '*.ico')) +
             glob(os.path.join('share', 'icons', 'umit', '*.png'))),
 
-        (docs_dir, glob(os.path.join(docs_dir, '*.html')) +
+        (docs_dir,
+            glob(os.path.join(docs_dir, '*.html')) +
             glob(os.path.join(docs_dir, 'comparing_results', '*.xml')) +
             glob(os.path.join(docs_dir, 'profile_editor', '*.xml')) +
             glob(os.path.join(docs_dir, 'scanning', '*.xml')) +
