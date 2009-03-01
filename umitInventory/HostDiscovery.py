@@ -415,7 +415,7 @@ class HostDiscovery(gtk.Window):
         self.target_lbl.set_label(
                 _("Target list") +
                 (" (%d) " % self.scount) + word +
-                _("running"))
+                _(" running"))
 
 
     def _check_scans(self):
