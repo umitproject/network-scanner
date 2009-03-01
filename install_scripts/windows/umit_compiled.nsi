@@ -491,6 +491,10 @@ Outfile ${APPLICATION_NAME}-${APPLICATION_VERSION}.exe
 ; Language
 !insertmacro MUI_LANGUAGE "English"
 
+; Registry key used by Umit for adding information in "Add/Remove Programs"
+!define AddRemKey \
+    "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPLICATION_NAME} ${APPLICATION_VERSION}"
+
 Section "Umit" SecUmit
   SetOutPath $INSTDIR
   File COPYING
@@ -531,6 +535,13 @@ Section "Umit" SecUmit
   FileOpen $0 "$INSTDIR\.scheduserhome" w
   FileClose $0
   ExecWait '"$INSTDIR\umit_scheduler.exe" install'
+
+  ; Add uninstall information to "Add/Remove Programs"
+  WriteRegStr HKLM '${AddRemKey}' "DisplayName" ${APPLICATION_NAME}
+  WriteRegStr HKLM '${AddRemKey}' "DisplayVersion" ${APPLICATION_VERSION}
+  WriteRegStr HKLM '${AddRemKey}' "DisplayIcon" "$INSTDIR\umit_16.ico"
+  WriteRegStr HKLM '${AddRemKey}' "UrlInfoAbout" "http://www.umitproject.org"
+  WriteRegStr HKLM '${AddRemKey}' "UninstallString" "$INSTDIR\Umit-Uninstaller.exe"
 SectionEnd
 
 Section "Add to path"
@@ -554,4 +565,7 @@ Section "Uninstall"
     Push "PATH"
     Push "$INSTDIR\Nmap"
     Call un.RemoveFromEnvVar
+
+    ; Remove the key created for adding uninstall information
+    DeleteRegKey HKLM '${AddRemKey}'
 SectionEnd
