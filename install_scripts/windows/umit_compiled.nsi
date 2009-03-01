@@ -455,7 +455,7 @@ FunctionEnd
 !define MUI_UNABORTWARNING
 
 !define APPLICATION_NAME "Umit"
-!define APPLICATION_VERSION "1.0beta1"
+!define APPLICATION_VERSION "1.0beta2"
 !define WINPCAP "WinPcap_4_0_2.exe"
 
 Name "${APPLICATION_NAME}"
@@ -467,7 +467,7 @@ InstallDir "$PROGRAMFILES\${APPLICATION_NAME}\"
 
 ; Finish page definitions
 !define MUI_FINISHPAGE_LINK "Don't forget to visit Umit's website!"
-!define MUI_FINISHPAGE_LINK_LOCATION "http://www.umitproject.org/" 
+!define MUI_FINISHPAGE_LINK_LOCATION "http://www.umitproject.org/"
 
 Outfile ${APPLICATION_NAME}-${APPLICATION_VERSION}.exe
 
