@@ -284,7 +284,14 @@ class CalendarManager(object):
         """
         Returns days range for current date.
         """
-        return self.get_monthrange(self.year, self.month)
+        month = self.month
+        year = self.month
+        # When running in dryrun mode use the values that would be changed
+        # if not running in this mode.
+        if self.dryrun:
+            month = self.temp.get('month', year)
+            year = self.temp.get('year', year)
+        return self.get_monthrange(year, month)
 
 
     def get_monthrange(self, year, month):
@@ -431,7 +438,6 @@ class CalendarManager(object):
         except DayOutOfRangeError:
             self.__inc_month(inc)
             self.day = (inc == -1) and self.get_current_monthrange()[1] or 1
-        
 
     def __inc_hour(self, inc=1):
         """
