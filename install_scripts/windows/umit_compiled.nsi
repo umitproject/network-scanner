@@ -1,4 +1,11 @@
-; Added Path var 
+; Starting with Vista we have to explicitly mark the required execution level
+; for the installer. Not doing so will cause Windows to apply some backward
+; compatibility changes during the installation process, like automatically
+; moving any shortcuts created in the user's start menu to all users'
+; start menu, causing the uninstaller to not remove these entries.
+RequestExecutionLevel admin
+
+; Added Path var
 ; From: http://nsis.sourceforge.net/Path_Manipulation
 !ifndef _AddToPath_nsh
 !define _AddToPath_nsh
