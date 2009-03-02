@@ -21,7 +21,7 @@
 import gtk
 
 from higwidgets.higtooltips import *
-from umitPlugin.Engine import Plugin
+from umit.plugin.Engine import Plugin
 
 class TrayPlugin(Plugin):
     def start(self, reader):

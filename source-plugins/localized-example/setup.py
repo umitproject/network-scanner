@@ -22,7 +22,7 @@ import os
 import os.path
 
 from glob import glob
-from umitPlugin.Containers import setup
+from umit.plugin.Containers import setup
 
 mo_files = []
 for filepath in glob("locale/*/*.mo"):

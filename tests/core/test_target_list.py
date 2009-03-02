@@ -20,11 +20,11 @@ import unittest
 
 # Setting up Paths so UmitConf can be correctly loaded
 from os.path import join
-from umitCore.Paths import Path
+from umit.core.Paths import Path
 Path.set_umit_conf([join("share", "umit", "config", "umit.conf")])
 
 # Loading UmitConf files
-from umitCore.TargetList import target_list
+from umit.core.TargetList import target_list
 
 
 class TestTargetList(unittest.TestCase):

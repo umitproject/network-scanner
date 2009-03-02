@@ -24,8 +24,8 @@ import gtk
 import tabber.paned as paned
 import tabber.views as views
 
-from umitPlugin.Core import Core
-from umitPlugin.Engine import Plugin
+from umit.plugin.Core import Core
+from umit.plugin.Engine import Plugin
 
 class TabberPlugin(Plugin):
     def start(self, reader):

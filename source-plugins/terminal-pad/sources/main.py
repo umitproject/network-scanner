@@ -21,8 +21,8 @@
 import gtk
 import gobject
 
-from umitPlugin.Core import Core
-from umitPlugin.Engine import Plugin
+from umit.plugin.Core import Core
+from umit.plugin.Engine import Plugin
 
 from higwidgets.hignotebooks import HIGAnimatedTabLabel
 from higwidgets.higtooltips import *

@@ -22,7 +22,7 @@ import os
 import sys
 
 from distutils.core import Extension
-from umitPlugin.Containers import setup
+from umit.plugin.Containers import setup
 
 # Dirty hack :P
 os.chdir("moo")

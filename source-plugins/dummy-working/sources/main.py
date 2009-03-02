@@ -23,7 +23,7 @@ import sys
 
 import dummy.dep
 
-from umitPlugin.Engine import Plugin
+from umit.plugin.Engine import Plugin
 from higwidgets.higdialogs import HIGAlertDialog
 
 class Test(Plugin):

@@ -93,7 +93,7 @@ data_files = [
             glob(os.path.join(config_dir, '*.xml'))+
             glob(os.path.join(config_dir, '*.txt'))),
 
-        # umitDB SQL
+        # umit.db SQL
         (sql_dir, glob(os.path.join(sql_dir, '*.sql'))),
 
         (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))),

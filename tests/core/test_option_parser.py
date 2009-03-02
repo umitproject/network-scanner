@@ -18,7 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 import unittest
-from umitCore.UmitOptionParser import UmitOptionParser
+from umit.core.UmitOptionParser import UmitOptionParser
 
 class TestUmitOptionParser(unittest.TestCase):
     def testInventory1(self):

@@ -21,8 +21,8 @@
 import os
 import gtk
 
-from umitPlugin.Core import Core
-from umitPlugin.Engine import Plugin
+from umit.plugin.Core import Core
+from umit.plugin.Engine import Plugin
 from higwidgets.higdialogs import HIGAlertDialog
 
 # This is the consumer Plugin

@@ -113,7 +113,7 @@ data_files = [
         (os.path.join(pixmaps_dir, 'uie'),
             glob(os.path.join(pixmaps_dir, 'uie', '*.png'))),
 
-        # umitDB SQL
+        # umit.db SQL
         (sql_dir, glob(os.path.join(sql_dir, '*.sql'))),
 
         (misc_dir, glob(os.path.join(misc_dir, '*.dmp'))),
@@ -140,7 +140,7 @@ os.path.walk(locale_dir, mo_find, data_files)
 # win32comext (which is not a python package), but the modulefinder
 # does not handle such situtation and thus win32com.shell (which is
 # really win32comext.shell) cannot be found. Let's fix this here so
-# umitCore.BasePaths still works after we run py2exe over it.
+# umit.core.BasePaths still works after we run py2exe over it.
 try:
     import py2exe.mf as modulefinder
 except ImportError:

@@ -21,7 +21,7 @@ import sys
 
 # Setting up Paths so UmitConf can be correctly loaded
 from os.path import join, split, abspath, exists
-from umitCore.Paths import Paths
+from umit.core.Paths import Paths
 
 
 class TestPaths(unittest.TestCase):

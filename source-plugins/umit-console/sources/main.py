@@ -27,10 +27,10 @@ import console.console as console
 from tabber import paned
 from tabber.views import UmitView
 
-from umitCore.I18N import _
-from umitPlugin.Core import Core
-from umitPlugin.Engine import Plugin
-from umitPlugin.Atoms import Singleton
+from umit.core.I18N import _
+from umit.plugin.Core import Core
+from umit.plugin.Engine import Plugin
+from umit.plugin.Atoms import Singleton
 from higwidgets.higbuttons import HIGButton
 from higwidgets.higtooltips import HIGTooltip, HIGTooltipData
 
@@ -46,7 +46,7 @@ help_strings = [
     _("It could handle everything that Python supports. But it is also\n"
       "used to interact with <b>UMIT</b> codebase and his <i>UI</i>.\n"
       "For example try typing:\n\n"
-      "<tt>from umitPlugin.Core import Core</tt>\n"
+      "<tt>from umit.plugin.Core import Core</tt>\n"
       "<tt>Core().get_main_toolbar().hide()</tt>\n")
 ]
 

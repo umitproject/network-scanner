@@ -20,9 +20,9 @@
 
 import gettext
 
-from umitPlugin.Core import Core
-from umitPlugin.Engine import Plugin
-from umitPlugin.Atoms import StringFile
+from umit.plugin.Core import Core
+from umit.plugin.Engine import Plugin
+from umit.plugin.Atoms import StringFile
 
 _ = str
 

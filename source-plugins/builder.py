@@ -31,7 +31,7 @@ cwd = os.getcwd()
 root = os.path.dirname(cwd)
 sys.path.insert(0, root)
 
-from umitCore.Paths import Path
+from umit.core.Paths import Path
 Path.set_umit_conf(os.path.split(sys.argv[0])[0])
 
 plug_dir = os.path.join(Path.config_dir, "plugins")

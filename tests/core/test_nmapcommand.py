@@ -1,6 +1,6 @@
 import unittest
 
-from umitCore.NmapCommand import split_quoted
+from umit.core.NmapCommand import split_quoted
 
 class SplitQuotedTest(unittest.TestCase):
     """A unittest class that tests the split_quoted function."""

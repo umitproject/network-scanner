@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import os, sys
-from umitPlugin.Engine import Plugin
+from umit.plugin.Engine import Plugin
 from functools import update_wrapper
 
 if os.name != "posix":

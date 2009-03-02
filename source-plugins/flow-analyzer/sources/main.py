@@ -21,10 +21,10 @@
 import gtk
 import sys
 
-from umitPlugin.Core import Core
-from umitPlugin.Engine import Plugin
+from umit.plugin.Core import Core
+from umit.plugin.Engine import Plugin
 from higwidgets.higanimates import HIGAnimatedBar
-from umitGUI.ScanNotebook import ScanNotebookPage
+from umit.gui.ScanNotebook import ScanNotebookPage
 
 class FlowContainer(gtk.VBox):
     def __init__(self):
