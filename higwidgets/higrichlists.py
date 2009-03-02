@@ -29,7 +29,7 @@ import gtk
 import pango
 import gobject
 from higwidgets.higbuttons import HIGButton
-from umitCore.I18N import _
+from umit.core.I18N import _
 
 class HIGRichRow(gtk.EventBox):
     """
