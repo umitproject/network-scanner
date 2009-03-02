@@ -32,6 +32,16 @@ import os
 import sys
 import signal
 
+if not hasattr(sys, 'frozen'):
+    _source_path = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), os.path.pardir))
+    _bin_path = os.path.join(_source_path, 'bin')
+    if os.path.exists(os.path.join(_source_path, 'MANIFEST.in')):
+        # Assuming umit_scheduler is being executed from a svn checkout.
+        sys.path.insert(0, _source_path)
+        # We want umit_scheduler to be an importable module.
+        sys.path.append(_bin_path)
+
 from umitCore.BGProcess import WindowsService
 from umitCore.BasePaths import HOME
 from umitCore import Scheduler

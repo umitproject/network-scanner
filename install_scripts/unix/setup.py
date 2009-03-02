@@ -35,6 +35,9 @@ from stat import *
 
 from umitCore.Version import VERSION
 from utils import msgfmt
+
+BIN_DIRNAME = 'bin'
+
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
 # These directories are relative to the installation or dist directory
@@ -352,7 +355,9 @@ easier network scanning or even compare scan results to easily see any \
 changes. A regular user will also be able to construct powerful scans with \
 Umit command creator wizards.""",
       version = VERSION,
-      scripts = ['umit', 'umit_scheduler.py'],
+      scripts = [
+          os.path.join(BIN_DIRNAME, 'umit'),
+          os.path.join(BIN_DIRNAME, 'umit_scheduler.py')],
       packages = [
           'umitCore', 'umitCore.radialnet', 'umitDB', 'umitGUI',
           'umitInventory', 'umitPlugin', 'umitGUI.radialnet',

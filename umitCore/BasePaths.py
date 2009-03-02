@@ -39,11 +39,17 @@ else:
 
 CURRENT_DIR = os.getcwd()
 
-# Look for files relative to the script path to allow running within the build
-# directory.
-main_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
 if hasattr(sys, "frozen"):
     main_dir = os.path.dirname(sys.executable)
+else:
+    # Look for files relative to the script path to allow running within
+    # the build directory.
+    main_dir = os.path.abspath(os.path.dirname(sys.argv[0]))
+    if not os.path.exists(os.path.join(main_dir, 'share')):
+        # This umit instance is living on bin/, so we look one level
+        # down in the path to still be able to run within a svn source
+        # checkout.
+        main_dir = os.path.abspath(os.path.join(main_dir, os.path.pardir))
 
 CONFIG_DIR = os.path.join(main_dir, "share", "umit", "config")
 LOCALE_DIR = os.path.join(main_dir, "share", "locale")

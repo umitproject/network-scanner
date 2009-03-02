@@ -21,14 +21,22 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-import os.path
 import os
+import sys
 
 from py2exe.build_exe import py2exe as build_exe
 from distutils.core import setup
 from glob import glob
 
 from umitCore.Version import VERSION
+
+BIN_DIRNAME = 'bin'
+
+# Add the bin dir to the sys.path so we can indicate that the umit_scheduler
+# module is a service.
+umit_top_dir = os.path.abspath(os.path.dirname(
+    os.path.join(__file__, os.path.pardir, os.path.pardir)))
+sys.path.append(os.path.join(umit_top_dir, BIN_DIRNAME))
 
 ##############################################################################
 # Main Variables
@@ -178,7 +186,9 @@ easier network scanning or even compare scan results to easily see any \
 changes. A regular user will also be able to construct powerful scans with \
 Umit command creator wizards.""",
       version = VERSION,
-      scripts = ['umit', 'umit_scheduler.py'],
+      scripts = [
+          os.path.join(BIN_DIRNAME, 'umit'),
+          os.path.join(BIN_DIRNAME, 'umit_scheduler.py')],
       packages = [
           'umitCore','umitCore.radialnet', 'umitDB', 'umitGUI',
           'umitInventory', 'umitPlugin', 'umitGUI.radialnet',
@@ -189,7 +199,7 @@ Umit command creator wizards.""",
       cmdclass = {"py2exe": umit_py2exe},
       service = [{'modules': ['umit_scheduler'], 'cmdline_style': 'custom'}],
       windows = [{
-          "script": "umit",
+          "script": os.path.join(BIN_DIRNAME, "umit"),
           "icon_resources": [(1, os.path.join(icons_dir, "umit_48.ico"))]
           }],
       options = {"py2exe": {
