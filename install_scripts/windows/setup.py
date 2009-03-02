@@ -28,7 +28,7 @@ from py2exe.build_exe import py2exe as build_exe
 from distutils.core import setup
 from glob import glob
 
-from umitCore.Version import VERSION
+from umit.core.Version import VERSION
 
 BIN_DIRNAME = 'bin'
 
@@ -190,10 +190,10 @@ Umit command creator wizards.""",
           os.path.join(BIN_DIRNAME, 'umit'),
           os.path.join(BIN_DIRNAME, 'umit_scheduler.py')],
       packages = [
-          'umitCore','umitCore.radialnet', 'umitDB', 'umitGUI',
-          'umitInventory', 'umitPlugin', 'umitGUI.radialnet',
-          'umitInterfaceEditor', 'umitInterfaceEditor.selectborder',
-          'higwidgets'],
+          'umit', 'umit.core', 'umit.core.radialnet', 'umit.db',
+          'umit.gui', 'umit.gui.radialnet', 'umit.interfaceeditor',
+          'umit.interfaceeditor.selectborder', 'umit.inventory',
+          'umit.plugin', 'higwidgets'],
       data_files = data_files,
       zipfile = None,
       cmdclass = {"py2exe": umit_py2exe},

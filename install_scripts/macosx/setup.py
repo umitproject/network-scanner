@@ -27,7 +27,9 @@ import os.path
 from setuptools import setup
 from glob import glob
 
-from umitCore.Version import VERSION
+from umit.core.Version import VERSION
+
+BIN_DIRNAME = 'bin'
 
 # Directories for POSIX operating systems
 # These are created after a "install" or "py2exe" command
@@ -108,9 +110,15 @@ easier network scanning or even compare scan results to easily see any \
 changes. A regular user will also be able to construct powerful scans with \
 Umit command creator wizards.""",
       version = VERSION,
-      scripts = ['umit.py'],
-      app = ["umit.py"],
-      packages = ['', 'umitCore', 'umitGUI', 'higwidgets'],
+      scripts = [
+          os.path.join(BIN_DIRNAME, 'umit'),
+          os.path.join(BIN_DIRNAME, 'umit_scheduler.py')],
+      app = [os.path.join(BIN_DIRNAME, 'umit')],
+      packages = [
+          'umit', 'umit.core', 'umit.core.radialnet', 'umit.db',
+          'umit.gui', 'umit.gui.radialnet', 'umit.interfaceeditor',
+          'umit.interfaceeditor.selectborder', 'umit.inventory',
+          'umit.plugin', 'higwidgets'],
       data_files = data_files,
       options=dict(py2app=dict(argv_emulation=True,
                                compressed=True)),

@@ -33,7 +33,7 @@ from distutils import log, dir_util
 from glob import glob
 from stat import *
 
-from umitCore.Version import VERSION
+from umit.core.Version import VERSION
 from utils import msgfmt
 
 BIN_DIRNAME = 'bin'
@@ -260,7 +260,7 @@ print
                              "ICONS_DIR":icons_dir}
 
         pcontent = ""
-        paths_file = os.path.join("umitCore", "BasePaths.py")
+        paths_file = os.path.join("umit", "core", "BasePaths.py")
         installed_files = self.get_outputs()
 
         # Finding where the Paths.py file was installed.
@@ -359,10 +359,10 @@ Umit command creator wizards.""",
           os.path.join(BIN_DIRNAME, 'umit'),
           os.path.join(BIN_DIRNAME, 'umit_scheduler.py')],
       packages = [
-          'umitCore', 'umitCore.radialnet', 'umitDB', 'umitGUI',
-          'umitInventory', 'umitPlugin', 'umitGUI.radialnet',
-          'umitInterfaceEditor', 'umitInterfaceEditor.selectborder',
-          'higwidgets', 'utils'],
+          'umit', 'umit.core', 'umit.core.radialnet', 'umit.db',
+          'umit.gui', 'umit.gui.radialnet', 'umit.interfaceeditor',
+          'umit.interfaceeditor.selectborder', 'umit.inventory',
+          'umit.plugin', 'higwidgets', 'utils'],
       data_files = data_files,
       cmdclass = {
           "install": umit_install,
