@@ -32,12 +32,12 @@ from glob import glob
 import re
 
 UMIT_VERSION = os.path.join("share", "umit", "config", "umit_version")
-VERSION_PY = os.path.join("umitCore", "Version.py")
+VERSION_PY = os.path.join("umit", "core", "Version.py")
 UMIT_COMPILED_NSI = os.path.join("install_scripts", "windows", "umit_compiled.nsi")
 
 def get_winpcap():
     windeps = os.path.join("install_scripts", "windows",
-                           "win_dependencies", "winpcap*")
+                           "win_dependencies", "WinPcap*")
     return os.path.split(glob(windeps)[0])[1]
 
 WINPCAP = get_winpcap()
