@@ -362,7 +362,7 @@ Umit command creator wizards.""",
           'umit', 'umit.core', 'umit.core.radialnet', 'umit.db',
           'umit.gui', 'umit.gui.radialnet', 'umit.interfaceeditor',
           'umit.interfaceeditor.selectborder', 'umit.inventory',
-          'umit.plugin', 'higwidgets', 'utils'],
+          'umit.plugin', 'higwidgets'],
       data_files = data_files,
       cmdclass = {
           "install": umit_install,

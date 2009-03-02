@@ -10,3 +10,4 @@ recursive-include share/umit/misc *.dmp
 recursive-include share/umit/sql *.sql
 recursive-include umit *.py
 recursive-include higwidgets *.py
+recursive-include utils *.py
