@@ -32,10 +32,10 @@ if os.name == 'nt':
     # See http://msdn.microsoft.com/en-us/library/bb762181(VS.85).aspx
     # for SHGetFolderPath reference.
     HOME = shell.SHGetFolderPath(0, shellcon.CSIDL_LOCAL_APPDATA, 0, 0)
-    UMIT_CONFIG_DIR = 'umit'
+    UMIT_CFG_DIR = 'umit'
 else:
     HOME = os.path.expanduser("~")
-    UMIT_CONFIG_DIR = '.umit'
+    UMIT_CFG_DIR = '.umit'
 
 CURRENT_DIR = os.getcwd()
 
@@ -60,8 +60,8 @@ PLUGINS_DIR = os.path.join(main_dir, "share", "umit", "plugins")
 DOCS_DIR = os.path.join(main_dir, "share", "doc", "umit")
 
 base_paths = dict(config_file = 'umit.conf',
-                  config_dir = UMIT_CONFIG_DIR,
-                  user_dir = os.path.join(HOME, UMIT_CONFIG_DIR),
+                  config_dir = UMIT_CFG_DIR,
+                  user_dir = os.path.join(HOME, UMIT_CFG_DIR),
                   scan_profile = 'scan_profile.usp',
                   profile_editor = 'profile_editor.xml',
                   recent_scans = 'recent_scans.txt',
