@@ -1,10 +1,10 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2005-2006 Insecure.Com LLC.
 # Copyright (C) 2007-2008 Adriano Monteiro Marques
 #
 # Author: Adriano Monteiro Marques <adriano@umitproject.org>
+#         Guilherme Polo <ggpolo@gmail.com>
 #         João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #         Luis A. Bastiao Silva <luis.kop@gmail.com>
 #
@@ -34,7 +34,7 @@ from xml.sax.xmlreader import AttributesImpl
 UNKNOWN = "Unknown"
 
 class AttributesImplDict(dict, AttributesImpl):
-    pass
+    """Use this for displaying AttributesImpl just like a dict."""
 
 class HostInfo(object):
     def __init__(self, host_id):
@@ -57,6 +57,7 @@ class HostInfo(object):
         self.id = host_id
         self.comment = ''
 
+        # XXX this structure it not being used yet.
         self.nmap_host = {
                 'status': {'state': '', 'reason': ''},
                 'smurf': {'responses': ''},
@@ -79,7 +80,7 @@ class HostInfo(object):
         try:
             return self._id
         except AttributeError:
-            raise Exception("Id was not set yet.")
+            raise Exception("Id is not set yet.")
 
     def set_id(self, host_id):
         try:
@@ -603,9 +604,6 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             else:
                 self.nmap_xml_file.seek(0)
                 self.parser.parse(self.nmap_xml_file)
-
-                # Closing file to avoid problems with file descriptors
-                self.nmap_xml_file.close()
         else:
             raise Exception("There's no file to be parsed!")
 
@@ -649,6 +647,8 @@ class NmapParserSAX(ParserBasics, ContentHandler):
 
 
     def startElement(self, name, attrs):
+        # AttributesImplDict is used here so utils/xmldisplay.py can display
+        # instances of AttributesImpl without any effort.
         attrs = AttributesImplDict(attrs)
 
         if name == 'nmaprun':
@@ -764,17 +764,19 @@ class NmapParserSAX(ParserBasics, ContentHandler):
 
         ## Finished element
         self.write_parser.startElement('finished',
-                        AttributesImpl(dict(
-                            time=str(time.mktime(self.finish_epoch_time)),
-                            timestr=self.finish_time)))
+                AttributesImpl({
+                    'time': str(time.mktime(self.finish_epoch_time)),
+                    'timestr': self.finish_time})
+                )
         self.write_parser.endElement('finished')
 
         ## Hosts element
         self.write_parser.startElement('hosts',
-                AttributesImpl(dict(
-                    up=str(self.hosts_up),
-                    down=str(self.hosts_down),
-                    total=str(self.hosts_total))))
+                AttributesImpl({
+                    'up': str(self.hosts_up),
+                    'down': str(self.hosts_down),
+                    'total': str(self.hosts_total)})
+                )
         self.write_parser.endElement('hosts')
 
 
@@ -786,12 +788,15 @@ class NmapParserSAX(ParserBasics, ContentHandler):
         for host in self.hosts:
             # Start host element
             self.write_parser.startElement('host',
-                                AttributesImpl(dict(comment=host.comment)))
+                    AttributesImpl({
+                        'comment': host.comment})
+                    )
 
             # Status element
             self.write_parser.startElement('status',
-                                AttributesImpl(dict(
-                                    state=host.status['state'])))
+                    AttributesImpl({
+                        'state': host.status['state']})
+                    )
             self.write_parser.endElement('status')
 
 
@@ -800,10 +805,11 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             for address in host.address:
                 self.__remove_none(address)
                 self.write_parser.startElement('address',
-                            AttributesImpl(dict(
-                                addr=address.get('addr', ''),
-                                vendor=address.get('vendor', ''),
-                                addrtype=address.get('addrtype', ''))))
+                        AttributesImpl({
+                            'addr': address.get('addr', ''),
+                            'vendor': address.get('vendor', ''),
+                            'addrtype': address.get('addrtype', '')})
+                        )
                 self.write_parser.endElement('address')
             # End of Address elements
             #########################
@@ -814,13 +820,15 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             self.write_parser.startElement('hostnames', AttributesImpl({}))
 
             for hname in host.hostnames:
-                if type(hname) == type({}):
-                    self.write_parser.startElement('hostname',
-                            AttributesImpl(
-                                dict(name = hname.get('hostname', ''),
-                                     type = hname.get('hostname_type', ''))))
+                if not isinstance(hname, dict):
+                    continue
 
-                    self.write_parser.endElement('hostname')
+                self.write_parser.startElement('hostname',
+                        AttributesImpl({
+                            'name': hname.get('hostname', ''),
+                            'type': hname.get('hostname_type', '')})
+                        )
+                self.write_parser.endElement('hostname')
 
             self.write_parser.endElement('hostnames')
             # End of Hostnames element
@@ -835,34 +843,38 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             for export in host.extraports:
                 self.__remove_none(export)
                 self.write_parser.startElement('extraports',
-                        AttributesImpl(dict(
-                            count=str(export.get('count', '')),
-                            state=export.get('state', ''))))
+                        AttributesImpl({
+                            'count': str(export.get('count', '')),
+                            'state': export.get('state', '')})
+                        )
                 self.write_parser.endElement('extraports')
 
             ## Port elements
             for port in host.ports:
                 self.__remove_none(port)
                 self.write_parser.startElement('port',
-                    AttributesImpl(dict(
-                        portid = port.get('portid', ''),
-                        protocol = port.get('protocol', ''))))
+                    AttributesImpl({
+                        'portid': port.get('portid', ''),
+                        'protocol': port.get('protocol', '')})
+                    )
 
                 ### Port state
                 self.write_parser.startElement('state',
-                        AttributesImpl(dict(state=port.get('state', ''))))
+                        AttributesImpl({
+                            'state': port.get('state', '')})
+                        )
                 self.write_parser.endElement('state')
 
                 ### Port service info
                 self.write_parser.startElement('service',
-                        AttributesImpl(dict(
-                            conf=port.get('conf', ''),
-                            method=port.get('method', ''),
-                            name=port.get('name', ''),
-                            product=port.get('product', ''),
-                            version=port.get('version', ''),
-                            extrainfo=port.get('extrainfo', '')
-                            )))
+                        AttributesImpl({
+                            'conf': port.get('conf', ''),
+                            'method': port.get('method', ''),
+                            'name': port.get('name', ''),
+                            'product': port.get('product', ''),
+                            'version': port.get('version', ''),
+                            'extrainfo': port.get('extrainfo', '')})
+                        )
                 self.write_parser.endElement('service')
 
                 self.write_parser.endElement('port')
@@ -878,41 +890,55 @@ class NmapParserSAX(ParserBasics, ContentHandler):
 
             ## Ports used elements
             for pu in host.portused:
-                if type(pu) == type({}):
-                    self.__remove_none(pu)
-                    self.write_parser.startElement('portused',
-                                AttributesImpl(dict(state = pu.get('state', ''),
-                                                proto = pu.get('proto', ''),
-                                                portid = pu.get('portid', ''))))
-                    self.write_parser.endElement('portused')
+                if not isinstance(pu, dict):
+                    continue
+
+                self.__remove_none(pu)
+                self.write_parser.startElement('portused',
+                        AttributesImpl({
+                            'state': pu.get('state', ''),
+                            'proto': pu.get('proto', ''),
+                            'portid': pu.get('portid', '')})
+                        )
+                self.write_parser.endElement('portused')
 
             ## Osclass elements
             for oc in host.osclass:
-                if type(oc) == type({}):
-                    self.__remove_none(oc)
-                    self.write_parser.startElement('osclass',
-                        AttributesImpl(dict(vendor = oc.get('vendor', ''),
-                                        osfamily = oc.get('osfamily', ''),
-                                        type = oc.get('type', ''),
-                                        osgen = oc.get('osgen', ''),
-                                        accuracy = oc.get('accuracy', ''))))
-                    self.write_parser.endElement('osclass')
+                if not isinstance(oc, dict):
+                    continue
+
+                self.__remove_none(oc)
+                self.write_parser.startElement('osclass',
+                        AttributesImpl({
+                            'vendor': oc.get('vendor', ''),
+                            'osfamily': oc.get('osfamily', ''),
+                            'type': oc.get('type', ''),
+                            'osgen': oc.get('osgen', ''),
+                            'accuracy': oc.get('accuracy', '')})
+                        )
+                self.write_parser.endElement('osclass')
 
             ## Osmatch elements
             for om in host.osmatch:
-                if type(om) == type({}):
-                    self.__remove_none(om)
-                    self.write_parser.startElement('osmatch',
-                        AttributesImpl(dict(name = om.get('name', ''),
-                                    accuracy = om.get('accuracy', ''))))
-                    self.write_parser.endElement('osmatch')
+                if not isinstance(om, dict):
+                    continue
+
+                self.__remove_none(om)
+                self.write_parser.startElement('osmatch',
+                        AttributesImpl({
+                            'name': om.get('name', ''),
+                            'accuracy': om.get('accuracy', '')})
+                        )
+                self.write_parser.endElement('osmatch')
 
             ## Osfingerprint element
-            if type(host.osfingerprint) == type({}):
+            if isinstance(host.osfingerprint, dict):
                 self.__remove_none(host.osfingerprint)
                 self.write_parser.startElement('osfingerprint',
-                    AttributesImpl(dict(
-                        fingerprint=host.osfingerprint.get('fingerprint', ''))))
+                        AttributesImpl({
+                            'fingerprint': host.osfingerprint.get(
+                                'fingerprint', '')})
+                        )
                 self.write_parser.endElement('osfingerprint')
 
 
@@ -921,40 +947,44 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             ###################
 
             # Uptime element
-            if type(host.uptime) == type({}):
+            if isinstance(host.uptime, dict):
                 self.write_parser.startElement('uptime',
-                    AttributesImpl(dict(
-                        seconds = host.uptime.get('seconds', ''),
-                        lastboot = host.uptime.get('lastboot', ''))))
+                        AttributesImpl({
+                            'seconds': host.uptime.get('seconds', ''),
+                            'lastboot': host.uptime.get('lastboot', '')})
+                        )
                 self.write_parser.endElement('uptime')
 
             #####################
             # Sequences elementes
             ## TCP Sequence element
-            # Cannot use dict() here, because of the 'class' attribute.
-            if type(host.tcpsequence) == type({}):
+            if isinstance(host.tcpsequence, dict):
                 self.write_parser.startElement('tcpsequence',
-                    AttributesImpl({
-                        'index': host.tcpsequence.get('index', ''),
-                        'class': host.tcpsequence.get('class', ''),
-                        'difficulty': host.tcpsequence.get('difficulty', ''),
-                        'values': host.tcpsequence.get('values', '')}))
+                        AttributesImpl({
+                            'index': host.tcpsequence.get('index', ''),
+                            'class': host.tcpsequence.get('class', ''),
+                            'difficulty': host.tcpsequence.get('difficulty',
+                                ''),
+                            'values': host.tcpsequence.get('values', '')})
+                        )
                 self.write_parser.endElement('tcpsequence')
 
             ## IP ID Sequence element
-            if type(host.ipidsequence) == type({}):
+            if isinstance(host.ipidsequence, dict):
                 self.write_parser.startElement('ipidsequence',
-                    AttributesImpl({
-                        'class': host.ipidsequence.get('class', ''),
-                        'values': host.ipidsequence.get('values', '')}))
+                        AttributesImpl({
+                            'class': host.ipidsequence.get('class', ''),
+                            'values': host.ipidsequence.get('values', '')})
+                        )
                 self.write_parser.endElement('ipidsequence')
 
             ## TCP TS Sequence element
-            if type(host.tcptssequence) == type({}):
+            if isinstance(host.tcptssequence, dict):
                 self.write_parser.startElement('tcptssequence',
-                    AttributesImpl({
-                        'class': host.tcptssequence.get('class', ''),
-                        'values': host.tcptssequence.get('values', '')}))
+                        AttributesImpl({
+                            'class': host.tcptssequence.get('class', ''),
+                            'values': host.tcptssequence.get('values', '')})
+                        )
                 self.write_parser.endElement('tcptssequence')
             # End of sequences elements
             ###########################
@@ -963,58 +993,66 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             self.write_parser.endElement('host')
 
     def _write_debugging(self):
-        self.write_parser.startElement('debugging', AttributesImpl(dict(
-                                            level=str(self.debugging_level))))
+        self.write_parser.startElement('debugging',
+                AttributesImpl({
+                    'level': str(self.debugging_level)})
+                )
         self.write_parser.endElement('debugging')
 
     def _write_verbose(self):
-        self.write_parser.startElement('verbose', AttributesImpl(dict(
-                                            level=str(self.verbose_level))))
+        self.write_parser.startElement('verbose',
+                AttributesImpl({
+                    'level': str(self.verbose_level)})
+                )
         self.write_parser.endElement('verbose')
 
     def _write_scaninfo(self):
         for scan in self.scaninfo:
-            if type(scan) == type({}):
-                self.write_parser.startElement('scaninfo',
-                    AttributesImpl(dict(type = scan.get('type', ''),
-                                    protocol = scan.get('protocol', ''),
-                                    numservices = scan.get('numservices', ''),
-                                    services = scan.get('services', ''))))
-                self.write_parser.endElement('scaninfo')
+            if not isinstance(scan, dict):
+                continue
+
+            self.write_parser.startElement('scaninfo',
+                    AttributesImpl({
+                        'type': scan.get('type', ''),
+                        'protocol': scan.get('protocol', ''),
+                        'numservices': scan.get('numservices', ''),
+                        'services': scan.get('services', '')})
+                    )
+            self.write_parser.endElement('scaninfo')
 
     def _write_nmaprun(self):
         self.write_parser.startElement('nmaprun',
-                AttributesImpl(dict(annotation = str(self.profile_annotation),
-                                args = str(self.nmap_command),
-                                description = str(self.profile_description),
-                                hint = str(self.profile_hint),
-                                nmap_output = str(self.nmap_output),
-                                options = str(self.profile_options),
-                                profile = str(self.profile),
-                                profile_name = str(self.profile_name),
-                                scanner = str(self.scanner),
-                                start = str(self.start),
-                                startstr = str(self.formated_date),
-                                target = str(self.target),
-                                version = str(self.scanner_version),
-                                scan_name = str(self.scan_name))))
+                AttributesImpl({
+                    'annotation': str(self.profile_annotation),
+                    'args': str(self.nmap_command),
+                    'description': str(self.profile_description),
+                    'hint': str(self.profile_hint),
+                    'nmap_output': str(self.nmap_output),
+                    'options': str(self.profile_options),
+                    'profile': str(self.profile),
+                    'profile_name': str(self.profile_name),
+                    'scanner': str(self.scanner),
+                    'start': str(self.start),
+                    'startstr': str(self.formated_date),
+                    'target': str(self.target),
+                    'version': str(self.scanner_version),
+                    'scan_name': str(self.scan_name)})
+                )
 
     def _verify_file(self, xml_file):
         # let errors be raised
         if isinstance(xml_file, basestring):
             xml_file = open(xml_file, 'w')
-            xml_file.seek(0)
-            return xml_file
         else:
             mode = xml_file.mode
             if mode in ('r+', 'w', 'w+'):
                 xml_file.seek(0)
-            return xml_file
+        return xml_file
 
     def __remove_none(self, dic):
         # saxutils will have problems if your dic contain any None items
-        # (it will try to use the method replace, for example, which NoneType
-        # doesn't have).
+        # (it will try to use the replace method, for example, which a
+        # None object doesn't have).
         for k, v in dic.items():
             if k is None or v is None:
                 del dic[k]
