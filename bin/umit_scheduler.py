@@ -42,11 +42,11 @@ if not hasattr(sys, 'frozen'):
         # We want umit_scheduler to be an importable module.
         sys.path.append(_bin_path)
 
-from umitCore.BGProcess import WindowsService
-from umitCore.BasePaths import HOME
-from umitCore import Scheduler
-from umitCore.I18N import _
-from umitCore.Paths import Path
+from umit.core.BGProcess import WindowsService
+from umit.core.BasePaths import HOME
+from umit.core import Scheduler
+from umit.core.I18N import _
+from umit.core.Paths import Path
 
 HOME_CONF = None
 RUNNING_FILE = None

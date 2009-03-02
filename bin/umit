@@ -38,8 +38,8 @@ if not hasattr(sys, 'frozen'):
         # Assuming umit is being executed from a svn checkout.
         sys.path.insert(0, _source_path)
 
-from umitCore.I18N import _
-from umitCore.Version import VERSION
+from umit.core.I18N import _
+from umit.core.Version import VERSION
 #########################
 
 UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
@@ -50,7 +50,7 @@ class UmitExceptionHook(object):
         warnings.filterwarnings("error", module = "gtk")
         try:
             import gtk
-            from umitGUI.BugReport import CrashReport
+            from umit.gui.BugReport import CrashReport
             from higwidgets.higdialogs import HIGAlertDialog
         except Warning, e:
             print e.message
@@ -59,8 +59,8 @@ class UmitExceptionHook(object):
 
         # Getting dependencies versions
         import higwidgets
-        import umitCore
-        import umitGUI
+        import umit.core
+        import umit.gui
 
         gtk_version = "%s.%s.%s" % gtk.gtk_version
         pygtk_version = "%s.%s.%s" % gtk.ver
@@ -78,8 +78,8 @@ class UmitExceptionHook(object):
                 osuname = "UNKNOWN"
 
         umit_version = VERSION
-        umitCore_version = getattr(umitCore, "__version__", "< 0.9.5")
-        umitGUI_version = getattr(umitGUI, "__version__", "< 0.9.5")
+        umitCore_version = getattr(umit.core, "__version__", "< 0.9.5")
+        umitGUI_version = getattr(umit.gui, "__version__", "< 0.9.5")
 
         versions = _("""
 Versions:
@@ -183,12 +183,12 @@ if not UMIT_DEVELOPMENT:
 
 def main(args):
     # Setting the umit home directory
-    from umitCore.Paths import Path
+    from umit.core.Paths import Path
     Path.set_umit_conf(os.path.split(args[0])[0])
     #################################
     Path.set_running_path(os.path.abspath(os.path.dirname(sys.argv[0])))
 
-    from umitGUI.App import App
+    from umit.gui.App import App
 
     umit_app = App()
 
