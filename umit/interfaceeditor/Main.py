@@ -61,7 +61,7 @@ from umit.interfaceeditor.Tools import ToolDesign, Proprieties
 from umit.interfaceeditor.Command import command_manager
 
 
-class umitInterfaceEditor(HIGMainWindow):
+class InterfaceEditor(HIGMainWindow):
     def __init__(self):
         HIGMainWindow.__init__(self)
 	self._proprieties = None
@@ -73,7 +73,7 @@ class umitInterfaceEditor(HIGMainWindow):
 	self.wizard_box_b = None 
 	self.edit_mode_opt = None
 	self._show_bar = True
-        self.set_title(_('Umit Interface Editor - v0.1'))
+        self.set_title(_('Interface Editor'))
 	self.set_size_request(800, 400)
         self.set_position(gtk.WIN_POS_CENTER)
         #self.maximize()

@@ -51,7 +51,7 @@ from umit.gui.SchedulerControl import SchedControl
 from umit.gui.SchedulerEdit import SchedSchemaEditor
 from umit.gui.SMTPSetup import SMTPSetup
 
-from umit.interfaceeditor.Main import umitInterfaceEditor
+from umit.interfaceeditor.Main import InterfaceEditor
 
 from umit.core.Paths import Path
 from umit.core.RecentScans import recent_scans
@@ -1114,7 +1114,7 @@ access to this path.'))
         # return page
         
     def _uie(self, p):
-        uie = umitInterfaceEditor()
+        uie = InterfaceEditor()
         uie.show_all()
     def _profile_manager(self,p):
         pm = ProfileManager()
