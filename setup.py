@@ -39,7 +39,7 @@ from install_scripts.common import BIN_DIRNAME, PIXMAPS_DIR, ICONS_DIR, \
 
 py2exe_cmdclass = py2exe_options = py2app_options = None
 if 'py2exe' in sys.argv:
-    from install_scripts.windows.py2exe_setup import py2exe_cmdlass, \
+    from install_scripts.windows.py2exe_setup import py2exe_cmdclass, \
             py2exe_options
 if 'py2app' in sys.argv:
     from install_scripts.macosx.py2app_setup import py2app_options
@@ -346,7 +346,7 @@ cmdclasses = {
         "sdist": umit_sdist}
 
 if py2exe_cmdclass:
-    cmdclasses.update(py2exe_cmdlass)
+    cmdclasses.update(py2exe_cmdclass)
 
 standard_options = dict(
         name = 'umit',
