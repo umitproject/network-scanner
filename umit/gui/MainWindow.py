@@ -362,13 +362,15 @@ class MainWindow(UmitMainWindow):
         # When we get multiple tabs opened, we might merge the tab UI.
 
         # This is the default, minimal UI
+
         self.default_ui = """<menubar>
             <menu action='Scan'>
             <menuitem action='New Scan'/>
             <menuitem action='Close Scan'/>
             <menuitem action='Save Scan'/>
             <menuitem action='Open Scan'/>
-            %(recentscans)s
+            <placeholder name='RecentScans'>
+            </placeholder>
             <menuitem action='Quit'/>
             </menu>
 
@@ -420,8 +422,6 @@ class MainWindow(UmitMainWindow):
             </toolbar>
             """
 
-        self.get_recent_scans()
-
         self.main_action_group.add_actions(self.main_actions)
 
         for action in self.main_action_group.list_actions():
@@ -430,7 +430,12 @@ class MainWindow(UmitMainWindow):
 
         self.ui_manager.insert_action_group(self.main_action_group, 0)
         self.ui_manager.add_ui_from_string(self.default_ui)
- 
+
+        self._rscans_actiongroup = gtk.ActionGroup('UIRecentScans')
+        self.ui_manager.insert_action_group(self._rscans_actiongroup, 1)
+        self._rscans_merge_id = 0
+        self.update_recent_scans()
+
         self.schedctrl.ui_action = self.main_action_group.get_action(
                 'Sched Control')
 
@@ -698,11 +703,31 @@ to close current Scan Tab?'),
             if getattr(err, 'winerror', None) != 32:
                 raise
 
+    def update_recent_scans(self):
+        """Shows the most recent saved scans in the 'Scan' menu."""
+        # clean previous recent scans listing, if any
+        if self._rscans_merge_id:
+            for action in self._rscans_actiongroup.list_actions():
+                self._rscans_actiongroup.remove_action(action)
+            self.ui_manager.remove_ui(self._rscans_merge_id)
+            # ensure_update is used here so we can be sure that the
+            # UIManager updates our UI. Not doing so will cause
+            # new items in the recent scans listing to appear at the
+            # end of the current listing.
+            self.ui_manager.ensure_update()
 
-    def get_recent_scans(self):
-        """Shows the most recent saved scans."""
         r_scans = recent_scans.get_recent_scans_list()
+        rscans_ui = """
+        <menubar>
+            <menu action='Scan'>
+                <placeholder name='RecentScans'>
+                %s
+                </placeholder>
+            </menu>
+        </menubar>"""
         new_rscan_xml = ''
+
+        actions = []
 
         # Add the seven most recent saved scans to the menu.
         for scan in r_scans[:7]:
@@ -717,12 +742,12 @@ to close current Scan Tab?'),
                              self._load_recent_scan)
                 new_rscan_xml += "<menuitem action='%s'/>\n" % \
                               xml.sax.saxutils.escape(scan)
+                actions.append(new_rscan)
+        new_rscan_xml += "<separator />\n"
 
-                self.main_actions.append(new_rscan)
-        else:
-            new_rscan_xml += "<separator />\n"
-
-        self.default_ui %= {'recentscans': new_rscan_xml}
+        self._rscans_actiongroup.add_actions(actions)
+        self._rscans_merge_id = self.ui_manager.add_ui_from_string(
+                rscans_ui % new_rscan_xml)
 
     def _create_menubar(self):
         # Get and pack the menubar
@@ -1090,6 +1115,7 @@ to write'))
                 # Saving recent scan information
                 recent_scans.add_recent_scan(saved_filename)
                 recent_scans.save()
+                self.update_recent_scans()
 
         else:
             alert = HIGAlertDialog(message_format=_('Permission denied'),
