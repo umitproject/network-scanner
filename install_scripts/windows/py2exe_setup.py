@@ -25,12 +25,13 @@ import sys
 
 from py2exe.build_exe import py2exe as build_exe
 
+from umit.core.Version import VERSION
 from install_scripts.common import BIN_DIRNAME, ICONS_DIR
 
 # Add the bin dir to the sys.path so we can indicate that the umit_scheduler
 # module is a service.
-umit_top_dir = os.path.abspath(os.path.dirname(
-    os.path.join(__file__, os.path.pardir, os.path.pardir)))
+umit_top_dir = os.path.abspath(os.path.join(
+    os.path.dirname(__file__), os.path.pardir, os.path.pardir))
 sys.path.append(os.path.join(umit_top_dir, BIN_DIRNAME))
 
 # win32com changes its __path__ to be able to do imports from
