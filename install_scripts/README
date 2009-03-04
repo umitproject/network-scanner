@@ -18,7 +18,7 @@ Generating unix packages:
 Generating Mac OS X App:
 
  1 - Install the required dependencies for Mac OS X (including PIL)
- 2 - Run install_scripts/macosx/generate_macosx_app.sh
+ 2 - Run setup.py py2app
 
  Obs: Some path adaptations may be needed in the script above in order to make
  it work in your system.

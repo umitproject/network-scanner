@@ -21,8 +21,7 @@ echo "Removing some unused files..."
 bash install_scripts/utils/remove_unused_files.sh
 
 echo "Starting setup.py..."
-cp install_scripts/unix/setup.py .
 python setup.py sdist --formats=gztar,zip,bztar
-rm setup.py MANIFEST
+rm MANIFEST
 
 cd $old_pwd

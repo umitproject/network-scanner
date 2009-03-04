@@ -64,7 +64,7 @@ xcopy %NmapDir%\*.* %DistDir%\Nmap >> %Output%
 
 
 echo Copying setup.py...
-xcopy %WinInstallDir%\setup.py %UmitDir% /Y
+xcopy setup.py %UmitDir% /Y
 
 echo Compiling Umit using py2exe...
 cd %UmitDir%

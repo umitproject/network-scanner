@@ -19,10 +19,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-import sys
 import os
-import os.path
 import re
+import sys
+from stat import *
+from glob import glob
 
 from distutils.core import setup
 from distutils.command.install import install
@@ -30,11 +31,16 @@ from distutils.command.sdist import sdist
 from distutils.command.build import build
 from distutils import log, dir_util
 
-from glob import glob
-from stat import *
-
 from umit.core.Version import VERSION
 from utils import msgfmt
+
+py2exe_cmdclass = py2exe_options = py2app_options = None
+if 'py2exe' in sys.argv:
+    from install_scripts.windows.py2exe_setup import py2exe_cmdlass, \
+            py2exe_options
+if 'py2app' in sys.argv:
+    from install_scripts.macosx.py2app_setup import py2app_options
+
 
 BIN_DIRNAME = 'bin'
 
@@ -71,6 +77,14 @@ def po_find(result, dirname, fnames):
 ###############################################################################
 # Installation variables
 
+# What to copy to the destiny
+# Here, we define what should be put inside the directories set in the
+# beginning of this file. This list contain tuples where the first element
+# contains a path to where the other elements of the tuple should be installed.
+# The first element is a path in the INSTALLATION PREFIX, and the other
+# elements are the path in the source base.
+# Ex: [("share/pixmaps", "/umit/trunk/share/pixmaps/test.png")]
+# This will install the test.png file in the installation dir share/pixmaps.
 svg = glob(os.path.join('share', 'pixmaps', '*.svg'))
 data_files = [
         (pixmaps_dir,
@@ -337,34 +351,51 @@ print "%s Umit for Linux %s %s" % ("#" * 10, VERSION, "#" * 10)
 print
 ##########################################################
 
-setup(name = 'umit',
-      license = 'GNU GPL (version 2 or later)',
-      url = 'http://www.umitproject.org',
-      download_url = 'http://www.umitproject.org',
-      author = 'Adriano Monteiro & Cleber Rodrigues',
-      author_email = 'adriano@umitproject.org, cleber@globalred.com.br',
-      maintainer = 'Adriano Monteiro',
-      maintainer_email = 'adriano@gmail.com',
-      description = """Umit is a network scanning frontend, developed in \
-Python and GTK and was started with the sponsoring of Google's Summer \
-of Code.""",
-      long_description = """The project goal is to develop a network scanning \
-frontend that is really useful for advanced users and easy to be used by \
-newbies. With Umit, a network admin could create scan profiles for faster and \
-easier network scanning or even compare scan results to easily see any \
-changes. A regular user will also be able to construct powerful scans with \
-Umit command creator wizards.""",
-      version = VERSION,
-      scripts = [
-          os.path.join(BIN_DIRNAME, 'umit'),
-          os.path.join(BIN_DIRNAME, 'umit_scheduler.py')],
-      packages = [
-          'umit', 'umit.core', 'umit.core.radialnet', 'umit.db',
-          'umit.gui', 'umit.gui.radialnet', 'umit.interfaceeditor',
-          'umit.interfaceeditor.selectborder', 'umit.inventory',
-          'umit.plugin', 'higwidgets'],
-      data_files = data_files,
-      cmdclass = {
-          "install": umit_install,
-          "build": umit_build,
-          "sdist": umit_sdist})
+
+cmdclasses = {
+        "install": umit_install,
+        "build": umit_build,
+        "sdist": umit_sdist}
+
+if py2exe_cmdclass:
+    cmdclasses.update(py2exe_cmdlass)
+
+standard_options = dict(
+        name = 'umit',
+        license = 'GNU GPL (version 2 or later)',
+        url = 'http://www.umitproject.org',
+        download_url = 'http://www.umitproject.org',
+        author = 'Adriano Monteiro & Cleber Rodrigues',
+        author_email = 'adriano@umitproject.org, cleber@globalred.com.br',
+        maintainer = 'Adriano Monteiro',
+        maintainer_email = 'adriano@umitproject.org',
+        description = ("Umit is a network scanning frontend, developed in "
+            "Python and GTK and was started with the sponsoring of "
+            "Google's Summer of Code."),
+        long_description = ("The project goal is to develop a network "
+            "scanning frontend that is really useful for advanced users and "
+            "easy to be used by newbies. With Umit, a network admin can "
+            "create scan profiles for faster and easier network scanning "
+            "or even compare scan results to easily see any changes. "
+            "A regular user will also be able to construct powerful scans "
+            "with Umit command creator wizards."),
+        version = VERSION,
+        scripts = [
+            os.path.join(BIN_DIRNAME, 'umit'),
+            os.path.join(BIN_DIRNAME, 'umit_scheduler.py')],
+        packages = [
+            'umit', 'umit.core', 'umit.core.radialnet', 'umit.db',
+            'umit.gui', 'umit.gui.radialnet', 'umit.interfaceeditor',
+            'umit.interfaceeditor.selectborder', 'umit.inventory',
+            'umit.plugin', 'higwidgets'],
+        data_files = data_files,
+        cmdclass = cmdclasses
+        )
+
+if py2exe_options:
+    standard_options.update(py2exe_options)
+
+if py2app_options:
+    standard_options.update(py2app_options)
+
+setup(**standard_options)
