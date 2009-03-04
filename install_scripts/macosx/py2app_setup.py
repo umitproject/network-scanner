@@ -23,7 +23,7 @@ import os
 # Override the setup name in the main setup.py
 from setuptools import setup
 
-BIN_DIRNAME = 'bin'
+from install_scripts.common import BIN_DIRNAME
 
 py2app_options = dict(
         app = [os.path.join(BIN_DIRNAME, 'umit')],

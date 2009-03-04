@@ -25,7 +25,7 @@ import sys
 
 from py2exe.build_exe import py2exe as build_exe
 
-BIN_DIRNAME = 'bin'
+from install_scripts.common import BIN_DIRNAME, ICONS_DIR
 
 # Add the bin dir to the sys.path so we can indicate that the umit_scheduler
 # module is a service.
@@ -66,7 +66,7 @@ py2exe_options = dict(
         service = [{'modules': ['umit_scheduler'], 'cmdline_style': 'custom'}],
         windows = [{
             "script": os.path.join(BIN_DIRNAME, "umit"),
-            "icon_resources": [(1, os.path.join(icons_dir, "umit_48.ico"))]
+            "icon_resources": [(1, os.path.join(ICONS_DIR, "umit_48.ico"))]
             }],
         options = {"py2exe": {
             "compressed": 1,
