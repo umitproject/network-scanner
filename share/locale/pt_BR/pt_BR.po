@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: umit Anderson\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-05 08:16-0300\n"
+"POT-Creation-Date: 2009-03-05 08:45-0300\n"
 "PO-Revision-Date: 2008-08-01 19:37-0300\n"
 "Last-Translator: Rodolfo Carvalho <rodolfo@rcarvalho.eti.br>\n"
 "Language-Team: Portuguese/Brazil <umit@globalred.com.br>\n"
@@ -856,9 +856,9 @@ msgid "Each point break represents "
 msgstr ""
 
 #: umit/inventory/TLBase.py:273
-#, fuzzy, python-format
+#, python-format
 msgid "Year %s"
-msgstr "Anos"
+msgstr "Ano %s"
 
 #: umit/inventory/TLChangesTree.py:27
 #, fuzzy
@@ -1114,9 +1114,9 @@ msgid " found."
 msgstr ""
 
 #: umit/inventory/Viewer.py:569
-#, fuzzy, python-format
+#, python-format
 msgid "Search: %s"
-msgstr "Opções da pesquisa"
+msgstr "Pesquisa: %s"
 
 #: umit/inventory/Viewer.py:608 umit/interfaceeditor/Main.py:536
 #: umit/gui/ScriptManager.py:308
@@ -2157,7 +2157,6 @@ msgid ""
 "\n"
 "Swedish:\n"
 "Daniel Nylander <po@danielnylander.se>\n"
-"\n"
 msgstr ""
 "Bahasa Indonesia:\n"
 "Devtar Singh <devtar@gmail.com>\n"
@@ -4475,9 +4474,9 @@ msgid "Visit homepage"
 msgstr ""
 
 #: umit/plugin/PluginPage.py:395
-#, fuzzy, python-format
+#, python-format
 msgid "About %s"
-msgstr "_Sobre"
+msgstr "Sobre %s"
 
 #: umit/plugin/PluginPage.py:397
 msgid "Enable"
@@ -4522,9 +4521,9 @@ msgid "No preferences for %s"
 msgstr ""
 
 #: umit/plugin/Tree.py:93
-#, fuzzy, python-format
+#, python-format
 msgid "Unable to load %s"
-msgstr "Habilitar diffies coloridos"
+msgstr "Não foi possível carregar %s"
 
 #: umit/plugin/Tree.py:288
 msgid "Plugin already loaded."
@@ -4563,9 +4562,9 @@ msgid "Version %s avaiable but need manual downgrade."
 msgstr ""
 
 #: umit/plugin/Update.py:338
-#, fuzzy, python-format
+#, python-format
 msgid "Version %s avaiable."
-msgstr "Não disponível"
+msgstr "Versão %s disponível."
 
 #: umit/plugin/Update.py:347
 msgid "Unable to parse latest.xml"
