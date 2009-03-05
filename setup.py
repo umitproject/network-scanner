@@ -3,7 +3,8 @@
 # Copyright (C) 2005-2006 Insecure.Com LLC.
 # Copyright (C) 2007-2008 Adriano Monteiro Marques
 #
-# Author: Adriano Monteiro Marques <adriano@umitproject.org>
+# Authors: Adriano Monteiro Marques <adriano@umitproject.org>
+#          Guilherme Polo <ggpolo@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -116,8 +117,8 @@ data_files = [
             glob(os.path.join(PIXMAPS_DIR, 'uie', '*.png'))),
 
         (ICONS_DIR,
-            glob(os.path.join('share', 'icons', 'umit', '*.ico')) +
-            glob(os.path.join('share', 'icons', 'umit', '*.png'))),
+            glob(os.path.join(ICONS_DIR, '*.ico')) +
+            glob(os.path.join(ICONS_DIR, '*.png'))),
 
         (DOCS_DIR,
             glob(os.path.join(DOCS_DIR, '*.html')) +
@@ -153,7 +154,7 @@ class umit_build(build):
         for (path, t) in tmp:
             full_path = os.path.join(path , "LC_MESSAGES", "umit.mo")
             self.mkpath(os.path.dirname(full_path))
-            self.announce("Compiling %s -> %s" % (t[0],full_path))
+            self.announce("Compiling %s -> %s" % (t[0], full_path))
             msgfmt.make(t[0], full_path, False)
         # like guess
         os.path.walk(LOCALE_DIR, mo_find, data_files)
@@ -180,34 +181,37 @@ class umit_install(install):
     def create_uninstaller(self):
         uninstaller_filename = os.path.join(
                 self.install_scripts, "uninstall_umit")
-        uninstaller = """#!/usr/bin/env python
-import os, os.path, sys
-
-print
-print '%(line)s Uninstall Umit %(version)s %(line)s'
-print
-
-answer = raw_input('Are you sure that you want to completly uninstall \
-Umit %(version)s? (yes/no) ')
-
-if answer != 'yes' and answer != 'y':
-    sys.exit(0)
-
-print
-print '%(line)s Uninstalling Umit %(version)s... %(line)s'
-print
-""" % {'version':VERSION, 'line':'-'*10}
+        uninstaller = []
+        uninstaller.append(
+                "#!/usr/bin/env python\n"
+                "import os, sys\n"
+                "\n"
+                "print\n"
+                "print '%(line)s Uninstall Umit %(version)s %(line)s'\n"
+                "print\n"
+                "\n"
+                "answer = raw_input('Are you sure that you want to '\n"
+                "        'completly uninstall Umit %(version)s? (yes/no) ')\n"
+                "\n"
+                "if answer.lower() not in ['yes', 'y']:\n"
+                "    sys.exit(0)\n"
+                "\n"
+                "print\n"
+                "print '%(line)s Uninstalling Umit %(version)s... %(line)s'\n"
+                "print\n" % {'version': VERSION, 'line': '-' * 10})
 
         for output in self.get_outputs():
-            uninstaller += "print 'Removing %s...'\n" % output
-            uninstaller += "if os.path.exists('%s'): os.remove('%s')\n" % \
-                        (output, output)
+            uninstaller.append(
+                    "print 'Removing %(output)s...'\n"
+                    "if os.path.exists('%(output)s'):\n"
+                    "    os.remove('%(output)s')\n" % {'output': output})
 
-        uninstaller += "print 'Removing uninstaller itself...'\n"
-        uninstaller += "os.remove('%s')\n" % uninstaller_filename
+        uninstaller.append(
+                "print 'Removing uninstaller itself...'\n"
+                "os.remove('%s')\n" % uninstaller_filename)
 
         uninstaller_file = open(uninstaller_filename, 'w')
-        uninstaller_file.write(uninstaller)
+        uninstaller_file.writelines(uninstaller)
         uninstaller_file.close()
 
         # Set exec bit for uninstaller
@@ -348,7 +352,7 @@ cmdclasses = {
 if py2exe_cmdclass:
     cmdclasses.update(py2exe_cmdclass)
 
-standard_options = dict(
+options = dict(
         name = 'umit',
         license = 'GNU GPL (version 2 or later)',
         url = 'http://www.umitproject.org',
@@ -381,9 +385,9 @@ standard_options = dict(
         )
 
 if py2exe_options:
-    standard_options.update(py2exe_options)
+    options.update(py2exe_options)
 
 if py2app_options:
-    standard_options.update(py2app_options)
+    options.update(py2app_options)
 
-setup(**standard_options)
+setup(**options)
