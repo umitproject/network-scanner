@@ -381,7 +381,18 @@ options = dict(
             'umit.interfaceeditor.selectborder', 'umit.inventory',
             'umit.plugin', 'higwidgets'],
         data_files = data_files,
-        cmdclass = cmdclasses
+        cmdclass = cmdclasses,
+        classifiers = [
+            'Development Status :: 4 - Beta',
+            'Environment :: X11 Applications :: GTK',
+            'Intended Audience :: End Users/Desktop',
+            'Intended Audience :: System Administrators',
+            'License :: OSI Approved :: GNU General Public License (GPL)',
+            'Programming Language :: Python :: 2',
+            'Programming Language :: Python :: 2.5'
+            'Programming Language :: Python :: 2.6',
+            'Topic :: System :: Networking',
+            ]
         )
 
 if py2exe_options:
