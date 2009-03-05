@@ -33,7 +33,7 @@ from distutils.command.build import build
 from distutils import log, dir_util
 
 from umit.core.Version import VERSION
-from utils import msgfmt
+from utils.i18n import msgfmt
 
 from install_scripts.common import BIN_DIRNAME, PIXMAPS_DIR, ICONS_DIR, \
         DOCS_DIR, LOCALE_DIR, CONFIG_DIR, MISC_DIR, SQL_DIR
