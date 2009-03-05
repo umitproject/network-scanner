@@ -113,32 +113,35 @@ UmitGUI: %s
             return
         crash_text = cgitb.text((etype, emsg, etb))
         crash_text_dialog = "\n%s\n%s\n" % (versions, crash_text)
-        crash_text= "{{{\n%s\n%s\n}}}" % (versions, crash_text)
-        
+        crash_text = "{{{\n%s\n%s\n}}}" % (versions, crash_text)
+
         #Dialog info
         extrainfo_dialog = "%-17s %s\n%-17s %s\n%-17s %s\n%-17s %s\n" % (
-            "sys.platform", sys.platform, "os.name", os.name, 
-            "Gtk version", '.'.join(map(str, gtk.gtk_version)), 
+            "sys.platform", sys.platform, "os.name", os.name,
+            "Gtk version", '.'.join(map(str, gtk.gtk_version)),
             "Umit version", VERSION)
-        crashmsg_dialog = "Crash Report\n%s\n%s\nDescription\n%s\n%s" % \
-                        ('=' * 10, extrainfo_dialog, '-' * 20,\
-                         crash_text_dialog)
-        
-        extrainfo = "%-17s %s\n[[BR]]%-17s %s\n[[BR]]%-17s %s\n[[BR]]%-17s %s[[BR]]\n" % (
-            "sys.platform", sys.platform, "os.name", os.name, 
-            "Gtk version", '.'.join(map(str, gtk.gtk_version)), 
-            "Umit version", VERSION)
-        crashmsg = "Crash Report\n[[BR]]%s[[BR]]\n[[BR]]%s\nDescription\n%s\n%s" % ('=' * 10, 
-            extrainfo, '-' * 20, crash_text)
+        crashmsg_dialog = "Crash Report\n%s\n%s\nDescription\n%s\n%s" % (
+                '=' * 10, extrainfo_dialog, '-' * 20, crash_text_dialog)
+
+        extrainfo = (
+                "%-17s %s\n[[BR]]%-17s %s\n[[BR]]%-17s %s\n"
+                "[[BR]]%-17s %s[[BR]]\n" % (
+                    "sys.platform", sys.platform, "os.name", os.name,
+                    "Gtk version", '.'.join(map(str, gtk.gtk_version)),
+                    "Umit version", VERSION))
+        crashmsg = (
+                "Crash Report\n[[BR]]%s[[BR]]\n[[BR]]%s\n"
+                "Description\n%s\n%s" % (
+                    '=' * 10, extrainfo, '-' * 20, crash_text))
 
         try:
             try:
-                cwin = CrashReport("Umit Crash - '%s'" % emsg, crashmsg,
-                                   description_dialog=crashmsg_dialog)
+                cwin = CrashReport("Umit Crash - '%s'" % emsg,
+                        crashmsg, description_dialog=crashmsg_dialog)
                 cwin.show_all()
-                while True: 
-                    # keeping running while bug report is not sent successfully,
-                    # or until the user closes the window.
+                while True:
+                    # keeping running while bug report is not sent
+                    # successfully, or until the user closes the window.
                     result = cwin.run()
                     if result in (gtk.RESPONSE_CANCEL,
                         gtk.RESPONSE_DELETE_EVENT,
@@ -152,9 +155,9 @@ UmitGUI: %s
                 d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                     message_format=_("Bug not reported"),
                     secondary_text=_("A critical error occourried during "
-                        "Umit execution, \nand it was not properly reported " 
-                        "to our bug tracker. The crash description was saved to: "
-                        "%s, so you can still report it on our bug "
+                        "Umit execution, \nand it was not properly reported "
+                        "to our bug tracker. The crash description was saved "
+                        "to: %s, so you can still report it on our bug "
                         "tracker.") % tempname)
                 os.close(tempfd)
                 d.run()
@@ -178,7 +181,7 @@ if not UMIT_DEVELOPMENT:
     sys.stdout = _stdout
     sys.stderr = _stderr
 
-    
+
     sys.excepthook = UmitExceptionHook()
 
 def main(args):
