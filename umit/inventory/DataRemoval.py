@@ -146,4 +146,3 @@ class RemoveOldData(HIGWindow):
         main_vbox._pack_noexpand_nofill(self.message)
 
         self.add(main_vbox)
-

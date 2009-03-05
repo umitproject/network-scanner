@@ -23,4 +23,3 @@ except ImportError:
     # if pysqlite isn't available in the next import then let the error
     # find its way
     from pysqlite2 import dbapi2 as sqlite
-

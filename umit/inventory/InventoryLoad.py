@@ -30,7 +30,7 @@ class InventoryLoad(ConnectDB, InventoryRetrieve):
     """
     Load Inventories data to be used in Network Inventory.
     """
-    
+
     def __init__(self):
         ConnectDB.__init__(self, UMITDB)
         InventoryRetrieve.__init__(self, self.conn, self.cursor)
@@ -38,11 +38,11 @@ class InventoryLoad(ConnectDB, InventoryRetrieve):
         self.invdata = None
         self.database_stat = None
 
-        
+
     def load_from_db(self):
         """
         Load all inventories from database and return a dict in this format:
-        
+
         inv_data = {'inventory A': set([(ipv4addr A, ipv6addr A, macaddr A,
                                          (hostnameA, hostnameB, ..),
                                          osmatch A),
@@ -51,7 +51,7 @@ class InventoryLoad(ConnectDB, InventoryRetrieve):
                                         ]),
                     'inventory B': ...
                    }
-        
+
         Each item inside set represent a host inside the 'inventory name'.
         """
 

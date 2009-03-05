@@ -47,4 +47,3 @@ def normalize(dictun):
     for key, value in dictun.items():
         if not value:
             dictun[key] = empty()
-

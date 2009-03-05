@@ -96,7 +96,7 @@ class CalendarManager(object):
     def __init__(self, year, month, day, hour, year_range, first_weekday=0):
         """
         Parameters:
-        
+
         year                 = initial year (1970-3000)
         month                = initial month (1-12)
         day                  = initial day (1..monthrange)
@@ -152,14 +152,14 @@ class CalendarManager(object):
         """
         range_fmday = self.get_monthrange(year, month)
         fwday = self.get_first_weekday()
-        
+
         fwdays = [ ]
         for day in xrange(1, range_fmday[1]+1):
             weekday = self.get_weekday(year, month, day)[0]
             if weekday == fwday:
                 fwdays.append(day)
         fwdays = tuple(fwdays)
-        
+
         return ((1, range_fmday[1]), (range_fmday[0],
             weekdays[range_fmday[0]]), fwdays)
 
@@ -201,8 +201,8 @@ class CalendarManager(object):
         """
         self.fix_date()
         return self.get_weekday(self.year, self.month,  self.day)
-    
-    
+
+
     def get_weekday(self, year, month, day):
         """
         Returns weekday (0-6 -> Mon-Sun) day and name for a date.
@@ -384,16 +384,16 @@ class CalendarManager(object):
         """
         if inc not in (-1, 1):
             raise Error, "Increment should be -1 or 1"
-        
+
         if param == INC_YEAR:
             self.__inc_year(inc)
-                
+
         elif param == INC_MONTH:
             self.__inc_month(inc)
-                
+
         elif param == INC_DAY:
             self.__inc_day(inc)
-                        
+
         elif param == INC_HOUR:
             self.__inc_hour(inc)
 
@@ -414,7 +414,7 @@ class CalendarManager(object):
             self.year = self.year + inc
         except YearOutOfRangeError:
             self.year = self.year_range[(inc == -1) and 1 or 0]
-        
+
         self.fix_date()
 
 
@@ -458,4 +458,3 @@ class CalendarManager(object):
     fwday = property(get_first_weekday, set_first_weekday)
     hour = property(get_hour, set_hour)
     year_range = property(get_year_range, set_year_range)
-

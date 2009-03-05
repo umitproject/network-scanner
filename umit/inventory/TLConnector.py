@@ -46,17 +46,17 @@ class Connector(gobject.GObject):
         # TLBase handles this signal and updates everything needed.
         'data_changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
             (str, str)),
-        
+
         # After handling data-changed at TLBase, it emits a new signal:
         # data_update with new data. Timeline catches this signal and
         # requests graph update.
         'data_update': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE,
             (object, object, object, object, object, object, object)),
-        
+
         # date-changed is used at TLToolBar to update ranges and labels.
         # TLBase emits this after emitting data-update.
         'date_changed': (gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, ()),
-        
+
         # date-update is emitted from TLToolBar when a date update is
         # requested, Timeline grabs it, then updates date based on current
         # mode and then emits a date-update.

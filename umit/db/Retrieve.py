@@ -103,7 +103,7 @@ class RawRetrieve:
         h_id = self.cursor.execute("SELECT pk FROM hostname "
             "WHERE type = ? AND name = ?", (hostname["type"],
                 hostname["name"])).fetchone()
-                
+
         if h_id:
             return h_id[0]
 
@@ -201,7 +201,7 @@ class RawRetrieve:
         Return tcp_sequence id from database based on tcptssequence values.
         """
         debug("Getting pk for tcp_ts_sequence..")
-        
+
         t_id = self.cursor.execute("SELECT pk FROM tcp_ts_sequence "
             "WHERE tcp_ts_values = ?", (tcptsseq_dict["values"], )).fetchone()
 
@@ -325,7 +325,7 @@ class RawRetrieve:
         if o_id:
             return o_id[0]
 
-    
+
     def get_inventory_id_from_db(self, inventory):
         """
         Get id from inventory for inventory.
@@ -451,7 +451,7 @@ class CompositeRetrieve(RawRetrieve):
         Get finish timestamp for a scan.
         """
         debug("Getting finish timestamp for scan id %d..", scan)
-        
+
         fts = self.cursor.execute("SELECT finish 'as finish [timestamp]' "
             "FROM scan WHERE pk = ?", (scan, )).fetchone()[0]
 
@@ -463,7 +463,7 @@ class CompositeRetrieve(RawRetrieve):
         Get scan details for a scan.
         """
         debug("Getting scan details for scan id %d..", scan)
-        
+
         details = self.cursor.execute("SELECT args, xmloutputversion, "
             "verbose, debugging, scanner.name, scanner.version "
             "FROM scan JOIN scanner ON (scan.fk_scanner = scanner.pk) "
@@ -483,7 +483,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         debug("Getting portid and state for host id %d from table "
             "port..", host)
-    
+
         pst = self.cursor.execute("SELECT port.portid, port_state.state "
             "FROM port "
             "JOIN _host_port ON (_host_port.fk_port=port.pk) "
@@ -499,7 +499,7 @@ class CompositeRetrieve(RawRetrieve):
         """
         debug("Getting portid and foreign keys for host id %d from "
             "table port..", host)
-        
+
         pdata = self.cursor.execute("SELECT portid, fk_service_info, "
             "fk_protocol, fk_port_state FROM port JOIN _host_port ON "
             "(_host_port.fk_port=port.pk) WHERE _host_port.fk_host=?",
@@ -515,7 +515,7 @@ class CompositeRetrieve(RawRetrieve):
         get_portid_and_fks_for_host_from_db
         """
         debug("Getting port data for pdata..")
-        
+
         fullpdata = self.cursor.execute("SELECT protocol.name as protocol, "
             "port_state.state, service_info.product, "
             "service_info.version, service_info.extrainfo, "
@@ -551,7 +551,7 @@ class CompositeRetrieve(RawRetrieve):
         Get extraport data for host id (returns Count and State).
         """
         debug("Getting extraports data for host id %d", host_id)
-        
+
         epdata = self.cursor.execute("SELECT extraports.count, "
             "port_state.state FROM extraports, port_state "
             "WHERE extraports.fk_host = ? AND "
@@ -654,7 +654,7 @@ class InventoryRetrieve(CompositeRetrieve):
         Returns inventory name for id.
         """
         debug("Getting inventory name for id %d..", inv_id)
-        
+
         name = self.cursor.execute("SELECT name FROM inventory WHERE pk = ?",
             (inv_id, )).fetchone()
 
@@ -695,7 +695,7 @@ class InventoryRetrieve(CompositeRetrieve):
         Returns all pks from table scan, where scan is in an inventory.
         """
         debug("Getting scans for inventory id %d..", fk_inventory)
-        
+
         ids = self.cursor.execute("SELECT fk_scan FROM _inventory_scan "
             "WHERE fk_inventory = ?", (fk_inventory, )).fetchall()
 
@@ -724,7 +724,7 @@ class InventoryRetrieve(CompositeRetrieve):
         """
         debug("Getting pks in host with host_address %s and "
             "fk_inventory %d", host_address, fk_inventory)
-        
+
         ids = self.cursor.execute("SELECT host.fk_scan, host.pk "
             "FROM host "
             "JOIN _host_address ON (host.pk = _host_address.fk_host) "
@@ -743,7 +743,7 @@ class InventoryRetrieve(CompositeRetrieve):
         inventory.
         """
         debug("Getting finish timestamps for fk_inventory %d", fk_inventory)
-        
+
         data = self.cursor.execute("SELECT scan.pk, "
             "scan.finish as 'finish [timestamp]' FROM scan "
             "JOIN _inventory_scan ON (_inventory_scan.fk_scan = scan.pk) "
@@ -774,7 +774,7 @@ class InventoryRetrieve(CompositeRetrieve):
         debug("Checking if there is a comparison for old hostid %d against "
                 "new hostid %d @ %s for Inventory id %d",
                 old_hid, new_hid, date, fk_inventory)
-        
+
         pk = self.cursor.execute("SELECT pk FROM _inventory_changes "
             "WHERE old_hostid=? AND new_hostid=? AND entry_date=? AND "
             "fk_inventory=?", (old_hid, new_hid, date, fk_inventory)).fetchall()
@@ -847,4 +847,3 @@ class ConnectInventoryDB(ConnectDB, InventoryRetrieve):
     def __init__(self, db):
         ConnectDB.__init__(self, db)
         InventoryRetrieve.__init__(self, self.conn, self.cursor)
-

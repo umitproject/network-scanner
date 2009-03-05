@@ -40,7 +40,7 @@ from higwidgets.higlabels import HIGEntryLabel
 from higwidgets.higboxes import HIGVBox, HIGHBox, hig_box_space_holder
 
 pixmaps_dir = Path.pixmaps_dir
-    
+
 if pixmaps_dir:
     logo = os.path.join(pixmaps_dir, 'wizard_logo.png')
 else:
@@ -65,7 +65,7 @@ class NewInventory(HIGWindow):
             self.wtitle = _("Editing Inventory")
         else:
             self.wtitle = _("New Inventory")
-            
+
         # header
         self.title_markup = "<span size='16500' weight='heavy'>%s</span>"
         self.ttitle = HIGEntryLabel("")
@@ -436,10 +436,10 @@ class NewInventory(HIGWindow):
         """
         if self.schemawin:
             self.schemawin._exit(None)
-            
+
         if self.profile_running:
             self.profile_running._exit(None)
-            
+
         self.destroy()
 
 

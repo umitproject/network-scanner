@@ -105,7 +105,7 @@ class GraphControllerTB(gtk.Toolbar):
 
         return self.packed(self.viewmode)
 
-    
+
     def viewing_kind(self, okind=None):
         """
         Combobox that displays possible ways on how graph may grab changes.
@@ -392,7 +392,7 @@ class GraphControllerTB(gtk.Toolbar):
         Perform graph refresh after some time.
         """
         self.indxrefresh = rindx
-        
+
         if self.refresher != -1:
             # remove previous timer
             gobject.source_remove(self.refresher)

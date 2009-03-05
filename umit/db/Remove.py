@@ -138,7 +138,7 @@ class ScanRemover(ConnectDB, CompositeRetrieve):
             self._remove_inventory_change(change_id)
 
         self.conn.commit()
-        
+
         debug("Removal completed")
 
 

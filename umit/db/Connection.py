@@ -101,4 +101,3 @@ class ConnectDB:
 
             return self.cursor.execute("SELECT MAX(pk) \
                     FROM %s" % table_name).fetchone()[0]
-

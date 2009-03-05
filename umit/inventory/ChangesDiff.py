@@ -154,7 +154,7 @@ class ChangesDiff(gtk.VBox):
 
         # Extraports
         self.extraports_diff(ep_o, ep_n, do_diff)
-        
+
         # Fingerprint
         self.fingerprint_diff(uptime_o, uptime_n, tcp_seq_o, tcp_seq_n,
             tcp_ts_seq_o, tcp_ts_seq_n, ip_id_seq_o, ip_id_seq_n, do_diff)
@@ -321,7 +321,7 @@ class ChangesDiff(gtk.VBox):
             status = "Modified"
         else:
             status = "Unchanged"
-        
+
         r = self.diff_tree.append(None, [status[0], _("OS Classes"), "", "",
             "", self.colors.get_hex_color(status[0])])
 
@@ -637,4 +637,3 @@ class ChangesDiff(gtk.VBox):
         self.pack_start(sw, True, True, 0)
 
         self.show_all()
-

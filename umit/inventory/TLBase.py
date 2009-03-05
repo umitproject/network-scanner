@@ -250,7 +250,7 @@ class TLBase(CalendarManager, DataGrabber):
                               # that is, when someone is viewing in
                               # other mode different than "Yearly".
                               self.year),
-                         
+
                   "%s, %s %s, %s" % (self.get_weekday(self.year,
                                       self.month, (self.selection+1)%\
                                       (self.get_current_monthrange()[1]+1))[1],
@@ -269,7 +269,7 @@ class TLBase(CalendarManager, DataGrabber):
                        ]
         else:
             fmtddate = [
-            
+
                   _("Year %s") % self.year,
 
                   "%s, %s" % (monthname(self.month), self.year),

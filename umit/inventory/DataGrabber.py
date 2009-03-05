@@ -267,7 +267,7 @@ class DataGrabber(ConnectDB, ChangesRetrieve):
 
         start_value = self.timerange_changes_count_generic(start, end,
             category, self.inventory, self.hostaddr)
-   
+
         for day in range(mdays[month]):
             day_count = [ ]
 
@@ -496,4 +496,3 @@ if __name__ == "__main__":
 
     for key, value in evts.items():
         print key, value
-

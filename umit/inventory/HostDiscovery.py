@@ -336,7 +336,7 @@ class HostDiscovery(gtk.Window):
 
         if self.daddy: # NewInventory instance
             self.daddy.scantarget.set_text(self.results)
-            
+
         self._exit(None)
 
 

@@ -25,4 +25,3 @@ database = 'sqlite'
 
 if database == 'sqlite':
     from umit.db._sqlite import sqlite as sql
-

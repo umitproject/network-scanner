@@ -229,7 +229,7 @@ class SearchDB(ConnectDB, CompositeRetrieve):
         looking_for = query[1:]
 
         bquery = '%' + ' '.join(looking_for) + '%'
-        
+
         self.cursor.execute("SELECT pk FROM _inventory_changes "
             "WHERE fk_address=? AND short_description LIKE ?", (address_id,
                 bquery))
@@ -277,7 +277,7 @@ class SearchDB(ConnectDB, CompositeRetrieve):
                 query, host_id)
 
         bquery = '%' + query + '%'
-        
+
         classes = self.cursor.execute("SELECT osclass.accuracy, osgen.gen, "
             "osfamily.family, osvendor.vendor, ostype.type FROM osclass "
             "JOIN osgen ON (osclass.fk_osgen = osgen.pk) "

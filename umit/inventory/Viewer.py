@@ -977,10 +977,9 @@ class InventoryViewer(HIGMainWindow):
     # Properties
     write_tips = property(get_write_tips, set_write_tips)
     invnb_close_btn = property(get_invnb_cbtn, set_invnb_cbtn)
-    
+
 
 gobject.signal_new("inventory-activated", InventoryViewer,
                    gobject.SIGNAL_RUN_LAST,
                    gobject.TYPE_NONE,
                    (gobject.TYPE_PYOBJECT,))
-

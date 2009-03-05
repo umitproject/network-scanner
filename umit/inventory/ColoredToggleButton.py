@@ -62,4 +62,3 @@ class ColoredToggleButton(gtk.ToggleButton):
         button_box.add(self.lbl)
 
         self.add(button_box)
-

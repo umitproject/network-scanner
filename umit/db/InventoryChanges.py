@@ -54,7 +54,7 @@ class UpdateChanges:
         if fk_inventory:
             self.do_update(fk_inventory)
 
-        
+
     def do_update(self, inv_id):
         """
         Build changes found in scans related to an Inventory id and
@@ -162,7 +162,7 @@ class UpdateChanges:
 
                 # get next date
                 date = finish_data[indexes[indx+1]][1]
-            
+
             # now load the first entry
             data_dict[hostA[0]] = ('inventory',
                 _("Host added to the Inventory."), date, hostA[1], hostA[1])
@@ -433,7 +433,7 @@ class ChangesRetrieve(InventoryRetrieve):
 
     def __init__(self, conn, cursor):
         InventoryRetrieve.__init__(self, conn, cursor)
-        
+
 
     def get_categories_id_name(self):
         """
@@ -474,7 +474,7 @@ class ChangesRetrieve(InventoryRetrieve):
             "WHERE name=?", (name, )).fetchone()[0]
 
         return cid
-        
+
 
     def timerange_changes_data_generic(self, start, end, category, inventory,
                                        hostaddr):

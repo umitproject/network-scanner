@@ -254,4 +254,3 @@ class TLChangesTree(gtk.HBox):
 
 gobject.signal_new("data-update", TLChangesTree, gobject.SIGNAL_RUN_LAST,
     gobject.TYPE_NONE, (str, object))
-

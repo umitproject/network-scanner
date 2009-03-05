@@ -324,7 +324,7 @@ class GraphPreferences(HIGWindow):
             elif hasattr(control, "get_active"): # radio/checkbutton
                 self.daddy.change_graph_attr = (
                     self.graph_attrs()[indx], control.get_active())
-                    
+
             elif hasattr(control, "set_width_chars"): # spinbutton
                 nhdiv = int(control.get_text())
                 self.daddy.change_graph_attr = self.graph_attrs()[indx], nhdiv

@@ -202,4 +202,3 @@ class TLHolder(gtk.VBox):
         self.pack_start(filterbox, False, False, 0)
         self.pack_start(graph_hbox, False, False, 3)
         self.pack_start(main_hbox, True, True, 3)
-

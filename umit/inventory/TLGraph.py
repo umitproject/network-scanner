@@ -62,9 +62,9 @@ class InteractiveGraph(gtk.Widget):
 
             Examples:
                 Graph with one line, three points break, one vertical divisor:
-                
+
                   sample_data = { 0: [(1, ), (2, ), (3, )] }
-                  
+
                   Note: Keys needs to be from 0 .. n (0, 1, 2, .., n)
 
                 Graph with two lines, two points breaks, two vertical divisors:
@@ -128,7 +128,7 @@ class InteractiveGraph(gtk.Widget):
 
         -> draw_every_arc determines if every arc will be drawn or just
             drawn at boundary points.
-                 
+
         -> startup_anitmation determines if there will be an effect in graph
             startup.
 
@@ -364,7 +364,7 @@ class InteractiveGraph(gtk.Widget):
         Set new graph type.
         """
         self.__grapht = graph_type
-        
+
         if self.flags() & gtk.REALIZED:
             self.queue_draw()
 
@@ -602,7 +602,7 @@ class InteractiveGraph(gtk.Widget):
         start_y = [ ]
         for pv in self.start_pts_data:
             start_y.append(self._calculate_point_ypos(pv))
-        
+
         self.start_pts = [(start_x, y) for y in start_y]
 
         # set startup points for graph animation
@@ -831,7 +831,7 @@ class InteractiveGraph(gtk.Widget):
         if self.xlabel:
             cr.save()
             _, _, width, height, _, _ = cr.text_extents(self.xlabel)
-            cr.move_to(self.allocation[2] - width - 6, 
+            cr.move_to(self.allocation[2] - width - 6,
                        self.graph["y_space"] + self.top_reserved - \
                        (2 * self.border_width))
 
@@ -1021,7 +1021,7 @@ class InteractiveGraph(gtk.Widget):
         cr.set_line_join(cairo.LINE_JOIN_ROUND)
 
         for k in range(self.num_graph_lines):
-            
+
             # check for final point
             if self.ccount == len(self.graph_data):
                 return False
@@ -1060,7 +1060,7 @@ class InteractiveGraph(gtk.Widget):
                     if self.painting_piece == (self.divisors - 2):
                         cr.arc(cp[0], cp[1], 2, 0, 2 * PI)
                         cr.fill_preserve()
-                        
+
                 elif self.cur_point_indx == self.pts_per_div - 1 and \
                     self.painting_piece == (self.divisors - 2):
 
@@ -1084,7 +1084,7 @@ class InteractiveGraph(gtk.Widget):
             cr.arc(curr_x_pos, 50, 5, 0, 2 * PI)
             cr.fill()
             cr.restore()
-            
+
             cr.save()
             prev_x_pos = p[0]
             cr.set_operator(cairo.OPERATOR_CLEAR)
@@ -1150,7 +1150,7 @@ class InteractiveGraph(gtk.Widget):
                         elif pind == self.pts_per_div - 1:
                             cr.arc(cp[0], cp[1], 2, 0, 2 * PI)
                             cr.fill_preserve()
-                            
+
                     else: # draw arcs only when selection happens
                         if self.draw_every_arc:
                             if self.selection == key or \
@@ -1366,7 +1366,7 @@ class InteractiveGraph(gtk.Widget):
         self.window.move_resize(*self.allocation)
 
         self.find_max_value() # find startup max value
-        
+
         # calculate positions for current allocation.
         self._calculate_border_reserved()
         self._calculate_graph_alloc()
