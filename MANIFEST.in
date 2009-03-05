@@ -11,3 +11,4 @@ recursive-include share/umit/sql *.sql
 recursive-include umit *.py
 recursive-include higwidgets *.py
 recursive-include utils *.py
+recursive-include install_scripts *.py
