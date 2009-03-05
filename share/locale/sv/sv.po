@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: umit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-15 19:44+0100\n"
+"POT-Creation-Date: 2009-03-05 08:16-0300\n"
 "PO-Revision-Date: 2009-02-02 00:28+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -14,6 +14,1815 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
+
+#: umit/inventory/About.py:48
+msgid "Build"
+msgstr ""
+
+#: umit/inventory/About.py:51
+msgid "UMIT Network Inventory and UMIT Scheduler are UMIT\n"
+msgstr ""
+
+#: umit/inventory/About.py:52
+msgid "extensions developed by"
+msgstr ""
+
+#: umit/inventory/About.py:53
+msgid ""
+"and was sponsored by Google during the Summer of Code 2007.\n"
+"Thanks Google!"
+msgstr ""
+
+#: umit/inventory/About.py:70 umit/inventory/Viewer.py:675
+msgid "About UMIT Network Inventory"
+msgstr ""
+
+#: umit/inventory/Calendar.py:32
+msgid "January"
+msgstr "Januari"
+
+#: umit/inventory/Calendar.py:32
+msgid "February"
+msgstr "Februari"
+
+#: umit/inventory/Calendar.py:32
+msgid "March"
+msgstr "Mars"
+
+#: umit/inventory/Calendar.py:32
+msgid "April"
+msgstr "April"
+
+#: umit/inventory/Calendar.py:32
+msgid "May"
+msgstr "Maj"
+
+#: umit/inventory/Calendar.py:33
+msgid "June"
+msgstr "Juni"
+
+#: umit/inventory/Calendar.py:33
+msgid "July"
+msgstr "Juli"
+
+#: umit/inventory/Calendar.py:33
+msgid "August"
+msgstr "Augusti"
+
+#: umit/inventory/Calendar.py:33
+msgid "September"
+msgstr "September"
+
+#: umit/inventory/Calendar.py:34
+msgid "October"
+msgstr "Oktober"
+
+#: umit/inventory/Calendar.py:34
+msgid "November"
+msgstr "November"
+
+#: umit/inventory/Calendar.py:34
+msgid "December"
+msgstr "December"
+
+#: umit/inventory/Calendar.py:37
+#, fuzzy
+msgid "Monday"
+msgstr "Maj"
+
+#: umit/inventory/Calendar.py:37
+msgid "Tuesday"
+msgstr ""
+
+#: umit/inventory/Calendar.py:37
+msgid "Wednesday"
+msgstr ""
+
+#: umit/inventory/Calendar.py:37
+msgid "Thursday"
+msgstr ""
+
+#: umit/inventory/Calendar.py:38
+msgid "Friday"
+msgstr ""
+
+#: umit/inventory/Calendar.py:38
+msgid "Saturday"
+msgstr ""
+
+#: umit/inventory/Calendar.py:38
+#, fuzzy
+msgid "Sunday"
+msgstr "Sammandrag"
+
+#: umit/inventory/ChangesDiff.py:31
+msgid "Nothing being shown."
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:32 umit/gui/ScanHostDetailsPage.py:258
+#: umit/gui/ScanHostDetailsPage.py:293
+msgid "Not Available"
+msgstr "Inte tillgänglig"
+
+#: umit/inventory/ChangesDiff.py:35
+#, fuzzy
+msgid "Status"
+msgstr "Tillstånd"
+
+#: umit/inventory/ChangesDiff.py:35 umit/interfaceeditor/Main.py:548
+#: umit/gui/DiffCompare.py:564
+msgid "Section"
+msgstr "Avsnitt"
+
+#: umit/inventory/ChangesDiff.py:35 umit/gui/DiffCompare.py:565
+msgid "Property"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:36
+msgid "Previous value"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:36 umit/gui/DiffCompare.py:567
+msgid "Current value"
+msgstr "Aktuellt värde"
+
+#: umit/inventory/ChangesDiff.py:53
+msgid "L"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:121
+#, fuzzy
+msgid "No data"
+msgstr "Ingen avsökningsflik"
+
+#: umit/inventory/ChangesDiff.py:122
+msgid "No data available for this host on this date"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:181 umit/inventory/TLBase.py:45
+#: umit/gui/DiffCompare.py:793
+msgid "Ports"
+msgstr "Portar"
+
+#: umit/inventory/ChangesDiff.py:201 umit/inventory/ChangesDiff.py:240
+#: umit/db/InventoryChanges.py:255 umit/db/InventoryChanges.py:342
+#: umit/gui/SMTPSetup.py:65 umit/gui/ScanOpenPortsPage.py:65
+#: umit/gui/ScanOpenPortsPage.py:85
+msgid "Port"
+msgstr "Port"
+
+#: umit/inventory/ChangesDiff.py:260 umit/gui/DiffCompare.py:861
+msgid "Extraports"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:269 umit/inventory/ChangesDiff.py:270
+#: umit/inventory/ChangesDiff.py:281
+#, fuzzy
+msgid "count"
+msgstr "Antal"
+
+#: umit/inventory/ChangesDiff.py:298 umit/inventory/TLBase.py:44
+#: umit/db/Search.py:115
+msgid "Fingerprint"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:301
+msgid "Uptime"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:304 umit/gui/ScanHostDetailsPage.py:59
+msgid "TCP Sequence"
+msgstr "TCP-sekvens"
+
+#: umit/inventory/ChangesDiff.py:307 umit/gui/ScanHostDetailsPage.py:61
+msgid "TCP TS Sequence"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:310 umit/gui/ScanHostDetailsPage.py:60
+msgid "IP ID Sequence"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:325 umit/db/InventoryChanges.py:287
+#: umit/db/Search.py:109
+#, fuzzy
+msgid "OS Classes"
+msgstr "Klass:"
+
+#: umit/inventory/ChangesDiff.py:346 umit/inventory/ChangesDiff.py:391
+#: umit/gui/ScanHostDetailsPage.py:369
+msgid "Accuracy"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:352 umit/inventory/ChangesDiff.py:370
+#: umit/inventory/ChangesDiff.py:386 umit/inventory/ChangesDiff.py:395
+#: umit/gui/ScanHostDetailsPage.py:58
+msgid "OS Class"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:411 umit/db/Search.py:106
+#: umit/gui/DiffCompare.py:770
+msgid "OS Match"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:534
+#, fuzzy
+msgid "TCP Sequence Class"
+msgstr "TCP-sekvens"
+
+#: umit/inventory/ChangesDiff.py:535
+#, fuzzy
+msgid "TCP Sequence Index"
+msgstr "TCP-sekvens"
+
+#: umit/inventory/ChangesDiff.py:536
+#, fuzzy
+msgid "TCP Sequence Difficulty"
+msgstr "TCP-sekvens"
+
+#: umit/inventory/ChangesDiff.py:538
+#, fuzzy
+msgid "TCP Sequence Value"
+msgstr "TCP-sekvens"
+
+#: umit/inventory/ChangesDiff.py:540
+#, fuzzy
+msgid "IP ID Sequence Class"
+msgstr "TCP-sekvens"
+
+#: umit/inventory/ChangesDiff.py:542
+#, fuzzy
+msgid "IP ID Sequence Value"
+msgstr "TCP-sekvens"
+
+#: umit/inventory/ChangesDiff.py:545
+#, fuzzy
+msgid "TCP TS Sequence Class"
+msgstr "TCP-sekvens"
+
+#: umit/inventory/ChangesDiff.py:547
+#, fuzzy
+msgid "TCP TS Sequence Value"
+msgstr "TCP-sekvens"
+
+#: umit/inventory/ChangesList.py:95 umit/inventory/ChangesList.py:324
+#: umit/inventory/ChangesList.py:344
+msgid "Inventories"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:97 umit/gui/ScriptManager.py:362
+msgid "Categories"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:221 umit/inventory/TLBase.py:41
+#: umit/inventory/Viewer.py:530
+msgid "Inventory"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:221
+#, fuzzy
+msgid "Host address"
+msgstr "Värdnamn"
+
+#: umit/inventory/ChangesList.py:222
+msgid "Category"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:222
+#, fuzzy
+msgid "Short change description"
+msgstr "Tjänstebeskrivning"
+
+#: umit/inventory/ChangesList.py:223
+msgid "Change date"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:320 umit/gui/ScriptManager.py:335
+msgid "Refresh"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:325
+msgid "Timeline for this host"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:345
+#, fuzzy
+msgid "Options"
+msgstr "Alternativ"
+
+#: umit/inventory/ChangesList.py:402 umit/inventory/Timeline.py:68
+msgid "Viewing"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:403
+msgid "of"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:405
+#, fuzzy
+msgid "Nothing to view"
+msgstr "Ingenting att spara"
+
+#: umit/inventory/DataRemoval.py:44
+msgid "Delete data older than"
+msgstr ""
+
+#: umit/inventory/DataRemoval.py:45
+#, fuzzy
+msgid "days"
+msgstr "Dygn"
+
+#: umit/inventory/DataRemoval.py:50
+msgid "Set value as 0 to disable data removal"
+msgstr ""
+
+#: umit/inventory/DataRemoval.py:81
+msgid "Configure Inventory Data Removal"
+msgstr ""
+
+#: umit/inventory/DataRemoval.py:117
+msgid "<b>Please wait...</b>"
+msgstr ""
+
+#: umit/inventory/DataRemoval.py:119
+msgid "Removing data from Network Inventory database"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:225
+#, fuzzy
+msgid "Host Discovery"
+msgstr "Värddetaljer"
+
+#: umit/inventory/HostDiscovery.py:235
+msgid "Detect network(s)"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:238
+msgid "Add new entry"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:240
+msgid "Find hosts"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:243 umit/inventory/HostDiscovery.py:416
+#: umit/inventory/HostDiscovery.py:449
+#, fuzzy
+msgid "Target list"
+msgstr "Mål"
+
+#: umit/inventory/HostDiscovery.py:249 umit/inventory/Viewer.py:530
+#: umit/gui/DiffCompare.py:744 umit/gui/ScanHostsView.py:67
+#: umit/gui/ScanOpenPortsPage.py:63 umit/gui/SearchGUI.py:298
+msgid "Host"
+msgstr "Värd"
+
+#: umit/inventory/HostDiscovery.py:250
+msgid "Network"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:258
+msgid "Remove from list"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:271
+msgid "Add new entry for a network"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:273
+msgid "Try to detect network(s)"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:275
+msgid "Find hosts in entered network(s)"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:277
+msgid "Remove selection from target list"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:351
+#, fuzzy
+msgid "No network(s) detected."
+msgstr "Ingen värd markerad!"
+
+#: umit/inventory/HostDiscovery.py:352
+msgid ""
+"You will need to especify the network(s) yourself before detecting hosts."
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:388
+msgid "No network."
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:389
+msgid "You need to specify at least one network to search for hosts."
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:414 umit/inventory/InventoryTree.py:267
+#: umit/inventory/InventoryTree.py:318
+#, fuzzy
+msgid "scan"
+msgstr "Sök av"
+
+#: umit/inventory/HostDiscovery.py:418 umit/inventory/InventoryTree.py:267
+#: umit/inventory/InventoryTree.py:320
+#, fuzzy
+msgid " running"
+msgstr "Söker av"
+
+#: umit/inventory/HostDiscovery.py:459
+msgid "Invalid network(s)."
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:461
+msgid "There is some invalid character in network"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:462
+msgid "please verify."
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:489
+msgid "Network list"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:494
+msgid "Sample 192.168.254.0/24"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:519
+#, fuzzy
+msgid "Use target list"
+msgstr "Ingen målvärd!"
+
+#: umit/inventory/InventoryCommonDialog.py:12
+msgid "Inventory without scheduling profile."
+msgstr ""
+
+#: umit/inventory/InventoryCommonDialog.py:14
+msgid ""
+"This Inventory was created when a scan realized in UMIT was requested to be "
+"added to the Network Inventory Viewer, so there is no scheduling profile for "
+"it.\n"
+"\n"
+"This Inventory is not editable.\n"
+"\n"
+"(If the mentioned reason above is incorrect, either you have a database from "
+"somewhere else or report as bug)"
+msgstr ""
+
+#: umit/inventory/InventoryException.py:9
+msgid "No inventory named"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:42 umit/inventory/Viewer.py:61
+msgid "Info"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:44 umit/gui/SearchGUI.py:149
+msgid "IPv4"
+msgstr "IPv4"
+
+#: umit/inventory/InventoryTree.py:44 umit/gui/SearchGUI.py:150
+msgid "IPv6"
+msgstr "IPv6"
+
+#: umit/inventory/InventoryTree.py:44 umit/db/Search.py:112
+#: umit/gui/SearchGUI.py:148
+msgid "MAC"
+msgstr "MAC"
+
+#: umit/inventory/InventoryTree.py:44 umit/db/Search.py:103
+#: umit/gui/ScanOpenPortsPage.py:82
+msgid "Hostname"
+msgstr "Värdnamn"
+
+#: umit/inventory/InventoryTree.py:62 umit/inventory/InventoryTree.py:189
+msgid "My Inventories"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:225
+#, fuzzy
+msgid "Scan will not run!"
+msgstr "Avsökningen är inte färdig än!"
+
+#: umit/inventory/InventoryTree.py:226 umit/inventory/InventoryTree.py:283
+msgid "You tried running scan for Inventory"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:228
+msgid ""
+"but it has no data in Scheduler schemas file, neither in database.\n"
+"\n"
+"Error returned:"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:282
+msgid "Scan failed to run!"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:285
+msgid "but it returned the following"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:300
+msgid "Database couldn't be updated!"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:301
+msgid "The scan for the Inventory"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:303
+msgid "finished but it couldn't be added to the database."
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:354
+msgid "Expand All"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:358
+msgid "Collapse All"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:365 umit/inventory/InventoryTree.py:375
+msgid "View by"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:409
+#, python-format
+msgid "Edit %s"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:412
+msgid "Run scan now"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:65
+msgid "Editing Inventory"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:67
+msgid "New Inventory"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:77
+msgid "Inventory's name"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:80
+#, fuzzy
+msgid "in use"
+msgstr "Minuter"
+
+#: umit/inventory/NewInventory.py:82 umit/gui/SchedulerEdit.py:99
+msgid "Enabled"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:85
+msgid "Use default scan options"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:91
+msgid "Use advanced scan options"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:92 umit/gui/SchedulerEdit.py:73
+#, fuzzy
+msgid "Scan Profile"
+msgstr "Profil"
+
+#: umit/inventory/NewInventory.py:100
+#, fuzzy
+msgid "Command Wizard"
+msgstr "_Kommandoguide"
+
+#: umit/inventory/NewInventory.py:103 umit/inventory/NewInventory.py:521
+#: umit/gui/DiffCompare.py:698 umit/gui/ProfileEditor.py:104
+#: umit/gui/SchedulerEdit.py:79 umit/gui/Wizard.py:141 umit/gui/Wizard.py:473
+msgid "Command"
+msgstr "Kommando"
+
+#: umit/inventory/NewInventory.py:109
+#, fuzzy
+msgid "Scan target"
+msgstr "Avsökningstyp:"
+
+#: umit/inventory/NewInventory.py:111
+msgid "Use host discovery"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:114 umit/gui/SchedulerEdit.py:82
+#: umit/gui/SchedulerEdit.py:518
+#, fuzzy
+msgid "Scheduling Profile"
+msgstr "Borttagning av profil"
+
+#: umit/inventory/NewInventory.py:119 umit/gui/SchedulerEdit.py:86
+#, fuzzy
+msgid "Edit Profiles"
+msgstr "Profil"
+
+#: umit/inventory/NewInventory.py:131
+msgid "nmap -T Aggressive -sV -n -O -v target"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:323 umit/inventory/NewInventory.py:343
+#: umit/inventory/NewInventory.py:363
+msgid "New Inventory - Error while creating."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:324
+msgid "You tried to use an existing Inventory name or you didn't specify one."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:333
+msgid "New Inventory - Error  while creating."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:334
+msgid "You didn't specify any target."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:344
+msgid "You need to toggle \"Use default scan options\" or specify a command."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:364
+msgid ""
+"It seems you removed <target> from the Scan command entry, you need to leave "
+"it somewhere there."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:529
+msgid "Changes in command won't be saved!"
+msgstr ""
+
+#: umit/inventory/RefreshDialog.py:35
+msgid "Refresh Time"
+msgstr ""
+
+#: umit/inventory/RefreshDialog.py:39 umit/inventory/TLBase.py:80
+#: umit/core/UmitConf.py:160
+msgid "Minutes"
+msgstr "Minuter"
+
+#: umit/inventory/SchedulerLog.py:81
+msgid "Scheduler Log"
+msgstr ""
+
+#: umit/inventory/SearchBar.py:54
+msgid "Search term"
+msgstr ""
+
+#: umit/inventory/SearchBar.py:65
+#, fuzzy
+msgid "Find devices"
+msgstr "Tjänster"
+
+#: umit/inventory/SearchBar.py:88 umit/inventory/SearchBar.py:92
+#, fuzzy
+msgid "Search in"
+msgstr "Sökfönster"
+
+#: umit/inventory/SearchBar.py:89 umit/inventory/SearchBar.py:93
+msgid "All Inventories"
+msgstr ""
+
+#: umit/inventory/SearchBar.py:130
+msgid "Impossible to perform search."
+msgstr ""
+
+#: umit/inventory/SearchBar.py:131
+msgid ""
+"Connection to the database isn't established. There are some possible "
+"reasons: your UMIT database could be corrupted, missing, or something more "
+"strange, or, you aren't running this inside UMIT.\n"
+"\n"
+"If you suspect this is a bug, please report it."
+msgstr ""
+
+#: umit/inventory/SearchBar.py:145
+msgid "Specify an Inventory."
+msgstr ""
+
+#: umit/inventory/SearchBar.py:146
+msgid "You need to select one or All Inventories in order to perform a search."
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:43
+msgid "Timeline Settings"
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:44
+msgid "Timeline view mode"
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:45
+msgid "Timeline view kind"
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:49
+#, fuzzy
+msgid "Devices tab"
+msgstr "Tjänster"
+
+#: umit/inventory/SettingsWin.py:50 umit/inventory/Viewer.py:690
+msgid "Place close button"
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:52 umit/gui/ScriptManager.py:358
+#, fuzzy
+msgid "Statusbar"
+msgstr "Värdstatus"
+
+#: umit/inventory/SettingsWin.py:53
+msgid "Show tips"
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:153
+msgid "Network Inventory Settings"
+msgstr ""
+
+#: umit/inventory/TLBarDisplay.py:35
+#, fuzzy
+msgid "No Selection"
+msgstr "Avsnitt"
+
+#: umit/inventory/TLBarDisplay.py:36
+#, fuzzy
+msgid "No Changes"
+msgstr "Spara ändringar"
+
+#: umit/inventory/TLBarDisplay.py:37
+msgid "Changes Statistics"
+msgstr ""
+
+#: umit/inventory/TLBase.py:40
+#, fuzzy
+msgid "Nothing"
+msgstr "Ingenting att spara"
+
+#: umit/inventory/TLBase.py:42
+#, fuzzy
+msgid "Availability"
+msgstr "Inte tillgänglig"
+
+#: umit/inventory/TLBase.py:43
+#, fuzzy
+msgid "Several"
+msgstr "Allmänt"
+
+#: umit/inventory/TLBase.py:49 umit/inventory/TLBase.py:70
+msgid "Changes Sum"
+msgstr ""
+
+#: umit/inventory/TLBase.py:54
+msgid "Yearly View"
+msgstr ""
+
+#: umit/inventory/TLBase.py:55
+msgid "Monthly View"
+msgstr ""
+
+#: umit/inventory/TLBase.py:56
+msgid "Daily View"
+msgstr ""
+
+#: umit/inventory/TLBase.py:57
+msgid "Hourly View"
+msgstr ""
+
+#: umit/inventory/TLBase.py:63
+#, fuzzy
+msgid "Year"
+msgstr "År"
+
+#: umit/inventory/TLBase.py:64 umit/gui/SchedulerEdit.py:529
+#, fuzzy
+msgid "Month"
+msgstr "Månader"
+
+#: umit/inventory/TLBase.py:65
+#, fuzzy
+msgid "Day"
+msgstr "Dygn"
+
+#: umit/inventory/TLBase.py:66 umit/gui/SchedulerEdit.py:525
+#, fuzzy
+msgid "Hour"
+msgstr "Timmar"
+
+#: umit/inventory/TLBase.py:71
+msgid "By Category"
+msgstr ""
+
+#: umit/inventory/TLBase.py:77 umit/core/UmitConf.py:158
+msgid "Months"
+msgstr "Månader"
+
+#: umit/inventory/TLBase.py:78 umit/core/UmitConf.py:156
+msgid "Days"
+msgstr "Dygn"
+
+#: umit/inventory/TLBase.py:79 umit/core/UmitConf.py:155
+msgid "Hours"
+msgstr "Timmar"
+
+#: umit/inventory/TLBase.py:223
+msgid "end of a week"
+msgstr ""
+
+#: umit/inventory/TLBase.py:223
+msgid "end of 12 hours period"
+msgstr ""
+
+#: umit/inventory/TLBase.py:224
+msgid "end of half hour period"
+msgstr ""
+
+#: umit/inventory/TLBase.py:224
+msgid "end of a minute"
+msgstr ""
+
+#: umit/inventory/TLBase.py:227
+msgid "Each point break represents "
+msgstr ""
+
+#: umit/inventory/TLBase.py:273
+#, fuzzy, python-format
+msgid "Year %s"
+msgstr "År"
+
+#: umit/inventory/TLChangesTree.py:27
+#, fuzzy
+msgid "View all changes"
+msgstr "Spara ändringar"
+
+#: umit/inventory/TLChangesTree.py:28
+msgid "Changes listing"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:32
+#: umit/inventory/TLGraphPreferences.py:208
+#: umit/inventory/TLGraphPreferences.py:211
+#: umit/inventory/TLGraphPreferences.py:296
+#: umit/inventory/TLGraphToolbar.py:43
+msgid "Custom"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:32
+#: umit/inventory/TLGraphPreferences.py:179
+#: umit/inventory/TLGraphPreferences.py:189
+#: umit/inventory/TLGraphPreferences.py:292
+msgid "Standard"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:32
+#: umit/inventory/TLGraphPreferences.py:179
+#: umit/inventory/TLGraphPreferences.py:190
+#: umit/inventory/TLGraphPreferences.py:293
+msgid "Best Performance"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:33
+#: umit/inventory/TLGraphPreferences.py:179
+#: umit/inventory/TLGraphPreferences.py:192
+#: umit/inventory/TLGraphPreferences.py:294
+msgid "Best Visual"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:52
+msgid "Graph Preferences Editor"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:62 umit/gui/DiffCompare.py:684
+#: umit/gui/ProfileEditor.py:154 umit/gui/ProfileWizardEditor.py:236
+#: umit/gui/SearchGUI.py:126 umit/gui/Wizard.py:472
+msgid "Profile"
+msgstr "Profil"
+
+#: umit/inventory/TLGraphPreferences.py:65
+msgid "Horizontal divisors"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:70
+msgid "<b>Points higlight</b>"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:71
+#, fuzzy
+msgid "On Selection"
+msgstr "Avsnitt"
+
+#: umit/inventory/TLGraphPreferences.py:73
+#, fuzzy
+msgid "Always"
+msgstr "Dygn"
+
+#: umit/inventory/TLGraphPreferences.py:74
+msgid "Boundary points only"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:76
+msgid "Every point"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:77
+msgid "Show balloons on selection"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:79
+msgid "Draw vertical lines"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:80
+#, fuzzy
+msgid "Dashed"
+msgstr "Dygn"
+
+#: umit/inventory/TLGraphPreferences.py:82
+msgid "Solid"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:84
+msgid "Gradient background"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:85
+msgid "Vertical gradient"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:87
+msgid "Horizontal gradient"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:89
+msgid "On selection do progressive fill"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:91
+msgid "Solid fill"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:93
+msgid "Gradient fill"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:39
+msgid "Refresh Now"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:39
+msgid "Refresh Enabled"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:40
+msgid "Refresh Every minute"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:41
+msgid "Refresh Every 5 minutes"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:42
+msgid "Refresh Every hour"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:114
+msgid "Select visualization"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:136
+msgid "Line Graph"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:136
+msgid "Area Graph"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:138
+msgid "Select a graph style"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:153
+msgid "Visible"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:153
+#, fuzzy
+msgid "Hidden"
+msgstr "Tips"
+
+#: umit/inventory/TLGraphToolbar.py:155
+msgid "Graph visibility"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:176
+msgid "Graph Preferences"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:181
+msgid "Edit Graph Preferences"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:260
+msgid "Graph Refresh"
+msgstr ""
+
+#: umit/inventory/Timeline.py:56
+msgid "Number of events"
+msgstr ""
+
+#: umit/inventory/Utils.py:5 umit/db/InventoryChanges.py:328
+msgid "s"
+msgstr ""
+
+#: umit/inventory/Viewer.py:360
+#, fuzzy
+msgid "Scan count:"
+msgstr "Avsökningstyp:"
+
+#: umit/inventory/Viewer.py:368
+msgid "Last scan date:"
+msgstr ""
+
+#: umit/inventory/Viewer.py:374
+#, fuzzy
+msgid "Scan args"
+msgstr "Sök av "
+
+#: umit/inventory/Viewer.py:374
+msgid "XML output version"
+msgstr ""
+
+#: umit/inventory/Viewer.py:374
+#, fuzzy
+msgid "Verbose"
+msgstr "Informationsnivå:"
+
+#: umit/inventory/Viewer.py:375 umit/gui/DiffCompare.py:694
+msgid "Debugging"
+msgstr "Felsökning"
+
+#: umit/inventory/Viewer.py:375
+#, fuzzy
+msgid "Scanner name"
+msgstr "Söker av"
+
+#: umit/inventory/Viewer.py:375 umit/gui/DiffCompare.py:700
+msgid "Scanner version"
+msgstr ""
+
+#: umit/inventory/Viewer.py:389
+#, fuzzy
+msgid "Hosts: "
+msgstr "Värdar"
+
+#: umit/inventory/Viewer.py:394
+msgid "Host count:"
+msgstr ""
+
+#: umit/inventory/Viewer.py:519
+msgid "A page was open at Historic tab!"
+msgstr ""
+
+#: umit/inventory/Viewer.py:531
+msgid "First Matched Category"
+msgstr ""
+
+#: umit/inventory/Viewer.py:531
+msgid "Entry Date"
+msgstr ""
+
+#: umit/inventory/Viewer.py:547
+#, fuzzy
+msgid "result"
+msgstr "Resultat"
+
+#: umit/inventory/Viewer.py:550
+msgid " found."
+msgstr ""
+
+#: umit/inventory/Viewer.py:569
+#, fuzzy, python-format
+msgid "Search: %s"
+msgstr "Sökfönster"
+
+#: umit/inventory/Viewer.py:608 umit/interfaceeditor/Main.py:536
+#: umit/gui/ScriptManager.py:308
+#, fuzzy
+msgid "_File"
+msgstr "_Profil"
+
+#: umit/inventory/Viewer.py:609
+#, fuzzy
+msgid "_Edit"
+msgstr "A_vsluta"
+
+#: umit/inventory/Viewer.py:610 umit/gui/MainWindow.py:312
+msgid "_Scheduler"
+msgstr ""
+
+#: umit/inventory/Viewer.py:611 umit/inventory/Viewer.py:664
+#: umit/gui/MainWindow.py:329 umit/gui/MainWindow.py:349
+msgid "_Help"
+msgstr "_Hjälp"
+
+#: umit/inventory/Viewer.py:613
+msgid "Tool_bar"
+msgstr ""
+
+#: umit/inventory/Viewer.py:614
+#, fuzzy
+msgid "Devices _tab"
+msgstr "Tjänster"
+
+#: umit/inventory/Viewer.py:615
+msgid "_Inventories"
+msgstr ""
+
+#: umit/inventory/Viewer.py:619
+msgid "_New Inventory"
+msgstr ""
+
+#: umit/inventory/Viewer.py:620
+msgid "Create new Inventory"
+msgstr ""
+
+#: umit/inventory/Viewer.py:624
+#, fuzzy
+msgid "Close Device tab"
+msgstr "Stäng aktuell avsökningsflik"
+
+#: umit/inventory/Viewer.py:625
+#, fuzzy
+msgid "Close current host tab"
+msgstr "Stäng aktuell avsökningsflik"
+
+#: umit/inventory/Viewer.py:629
+#, fuzzy
+msgid "Close Inventory tab"
+msgstr "Stäng aktuell avsökningsflik"
+
+#: umit/inventory/Viewer.py:630
+#, fuzzy
+msgid "Close current Inventory tab"
+msgstr "Stäng aktuell avsökningsflik"
+
+#: umit/inventory/Viewer.py:634 umit/interfaceeditor/Main.py:540
+#: umit/gui/MainWindow.py:277 umit/gui/ProfileWizardEditor.py:353
+msgid "_Quit"
+msgstr "A_vsluta"
+
+#: umit/inventory/Viewer.py:635
+msgid "Close Network Inventory"
+msgstr ""
+
+#: umit/inventory/Viewer.py:640 umit/inventory/Viewer.py:641
+msgid "Data Removal"
+msgstr ""
+
+#: umit/inventory/Viewer.py:645 umit/inventory/Viewer.py:646
+msgid "Startup settings"
+msgstr ""
+
+#: umit/inventory/Viewer.py:652
+msgid "Scheduler log"
+msgstr ""
+
+#: umit/inventory/Viewer.py:653
+msgid "View Scheduler log"
+msgstr ""
+
+#: umit/inventory/Viewer.py:665 umit/gui/MainWindow.py:351
+msgid "Shows the application help"
+msgstr ""
+
+#: umit/inventory/Viewer.py:669 umit/gui/MainWindow.py:333
+msgid "_Report a bug"
+msgstr "_Rapportera ett fel"
+
+#: umit/inventory/Viewer.py:670 umit/gui/MainWindow.py:335
+msgid "Report a bug"
+msgstr "Rapportera ett fel"
+
+#: umit/inventory/Viewer.py:674 umit/interfaceeditor/Main.py:575
+#: umit/gui/MainWindow.py:341
+msgid "_About"
+msgstr "_Om"
+
+#: umit/inventory/Viewer.py:683
+msgid "Show ti_ps"
+msgstr ""
+
+#: umit/inventory/Viewer.py:684
+msgid "Enable disable tip showing"
+msgstr ""
+
+#: umit/inventory/Viewer.py:691
+msgid "Place a close button upon tab creation"
+msgstr ""
+
+#: umit/inventory/Viewer.py:893
+msgid "UMIT Network Inventory"
+msgstr ""
+
+#: umit/inventory/Viewer.py:932
+msgid " Historic "
+msgstr ""
+
+#: umit/inventory/Viewer.py:933
+msgid " Timeline "
+msgstr ""
+
+#: umit/db/InventoryChanges.py:114
+#, fuzzy
+msgid "Host down"
+msgstr "Värd %s"
+
+#: umit/db/InventoryChanges.py:168
+msgid "Host added to the Inventory."
+msgstr ""
+
+#: umit/db/InventoryChanges.py:258
+msgid "changed info"
+msgstr ""
+
+#: umit/db/InventoryChanges.py:267
+msgid "Fingerprint, "
+msgstr ""
+
+#: umit/db/InventoryChanges.py:275
+msgid "OS Match, "
+msgstr ""
+
+#: umit/db/InventoryChanges.py:285
+msgid "and OS Classes"
+msgstr ""
+
+#: umit/db/InventoryChanges.py:295
+#, fuzzy
+msgid " changed."
+msgstr "Spara ändringar"
+
+#: umit/db/InventoryChanges.py:310
+msgid "No noticeables changes since last sucessful scan."
+msgstr ""
+
+#: umit/db/InventoryChanges.py:339
+#, fuzzy
+msgid "closed"
+msgstr "Stängd"
+
+#: umit/db/InventoryChanges.py:340
+#, fuzzy
+msgid "open"
+msgstr "Öppen"
+
+#: umit/db/InventoryChanges.py:341
+#, fuzzy
+msgid "now"
+msgstr "Okänt"
+
+#: umit/db/InventoryChanges.py:343
+#, fuzzy
+msgid "and"
+msgstr "Kommando"
+
+#: umit/db/Search.py:28
+#, fuzzy
+msgid "change"
+msgstr "Spara ändringar"
+
+#: umit/db/Search.py:28
+#, fuzzy
+msgid "changes"
+msgstr "Spara ändringar"
+
+#: umit/db/Search.py:29
+#, fuzzy
+msgid "port"
+msgstr "Port"
+
+#: umit/db/Search.py:29
+#, fuzzy
+msgid "ports"
+msgstr "Portar"
+
+#: umit/db/Search.py:29
+#, fuzzy
+msgid "service"
+msgstr "Tjänst"
+
+#: umit/db/Search.py:178 umit/gui/SearchGUI.py:168
+msgid "Port number"
+msgstr "Portnummer"
+
+#: umit/db/Search.py:205
+#, fuzzy
+msgid "Service name"
+msgstr "Tjänstenamn"
+
+#: umit/db/Search.py:212
+#, fuzzy
+msgid "Service info"
+msgstr "Tjänsteversion"
+
+#: umit/db/Search.py:239
+#, fuzzy
+msgid "Changes"
+msgstr "Spara ändringar"
+
+#: umit/core/Diff.py:34 umit/core/DiffHtml.py:135 umit/core/I18N.py:77
+msgid "Umit - Take the red pill"
+msgstr "Umit - Ta det röda pillret"
+
+#: umit/core/Diff.py:35
+msgid "http://www.umitproject.org"
+msgstr "http://www.umitproject.org"
+
+#: umit/core/Diff.py:37 umit/core/DiffHtml.py:136
+msgid "This diff was generated by Umit"
+msgstr "Denna diff genererades av Umit"
+
+#: umit/core/Diff.py:38
+msgid "(Changes to this file can make Umit unable to read it.)"
+msgstr "(Ändringar i denna fil kan göra att Umit inte kan läsa den.)"
+
+#: umit/core/Diff.py:42
+msgid " Start of diff "
+msgstr ""
+
+#: umit/core/Diff.py:44
+msgid " End of diff "
+msgstr ""
+
+#: umit/core/DiffHtml.py:156
+msgid "Changes to this file can make Umit unable to read it."
+msgstr "Ändringar i denna fil kan göra att Umit inte kan läsa den."
+
+#: umit/core/DiffHtml.py:157
+msgid "Regular Text Diff: "
+msgstr ""
+
+#: umit/core/NmapCommand.py:39
+msgid "Python 2.4 or later is required."
+msgstr "Python 2.4 eller senare krävs."
+
+#: umit/core/Scheduler.py:710
+msgid "UMIT: Status Report for scheduled schema"
+msgstr ""
+
+#: umit/core/Scheduler.py:713
+msgid "There was a scheduled job that just "
+msgstr ""
+
+#: umit/core/Scheduler.py:715
+msgid "Follows an attachment of the job output."
+msgstr ""
+
+#: umit/core/UmitConf.py:157
+msgid "Weeks"
+msgstr "Veckor"
+
+#: umit/core/UmitConf.py:159
+msgid "Years"
+msgstr "År"
+
+#: umit/core/UmitConf.py:161
+msgid "Seconds"
+msgstr "Sekunder"
+
+#: umit/core/UmitDB.py:43
+#, fuzzy
+msgid ""
+"No module named pysqlite2 or sqlite3.\n"
+"            Please install pysqlite2 or sqlite3."
+msgstr "Ingen modul med namnet dbapi2.pysqlite2 eller sqlite3"
+
+#: umit/core/UmitOptionParser.py:40
+msgid "Start Umit Network Inventory."
+msgstr ""
+
+#: umit/core/UmitOptionParser.py:49
+msgid "Open Umit and runs a Nmap scan with specified args."
+msgstr "Öppna Umit och kör en Nmap-avsökning med angivna argument."
+
+#: umit/core/UmitOptionParser.py:57
+msgid ""
+"Open Umit with the specified profile selected. If combined with the -t (--"
+"target) option, open Umit and automatically run the profile against the "
+"specified target."
+msgstr ""
+
+#: umit/core/UmitOptionParser.py:66
+msgid ""
+"*NOT IMPLEMENTED* - Open the diff compare window, in compare mode comparing "
+"the two given scan result files (Nmap XML output or usr (Umit Scan Result) "
+"file)."
+msgstr ""
+
+#: umit/core/UmitOptionParser.py:75
+msgid ""
+"*NOT IMPLEMENTED* - Open the diff compare window, in text mode comparing the "
+"two given scan result files (Nmap XML output or usr, Umit Scan Result)."
+msgstr ""
+
+#: umit/core/UmitOptionParser.py:85
+msgid ""
+"*NOT IMPLEMENTED* - Take two scan result files (Nmap XML output or usr, Umit "
+"Scan Result), make a text diff and print it in the terminal without openning "
+"Umit Interface."
+msgstr ""
+
+#: umit/core/UmitOptionParser.py:96
+msgid ""
+"*NOT IMPLEMENTED* - Run Umit and go straight to NSE Facilitator Interface. "
+"You may specify nse scripts as arguments if you want use them."
+msgstr ""
+
+#: umit/core/UmitOptionParser.py:107
+msgid ""
+"Specify a target to be used along with other options. If specified alone, "
+"opens Umit with the target field filled with the specified target"
+msgstr ""
+
+#: umit/core/UmitOptionParser.py:122
+msgid ""
+"Specify a scan result file in Nmap XML Output or Umit Scan Result file. Can "
+"be used more than once to specify several scan result files."
+msgstr ""
+
+#: umit/core/UmitOptionParser.py:131
+msgid "*NOT IMPLEMENTED* - Open Umit showing the given file at Umit Mapper"
+msgstr ""
+
+#: umit/core/UmitOptionParser.py:138
+msgid ""
+"Increase verbosity of the output. May be used more than once to get even "
+"more verbosity"
+msgstr ""
+
+#: umit/interfaceeditor/DependencesOption.py:46
+msgid "Dependence of Option "
+msgstr ""
+
+#: umit/interfaceeditor/DependencesOption.py:54
+msgid ""
+"There is a problem deleting this option. This options have dependences.  "
+msgstr ""
+
+#: umit/interfaceeditor/DependencesOption.py:55
+msgid ""
+"Are you sure that can remove this option? Dependences should be removed too"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:76 umit/gui/MainWindow.py:256
+#, fuzzy
+msgid "Interface Editor"
+msgstr "Profilredigerare"
+
+#: umit/interfaceeditor/Main.py:229
+#, fuzzy
+msgid "Edit Modes"
+msgstr "Textläge"
+
+#: umit/interfaceeditor/Main.py:237
+#, fuzzy
+msgid "Option List"
+msgstr "Alternativ"
+
+#: umit/interfaceeditor/Main.py:296 umit/interfaceeditor/Tools.py:573
+#: umit/gui/ProfileManager.py:78
+#, fuzzy
+msgid "Name"
+msgstr "Namn:"
+
+#: umit/interfaceeditor/Main.py:408 umit/gui/About.py:182
+msgid "Design"
+msgstr "Design"
+
+#: umit/interfaceeditor/Main.py:410
+#, fuzzy
+msgid "Proprieties"
+msgstr "Portar"
+
+#: umit/interfaceeditor/Main.py:537
+#, fuzzy
+msgid "_Save"
+msgstr "_Spara avsökning"
+
+#: umit/interfaceeditor/Main.py:537
+#, fuzzy
+msgid "Save"
+msgstr "Tillstånd"
+
+#: umit/interfaceeditor/Main.py:538
+#, fuzzy
+msgid "_Save all"
+msgstr "_Spara avsökning"
+
+#: umit/interfaceeditor/Main.py:538
+#, fuzzy
+msgid "Save all"
+msgstr "Spara avsökning"
+
+#: umit/interfaceeditor/Main.py:540 umit/gui/ProfileWizardEditor.py:353
+#: umit/gui/ScriptManager.py:327
+#, fuzzy
+msgid "Quit"
+msgstr "A_vsluta"
+
+#: umit/interfaceeditor/Main.py:541 umit/gui/ProfileWizardEditor.py:354
+#: umit/gui/ProfileWizardEditor.py:355 umit/gui/ScriptManager.py:343
+msgid "Edit"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:542
+msgid "_Undo"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:542 umit/gui/ProfileWizardEditor.py:355
+#, fuzzy
+msgid "Undo"
+msgstr "Tillverkare"
+
+#: umit/interfaceeditor/Main.py:543
+msgid "_Redo"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:543
+#, fuzzy
+msgid "Redo"
+msgstr "Tillverkare"
+
+#: umit/interfaceeditor/Main.py:544
+msgid "View"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:545
+msgid "_Right Bar"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:546
+msgid "Right Bar"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:547
+#, fuzzy
+msgid "Tools"
+msgstr "Ver_ktyg"
+
+#: umit/interfaceeditor/Main.py:549
+#, fuzzy
+msgid "Items"
+msgstr "Anteckningar"
+
+#: umit/interfaceeditor/Main.py:550
+msgid "_Label"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:551
+msgid "Insert label"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:552
+#, fuzzy
+msgid "_New Section"
+msgstr "_Ny avsökning"
+
+#: umit/interfaceeditor/Main.py:553
+#, fuzzy
+msgid "New Section"
+msgstr "Avsnitt"
+
+#: umit/interfaceeditor/Main.py:554
+msgid "_Remove Section Label"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:555
+msgid "Remove Section Label"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:556 umit/interfaceeditor/Tools.py:186
+#, fuzzy
+msgid "_Remove Section"
+msgstr "Avsnitt"
+
+#: umit/interfaceeditor/Main.py:557 umit/interfaceeditor/Tools.py:187
+#, fuzzy
+msgid "Remove Section"
+msgstr "Avsnitt"
+
+#: umit/interfaceeditor/Main.py:558
+msgid "_Add new voidplace"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:559
+msgid "Add new voidplace"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:560
+#, fuzzy
+msgid "_Remove Option"
+msgstr "Profilalternativ"
+
+#: umit/interfaceeditor/Main.py:561
+msgid "Remove option"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:562
+msgid "_Remove voidplace"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:563
+msgid "Remove voidplace"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:564
+#, fuzzy
+msgid "_Add option selected"
+msgstr "Ingen värd markerad!"
+
+#: umit/interfaceeditor/Main.py:565
+#, fuzzy
+msgid "Add option selected"
+msgstr "Ingen värd markerad!"
+
+#: umit/interfaceeditor/Main.py:566 umit/interfaceeditor/Tools.py:180
+msgid "_Move Section Left"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:567 umit/interfaceeditor/Tools.py:181
+msgid "Move Section Left"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:568 umit/interfaceeditor/Tools.py:182
+msgid "_Move Section Right"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:569 umit/interfaceeditor/Tools.py:183
+msgid "Move Section Right"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:570
+msgid "_Move Item Down"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:571
+msgid "Move Item Down"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:572
+msgid "_Move Item Up"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:573
+msgid "Move Item Up"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:574
+#, fuzzy
+msgid "Help"
+msgstr "_Hjälp"
+
+#: umit/interfaceeditor/Main.py:575
+#, fuzzy
+msgid "About"
+msgstr "_Om"
+
+#: umit/interfaceeditor/OptionManager.py:131
+#: umit/gui/ScanHostDetailsPage.py:283
+msgid "Name:"
+msgstr "Namn:"
+
+#: umit/interfaceeditor/OptionManager.py:136
+#, fuzzy
+msgid "Hint:"
+msgstr "Tips"
+
+#: umit/interfaceeditor/OptionManager.py:141
+msgid "Need root"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:146
+#, fuzzy
+msgid "Options:"
+msgstr "Alternativ"
+
+#: umit/interfaceeditor/OptionManager.py:155
+msgid "Arguments:"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:187
+msgid "Arguments"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:189
+msgid "Insert the description to argument:"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:355
+msgid "Invalid option "
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:446
+msgid "ERROR"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:447
+msgid "Option do not exists"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:469
+msgid "Invalid name option "
+msgstr ""
+
+#: umit/interfaceeditor/PageNotebook.py:68
+#: umit/interfaceeditor/PageNotebook.py:145
+msgid "Add/Remove Voidplace"
+msgstr ""
+
+#: umit/interfaceeditor/PageNotebook.py:198
+msgid "Move item"
+msgstr ""
+
+#: umit/interfaceeditor/PageNotebook.py:350
+msgid "Add/Remove Option"
+msgstr ""
+
+#: umit/interfaceeditor/PageNotebook.py:435
+msgid "Add/Remove Page"
+msgstr ""
+
+#: umit/interfaceeditor/Profile.py:74
+msgid "Add Label"
+msgstr ""
+
+#: umit/interfaceeditor/Profile.py:124
+msgid "Move Page"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:175
+msgid "_Move up"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:175
+msgid "Move up"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:177
+msgid "_Move down"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:178
+msgid "Move down"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:184
+#, fuzzy
+msgid "_Add Section"
+msgstr "Avsnitt"
+
+#: umit/interfaceeditor/Tools.py:185
+#, fuzzy
+msgid "Add Section"
+msgstr "Avsnitt"
+
+#: umit/interfaceeditor/Tools.py:188 umit/interfaceeditor/Tools.py:189
+msgid "Add Place"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:190 umit/interfaceeditor/Tools.py:191
+#, fuzzy
+msgid "Remove Option"
+msgstr "Profilalternativ"
+
+#: umit/interfaceeditor/Tools.py:243
+#, fuzzy
+msgid "Select a Option "
+msgstr "Välj avsökning"
+
+#: umit/interfaceeditor/Tools.py:297
+msgid "Change Label"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:362
+msgid "Update OptionList"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:579 umit/gui/ScanHostDetailsPage.py:365
+msgid "Type"
+msgstr "Typ"
+
+#: umit/interfaceeditor/Tools.py:587 umit/gui/SearchGUI.py:125
+msgid "Option"
+msgstr "Alternativ"
+
+#: umit/interfaceeditor/Tools.py:613
+msgid "List of items"
+msgstr ""
 
 #: umit/gui/About.py:40 umit/gui/MainWindow.py:343
 msgid "About Umit"
@@ -44,10 +1853,6 @@ msgstr ""
 #: umit/gui/About.py:180
 msgid "Written by"
 msgstr "Skrivet av"
-
-#: umit/gui/About.py:182 umit/interfaceeditor/Main.py:408
-msgid "Design"
-msgstr "Design"
 
 #: umit/gui/About.py:184
 msgid "SoC 2007"
@@ -251,17 +2056,16 @@ msgstr ""
 "Svenska:\n"
 "Daniel Nylander <po@danielnylander.se>"
 
-#: umit/gui/App.py:97
+#: umit/gui/App.py:102
 msgid "RUNNING WITHOUT PSYCO!"
 msgstr "KÖR UTAN PSYCO!"
 
-#: umit/gui/App.py:98
+#: umit/gui/App.py:103
 msgid ""
-"Psyco is a module that speeds up the execution                     of this "
-"#application. It is not a requirement, and Umit runs "
-"perfectly                     with or #without it, but you're encourajed to "
-"install it to have a better                     speed ex#perience. Download "
-"it at http://psyco.sf.net/"
+"psyco is a module that speeds up the execution of Python applications. It is "
+"not a requirement, and Umit will work normally without it, but you're "
+"encouraged to install it to have a better speed experience. Download psyco "
+"at http://psyco.sf.net/"
 msgstr ""
 
 #: umit/gui/BugReport.py:37
@@ -278,7 +2082,7 @@ msgid ""
 "from the choosebox. If you don't know what section to choose, leave it blank."
 msgstr ""
 
-#: umit/gui/BugReport.py:80 umit/gui/CrashReport.py:56
+#: umit/gui/BugReport.py:80 umit/gui/CrashReport.py:57
 msgid "Email"
 msgstr "E-postadress"
 
@@ -297,7 +2101,7 @@ msgid ""
 "This should be a quick description of the issue. Try to be clear and concise."
 msgstr ""
 
-#: umit/gui/BugReport.py:91 umit/gui/CrashReport.py:61
+#: umit/gui/BugReport.py:91 umit/gui/CrashReport.py:62
 #: umit/gui/ProfileEditor.py:117 umit/gui/ScriptManager.py:366
 #: umit/gui/Wizard.py:410
 msgid "Description"
@@ -318,7 +2122,7 @@ msgid ""
 "improving Umit faster than usual."
 msgstr ""
 
-#: umit/gui/BugReport.py:184 umit/gui/CrashReport.py:119
+#: umit/gui/BugReport.py:184 umit/gui/CrashReport.py:120
 msgid "Bug report is incomplete!"
 msgstr ""
 
@@ -329,7 +2133,7 @@ msgid ""
 "the bug gets fixed."
 msgstr ""
 
-#: umit/gui/BugReport.py:211 umit/gui/CrashReport.py:139
+#: umit/gui/BugReport.py:211 umit/gui/CrashReport.py:140
 msgid "Bug not reported!"
 msgstr ""
 
@@ -341,7 +2145,7 @@ msgid ""
 "again."
 msgstr ""
 
-#: umit/gui/BugReport.py:222 umit/gui/CrashReport.py:148
+#: umit/gui/BugReport.py:222 umit/gui/CrashReport.py:149
 msgid "Bug sucessfully reported!"
 msgstr ""
 
@@ -351,32 +2155,32 @@ msgid ""
 "description about this report will be opened in your default web browser now."
 msgstr ""
 
-#: umit/gui/BugReport.py:236 umit/gui/CrashReport.py:162
+#: umit/gui/BugReport.py:235 umit/gui/CrashReport.py:163
 msgid "Could not open default Web Browser"
 msgstr ""
 
-#: umit/gui/BugReport.py:237
+#: umit/gui/BugReport.py:236
 msgid ""
 "Umit was unable to open your default web browser to show the bug tracker "
 "page with the report status. Try visiting Umit's bug tracker page to see if "
 "your bug was reported."
 msgstr ""
 
-#: umit/gui/BugReport.py:284 umit/gui/CrashReport.py:37
+#: umit/gui/BugReport.py:283 umit/gui/CrashReport.py:38
 msgid "Crash Report"
 msgstr "Kraschrapport"
 
-#: umit/gui/CrashReport.py:53
+#: umit/gui/CrashReport.py:54
 msgid "Only Umit project members should read this bug report"
 msgstr ""
 
-#: umit/gui/CrashReport.py:57
+#: umit/gui/CrashReport.py:58
 msgid ""
 "Please, inform a valid e-mail address, from where you can be reached to be "
 "notified when the bug get fixed. Not used for other purposes."
 msgstr ""
 
-#: umit/gui/CrashReport.py:62
+#: umit/gui/CrashReport.py:63
 msgid ""
 "This is where you should really write about the bug, describing it as clear "
 "as possible, and giving as many informations as you can along with your "
@@ -384,21 +2188,21 @@ msgid ""
 "version you have insalled?"
 msgstr ""
 
-#: umit/gui/CrashReport.py:70
+#: umit/gui/CrashReport.py:71
 msgid ""
 "This Bug Report dialog, allows you to easily tell us about a problem that "
 "you may have found on Umit. Doing so, you help us to help you, by fixing and "
 "improving Umit faster than usual."
 msgstr ""
 
-#: umit/gui/CrashReport.py:120
+#: umit/gui/CrashReport.py:121
 msgid ""
 "The bug report is incomplete. You must inform a description that explains "
 "clearly what is happening and a valid e-mail, so you can be contacted when "
 "the bug get fixed."
 msgstr ""
 
-#: umit/gui/CrashReport.py:140
+#: umit/gui/CrashReport.py:141
 msgid ""
 "The bug description could not be reported. This problem may be caused by the "
 "lack of Internet Access or indisponibility of the bug tracker server. "
@@ -406,14 +2210,14 @@ msgid ""
 "again."
 msgstr ""
 
-#: umit/gui/CrashReport.py:149
+#: umit/gui/CrashReport.py:150
 msgid ""
 "The bug description was sucessfully reported. A web page with detailed "
 "description about this report is going to be openned in your default web "
 "browser."
 msgstr ""
 
-#: umit/gui/CrashReport.py:163
+#: umit/gui/CrashReport.py:164
 msgid ""
 "Umit was unable to open your default web browser to show the bug tracker "
 "page with the report status. Try to visit the Umit's bug tracker page to see "
@@ -487,32 +2291,13 @@ msgstr "Du måste välja två olika avsökningar för att generera en diff."
 msgid "Diff Result"
 msgstr ""
 
-#: umit/gui/DiffCompare.py:564 umit/inventory/ChangesDiff.py:35
-#: umit/interfaceeditor/Main.py:548
-msgid "Section"
-msgstr "Avsnitt"
-
-#: umit/gui/DiffCompare.py:565 umit/inventory/ChangesDiff.py:35
-msgid "Property"
-msgstr ""
-
 #: umit/gui/DiffCompare.py:566
 msgid "Original value"
 msgstr "Ursprungligt värde"
 
-#: umit/gui/DiffCompare.py:567 umit/inventory/ChangesDiff.py:36
-msgid "Current value"
-msgstr "Aktuellt värde"
-
 #: umit/gui/DiffCompare.py:682
 msgid "Umit Info"
 msgstr ""
-
-#: umit/gui/DiffCompare.py:684 umit/gui/ProfileEditor.py:154
-#: umit/gui/ProfileWizardEditor.py:236 umit/gui/SearchGUI.py:126
-#: umit/gui/Wizard.py:472 umit/inventory/TLGraphPreferences.py:62
-msgid "Profile"
-msgstr "Profil"
 
 #: umit/gui/DiffCompare.py:685
 msgid "Profile Name"
@@ -522,7 +2307,8 @@ msgstr "Profilnamn"
 msgid "Profile Options"
 msgstr "Profilalternativ"
 
-#: umit/gui/DiffCompare.py:689 umit/gui/SearchGUI.py:147 umit/gui/Wizard.py:477
+#: umit/gui/DiffCompare.py:689 umit/gui/SearchGUI.py:147
+#: umit/gui/Wizard.py:477
 msgid "Target"
 msgstr "Mål"
 
@@ -530,22 +2316,8 @@ msgstr "Mål"
 msgid "Nmap Info"
 msgstr ""
 
-#: umit/gui/DiffCompare.py:694 umit/inventory/Viewer.py:375
-msgid "Debugging"
-msgstr "Felsökning"
-
 #: umit/gui/DiffCompare.py:696
 msgid "Verbosity"
-msgstr ""
-
-#: umit/gui/DiffCompare.py:698 umit/gui/ProfileEditor.py:104
-#: umit/gui/SchedulerEdit.py:79 umit/gui/Wizard.py:141 umit/gui/Wizard.py:473
-#: umit/inventory/NewInventory.py:103 umit/inventory/NewInventory.py:521
-msgid "Command"
-msgstr "Kommando"
-
-#: umit/gui/DiffCompare.py:700 umit/inventory/Viewer.py:375
-msgid "Scanner version"
 msgstr ""
 
 #: umit/gui/DiffCompare.py:703 umit/gui/ScanRunDetailsPage.py:191
@@ -580,12 +2352,6 @@ msgstr ""
 msgid "Finish date"
 msgstr ""
 
-#: umit/gui/DiffCompare.py:744 umit/gui/ScanHostsView.py:67
-#: umit/gui/ScanOpenPortsPage.py:63 umit/gui/SearchGUI.py:298
-#: umit/inventory/HostDiscovery.py:169 umit/inventory/Viewer.py:530
-msgid "Host"
-msgstr "Värd"
-
 #: umit/gui/DiffCompare.py:746 umit/gui/DiffCompare.py:748
 #: umit/gui/DiffCompare.py:750
 #, python-format
@@ -599,16 +2365,6 @@ msgstr "Kommentar"
 #: umit/gui/DiffCompare.py:758
 msgid "LastBoot"
 msgstr ""
-
-#: umit/gui/DiffCompare.py:770 umit/db/Search.py:104
-#: umit/inventory/ChangesDiff.py:411
-msgid "OS Match"
-msgstr ""
-
-#: umit/gui/DiffCompare.py:793 umit/inventory/ChangesDiff.py:181
-#: umit/inventory/TLBase.py:45
-msgid "Ports"
-msgstr "Portar"
 
 #: umit/gui/DiffCompare.py:828 umit/gui/DiffCompare.py:867
 #: umit/gui/ScanOpenPortsPage.py:67 umit/gui/ScanOpenPortsPage.py:86
@@ -638,10 +2394,6 @@ msgstr ""
 
 #: umit/gui/DiffCompare.py:852
 msgid "Service Conf"
-msgstr ""
-
-#: umit/gui/DiffCompare.py:861 umit/inventory/ChangesDiff.py:260
-msgid "Extraports"
 msgstr ""
 
 #: umit/gui/DiffCompare.py:865
@@ -783,11 +2535,6 @@ msgstr "Profilnamn"
 msgid "Use to manage profiles"
 msgstr "Namnlös profil"
 
-#: umit/gui/MainWindow.py:256
-#, fuzzy
-msgid "Interface Editor"
-msgstr "Profilredigerare"
-
 #: umit/gui/MainWindow.py:258
 msgid "Use to edit profile/wizard"
 msgstr ""
@@ -808,11 +2555,6 @@ msgstr "Filändelse"
 #: umit/gui/MainWindow.py:272
 msgid "Extensions manager"
 msgstr ""
-
-#: umit/gui/MainWindow.py:277 umit/gui/ProfileWizardEditor.py:353
-#: umit/inventory/Viewer.py:634 umit/interfaceeditor/Main.py:540
-msgid "_Quit"
-msgstr "A_vsluta"
 
 #: umit/gui/MainWindow.py:279
 msgid "Quit this application"
@@ -846,10 +2588,6 @@ msgstr ""
 msgid "Run Network Inventory"
 msgstr ""
 
-#: umit/gui/MainWindow.py:312 umit/inventory/Viewer.py:610
-msgid "_Scheduler"
-msgstr ""
-
 #: umit/gui/MainWindow.py:319
 msgid "_Editor"
 msgstr ""
@@ -866,71 +2604,49 @@ msgstr ""
 msgid "Open SMTP Accounts editor"
 msgstr ""
 
-#: umit/gui/MainWindow.py:329 umit/gui/MainWindow.py:349
-#: umit/inventory/Viewer.py:611 umit/inventory/Viewer.py:664
-msgid "_Help"
-msgstr "_Hjälp"
-
-#: umit/gui/MainWindow.py:333 umit/inventory/Viewer.py:669
-msgid "_Report a bug"
-msgstr "_Rapportera ett fel"
-
-#: umit/gui/MainWindow.py:335 umit/inventory/Viewer.py:670
-msgid "Report a bug"
-msgstr "Rapportera ett fel"
-
-#: umit/gui/MainWindow.py:341 umit/inventory/Viewer.py:674
-#: umit/interfaceeditor/Main.py:575
-msgid "_About"
-msgstr "_Om"
-
-#: umit/gui/MainWindow.py:351 umit/inventory/Viewer.py:665
-msgid "Shows the application help"
-msgstr ""
-
-#: umit/gui/MainWindow.py:471 umit/gui/MainWindow.py:484
-#: umit/gui/MainWindow.py:966
+#: umit/gui/MainWindow.py:476 umit/gui/MainWindow.py:489
+#: umit/gui/MainWindow.py:1006
 msgid "No scan tab"
 msgstr "Ingen avsökningsflik"
 
-#: umit/gui/MainWindow.py:472
+#: umit/gui/MainWindow.py:477
 msgid ""
-"There is no scan tab or scan result been shown. Run a scan and then try to "
-"add hosts."
+"There is no scan tab or scan result being shown. Run a scan and then retry "
+"adding."
 msgstr ""
 
-#: umit/gui/MainWindow.py:481
+#: umit/gui/MainWindow.py:486
 msgid ""
-"You tried to add a scan to the Inventory, but there isn't a finished scan on "
-"active tab!"
+"You tried adding a scan to the Inventory, but there isn't a finished scan on "
+"the active tab!"
 msgstr ""
 
-#: umit/gui/MainWindow.py:510
+#: umit/gui/MainWindow.py:515
 msgid "Insertion finished!"
 msgstr ""
 
-#: umit/gui/MainWindow.py:512
+#: umit/gui/MainWindow.py:517
 msgid "Scan has been added to the"
 msgstr ""
 
-#: umit/gui/MainWindow.py:514
+#: umit/gui/MainWindow.py:519
 #, fuzzy
 msgid "inventory."
 msgstr "Katalog"
 
-#: umit/gui/MainWindow.py:565 umit/gui/MainWindow.py:611
+#: umit/gui/MainWindow.py:570 umit/gui/MainWindow.py:616
 msgid "Close anyway"
 msgstr "Stäng ändå"
 
-#: umit/gui/MainWindow.py:572
+#: umit/gui/MainWindow.py:577
 msgid "Save changes on"
 msgstr "Spara ändringar i"
 
-#: umit/gui/MainWindow.py:575
+#: umit/gui/MainWindow.py:580
 msgid "Save changes"
 msgstr "Spara ändringar"
 
-#: umit/gui/MainWindow.py:577
+#: umit/gui/MainWindow.py:582
 msgid ""
 "The given scan has unsaved changes.\n"
 "What do you want to do?"
@@ -938,114 +2654,114 @@ msgstr ""
 "Angiven avsökning innehåller osparade ändringar.\n"
 "Vad vill du göra?"
 
-#: umit/gui/MainWindow.py:618 umit/gui/MainWindow.py:621
+#: umit/gui/MainWindow.py:623 umit/gui/MainWindow.py:626
 msgid "Trying to close"
 msgstr "Försöker att stänga"
 
-#: umit/gui/MainWindow.py:623
+#: umit/gui/MainWindow.py:628
 msgid ""
 "The page you are trying to close has a scan running at the background.\n"
 "What do you want to do?"
 msgstr ""
 
-#: umit/gui/MainWindow.py:652
+#: umit/gui/MainWindow.py:657
 msgid "Closing current Scan Tab"
 msgstr "Stänger aktuell avsökningsflik"
 
-#: umit/gui/MainWindow.py:653
+#: umit/gui/MainWindow.py:658
 msgid "Are you sure you want to close current Scan Tab?"
 msgstr ""
 
-#: umit/gui/MainWindow.py:936 umit/gui/MainWindow.py:1080
+#: umit/gui/MainWindow.py:976 umit/gui/MainWindow.py:1121
 msgid "Permission denied"
 msgstr "Åtkomst nekas"
 
-#: umit/gui/MainWindow.py:937
+#: umit/gui/MainWindow.py:977
 msgid "Don't have read access to the path"
 msgstr ""
 
-#: umit/gui/MainWindow.py:943
+#: umit/gui/MainWindow.py:983
 msgid "Could not load result"
 msgstr "Kunde inte läsa in resultatet"
 
-#: umit/gui/MainWindow.py:944
+#: umit/gui/MainWindow.py:984
 msgid ""
 "An unidentified error occouried and the scan result was unable to be loaded "
 "properly."
 msgstr ""
 
-#: umit/gui/MainWindow.py:967
+#: umit/gui/MainWindow.py:1007
 msgid ""
 "There is no scan tab or scan result been shown. Run a scan and then try to "
 "save it."
 msgstr ""
 
-#: umit/gui/MainWindow.py:978 umit/gui/MainWindow.py:985
-#: umit/gui/MainWindow.py:1034
+#: umit/gui/MainWindow.py:1018 umit/gui/MainWindow.py:1025
+#: umit/gui/MainWindow.py:1074
 msgid "Nothing to save"
 msgstr "Ingenting att spara"
 
-#: umit/gui/MainWindow.py:979 umit/gui/MainWindow.py:1035
+#: umit/gui/MainWindow.py:1019 umit/gui/MainWindow.py:1075
 msgid "No scan on this tab. Start a scan an then try again"
 msgstr ""
 
-#: umit/gui/MainWindow.py:986
+#: umit/gui/MainWindow.py:1026
 msgid "The scan has failed! There is nothing to be saved."
 msgstr "Avsökningen har misslyckats! Det finns ingenting att spara."
 
-#: umit/gui/MainWindow.py:993
+#: umit/gui/MainWindow.py:1033
 msgid "Parsing the result"
 msgstr "Tolkar resultatet"
 
-#: umit/gui/MainWindow.py:994
+#: umit/gui/MainWindow.py:1034
 msgid "The result is still been parsed. You can not save the result yet."
 msgstr ""
 
-#: umit/gui/MainWindow.py:1001
+#: umit/gui/MainWindow.py:1041
 msgid "Scan is running"
 msgstr ""
 
-#: umit/gui/MainWindow.py:1002
+#: umit/gui/MainWindow.py:1042
 msgid ""
 "The scan process is not finished yet. Wait until the scan is finished and "
 "then try to save it again."
 msgstr ""
 
-#: umit/gui/MainWindow.py:1012
+#: umit/gui/MainWindow.py:1052
 msgid "Save Scan"
 msgstr "Spara avsökning"
 
-#: umit/gui/MainWindow.py:1051
+#: umit/gui/MainWindow.py:1091
 msgid "Can't save file"
 msgstr "Kan inte spara filen"
 
-#: umit/gui/MainWindow.py:1052
+#: umit/gui/MainWindow.py:1092
 msgid "Can't open file to write"
 msgstr "Kan inte öppna fil för att skriva"
 
-#: umit/gui/MainWindow.py:1081
+#: umit/gui/MainWindow.py:1122
 msgid "Don't have write access to this path."
 msgstr ""
 
-#: umit/gui/MainWindow.py:1165
+#: umit/gui/MainWindow.py:1206
 msgid "The text above is this action's name"
 msgstr ""
 
-#: umit/gui/MainWindow.py:1183
+#: umit/gui/MainWindow.py:1224
 msgid "Couldn't find documentation files!"
 msgstr "Kunde inte hitta dokumentationsfilerna!"
 
-#: umit/gui/MainWindow.py:1185
+#: umit/gui/MainWindow.py:1226
 msgid ""
 "Umit couldn't find the documentation files. Please, go to Umit's website and "
 "have the latest documentation in our Support & Development section."
 msgstr ""
 
-#: umit/gui/MainWindow.py:1220
+#: umit/gui/MainWindow.py:1261
 msgid "Scan "
 msgstr "Sök av "
 
-#: umit/gui/MainWindow.py:1235
+#: umit/gui/MainWindow.py:1276
 msgid ""
 "You are trying to run Umit with a non-root user!\n"
 "\n"
@@ -1055,17 +2771,17 @@ msgstr ""
 "\n"
 "Vissa nmap-alternativ behöver rootbehörighet för att fungera."
 
-#: umit/gui/MainWindow.py:1238
+#: umit/gui/MainWindow.py:1279
 msgid "Non root user"
 msgstr "Icke-rootanvändare"
 
-#: umit/gui/MainWindow.py:1247
+#: umit/gui/MainWindow.py:1288
 msgid ""
 "You run the umit with nmap option and didn't specified a valid target (see "
 "the umit options)"
 msgstr ""
 
-#: umit/gui/MainWindow.py:1250
+#: umit/gui/MainWindow.py:1291
 msgid "Non valid target"
 msgstr ""
 
@@ -1262,23 +2978,17 @@ msgstr "Namnlös profil"
 msgid "You must provide a name for this profile."
 msgstr ""
 
-#: umit/gui/ProfileEditor.py:296
+#: umit/gui/ProfileEditor.py:296 umit/gui/ProfileEditor.py:342
 msgid "Deleting Profile"
 msgstr "Borttagning av profil"
 
-#: umit/gui/ProfileEditor.py:297
+#: umit/gui/ProfileEditor.py:297 umit/gui/ProfileEditor.py:343
 msgid ""
 "Your profile is going to be deleted! Click Ok to continue, or Cancel to go "
 "back to Profile Editor."
 msgstr ""
 "Din profil är på väg att tas bort! Klicka OK för att fortsätta eller Avbryt "
 "för att gå tillbaka till Profilredigeraren."
-
-#: umit/gui/ProfileManager.py:78 umit/interfaceeditor/Main.py:296
-#: umit/interfaceeditor/Tools.py:573
-#, fuzzy
-msgid "Name"
-msgstr "Namn:"
 
 #: umit/gui/ProfileManager.py:214
 #, fuzzy
@@ -1329,22 +3039,6 @@ msgstr "Öppen"
 msgid "Open"
 msgstr "Öppen"
 
-#: umit/gui/ProfileWizardEditor.py:353 umit/gui/ScriptManager.py:327
-#: umit/interfaceeditor/Main.py:540
-#, fuzzy
-msgid "Quit"
-msgstr "A_vsluta"
-
-#: umit/gui/ProfileWizardEditor.py:354 umit/gui/ProfileWizardEditor.py:355
-#: umit/gui/ScriptManager.py:343 umit/interfaceeditor/Main.py:541
-msgid "Edit"
-msgstr ""
-
-#: umit/gui/ProfileWizardEditor.py:355 umit/interfaceeditor/Main.py:542
-#, fuzzy
-msgid "Undo"
-msgstr "Tillverkare"
-
 #: umit/gui/SMTPSetup.py:49
 msgid "SMTP Account Editor"
 msgstr ""
@@ -1358,13 +3052,6 @@ msgstr "Tjänstenamn"
 #, fuzzy
 msgid "Server"
 msgstr "Tjänst"
-
-#: umit/gui/SMTPSetup.py:65 umit/gui/ScanOpenPortsPage.py:65
-#: umit/gui/ScanOpenPortsPage.py:85 umit/db/InventoryChanges.py:252
-#: umit/db/InventoryChanges.py:338 umit/inventory/ChangesDiff.py:201
-#: umit/inventory/ChangesDiff.py:240
-msgid "Port"
-msgstr "Port"
 
 #: umit/gui/SMTPSetup.py:68
 msgid "Mail from"
@@ -1425,24 +3112,6 @@ msgstr "Operativsystem"
 msgid "Ports used"
 msgstr "Portar använda"
 
-#: umit/gui/ScanHostDetailsPage.py:58 umit/inventory/ChangesDiff.py:352
-#: umit/inventory/ChangesDiff.py:370 umit/inventory/ChangesDiff.py:386
-#: umit/inventory/ChangesDiff.py:395
-msgid "OS Class"
-msgstr ""
-
-#: umit/gui/ScanHostDetailsPage.py:59 umit/inventory/ChangesDiff.py:304
-msgid "TCP Sequence"
-msgstr "TCP-sekvens"
-
-#: umit/gui/ScanHostDetailsPage.py:60 umit/inventory/ChangesDiff.py:310
-msgid "IP ID Sequence"
-msgstr ""
-
-#: umit/gui/ScanHostDetailsPage.py:61 umit/inventory/ChangesDiff.py:307
-msgid "TCP TS Sequence"
-msgstr ""
-
 #: umit/gui/ScanHostDetailsPage.py:62
 msgid "Comments"
 msgstr "Kommentarer"
@@ -1495,59 +3164,41 @@ msgstr "Tillverkare:"
 msgid "Name - Type:"
 msgstr "Namn - Typ:"
 
-#: umit/gui/ScanHostDetailsPage.py:258 umit/gui/ScanHostDetailsPage.py:293
-#: umit/inventory/ChangesDiff.py:32
-msgid "Not Available"
-msgstr "Inte tillgänglig"
-
-#: umit/gui/ScanHostDetailsPage.py:283 umit/interfaceeditor/OptionManager.py:131
-msgid "Name:"
-msgstr "Namn:"
-
 #: umit/gui/ScanHostDetailsPage.py:295
 msgid "Accuracy:"
 msgstr ""
 
-#: umit/gui/ScanHostDetailsPage.py:343
+#: umit/gui/ScanHostDetailsPage.py:344
 msgid "Port-Protocol-State:"
 msgstr ""
 
-#: umit/gui/ScanHostDetailsPage.py:364 umit/interfaceeditor/Tools.py:579
-msgid "Type"
-msgstr "Typ"
-
-#: umit/gui/ScanHostDetailsPage.py:365
+#: umit/gui/ScanHostDetailsPage.py:366
 msgid "Vendor"
 msgstr "Tillverkare"
 
-#: umit/gui/ScanHostDetailsPage.py:366
+#: umit/gui/ScanHostDetailsPage.py:367
 msgid "OS Family"
 msgstr ""
 
-#: umit/gui/ScanHostDetailsPage.py:367
+#: umit/gui/ScanHostDetailsPage.py:368
 msgid "OS Generation"
 msgstr ""
 
-#: umit/gui/ScanHostDetailsPage.py:368 umit/inventory/ChangesDiff.py:346
-#: umit/inventory/ChangesDiff.py:391
-msgid "Accuracy"
-msgstr ""
-
-#: umit/gui/ScanHostDetailsPage.py:395 umit/gui/ScanHostDetailsPage.py:420
-#: umit/gui/ScanHostDetailsPage.py:439
+#: umit/gui/ScanHostDetailsPage.py:396 umit/gui/ScanHostDetailsPage.py:421
+#: umit/gui/ScanHostDetailsPage.py:440
 msgid "Class:"
 msgstr "Klass:"
 
-#: umit/gui/ScanHostDetailsPage.py:398
+#: umit/gui/ScanHostDetailsPage.py:399
 msgid "Difficulty:"
 msgstr ""
 
-#: umit/gui/ScanHostDetailsPage.py:401
+#: umit/gui/ScanHostDetailsPage.py:402
 msgid "Index:"
 msgstr "Index:"
 
-#: umit/gui/ScanHostDetailsPage.py:404 umit/gui/ScanHostDetailsPage.py:423
-#: umit/gui/ScanHostDetailsPage.py:442
+#: umit/gui/ScanHostDetailsPage.py:405 umit/gui/ScanHostDetailsPage.py:424
+#: umit/gui/ScanHostDetailsPage.py:443
 msgid "Values:"
 msgstr "Värden:"
 
@@ -1578,144 +3229,134 @@ msgstr "Tjänst"
 msgid "untitled_scan%s"
 msgstr "namnlös_avsökning%s"
 
-#: umit/gui/ScanNotebook.py:362
+#: umit/gui/ScanNotebook.py:381
 msgid "<target>"
 msgstr "<mål>"
 
-#: umit/gui/ScanNotebook.py:471
+#: umit/gui/ScanNotebook.py:490
 msgid "Profile not found!"
 msgstr "Profilen hittades inte!"
 
-#: umit/gui/ScanNotebook.py:472
+#: umit/gui/ScanNotebook.py:491
 msgid ""
 "The profile name you selected/typed couldn't be found, and probably doesn't "
 "exist. Please, check the profile name and try again."
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:516
+#: umit/gui/ScanNotebook.py:535
 msgid "No Target Host!"
 msgstr "Ingen målvärd!"
 
-#: umit/gui/ScanNotebook.py:517
+#: umit/gui/ScanNotebook.py:536
 msgid ""
 "Target specification is mandatory. Either by an address in the target input "
 "box or through the '-iR' and '-iL' nmap options. Aborting scan."
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:531
+#: umit/gui/ScanNotebook.py:550
 msgid "Empty Nmap Command!"
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:532
+#: umit/gui/ScanNotebook.py:551
 msgid ""
 "There is no command to execute! Maybe the selected/typed profile doesn't "
 "exist. Please, check the profile name or type the nmap command you would "
 "like to execute."
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:584
+#: umit/gui/ScanNotebook.py:600
 msgid "Scan has not finished yet"
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:585
+#: umit/gui/ScanNotebook.py:601
 msgid ""
 "Another scan is running in the background. To start another scan and kill "
 "the old one, click Ok. To wait for the conclusion of the old scan, choose "
 "Cancel."
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:607
+#: umit/gui/ScanNotebook.py:623
 msgid "Nmap couldn't be found"
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:608
+#: umit/gui/ScanNotebook.py:624
 msgid ""
 "Umit couldn't find Nmap. Maybe you don't have it installed, or you need to "
-"set yourPATH environment variable."
+"set your PATH environment variable."
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:616
+#: umit/gui/ScanNotebook.py:632
 msgid "Command is missing!"
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:617
+#: umit/gui/ScanNotebook.py:633
 msgid ""
 "It seems that your profile's command is missing or something else went "
 "wrong. Please, try to remove and recreate your profile."
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:739
+#: umit/gui/ScanNotebook.py:755
 msgid "Couldn't retrieve the error raised by the command!"
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:742
+#: umit/gui/ScanNotebook.py:758
 msgid "Unknown error!"
 msgstr "Okänt fel!"
 
-#: umit/gui/ScanNotebook.py:749
+#: umit/gui/ScanNotebook.py:765
 msgid "Root privileges are needed!"
 msgstr "Root-behörighet krävs!"
 
-#: umit/gui/ScanNotebook.py:755
+#: umit/gui/ScanNotebook.py:771
 msgid "An unexpected error occourried!"
 msgstr "Ett oväntat fel inträffade!"
 
-#: umit/gui/ScanNotebook.py:911
+#: umit/gui/ScanNotebook.py:927
 #, python-format
 msgid "you network scan discovered an unknown fingerprint sent by the host %s"
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:917
+#: umit/gui/ScanNotebook.py:933
 msgid ""
 "your network scan discovered several unknown fingerprints sent by the "
 "follwoing hosts: "
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:928
+#: umit/gui/ScanNotebook.py:944
 msgid "Unrecognized Services/OS Fingerprints Found!"
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:1204 umit/gui/ScanNotebook.py:1219
-#: umit/gui/ScanNotebook.py:1221 umit/gui/SearchGUI.py:468
-msgid "Unknown"
-msgstr "Okänt"
-
-#: umit/gui/ScanNotebook.py:1295
+#: umit/gui/ScanNotebook.py:1296
 msgid "Ports / Hosts"
 msgstr "Portar / Värdar"
 
-#: umit/gui/ScanNotebook.py:1296
+#: umit/gui/ScanNotebook.py:1297
 msgid "Nmap Output"
 msgstr "Nmap-utdata"
 
-#: umit/gui/ScanNotebook.py:1297
+#: umit/gui/ScanNotebook.py:1298
 msgid "Host Details"
 msgstr "Värddetaljer"
 
-#: umit/gui/ScanNotebook.py:1298
+#: umit/gui/ScanNotebook.py:1299
 msgid "Scan Details"
 msgstr "Avsökningsdetaljer"
 
-#: umit/gui/ScanNotebook.py:1299 umit/gui/radialnet/Toolbar.py:242
+#: umit/gui/ScanNotebook.py:1300 umit/gui/radialnet/Toolbar.py:247
 msgid "Topology"
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:1331
+#: umit/gui/ScanNotebook.py:1332
 msgid "No host selected!"
 msgstr "Ingen värd markerad!"
 
-#: umit/gui/ScanNotebook.py:1334
+#: umit/gui/ScanNotebook.py:1335
 msgid "Scan is not finished yet!"
 msgstr "Avsökningen är inte färdig än!"
 
 #: umit/gui/ScanOpenPortsPage.py:69 umit/gui/ScanOpenPortsPage.py:88
 msgid "Version"
 msgstr "Version"
-
-#: umit/gui/ScanOpenPortsPage.py:82 umit/db/Search.py:101
-#: umit/inventory/InventoryTree.py:44
-msgid "Hostname"
-msgstr "Värdnamn"
 
 #: umit/gui/ScanOpenPortsPage.py:87
 msgid "Server product"
@@ -1801,19 +3442,20 @@ msgstr "Sök av"
 msgid "Target:"
 msgstr "Mål:"
 
-#: umit/gui/SchedulerControl.py:38
+#: umit/gui/SchedulerControl.py:47
 msgid "Start Scheduler"
 msgstr ""
 
-#: umit/gui/SchedulerControl.py:39
+#: umit/gui/SchedulerControl.py:48
 msgid "Stop Scheduler"
 msgstr ""
 
-#: umit/gui/SchedulerControl.py:60 umit/gui/SchedulerControl.py:96
+#: umit/gui/SchedulerControl.py:71 umit/gui/SchedulerControl.py:95
+#: umit/gui/SchedulerControl.py:115
 msgid "Scheduler Controller"
 msgstr ""
 
-#: umit/gui/SchedulerControl.py:61
+#: umit/gui/SchedulerControl.py:72
 msgid ""
 "You are requesting to start Scheduler as a normal user.\n"
 "\n"
@@ -1827,14 +3469,19 @@ msgid ""
 "how you can start it as root."
 msgstr ""
 
-#: umit/gui/SchedulerControl.py:97
+#: umit/gui/SchedulerControl.py:96
 msgid ""
-"You don't have permission to stop the Scheduler, for more\n"
-"information select Help, otherwise, just select OK to close this \n"
-"dialog."
+"The Scheduler couldn't be started, reason:\n"
+"\n"
 msgstr ""
 
-#: umit/gui/SchedulerControl.py:177
+#: umit/gui/SchedulerControl.py:116
+msgid ""
+"The Scheduler couldn't be stopped, reason:\n"
+"\n"
+msgstr ""
+
+#: umit/gui/SchedulerControl.py:180
 msgid "Scheduler is not running!"
 msgstr ""
 
@@ -1846,22 +3493,6 @@ msgstr ""
 #, fuzzy
 msgid "Schema Name"
 msgstr "Tjänstenamn"
-
-#: umit/gui/SchedulerEdit.py:73 umit/inventory/NewInventory.py:92
-#, fuzzy
-msgid "Scan Profile"
-msgstr "Profil"
-
-#: umit/gui/SchedulerEdit.py:82 umit/gui/SchedulerEdit.py:518
-#: umit/inventory/NewInventory.py:114
-#, fuzzy
-msgid "Scheduling Profile"
-msgstr "Borttagning av profil"
-
-#: umit/gui/SchedulerEdit.py:86 umit/inventory/NewInventory.py:119
-#, fuzzy
-msgid "Edit Profiles"
-msgstr "Profil"
 
 #: umit/gui/SchedulerEdit.py:90
 #, fuzzy
@@ -1882,10 +3513,6 @@ msgstr ""
 
 #: umit/gui/SchedulerEdit.py:98
 msgid "Add to the Inventory"
-msgstr ""
-
-#: umit/gui/SchedulerEdit.py:99 umit/inventory/NewInventory.py:82
-msgid "Enabled"
 msgstr ""
 
 #: umit/gui/SchedulerEdit.py:258
@@ -1930,19 +3557,9 @@ msgstr ""
 msgid "Minute"
 msgstr "Minuter"
 
-#: umit/gui/SchedulerEdit.py:525 umit/inventory/TLBase.py:66
-#, fuzzy
-msgid "Hour"
-msgstr "Timmar"
-
 #: umit/gui/SchedulerEdit.py:527
 msgid "Day of month"
 msgstr ""
-
-#: umit/gui/SchedulerEdit.py:529 umit/inventory/TLBase.py:64
-#, fuzzy
-msgid "Month"
-msgstr "Månader"
 
 #: umit/gui/SchedulerEdit.py:531
 #, fuzzy
@@ -2009,12 +3626,6 @@ msgstr "Umit kan inte öppna vald fil. Välj en annan."
 msgid "Script Manager"
 msgstr ""
 
-#: umit/gui/ScriptManager.py:308 umit/inventory/Viewer.py:608
-#: umit/interfaceeditor/Main.py:536
-#, fuzzy
-msgid "_File"
-msgstr "_Profil"
-
 #: umit/gui/ScriptManager.py:311 umit/gui/ScriptManager.py:619
 msgid "Add File..."
 msgstr ""
@@ -2061,10 +3672,6 @@ msgstr ""
 msgid "_Settings"
 msgstr "Avsnitt"
 
-#: umit/gui/ScriptManager.py:335 umit/inventory/ChangesList.py:320
-msgid "Refresh"
-msgstr ""
-
 #: umit/gui/ScriptManager.py:336
 msgid "Refresh scripts list"
 msgstr ""
@@ -2100,17 +3707,8 @@ msgstr "Ver_ktyg"
 msgid "Show/hide toolbar"
 msgstr ""
 
-#: umit/gui/ScriptManager.py:358 umit/inventory/SettingsWin.py:52
-#, fuzzy
-msgid "Statusbar"
-msgstr "Värdstatus"
-
 #: umit/gui/ScriptManager.py:359
 msgid "Show/hide statusbar"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:362 umit/inventory/ChangesList.py:97
-msgid "Categories"
 msgstr ""
 
 #: umit/gui/ScriptManager.py:363
@@ -2232,10 +3830,6 @@ msgstr "Datum"
 msgid "General search parameters"
 msgstr ""
 
-#: umit/gui/SearchGUI.py:125 umit/interfaceeditor/Tools.py:587
-msgid "Option"
-msgstr "Alternativ"
-
 #: umit/gui/SearchGUI.py:129
 msgid "Keyword"
 msgstr "Nyckelord"
@@ -2244,26 +3838,9 @@ msgstr "Nyckelord"
 msgid "Host search parameters"
 msgstr ""
 
-#: umit/gui/SearchGUI.py:148 umit/db/Search.py:110
-#: umit/inventory/InventoryTree.py:44
-msgid "MAC"
-msgstr "MAC"
-
-#: umit/gui/SearchGUI.py:149 umit/inventory/InventoryTree.py:44
-msgid "IPv4"
-msgstr "IPv4"
-
-#: umit/gui/SearchGUI.py:150 umit/inventory/InventoryTree.py:44
-msgid "IPv6"
-msgstr "IPv6"
-
 #: umit/gui/SearchGUI.py:165
 msgid "Service search parameters"
 msgstr ""
-
-#: umit/gui/SearchGUI.py:168 umit/db/Search.py:177
-msgid "Port number"
-msgstr "Portnummer"
 
 #: umit/gui/SearchGUI.py:171
 msgid "Port state"
@@ -2327,6 +3904,10 @@ msgid ""
 "select a method by choosing a directory or by checking the search data base "
 "option at the 'Search options' tab before start the search"
 msgstr ""
+
+#: umit/gui/SearchGUI.py:468
+msgid "Unknown"
+msgstr "Okänt"
 
 #: umit/gui/SearchGUI.py:784
 msgid "/"
@@ -2482,1268 +4063,6 @@ msgstr "Expert"
 msgid ""
 "You wish to create a new profile, or just want to quickly create a command "
 "and run it once?"
-msgstr ""
-
-#: umit/db/InventoryChanges.py:111
-#, fuzzy
-msgid "Host down"
-msgstr "Värd %s"
-
-#: umit/db/InventoryChanges.py:165
-msgid "Host added to the Inventory."
-msgstr ""
-
-#: umit/db/InventoryChanges.py:255
-msgid "changed info"
-msgstr ""
-
-#: umit/db/InventoryChanges.py:263
-msgid "Fingerprint, "
-msgstr ""
-
-#: umit/db/InventoryChanges.py:271
-msgid "OS Match, "
-msgstr ""
-
-#: umit/db/InventoryChanges.py:281
-msgid "and OS Classes"
-msgstr ""
-
-#: umit/db/InventoryChanges.py:283 umit/db/Search.py:107
-#: umit/inventory/ChangesDiff.py:325
-#, fuzzy
-msgid "OS Classes"
-msgstr "Klass:"
-
-#: umit/db/InventoryChanges.py:291
-#, fuzzy
-msgid " changed."
-msgstr "Spara ändringar"
-
-#: umit/db/InventoryChanges.py:306
-msgid "No noticeables changes since last sucessfull scan."
-msgstr ""
-
-#: umit/db/InventoryChanges.py:324 umit/inventory/Utils.py:5
-msgid "s"
-msgstr ""
-
-#: umit/db/InventoryChanges.py:335
-#, fuzzy
-msgid "closed"
-msgstr "Stängd"
-
-#: umit/db/InventoryChanges.py:336
-#, fuzzy
-msgid "open"
-msgstr "Öppen"
-
-#: umit/db/InventoryChanges.py:337
-#, fuzzy
-msgid "now"
-msgstr "Okänt"
-
-#: umit/db/InventoryChanges.py:339
-#, fuzzy
-msgid "and"
-msgstr "Kommando"
-
-#: umit/db/Search.py:26
-#, fuzzy
-msgid "change"
-msgstr "Spara ändringar"
-
-#: umit/db/Search.py:26
-#, fuzzy
-msgid "changes"
-msgstr "Spara ändringar"
-
-#: umit/db/Search.py:27
-#, fuzzy
-msgid "port"
-msgstr "Port"
-
-#: umit/db/Search.py:27
-#, fuzzy
-msgid "ports"
-msgstr "Portar"
-
-#: umit/db/Search.py:27
-#, fuzzy
-msgid "service"
-msgstr "Tjänst"
-
-#: umit/db/Search.py:113 umit/inventory/ChangesDiff.py:298
-#: umit/inventory/TLBase.py:44
-msgid "Fingerprint"
-msgstr ""
-
-#: umit/db/Search.py:204
-#, fuzzy
-msgid "Service name"
-msgstr "Tjänstenamn"
-
-#: umit/db/Search.py:211
-#, fuzzy
-msgid "Service info"
-msgstr "Tjänsteversion"
-
-#: umit/db/Search.py:238
-#, fuzzy
-msgid "Changes"
-msgstr "Spara ändringar"
-
-#: umit/core/Diff.py:34 umit/core/DiffHtml.py:135 umit/core/I18N.py:77
-msgid "Umit - Take the red pill"
-msgstr "Umit - Ta det röda pillret"
-
-#: umit/core/Diff.py:35
-msgid "http://www.umitproject.org"
-msgstr "http://www.umitproject.org"
-
-#: umit/core/Diff.py:37 umit/core/DiffHtml.py:136
-msgid "This diff was generated by Umit"
-msgstr "Denna diff genererades av Umit"
-
-#: umit/core/Diff.py:38
-msgid "(Changes to this file can make Umit unable to read it.)"
-msgstr "(Ändringar i denna fil kan göra att Umit inte kan läsa den.)"
-
-#: umit/core/Diff.py:42
-msgid " Start of diff "
-msgstr ""
-
-#: umit/core/Diff.py:44
-msgid " End of diff "
-msgstr ""
-
-#: umit/core/DiffHtml.py:156
-msgid "Changes to this file can make Umit unable to read it."
-msgstr "Ändringar i denna fil kan göra att Umit inte kan läsa den."
-
-#: umit/core/DiffHtml.py:157
-msgid "Regular Text Diff: "
-msgstr ""
-
-#: umit/core/NmapCommand.py:41
-msgid "Python 2.4 or later is required."
-msgstr "Python 2.4 eller senare krävs."
-
-#: umit/core/Scheduler.py:596
-msgid "UMIT: Status Report for scheduled schema"
-msgstr ""
-
-#: umit/core/Scheduler.py:599
-msgid "There was a scheduled job that just finished:"
-msgstr ""
-
-#: umit/core/Scheduler.py:601
-msgid "Follows an attachment of the job output."
-msgstr ""
-
-#: umit/core/UmitConf.py:155 umit/inventory/TLBase.py:79
-msgid "Hours"
-msgstr "Timmar"
-
-#: umit/core/UmitConf.py:156 umit/inventory/TLBase.py:78
-msgid "Days"
-msgstr "Dygn"
-
-#: umit/core/UmitConf.py:157
-msgid "Weeks"
-msgstr "Veckor"
-
-#: umit/core/UmitConf.py:158 umit/inventory/TLBase.py:77
-msgid "Months"
-msgstr "Månader"
-
-#: umit/core/UmitConf.py:159
-msgid "Years"
-msgstr "År"
-
-#: umit/core/UmitConf.py:160 umit/inventory/RefreshDialog.py:39
-#: umit/inventory/TLBase.py:80
-msgid "Minutes"
-msgstr "Minuter"
-
-#: umit/core/UmitConf.py:161
-msgid "Seconds"
-msgstr "Sekunder"
-
-#: umit/core/UmitDB.py:43
-#, fuzzy
-msgid ""
-"No module named pysqlite2 or sqlite3.\n"
-"            Please install pysqlite2 or sqlite3."
-msgstr "Ingen modul med namnet dbapi2.pysqlite2 eller sqlite3"
-
-#: umit/core/UmitOptionParser.py:40
-msgid "Start Umit Network Inventory."
-msgstr ""
-
-#: umit/core/UmitOptionParser.py:49
-msgid "Open Umit and runs a Nmap scan with specified args."
-msgstr "Öppna Umit och kör en Nmap-avsökning med angivna argument."
-
-#: umit/core/UmitOptionParser.py:57
-msgid ""
-"Open Umit with the specified profile selected. If combined with the -t (--"
-"target) option, open Umit and automatically run the profile against the "
-"specified target."
-msgstr ""
-
-#: umit/core/UmitOptionParser.py:66
-msgid ""
-"*NOT IMPLEMENTED* - Open the diff compare window, in compare mode comparing "
-"the two given scan result files (Nmap XML output or usr (Umit Scan Result) "
-"file)."
-msgstr ""
-
-#: umit/core/UmitOptionParser.py:75
-msgid ""
-"*NOT IMPLEMENTED* - Open the diff compare window, in text mode comparing the "
-"two given scan result files (Nmap XML output or usr, Umit Scan Result)."
-msgstr ""
-
-#: umit/core/UmitOptionParser.py:85
-msgid ""
-"*NOT IMPLEMENTED* - Take two scan result files (Nmap XML output or usr, Umit "
-"Scan Result), make a text diff and print it in the terminal without openning "
-"Umit Interface."
-msgstr ""
-
-#: umit/core/UmitOptionParser.py:96
-msgid ""
-"*NOT IMPLEMENTED* - Run Umit and go straight to NSE Facilitator Interface. "
-"You may specify nse scripts as arguments if you want use them."
-msgstr ""
-
-#: umit/core/UmitOptionParser.py:107
-msgid ""
-"Specify a target to be used along with other options. If specified alone, "
-"opens Umit with the target field filled with the specified target"
-msgstr ""
-
-#: umit/core/UmitOptionParser.py:122
-msgid ""
-"Specify a scan result file in Nmap XML Output or Umit Scan Result file. Can "
-"be used more than once to specify several scan result files."
-msgstr ""
-
-#: umit/core/UmitOptionParser.py:131
-msgid "*NOT IMPLEMENTED* - Open Umit showing the given file at Umit Mapper"
-msgstr ""
-
-#: umit/core/UmitOptionParser.py:138
-msgid ""
-"Increase verbosity of the output. May be used more than once to get even "
-"more verbosity"
-msgstr ""
-
-#: umit/inventory/About.py:48
-msgid "Build"
-msgstr ""
-
-#: umit/inventory/About.py:51
-msgid "UMIT Network Inventory and UMIT Scheduler are UMIT\n"
-msgstr ""
-
-#: umit/inventory/About.py:52
-msgid "extensions developed by"
-msgstr ""
-
-#: umit/inventory/About.py:53
-msgid ""
-"and was sponsored by Google during the Summer of Code 2007.\n"
-"Thanks Google!"
-msgstr ""
-
-#: umit/inventory/About.py:71 umit/inventory/Viewer.py:675
-msgid "About UMIT Network Inventory"
-msgstr ""
-
-#: umit/inventory/Calendar.py:32
-msgid "January"
-msgstr "Januari"
-
-#: umit/inventory/Calendar.py:32
-msgid "February"
-msgstr "Februari"
-
-#: umit/inventory/Calendar.py:32
-msgid "March"
-msgstr "Mars"
-
-#: umit/inventory/Calendar.py:32
-msgid "April"
-msgstr "April"
-
-#: umit/inventory/Calendar.py:32
-msgid "May"
-msgstr "Maj"
-
-#: umit/inventory/Calendar.py:33
-msgid "June"
-msgstr "Juni"
-
-#: umit/inventory/Calendar.py:33
-msgid "July"
-msgstr "Juli"
-
-#: umit/inventory/Calendar.py:33
-msgid "August"
-msgstr "Augusti"
-
-#: umit/inventory/Calendar.py:33
-msgid "September"
-msgstr "September"
-
-#: umit/inventory/Calendar.py:34
-msgid "October"
-msgstr "Oktober"
-
-#: umit/inventory/Calendar.py:34
-msgid "November"
-msgstr "November"
-
-#: umit/inventory/Calendar.py:34
-msgid "December"
-msgstr "December"
-
-#: umit/inventory/Calendar.py:37
-#, fuzzy
-msgid "Monday"
-msgstr "Maj"
-
-#: umit/inventory/Calendar.py:37
-msgid "Tuesday"
-msgstr ""
-
-#: umit/inventory/Calendar.py:37
-msgid "Wednesday"
-msgstr ""
-
-#: umit/inventory/Calendar.py:37
-msgid "Thursday"
-msgstr ""
-
-#: umit/inventory/Calendar.py:38
-msgid "Friday"
-msgstr ""
-
-#: umit/inventory/Calendar.py:38
-msgid "Saturday"
-msgstr ""
-
-#: umit/inventory/Calendar.py:38
-#, fuzzy
-msgid "Sunday"
-msgstr "Sammandrag"
-
-#: umit/inventory/ChangesDiff.py:31
-msgid "Nothing being shown."
-msgstr ""
-
-#: umit/inventory/ChangesDiff.py:35
-#, fuzzy
-msgid "Status"
-msgstr "Tillstånd"
-
-#: umit/inventory/ChangesDiff.py:36
-msgid "Previous value"
-msgstr ""
-
-#: umit/inventory/ChangesDiff.py:53
-msgid "L"
-msgstr ""
-
-#: umit/inventory/ChangesDiff.py:121
-#, fuzzy
-msgid "No data"
-msgstr "Ingen avsökningsflik"
-
-#: umit/inventory/ChangesDiff.py:122
-msgid "No data available for this host on this date"
-msgstr ""
-
-#: umit/inventory/ChangesDiff.py:269 umit/inventory/ChangesDiff.py:270
-#: umit/inventory/ChangesDiff.py:281
-#, fuzzy
-msgid "count"
-msgstr "Antal"
-
-#: umit/inventory/ChangesDiff.py:301
-msgid "Uptime"
-msgstr ""
-
-#: umit/inventory/ChangesDiff.py:534
-#, fuzzy
-msgid "TCP Sequence Class"
-msgstr "TCP-sekvens"
-
-#: umit/inventory/ChangesDiff.py:535
-#, fuzzy
-msgid "TCP Sequence Index"
-msgstr "TCP-sekvens"
-
-#: umit/inventory/ChangesDiff.py:536
-#, fuzzy
-msgid "TCP Sequence Difficulty"
-msgstr "TCP-sekvens"
-
-#: umit/inventory/ChangesDiff.py:538
-#, fuzzy
-msgid "TCP Sequence Value"
-msgstr "TCP-sekvens"
-
-#: umit/inventory/ChangesDiff.py:540
-#, fuzzy
-msgid "IP ID Sequence Class"
-msgstr "TCP-sekvens"
-
-#: umit/inventory/ChangesDiff.py:542
-#, fuzzy
-msgid "IP ID Sequence Value"
-msgstr "TCP-sekvens"
-
-#: umit/inventory/ChangesDiff.py:545
-#, fuzzy
-msgid "TCP TS Sequence Class"
-msgstr "TCP-sekvens"
-
-#: umit/inventory/ChangesDiff.py:547
-#, fuzzy
-msgid "TCP TS Sequence Value"
-msgstr "TCP-sekvens"
-
-#: umit/inventory/ChangesList.py:95 umit/inventory/ChangesList.py:324
-#: umit/inventory/ChangesList.py:344
-msgid "Inventories"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:221 umit/inventory/TLBase.py:41
-#: umit/inventory/Viewer.py:530
-msgid "Inventory"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:221
-#, fuzzy
-msgid "Host address"
-msgstr "Värdnamn"
-
-#: umit/inventory/ChangesList.py:222
-msgid "Category"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:222
-#, fuzzy
-msgid "Short change description"
-msgstr "Tjänstebeskrivning"
-
-#: umit/inventory/ChangesList.py:223
-msgid "Change date"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:325
-msgid "Timeline for this host"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:345
-#, fuzzy
-msgid "Options"
-msgstr "Alternativ"
-
-#: umit/inventory/ChangesList.py:402 umit/inventory/Timeline.py:68
-msgid "Viewing"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:403
-msgid "of"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:405
-#, fuzzy
-msgid "Nothing to view"
-msgstr "Ingenting att spara"
-
-#: umit/inventory/DataRemoval.py:44
-msgid "Delete data older than"
-msgstr ""
-
-#: umit/inventory/DataRemoval.py:45
-#, fuzzy
-msgid "days"
-msgstr "Dygn"
-
-#: umit/inventory/DataRemoval.py:50
-msgid "Set value as 0 to disable data removal"
-msgstr ""
-
-#: umit/inventory/DataRemoval.py:81
-msgid "Configure Inventory Data Removal"
-msgstr ""
-
-#: umit/inventory/DataRemoval.py:117
-msgid "<b>Please wait...</b>"
-msgstr ""
-
-#: umit/inventory/DataRemoval.py:119
-msgid "Removing data from Network Inventory database"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:145
-#, fuzzy
-msgid "Host Discovery"
-msgstr "Värddetaljer"
-
-#: umit/inventory/HostDiscovery.py:155
-msgid "Detect network(s)"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:158
-msgid "Add new entry"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:160
-msgid "Find hosts"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:163 umit/inventory/HostDiscovery.py:336
-#: umit/inventory/HostDiscovery.py:369
-#, fuzzy
-msgid "Target list"
-msgstr "Mål"
-
-#: umit/inventory/HostDiscovery.py:170
-msgid "Network"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:178
-msgid "Remove from list"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:191
-msgid "Add new entry for a network"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:193
-msgid "Try to detect network(s)"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:195
-msgid "Find hosts in entered network(s)"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:197
-msgid "Remove selection from target list"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:271
-#, fuzzy
-msgid "No network(s) detected."
-msgstr "Ingen värd markerad!"
-
-#: umit/inventory/HostDiscovery.py:272
-msgid ""
-"You will need to especify the network(s) yourself before detecting hosts."
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:308
-msgid "No network."
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:309
-msgid "You need to specify at least one network to search for hosts."
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:334 umit/inventory/InventoryTree.py:267
-#: umit/inventory/InventoryTree.py:318
-#, fuzzy
-msgid "scan"
-msgstr "Sök av"
-
-#: umit/inventory/HostDiscovery.py:338
-#, fuzzy
-msgid "running"
-msgstr "Söker av"
-
-#: umit/inventory/HostDiscovery.py:379
-msgid "Invalid network(s)."
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:381
-msgid "There is some invalid character in network"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:382
-msgid "please verify."
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:409
-msgid "Network list"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:414
-msgid "Sample 192.168.254.0/24"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:439
-#, fuzzy
-msgid "Use target list"
-msgstr "Ingen målvärd!"
-
-#: umit/inventory/InventoryCommonDialog.py:12
-msgid "Inventory without scheduling profile."
-msgstr ""
-
-#: umit/inventory/InventoryCommonDialog.py:14
-msgid ""
-"This Inventory was created when a scan realized in UMIT was requested to be "
-"added to the Network Inventory Viewer, so there is no scheduling profile for "
-"it.\n"
-"\n"
-"This Inventory is not editable.\n"
-"\n"
-"(If the mentioned reason above is incorrect, either you have a database from "
-"somewhere else or report as bug)"
-msgstr ""
-
-#: umit/inventory/InventoryException.py:9
-msgid "No inventory named"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:42 umit/inventory/Viewer.py:61
-msgid "Info"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:62 umit/inventory/InventoryTree.py:189
-msgid "My Inventories"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:225
-#, fuzzy
-msgid "Scan will not run!"
-msgstr "Avsökningen är inte färdig än!"
-
-#: umit/inventory/InventoryTree.py:226 umit/inventory/InventoryTree.py:283
-msgid "You tried running scan for Inventory"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:228
-msgid ""
-"but it has no data in Scheduler schemas file, neither in database.\n"
-"\n"
-"Error returned:"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:267 umit/inventory/InventoryTree.py:320
-#, fuzzy
-msgid " running"
-msgstr "Söker av"
-
-#: umit/inventory/InventoryTree.py:282
-msgid "Scan failed to run!"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:285
-msgid "but it returned the following"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:300
-msgid "Database couldn't be updated!"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:301
-msgid "The scan for the Inventory"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:303
-msgid "finished but it couldn't be added to the database."
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:354
-msgid "Expand All"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:358
-msgid "Collapse All"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:365 umit/inventory/InventoryTree.py:375
-msgid "View by"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:409
-#, python-format
-msgid "Edit %s"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:412
-msgid "Run scan now"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:65
-msgid "Editing Inventory"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:67
-msgid "New Inventory"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:77
-msgid "Inventory's name"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:80
-#, fuzzy
-msgid "in use"
-msgstr "Minuter"
-
-#: umit/inventory/NewInventory.py:85
-msgid "Use default scan options"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:91
-msgid "Use advanced scan options"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:100
-#, fuzzy
-msgid "Command Wizard"
-msgstr "_Kommandoguide"
-
-#: umit/inventory/NewInventory.py:109
-#, fuzzy
-msgid "Scan target"
-msgstr "Avsökningstyp:"
-
-#: umit/inventory/NewInventory.py:111
-msgid "Use host discovery"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:131
-msgid "nmap -T Aggressive -sV -n -O -v target"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:323 umit/inventory/NewInventory.py:343
-#: umit/inventory/NewInventory.py:363
-msgid "New Inventory - Error while creating."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:324
-msgid "You tried to use an existing Inventory name or you didn't specify one."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:333
-msgid "New Inventory - Error  while creating."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:334
-msgid "You didn't specify any target."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:344
-msgid "You need to toggle \"Use default scan options\" or specify a command."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:364
-msgid ""
-"It seems you removed <target> from the Scan command entry, you need to leave "
-"it somewhere there."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:529
-msgid "Changes in command won't be saved!"
-msgstr ""
-
-#: umit/inventory/RefreshDialog.py:35
-msgid "Refresh Time"
-msgstr ""
-
-#: umit/inventory/SchedulerLog.py:81
-msgid "Scheduler Log"
-msgstr ""
-
-#: umit/inventory/SearchBar.py:54
-msgid "Search term"
-msgstr ""
-
-#: umit/inventory/SearchBar.py:65
-#, fuzzy
-msgid "Find devices"
-msgstr "Tjänster"
-
-#: umit/inventory/SearchBar.py:88 umit/inventory/SearchBar.py:92
-#, fuzzy
-msgid "Search in"
-msgstr "Sökfönster"
-
-#: umit/inventory/SearchBar.py:89 umit/inventory/SearchBar.py:93
-msgid "All Inventories"
-msgstr ""
-
-#: umit/inventory/SearchBar.py:130
-msgid "Impossible to perform search."
-msgstr ""
-
-#: umit/inventory/SearchBar.py:131
-msgid ""
-"Connection to the database isn't established. There are some possible "
-"reasons: your UMIT database could be corrupted, missing, or something more "
-"strange, or, you aren't running this inside UMIT.\n"
-"\n"
-"If you suspect this is a bug, please report it."
-msgstr ""
-
-#: umit/inventory/SearchBar.py:145
-msgid "Specify an Inventory."
-msgstr ""
-
-#: umit/inventory/SearchBar.py:146
-msgid "You need to select one or All Inventories in order to perform a search."
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:43
-msgid "Timeline Settings"
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:44
-msgid "Timeline view mode"
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:45
-msgid "Timeline view kind"
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:49
-#, fuzzy
-msgid "Devices tab"
-msgstr "Tjänster"
-
-#: umit/inventory/SettingsWin.py:50 umit/inventory/Viewer.py:690
-msgid "Place close button"
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:53
-msgid "Show tips"
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:153
-msgid "Network Inventory Settings"
-msgstr ""
-
-#: umit/inventory/TLBarDisplay.py:35
-#, fuzzy
-msgid "No Selection"
-msgstr "Avsnitt"
-
-#: umit/inventory/TLBarDisplay.py:36
-#, fuzzy
-msgid "No Changes"
-msgstr "Spara ändringar"
-
-#: umit/inventory/TLBarDisplay.py:37
-msgid "Changes Statistics"
-msgstr ""
-
-#: umit/inventory/TLBase.py:40
-#, fuzzy
-msgid "Nothing"
-msgstr "Ingenting att spara"
-
-#: umit/inventory/TLBase.py:42
-#, fuzzy
-msgid "Availability"
-msgstr "Inte tillgänglig"
-
-#: umit/inventory/TLBase.py:43
-#, fuzzy
-msgid "Several"
-msgstr "Allmänt"
-
-#: umit/inventory/TLBase.py:49 umit/inventory/TLBase.py:70
-msgid "Changes Sum"
-msgstr ""
-
-#: umit/inventory/TLBase.py:54
-msgid "Yearly View"
-msgstr ""
-
-#: umit/inventory/TLBase.py:55
-msgid "Monthly View"
-msgstr ""
-
-#: umit/inventory/TLBase.py:56
-msgid "Daily View"
-msgstr ""
-
-#: umit/inventory/TLBase.py:57
-msgid "Hourly View"
-msgstr ""
-
-#: umit/inventory/TLBase.py:63
-#, fuzzy
-msgid "Year"
-msgstr "År"
-
-#: umit/inventory/TLBase.py:65
-#, fuzzy
-msgid "Day"
-msgstr "Dygn"
-
-#: umit/inventory/TLBase.py:71
-msgid "By Category"
-msgstr ""
-
-#: umit/inventory/TLBase.py:223
-msgid "end of a week"
-msgstr ""
-
-#: umit/inventory/TLBase.py:223
-msgid "end of 12 hours period"
-msgstr ""
-
-#: umit/inventory/TLBase.py:224
-msgid "end of half hour period"
-msgstr ""
-
-#: umit/inventory/TLBase.py:224
-msgid "end of a minute"
-msgstr ""
-
-#: umit/inventory/TLBase.py:227
-msgid "Each point break represents "
-msgstr ""
-
-#: umit/inventory/TLBase.py:273
-#, fuzzy, python-format
-msgid "Year %s"
-msgstr "År"
-
-#: umit/inventory/TLChangesTree.py:25
-#, fuzzy
-msgid "View all changes"
-msgstr "Spara ändringar"
-
-#: umit/inventory/TLChangesTree.py:26
-msgid "Changes listing"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:32
-#: umit/inventory/TLGraphPreferences.py:208
-#: umit/inventory/TLGraphPreferences.py:211
-#: umit/inventory/TLGraphPreferences.py:296 umit/inventory/TLGraphToolbar.py:43
-msgid "Custom"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:32
-#: umit/inventory/TLGraphPreferences.py:179
-#: umit/inventory/TLGraphPreferences.py:189
-#: umit/inventory/TLGraphPreferences.py:292
-msgid "Standard"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:32
-#: umit/inventory/TLGraphPreferences.py:179
-#: umit/inventory/TLGraphPreferences.py:190
-#: umit/inventory/TLGraphPreferences.py:293
-msgid "Best Performance"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:33
-#: umit/inventory/TLGraphPreferences.py:179
-#: umit/inventory/TLGraphPreferences.py:192
-#: umit/inventory/TLGraphPreferences.py:294
-msgid "Best Visual"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:52
-msgid "Graph Preferences Editor"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:65
-msgid "Horizontal divisors"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:70
-msgid "<b>Points higlight</b>"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:71
-#, fuzzy
-msgid "On Selection"
-msgstr "Avsnitt"
-
-#: umit/inventory/TLGraphPreferences.py:73
-#, fuzzy
-msgid "Always"
-msgstr "Dygn"
-
-#: umit/inventory/TLGraphPreferences.py:74
-msgid "Boundary points only"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:76
-msgid "Every point"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:77
-msgid "Show balloons on selection"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:79
-msgid "Draw vertical lines"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:80
-#, fuzzy
-msgid "Dashed"
-msgstr "Dygn"
-
-#: umit/inventory/TLGraphPreferences.py:82
-msgid "Solid"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:84
-msgid "Gradient background"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:85
-msgid "Vertical gradient"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:87
-msgid "Horizontal gradient"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:89
-msgid "On selection do progressive fill"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:91
-msgid "Solid fill"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:93
-msgid "Gradient fill"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:39
-msgid "Refresh Now"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:39
-msgid "Refresh Enabled"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:40
-msgid "Refresh Every minute"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:41
-msgid "Refresh Every 5 minutes"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:42
-msgid "Refresh Every hour"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:114
-msgid "Select visualization"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:136
-msgid "Line Graph"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:136
-msgid "Area Graph"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:138
-msgid "Select a graph style"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:153
-msgid "Visible"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:153
-#, fuzzy
-msgid "Hidden"
-msgstr "Tips"
-
-#: umit/inventory/TLGraphToolbar.py:155
-msgid "Graph visibility"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:176
-msgid "Graph Preferences"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:181
-msgid "Edit Graph Preferences"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:260
-msgid "Graph Refresh"
-msgstr ""
-
-#: umit/inventory/Timeline.py:56
-msgid "Number of events"
-msgstr ""
-
-#: umit/inventory/Viewer.py:360
-#, fuzzy
-msgid "Scan count:"
-msgstr "Avsökningstyp:"
-
-#: umit/inventory/Viewer.py:368
-msgid "Last scan date:"
-msgstr ""
-
-#: umit/inventory/Viewer.py:374
-#, fuzzy
-msgid "Scan args"
-msgstr "Sök av "
-
-#: umit/inventory/Viewer.py:374
-msgid "XML output version"
-msgstr ""
-
-#: umit/inventory/Viewer.py:374
-#, fuzzy
-msgid "Verbose"
-msgstr "Informationsnivå:"
-
-#: umit/inventory/Viewer.py:375
-#, fuzzy
-msgid "Scanner name"
-msgstr "Söker av"
-
-#: umit/inventory/Viewer.py:389
-#, fuzzy
-msgid "Hosts: "
-msgstr "Värdar"
-
-#: umit/inventory/Viewer.py:394
-msgid "Host count:"
-msgstr ""
-
-#: umit/inventory/Viewer.py:519
-msgid "A page was open at Historic tab!"
-msgstr ""
-
-#: umit/inventory/Viewer.py:531
-msgid "First Matched Category"
-msgstr ""
-
-#: umit/inventory/Viewer.py:531
-msgid "Entry Date"
-msgstr ""
-
-#: umit/inventory/Viewer.py:547
-#, fuzzy
-msgid "result"
-msgstr "Resultat"
-
-#: umit/inventory/Viewer.py:550
-msgid " found."
-msgstr ""
-
-#: umit/inventory/Viewer.py:569
-#, fuzzy, python-format
-msgid "Search: %s"
-msgstr "Sökfönster"
-
-#: umit/inventory/Viewer.py:609
-#, fuzzy
-msgid "_Edit"
-msgstr "A_vsluta"
-
-#: umit/inventory/Viewer.py:613
-msgid "Tool_bar"
-msgstr ""
-
-#: umit/inventory/Viewer.py:614
-#, fuzzy
-msgid "Devices _tab"
-msgstr "Tjänster"
-
-#: umit/inventory/Viewer.py:615
-msgid "_Inventories"
-msgstr ""
-
-#: umit/inventory/Viewer.py:619
-msgid "_New Inventory"
-msgstr ""
-
-#: umit/inventory/Viewer.py:620
-msgid "Create new Inventory"
-msgstr ""
-
-#: umit/inventory/Viewer.py:624
-#, fuzzy
-msgid "Close Device tab"
-msgstr "Stäng aktuell avsökningsflik"
-
-#: umit/inventory/Viewer.py:625
-#, fuzzy
-msgid "Close current host tab"
-msgstr "Stäng aktuell avsökningsflik"
-
-#: umit/inventory/Viewer.py:629
-#, fuzzy
-msgid "Close Inventory tab"
-msgstr "Stäng aktuell avsökningsflik"
-
-#: umit/inventory/Viewer.py:630
-#, fuzzy
-msgid "Close current Inventory tab"
-msgstr "Stäng aktuell avsökningsflik"
-
-#: umit/inventory/Viewer.py:635
-msgid "Close Network Inventory"
-msgstr ""
-
-#: umit/inventory/Viewer.py:640 umit/inventory/Viewer.py:641
-msgid "Data Removal"
-msgstr ""
-
-#: umit/inventory/Viewer.py:645 umit/inventory/Viewer.py:646
-msgid "Startup settings"
-msgstr ""
-
-#: umit/inventory/Viewer.py:652
-msgid "Scheduler log"
-msgstr ""
-
-#: umit/inventory/Viewer.py:653
-msgid "View Scheduler log"
-msgstr ""
-
-#: umit/inventory/Viewer.py:683
-msgid "Show ti_ps"
-msgstr ""
-
-#: umit/inventory/Viewer.py:684
-msgid "Enable disable tip showing"
-msgstr ""
-
-#: umit/inventory/Viewer.py:691
-msgid "Place a close button upon tab creation"
-msgstr ""
-
-#: umit/inventory/Viewer.py:893
-msgid "UMIT Network Inventory"
-msgstr ""
-
-#: umit/inventory/Viewer.py:932
-msgid " Historic "
-msgstr ""
-
-#: umit/inventory/Viewer.py:933
-msgid " Timeline "
 msgstr ""
 
 #: umit/plugin/Network.py:49
@@ -3956,325 +4275,9 @@ msgstr "Filändelse"
 msgid "Paths"
 msgstr "Portar"
 
-#: umit/interfaceeditor/DependencesOption.py:46
-msgid "Dependence of Option "
-msgstr ""
-
-#: umit/interfaceeditor/DependencesOption.py:54
-msgid ""
-"There is a problem deleting this option. This options have dependences.  "
-msgstr ""
-
-#: umit/interfaceeditor/DependencesOption.py:55
-msgid ""
-"Are you sure that can remove this option? Dependences should be removed too"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:76
-msgid "Umit Interface Editor - v0.1"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:229
 #, fuzzy
-msgid "Edit Modes"
-msgstr "Textläge"
-
-#: umit/interfaceeditor/Main.py:237
-#, fuzzy
-msgid "Option List"
-msgstr "Alternativ"
-
-#: umit/interfaceeditor/Main.py:410
-#, fuzzy
-msgid "Proprieties"
-msgstr "Portar"
-
-#: umit/interfaceeditor/Main.py:537
-#, fuzzy
-msgid "_Save"
-msgstr "_Spara avsökning"
-
-#: umit/interfaceeditor/Main.py:537
-#, fuzzy
-msgid "Save"
-msgstr "Tillstånd"
-
-#: umit/interfaceeditor/Main.py:538
-#, fuzzy
-msgid "_Save all"
-msgstr "_Spara avsökning"
-
-#: umit/interfaceeditor/Main.py:538
-#, fuzzy
-msgid "Save all"
-msgstr "Spara avsökning"
-
-#: umit/interfaceeditor/Main.py:542
-msgid "_Undo"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:543
-msgid "_Redo"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:543
-#, fuzzy
-msgid "Redo"
-msgstr "Tillverkare"
-
-#: umit/interfaceeditor/Main.py:544
-msgid "View"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:545
-msgid "_Right Bar"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:546
-msgid "Right Bar"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:547
-#, fuzzy
-msgid "Tools"
-msgstr "Ver_ktyg"
-
-#: umit/interfaceeditor/Main.py:549
-#, fuzzy
-msgid "Items"
-msgstr "Anteckningar"
-
-#: umit/interfaceeditor/Main.py:550
-msgid "_Label"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:551
-msgid "Insert label"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:552
-#, fuzzy
-msgid "_New Section"
-msgstr "_Ny avsökning"
-
-#: umit/interfaceeditor/Main.py:553
-#, fuzzy
-msgid "New Section"
-msgstr "Avsnitt"
-
-#: umit/interfaceeditor/Main.py:554
-msgid "_Remove Section Label"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:555
-msgid "Remove Section Label"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:556 umit/interfaceeditor/Tools.py:186
-#, fuzzy
-msgid "_Remove Section"
-msgstr "Avsnitt"
-
-#: umit/interfaceeditor/Main.py:557 umit/interfaceeditor/Tools.py:187
-#, fuzzy
-msgid "Remove Section"
-msgstr "Avsnitt"
-
-#: umit/interfaceeditor/Main.py:558
-msgid "_Add new voidplace"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:559
-msgid "Add new voidplace"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:560
-#, fuzzy
-msgid "_Remove Option"
-msgstr "Profilalternativ"
-
-#: umit/interfaceeditor/Main.py:561
-msgid "Remove option"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:562
-msgid "_Remove voidplace"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:563
-msgid "Remove voidplace"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:564
-#, fuzzy
-msgid "_Add option selected"
-msgstr "Ingen värd markerad!"
-
-#: umit/interfaceeditor/Main.py:565
-#, fuzzy
-msgid "Add option selected"
-msgstr "Ingen värd markerad!"
-
-#: umit/interfaceeditor/Main.py:566 umit/interfaceeditor/Tools.py:180
-msgid "_Move Section Left"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:567 umit/interfaceeditor/Tools.py:181
-msgid "Move Section Left"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:568 umit/interfaceeditor/Tools.py:182
-msgid "_Move Section Right"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:569 umit/interfaceeditor/Tools.py:183
-msgid "Move Section Right"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:570
-msgid "_Move Item Down"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:571
-msgid "Move Item Down"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:572
-msgid "_Move Item Up"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:573
-msgid "Move Item Up"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:574
-#, fuzzy
-msgid "Help"
-msgstr "_Hjälp"
-
-#: umit/interfaceeditor/Main.py:575
-#, fuzzy
-msgid "About"
-msgstr "_Om"
-
-#: umit/interfaceeditor/OptionManager.py:136
-#, fuzzy
-msgid "Hint:"
-msgstr "Tips"
-
-#: umit/interfaceeditor/OptionManager.py:141
-msgid "Need root"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:146
-#, fuzzy
-msgid "Options:"
-msgstr "Alternativ"
-
-#: umit/interfaceeditor/OptionManager.py:155
-msgid "Arguments:"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:187
-msgid "Arguments"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:189
-msgid "Insert the description to argument:"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:355
-msgid "Invalid option "
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:446
-msgid "ERROR"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:447
-msgid "Option do not exists"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:469
-msgid "Invalid name option "
-msgstr ""
-
-#: umit/interfaceeditor/PageNotebook.py:68
-#: umit/interfaceeditor/PageNotebook.py:145
-msgid "Add/Remove Voidplace"
-msgstr ""
-
-#: umit/interfaceeditor/PageNotebook.py:198
-msgid "Move item"
-msgstr ""
-
-#: umit/interfaceeditor/PageNotebook.py:350
-msgid "Add/Remove Option"
-msgstr ""
-
-#: umit/interfaceeditor/PageNotebook.py:435
-msgid "Add/Remove Page"
-msgstr ""
-
-#: umit/interfaceeditor/Profile.py:74
-msgid "Add Label"
-msgstr ""
-
-#: umit/interfaceeditor/Profile.py:124
-msgid "Move Page"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:175
-msgid "_Move up"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:175
-msgid "Move up"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:177
-msgid "_Move down"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:178
-msgid "Move down"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:184
-#, fuzzy
-msgid "_Add Section"
-msgstr "Avsnitt"
-
-#: umit/interfaceeditor/Tools.py:185
-#, fuzzy
-msgid "Add Section"
-msgstr "Avsnitt"
-
-#: umit/interfaceeditor/Tools.py:188 umit/interfaceeditor/Tools.py:189
-msgid "Add Place"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:190 umit/interfaceeditor/Tools.py:191
-#, fuzzy
-msgid "Remove Option"
-msgstr "Profilalternativ"
-
-#: umit/interfaceeditor/Tools.py:243
-#, fuzzy
-msgid "Select a Option "
-msgstr "Välj avsökning"
-
-#: umit/interfaceeditor/Tools.py:297
-msgid "Change Label"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:362
-msgid "Update OptionList"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:613
-msgid "List of items"
-msgstr ""
+#~ msgid "running"
+#~ msgstr "Söker av"
 
 #~ msgid ""
 #~ "umit/core.NmapParser.set_ip_address deprecated! Use umit/core.NmapParser."
@@ -4305,15 +4308,15 @@ msgstr ""
 #~ "NmapParser.get_mac istället."
 
 #~ msgid ""
-#~ "umit/core.NmapParser.set_ipv6_address deprecated! Use umit/core.NmapParser."
-#~ "set_ipv6 instead."
+#~ "umit/core.NmapParser.set_ipv6_address deprecated! Use umit/core."
+#~ "NmapParser.set_ipv6 instead."
 #~ msgstr ""
 #~ "umit/core.NmapParser.set_ipv6_address är föråldrad! Använd umit/core."
 #~ "NmapParser.set_ipv6 istället."
 
 #~ msgid ""
-#~ "umit/core.NmapParser.get_ipv6_address deprecated! Use umit/core.NmapParser."
-#~ "get_ipv6 instead."
+#~ "umit/core.NmapParser.get_ipv6_address deprecated! Use umit/core."
+#~ "NmapParser.get_ipv6 instead."
 #~ msgstr ""
 #~ "umit/core.NmapParser.get_ipv6_address är föråldrad! Använd umit/core."
 #~ "NmapParser.get_ipv6 istället."
@@ -4328,8 +4331,8 @@ msgstr ""
 #~ msgstr "Okänd version"
 
 #~ msgid ""
-#~ "umit/core.NmapParser.get_ipv4_address deprecated! Use umit/core.NmapParser."
-#~ "get_ipv4 instead."
+#~ "umit/core.NmapParser.get_ipv4_address deprecated! Use umit/core."
+#~ "NmapParser.get_ipv4 instead."
 #~ msgstr ""
 #~ "umit/core.NmapParser.get_ipv4_address är föråldrad! Använd umit/core."
 #~ "NmapParser.get_ipv4 istället."
