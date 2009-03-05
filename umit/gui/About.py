@@ -386,7 +386,6 @@ Haoyu Bai <baihaoyu@gmail.com>
 
 Swedish:
 Daniel Nylander <po@danielnylander.se>
-
 """))
 
         b = self.nokia_text.get_buffer()
