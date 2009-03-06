@@ -75,6 +75,6 @@ class Splash(gtk.Window):
             gobject.idle_add(self.set_bg, widget, event, mask, pixmap)
 
 if __name__ == "__main__":
-    from os.path import join
-    s = Splash(join(".", "share", "pixmaps", "splash.png"))
+    import os
+    s = Splash(os.path.join(".", "share", "pixmaps", "umit", "splash.png"))
     gtk.main()
