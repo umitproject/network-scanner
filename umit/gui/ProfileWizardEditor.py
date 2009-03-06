@@ -193,7 +193,7 @@ class ProfileWizardEditor(HIGWindow):
         self.profile_vbox_group._pack_expand_fill(self.profile_group_sw)
         box = HIGHBox()
         box._pack_expand_fill(self.treeview)
-        self.profile_group_sw.add(box)
+        self.profile_group_sw.add_with_viewport(box)
         
         
         self.profile_hbox.pack_start(self.profile_separator)
@@ -289,7 +289,7 @@ class ProfileWizardEditor(HIGWindow):
         renderer = gtk.CellRendererText()
         column = gtk.TreeViewColumn("Name", renderer, text=0)
         treeview.append_column(column)
-        self.prop_frame_option.add(treeview)
+        prop_sw.add(treeview)
         self.prop_frame_option.add(prop_sw)
         
         
@@ -305,10 +305,8 @@ class ProfileWizardEditor(HIGWindow):
         
         self.prop_exp = HIGExpander("Proprieties")
 
-        label = gtk.Label('s')
-        self.prop_exp.add(label)
-        self.prop_frame.add(self.prop_exp)    
-        
+        self.prop_frame.add(self.prop_exp)
+
 
 
     def __grouplist(self):
