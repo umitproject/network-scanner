@@ -389,6 +389,7 @@ options = dict(
             'Intended Audience :: System Administrators',
             'License :: OSI Approved :: GNU General Public License (GPL)',
             'Programming Language :: Python :: 2',
+            'Programming Language :: Python :: 2.4'
             'Programming Language :: Python :: 2.5'
             'Programming Language :: Python :: 2.6',
             'Topic :: System :: Networking',
