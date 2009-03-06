@@ -85,16 +85,16 @@ class SearchWindow(HIGWindow, object):
         try:
             self.fraction
         except:
-            self.fraction = 0.2        
+            self.fraction = 0.2
         self.progress.set_fraction(self.fraction + self.progress.get_fraction())
 
 
     filename = property(get_filename,
                         set_filename,
-                        doc=_("File name been searched"))
+                        doc=_("File's name being searched"))
     path = property(get_path,
                     set_path,
-                    doc=_("Path been scanned"))
+                    doc=_("Path being scanned"))
     fraction = property(get_fraction,
                         set_fraction,
                         doc=_("Fraction of the progress bar"))
