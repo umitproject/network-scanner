@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2005-2006 Insecure.Com LLC.
@@ -20,35 +19,29 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
+import os
+import sys
 import gtk
-
 from xml.dom import minidom
 
 from higwidgets.higboxes import HIGHBox
 from higwidgets.higlabels import HIGEntryLabel
 from higwidgets.higbuttons import HIGButton
 
-from umit.gui.ScriptManager import ScriptChooserDialog #MAX
+from umit.gui.ScriptManager import ScriptChooserDialog
 from umit.gui.FileChoosers import AllFilesFileChooserDialog
-
-#from umit.core.UmitConf import is_maemo
 
 from umit.core.NmapOptions import NmapOptions
 from umit.core.I18N import _
+from umit.core.Utils import amiroot
 from umit.core.OptionsConf import options_file
-import os, sys
 
-## Integration 
-#class OptionTab(object):
-    #def __init__(self, root_tab, options, constructor, update_func):
-        #actions = {'option_list':self.__parse_option_list,\
-                   #'option_check':self.__parse_option_check}
 
-#<<<<<<< .working
 class OptionTab(object):
     def __init__(self, root_tab, options, constructor, update_func):
-        actions = {'option_list':self.__parse_option_list,\
-                   'option_check':self.__parse_option_check}
+        actions = {
+                'option_list':self.__parse_option_list,
+                'option_check':self.__parse_option_check}
 
         self.options = options
         self.constructor = constructor
@@ -56,7 +49,7 @@ class OptionTab(object):
         self.widgets_list = []
 
         options_used = self.constructor.get_options()
-        
+
         # Cannot use list comprehhension because text nodes raise exception
         # when tagName is called
         for option_element in root_tab.childNodes:
@@ -64,53 +57,39 @@ class OptionTab(object):
             except:pass
             else:
                 if option_element.tagName in actions.keys():
-                    self.widgets_list.append(actions[option_element.tagName](option_element, options_used))
+                    self.widgets_list.append(
+                            actions[option_element.tagName](option_element,
+                                options_used))
 
     def __parse_option_list(self, option_list, options_used):
         options = option_list.getElementsByTagName(u'option')
-        
+
         label = HIGEntryLabel(option_list.getAttribute(u'label'))
         opt_list = OptionList()
-        
+
         for opt in options:
             opt_list.append(self.options.get_option(opt.getAttribute(u'name')))
-        
+
         for i, row in enumerate(opt_list.list):
             if row[0] in options_used:
                 opt_list.set_active(i)
-                
+
         return label, opt_list
-    
-    def is_root(self):
-        """
-        Returns if is a root users
-        """
-        
-        root = False
-        try:
-            if sys.platform == 'win32': root = True
-            elif os.getuid() == 0: root = True
-        except: pass
-        return root
-    
+
     def _disable_option(self, need_root):
         """
         enable / disable option if non-root user.
         """
-        is_root = self.is_root()
+        return not amiroot() and need_root
 
-        return not is_root and need_root
-    
-    
+
     def __with_icon(self, hint):
         """
         Return true or false: if is a option with icon or without.
         """
         return hint!=""
-    
+
     def __parse_option_check(self, option_check, options_used):
-        #arg_type = option_check.getAttribute(u'arg_type')
-        
         option = option_check.getAttribute(u'option')
         arg_type = self.options.get_arg_type(option)
         label = option_check.getAttribute(u'label')
@@ -123,18 +102,17 @@ class OptionTab(object):
 
         else:
             check = OptionCheck(label, opt_parse)
-        check.set_active(option in options_used)  
+        check.set_active(option in options_used)
         if self._disable_option(need_root):
             check.disable_widget()
-        type_mapping = { 
-            "str": OptionEntry,
-            "int": OptionIntSpin,
-            "float": OptionFloatSpin,
-            "level": OptionLevelSpin, 
-            "path": OptionFile,
-            "interface": OptionInterface, 
-            "scriptlist": OptionScriptList
-            }
+        type_mapping = {
+                "str": OptionEntry,
+                "int": OptionIntSpin,
+                "float": OptionFloatSpin,
+                "level": OptionLevelSpin,
+                "path": OptionFile,
+                "interface": OptionInterface,
+                "scriptlist": OptionScriptList}
 
         additional = None
         if type_mapping.has_key(arg_type):
@@ -170,7 +148,7 @@ class OptionTab(object):
                 widget[1].entry.connect('changed', self.update_entry, widget[0])
             elif te == type(OptionInterface()):
                 widget[1].child.connect('changed', self.update_entry, widget[0])
-            
+
     def update_check(self, check, extra):
         if check.get_active():
             te = type(extra)
@@ -190,29 +168,30 @@ class OptionTab(object):
             self.constructor.remove_option(check.option['name'])
 
         self.update_command()
-        
+
     def update_entry(self, widget, check):
         if not check.get_active():
             check.set_active(True)
 
         self.constructor.remove_option(check.option['name'])
         self.constructor.add_option(check.option['name'], widget.get_text())
-        
+
         self.update_command()
-    
+
     def update_level(self, widget, check):
         if not check.get_active():
             check.set_active(True)
-        
+
         try:
             self.constructor.remove_option(check.option['name'])
             if int(widget.get_text()) == 0:
                 check.set_active(False)
             else:
-                self.constructor.add_option(check.option['name'],\
-                                        level=int(widget.get_text()))
+                self.constructor.add_option(
+                        check.option['name'],
+                        level=int(widget.get_text()))
         except:pass
-        
+
         self.update_command()
 
     def update_list_option(self, widget):
@@ -220,19 +199,19 @@ class OptionTab(object):
         except:pass
         else:
             self.constructor.remove_option(widget.last_selected)
-        
+
         option_name = widget.options[widget.get_active()]['name']
-      
+
         self.constructor.add_option(option_name)
         widget.last_selected = option_name
-        
+
         self.update_command()
 
     def update_command(self):
         if self.update_func:
             self.update_func()
-    
-                 
+
+
 class OptionBuilder(object):
     def __init__(self, xml_file, constructor, update_func):
         """ OptionBuilder(xml_file, constructor)
@@ -247,16 +226,16 @@ class OptionBuilder(object):
 
         self.constructor = constructor
         self.update_func = update_func
-        
+
         self.root_tag = "interface"
-        
+
         self.xml = self.xml.getElementsByTagName(self.root_tag)[0]
         self.options = NmapOptions(options_file)
-        
+
         self.groups = self.__parse_groups()
         self.section_names = self.__parse_section_names()
         self.tabs = self.__parse_tabs()
-    
+
 
     def __parse_section_names(self):
         dic = {}
@@ -264,7 +243,7 @@ class OptionBuilder(object):
             grp = self.xml.getElementsByTagName(group)[0]
             dic[group] = grp.getAttribute(u'label')
         return dic
-    
+
     def __parse_groups(self):
         return [g_name.getAttribute(u'name') for g_name in \
                   self.xml.getElementsByTagName(u'groups')[0].\
@@ -273,17 +252,18 @@ class OptionBuilder(object):
     def __parse_tabs(self):
         dic = {}
         for tab_name in self.groups:
-            dic[tab_name] = OptionTab(self.xml.getElementsByTagName(tab_name)[0],
-                                      self.options,
-                                      self.constructor,
-                                      self.update_func)
+            dic[tab_name] = OptionTab(
+                    self.xml.getElementsByTagName(tab_name)[0],
+                    self.options,
+                    self.constructor,
+                    self.update_func)
         return dic
 
 
 class OptionWidget:
     def enable_widget(self):
         self.set_sensitive(True)
-    
+
     def disable_widget(self):
         self.set_sensitive(False)
 
@@ -291,7 +271,7 @@ class OptionInterface(gtk.ComboBoxEntry, OptionWidget):
     def __init__(self):
         self.list = gtk.ListStore(str)
         gtk.ComboBoxEntry.__init__(self, self.list)
-        
+
         cell = gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
@@ -300,65 +280,65 @@ class OptionList(gtk.ComboBox, OptionWidget):
     def __init__(self):
         self.list = gtk.ListStore(str)
         gtk.ComboBox.__init__(self, self.list)
-        
+
         cell = gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
-        
+
         self.options = []
-    
+
     def append(self, option):
         self.list.append([option[u'name']])
         self.options.append(option)
 
 class OptionCheckIcon(HIGHBox, OptionWidget):
     def __init__(self, label=None, option=None, hint=None):
-        
+
         HIGHBox.__init__(self)
-        
+
         self.cbutton = OptionCheck(label,option)
         self.option = option
         self.hint = Hint(hint)
         self.pack_start(self.cbutton, False, False)
         self.pack_start(self.hint, False, False, 5)
-    
+
     def connect(self, action, func, additional):
         """
-        connect checkbox 
+        connect checkbox
         """
         self.cbutton.connect(action, func, additional)
-    
+
     def set_active(self, value):
         """
         set enable or disable checkbox
         """
         self.cbutton.set_active(value)
-        
+
     def get_active(self):
         return self.cbutton.get_active()
-    
+
     def get_checkbox(self):
         """
-        Returns checkbox 
+        Returns checkbox
         example, to do connection
         """
         return self.cbutton
-    
+
     def get_option(self):
         return self.cbutton.get_option()
 
 class OptionScriptList(HIGHBox, OptionWidget, object):
-    # From MAX
     def __init__(self):
         HIGHBox.__init__(self)
-        
+
         self.entry = OptionEntry()
         self.button = HIGButton(stock=gtk.STOCK_EDIT)
-        
+
         self._pack_expand_fill(self.entry)
         self._pack_noexpand_nofill(self.button)
-        
+
         self.button.connect('clicked', self.open_dialog_cb)
+
     def open_dialog_cb(self, widget):
         dialog = ScriptChooserDialog(self.entry.get_text())
         if dialog.run() == gtk.RESPONSE_OK:
@@ -368,9 +348,9 @@ class OptionScriptList(HIGHBox, OptionWidget, object):
 class OptionCheck(gtk.CheckButton, OptionWidget):
     def __init__(self, label=None, option=None):
         gtk.CheckButton.__init__(self, label)
-        
+
         self.option = option
-    
+
     def get_option(self):
         return self.option
 
@@ -399,16 +379,16 @@ class OptionFloatSpin(gtk.SpinButton, OptionWidget):
 class OptionFile(HIGHBox, OptionWidget, object):
     def __init__(self, param=""):
         HIGHBox.__init__(self)
-        
+
         self.entry = OptionEntry()
         self.button = HIGButton(stock=gtk.STOCK_OPEN)
-        
+
         self._pack_expand_fill(self.entry)
         self._pack_noexpand_nofill(self.button)
 
         self.entry.set_text(param)
         self.button.connect('clicked', self.open_dialog_cb)
-    
+
     def open_dialog_cb(self, widget):
         dialog = AllFilesFileChooserDialog(_("Choose file"))
         if dialog.run() == gtk.RESPONSE_OK:
@@ -428,49 +408,39 @@ class Hint(gtk.EventBox, object):
         self.hint = hint
 
         self.hint_image = gtk.Image()
-        self.hint_image.set_from_stock(gtk.STOCK_DIALOG_INFO, gtk.ICON_SIZE_SMALL_TOOLBAR)
+        self.hint_image.set_from_stock(
+                gtk.STOCK_DIALOG_INFO,
+                gtk.ICON_SIZE_SMALL_TOOLBAR)
 
         self.add(self.hint_image)
         self.add_events(gtk.gdk.BUTTON_MOTION_MASK)
         self.connect("button-press-event", self.show_hint)
-        #self.connect("enter-notify-event", self.show_hint)
-         
+
 
     def show_hint(self, widget, event=None):
         hint_window = HintWindow(self.hint)
         hint_window.show_all()
 
-    
+
 class HintWindow(gtk.Window):
-    
+
     def __init__(self, hint):
         gtk.Window.__init__(self, gtk.WINDOW_POPUP)
         self.set_position(gtk.WIN_POS_MOUSE)
         bg_color = gtk.gdk.color_parse("#fbff99")
-        
+
         self.modify_bg(gtk.STATE_NORMAL, bg_color)
 
         self.event = gtk.EventBox()
         self.event.modify_bg(gtk.STATE_NORMAL, bg_color)
         self.event.set_border_width(10)
         self.event.connect("button-press-event", self.close)
-        #self.event.connect("leave-notify-event", self.close)        
         self.hint_label = gtk.Label(hint)
         self.hint_label.set_use_markup(True)
         self.hint_label.set_line_wrap(True)
-        
+
         self.event.add(self.hint_label)
         self.add(self.event)
 
     def close(self, widget, event=None):
         self.destroy()
-        
-if __name__ == '__main__':
-    o = OptionBuilder('profile_editor.xml')
-
-    ol = OptionFile()
-    w = gtk.Window()
-    w.add(ol)
-    w.show_all()
-    w.connect('delete-event', lambda x,y,z=None: gtk.main_quit())
-    gtk.main()
