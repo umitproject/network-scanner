@@ -130,7 +130,9 @@ class HIGEntryLabel(gtk.Label):
     Simple label, like the ones used to label entries
     """
     def __init__(self, text=None, underline=False):
-        gtk.Label.__init__(self, text)
+        gtk.Label.__init__(self)
+        if text is not None:
+            self.set_text(text)
         self.set_justify(gtk.JUSTIFY_LEFT)
         self.set_alignment(0, 0.50)
         self.set_use_underline(underline)
