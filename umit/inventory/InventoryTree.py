@@ -293,19 +293,20 @@ class InventoryTree(gtk.Notebook):
             if not scan_state: # scan finished
                 xmlstore = XMLStore(Path.umitdb_ng)
                 try:
-                    xmlstore.store(scan.get_xml_output_file(),
-                            inventory=inventory)
-                except Exception:
-                    # failed while adding scan to the database
-                    dlg = GenericAlert(_("Database couldn't be updated!"),
-                            (_("The scan for the Inventory") +
-                                (" %r " % inventory) +
-                                _("finished but it couldn't be added to the "
-                                    "database.") +
-                                ("\n\n%s" % traceback.format_exc())),
-                            buttons={1: (gtk.RESPONSE_OK, gtk.STOCK_OK)})
-                    dlg.run()
-                    dlg.destroy()
+                    try:
+                        xmlstore.store(scan.get_xml_output_file(),
+                                inventory=inventory)
+                    except Exception:
+                        # failed while adding scan to the database
+                        dlg = GenericAlert(_("Database couldn't be updated!"),
+                                (_("The scan for the Inventory") +
+                                    (" %r " % inventory) +
+                                    _("finished but it couldn't be added to "
+                                        "the database.") +
+                                    ("\n\n%s" % traceback.format_exc())),
+                                buttons={1: (gtk.RESPONSE_OK, gtk.STOCK_OK)})
+                        dlg.run()
+                        dlg.destroy()
                 finally:
                     xmlstore.close() # close connection to the database
                     scan.close()
