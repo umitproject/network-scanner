@@ -173,7 +173,6 @@ that makes the report private)."))
     def close(self, widget=None, event=None):
         self.destroy()
         gtk.main_quit()
-        sys.exit(0)
 
     def get_description(self):
         buff = self.description_text.get_buffer()
