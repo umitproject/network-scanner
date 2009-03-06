@@ -416,6 +416,6 @@ if __name__ == '__main__':
     w.connect('delete-event', lambda x,y,z=None:gtk.main_quit())
 
     buff = n.text_view.get_buffer()
-    buff.set_text(read_file("file_with_encoding_issues.txt"))
-    
+    buff.set_text(open("file_with_encoding_issues.txt", 'rb').read())
+
     gtk.main()
