@@ -233,7 +233,7 @@ class MainWindow(UmitMainWindow):
                    ('Edit Profile',
                     gtk.STOCK_PROPERTIES,
                     _('_Edit Selected Profile'),
-                    '<Control>e',
+                    '',
                     _('Edit selected scan profile'),
                     self._edit_scan_profile_cb),
 
