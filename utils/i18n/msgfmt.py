@@ -3,6 +3,10 @@
 # Written by Martin v. Löwis <loewis@informatik.hu-berlin.de>
 #
 # Changelog: (Guilherme Polo)
+#   2009-03-08
+#    - main accepts a custom argv now.
+#    - Added -v, -c, -s as noop.
+#
 #   2008-04-11
 #    - Support for files with BOM UTF8 mark.
 #
@@ -88,6 +92,22 @@ Options:
     -V
     --version
         Display version information and exit.
+
+    -v
+    --verbose
+        No op. Added for making it easier to use this as a fallback for
+        GNU msgfmt.
+
+    -c
+    --check
+        No op. Added for making it easier to use this as a fallback for
+        GNU msgfmt.
+
+    -s
+    --statistics
+        No op. Added for making it easier to use this as a fallback for
+        GNU msgfmt.
+
 
 Before using the -f (fuzzy) option, read this:
     http://www.finesheer.com:8457/cgi-bin/info2html?(gettext)Fuzzy%20Entries&lang=en
@@ -238,10 +258,12 @@ def make(filename, outfile, use_fuzzy):
         print >> sys.stderr, msg
 
 
-def main():
+def main(argv=sys.argv[1:]):
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'hVo:f',
-            ['help', 'version', 'output-file=', 'use-fuzzy'])
+        opts, args = getopt.getopt(argv, 'hVo:fvcs', [
+            'help', 'version', 'output-file=', 'use-fuzzy',
+            # no op
+            'verbose', 'check', 'statistics'])
     except getopt.error, msg:
         usage(1, msg)
 
