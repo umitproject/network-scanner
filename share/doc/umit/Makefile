@@ -1,58 +1,20 @@
-# Copyright (C) 2005-2006 Insecure.Com LLC.
-# Copyright (C) 2007-2008 Adriano Monteiro Marques
-#
-# Author: Adriano Monteiro Marques <adriano@umitproject.org>#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
-#
-# 30 April 2007 -- More generic structure
-#                  Maxim Gavrilov <lovelymax@gmail.com>
-# 16 May 2007 -- Removing specific files at clean to avoid removing help.html
-#                Adriano Monteiro Marques <adriano@umitproject.org>
+SRCDIR = src
+SPHINXBUILD = sphinx-build
+SPHINXOPTIONS =
 
-VPATH = comparing_results \
-	profile_editor \
-	nse_facilitator \
-	scanning \
-	searching \
-	wizard \
-	nisearch \
-	nigraphs \
-	scheduler \
-	smtpsetup
 
-OUTDIR = .
-XSL = /usr/share/xml/docbook/stylesheet/nwalsh/html/docbook.xsl
+ALLSPHINXOPTIONS = -b $(BUILDER) -d build/doctrees $(SPHINXOPTIONS) \
+				   $(SRCDIR) build/$(BUILDER)
 
-OUTPUTS = $(addsuffix .html, $(VPATH))
+.PHONY: html build clean
 
-%.html : %.xml
-	xsltproc -o $(OUTDIR)/$@ $(XSL) $<
+html: BUILDER = html
+html: build
+	@echo "Build finished. The HTML pages are in build/html/."
 
-all: create-dir $(OUTPUTS)
-
-create-dir:
-	@mkdir -p $(OUTDIR)
+build:
+	mkdir -p build/$(BUILDER) build/doctrees
+	$(SPHINXBUILD) $(ALLSPHINXOPTIONS)
 
 clean:
-	@rm -f $(OUTDIR)/comparing_results.html
-	@rm -f $(OUTDIR)/profile_editor.html
-	@rm -f $(OUTDIR)/nse_facilitator.html
-	@rm -f $(OUTDIR)/scanning.html
-	@rm -f $(OUTDIR)/searching.html
-	@rm -f $(OUTDIR)/wizard.html
-	@rm -f $(OUTDIR)/nisearch.html
-	@rm -f $(OUTDIR)/nigraphs.html
-	@rm -f $(OUTDIR)/scheduler.html
-	@rm -f $(OUTDIR)/smtpsetup.html
+	rm -rf build/*
