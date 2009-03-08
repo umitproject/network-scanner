@@ -4,14 +4,39 @@
 # Written by Guilherme Polo <ggpolo@gmail.com>
 
 import os
+import sys
+import warnings
 import subprocess
 
 # You may change these to point to the paths where your tools live
-# XXX Need to update this utility to use the python version of these utilities
-# in case the gnu ones are not present.
-XGETTEXT = 'xgettext'
-MSGMERGE = 'msgmerge'
-MSGFMT = 'msgfmt'
+XGETTEXT = {'xgettext': 'pygettext'}
+MSGMERGE = {'msgmerge': 'msgmerge'}
+MSGFMT = {'msgfmt': 'msgfmt'}
+
+def call_tool(tool, *args, **kwargs):
+    gnu_tool, module = tool.items()[0]
+    try:
+        # Check for gnu_tool existence. If the program exists it is likely
+        # that it will emit an error like "no input files given" to stderr,
+        # so we ignore that.
+        subprocess.call([gnu_tool], stderr=subprocess.PIPE)
+    except OSError, err:
+        if err.errno != 2:
+            raise
+        else:
+            if module not in sys.modules:
+                warnings.warn("The GNU tool %s is not available, using a "
+                        "Python implementation (%s) as fallback." % (
+                            gnu_tool, module))
+            __import__(module)
+            tool = sys.modules[module]
+            tool.main(args)
+    else:
+        args = (gnu_tool, ) + args
+        if kwargs.get('single_arg'):
+            del kwargs['single_arg']
+            args = ' '.join(args)
+        subprocess.check_call(args, **kwargs)
 
 class POTManager(object):
     def __init__(self, python_pkgs_root, *exclude_dirs):
@@ -38,15 +63,15 @@ class POTManager(object):
     def update_refpot(self, output):
         """Update the reference pot file and return the path of the
         new ref pot file."""
-        args = [XGETTEXT, '-L', 'Python', '-o', output]
+        args = ['-L', 'Python', '-o', output]
         root = self.python_pkgs_root
         for dirname in self.find_packages():
             relative_path = dirname[len(root) + len(os.path.sep):]
             args.append(os.path.join(relative_path, "*.py"))
 
-        # XXX is xgettext too weird or what ?
-        args = ' '.join(args)
-        subprocess.check_call(args, shell=True)
+        # XXX is xgettext too weird or what ? we need to use single_arg for
+        # the gnu one.
+        call_tool(XGETTEXT, shell=True, single_arg=True, *args)
         return output
 
     def update_pots(self, refpot, locale_dir):
@@ -55,7 +80,7 @@ class POTManager(object):
         for pot in self._find_pots(locale_dir):
             # merge pots
             print "Merging %r" % pot
-            subprocess.check_call([MSGMERGE, '-U', pot, refpot])
+            call_tool(MSGMERGE, '-U', pot, refpot)
 
     def compile(self, locale_dir, use_fuzzy=True, verbose=False, do_checks=True,
             statistics=False, appname='umit', mo_dir='LC_MESSAGES'):
@@ -76,7 +101,8 @@ class POTManager(object):
             mo_path = os.path.join(potdir, mo_dir, "%s.mo" % appname)
             # compile pot
             print "Compiling %r to %r" % (pot, mo_path)
-            subprocess.check_call([MSGFMT, pot, '-o', mo_path] + extra_opts)
+            opts = extra_opts + ['-o', mo_path, pot]
+            call_tool(MSGFMT, *opts)
 
     def _find_pots(self, basedir):
         """Find pot files just in the way that the methods compile and
