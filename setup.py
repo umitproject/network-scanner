@@ -36,7 +36,7 @@ from umit.core.Version import VERSION
 from utils.i18n import msgfmt
 
 from install_scripts.common import BIN_DIRNAME, PIXMAPS_DIR, ICONS_DIR, \
-        DOCS_DIR, LOCALE_DIR, CONFIG_DIR, MISC_DIR, SQL_DIR
+        BASE_DOCS_DIR, DOCS_DIR, LOCALE_DIR, CONFIG_DIR, MISC_DIR, SQL_DIR
 
 py2exe_cmdclass = py2exe_options = py2app_options = None
 if 'py2exe' in sys.argv:
@@ -122,14 +122,10 @@ data_files = [
 
         (DOCS_DIR,
             glob(os.path.join(DOCS_DIR, '*.html')) +
-            glob(os.path.join(DOCS_DIR, 'comparing_results', '*.xml')) +
-            glob(os.path.join(DOCS_DIR, 'profile_editor', '*.xml')) +
-            glob(os.path.join(DOCS_DIR, 'scanning', '*.xml')) +
-            glob(os.path.join(DOCS_DIR, 'searching', '*.xml')) +
-            glob(os.path.join(DOCS_DIR, 'wizard', '*.xml')) +
-            glob(os.path.join(DOCS_DIR, 'scheduler', '*.xml')) +
-            glob(os.path.join(DOCS_DIR, 'smtpsetup', '*.xml')) +
-            glob(os.path.join(DOCS_DIR, 'screenshots', '*.png')))]
+            glob(os.path.join(DOCS_DIR, '_images', '*')) +
+            glob(os.path.join(DOCS_DIR, '_sources', '*')) +
+            glob(os.path.join(DOCS_DIR, '_static', '*')))
+        ]
 
 # Add i18n files to data_files list
 os.path.walk(LOCALE_DIR, mo_find, data_files)
@@ -159,9 +155,25 @@ class umit_build(build):
         # like guess
         os.path.walk(LOCALE_DIR, mo_find, data_files)
 
+    def build_html_doc(self):
+        """Build the html documentation."""
+        import sphinx
+
+        sphinx_ver = sphinx.__version__
+        if map(int, sphinx_ver.split('.')) < [0, 5, 1]:
+            self.warn("Sphinx's version is too old (%s, expected at least "
+                    "0.5.1, documentation won't be build." % sphinx_ver)
+
+        # Build the documentation just like it is done through the Makefile
+        sphinx.main([__file__,
+            "-b", "html",
+            "-d", os.path.join(BASE_DOCS_DIR, 'doctrees'),
+            os.path.join(BASE_DOCS_DIR, 'src'), DOCS_DIR])
+
     def run(self):
         self.delete_mo_files()
         self.build_mo_files()
+        self.build_html_doc()
         build.run(self)
 
 

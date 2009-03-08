@@ -57,7 +57,7 @@ MISC_DIR = os.path.join(main_dir, "share", "umit", "misc")
 ICONS_DIR = os.path.join(main_dir, "share", "icons", "umit")
 PIXMAPS_DIR = os.path.join(main_dir, "share", "pixmaps", "umit")
 PLUGINS_DIR = os.path.join(main_dir, "share", "umit", "plugins")
-DOCS_DIR = os.path.join(main_dir, "share", "doc", "umit")
+DOCS_DIR = os.path.join(main_dir, "share", "doc", "umit", "html")
 
 base_paths = dict(config_file = 'umit.conf',
                   config_dir = UMIT_CFG_DIR,

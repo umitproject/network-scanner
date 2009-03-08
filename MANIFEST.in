@@ -1,10 +1,11 @@
 include bin/umit bin/umit_scheduler.py README
 include COPYING COPYING_HIGWIDGETS COPYING_NMAP COPYING_WINPCAP
+include share/doc/umit/umit.1
 recursive-include share/pixmaps/umit *.png *.svg *.xpm umit.opf umit.opt
 recursive-include share/icons/umit *.ico
 recursive-include share/locale umit.mo *.po
-recursive-include share/doc/umit *.html *.xml umit.1
-recursive-include share/doc/umit/screenshots *.png
+recursive-include share/doc/umit/doctrees *
+recursive-include share/doc/umit/html *
 recursive-include share/umit/config *.xml *.conf *.usp umit_version *.db *.log
 recursive-include share/umit/misc *.dmp
 recursive-include share/umit/sql *.sql
