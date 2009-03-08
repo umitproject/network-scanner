@@ -40,7 +40,13 @@ class UNIXDaemon(object):
         """
         pid = self._get_pid()
         if isinstance(pid, int):
-            return not bool(self._stopped(pid))
+            res = self._stopped(pid)
+            if isinstance(res, tuple):
+                # It is assumed the process is still running if it gives an
+                # error different than "No such process".
+                return True
+            else:
+                return not bool(res)
         else:
             return False
 
