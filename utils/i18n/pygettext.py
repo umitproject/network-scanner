@@ -152,6 +152,10 @@ Options:
         should not have their docstrings extracted.  This is only useful in
         conjunction with the -D option above.
 
+    -L language
+    --language=language
+        No op, always assume Python as the language.
+
 If `inputfile' is -, standard input is read.
 """)
 
@@ -501,18 +505,17 @@ class TokenEater:
                 print >> fp, 'msgstr ""\n'
 
 
-
-def main():
+def main(argv=sys.argv[1:]):
     global default_keywords
     try:
         opts, args = getopt.getopt(
-            sys.argv[1:],
-            'ad:DEhk:Kno:p:S:Vvw:x:X:',
+            argv,
+            'ad:DEhk:Kno:p:S:Vvw:x:X:L:',
             ['extract-all', 'default-domain=', 'escape', 'help',
              'keyword=', 'no-default-keywords',
              'add-location', 'no-location', 'output=', 'output-dir=',
              'style=', 'verbose', 'version', 'width=', 'exclude-file=',
-             'docstrings', 'no-docstrings',
+             'docstrings', 'no-docstrings', 'language='
              ])
     except getopt.error, msg:
         usage(1, msg)
@@ -659,7 +662,6 @@ def main():
         if closep:
             fp.close()
 
-
 if __name__ == '__main__':
     main()
     # some more test strings
