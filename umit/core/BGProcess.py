@@ -52,7 +52,7 @@ class UNIXDaemon(object):
 
     def stop(self):
         if self.running():
-            self.cleanup()
+            return self.cleanup()
 
     def cleanup(self):
         pid = self._get_pid()
@@ -92,7 +92,12 @@ class UNIXDaemon(object):
             return -1, err
 
     def _finish(self, pid):
-        if not self._stopped(pid):
+        err = self._stopped(pid)
+        if isinstance(err, tuple):
+            # Error occurred
+            return err[1]
+
+        if not err:
             # Try finishing it now
             try:
                 os.kill(pid, signal.SIGTERM)
