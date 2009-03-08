@@ -1215,7 +1215,7 @@ action's name"))
         if sys.hexversion >= 0x2050000:
             new = 2
 
-        doc_path = abspath(join(Path.docs_dir, "help.html"))
+        doc_path = abspath(join(Path.docs_dir, "index.html"))
         log.warning(">>> Openning documentation: %s" % doc_path)
         if exists(doc_path) and os.access(doc_path, os.R_OK):
             webbrowser.open("file://%s" % doc_path, new=new)

@@ -83,9 +83,10 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
             if resp == gtk.RESPONSE_OK:
                 err = self.schedcontrol.start(from_gui=True)
             elif resp == gtk.RESPONSE_HELP:
-                webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
-                                                "scheduler.html#root_start"),
-                                                new=open_url_as())
+                webbrowser.open("file://%s" % os.path.join(
+                    Path.docs_dir,
+                    "scheduler.html#starting-scheduler-as-root"),
+                    new=open_url_as())
 
             alertdlg.destroy()
         else: # running as root
@@ -99,9 +100,10 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
                            2: (gtk.RESPONSE_OK, gtk.STOCK_OK)})
             resp = alertdlg.run()
             if resp == gtk.RESPONSE_HELP:
-                webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
-                                                "scheduler.html#sched_start"),
-                                                new=open_url_as())
+                webbrowser.open("file://%s" % os.path.join(
+                    Path.docs_dir,
+                    "scheduler.html#starting-scheduler"),
+                    new=open_url_as())
             alertdlg.destroy()
 
 
@@ -121,9 +123,10 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
             resp = alertdlg.run()
 
             if resp == gtk.RESPONSE_HELP:
-                webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
-                                                "scheduler.html#sched_stop"),
-                                                new=open_url_as())
+                webbrowser.open("file://%s" % os.path.join(
+                    Path.docs_dir,
+                    "scheduler.html#stopping-scheduler"),
+                    new=open_url_as())
 
             alertdlg.destroy()
 

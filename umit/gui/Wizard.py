@@ -208,7 +208,7 @@ class Wizard(HIGWindow):
     def _show_help(self, widget=None):
         import webbrowser
         webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
-                                                   "help.html"),
+                                                   "index.html"),
                                                    new=2)
 
     def choose_page(self):

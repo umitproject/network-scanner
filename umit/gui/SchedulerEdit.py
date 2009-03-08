@@ -357,15 +357,16 @@ directory to save scans output."))
         """
         self._save_schema(None)
         self._exit(None)
-        
-    
+
+
     def _show_help(self, event):
         """
         Show help for Scan Scheduler Editor.
         """
-        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, 
-                                                 "scheduler.html#new_schema"),
-                                                 new=open_url_as())
+        webbrowser.open("file://%s" % os.path.join(
+            Path.docs_dir,
+            "scheduler.html#setting-up-a-schedule"),
+            new=open_url_as())
 
 
     def __set_props(self):
@@ -374,8 +375,7 @@ directory to save scans output."))
         """
         self.set_title(self.wtitle)
         self.set_default_size(440, -1)
-       
-        
+
     def __do_layout(self):
         """
         Layout widgets in window.
@@ -655,23 +655,24 @@ try to save again."))
         
         if new_sec: # update daddy scheduling profiles list
             self.daddy._load_pscheds()
-        
-    
+
+
     def _save_profile_and_leave(self, event):
         """
         Save scheduling profile and leave.
         """
         self._save_profile(None)
         self._exit(None)
-        
-        
+
+
     def _show_help(self, event):
         """
         Show help for Scheduling Profiles.
         """
-        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, 
-                                              "scheduler.html#new_scheduling"),
-                                              new=open_url_as())
+        webbrowser.open("file://%s" % os.path.join(
+            Path.docs_dir,
+            "scheduler.html#creating-a-new-scheduling-profile"),
+            new=open_url_as())
 
 
     def __set_props(self):
@@ -679,8 +680,8 @@ try to save again."))
         Set window properties
         """
         self.set_title(self.wtitle)
-        
-        
+
+
     def __do_layout(self):
         """
         Layout window widgets.

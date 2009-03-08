@@ -798,7 +798,7 @@ class InventoryViewer(HIGMainWindow):
         Open help manual.
         """
         webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
-            "help.html"), new=open_url_as())
+            "index.html"), new=open_url_as())
 
 
     def _show_bug_report(self, event):

@@ -235,7 +235,7 @@ class DiffWindow(gtk.Window):
         self.initial_size = self.size_request()
 
     def _show_help(self, action):
-        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "help.html"),
+        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "index.html"),
                         new=2)
         
     def _create_widgets(self):
