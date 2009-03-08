@@ -9,7 +9,7 @@ echo
 old_pwd=`pwd`
 script_dir=`pwd`/$0
 script_dir=`dirname $script_dir`
-cd $script_dir/../..
+cd $script_dir/..
 
 echo "Updating/Creating dumped operating system list..."
 python install_scripts/utils/create_os_list.py
