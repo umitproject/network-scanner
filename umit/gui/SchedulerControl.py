@@ -51,16 +51,16 @@ class SchedControl(object):
     """
     GUI for controlling Scheduler starting/stopping.
     """
-    
+
     def __init__(self, daddy):
         self.ui_action = None
         self.daddy = daddy
         self.schedcontrol = SchedulerControl()
 
         self.stock_icon, self.status_text = self._sched_status()
-        
+
         gobject.timeout_add(1000, self._update_sched_status)
-        
+
 
     def start_scheduler(self):
         """
@@ -127,7 +127,7 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
 
             alertdlg.destroy()
 
-    
+
     def _sched_status(self):
         """
         Return stock icon and text based on scheduler status.
@@ -150,7 +150,7 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
 
             if self.daddy:
                 self.daddy._clear_tip_statusbar()
-            
+
         else:
             self.stop_scheduler()
 
