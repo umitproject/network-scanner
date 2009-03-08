@@ -506,13 +506,13 @@ def help():
     print __doc__
     sys.exit(0)
 
-def cmdline():
+def main(argv=sys.argv[1:]):
     '''Parse options and arguments from command line.'''
     advice = 'Try `%(name)s --help\' for more information.'
     try:
         long_opt = ['help', 'version', 'update', 'output-file=',
                     'quiet', 'silent', 'docstrings', 'suffix', 'backup']
-        opts, args = getopt.getopt(sys.argv[1:], 'hVUo:qD', long_opt)
+        opts, args = getopt.getopt(argv, 'hVUo:qD', long_opt)
     except getopt.error, msg:
         print '%s: %s\n%s' % ('%(name)s', msg, advice) % globals()
         sys.exit(1)
@@ -672,4 +672,4 @@ def merge_dir(directory, pot = False, include = [], exclude = [],
                 print >> sys.stderr, '%s %s not updated.' % (err, po)
 
 if __name__ == '__main__':
-    cmdline()
+    main()
