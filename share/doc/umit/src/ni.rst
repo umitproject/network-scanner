@@ -1,5 +1,5 @@
-UMIT Network Inventory
-======================
+Network Inventory
+=================
 
 .. toctree::
 

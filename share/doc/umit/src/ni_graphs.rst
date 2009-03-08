@@ -1,5 +1,5 @@
-UMIT Network Inventory - Graphs
-===============================
+Graphs
+======
 
 .. sectionauthor:: Guilherme Polo <ggpolo@gmail.com>
 

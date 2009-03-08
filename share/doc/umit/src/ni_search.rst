@@ -1,5 +1,5 @@
-UMIT Network Inventory - Search
-===============================
+Search
+======
 
 .. sectionauthor:: Guilherme Polo <ggpolo@gmail.com>
 
