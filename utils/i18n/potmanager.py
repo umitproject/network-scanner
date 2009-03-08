@@ -122,7 +122,8 @@ class POTManager(object):
 if __name__ == "__main__":
     import sys
 
-    potgen = POTManager(os.getcwd(), 'higwidgets', 'source-plugins', 'utils')
+    potgen = POTManager(os.getcwd(),
+            'higwidgets', 'source-plugins', 'utils', 'tests')
     locale_dir = os.path.join(os.getcwd(), 'share', 'locale')
     refpot = potgen.update_refpot(output=os.path.join(locale_dir, 'umit.pot'))
     potgen.update_pots(refpot, locale_dir=locale_dir)
