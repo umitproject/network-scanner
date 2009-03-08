@@ -120,11 +120,18 @@ data_files = [
             glob(os.path.join(ICONS_DIR, '*.ico')) +
             glob(os.path.join(ICONS_DIR, '*.png'))),
 
+        # Documentation
         (DOCS_DIR,
             glob(os.path.join(DOCS_DIR, '*.html')) +
-            glob(os.path.join(DOCS_DIR, '_images', '*')) +
-            glob(os.path.join(DOCS_DIR, '_sources', '*')) +
+            glob(os.path.join(DOCS_DIR, '*.js')) +
+            glob(os.path.join(DOCS_DIR, '*.inv'))),
+        (os.path.join(DOCS_DIR, '_images'),
+            glob(os.path.join(DOCS_DIR, '_images', '*'))),
+        (os.path.join(DOCS_DIR, '_sources'),
+            glob(os.path.join(DOCS_DIR, '_sources', '*'))),
+        (os.path.join(DOCS_DIR, '_static'),
             glob(os.path.join(DOCS_DIR, '_static', '*')))
+
         ]
 
 # Add i18n files to data_files list
