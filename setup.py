@@ -152,7 +152,11 @@ class umit_build(build):
 
     def build_html_doc(self):
         """Build the html documentation."""
-        import sphinx
+        try:
+            import sphinx
+        except ImportError:
+            self.warn("sphinx not found, documentation won't be build.")
+            return
 
         sphinx_ver = sphinx.__version__
         if map(int, sphinx_ver.split('.')) < [0, 5, 1]:
