@@ -33,7 +33,7 @@ from distutils.command.build import build
 from distutils import log, dir_util
 
 from umit.core.Version import VERSION
-from utils.i18n import msgfmt
+from utils.i18n import potmanager
 
 from install_scripts.common import BIN_DIRNAME, PIXMAPS_DIR, ICONS_DIR, \
         BASE_DOCS_DIR, DOCS_DIR, LOCALE_DIR, CONFIG_DIR, MISC_DIR, SQL_DIR
@@ -58,9 +58,6 @@ def extension_find(result, dirname, fnames, suffix):
 
 def mo_find(result, dirname, fnames):
     return extension_find(result, dirname, fnames, ".mo")
-
-def po_find(result, dirname, fnames):
-    return extension_find(result, dirname, fnames, ".po")
 
 
 ###############################################################################
@@ -134,33 +131,24 @@ data_files = [
 
         ]
 
-# Add i18n files to data_files list
-os.path.walk(LOCALE_DIR, mo_find, data_files)
-
 
 ##############################################################################
 # Distutils subclasses
 
+potman = potmanager.POTManager(os.path.dirname(os.path.abspath(__file__)))
+
 class umit_build(build):
 
     def delete_mo_files(self):
-        """ Remove *.mo files """
+        """Remove *.mo files."""
         tmp = []
         os.path.walk(LOCALE_DIR, mo_find, tmp)
         for (path, t) in tmp:
             os.remove(t[0])
 
     def build_mo_files(self):
-        """Build mo files from po and put it into LC_MESSAGES """
-        tmp = []
-        os.path.walk(LOCALE_DIR, po_find, tmp)
-        for (path, t) in tmp:
-            full_path = os.path.join(path , "LC_MESSAGES", "umit.mo")
-            self.mkpath(os.path.dirname(full_path))
-            self.announce("Compiling %s -> %s" % (t[0], full_path))
-            msgfmt.make(t[0], full_path, False)
-        # like guess
-        os.path.walk(LOCALE_DIR, mo_find, data_files)
+        """Build mo files from po and put it into LC_MESSAGES."""
+        potman.compile(LOCALE_DIR, use_fuzzy=False, distutils_log=self.announce)
 
     def build_html_doc(self):
         """Build the html documentation."""
