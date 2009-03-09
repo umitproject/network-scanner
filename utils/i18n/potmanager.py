@@ -82,8 +82,9 @@ class POTManager(object):
             print "Merging %r" % pot
             call_tool(MSGMERGE, '-U', pot, refpot)
 
-    def compile(self, locale_dir, use_fuzzy=True, verbose=False, do_checks=True,
-            statistics=False, appname='umit', mo_dir='LC_MESSAGES'):
+    def compile(self, locale_dir, use_fuzzy=True, verbose=False,
+            do_checks=True, statistics=False, appname='umit',
+            mo_dir='LC_MESSAGES', distutils_log=None):
         """Traverse locale_dir looking for .po files only inside
         subdirectories and compile them to .mo files."""
         extra_opts = []
@@ -100,7 +101,10 @@ class POTManager(object):
             potdir = os.path.dirname(pot)
             mo_path = os.path.join(potdir, mo_dir, "%s.mo" % appname)
             # compile pot
-            print "Compiling %r to %r" % (pot, mo_path)
+            if verbose:
+                print "Compiling %r to %r" % (pot, mo_path)
+            if distutils_log is not None:
+                distutils_log("Compiling %r to %r" % (pot, mo_path))
             opts = extra_opts + ['-o', mo_path, pot]
             call_tool(MSGFMT, *opts)
 
@@ -108,7 +112,7 @@ class POTManager(object):
         """Find pot files just in the way that the methods compile and
         update_pots expect."""
         for name in os.listdir(basedir):
-            namepath = os.path.join(locale_dir, name)
+            namepath = os.path.join(basedir, name)
             if not os.path.isdir(namepath) or name[0] == '.':
                 continue
 
