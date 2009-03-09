@@ -162,6 +162,7 @@ class umit_build(build):
         if map(int, sphinx_ver.split('.')) < [0, 5, 1]:
             self.warn("Sphinx's version is too old (%s, expected at least "
                     "0.5.1, documentation won't be build." % sphinx_ver)
+            return
 
         # Build the documentation just like it is done through the Makefile
         sphinx.main([__file__,
