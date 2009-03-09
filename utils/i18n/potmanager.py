@@ -28,6 +28,12 @@ def call_tool(tool, *args, **kwargs):
                 warnings.warn("The GNU tool %s is not available, using a "
                         "Python implementation (%s) as fallback." % (
                             gnu_tool, module))
+            # XXX for now I'm assuming the fallback modules are living
+            # in the same place as this module and that on some builds
+            # (see generate_windows_package for instance) the path
+            # may not be on sys.path
+            if os.path.dirname(__file__) not in sys.path:
+                sys.path.append(os.path.dirname(__file__))
             __import__(module)
             tool = sys.modules[module]
             tool.main(args)
