@@ -5,6 +5,7 @@ macosx setup.
 import os
 
 BIN_DIRNAME = 'bin'
+UMIT_MAIN = os.path.join(BIN_DIRNAME, 'umit')
 
 # These directories are relative to the installation or dist directory
 # Ex: python setup.py install --prefix=/tmp/umit

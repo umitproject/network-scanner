@@ -23,10 +23,24 @@ import os
 # Override the setup name in the main setup.py
 from setuptools import setup
 
-from install_scripts.common import BIN_DIRNAME
+from install_scripts import common
+
+# py2app requires the values in the app's list to have known extensions, but
+# bin/umit doesn't. Here bin/umit is renamed to bin/umit.py and the old name
+# is stored in common.OLD_UMIT_MAIN so it can be renamed again later.
+import shutil
+shutil.move(common.UMIT_MAIN, common.UMIT_MAIN + '.py')
+common.OLD_UMIT_MAIN = common.UMIT_MAIN
+common.UMIT_MAIN = os.path.join(common.BIN_DIRNAME, 'umit.py')
+
+def revert_rename():
+    if not hasattr(common, 'OLD_UMIT_MAIN'):
+        # The rename hasn't happened.
+        return
+    shutil.move(common.UMIT_MAIN, common.OLD_UMIT_MAIN)
 
 py2app_options = dict(
-        app = [os.path.join(BIN_DIRNAME, 'umit')],
+        app = [common.UMIT_MAIN],
         options = {'py2app': {'argv_emulation': True, 'compressed': True}},
         setup_requires = ["py2app"]
         )

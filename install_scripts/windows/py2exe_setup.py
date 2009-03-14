@@ -26,13 +26,13 @@ import sys
 from py2exe.build_exe import py2exe as build_exe
 
 from umit.core.Version import VERSION
-from install_scripts.common import BIN_DIRNAME, ICONS_DIR
+from install_scripts import common
 
 # Add the bin dir to the sys.path so we can indicate that the umit_scheduler
 # module is a service.
 umit_top_dir = os.path.abspath(os.path.join(
     os.path.dirname(__file__), os.path.pardir, os.path.pardir))
-sys.path.append(os.path.join(umit_top_dir, BIN_DIRNAME))
+sys.path.append(os.path.join(umit_top_dir, common.BIN_DIRNAME))
 
 # win32com changes its __path__ to be able to do imports from
 # win32comext (which is not a python package), but the modulefinder
@@ -66,8 +66,9 @@ py2exe_options = dict(
         zipfile = None,
         service = [{'modules': ['umit_scheduler'], 'cmdline_style': 'custom'}],
         windows = [{
-            "script": os.path.join(BIN_DIRNAME, "umit"),
-            "icon_resources": [(1, os.path.join(ICONS_DIR, "umit_48.ico"))]
+            "script": common.UMIT_MAIN,
+            "icon_resources": [
+                (1, os.path.join(common.ICONS_DIR, "umit_48.ico"))]
             }],
         options = {"py2exe": {
             "compressed": 1,

@@ -37,13 +37,15 @@ from utils.i18n import potmanager
 
 from install_scripts.common import BIN_DIRNAME, PIXMAPS_DIR, ICONS_DIR, \
         BASE_DOCS_DIR, DOCS_DIR, LOCALE_DIR, CONFIG_DIR, MISC_DIR, SQL_DIR
+from install_scripts import common
 
-py2exe_cmdclass = py2exe_options = py2app_options = None
+py2exe_cmdclass = py2exe_options = py2app_options = revert_rename = None
 if 'py2exe' in sys.argv:
     from install_scripts.windows.py2exe_setup import py2exe_cmdclass, \
             py2exe_options
 if 'py2app' in sys.argv:
-    from install_scripts.macosx.py2app_setup import py2app_options
+    from install_scripts.macosx.py2app_setup import py2app_options, \
+            revert_rename
 
 
 def extension_find(result, dirname, fnames, suffix):
@@ -385,7 +387,7 @@ options = dict(
             "with Umit command creator wizards."),
         version = VERSION,
         scripts = [
-            os.path.join(BIN_DIRNAME, 'umit'),
+            common.UMIT_MAIN,
             os.path.join(BIN_DIRNAME, 'umit_scheduler.py')],
         packages = [
             'umit', 'umit.core', 'umit.core.radialnet', 'umit.db',
@@ -414,4 +416,8 @@ if py2exe_options:
 if py2app_options:
     options.update(py2app_options)
 
-setup(**options)
+try:
+    setup(**options)
+finally:
+    if revert_rename:
+        revert_rename()
