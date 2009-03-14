@@ -125,8 +125,7 @@ class OptionDisplay(HIGTable):
    
     def create_and_attach_widgets(self):
         self.option_label = HIGSectionLabel('New Option')
-	self.option_label.set_width_chars(10)
-	self.attach(self.option_label, 0, 1, 0, 1)
+	self.attach(self.option_label, 0, 3, 0, 1)
 
 	self.name_label = HIGEntryLabel(_('Name:'))
         self.name_entry = HIGTextEntry()
@@ -500,7 +499,7 @@ class OptionDisplayMainFrame(OptionDisplay):
 	opt = self.get_option()
 	self.optionlist.add(opt)
 	self.add_button.set_sensitive(False)
-	
+	self.emit('need-save', None, None)
 
 TARGET_STRING = 0
 TARGET_ROOTWIN = 1
