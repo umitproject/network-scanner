@@ -233,7 +233,8 @@ class umit_install(install):
         os.chmod(uninstaller_filename, mode)
 
     def set_modules_path(self):
-        umit = os.path.join(self.install_scripts, "umit")
+        umit_name = os.path.split(common.UMIT_MAIN)[1]
+        umit = os.path.join(self.install_scripts, umit_name)
         modules = self.install_lib
 
         re_sys = re.compile("^import sys$")
