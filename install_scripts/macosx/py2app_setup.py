@@ -26,12 +26,12 @@ from setuptools import setup
 from install_scripts import common
 
 # py2app requires the values in the app's list to have known extensions, but
-# bin/umit doesn't. Here bin/umit is renamed to bin/umit.py and the old name
-# is stored in common.OLD_UMIT_MAIN so it can be renamed again later.
+# bin/umit doesn't. Here bin/umit is renamed to bin/umit_main.py and the old
+# name is stored in common.OLD_UMIT_MAIN so it can be renamed again later.
 import shutil
-shutil.move(common.UMIT_MAIN, common.UMIT_MAIN + '.py')
+shutil.move(common.UMIT_MAIN, common.UMIT_MAIN + '_main.py')
 common.OLD_UMIT_MAIN = common.UMIT_MAIN
-common.UMIT_MAIN = os.path.join(common.BIN_DIRNAME, 'umit.py')
+common.UMIT_MAIN = os.path.join(common.BIN_DIRNAME, 'umit_main.py')
 
 def revert_rename():
     if not hasattr(common, 'OLD_UMIT_MAIN'):
