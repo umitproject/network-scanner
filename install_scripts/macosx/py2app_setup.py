@@ -41,6 +41,10 @@ def revert_rename():
 
 py2app_options = dict(
         app = [common.UMIT_MAIN],
-        options = {'py2app': {'argv_emulation': True, 'compressed': True}},
+        options = {'py2app': {
+            'argv_emulation': True,
+            'compressed': True,
+            'includes': ['gtk', 'pango', 'atk', 'gobject', 'pangocairo']}
+            },
         setup_requires = ["py2app"]
         )
