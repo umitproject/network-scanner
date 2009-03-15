@@ -50,12 +50,13 @@ class UmitExceptionHook(object):
         warnings.filterwarnings("error", module = "gtk")
         try:
             import gtk
-            from umit.gui.BugReport import CrashReport
-            from higwidgets.higdialogs import HIGAlertDialog
         except Warning, e:
             print e.message
             sys.exit(-1)
         warnings.resetwarnings()
+
+        from umit.gui.BugReport import CrashReport
+        from higwidgets.higdialogs import HIGAlertDialog
 
         # Getting dependencies versions
         import higwidgets
