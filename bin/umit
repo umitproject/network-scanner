@@ -40,7 +40,7 @@ if not hasattr(sys, 'frozen'):
 from umit.core.I18N import _
 from umit.core.Version import VERSION
 
-UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
+UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", False)#True)
 
 
 class UmitExceptionHook(object):
@@ -71,11 +71,19 @@ class UmitExceptionHook(object):
         import umit.core
         import umit.gui
 
+        # Try to get the correct path to nmap
+        from umit.core.Paths import Path
+        try:
+            nmap_path = Path.nmap_command_path
+        except Exception:
+            # The configuration file hasn't been set yet, too bad.
+            nmap_path = 'nmap'
+
         gtk_version = "%s.%s.%s" % gtk.gtk_version
         pygtk_version = "%s.%s.%s" % gtk.ver
         higwidgets_version = getattr(higwidgets, "__version__", "< 0.9.5")
         python_version = sys.version
-        nmap_version = os.popen2("nmap -V")[1].read().strip("\n")
+        nmap_version = os.popen2('"%s" -V' % nmap_path)[1].read().strip("\n")
         try:
             osuname = " ".join(os.uname())
         except AttributeError:
