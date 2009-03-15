@@ -7,6 +7,7 @@
 # Authors: Adriano Monteiro Marques <adriano@umitproject.org>
 #          Cleber Rodrigues <cleber.gnu@gmail.com>
 #          Frederico Silva Ribeiro <ribeiro.fsilva@gmail.com>
+#          Guilherme Polo <ggpolo@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,6 +57,15 @@ class UmitExceptionHook(object):
         from umit.gui.BugReport import CrashReport
         from higwidgets.higdialogs import HIGAlertDialog
 
+        if etype == ImportError:
+            d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
+                message_format=_("Import error"),
+                secondary_text=_("\nA required module was not "
+                    "found.\n\nError:") + " %s" % emsg)
+            d.run()
+            d.destroy()
+            return
+
         # Getting dependencies versions
         import higwidgets
         import umit.core
@@ -102,14 +112,6 @@ UmitGUI: %s
            umitCore_version,
            umitGUI_version)
 
-        if etype == ImportError:
-            d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
-                message_format=_("Import error"),
-                secondary_text=_("\nA required module was not "
-                    "found.\n\nError:") + " %s" % emsg)
-            d.run()
-            d.destroy()
-            return
         crash_text = cgitb.text((etype, emsg, etb))
         crash_text_dialog = "\n%s\n%s\n" % (versions, crash_text)
         crash_text = "{{{\n%s\n%s\n}}}" % (versions, crash_text)
