@@ -39,8 +39,7 @@ if not hasattr(sys, 'frozen'):
 
 from umit.core.I18N import _
 from umit.core.Version import VERSION
-
-UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
+from umit.core.Utils import development_mode
 
 
 class UmitExceptionHook(object):
@@ -175,7 +174,7 @@ UmitGUI: %s
             gtk.main_quit()
 
 
-if not UMIT_DEVELOPMENT:
+if not development_mode(default=True):
     # Generating temporary files names
     stdout_output = tempfile.mktemp()
     stderr_output = tempfile.mktemp()
@@ -186,8 +185,8 @@ if not UMIT_DEVELOPMENT:
     sys.stdout = _stdout
     sys.stderr = _stderr
 
-
     sys.excepthook = UmitExceptionHook()
+
 
 def main(args):
     # Setting the umit home directory
