@@ -27,7 +27,7 @@ import sys
 
 from umit.core.Paths import Path
 from umit.core.UmitOptionParser import option_parser
-from umit.core.Utils import is_maemo
+from umit.core.Utils import is_maemo, development_mode
 from umit.core.I18N import _
 from umit.core.UmitLogging import log
 
@@ -95,7 +95,7 @@ class App:
     def run(self):
         # Try to load psyco module, saving this information
         # if we care to use it later (such as in a About Dialog)
-        if not os.environ.get('UMIT_DEVELOPMENT', False):
+        if not development_mode(default=False):
             try:
                 import psyco
             except ImportError:
