@@ -40,7 +40,7 @@ if not hasattr(sys, 'frozen'):
 from umit.core.I18N import _
 from umit.core.Version import VERSION
 
-UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", False)#True)
+UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
 
 
 class UmitExceptionHook(object):
