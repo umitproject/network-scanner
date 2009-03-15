@@ -33,6 +33,28 @@ try:
 except ImportError:
     pass
 
+def development_mode(default=True):
+    """
+    Returns True if the environment var UMIT_DEVELOPMENT is set to true,
+    'true' (case insensitive) or some number different than 0 are considered
+    as true, False otherwise.
+
+    If the env var is not set, then the default value governs the return
+    value. If you want UMIT_DEVELOPMENT to be True by default, call this
+    function with default=True (default).
+    """
+    val = os.environ.get('UMIT_DEVELOPMENT', default)
+    try:
+        val = int(val)
+    except ValueError:
+        if val.lower() == 'true':
+            return True
+    else:
+        if val:
+            return True
+
+    return False
+
 
 def is_maemo():
     """
