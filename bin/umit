@@ -172,9 +172,6 @@ if not UMIT_DEVELOPMENT:
     stdout_output = mktemp()
     stderr_output = mktemp()
 
-    old_stdout = sys.stdout
-    old_stderr = sys.stderr
-
     _stdout = open(stdout_output, "w")
     _stderr = open(stderr_output, "w")
 
