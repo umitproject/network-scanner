@@ -26,10 +26,8 @@ import os
 import sys
 import signal
 import platform
-
-# used by exception hook
-import cgitb
 import tempfile
+import cgitb
 
 if not hasattr(sys, 'frozen'):
     _source_path = os.path.abspath(
@@ -40,9 +38,9 @@ if not hasattr(sys, 'frozen'):
 
 from umit.core.I18N import _
 from umit.core.Version import VERSION
-#########################
 
 UMIT_DEVELOPMENT = os.environ.get("UMIT_DEVELOPMENT", True)
+
 
 class UmitExceptionHook(object):
     def __call__(self, etype, emsg, etb):
@@ -168,10 +166,9 @@ UmitGUI: %s
 
 
 if not UMIT_DEVELOPMENT:
-    from tempfile import mktemp
     # Generating temporary files names
-    stdout_output = mktemp()
-    stderr_output = mktemp()
+    stdout_output = tempfile.mktemp()
+    stderr_output = tempfile.mktemp()
 
     _stdout = open(stdout_output, "w")
     _stderr = open(stderr_output, "w")
