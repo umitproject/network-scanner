@@ -180,6 +180,16 @@ class umit_build(build):
 
 
 class umit_install(install):
+    user_options = install.user_options + \
+        [('pkgmantainer', 'P',
+          'Select this if you are a package mantainer' \
+          ' and you are using --root option. This avoids' \
+          ' wrong substitution in the program launcher' \
+          ' and in umit/core/BasePaths.py file')]
+
+    def initialize_options(self):
+        install.initialize_options(self)
+        self.pkgmantainer = 0
 
     def run(self):
         # Add i18n files to data_files list
@@ -249,7 +259,10 @@ class umit_install(install):
                 uline = line + 1
                 break
 
-        ucontent.insert(uline, "sys.path.insert(0,'%s')\n" % modules )
+        if self.pkgmantainer and self.root:
+            modules = os.path.join('/', modules[len(self.root):])
+
+        ucontent.insert(uline, "sys.path.insert(0,'%s')\n" % modules)
 
         ufile = open(umit, "w")
         ufile.writelines(ucontent)
@@ -300,6 +313,10 @@ class umit_install(install):
                                     f)
                 if len(result) == 1:
                     result = result[0]
+
+                    if self.pkgmantainer and self.root:
+                        result = os.path.join('/', result[len(self.root):])
+
                     pcontent = re.sub("%s\s+=\s+.+" % path,
                                       "%s = \"%s\"" % (path, result),
                                       pcontent)

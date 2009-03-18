@@ -81,6 +81,26 @@ GNU/Linux Installation
    After putting the bin directory in the PATH, execute Umit:
    $ umit.pyw
 
+   If you want to define also a root to install umit in a chroot environment
+   or if you are packing for you favorite distro, and you are a package
+   mantainer probably you should use the --root option in addition with
+   --pkgmantainer option ('-P' for the short form)
+
+   In a chroot environment assuming that you have mounted your root partition
+   in /mnt/yourdistro you should type:
+
+   $ python setup.py install --prefix=/usr --root=/mnt/yourdistro/ -P
+
+   The same apply if you are building a tarball or a package:
+
+   $ mkdir tmpdir
+   $ python setup.py install --prefix=/usr --root=tmpdir/ -P
+   $ cd tmpdir && tar -cvjf umit-pkg.tar.bz2 usr
+
+   Now you could use the tarball just created in another distro, to install
+   umit by extracting the tarball into /
+
+   $ cd / && tar xvfj /mypkgs/umit-pkg.tar.bz2
 
 Microsoft Windows Installation
 
