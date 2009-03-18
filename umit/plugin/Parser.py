@@ -19,7 +19,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import re
+
 from xml.dom.minidom import parse, parseString
+from umit.core.UmitLogging import log
 
 class Variable(object):
     """
@@ -58,7 +60,7 @@ class Variable(object):
         if not isinstance(self._value, self.__class__.element_type):
             raise Exception("Unable to set a valid type")
         
-        print ">>> Variable()", self._name, self._value
+        log.debug(">>> Variable named '%s' allocate with value '%s'" % (self._name, self._value))
 
     @staticmethod
     def setted(value):
@@ -117,18 +119,18 @@ class Variable(object):
         Check the value validity and if fail set value to defaul
         """
         if not Variable.setted(self._value):
-            print "check_validity(): Value not setted"
+            log.debug("check_validity(): value is not setted. Falling back to default value")
             self._value = self._def_val
         elif not isinstance(self._value, self.__class__.element_type):
-            print "check_validity(): Not same type"
+            log.debug("check_validity(): value is not of the type. Fallink back to default value")
             self._value = self._def_val
         elif not self.validate():
-            print "check_validity(): Not valid!"
+            log.debug("check_validity(): value is not valid for validate(). Fallink back to default value")
             self._value = self._def_val
         else:
-            print "check_validity(): OK"
+            log.debug("check_validity(): value is OK")
 
-        print "check_validity():", self._value
+        log.debug("check_validity(): Ends out value is '%s'" % self._value)
 
     def validate(self):
         """
@@ -354,8 +356,7 @@ class List(Variable):
         try:
             Variable.__init__(self, value, name, def_value, desc, attrs, dict)
         except Exception, err:
-            print ">>> Ignoring exception.. we are List sir ;)"
-            print err
+            pass
 
         for child in childs:
             try:
