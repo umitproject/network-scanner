@@ -161,7 +161,13 @@ class umit_build(build):
             return
 
         sphinx_ver = sphinx.__version__
-        if map(int, sphinx_ver.split('.')) < [0, 5, 1]:
+        def digits(x):
+            res = re.match('\d+', x)
+            if res is None:
+                return 0
+            else:
+                return int(res.group())
+        if map(digits, sphinx_ver.split('.')) < [0, 5, 1]:
             self.warn("Sphinx's version is too old (%s, expected at least "
                     "0.5.1, documentation won't be build." % sphinx_ver)
             return
