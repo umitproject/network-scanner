@@ -83,8 +83,8 @@ GNU/Linux Installation
 
    If you want to define also a root to install umit in a chroot environment
    or if you are packing for you favorite distro, and you are a package
-   mantainer probably you should use the --root option in addition with
-   --pkgmantainer option ('-P' for the short form)
+   maintainer probably you should use the --root option in addition with
+   --pkgmaintainer option ('-P' for the short form)
 
    In a chroot environment assuming that you have mounted your root partition
    in /mnt/yourdistro you should type:
