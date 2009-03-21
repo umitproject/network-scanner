@@ -5,6 +5,7 @@
 #
 # Authors: Adriano Monteiro Marques <adriano@umitproject.org>
 #          Guilherme Polo <ggpolo@gmail.com>
+#          Francesco Piccinno <stack.box@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +27,7 @@ import sys
 from stat import *
 from glob import glob
 
-from distutils.core import setup
+from distutils.core import setup, Command
 from distutils.command.install import install
 from distutils.command.sdist import sdist
 from distutils.command.build import build
@@ -35,8 +36,11 @@ from distutils import log, dir_util
 from umit.core.Version import VERSION
 from utils.i18n import potmanager
 
-from install_scripts.common import BIN_DIRNAME, PIXMAPS_DIR, ICONS_DIR, \
-        BASE_DOCS_DIR, DOCS_DIR, LOCALE_DIR, CONFIG_DIR, MISC_DIR, SQL_DIR
+from install_scripts.common import BIN_DIRNAME, PIXMAPS_DIR, \
+                                   ICONS_DIR, BASE_DOCS_DIR, \
+                                   DOCS_DIR, LOCALE_DIR, \
+                                   CONFIG_DIR, MISC_DIR, \
+                                   SQL_DIR, PLUGINS_DIR
 from install_scripts import common
 
 py2exe_cmdclass = py2exe_options = py2app_options = revert_rename = None
@@ -95,6 +99,8 @@ data_files = [
             glob(os.path.join(CONFIG_DIR, '*.xml'))+
             glob(os.path.join(CONFIG_DIR, '*.txt'))),
 
+        (PLUGINS_DIR, glob(os.path.join('plugins', '*.ump'))),
+
         # umit.db SQL
         (SQL_DIR, glob(os.path.join(SQL_DIR, '*.sql'))),
 
@@ -138,6 +144,60 @@ data_files = [
 # Distutils subclasses
 
 potman = potmanager.POTManager(os.path.dirname(os.path.abspath(__file__)))
+
+class umit_plugins(Command):
+    description = "Build UMIT plugins"
+
+    user_options = [
+        ('exclude-list=', None,
+         'Exclude plugins in list from the build process (comma separated list)'),
+        ('input-dir=', None,
+         'Set the input directory where plugins are located'),
+    ]
+
+    def initialize_options(self):
+        self.exclude_list = ''
+        self.output_dir = 'plugins'
+        self.input_dir = ''
+        self.cwd = os.getcwd()
+
+    def finalize_options(self):
+        if not os.path.exists(self.input_dir) or \
+           not os.path.isdir(self.input_dir):
+
+            # We assume that is already present
+            self.input_dir = 'source-plugins'
+
+    def build_plugin(self, dir_entry):
+        os.chdir(os.path.join(self.cwd, self.input_dir, dir_entry))
+
+        # This work only if python binary is in our PATH
+        # NOTE: C extensions in Win32 will be built with mingw32
+
+        print "Building plugin '%s'" % dir_entry
+        
+        if os.name == 'nt':
+            os.system('python setup.py build_ext -c mingw32 install')
+        else:
+            os.system('python setup.py install')
+
+        for plugin in glob('*.ump'):
+            dest = os.path.join(self.cwd, self.output_dir, os.path.basename(plugin))
+
+            if os.path.exists(dest):
+                os.remove(dest)
+
+            os.rename(plugin, dest)
+
+        os.chdir(self.cwd)
+
+    def run(self):
+        blacklist = self.exclude_list.replace(" ", "").split(",")
+
+        for dir in os.listdir(self.input_dir):
+            if dir != '.svn' and dir not in blacklist and \
+               os.path.isdir(os.path.join(self.input_dir, dir)):
+                self.build_plugin(dir)
 
 class umit_build(build):
 
@@ -383,6 +443,7 @@ print
 
 
 cmdclasses = {
+        "plugins" : umit_plugins,
         "install": umit_install,
         "build": umit_build,
         "sdist": umit_sdist}
