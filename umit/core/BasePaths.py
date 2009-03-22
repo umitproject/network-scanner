@@ -39,8 +39,11 @@ else:
 
 CURRENT_DIR = os.getcwd()
 
-if hasattr(sys, "frozen"):
-    main_dir = os.path.dirname(sys.executable)
+if hasattr(sys, 'frozen'):
+    if sys.frozen == 'macosx_app':
+        main_dir = os.environ['RESOURCEPATH']
+    else:
+        main_dir = os.path.dirname(sys.executable)
 else:
     # Look for files relative to the script path to allow running within
     # the build directory.
