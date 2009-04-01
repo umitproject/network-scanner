@@ -196,8 +196,8 @@ class UpdateChanges:
                 fk_category = self.invdb.get_id_for("inventory_change_category")
 
             # check if comparison is already in database
-            # (this should have been done at earlier stage, but for now
-            #  it is being done here)
+            # XXX This should have been done at earlier stage, but for now
+            # it is being done here.
             ret = self.invdb.get_inventory_comparison(old_hostid, new_hostid,
                 date, inventory_id)
 
