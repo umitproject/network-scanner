@@ -23,6 +23,7 @@ class _DictCursor(sqlite.Cursor):
 
 # XXX Missing:
 #   Index merging (read copying)
+#   Handling of multiline comment in column_definitions
 
 VALID_NAME_PATTERN = (
         """
@@ -88,6 +89,18 @@ def column_definitions(sqltable):
         'constraint', 'primary', 'unique', 'check', 'foreign'])
 
     while interesting:
+        if interesting.startswith('--'):
+            # Discard the comment till a newline is found
+            nl = interesting.find('\n')
+            if nl == -1:
+                # No new line, so all the rest is a comment, nothing else
+                # to do
+                break
+            elif nl == len(interesting) - 1:
+                # This newline was the last character in the input.
+                break
+            else:
+                interesting = interesting[nl + 1:].lstrip()
         column_name = VALID_NAME.match(interesting)
         if column_name is None:
             raise Exception("Missing column-name")

@@ -50,18 +50,34 @@ class ColumnDefinitionTest(unittest.TestCase):
     def test_simple_createtable(self):
         ctable_stmt = "CREATE TABLE x (a)"
         self.failUnlessEqual(column_definitions(ctable_stmt), {'a': None})
+
         ctable_stmt = "CREATE TABLE x (a,b)"
         self.failUnlessEqual(column_definitions(ctable_stmt),
                 {'a': None, 'b': None})
+
         ctable_stmt = "CREATE TABLE x (a UNIQUE)"
         self.failUnlessEqual(column_definitions(ctable_stmt),
                 {'a': 'UNIQUE'})
+
         ctable_stmt = (
                 "CREATE TABLE x ("
                 "   a UNIQUE CHECK (1, 2), "
                 "   b CONSTRAINT buh)")
         self.failUnlessEqual(column_definitions(ctable_stmt),
                 {'a': 'UNIQUE CHECK (1, 2)', 'b': 'CONSTRAINT buh'})
+
+        ctable_stmt = "CREATE TABLE x (a UNIQUE, -- C,\n)"
+        self.failUnlessEqual(column_definitions(ctable_stmt),
+                {'a': 'UNIQUE'})
+        ctable_stmt = "CREATE TABLE x (a UNIQUE, -- C,)"
+        self.failUnlessEqual(column_definitions(ctable_stmt),
+                {'a': 'UNIQUE'})
+        ctable_stmt = "CREATE TABLE x (a UNIQUE, -- C,\nb)"
+        self.failUnlessEqual(column_definitions(ctable_stmt),
+                {'a': 'UNIQUE', 'b': None})
+        ctable_stmt = "CREATE TABLE x (a UNIQUE, -- C,\n   b)"
+        self.failUnlessEqual(column_definitions(ctable_stmt),
+                {'a': 'UNIQUE', 'b': None})
 
 
 class ColumnMergeTest(Base):
