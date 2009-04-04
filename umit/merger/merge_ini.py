@@ -2,25 +2,25 @@ import os
 import shutil
 import ConfigParser
 
-def merge(old_file, new_file):
+def merge(from_file, to_file):
     """
-    @old_file: Path to a supposed older ini file
-    @new_file: Path to a supposed newer ini file
+    @from_file: Path to a supposed newer ini file
+    @to_file: Path to a supposed older ini file
     @return true or false
     """
-    if not os.path.exists(old_file) or not os.path.exists(new_file):
+    if not os.path.exists(from_file) or not os.path.exists(to_file):
         return False
 
-    # Backup old file
-    shutil.copyfile(old_file, old_file + '.bak')
+    # Backup the destination
+    shutil.copyfile(to_file, to_file + '.bak')
 
     # Read new file
     config_new = ConfigParser.RawConfigParser()
-    config_new.read(new_file)
+    config_new.read(from_file)
 
     # Read old file
     config = ConfigParser.RawConfigParser()
-    config.read(old_file)
+    config.read(to_file)
 
     # Merge files
     for section in config_new.sections():
@@ -35,7 +35,7 @@ def merge(old_file, new_file):
             copy_section(config, config_new, section)
 
     # Write back the merged configuration
-    f = open(old_file, 'wb')
+    f = open(to_file, 'wb')
     config.write(f)
 
     return True
