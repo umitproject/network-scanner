@@ -257,13 +257,14 @@ class SqliteDBMerge(object):
             del new_by_col[cname]
 
         # Attempt to create new columns
+        coldef = {}
         if new_by_col:
             print "Adding new columns in table '%s'" % tablename
-        # Get the full column definitions for this table
-        res = self._fromcursor.execute(
-                "SELECT sql FROM sqlite_master "
-                "WHERE type='table' and name=?", (tablename, )).fetchone()
-        coldef = column_definitions(res['sql'])
+            # Get the full column definitions for this table
+            res = self._fromcursor.execute(
+                    "SELECT sql FROM sqlite_master "
+                    "WHERE type='table' and name=?", (tablename, )).fetchone()
+            coldef.update(column_definitions(res['sql']))
         for cname, cinfo in new_by_col.iteritems():
             if cinfo['pk']:
                 # sqlite doesn't allow creating new columns as
