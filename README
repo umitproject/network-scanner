@@ -67,7 +67,7 @@ GNU/Linux Installation
 
    This should be enough to get Umit installed.
    To run Umit:
-   $ umit
+   $ ./bin/umit
 
    
    If you want to define the path where Umit should be installed, do:
