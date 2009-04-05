@@ -36,7 +36,7 @@ def root_dir():
     """Retrieves root dir on current filesystem"""
     curr_dir = os.getcwd()
     while True:
-        splited = os.path.split(curr_dir)[0]
+        splited = os.path.dirname(curr_dir)
         if curr_dir == splited:
             break
         curr_dir = splited
@@ -150,12 +150,12 @@ class Paths(object):
             main_config_dir = os.path.join(base_dir, CONFIG_DIR)
 
         elif (
-                os.path.exists(os.path.join(os.path.split(base_dir)[0],
+                os.path.exists(os.path.join(os.path.dirname(base_dir),
                     CONFIG_DIR)) and
-                os.path.exists(os.path.join(os.path.split(base_dir)[0],
+                os.path.exists(os.path.join(os.path.dirname(base_dir),
                     CONFIG_DIR, base_paths['config_file']))):
             main_config_dir = (
-                    os.path.join(os.path.split(base_dir)[0], CONFIG_DIR))
+                    os.path.join(os.path.dirname(base_dir), CONFIG_DIR))
 
         else:
             main_config_dir = create_temp_conf_dir(VERSION)
@@ -298,7 +298,7 @@ def create_user_dir(config_file, user_home):
         log.warning(">>> No permissions to create user dir!")
         return False
 
-    main_dir = os.path.split(config_file)[0]
+    main_dir = os.path.dirname(config_file)
     copy_config_file("options.xml", main_dir, user_dir)
     copy_config_file("profile_editor.xml", main_dir, user_dir)
     copy_config_file("scan_profile.usp", main_dir, user_dir)
@@ -315,7 +315,7 @@ def create_user_dir(config_file, user_home):
     return dict(user_dir = user_dir,
                 config_dir = user_dir,
                 config_file = copy_config_file("umit.conf",
-                                               os.path.split(config_file)[0],
+                                               os.path.dirname(config_file),
                                                user_dir))
 
 def copy_config_file(filename, dir_origin, dir_destiny):
@@ -353,7 +353,7 @@ def return_if_exists(path, create=False):
 Path = Paths()
 
 if __name__ == '__main__':
-    Path.set_umit_conf(os.path.split(sys.argv[0])[0])
+    Path.set_umit_conf(os.path.dirname(sys.argv[0]))
 
     print ">>> SAVED DIRECTORIES:"
     print ">>> LOCALE DIR:", Path.locale_dir

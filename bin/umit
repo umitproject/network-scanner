@@ -191,9 +191,9 @@ if not development_mode(default=True):
 def main(args):
     # Setting the umit home directory
     from umit.core.Paths import Path
-    Path.set_umit_conf(os.path.split(args[0])[0])
+    Path.set_umit_conf(os.path.dirname(args[0]))
     #################################
-    Path.set_running_path(os.path.abspath(os.path.dirname(sys.argv[0])))
+    Path.set_running_path(os.path.abspath(os.path.dirname(args[0])))
 
     from umit.gui.App import App
 
