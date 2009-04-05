@@ -42,7 +42,7 @@ cd umit*
 
 ## Copy debian rules
 
-cp -R ../../install_scripts/ubuntu/debian .
+cp -R ../../install_scripts/linux/ubuntu/debian .
 
 ## Generate package:
 
