@@ -210,7 +210,8 @@ class umit_build(build):
 
     def build_mo_files(self):
         """Build mo files from po and put it into LC_MESSAGES."""
-        potman.compile(LOCALE_DIR, use_fuzzy=False, distutils_log=self.announce)
+        potman.compile(LOCALE_DIR, create_dirs=True,
+                use_fuzzy=False, distutils_log=self.announce)
 
     def build_html_doc(self):
         """Build the html documentation."""

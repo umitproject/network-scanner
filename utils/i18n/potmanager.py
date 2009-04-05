@@ -90,7 +90,7 @@ class POTManager(object):
 
     def compile(self, locale_dir, use_fuzzy=True, verbose=False,
             do_checks=True, statistics=False, appname='umit',
-            mo_dir='LC_MESSAGES', distutils_log=None):
+            mo_dir='LC_MESSAGES', distutils_log=None, create_dirs=False):
         """Traverse locale_dir looking for .po files only inside
         subdirectories and compile them to .mo files."""
         extra_opts = []
@@ -106,6 +106,8 @@ class POTManager(object):
         for pot in self._find_pots(locale_dir):
             potdir = os.path.dirname(pot)
             mo_path = os.path.join(potdir, mo_dir, "%s.mo" % appname)
+            if not os.path.exists(os.path.dirname(mo_path)) and create_dirs:
+                os.makedirs(os.path.dirname(mo_path))
             # compile pot
             if verbose:
                 print "Compiling %r to %r" % (pot, mo_path)
