@@ -596,13 +596,14 @@ class ControlFisheye(HIGVBox):
     def __options_toggled(self, widget=None):
         """
         """
-        activated = self.__options_button.get_active()
-        self.__params_options.set_no_show_all(not activated)
+        self.__params_options.set_no_show_all(False)
 
-        if activated:
+        if self.__options_button.get_active():
             self.__params_options.show_all()
         else:
             self.__params_options.hide_all()
+
+        self.__params_options.set_no_show_all(True)
 
 
 class ControlInterpolation(HIGExpanderRNet):
