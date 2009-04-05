@@ -24,7 +24,7 @@ def merge():
         old_path = os.path.join(os.path.expanduser("~"), ".umit")
         backup_path = old_path + '_backup'
         if os.path.exists(old_path):
-            new_path = os.path.join(BasePaths.HOME, BasePaths.UMIT_CFG_DIR))
+            new_path = os.path.join(BasePaths.HOME, BasePaths.UMIT_CFG_DIR)
             try:
                 try:
                     shutil.move(old_path, new_path)
