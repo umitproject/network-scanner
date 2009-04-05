@@ -183,7 +183,7 @@ class PluginReader(object):
         return self.path
 
     def extract_file(self, zip_path):
-        plug_subdir = os.path.join(Path.config_dir, 'plugins', 'plugins-temp', self.name)
+        plug_subdir = os.path.join(Path.config_dir, 'plugins-temp', self.name)
 
         log.debug("Extracting %s into %s " % (zip_path, plug_subdir))
 
