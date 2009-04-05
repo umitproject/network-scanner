@@ -158,6 +158,8 @@ class Paths(object):
                     os.path.join(os.path.dirname(base_dir), CONFIG_DIR))
 
         else:
+            # XXX This is bad, it doesn't create temporary configuration
+            # files for everything that umit uses nowadays.
             main_config_dir = create_temp_conf_dir(VERSION)
 
         # Main config file, based on the main_config_dir got above
@@ -203,7 +205,7 @@ class Paths(object):
                 self.update_config_dir(config_dir)
 
         else:
-            log.debug(">>> There is no way to create nor use home connfigs.")
+            log.debug(">>> There is no way to create nor use home config.")
             log.debug(">>> Trying to use main configuration files...")
 
             config_dir = main_config_dir
