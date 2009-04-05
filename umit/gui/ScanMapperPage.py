@@ -25,7 +25,7 @@ from umit.gui.radialnet.GraphBuilder import GraphBuilder
 from umit.gui.radialnet.ControlWidget import ControlWidget, ControlFisheye
 from umit.gui.radialnet.Toolbar import Toolbar
 
-from higwidgets.higboxes import HIGVBox, HIGHBox
+from higwidgets.higboxes import HIGVBox, HIGHBox, HIGScrolledWindow
 
 from umit.core.I18N import _
 
@@ -60,17 +60,21 @@ class ScanMapperPage(HIGVBox):
         
 
         self.__control = ControlWidget(self.__radialnet)
+        self.__control_sw = HIGScrolledWindow()
+        self.__control_sw.add_with_viewport(self.__control)
+        self.__control_sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+
         self.__fisheye = ControlFisheye(self.__radialnet)
         self.__toolbar = Toolbar(self.__radialnet,
                                         self,
-                                        self.__control,
+                                        self.__control_sw,
                                         self.__fisheye)
         self.__toolbar.disable_tools()
         
         
         
         self.__hbox._pack_expand_fill(self.__radialnet)
-        self.__hbox._pack_noexpand_nofill(self.__control)
+        self.__hbox._pack_noexpand_nofill(self.__control_sw)
         
         self._pack_noexpand_nofill(self.__toolbar)
         self._pack_expand_fill(self.__hbox)
