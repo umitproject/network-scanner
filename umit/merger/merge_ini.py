@@ -23,6 +23,7 @@ def merge(from_file, to_file):
     config.read(to_file)
 
     # Merge files
+    changed = False
     for section in config_new.sections():
         if config.has_section(section):
             # Merge section's content
@@ -30,13 +31,16 @@ def merge(from_file, to_file):
                 if not config.has_option(section, option):
                     # Add the new option
                     config.set(section, option, value)
+                    changed = True
         else:
             # section does not exist in the old ini file, copy it there
             copy_section(config, config_new, section)
+            changed = True
 
-    # Write back the merged configuration
-    f = open(to_file, 'wb')
-    config.write(f)
+    if changed:
+        # Write back the merged configuration
+        f = open(to_file, 'wb')
+        config.write(f)
 
     return True
 
@@ -49,7 +53,7 @@ def copy_section(config, config_new, section):
 if __name__=="__main__":
     import sys
     if len(sys.argv) != 3:
-        print "Test usage: %s oldcfg newcfg" % __file__
+        print "Test usage: %s fromcfg tocfg" % __file__
         sys.exit(1)
 
     merge(*sys.argv[1:])
