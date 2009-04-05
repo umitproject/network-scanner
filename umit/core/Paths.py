@@ -30,7 +30,7 @@ from umit.core.Version import VERSION
 from umit.core.BasePaths import base_paths, HOME
 from umit.core.BasePaths import CONFIG_DIR, LOCALE_DIR, MISC_DIR
 from umit.core.BasePaths import ICONS_DIR, PIXMAPS_DIR, DOCS_DIR
-
+from umit.merger import file_merger, dir_creator, nt_appdata
 
 def root_dir():
     """Retrieves root dir on current filesystem"""
@@ -179,31 +179,53 @@ class Paths(object):
             log.debug(">>> Using config files in user home directory: %s" \
                       % config_file)
 
+            # Verify if an old ~/.umit exists, and merge into user
+            # localappdata (Windows only).
+            backup = nt_appdata.merge()
+            if backup is not None:
+                log.debug(">>> Merging config files from %r to %r (new "
+                        "configdir already exists)" % (backup, config_dir))
+                file_merger(backup, config_dir, True, *userdir_files)
+
         elif not os.path.exists(supposed_file)\
-             and not check_access(base_paths['user_dir'],
-                                  os.R_OK and os.W_OK):
+                and not check_access(base_paths['user_dir'],
+                        os.R_OK and os.W_OK):
+
+            # Before attemping to create a new user directory, merge the older
+            # ~/.umit to user localappdata (Windows only).
+            backup = nt_appdata.merge()
+            if backup is not None:
+                log.debug(">>> Merging config files from %r to %r" % (
+                    backup, config_dir))
+                file_merger(backup, config_dir, True, *userdir_files)
+
             try:
-                result = create_user_dir(os.path.join(main_config_dir,
-                                              base_paths['config_file']),
-                                         HOME)
-                if type(result) == type({}):
-                    config_dir = result['config_dir']
-                    config_file = result['config_file']
-                    log.debug(">>> Using recently created config files in \
-                                user home: %s" % config_file)
-                else:
+                result = create_user_dir(os.path.join(
+                    main_config_dir, base_paths['config_file']), HOME)
+                if not isinstance(result, dict):
                     raise Exception()
             except:
                 log.debug(">>> Failed to create user home")
+            else:
+                config_dir = result['config_dir']
+                config_file = result['config_file']
+                log.debug(">>> Using recently created config files in "
+                        "user home: %s" % config_file)
 
         if config_dir and config_file:
-            # Checking if the version of the configuration files are the same
-            # as this Umit's version
-            if not self.check_version(config_dir):
-                log.debug(">>> The config files versions are different!")
-                log.debug(">>> Running update scripts...")
-                self.update_config_dir(config_dir)
-
+            # Either base_paths['user_dir'] existed or it just got created.
+            #
+            # In both cases it is possible that config merge is necessary,
+            # if the path already existed then it is possible that:
+            #   1) there are newer config files that need merging;
+            #   2) there are newer config dirs that need copying;
+            #   3) maybe there was an ~/.umit which got merged into user's
+            #      local appdata and now configuration files need be merged
+            #      [Windows only].
+            # if it just got created then:
+            #   See 3) above.
+            dir_creator(config_dir, *userdir_dirs)
+            file_merger(main_config_dir, config_dir, False, *userdir_files)
         else:
             log.debug(">>> There is no way to create nor use home config.")
             log.debug(">>> Trying to use main configuration files...")
@@ -213,30 +235,6 @@ class Paths(object):
 
         self._parse_and_set_dirs(config_file, config_dir)
 
-        for plug_path in ('plugins', 'plugins-download', 'plugins-temp'):
-            dir_path = os.path.join(config_dir, plug_path)
-            try:
-                if not os.path.exists(dir_path):
-                    os.makedirs(dir_path)
-            except:
-                pass
-
-    def update_config_dir(self, config_dir):
-        # Do any updates of configuration files. Not yet implemented.
-        pass
-
-    def check_version(self, config_dir):
-        version_file = os.path.join(config_dir, base_paths['umit_version'])
-
-        if os.path.exists(version_file):
-            ver = open(version_file).readline().strip()
-
-            log.debug(">>> This Umit Version: %s" % VERSION)
-            log.debug(">>> Version of the files in %s: %s" % (config_dir, ver))
-
-            if VERSION == ver:
-                return True
-        return False
 
     def __getattr__(self, name):
         if self.config_file_set:
@@ -279,51 +277,49 @@ class Paths(object):
 ####################################
 # Functions for directories creation
 
+# The names listed here will be copied/merged into the user config directory.
+userdir_files = (
+        "umit.conf", "options.xml", "profile_editor.xml", "scan_profile.usp",
+        "wizard.xml", "umit_version", "umitng.db", "timeline-settings.conf",
+        "tl_colors_evt_std.conf", "scheduler-schemas.conf",
+        "scheduler-profiles.conf", "scheduler.log", "smtp-schemas.conf")
+userdir_dirs = ("plugins", "plugins-download", "plugins-temp")
+
 def create_user_dir(config_file, user_home):
     log.debug(">>> Create user dir at given home: %s" % user_home)
     log.debug(">>> Using %s as source" % config_file)
 
-    main_umit_conf = UmitConfigParser()
-    main_umit_conf.read(config_file)
-
     user_dir = os.path.join(user_home, base_paths['config_dir'])
 
-    if os.path.exists(user_home)\
-           and os.access(user_home, os.R_OK and os.W_OK)\
-           and not os.path.exists(user_dir):
-        os.mkdir(user_dir)
-        os.mkdir(os.path.join(user_dir, "plugins"))
-        os.mkdir(os.path.join(user_dir, "plugins-download"))
-        os.mkdir(os.path.join(user_dir, "plugins-temp"))
-        log.debug(">>> Umit user dir successfully created! %s" % user_dir)
-    else:
-        log.warning(">>> No permissions to create user dir!")
-        return False
+    if os.path.exists(user_home):
+        if os.access(user_home, os.R_OK and os.W_OK):
+            if not os.path.exists(user_dir):
+                os.mkdir(user_dir)
+                for dirname in userdir_dirs:
+                    os.mkdir(os.path.join(user_dir, userdir_dirs))
+                log.debug(">>> Umit user dir (%r) successfully "
+                        "created!" % user_dir)
+            else:
+                log.debug(">>> Umit user dir (%r) already exists" % user_dir)
+        else:
+            log.warning(">>> No permissions to create user dir!")
+            return False
 
     main_dir = os.path.dirname(config_file)
-    copy_config_file("options.xml", main_dir, user_dir)
-    copy_config_file("profile_editor.xml", main_dir, user_dir)
-    copy_config_file("scan_profile.usp", main_dir, user_dir)
-    copy_config_file("umit_version", main_dir, user_dir)
-    copy_config_file("umitng.db", main_dir, user_dir)
-    copy_config_file("timeline-settings.conf", main_dir, user_dir)
-    copy_config_file("tl_colors_evt_std.conf", main_dir, user_dir)
-    copy_config_file("scheduler-schemas.conf", main_dir, user_dir)
-    copy_config_file("scheduler-profiles.conf", main_dir, user_dir)
-    copy_config_file("scheduler.log", main_dir, user_dir)
-    copy_config_file("smtp-schemas.conf", main_dir, user_dir)
-    copy_config_file("wizard.xml", main_dir, user_dir)
+    for name in userdir_files:
+        copy_config_file(name, main_dir, user_dir)
 
     return dict(user_dir = user_dir,
                 config_dir = user_dir,
-                config_file = copy_config_file("umit.conf",
-                                               os.path.dirname(config_file),
-                                               user_dir))
+                config_file = os.path.join(user_dir, 'umit.conf'))
 
 def copy_config_file(filename, dir_origin, dir_destiny):
     log.debug(">>> copy_config_file %s to %s" % (filename, dir_destiny))
 
     origin = os.path.join(dir_origin, filename)
+    if not os.path.exists(origin):
+        return
+
     destiny = os.path.join(dir_destiny, filename)
 
     if not os.path.exists(destiny):
