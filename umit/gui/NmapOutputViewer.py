@@ -423,8 +423,9 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
 
                 # Do all pending events (otherwise the adjustment don't
                 # work correctly sometimes)
-                while (gtk.events_pending()):
-                    gtk.main_iteration()
+                # XXX This freezes Windows XP at least.
+                #while (gtk.events_pending()):
+                #    gtk.main_iteration()
 
                 # Auto-scroll if scroll was at end
                 if scroll_flag:
