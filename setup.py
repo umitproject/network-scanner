@@ -479,7 +479,7 @@ options = dict(
             'umit', 'umit.core', 'umit.core.radialnet', 'umit.db',
             'umit.gui', 'umit.gui.radialnet', 'umit.interfaceeditor',
             'umit.interfaceeditor.selectborder', 'umit.inventory',
-            'umit.plugin', 'higwidgets'],
+            'umit.merger', 'umit.plugin', 'higwidgets'],
         data_files = data_files,
         cmdclass = cmdclasses,
         classifiers = [
