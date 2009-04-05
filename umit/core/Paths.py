@@ -296,7 +296,7 @@ def create_user_dir(config_file, user_home):
             if not os.path.exists(user_dir):
                 os.mkdir(user_dir)
                 for dirname in userdir_dirs:
-                    os.mkdir(os.path.join(user_dir, userdir_dirs))
+                    os.mkdir(os.path.join(user_dir, dirname))
                 log.debug(">>> Umit user dir (%r) successfully "
                         "created!" % user_dir)
             else:
