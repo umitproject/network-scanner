@@ -11,9 +11,6 @@ def merge(from_file, to_file):
     if not os.path.exists(from_file) or not os.path.exists(to_file):
         return False
 
-    # Backup the destination
-    shutil.copyfile(to_file, to_file + '.bak')
-
     # Read new file
     config_new = ConfigParser.RawConfigParser()
     config_new.read(from_file)
@@ -38,6 +35,9 @@ def merge(from_file, to_file):
             changed = True
 
     if changed:
+        # Backup the destination
+        shutil.copyfile(to_file, to_file + '.bak')
+
         # Write back the merged configuration
         f = open(to_file, 'wb')
         config.write(f)
