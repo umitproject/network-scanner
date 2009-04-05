@@ -31,6 +31,7 @@ CONFIG_DIR = ''
 import os
 import sys
 import signal
+import locale
 
 if not hasattr(sys, 'frozen'):
     _source_path = os.path.abspath(
@@ -52,6 +53,7 @@ HOME_CONF = None
 RUNNING_FILE = None
 if hasattr(sys, 'frozen'):
     FROZEN_CFG = os.path.join(os.path.dirname(sys.path[0]), ".scheduserhome")
+    FROZEN_CFG = FROZEN_CFG.decode(locale.getdefaultlocale()[1])
 else:
     FROZEN_CFG = None
 
@@ -145,7 +147,7 @@ if FROZEN_CFG is not None:
     def write_frozen_cfg():
         setup_homedir(HOME)
         conf = open(FROZEN_CFG, 'w')
-        conf.write(HOME_CONF)
+        conf.write(HOME_CONF.encode(locale.getdefaultlocale()[1]))
         conf.close()
 
     import win32serviceutil
