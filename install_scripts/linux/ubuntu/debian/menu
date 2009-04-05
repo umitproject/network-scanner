@@ -1,0 +1,3 @@
+?package(umit): needs="X11" section="Applications/Network" \
+  title="Umit Network Scanner" command="/usr/bin/umit" \
+  icon="/usr/share/pixmaps/umit/umit-menu.xpm"
