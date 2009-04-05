@@ -74,6 +74,7 @@ class ScanMapperPage(HIGVBox):
         
         self._pack_noexpand_nofill(self.__toolbar)
         self._pack_expand_fill(self.__hbox)
+        self._pack_noexpand_nofill(self.__fisheye)
         
         self.show_all()
         self.__created = True

@@ -452,10 +452,11 @@ class ControlFisheye(HIGVBox):
     def __create_widgets(self):
         """
         """
-        self.__params = HIGHBox()
+        self.__params = HIGVBox()
+        self.__params_main = HIGHBox()
+        self.__params_options = HIGHBox()
 
-        self.__fisheye_label = gtk.Label('<b>Fisheye</b> on ring')
-        self.__fisheye_label.set_use_markup(True)
+        self.__fisheye_label = gtk.Label('Fisheye on ring')
 
         self.__ring = gtk.Adjustment(0, 0, self.__ring_max_value, 0.01, 0.01)
 
@@ -469,29 +470,42 @@ class ControlFisheye(HIGVBox):
         self.__ring_scale.set_draw_value(False)
         self.__ring_scale.set_update_policy(gtk.UPDATE_CONTINUOUS)
 
-        self.__interest_label = gtk.Label('with interest factor')
+        self.__interest_label = gtk.Label('Interest factor')
         self.__interest = gtk.Adjustment(0, 0, 10, 0.01)
         self.__interest_spin = gtk.SpinButton(self.__interest)
         self.__interest_spin.set_digits(2)
 
-        self.__spread_label = gtk.Label('and spread factor')
+        self.__spread_label = gtk.Label('Spread factor')
         self.__spread = gtk.Adjustment(0, -1.0, 1.0, 0.01, 0.01)
         self.__spread_spin = gtk.SpinButton(self.__spread)
         self.__spread_spin.set_digits(2)
 
-        self.__params._pack_noexpand_nofill(self.__fisheye_label)
-        self.__params._pack_noexpand_nofill(self.__ring_spin)
-        self.__params._pack_expand_fill(self.__ring_scale)
-        self.__params._pack_noexpand_nofill(self.__interest_label)
-        self.__params._pack_noexpand_nofill(self.__interest_spin)
-        self.__params._pack_noexpand_nofill(self.__spread_label)
-        self.__params._pack_noexpand_nofill(self.__spread_spin)
+        self.__options_button = gtk.ToggleButton('More')
+        self.__options_button.set_active(False)
+
+        self.__params._pack_noexpand_nofill(self.__params_main)
+        self.__params._pack_noexpand_nofill(self.__params_options)
+
+        self.__params_main._pack_noexpand_nofill(self.__fisheye_label)
+        self.__params_main._pack_noexpand_nofill(self.__ring_spin)
+        self.__params_main._pack_expand_fill(self.__ring_scale)
+        self.__params_main._pack_noexpand_nofill(self.__options_button)
+
+        self.__params_options._pack_noexpand_nofill(self.__interest_label)
+        self.__params_options._pack_noexpand_nofill(self.__interest_spin)
+        self.__params_options._pack_noexpand_nofill(self.__spread_label)
+        self.__params_options._pack_noexpand_nofill(self.__spread_spin)
+
+        self.__params_options.set_no_show_all(True)
+        self.__params_options.hide()
 
         self._pack_noexpand_nofill(self.__params)
 
         self.__ring.connect('value_changed', self.__change_ring)
         self.__interest.connect('value_changed', self.__change_interest)
         self.__spread.connect('value_changed', self.__change_spread)
+
+        self.__options_button.connect('toggled', self.__options_toggled)
 
         gobject.timeout_add(REFRESH_RATE, self.__update_fisheye)
 
@@ -578,6 +592,17 @@ class ControlFisheye(HIGVBox):
         else:
             self.__spread.set_value(self.radialnet.get_fisheye_spread())
 
+
+    def __options_toggled(self, widget=None):
+        """
+        """
+        activated = self.__options_button.get_active()
+        self.__params_options.set_no_show_all(not activated)
+
+        if activated:
+            self.__params_options.show_all()
+        else:
+            self.__params_options.hide_all()
 
 
 class ControlInterpolation(HIGExpanderRNet):
