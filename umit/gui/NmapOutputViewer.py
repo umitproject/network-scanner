@@ -29,6 +29,7 @@ import re
 from threading import Thread
 
 from higwidgets.higbuttons import HIGButton
+from higwidgets.higboxes import HIGVBox
 
 from umit.core.I18N import _, enc
 from umit.core.UmitLogging import log
@@ -36,10 +37,10 @@ from umit.core.UmitConf import NmapOutputHighlight
 
 from umit.gui.NmapOutputProperties import NmapOutputProperties
 
-class NmapOutputViewer (gtk.VPaned):
+class NmapOutputViewer (HIGVBox):
     def __init__ (self, refresh=1, stop=1):
         self.nmap_highlight = NmapOutputHighlight()
-        gtk.VPaned.__init__ (self)
+        HIGVBox.__init__ (self)
         
         # Creating widgets
         self.__create_widgets()
@@ -60,8 +61,8 @@ class NmapOutputViewer (gtk.VPaned):
         self.thread = Thread()
         
         # Adding widgets to the VPaned
-        self.pack1(self.scrolled, resize=True, shrink=True)
-        self.pack2(self.hbox_buttons, resize=True, shrink=False)
+        self._pack_expand_fill(self.scrolled)
+        self._pack_noexpand_nofill(self.hbox_buttons)
         
         self.nmap_output_file = None
         self.nmap_previous_output = ''
@@ -75,7 +76,8 @@ class NmapOutputViewer (gtk.VPaned):
         )
         
         self.__create_tags()
-    
+
+
     def __create_tags(self):
         tag_table = self.text_buffer.get_tag_table()
         tag_table.foreach(lambda tag, table: table.remove(tag), tag_table)
@@ -397,17 +399,49 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
             new_output = nmap_of.read()
 
             if self.nmap_previous_output != new_output:
+
+                # See if scroll is at the end (must be done before text_buffer
+                # changes
+                scroll_flag = False
+
+                scroll_upper = self.scrolled.get_vadjustment().upper
+                scroll_size = self.scrolled.get_vadjustment().page_size
+                scroll_end = scroll_upper - scroll_size
+                scroll_current = self.scrolled.get_vadjustment().get_value()
+
+                scroll_flag = (scroll_end == scroll_current)
+
                 # Setting text and moving mark to the start 
                 # to update_colors correctly
                 self.text_buffer.set_text(enc(new_output))
 
                 self.nmap_previous_output = new_output
+        
+                self.text_buffer.move_mark(self.mark,
+                                           self.text_buffer.get_start_iter())
+                self.update_output_colors()
+
+                # Do all pending events (otherwise the adjustment don't
+                # work correctly sometimes)
+                while (gtk.events_pending()):
+                    gtk.main_iteration()
+
+                # Auto-scroll if scroll was at end
+                if scroll_flag:
+
+                    # Get and apply the new scrolled vadjustment value
+                    scroll_new_upper = self.scrolled.get_vadjustment().upper
+                    scroll_new_size = self.scrolled.get_vadjustment().page_size
+                    scroll_new_end = scroll_new_upper - scroll_new_size
+
+                    self.scrolled.get_vadjustment().set_value(scroll_new_end)
+
+                else:
+                    self.scrolled.get_vadjustment().set_value(scroll_current)
 
             nmap_of.close()
-        
-        self.text_buffer.move_mark(self.mark, self.text_buffer.get_start_iter())
-        self.update_output_colors()
-    
+
+
 if __name__ == '__main__':
     w = gtk.Window()
     n = NmapOutputViewer()
