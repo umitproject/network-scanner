@@ -667,6 +667,7 @@ class ScanNotebookPage(HIGVBox):
             self.disable_widgets()
             self.status.set_scan_failed()
             self.scan_result.set_nmap_output(self.command_execution.get_error())
+            self.emit("scan-finished")
             return False
 
         # Maybe this automatic refresh should be eliminated 
