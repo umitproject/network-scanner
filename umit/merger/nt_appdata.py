@@ -1,6 +1,7 @@
 import os
 import errno
 import shutil
+import locale
 
 from umit.core import BasePaths
 
@@ -22,19 +23,19 @@ def merge():
     if BasePaths.UMIT_CFG_DIR == 'umit':
         # This is indeed a version new enough of umit.
         old_path = os.path.join(os.path.expanduser("~"), ".umit")
+        old_path = old_path.decode(locale.getdefaultlocale()[1])
+
         backup_path = old_path + '_backup'
         if os.path.exists(old_path):
+            # Move the old ~/.umit to ~/.umit_backup so next time this
+            # merger runs it will notice the ausence of ~/.umit
+            shutil.move(old_path, backup_path)
+
             new_path = os.path.join(BasePaths.HOME, BasePaths.UMIT_CFG_DIR)
-            try:
-                try:
-                    shutil.move(old_path, new_path)
-                except OSError, err:
-                    if err.errno == errno.EEXIST:
-                        # Destination already exists, need to merge the files
-                        # from the old directory to this new one.
-                        raise AlreadyExistsError("%r" % new_path, backup_path)
-                    raise
-            finally:
-                # Move the old ~/.umit to ~/.umit_backup so next time this
-                # merger runs it will notice the ausence of ~/.umit
-                shutil.move(old_path, backup_path)
+            if os.path.exists(new_path):
+                # Destination already exists, need to merge the files
+                # from the old directory to this new one.
+                return backup_path
+            else:
+                shutil.copytree(backup_path, new_path)
+
