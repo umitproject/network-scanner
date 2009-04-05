@@ -2,7 +2,7 @@ import unittest
 import tempfile
 from test.test_support import run_unittest
 
-from sqlitedb import sqlite, merge, column_definitions, _DictCursor
+from umit.merger.sqlitedb import sqlite, merge, column_definitions, _DictCursor
 
 def conn_cursor(name):
     conn = sqlite.connect(name)

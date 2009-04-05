@@ -9,6 +9,8 @@ try:
 except ImportError:
     from pysqlite2 import dbapi2 as sqlite
 
+from umit.merger.errors import OriginError, DestinationError
+
 def _dict_factory(cursor, row):
     res = {}
     for indx, col in enumerate(cursor.description):
@@ -153,11 +155,14 @@ class SqliteDBMerge(object):
 
 
     def _merge(self):
+        if not os.path.isfile(self._fromdb):
+            raise OriginError("%r is not a file." % self._fromdb)
+
         new = sqlite.connect(self._fromdb)
         self._fromcursor = new_cursor = new.cursor(_DictCursor)
 
         if not os.path.isfile(self._todb):
-            raise Exception("The older db %r is not a file." % self._todb)
+            raise DestinationError("%r is not a file." % self._todb)
 
         old = sqlite.connect(self._todb)
         self._tocursor = old_cursor = old.cursor(_DictCursor)

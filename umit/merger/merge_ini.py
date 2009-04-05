@@ -2,14 +2,18 @@ import os
 import shutil
 import ConfigParser
 
+from umit.merger.errors import OriginError, DestinationError
+
 def merge(from_file, to_file):
     """
     @from_file: Path to a supposed newer ini file
     @to_file: Path to a supposed older ini file
     @return true or false
     """
-    if not os.path.exists(from_file) or not os.path.exists(to_file):
-        return False
+    if not os.path.exists(from_file):
+        raise OriginError(from_file)
+    if not os.path.exists(to_file):
+        raise DestinationError(to_file)
 
     # Read new file
     config_new = ConfigParser.RawConfigParser()
@@ -41,8 +45,6 @@ def merge(from_file, to_file):
         # Write back the merged configuration
         f = open(to_file, 'wb')
         config.write(f)
-
-    return True
 
 def copy_section(config, config_new, section):
     config.add_section(section)
