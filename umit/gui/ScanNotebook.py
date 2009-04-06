@@ -325,6 +325,8 @@ class ScanNotebookPage(HIGVBox):
         
         self.changes = False
         self.comments = {}
+        self.hosts = {}
+        self.services = {}
 
         self.parsed = NmapParser()
         self.top_box = HIGVBox()
@@ -730,10 +732,8 @@ class ScanNotebookPage(HIGVBox):
         # All hosts details pages
         self.host_pages = []
         self.changes = True
-        
+
         self.scan_result.scan_host_view.clear_host_list()
-        self.hosts = {}
-        self.services = {}
 
         # Removed and created again to avoid host duplication problems when 
         # making multiple scans inside the same scan tab
