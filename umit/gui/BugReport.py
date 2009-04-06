@@ -168,7 +168,7 @@ class BugReport(HIGDialog):
             child.set_sensitive(False)
 
         # now send report
-        gobject.idle_add(self._send_report)
+        gobject.timeout_add(1, self._send_report)
         
     def restore_state(self):
         """Restore dialog state, just like it was before calling 
@@ -191,14 +191,14 @@ class BugReport(HIGDialog):
 
         bug_register = BugRegister()
 
-        bug_register.component = self.category_id
+        bug_register.component = self.category
         bug_register.summary = self.summary
         if self.description_report is not None:
             bug_register.details = self.description_report
         else:
             bug_register.details = self.description.replace("\n", "[[BR]]")
         bug_register.reporter = self.email
-        
+
         bug_page = None
         try:
             bug_page = bug_register.report()
@@ -259,12 +259,6 @@ class BugReport(HIGDialog):
     def set_description(self, description):
         self.description_text.get_buffer().set_text(description)
 
-    def get_category_id(self):
-        for i in self.category_list:
-            if i[0] == self.category:
-                return i[1]
-        return "100"
-
     def get_email(self):
         return self.email_entry.get_text()
 
@@ -272,7 +266,6 @@ class BugReport(HIGDialog):
         self.email_entry.set_text(email)
 
 
-    category_id = property(get_category_id)
     category = property(get_category, set_category)
     summary = property(get_summary, set_summary)
     description = property(get_description, set_description)

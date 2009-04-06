@@ -34,8 +34,6 @@ trac_submit=trac_new_ticket
 
 class BugRegister(object):
     def __init__(self):
-        urllib.urlopen(trac_new_ticket)
-
         self.summary = ""
         self.details = ""
         self.input_file = ""
@@ -67,28 +65,33 @@ class BugRegister(object):
     def report(self):
         f = urllib2.urlopen(trac_new_ticket)
 
-        # Get cookie trac_session 
+        # Get cookie trac_session
         trac_session = self.__get_cookie(f.headers, "trac_session")
         # Get value of __FORM_TOKEN
         trac_form = self.__get_cookie(f.headers, "trac_form_token")
         if (trac_form is None or trac_session is None):
-            return None 
+            return None
 
-        data = urllib.urlencode({"field_summary":self.summary,
-                                 "__FORM_TOKEN":trac_form,
-                                 "field_type":self.type,
-                                 "field_description":self.details,
-                                 "field_milestone":self.milestone,
-                                 "field_component":self.component,
-                                 "field_version":self.version,
-                                 "field_keywords":self.keywords,
-                                 #"owner":self.assigned_to,
-                                 "cc":self.cc,
-                                 "author":self.reporter,
-                                 #"attachment":self.input_file,
-                                 "field_status":"new",
-                                 "action":"create",
-                                 "submit":self.submit})
+        query = {
+                "field_summary": self.summary,
+                "__FORM_TOKEN": trac_form,
+                "field_type": self.type,
+                "field_description": self.details,
+                "field_milestone": self.milestone,
+                #"field_component":self.component,
+                "field_version": self.version,
+                "field_keywords": self.keywords,
+                #"owner":self.assigned_to,
+                "cc": self.cc,
+                "author": self.reporter,
+                #"attachment":self.input_file,
+                "field_status": "new",
+                "action": "create",
+                "submit": self.submit
+                }
+        if self.component:
+            query['field_component'] = self.component
+        data = urllib.urlencode(query)
 
         request = urllib2.Request(trac_new_ticket, data)
         request.add_header("Cookie", "trac_session=%s; \
