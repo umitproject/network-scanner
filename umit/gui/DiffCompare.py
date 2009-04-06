@@ -98,9 +98,14 @@ class ScanChooser(HIGVBox):
         return self.txt_scan_result.get_buffer()
 
     def show_scan (self, widget):
-        self.txt_scan_result.get_buffer().\
-             set_text(self.normalize_output(\
-                 self.scan_dict[widget.child.get_text()].nmap_output))
+        try:
+            self.txt_scan_result.get_buffer().\
+                 set_text(self.normalize_output(\
+                     self.scan_dict[widget.child.get_text()].nmap_output))
+        except KeyError:
+            # Avoid to raise an error if the user writes within
+            # the entry and the scan doesn't exits
+            pass
 
     def normalize_output(self, output):
         return "\n".join(output.split("\\n"))
