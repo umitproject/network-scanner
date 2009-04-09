@@ -74,6 +74,15 @@ except OperationalError:
     using_memory = True
     connection = sqlite.connect(":memory:")
 
+# Always return bytestring from the TEXT data type, we will manually handle it.
+try:
+    connection.text_factory = str
+except AttributeError:
+    # XXX text_factory didn't exist prior to pysqlite 2.1.0 and TEXT will
+    # always return a unicode object. Given how Umit handles the situation,
+    # we can't assume this won't cause troubles.
+    pass
+
 
 class Table(object):
     def __init__(self, table_name):
