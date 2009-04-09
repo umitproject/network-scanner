@@ -362,11 +362,6 @@ class ScanNotebookPage(HIGVBox):
     def verify_changes(self):
         return self.__verify_comments_changes()
 
-    def go_to_host(self, host):
-        """Go to host line on nmap output result"""
-        result_nb = self.scan_result.scan_result_notebook
-        result_nb.nmap_output.nmap_output.go_to_host(host)
-
     def __create_scan_result(self):
         self.scan_result = ScanResult()
         self.scan_result.set_parse(self.parsed)
@@ -1008,12 +1003,6 @@ class ScanNotebookPage(HIGVBox):
         else:
             self.set_multiple_host_port(host_objs)
             self.switch_host_details(self.set_multiple_host_details(host_objs))
-
-        # Switch nmap output to show first host occourrence
-        try:
-            self.go_to_host(host_objs[0]['host'].get_hostname())
-        except IndexError:
-            pass
 
     def update_service_info(self, widget):
         self.scan_result.scan_result_notebook.host_mode()

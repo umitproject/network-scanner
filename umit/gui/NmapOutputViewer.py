@@ -67,7 +67,7 @@ class NmapOutputViewer (HIGVBox):
         self.nmap_output_file = None
         self.nmap_previous_output = ''
         self.brazil = True
-        
+
         # We have to create a mark to follow changes in the view with left grav.
         self.mark = self.text_buffer.create_mark(
             'start', 
@@ -153,13 +153,28 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
         self.btn_output_properties = HIGButton(stock=gtk.STOCK_PREFERENCES)
         self.hbox_buttons = gtk.HBox (spacing=5)
     
-    def __set_scrolled_window (self):
+    def __set_scrolled_window(self):
+        # By default the vertical scroller remains at bottom
+        self._scroll_at_bottom = True
+
         # Seting scrolled window
-        self.scrolled.set_border_width (5)
+        self.scrolled.set_border_width(5)
         self.scrolled.add(self.text_view)
-        self.scrolled.set_policy (gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-        self.scrolled.set_size_request (450, 350)
-    
+        self.scrolled.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.scrolled.set_size_request(450, 350)
+        vadjust = self.scrolled.get_vadjustment()
+        vadjust.connect('changed', self.__adjustment_update)
+        vadjust.connect('value-changed', self.__adjustment_at_bottom)
+
+    def __adjustment_at_bottom(self, adjustment):
+        print "update"
+        vadjust_end = adjustment.upper - adjustment.page_size
+        self._scroll_at_bottom = adjustment.value == vadjust_end
+
+    def __adjustment_update(self, adjustment):
+        if self._scroll_at_bottom:
+            adjustment.set_value(adjustment.upper - adjustment.page_size)
+
     def __set_text_view(self):
         self.text_view.set_wrap_mode(gtk.WRAP_WORD)
         self.text_view.set_editable(False)
@@ -182,20 +197,6 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
         self.hbox_buttons.pack_start(self.check_enable_color)
         self.hbox_buttons.pack_start(self.btn_output_properties)
         self.hbox_buttons.pack_start(self.btn_refresh)
-
-    def go_to_host(self, host):
-        """Go to host line on nmap output result"""
-        buff = self.text_view.get_buffer()
-        start_iter, end_iter = buff.get_bounds()
-
-        output = buff.get_text(start_iter, end_iter).split("\n")
-        re_host = re.compile("%s\s{0,1}:" % re.escape(host))
-
-        for i in xrange(len(output)):
-            if re_host.search(output[i]):
-                self.text_view.scroll_to_iter(buff.get_iter_at_line(i),
-                                              0, True, 0, 0)
-                break
 
     def enable_color_highlight(self, widget):
         if widget.get_active():
@@ -363,7 +364,7 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
                         self._brasil_log()
                     
         self.text_buffer.move_mark(self.mark, self.text_buffer.get_end_iter())
-        
+
     def _brasil_log(self):
         if self.brazil:
             log.info("Isto aqui, o o")
@@ -386,59 +387,31 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
             
             self.brazil = False
     
-    def show_nmap_output (self, file):
+    def show_nmap_output(self, file):
         self.nmap_output_file = file
+        self.text_buffer.set_text("")
         self.refresh_output()
-    
+
     def refresh_output(self, widget=None):
         log.debug("Refresh nmap output")
-        
+
         if self.nmap_output_file is not None:
             nmap_of = open(self.nmap_output_file, "r")
 
             new_output = nmap_of.read()
 
             if self.nmap_previous_output != new_output:
-
-                # See if scroll is at the end (must be done before text_buffer
-                # changes
-                scroll_flag = False
-
-                scroll_upper = self.scrolled.get_vadjustment().upper
-                scroll_size = self.scrolled.get_vadjustment().page_size
-                scroll_end = scroll_upper - scroll_size
-                scroll_current = self.scrolled.get_vadjustment().get_value()
-
-                scroll_flag = (scroll_end == scroll_current)
-
-                # Setting text and moving mark to the start 
+                # Setting text and moving mark to the start
                 # to update_colors correctly
-                self.text_buffer.set_text(enc(new_output))
+                text_prev_len = len(self.nmap_previous_output)
+
+                self.text_buffer.insert(
+                        self.text_buffer.get_end_iter(),
+                        enc(new_output[text_prev_len:]))
 
                 self.nmap_previous_output = new_output
-        
-                self.text_buffer.move_mark(self.mark,
-                                           self.text_buffer.get_start_iter())
+
                 self.update_output_colors()
-
-                # Do all pending events (otherwise the adjustment don't
-                # work correctly sometimes)
-                # XXX This freezes Windows XP at least.
-                #while (gtk.events_pending()):
-                #    gtk.main_iteration()
-
-                # Auto-scroll if scroll was at end
-                if scroll_flag:
-
-                    # Get and apply the new scrolled vadjustment value
-                    scroll_new_upper = self.scrolled.get_vadjustment().upper
-                    scroll_new_size = self.scrolled.get_vadjustment().page_size
-                    scroll_new_end = scroll_new_upper - scroll_new_size
-
-                    self.scrolled.get_vadjustment().set_value(scroll_new_end)
-
-                else:
-                    self.scrolled.get_vadjustment().set_value(scroll_current)
 
             nmap_of.close()
 
