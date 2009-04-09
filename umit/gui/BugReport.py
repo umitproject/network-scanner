@@ -33,10 +33,38 @@ from umit.core.BugRegister import BugRegister
 from umit.core.Version import VERSION
 from umit.core.I18N import _
 
+
+def show_report(bug_page):
+    if not bug_page:
+        return
+    try:
+        webbrowser.open(bug_page)
+    except: # XXX What exceptions should be caught here ?
+        page_dialog = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
+                message_format=_("Could not open default Web Browser"),
+                secondary_text=_("Umit was unable to open your default "
+                    "web browser to show the bug tracker page with the "
+                    "report status. Try visiting Umit's bug tracker "
+                    "page to see if your bug was reported."))
+        run_dialog(page_dialog)
+
+def destroy_dialog(dialog, response, callback=None, *args):
+    dialog.destroy()
+    if callback is not None:
+        callback(*args)
+
+def run_dialog(dialog, callback=None, *args):
+    """Reuse the current mainloop to run a dialog instead of starting another
+    mainloop by calling dialog.run."""
+    if not dialog.modal:
+        dialog.set_modal(True)
+    dialog.connect('response', destroy_dialog, callback, *args)
+    dialog.show_all()
+
 class BugReport(HIGDialog):
     def __init__(self, title=_('Bug Report'), summary=None, description=None,
                  category=None, crashreport=False, description_dialog=None):
-        HIGDialog.__init__(self, title=title, 
+        HIGDialog.__init__(self, title=title,
             buttons=(gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
                 gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL))
         
@@ -167,11 +195,11 @@ class BugReport(HIGDialog):
         for child in self.vbox.get_children():
             child.set_sensitive(False)
 
-        # now send report
-        gobject.timeout_add(1, self._send_report)
-        
+        # attempt sending report
+        gobject.idle_add(self._send_report)
+
     def restore_state(self):
-        """Restore dialog state, just like it was before calling 
+        """Restore dialog state, just like it was before calling
         send_report."""
         self.window.set_cursor(None)
         for child in self.vbox.get_children():
@@ -185,8 +213,7 @@ class BugReport(HIGDialog):
                     "You must inform a description that explains clearly "
                     "what is happening and a valid e-mail, so you can be "
                     "contacted when the bug gets fixed."))
-            cancel_dialog.run()
-            cancel_dialog.destroy()
+            run_dialog(cancel_dialog)
             return self.restore_state()
 
         bug_register = BugRegister()
@@ -213,8 +240,7 @@ class BugReport(HIGDialog):
                     "of Internet access or indisponibility of the bug "
                     "tracker server. Please, verify your internet access, "
                     "and then try to report the bug once again."))
-            cancel_dialog.run()
-            cancel_dialog.destroy()
+            run_dialog(cancel_dialog)
             return self.restore_state()
         else:
             ok_dialog = HIGAlertDialog(type=gtk.MESSAGE_INFO,
@@ -223,21 +249,7 @@ class BugReport(HIGDialog):
                     "reported. A web page with detailed description about "
                     "this report will be opened in your default web browser "
                     "now."))
-            ok_dialog.run()
-            ok_dialog.destroy()
-
-        if bug_page:
-            try:
-                webbrowser.open(bug_page)
-            except: # XXX What exceptions should be caught here ?
-                page_dialog = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
-                    message_format=_("Could not open default Web Browser"),
-                    secondary_text=_("Umit was unable to open your default "
-                        "web browser to show the bug tracker page with the "
-                        "report status. Try visiting Umit's bug tracker "
-                        "page to see if your bug was reported."))
-                page_dialog.run()
-                page_dialog.destroy()
+            run_dialog(ok_dialog, show_report, bug_page)
 
         # report sent successfully
         self.response(gtk.RESPONSE_DELETE_EVENT)
