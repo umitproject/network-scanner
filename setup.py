@@ -139,6 +139,9 @@ data_files = [
 
         ]
 
+# Add i18n files to data_files list
+os.path.walk(LOCALE_DIR, mo_find, data_files)
+
 
 ##############################################################################
 # Distutils subclasses
@@ -259,8 +262,6 @@ class umit_install(install):
         self.pkgmaintainer = 0
 
     def run(self):
-        # Add i18n files to data_files list
-        os.path.walk(LOCALE_DIR, mo_find, data_files)
         install.run(self)
 
         self.set_perms()
