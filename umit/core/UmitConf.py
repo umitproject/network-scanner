@@ -321,8 +321,8 @@ class NmapOutputHighlight(object):
         property_name = "%s_highlight" % property_name
         settings = self.sanity_settings(list(settings))
 
-        [self.parser.set(property_name, self.setts[pos], settings[pos]) \
-         for pos in xrange(len(settings))]
+        for pos in xrange(len(settings)):
+            self.parser.set(property_name, self.setts[pos], settings[pos])
 
     def sanity_settings(self, settings):
         """This method tries to convert insane settings to sanity ones ;-)
@@ -429,56 +429,74 @@ class NmapOutputHighlight(object):
     details = property(get_details, set_details)
     enable = property(get_enable, set_enable)
 
-    # These settings are made when there is nothing set yet. They set 
+    # These settings are made when there is nothing set yet. They set
     # the "factory" default to highlight colors
-    default_highlights = {"date":{"bold":str(True),
-                            "italic":str(False),
-                            "underline":str(False),
-                            "text":[0, 0, 0],
-                            "highlight":[65535, 65535, 65535],
-                            "regex":"\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}\s.{1,4}"},
-                          "hostname":{"bold":str(True),
-                            "italic":str(True),
-                            "underline":str(True),
-                            "text":[0, 111, 65535],
-                            "highlight":[65535, 65535, 65535],
-                "regex":"(\w{2,}://)*\w{2,}\.\w{2,}(\.\w{2,})*(/[\w{2,}]*)*"},
-                          "ip":{"bold":str(True),
-                            "italic":str(False),
-                            "underline":str(False),
-                            "text":[0, 0, 0],
-                            "highlight":[65535, 65535, 65535],
-                            "regex":"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"},
-                          "port_list":{"bold":str(True),
-                            "italic":str(False),
-                            "underline":str(False),
-                            "text":[0, 1272, 28362],
-                            "highlight":[65535, 65535, 65535],
-                        "regex":"PORT\s+STATE\s+SERVICE(\s+VERSION)?[^\n]*"},
-                          "open_port":{"bold":str(True),
-                            "italic":str(False),
-                            "underline":str(False),
-                            "text":[0, 41036, 2396],
-                            "highlight":[65535, 65535, 65535],
-                            "regex":"\d{1,5}/.{1,5}\s+open\s+.*"},
-                          "closed_port":{"bold":str(False),
-                            "italic":str(False),
-                            "underline":str(False),
-                            "text":[65535, 0, 0],
-                            "highlight":[65535, 65535, 65535],
-                            "regex":"\d{1,5}/.{1,5}\s+closed\s+.*"},
-                          "filtered_port":{"bold":str(False),
-                            "italic":str(False),
-                            "underline":str(False),
-                            "text":[38502, 39119, 0],
-                            "highlight":[65535, 65535, 65535],
-                            "regex":"\d{1,5}/.{1,5}\s+filtered\s+.*"},
-                          "details":{"bold":str(True),
-                            "italic":str(False),
-                            "underline":str(True),
-                            "text":[0, 0, 0],
-                            "highlight":[65535, 65535, 65535],
-                            "regex":"^(\w{2,}[\s]{,3}){,4}:"}}
+    default_highlights = {
+            "date": {
+                "bold": str(True),
+                "italic": str(False),
+                "underline": str(False),
+                "text": [0, 0, 0],
+                "highlight": [65535, 65535, 65535],
+                "regex": "\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}\s.{1,4}"
+                },
+            "hostname": {
+                "bold": str(True),
+                "italic": str(True),
+                "underline": str(True),
+                "text": [0, 111, 65535],
+                "highlight": [65535, 65535, 65535],
+                "regex": "(\w{2,}://)*\w{2,}\.\w{2,}(\.\w{2,})*(/[\w{2,}]*)*"
+                },
+            "ip": {
+                "bold": str(True),
+                "italic": str(False),
+                "underline": str(False),
+                "text": [0, 0, 0],
+                "highlight": [65535, 65535, 65535],
+                "regex": "\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"
+                },
+            "port_list": {
+                "bold": str(True),
+                "italic": str(False),
+                "underline": str(False),
+                "text": [0, 1272, 28362],
+                "highlight": [65535, 65535, 65535],
+                "regex": "PORT\s+STATE\s+SERVICE(\s+VERSION)?[^\n]*"
+                },
+            "open_port": {
+                "bold": str(True),
+                "italic": str(False),
+                "underline": str(False),
+                "text": [0, 41036, 2396],
+                "highlight": [65535, 65535, 65535],
+                "regex": "\d{1,5}/.{1,5}\s+open\s+.*"
+                },
+            "closed_port": {
+                "bold": str(False),
+                "italic": str(False),
+                "underline": str(False),
+                "text": [65535, 0, 0],
+                "highlight": [65535, 65535, 65535],
+                "regex":"\d{1,5}/.{1,5}\s+closed\s+.*"
+                },
+            "filtered_port": {
+                "bold": str(False),
+                "italic": str(False),
+                "underline": str(False),
+                "text": [38502, 39119, 0],
+                "highlight": [65535, 65535, 65535],
+                "regex": "\d{1,5}/.{1,5}\s+filtered\s+.*"
+                },
+            "details": {
+                    "bold": str(True),
+                    "italic": str(False),
+                    "underline": str(True),
+                    "text": [0, 0, 0],
+                    "highlight": [65535, 65535, 65535],
+                    "regex": "^(\w{2,}[\s]{,3}){,4}:"
+                    }
+            }
 
 class DiffColors(object):
     def __init__(self):
