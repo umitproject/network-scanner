@@ -56,7 +56,7 @@ class OptionTab(object):
             try:option_element.tagName
             except:pass
             else:
-                if option_element.tagName in actions.keys():
+                if option_element.tagName in actions:
                     self.widgets_list.append(
                             actions[option_element.tagName](option_element,
                                 options_used))

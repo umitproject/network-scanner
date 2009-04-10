@@ -198,7 +198,7 @@ class ScriptSelection(object):
                 self.d[script] = True
 
     def get_selected(self):
-        return ";".join([script.path for script in self.d.keys() if self.d[script]])
+        return ";".join([script.path for script in self.d if self.d[script]])
 
     def is_selected(self, script):
         return self.d.get(script, False)

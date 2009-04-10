@@ -102,7 +102,7 @@ class DataGrabber(ConnectDB, ChangesRetrieve):
         categories = self.get_categories()
 
         # grab data
-        for category in categories.keys():
+        for category in categories:
             # unused is a filter that we will discard, it is a filter
             # for Changes Sum, but we will return a filter by category.
             #unused, cmax, cstart, \

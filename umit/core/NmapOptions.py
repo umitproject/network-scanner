@@ -109,7 +109,7 @@ class NmapOptions:
         return [i.strip() for i in list.split(';') if i != '']
     
     def __get_list (self, dict):
-        return [element for element in dict.keys()]
+        return dict.keys()
     
 
     

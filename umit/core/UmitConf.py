@@ -210,7 +210,7 @@ class Profile(UmitConfigParser, object):
             # Assuming there are no values for these options
             options = {}
         elif isinstance(options, dict):
-            self._set_it(profile_name, "options", ",".join(options.keys()))
+            self._set_it(profile_name, "options", ",".join(options))
 
         for opt in options:
             if options[opt]:
@@ -275,7 +275,7 @@ class CommandProfile (Profile, object):
         for opt in options:
             if options[opt]:
                 self._set_it(profile, opt, options[opt])
-        self._set_it(profile, 'options', ",".join(options.keys()))
+        self._set_it(profile, 'options', ",".join(options))
 
     def get_profile(self, profile_name):
         return {'profile':profile_name, \

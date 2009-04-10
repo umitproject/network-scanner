@@ -89,7 +89,7 @@ class InventoryLoad(ConnectDB, InventoryRetrieve):
         # database, so we can stop doing so many queries.
 
         # Retrieve hosts for each Inventory
-        for inv in inv_data.keys():
+        for inv in inv_data:
             invid = self.get_inventory_id_for_name(inv)
 
             if not invid:

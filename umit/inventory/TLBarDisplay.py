@@ -143,7 +143,7 @@ class TLSelected(gtk.Widget):
         data = { }
 
         # grab changes by category in current selection
-        for key in categories.keys():
+        for key in categories:
             c = self.datagrabber.timerange_changes_count_generic(range_start,
                 range_end, key, self.datagrabber.inventory,
                 self.datagrabber.hostaddr)

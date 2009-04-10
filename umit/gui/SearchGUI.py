@@ -886,7 +886,7 @@ class SaveTime(HIGHBox, object):
 
         self.entry.set_width_chars(4)
 
-        for i in SearchConfig().time_list.keys():
+        for i in SearchConfig().time_list:
             self.time_list.append([i])
 
         self._pack_noexpand_nofill(self.entry)

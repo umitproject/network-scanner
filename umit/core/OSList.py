@@ -35,7 +35,7 @@ class OSList(object):
         self.os = load_dumped_os()
 
     def get_match_list(self, osclass):
-        if osclass in self.os.keys():
+        if osclass in self.os:
             return self.os[osclass]
         return None
 

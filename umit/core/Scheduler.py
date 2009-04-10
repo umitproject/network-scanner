@@ -244,7 +244,7 @@ class SchedSchema(object):
         """
         if self.schema_parser.has_section(name):
             for opt in self.schema_parser.options(name):
-                if opt in self.options.keys():
+                if opt in self.options:
                     self.options[opt](self.schema_parser.get(name, opt))
 
             self.load_profile()
@@ -259,7 +259,7 @@ class SchedSchema(object):
 
         if p_cfg.has_section(self.profile):
             for opt in p_cfg.options(self.profile):
-                if opt in self.profile_opts.keys():
+                if opt in self.profile_opts:
                     self.profile_opts[opt](p_cfg.get(self.profile, opt))
 
 

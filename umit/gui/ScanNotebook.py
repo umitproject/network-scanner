@@ -785,7 +785,7 @@ class ScanNotebookPage(HIGVBox):
                     if state not in list_states:
                         continue
                     
-                    if name not in self.services.keys():
+                    if name not in self.services:
                         self.services[name] = {"hosts":[]}
                     
                     hs = {"host": host, "page": host_page, "hostname": hostname}
@@ -881,12 +881,12 @@ class ScanNotebookPage(HIGVBox):
             if match_host:
                 current_ip = match_host.groups()[0]
             if match_os:
-                if current_ip not in fingerprints.keys():
+                if current_ip not in fingerprints:
                     fingerprints[current_ip] = {}
                 
                 fingerprints[current_ip]["os"] = match_os.groups()[0]
             if match_service:
-                if current_ip not in fingerprints.keys():
+                if current_ip not in fingerprints:
                     fingerprints[current_ip] = {}
 
                 fp = match_service.groups()[0]
@@ -910,7 +910,7 @@ class ScanNotebookPage(HIGVBox):
             # If ok, show the form, sending the ip and fingerprint.
         """
 
-        key_num = len(fingerprints.keys())
+        key_num = len(fingerprints)
         dialog_text = ("Umit has found that %s. The submission and "
             "registration of fingerprints are very important for you "
             "and the Nmap project! If you would like to contribute "

@@ -150,7 +150,7 @@ class TLChangesTree(gtk.HBox):
 
         # grab changes in timerange
         self.datagrabber.use_dict_cursor()
-        for key in db_categories.keys():
+        for key in db_categories:
             if not range_start or not range_end:
                 data[key] = { }
                 continue
@@ -177,14 +177,14 @@ class TLChangesTree(gtk.HBox):
                 fk_inventory = entry["fk_inventory"]
 
                 # grab host address
-                if not fk_address in addresses.keys():
+                if not fk_address in addresses:
                     adr = self.datagrabber.get_address_for_address_id_from_db(
                           fk_address)
 
                     addresses[fk_address] = adr
 
                 # grab inventory name
-                if not fk_inventory in inventories.keys():
+                if not fk_inventory in inventories:
                     inv_name = self.datagrabber.get_inventory_name_for_id(
                                fk_inventory)
 
