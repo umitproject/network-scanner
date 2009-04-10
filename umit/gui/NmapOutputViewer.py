@@ -167,7 +167,6 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
         vadjust.connect('value-changed', self.__adjustment_at_bottom)
 
     def __adjustment_at_bottom(self, adjustment):
-        print "update"
         vadjust_end = adjustment.upper - adjustment.page_size
         self._scroll_at_bottom = adjustment.value == vadjust_end
 
