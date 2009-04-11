@@ -141,6 +141,8 @@ class PluginEngine(Singleton):
         """
         Check the downloaded plugins and move to the proper location
         """
+
+        log.debug("Path.config_dir placed under %s" % Path.config_dir)
         
         dest_dir = os.path.join(Path.config_dir, 'plugins')
         temp_dir = os.path.join(Path.config_dir, 'plugins-temp')
@@ -231,6 +233,8 @@ class PluginEngine(Singleton):
         """
 
         try:
+            log.debug("Loading plugin %s" % plugin)
+
             path = os.path.dirname(plugin)
             file = os.path.basename(plugin)
 
@@ -245,6 +249,10 @@ class PluginEngine(Singleton):
                 return (False, "Plugin not in path (%s)" % plugin)
 
             d = self.paths[path][1].get_plugins()
+
+            if file not in d:
+                return (False, "Plugin does not exists anymore (%s)" % plugin)
+
             self.tree.load_plugin(d[file], force)
 
             # Setting enabled field for PluginReader to
