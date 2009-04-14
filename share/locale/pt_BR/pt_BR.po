@@ -22,7 +22,7 @@ msgstr "Construir"
 
 #: umit/inventory/About.py:51 umit/report/About.py:51
 msgid "UMIT Network Inventory and UMIT Scheduler are UMIT\n"
-msgstr "UMIT Network Inventory e UMIT Scheduler são UMIT\n"
+msgstr "UMIT Inventário de Rede e UMIT Agendador são UMIT\n"
 
 #: umit/inventory/About.py:52 umit/report/About.py:52
 msgid "extensions developed by"
@@ -39,7 +39,7 @@ msgstr ""
 #: umit/inventory/About.py:70 umit/inventory/Viewer.py:675
 #: umit/report/About.py:70 umit/report/Viewer.py:675
 msgid "About UMIT Network Inventory"
-msgstr "Sobre UMIT Network Inventory"
+msgstr "Sobre UMIT Inventário de Rede"
 
 #: umit/inventory/Calendar.py:32 umit/report/Calendar.py:32
 msgid "January"
@@ -240,7 +240,7 @@ msgstr "Classe de S.O."
 #: umit/inventory/ChangesDiff.py:411 umit/report/ChangesDiff.py:411
 #: umit/gui/DiffCompare.py:775 umit/db/Search.py:106
 msgid "OS Match"
-msgstr "Classe de S.O."
+msgstr "S.O. Compatível"
 
 #: umit/inventory/ChangesDiff.py:534 umit/report/ChangesDiff.py:534
 #, fuzzy
@@ -302,7 +302,7 @@ msgstr "Inventário"
 #: umit/inventory/ChangesList.py:221 umit/report/ChangesList.py:221
 #, fuzzy
 msgid "Host address"
-msgstr "Nomes de Máquina"
+msgstr "Endereço do host"
 
 #: umit/inventory/ChangesList.py:222 umit/report/ChangesList.py:222
 msgid "Category"
@@ -335,7 +335,7 @@ msgstr "Opções"
 #: umit/report/ChangesList.py:402 umit/report/Timeline.py:68
 #, fuzzy
 msgid "Viewing"
-msgstr "Vendo"
+msgstr "Visualizando"
 
 #: umit/inventory/ChangesList.py:403 umit/report/ChangesList.py:403
 msgid "of"
@@ -353,7 +353,7 @@ msgstr "Apagar dados com mais de"
 #: umit/inventory/DataRemoval.py:45 umit/report/DataRemoval.py:45
 #, fuzzy
 msgid "days"
-msgstr "Dias"
+msgstr "dias"
 
 #: umit/inventory/DataRemoval.py:50 umit/report/DataRemoval.py:50
 msgid "Set value as 0 to disable data removal"
@@ -369,7 +369,7 @@ msgstr "<b>Por Favor espere...</b>"
 
 #: umit/inventory/DataRemoval.py:119 umit/report/DataRemoval.py:119
 msgid "Removing data from Network Inventory database"
-msgstr "Removendo dados da base de dados do Network Inventory"
+msgstr "Removendo dados do banco de dados do Inventário de Rede"
 
 #: umit/inventory/HostDiscovery.py:225 umit/report/HostDiscovery.py:225
 #, fuzzy
@@ -456,7 +456,7 @@ msgstr "Varredura"
 #: umit/report/InventoryTree.py:267 umit/report/InventoryTree.py:321
 #, fuzzy
 msgid " running"
-msgstr "executando"
+msgstr " executando"
 
 #: umit/inventory/HostDiscovery.py:459 umit/report/HostDiscovery.py:459
 msgid "Invalid network(s)."
@@ -501,12 +501,12 @@ msgid ""
 "somewhere else or report as bug)"
 msgstr ""
 "Este inventário foi criado quando uma varredura realizada no UMIT foi "
-"requisitada para ser adicionada ao vizualizador do Network Inventory, então "
+"requisitada para ser adicionada ao vizualizador do Inventário de Rede, então "
 "não existe um perfil de agendamento para ele.\n"
 "\n"
 "Este inventãrio não é editável.\n"
 "\n"
-"(Se a razão informada acima esta incorreta, então é porque você tem uma base "
+"(Se a razão informada acima esta incorreta, então é porque você tem um banco "
 "de dados de algum outro lugar ou então informe como erro)"
 
 #: umit/inventory/InventoryException.py:9 umit/report/InventoryException.py:9
@@ -537,7 +537,7 @@ msgstr "MAC"
 #: umit/inventory/InventoryTree.py:44 umit/report/InventoryTree.py:44
 #: umit/gui/ScanOpenPortsPage.py:82 umit/db/Search.py:103
 msgid "Hostname"
-msgstr "Nome da Máquina"
+msgstr "Nome do Host"
 
 #: umit/inventory/InventoryTree.py:62 umit/inventory/InventoryTree.py:189
 #: umit/report/InventoryTree.py:62 umit/report/InventoryTree.py:189
@@ -547,12 +547,12 @@ msgstr "Meus Inventários"
 #: umit/inventory/InventoryTree.py:225 umit/report/InventoryTree.py:225
 #, fuzzy
 msgid "Scan will not run!"
-msgstr "A varredura não executará!"
+msgstr "A varredura não será executada!"
 
 #: umit/inventory/InventoryTree.py:226 umit/inventory/InventoryTree.py:283
 #: umit/report/InventoryTree.py:226 umit/report/InventoryTree.py:283
 msgid "You tried running scan for Inventory"
-msgstr "Você tentou executar uma varredura para o inventário"
+msgstr "Você tentou executar uma varredura para o Inventário"
 
 #: umit/inventory/InventoryTree.py:228 umit/report/InventoryTree.py:228
 msgid ""
@@ -560,7 +560,7 @@ msgid ""
 "\n"
 "Error returned:"
 msgstr ""
-"mas não tem nenhum dado no arquivo de esquemas do agendamento, nem no banco "
+"mas não tem nenhum dado no arquivo de esquemas do Agendador, nem no banco "
 "de dados.\n"
 "\n"
 "Erro retornado:"
@@ -579,7 +579,7 @@ msgstr "Banco de dados não pôde ser atualizado!"
 
 #: umit/inventory/InventoryTree.py:302 umit/report/InventoryTree.py:302
 msgid "The scan for the Inventory"
-msgstr "A varredura para o inventário"
+msgstr "A varredura para o Inventário"
 
 #: umit/inventory/InventoryTree.py:304 umit/report/InventoryTree.py:304
 msgid "finished but it couldn't be added to the database."
@@ -597,7 +597,7 @@ msgstr "Juntar todos"
 #: umit/report/InventoryTree.py:366 umit/report/InventoryTree.py:376
 #, fuzzy
 msgid "View by"
-msgstr "ver através"
+msgstr "Visualizar por"
 
 #: umit/inventory/InventoryTree.py:410 umit/report/InventoryTree.py:410
 #, python-format
@@ -610,7 +610,7 @@ msgstr "Executar varredura agora"
 
 #: umit/inventory/NewInventory.py:65 umit/report/NewInventory.py:65
 msgid "Editing Inventory"
-msgstr "Editando inventário"
+msgstr "Editando Inventário"
 
 #: umit/inventory/NewInventory.py:67 umit/report/NewInventory.py:67
 msgid "New Inventory"
@@ -618,7 +618,7 @@ msgstr "Novo Inventário"
 
 #: umit/inventory/NewInventory.py:77 umit/report/NewInventory.py:77
 msgid "Inventory's name"
-msgstr "Nome do inventário"
+msgstr "Nome do Inventário"
 
 #: umit/inventory/NewInventory.py:80 umit/report/NewInventory.py:80
 #, fuzzy
@@ -669,7 +669,7 @@ msgstr "Usar descoberta de host"
 #: umit/gui/SchedulerEdit.py:82 umit/gui/SchedulerEdit.py:518
 #, fuzzy
 msgid "Scheduling Profile"
-msgstr "Perfilde de Agendamento"
+msgstr "Perfil de Agendamento"
 
 #: umit/inventory/NewInventory.py:119 umit/report/NewInventory.py:119
 #: umit/gui/SchedulerEdit.py:86
@@ -690,8 +690,7 @@ msgstr "Novo Inventário - Erro ao criar."
 #: umit/inventory/NewInventory.py:324 umit/report/NewInventory.py:324
 msgid "You tried to use an existing Inventory name or you didn't specify one."
 msgstr ""
-"Você tentou usar o nome de um inventário existente ou você não especificou "
-"um."
+"Você tentou usar o nome de um Inventário existente ou você não especificou um."
 
 #: umit/inventory/NewInventory.py:333 umit/report/NewInventory.py:333
 msgid "New Inventory - Error  while creating."
@@ -704,16 +703,15 @@ msgstr "Você não especificou qualquer alvo."
 #: umit/inventory/NewInventory.py:344 umit/report/NewInventory.py:344
 msgid "You need to toggle \"Use default scan options\" or specify a command."
 msgstr ""
-"Você precisa escolher: \"Usar opções padrão de varredura\" ou especificar um "
-"comando."
+"Você precisa escolher: \"Usar opções padrão de varredura\" ou especificar um comando."
 
 #: umit/inventory/NewInventory.py:364 umit/report/NewInventory.py:364
 msgid ""
 "It seems you removed <target> from the Scan command entry, you need to leave "
 "it somewhere there."
 msgstr ""
-"It seems you removed <target> from the Scan command entry, you need to leave "
-"it somewhere there."
+"Parece que você removeu <alvo> do comando de entrada da Varredura, você precisa deixar "
+"isso em algum lugar."
 
 #: umit/inventory/NewInventory.py:529 umit/report/NewInventory.py:529
 msgid "Changes in command won't be saved!"
@@ -767,7 +765,7 @@ msgid ""
 "If you suspect this is a bug, please report it."
 msgstr ""
 "A conexão com o banco de dados não foi estabelecida. Existem algumas "
-"possíveis razões: seu banco de dados UMIT pode estar corrompida , faltando, "
+"possíveis razões: seu banco de dados UMIT pode estar corrompido , faltando, "
 "ou alguma coisa mais estranha, ou, você não esta executando dentro do UMIT.\n"
 "\n"
 "Se você suspeita que isso seja um erro, por favor informe."
@@ -788,7 +786,7 @@ msgstr "Configurações do Cronograma"
 
 #: umit/inventory/SettingsWin.py:44 umit/report/SettingsWin.py:44
 msgid "Timeline view mode"
-msgstr "Modo de visualiação do cronograma"
+msgstr "Modo de visualiação do Cronograma"
 
 #: umit/inventory/SettingsWin.py:45 umit/report/SettingsWin.py:45
 msgid "Timeline view kind"
@@ -802,7 +800,7 @@ msgstr "Aba de dispositivos"
 #: umit/inventory/SettingsWin.py:50 umit/inventory/Viewer.py:690
 #: umit/report/SettingsWin.py:50 umit/report/Viewer.py:690
 msgid "Place close button"
-msgstr "Colocar botão "
+msgstr "Colocar botão Fechar"
 
 #: umit/inventory/SettingsWin.py:52 umit/report/SettingsWin.py:52
 #: umit/gui/ScriptManager.py:358
@@ -1235,7 +1233,7 @@ msgstr "_Editar"
 #: umit/inventory/Viewer.py:610 umit/report/Viewer.py:610
 #: umit/gui/MainWindow.py:313
 msgid "_Scheduler"
-msgstr "_Scheduler"
+msgstr "_Agendador"
 
 #: umit/inventory/Viewer.py:611 umit/inventory/Viewer.py:664
 #: umit/report/Viewer.py:611 umit/report/Viewer.py:664
@@ -1305,11 +1303,11 @@ msgstr "Iniciar Configurações"
 
 #: umit/inventory/Viewer.py:652 umit/report/Viewer.py:652
 msgid "Scheduler log"
-msgstr "Log do"
+msgstr "Log do Agendador"
 
 #: umit/inventory/Viewer.py:653 umit/report/Viewer.py:653
 msgid "View Scheduler log"
-msgstr "Visualizar log do Scheduler"
+msgstr "Visualizar log do Agendador"
 
 #: umit/inventory/Viewer.py:665 umit/report/Viewer.py:665
 #: umit/gui/MainWindow.py:352
@@ -1353,7 +1351,7 @@ msgstr "Histórico"
 
 #: umit/inventory/Viewer.py:933 umit/report/Viewer.py:933
 msgid " Timeline "
-msgstr ""
+msgstr "Linha do Tempo"
 
 #: umit/interfaceeditor/DependencesOption.py:46
 msgid "Dependence of Option "
@@ -1598,7 +1596,7 @@ msgstr "Dica:"
 
 #: umit/interfaceeditor/OptionManager.py:140
 msgid "Need root"
-msgstr "Precisa do root"
+msgstr "Precisa de super-usuário(root)"
 
 #: umit/interfaceeditor/OptionManager.py:145
 #, fuzzy
@@ -1766,7 +1764,7 @@ msgstr "Houve um trabalho agendado que apenas"
 
 #: umit/core/Scheduler.py:715
 msgid "Follows an attachment of the job output."
-msgstr ""
+msgstr "Segue uma ligação de saída do trabalho."
 
 #: umit/core/UmitConf.py:157
 msgid "Weeks"
@@ -1791,11 +1789,11 @@ msgstr ""
 
 #: umit/core/UmitOptionParser.py:40
 msgid "Start Umit Network Inventory."
-msgstr ""
+msgstr "Iniciar Umit Inventário de Rede."
 
 #: umit/core/UmitOptionParser.py:49
 msgid "Open Umit and runs a Nmap scan with specified args."
-msgstr "Abrir o Umit e iniciar uma verrudura com os argumentos especificados."
+msgstr "Abrir o Umit e iniciar uma Varredura com os argumentos especificados."
 
 #: umit/core/UmitOptionParser.py:57
 msgid ""
@@ -2188,7 +2186,7 @@ msgstr ""
 "Adriano Monteiro Marques <adriano@umitproject.org>\n"
 "Frederico Silva Ribeiro <fredegart@gmail.com>\n"
 "\n"
-"Network Inventory:\n"
+"Inventário de Rede:\n"
 "Guilherme Henrique Polo Gonçalves <ggpolo@gmail.com>\n"
 "\n"
 "Umit Radial Mapper:\n"
@@ -2919,15 +2917,15 @@ msgstr "_Adicionar varredura ao Inventário"
 
 #: umit/gui/MainWindow.py:300
 msgid "Add finished scan on current tab to Network Inventory"
-msgstr "Adicionar varredura finalizada na aba atual ao Network Inventory"
+msgstr "Adicionar varredura finalizada na aba atual ao Inventário de Rede"
 
 #: umit/gui/MainWindow.py:306
 msgid "Network _Inventory"
-msgstr "Network _Inventory"
+msgstr "_Inventário de Rede"
 
 #: umit/gui/MainWindow.py:308
 msgid "Run Network Inventory"
-msgstr "Executar Network Inventory"
+msgstr "Executar Inventário de Rede"
 
 #: umit/gui/MainWindow.py:320
 msgid "_Editor"
@@ -3131,7 +3129,7 @@ msgid ""
 msgstr ""
 "Você está tentando executar o UMIT como usuário não privilegiado.\n"
 "\n"
-"Algumas opções do nmap requerem privilégio de super-usuário."
+"Algumas opções do nmap requerem privilégio de super-usuário(root)."
 
 #: umit/gui/MainWindow.py:1285
 msgid "Non root user"
@@ -3286,7 +3284,7 @@ msgstr ""
 "sistemas operacionais para o banco de dados do Nmap. Obrigado por ajudar! "
 "<b>Por favor não preencha este formulário a não ser que você esteja certo "
 "que você sabe qual aplicação está rodando na máquina que você está enviando</"
-"b>. Entradas incorretas podem poluir a base de dados. Ao Enviar impressões "
+"b>. Entradas incorretas podem poluir o banco de dados. Ao Enviar impressões "
 "digitais você estará transferindo o copyright dos dados contindos no "
 "formulário ao Fyodor; ele poderá modificá-lo, licenciá-lo novamente, "
 "incorporar em programas como o Nmap, etc. "
@@ -3689,7 +3687,7 @@ msgstr "Erro desconhecido!"
 
 #: umit/gui/ScanNotebook.py:761
 msgid "Root privileges are needed!"
-msgstr "São necessários privilégios de super-administrador (root)"
+msgstr "São necessários privilégios de super-usuário(root)"
 
 #: umit/gui/ScanNotebook.py:767
 msgid "An unexpected error occourried!"
@@ -3861,14 +3859,14 @@ msgstr ""
 "Você está tentando iniciar o Agendador como um usuário normal.\n"
 "\n"
 "Neste caso alguma varredura agendada que contenha quaisquer \n"
-"opções que exijam privilégios do root não \n"
+"opções que exijam privilégios de super-usuário não \n"
 "irão executar.\n"
 "\n"
 "Se você não quer iniciar o Agendador agora, \n"
 "Selecione Cancelar, se você quer executar como um usuário normal  \n"
 "de qualquer maneira, selecione OK, de outra maneira, selecione Ajuda para "
 "aprender \n"
-"como você pode iniciar o Agendador como root."
+"como você pode iniciar o Agendador como usuário privilegiado."
 
 #: umit/gui/SchedulerControl.py:97
 msgid ""
@@ -3999,11 +3997,11 @@ msgstr "Sem descrições"
 
 #: umit/gui/ScriptManager.py:148
 msgid "unnamed"
-msgstr "não nomeado"
+msgstr "sem nome"
 
 #: umit/gui/ScriptManager.py:150 umit/gui/ScriptManager.py:154
 msgid "untagged"
-msgstr ""
+msgstr "untagged"
 
 #: umit/gui/ScriptManager.py:261
 #, fuzzy
@@ -4289,7 +4287,7 @@ msgstr "Arquivos locais"
 
 #: umit/gui/SearchGUI.py:199
 msgid "Database"
-msgstr "Base de dados"
+msgstr "Banco de dados"
 
 #: umit/gui/SearchGUI.py:202
 msgid "Directory"
@@ -4305,11 +4303,11 @@ msgstr "Salvar resultados para"
 
 #: umit/gui/SearchGUI.py:209
 msgid "Save scan results in data base for latter search"
-msgstr "Salvar resultados da varredura na base de dados para buscas futuras."
+msgstr "Salvar resultados da varredura no banco de dados para buscas futuras."
 
 #: umit/gui/SearchGUI.py:211
 msgid "Search saved scan results in data base"
-msgstr "Pesquisar resultados de varredura salvos na base de dados"
+msgstr "Pesquisar resultados de varredura salvos no banco de dados"
 
 #: umit/gui/SearchGUI.py:266
 msgid "General"
@@ -4331,7 +4329,7 @@ msgid ""
 msgstr ""
 "Umit pode pesquisar resultados em diretórios ou dentro de sua própria base "
 "de dados. Por favor, selecione um método escolhendo um diretório ou marcando "
-"a opção 'pesquisar na base de dados' na aba 'Opções de pesquisa' antes de "
+"a opção 'pesquisar no banco de dados' na aba 'Opções de pesquisa' antes de "
 "iniciar a pesquisa"
 
 #: umit/gui/SearchGUI.py:468
@@ -4444,7 +4442,7 @@ msgstr ""
 "serviços/versões para o banco de dados do Nmap. Obrigado por ajudar! <b>Por "
 "favor não preencha este formulário a não ser que você esteja certo que você "
 "sabe qual aplicação está rodando na máquina que você está enviando</b>. "
-"Entradas incorretas podem poluir a base de dados. Ao Enviar impressões "
+"Entradas incorretas podem poluir o banco de dados. Ao Enviar impressões "
 "digitais você estará transferindo o copyright dos dados contindos no "
 "formulário ao Fyodor; ele poderá modificá-lo, licenciá-lo novamente, "
 "incorporar em programas como o Nmap, etc. "
@@ -4546,7 +4544,7 @@ msgstr "Host desligado"
 
 #: umit/db/InventoryChanges.py:168
 msgid "Host added to the Inventory."
-msgstr "Host adicionado ao inventário."
+msgstr "Host adicionado ao Inventário."
 
 #: umit/db/InventoryChanges.py:258
 #, fuzzy
