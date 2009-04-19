@@ -2,7 +2,7 @@
 
 # Copyright (C) 2007 Adriano Monteiro Marques
 #
-# Author: João Paulo de Souza Medeiros <ignotus21@gmail.com>
+# Author: JoÃ£o Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -146,12 +146,11 @@ class Toolbar(gtk.Toolbar):
         self.__expander.set_expand(True)
         self.__expander.set_draw(False)
 
-        self.insert(self.__separator,    0)
-        self.insert(self.__tools_button, 1)
-        self.insert(self.__expander,     2)
-        self.insert(self.__control,      3)
-        self.insert(self.__fisheye,      4)
-        self.insert(self.__fullscreen,   5)
+        self.insert(self.__tools_button, 0)
+        self.insert(self.__expander,     1)
+        self.insert(self.__control,      2)
+        self.insert(self.__fisheye,      3)
+        self.insert(self.__fullscreen,   4)
 
         gobject.timeout_add(REFRESH_RATE, self.__update)
 
