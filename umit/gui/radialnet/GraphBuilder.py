@@ -43,8 +43,11 @@ class GraphBuilder(Graph):
         
     def __set_default_values(self, node):
             
-        node.set_info({'ip':'127.0.0.1/8', 'hostname':'localhost'})
-        node.set_draw_info({'color':(0,0,0), 'radius':NONE_RADIUS})
+        node.set_info({'ip':'0.0.0.0', 'hostname':'Umit'})
+        node.set_draw_info({'color':(1,0,0),
+                            'radius':BASE_RADIUS,
+                            'line-width':3,
+                            'line-color':(0.5,0,0)})
         
         
     def __calc_vulnerability_level(self, node, host):

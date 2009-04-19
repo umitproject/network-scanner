@@ -2,7 +2,7 @@
 
 # Copyright (C) 2007 Adriano Monteiro Marques
 #
-# Author: João Paulo de Souza Medeiros <ignotus21@gmail.com>
+# Author: JoÃ£o Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -982,11 +982,16 @@ class RadialNet(gtk.DrawingArea):
         xc, yc = self.__center_of_widget
         r, g, b = node.get_draw_info('color')
         radius = node.get_draw_info('radius')
+        line_color = node.get_draw_info('line-color')
+        line_width = node.get_draw_info('line-width')
 
         type = node.get_info('device_type')
 
         x_gap = radius + 2
         y_gap = 0
+
+        if line_width:
+            x_gap += line_width
 
         # draw group indication
         if node.get_draw_info('group') == True:
@@ -1089,7 +1094,17 @@ class RadialNet(gtk.DrawingArea):
             else:
                 self.context.show_text('')
 
-        self.context.set_line_width(1)
+        if line_color:
+
+            r, g, b = line_color
+            self.context.set_source_rgb(r, g, b)
+
+        if line_width:
+            self.context.set_line_width(line_width)
+
+        else:
+            self.context.set_line_width(1)
+
         self.context.stroke()
 
 
