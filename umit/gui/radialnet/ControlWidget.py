@@ -1,4 +1,4 @@
-# vim: set fileencoding=utf-8 :
+# vim: set encoding=utf-8 :
 
 # Copyright (C) 2007 Adriano Monteiro Marques
 #

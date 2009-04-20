@@ -1,8 +1,8 @@
-# vim: set fileencoding=utf-8 :
+# vim: set encoding=utf-8 :
 
 # Copyright (C) 2007 Adriano Monteiro Marques
 #
-# Author: JoÃ£o Paulo de Souza Medeiros <ignotus21@gmail.com>
+# Author: João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -95,6 +95,7 @@ class Toolbar(gtk.Toolbar):
         """
         gtk.Toolbar.__init__(self)
         self.set_style(gtk.TOOLBAR_BOTH_HORIZ)
+        self.set_property("icon-size", gtk.ICON_SIZE_MENU)
         self.set_tooltips(True)
 
         self.radialnet = radialnet
@@ -200,9 +201,11 @@ class Toolbar(gtk.Toolbar):
 
             if self.__control.get_active():
                 self.__control_widget.show()
+                self.__control_widget.child.show_all()
 
             else:
                 self.__control_widget.hide()
+                self.__control_widget.child.hide_all()
 
             self.__state['control'] = self.__control.get_active()
 
@@ -219,10 +222,16 @@ class Toolbar(gtk.Toolbar):
                     self.__fisheye_widget.active_fisheye()
                     self.__fisheye_widget.show()
 
+                    for w in self.__fisheye_widget.get_children():
+                        w.show_all()
+
                 else:
 
                     self.__fisheye_widget.deactive_fisheye()
                     self.__fisheye_widget.hide()
+
+                    for w in self.__fisheye_widget.get_children():
+                        w.hide_all()
 
                 self.__state['fisheye'] = self.__fisheye.get_active()
 

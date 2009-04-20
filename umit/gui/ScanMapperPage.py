@@ -61,10 +61,12 @@ class ScanMapperPage(HIGVBox):
 
         self.__control = ControlWidget(self.__radialnet)
         self.__control_sw = HIGScrolledWindow()
+        self.__control_sw.set_no_show_all(True)
         self.__control_sw.add_with_viewport(self.__control)
         self.__control_sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 
         self.__fisheye = ControlFisheye(self.__radialnet)
+        self.__fisheye.set_no_show_all(True)
         self.__toolbar = Toolbar(self.__radialnet,
                                         self,
                                         self.__control_sw,
