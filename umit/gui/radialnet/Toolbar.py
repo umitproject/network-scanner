@@ -106,6 +106,8 @@ class Toolbar(gtk.Toolbar):
 
         self.__state = {'fisheye':SHOW, 'control':SHOW}
 
+        self.__fullscreen_window = None
+
         self.__create_widgets()
 
 
@@ -170,9 +172,12 @@ class Toolbar(gtk.Toolbar):
         self.__control.set_sensitive(True)
         self.__fisheye.set_sensitive(True)
         self.__tools_menu.enable_dependents()
-    
+
+
     def disable_tools(self):
         self.__tools_menu.disable_dependents()
+
+
     def enable_tools(self):
         self.__tools_menu.enable_dependents()
 
@@ -236,21 +241,27 @@ class Toolbar(gtk.Toolbar):
                 self.__state['fisheye'] = self.__fisheye.get_active()
 
 
+    def __fullscreen_exit(self, widget, event):
+        """
+        """
+        self.__fullscreen.set_active(False)
 
 
     def __fullscreen_callback(self, widget=None):
         """
         """
         if self.__fullscreen.get_active():
+
             self.__fullscreen_window = HIGWindow()
+            self.__fullscreen_window.connect('delete-event',
+                    self.__fullscreen_exit)
             self.__notebook = self.__window.get_parent()
-            self.__window.reparent( self.__fullscreen_window )
+            self.__window.reparent(self.__fullscreen_window)
             self.__fullscreen_window.show()
-            """self.__fullscreen_window.show_all()
-            """
             self.__fullscreen_window.fullscreen()
 
         else:
+
             self.__window.reparent(self.__notebook)
             self.__notebook.set_tab_label_text(self.__window, _('Topology'))
             self.__notebook.set_current_page(
