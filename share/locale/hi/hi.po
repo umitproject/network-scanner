@@ -233,7 +233,7 @@ msgstr ""
 "Psyco ek module hai jo ki execution k gati ko badha deta hai"
 "yeh ek badyata nahi hia, aur Umit iske saath ya iske bina poorntya acchi tarah kaam karti hai"
 "lekin aapko ise install karne k liye uthsahit kiya jaata hai ek acchi gati anubhav k liye"
-"Aap ise http://psyco.sf.net/ se download kar sakte hain:
+"Aap ise http://psyco.sf.net/ se download kar sakte hain:"
 
 #: umitGUI/BugReport.py:37
 msgid "Bug Report"
@@ -703,7 +703,7 @@ msgstr "Umit Yathakram Antar(%s)"
 #: umitGUI/FileChoosers.py:65
 #, python-format
 msgid "Umit HTML Diff (%s)"
-msgstr "Umit HTML Antar
+msgstr "Umit HTML Antar"
 
 #: umitGUI/MainWindow.py:98
 msgid "Umit"
@@ -1104,7 +1104,7 @@ msgstr "Vistrit Soochna"
 
 #: umitGUI/NmapOutputProperties.py:67
 msgid "port listing title"
-msgstr "port soochikaran karne waala upadhi
+msgstr "port soochikaran karne waala upadhi"
 
 #: umitGUI/NmapOutputProperties.py:69
 msgid "open port"
@@ -1188,7 +1188,7 @@ msgid ""
 msgstr ""
 "<b>Jitna jyada vistar utna hi accha!</b> UNIX machine k liye, '<i>uname -a</i>'"
 "hamesha uchit version kramank de. Linux pe, kripya vitaran version (jaise ki Redhat 9.0)"
-"agar aap vendor dwara di gayi kernal use kar rahe ho. Windows k liye,"<i>winver</i>' nirdesh (agar "
+"agar aap vendor dwara di gayi kernal use kar rahe ho. Windows k liye,'<i>winver</i>' nirdesh (agar "
 "maujood ho to ) service pack soochna darshani chahiye. Agar Window pe koi service pack nahi hai to "
 "kripya spast kare. Appliance/embedded devices k liye, kripya, model no. ka varnan kare aur wo kya hai"
 "(printer, webcam, DSL router, VOIP, Phone, ityadi). Jaha uchit ho waha architecture (X86, SPARC, ityadi) "
@@ -1827,7 +1827,7 @@ msgstr "Hosts down:"
 
 #: umitGUI/ScanRunDetailsPage.py:71
 msgid "Hosts scanned:"
-msgstr ""Hosts scanned:""
+msgstr "Hosts scanned:"
 
 #: umitGUI/ScanRunDetailsPage.py:200
 msgid "Scan type:"
@@ -2373,7 +2373,7 @@ msgid ""
 msgstr ""
 "Umit directories k andar apne data base me parinaam khoj sakta hai.  Kripya, "
 "ek tarika chaynit kare ek directory ko choon kar ya search data base option ko check kar "
-"k 'search option' tab se search suru karne se pehle:
+"k 'search option' tab se search suru karne se pehle:"
 
 #: umitGUI/SearchGUI.py:784
 msgid "/"
@@ -2429,7 +2429,7 @@ msgid ""
 msgstr ""
 "Operating system ya embeded device sevice chal rhai hia - Examples "
 "are \"Linux 2.4.X\", \"Windows XP\", \"Cisco 3640 router\", \"Netgear MR814 "
-"WAP\"
+"WAP\""
 
 #: umitGUI/ServiceFingerprintReport.py:70
 msgid "Service Description"
@@ -2485,7 +2485,7 @@ msgid ""
 "The Service Fingerprint report is incomplete. Please, try to provide as much "
 "information as possible."
 msgstr ""
-""Service Fingerprint patra abhi apoorna hai. Kripya, jyada se jyada "
+"Service Fingerprint patra abhi apoorna hai. Kripya, jyada se jyada "
 "jaankari dene ki kosis kare."
 
 #: umitGUI/ServiceFingerprintReport.py:180
@@ -2512,6 +2512,7 @@ msgid ""
 msgstr ""
 "Service Fingerprint safaltapoorvak panjikrit. Ek webpage, panjikaran k vistrit vivran k saath, "
 "aapke default webpage me khulne jaa raha hai. "
+
 #: umitGUI/Wizard.py:87
 msgid "Umit Command constructor wizard"
 msgstr ""
@@ -2828,7 +2829,7 @@ msgstr "extensions  ke dwara viksit kiya gaya"
 msgid ""
 "and was sponsored by Google during the Summer of Code 2007.\n"
 "Thanks Google!"
-msgstr "aur Google dwara Summer of Code 2007 me prayojit kiya gaya. \n"
+msgstr "aur Google dwara Summer of Code 2007 me prayojit kiya gaya.\n"
 "Dhanyawaad Google!"
 
 #: umitInventory/About.py:71 umitInventory/Viewer.py:675
@@ -4272,7 +4273,7 @@ msgstr "Vikalp Hatao"
 
 #: umitInterfaceEditor/Tools.py:243
 msgid "Select a Option "
-msgstr "Vikalp Chuno"
+msgstr "Vikalp Chuno "
 
 #: umitInterfaceEditor/Tools.py:297
 msgid "Change Label"
@@ -4280,7 +4281,7 @@ msgstr "Soochak Badalo"
 
 #: umitInterfaceEditor/Tools.py:362
 msgid "Update OptionList"
-msgstr "VikalpSoochi ka Naveenikaran karo "
+msgstr "VikalpSoochi ka Naveenikaran karo"
 
 #: umitInterfaceEditor/Tools.py:613
 msgid "List of items"
