@@ -389,7 +389,7 @@ class MainWindow(UmitMainWindow):
                 <menuitem action='Add Scan Inv'/>
                 <menuitem action='Open Inv'/>
             </menu>
-			</menu>
+            </menu>
 
             <menu action='Profile'>
             <menuitem action='New Profile'/>
