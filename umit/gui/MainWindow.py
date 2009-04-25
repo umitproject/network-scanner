@@ -91,6 +91,9 @@ else:
             HIGMainWindow.__init__(self)
             self.vbox = gtk.VBox()
 
+            screen = self.get_screen()
+            if screen.get_width() >= 800 and screen.get_height() >= 600:
+                self.set_default_size(760, 570) # (800 - 40, 600 - 30)
 
 class MainWindow(UmitMainWindow):
     def __init__(self):
