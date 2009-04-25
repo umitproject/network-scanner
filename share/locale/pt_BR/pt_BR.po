@@ -200,7 +200,7 @@ msgstr "Impressão digital"
 #: umit/inventory/ChangesDiff.py:301 umit/report/ChangesDiff.py:301
 #, fuzzy
 msgid "Uptime"
-msgstr "Tempo em operação:"
+msgstr "Tempo em operação"
 
 #: umit/inventory/ChangesDiff.py:304 umit/report/ChangesDiff.py:304
 #: umit/gui/ScanHostDetailsPage.py:59
@@ -988,7 +988,7 @@ msgstr "Editor de Preferências Gráficas"
 #: umit/gui/ProfileEditor.py:154 umit/gui/SearchGUI.py:126
 #: umit/gui/Wizard.py:472
 msgid "Profile"
-msgstr "Perfil:"
+msgstr "Perfil"
 
 #: umit/inventory/TLGraphPreferences.py:65
 #: umit/report/TLGraphPreferences.py:65
@@ -2834,7 +2834,7 @@ msgstr "Fechar aba de varredura atual"
 
 #: umit/gui/MainWindow.py:222
 msgid "New _Profile"
-msgstr "Perfil:"
+msgstr "Novo _Perfil"
 
 #: umit/gui/MainWindow.py:224
 msgid "Create a new scan profile"
@@ -2901,7 +2901,7 @@ msgstr "Sair deste aplicativo"
 
 #: umit/gui/MainWindow.py:285
 msgid "_Profile"
-msgstr "Perfil:"
+msgstr "_Perfil"
 
 #: umit/gui/MainWindow.py:291
 msgid "Compare Scan Results using Diffies"
@@ -3353,7 +3353,7 @@ msgstr "Informação do Perfil"
 
 #: umit/gui/ProfileEditor.py:113 umit/gui/Wizard.py:408
 msgid "Profile name"
-msgstr "Nome do Perfil:"
+msgstr "Nome do Perfil"
 
 #: umit/gui/ProfileEditor.py:115 umit/gui/ProfileManager.py:81
 #: umit/gui/Wizard.py:409
@@ -3508,7 +3508,7 @@ msgstr "Tempo em operação:"
 
 #: umit/gui/ScanHostDetailsPage.py:85
 msgid "Last boot:"
-msgstr "Última inicialização"
+msgstr "Última inicialização:"
 
 #: umit/gui/ScanHostDetailsPage.py:90
 msgid "IPv4:"
@@ -3532,7 +3532,7 @@ msgstr "Nome - Tipo:"
 
 #: umit/gui/ScanHostDetailsPage.py:295
 msgid "Accuracy:"
-msgstr "Percentagem de Acerto"
+msgstr "Percentagem de Acerto:"
 
 #: umit/gui/ScanHostDetailsPage.py:344
 msgid "Port-Protocol-State:"
@@ -3553,20 +3553,20 @@ msgstr "Geração do S.O."
 #: umit/gui/ScanHostDetailsPage.py:396 umit/gui/ScanHostDetailsPage.py:421
 #: umit/gui/ScanHostDetailsPage.py:440
 msgid "Class:"
-msgstr "Classe"
+msgstr "Classe:"
 
 #: umit/gui/ScanHostDetailsPage.py:399
 msgid "Difficulty:"
-msgstr "Dificuldade"
+msgstr "Dificuldade:"
 
 #: umit/gui/ScanHostDetailsPage.py:402
 msgid "Index:"
-msgstr "Índice"
+msgstr "Índice:"
 
 #: umit/gui/ScanHostDetailsPage.py:405 umit/gui/ScanHostDetailsPage.py:424
 #: umit/gui/ScanHostDetailsPage.py:443
 msgid "Values:"
-msgstr "Valores"
+msgstr "Valores:"
 
 #: umit/gui/ScanHostsView.py:31
 msgid "Scanning"
