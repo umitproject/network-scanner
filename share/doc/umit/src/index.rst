@@ -16,3 +16,5 @@ Contents:
    nse_facilitator.rst
    under_the_roof.rst
    profile_editor.rst
+   plugins.rst
+   plugins_dev.rst

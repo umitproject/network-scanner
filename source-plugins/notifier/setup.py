@@ -21,17 +21,14 @@
 from umit.plugin.Containers import setup
 
 setup(
-    name='Tray Icon',
-    version='2.0',
+    name='Notifier',
+    version='0.1',
     author='Francesco Piccinno',
     url='http://blog.archpwn.org',
     start_file='main',
-    provides='=tray-2.0',
-    description='A simple tray icon for Umit',
+    needs='>=tray-2.0',
+    description='This plugin will warn you trough ballons or notification that a scan has finished',
+    data_files=[('data', ['dist/logo.png'])],
     scripts=['sources/main.py'],
-    data_files=[('data', ['dist/logo.png', 'dist/preferences.xml'])],
-    package_dir={'notification' : 'sources/notification'},
-    packages=['notification'],
-    license='GPL',
-    output='TrayIcon.ump'
+    output='Notifier.ump'
 )

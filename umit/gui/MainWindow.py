@@ -6,6 +6,7 @@
 #
 # Authors: Adriano Monteiro Marques <adriano@umitproject.org>
 #          Cleber Rodrigues <cleber.gnu@gmail.com>
+#          Francesco Piccinno <stack.box@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

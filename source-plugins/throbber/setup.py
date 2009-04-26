@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (C) 2008 Adriano Monteiro Marques
+# Copyright (C) 2008 Francesco Piccinno
 #
 # Author: Francesco Piccinno <stack.box@gmail.com>
 #
@@ -21,17 +21,16 @@
 from umit.plugin.Containers import setup
 
 setup(
-    name='Tray Icon',
-    version='2.0',
+    name='ThrobberAnimation',
+    version='1.0',
     author='Francesco Piccinno',
     url='http://blog.archpwn.org',
-    start_file='main',
-    provides='=tray-2.0',
-    description='A simple tray icon for Umit',
     scripts=['sources/main.py'],
-    data_files=[('data', ['dist/logo.png', 'dist/preferences.xml'])],
-    package_dir={'notification' : 'sources/notification'},
-    packages=['notification'],
-    license='GPL',
-    output='TrayIcon.ump'
+    start_file="main",
+    data_files=[('data', ['dist/logo.png', 'dist/throbber-16.gif'])],
+    provides='=ThrobberAnimation-1.0',
+    description='This plugin adds a throbber that\'s showed when a scan is running.',
+    license="GPL",
+    copyright="(C) 2009 - Francesco Piccinno",
+    output='throbberanimation.ump'
 )

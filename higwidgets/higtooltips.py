@@ -430,7 +430,7 @@ class HIGTooltip(gtk.Window):
             self._timeout_id = None
 
         self.hide()
-        self.destroy()
+        #self.destroy()
 
         return False
 
@@ -459,13 +459,13 @@ class HIGTooltip(gtk.Window):
 
         if y > s_h - offset: self._is_top = True
         else: self._is_top = False
-        
+
         if not data:
             data = self._widgets[w]
 
         self.title = data.title
         self.message = data.message
-        
+
         if data.stock:
             self.icon = data.stock
         else:
