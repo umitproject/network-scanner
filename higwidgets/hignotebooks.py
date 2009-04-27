@@ -123,6 +123,14 @@ class HIGEditableLabel(gtk.EventBox):
 gobject.type_register(HIGEditableLabel)
 HIGAnimatedLabel = HIGEditableLabel
 
+gtk.rc_parse_string(""" 
+    style "thinWidget" { 
+        xthickness = 0 
+        ythickness = 0 
+    } 
+    widget "*.tabNotebookButton" style "thinWidget" 
+""") 
+ 	
 class HIGNotebook(gtk.Notebook):
     def __init__(self):
         gtk.Notebook.__init__(self)
@@ -144,39 +152,25 @@ class HIGClosableTabLabel(HIGHBox):
     def __create_widgets(self):
         self.label = HIGAnimatedLabel(self.label_text)
         
-        self.close_image = gtk.Image()
-        self.close_image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_BUTTON)
-        self.close_button = HIGButton()
-        self.close_button.set_size_request(22, 22)
-        self.close_button.set_relief(gtk.RELIEF_NONE)
-        self.close_button.set_focus_on_click(False)
-        self.close_button.add(self.close_image)
+        self.editing = False
+        self.image = gtk.image_new_from_stock(gtk.STOCK_CLOSE,
+                                              gtk.ICON_SIZE_MENU)
+        self.button = HIGButton()
+        self.button.set_relief(gtk.RELIEF_NONE)
+        self.button.set_focus_on_click(False)
+        self.button.add(self.image)
+        self.button.set_name('tabNotebookButton')
 
-        self.ok_image = gtk.Image()
-        self.ok_image.set_from_stock(gtk.STOCK_APPLY, gtk.ICON_SIZE_BUTTON)
-        self.ok_button = HIGButton()
-        self.ok_button.set_size_request(22, 22)
-        self.ok_button.set_relief(gtk.RELIEF_NONE)
-        self.ok_button.set_focus_on_click(False)
-        self.ok_button.add(self.ok_image)
-
-        self.close_button.connect('clicked', self.__close_button_clicked)
-        self.ok_button.connect('clicked', self.__ok_button_clicked)
+        self.button.connect('clicked', self.__on_button_clicked)
+        self.button.connect('style-set', self.__on_button_style_set)
         self.label.connect('button-press-event', self.on_button_press_event)
         self.label.entry.connect('focus-out-event', self.on_entry_focus_out)
-
-        for w in (self.label, self.close_button, self.ok_button):
-            self.pack_start(w, False, False, 0)
+        
+        self.pack_start(self.label, False, False, 0)
+        self.pack_end(self.button, False, False, 0)
 
         self.show_all()
-        self.switch_button_mode(False) # Change to label mode
-
-        # def do_get_property(self, property):
-        #     func = self.property_map.get(property, None)
-        #     if func:
-        #         return func()
-        #     else:
-        #         raise 
+        self.switch_button_mode(False)
 
     def on_entry_focus_out(self, widget, event):
         self.switch_button_mode(False)
@@ -189,18 +183,27 @@ class HIGClosableTabLabel(HIGHBox):
         """Switch button from editing mode (True) to label mode (False)
         """
         if mode:
-            self.close_button.hide()
-            self.ok_button.show()
+            self.image.set_from_stock(gtk.STOCK_APPLY, gtk.ICON_SIZE_MENU)
         else:
-            self.ok_button.hide()
-            self.close_button.show()
+            self.image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
 
-    def __close_button_clicked(self, widget):
-        self.emit('close-clicked')
+        self.editing = mode
+        parent = self.get_parent()
 
-    def __ok_button_clicked(self, widget):
-        self.label.on_entry_activated(self.label.entry)
-        self.switch_button_mode(False)
+        if parent:
+            parent.queue_draw()
+
+    def __on_button_clicked(self, widget):
+        if self.editing:
+            self.label.on_entry_activated(self.label.entry)
+            self.switch_button_mode(False)
+        else:
+            self.emit('close-clicked')
+
+    def __on_button_style_set(self, widget, prev_style):
+        w, h = gtk.icon_size_lookup_for_settings(self.image.get_settings(),
+                                                 gtk.ICON_SIZE_MENU)
+        self.image.set_size_request(w, h)
 
     def get_text(self):
         return self.label.get_text()
