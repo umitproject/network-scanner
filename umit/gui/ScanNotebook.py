@@ -468,9 +468,9 @@ class ScanNotebookPage(HIGVBox):
         profile = self.toolbar.selected_profile
         #log.debug(">>> Profile: %s" % profile)
         
-        if profile != '':
+        if profile:
             target = self.toolbar.selected_target
-            if target == '':
+            if not target:
                 self.toolbar.scan_button.set_sensitive(False)
             else:
                 self.toolbar.scan_button.set_sensitive(True)
@@ -558,7 +558,7 @@ class ScanNotebookPage(HIGVBox):
         elif profile:
             self.set_tab_label(profile)
 
-        if target != '':
+        if target:
             self.toolbar.add_new_target(target)
             
             # TODO: Fix this workarround. The following line will set back the
@@ -566,7 +566,7 @@ class ScanNotebookPage(HIGVBox):
             # method that will be called by the targetcombo update method.
             self.command_toolbar.command = command
 
-        if command != '':
+        if command:
             # Setting status to scanning
             self.status.set_scanning()
             self.execute_command(command)
@@ -850,7 +850,7 @@ class ScanNotebookPage(HIGVBox):
         self.scan_result.scan_host_view.set_services(self.services.keys())
 
         saved_output = self.parsed.get_nmap_output()
-        if saved_output == "":
+        if not saved_output:
             # And them, we update the nmap output! ;)
             self.scan_result.scan_result_notebook.nmap_output.\
                 nmap_output.refresh_output()
@@ -864,12 +864,12 @@ class ScanNotebookPage(HIGVBox):
 
         target = self.parsed.get_target()
             
-        if target != '':
+        if target:
             self.toolbar.target_entry.child.set_text(target)
             
         profile_name = self.parsed.profile_name
             
-        if profile_name != '':
+        if profile_name:
             profile = CommandProfile()
             profile.add_profile(self.parsed.profile_name,
                                 command=self.parsed.profile,
