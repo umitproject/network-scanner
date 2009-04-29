@@ -1067,7 +1067,7 @@ class ScanNotebookPage(HIGVBox):
             self.switch_host_details(pages)
 
         # Change scan tab to "Ports/Hosts"
-        self.scan_result.scan_result_notebook.set_current_page(0)
+        self.scan_result.scan_result_notebook.set_current_page(1)
     
     def clean_host_details(self):
         parent = self.scan_result.scan_result_notebook.host_details_vbox
@@ -1295,7 +1295,7 @@ class ScanResult(gtk.HPaned):
 
     def change_to_nmap_output_tab(self):
         """Show the nmap output tab."""
-        self.scan_result_notebook.set_current_page(1)
+        self.scan_result_notebook.set_current_page(0)
 
     def refresh_nmap_output(self):
         """Refresh Nmap output in nmap output tab."""
@@ -1311,8 +1311,8 @@ class ScanResultNotebook(HIGNotebook):
         self.__create_widgets()
         self.__nmap_output_refreshing()
         
-        self.append_page(self.open_ports_page, gtk.Label(_('Ports / Hosts')))
         self.append_page(self.nmap_output_page, gtk.Label(_('Nmap Output')))
+        self.append_page(self.open_ports_page, gtk.Label(_('Ports / Hosts')))
         self.append_page(self.host_details_page, gtk.Label(_('Host Details')))
         self.append_page(self.scan_details_page, gtk.Label(_('Scan Details')))
         self.append_page(self.scan_mapper, gtk.Label(_('Topology')))
@@ -1370,7 +1370,7 @@ class ScanResultNotebook(HIGNotebook):
     
     def refresh_cb(self, widget, page=None, page_num=None):
         if self.nmap_output.nmap_output.thread.isAlive():
-            if page_num == 2:
+            if page_num == 1:
                 self.nmap_output.nmap_output.refresh_output(None)
 
 
