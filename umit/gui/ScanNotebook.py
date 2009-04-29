@@ -376,11 +376,22 @@ class ScanNotebookPage(HIGVBox):
     def __create_toolbar(self):
         self.toolbar = ScanToolbar()
         self.toolbar.scan_button.set_sensitive(False)
-        self.empty_target = _("<target>")
         
         self.toolbar.target_entry.changed_handler = self.toolbar.target_entry.\
             connect('changed', self.refresh_command_target)
+        self.toolbar.target_entry.connect('notify::popup-shown',
+                self.refresh_command)
+        self.toolbar.target_entry.child.connect('button-press-event',
+                self.refresh_command)
+        self.toolbar.target_entry.child.connect("focus-out-event",
+                self.strip_entry)
         self.toolbar.profile_entry.connect('changed', self.refresh_command)
+        self.toolbar.profile_entry.connect('notify::popup-shown',
+                self.refresh_command)
+        self.toolbar.profile_entry.child.connect('button-press-event',
+                self.refresh_command)
+        self.toolbar.profile_entry.child.connect("focus-out-event",
+                self.strip_entry)
 
         self.toolbar.scan_button.connect('clicked', self.start_scan_cb)
     
@@ -388,31 +399,58 @@ class ScanNotebookPage(HIGVBox):
         self.command_toolbar = ScanCommandToolbar()
         self.command_toolbar.command_entry.connect('activate',
             lambda x: self.toolbar.scan_button.clicked())
+        self.command_toolbar.command_entry.connect('changed',
+            self.check_command_edited)
+        self.command_toolbar.command_entry.connect("focus-out-event",
+                self.strip_entry)
 
         # This variable says if the command at command entry was edited by user
         self.command_edited = False
-
-
-        # When user clicks insite the command entry for edition
-        self.command_toolbar.command_entry.connect("focus-in-event", 
-            self.remember_command)
 
         # When user gets out of the command entry after edition
         self.command_toolbar.command_entry.connect("focus-out-event", 
             self.check_command)
 
-    def remember_command(self, widget, extra=None):
-        # User is inside command entry, probably editing it...
-        
-        # Target may be empty
-        self.old_target = self.toolbar.target_entry.selected_target 
+    def strip_entry(self, widget, event):
+        """
+        """
+        try:
+            widget.set_text(widget.get_text().strip())
+            check_command_edited(self.command_toolbar.command_entry)
+        except:
+            pass
 
-        if not self.old_target:
-            self.old_target = self.empty_target
+    def check_command_edited(self, widget):
+        """
+        Check if command entry is edited by user. If the command entry content
+        is incompatible with the specified profile and target the scan button
+        is activated and both profile and target *entries* are deactivated.
+        Otherwise these entries are activated.
+        """
+        try:
+            no_profile = False
+            target = self.toolbar.selected_target.strip()
 
-        self.old_full_command = self.command_toolbar.command_entry.get_text()
-        self.old_command = self.old_full_command.split(self.old_target)[0]
-        
+            profile = self.toolbar.selected_profile
+            command = CommandProfile().get_command(profile) % target
+
+        except (ProfileNotFound, TypeError):
+            no_profile = True
+
+        if no_profile or widget.get_text().strip() != command.strip():
+            self.command_edited = True
+            self.toolbar.scan_button.set_sensitive(True)
+            self.toolbar.target_entry.child.modify_base(gtk.STATE_NORMAL,
+                    gtk.gdk.Color(60000, 60000, 60000))
+            self.toolbar.profile_entry.child.modify_base(gtk.STATE_NORMAL,
+                    gtk.gdk.Color(60000, 60000, 60000))
+        else:
+            self.command_edited = False
+            self.toolbar.target_entry.child.modify_base(gtk.STATE_NORMAL,
+                    gtk.gdk.Color(65535, 65535, 65535))
+            self.toolbar.profile_entry.child.modify_base(gtk.STATE_NORMAL,
+                    gtk.gdk.Color(65535, 65535, 65535))
+
 
     def check_command(self, widget, extra=None):
         # User has left command entry. Verify if something has changed!
@@ -449,17 +487,14 @@ class ScanNotebookPage(HIGVBox):
                 pass # The target is empty...
                 #self.profile_not_found_dialog()
     
-    def refresh_command(self, widget):
+    def refresh_command(self, widget, event=None):
         #log.debug(">>> Refresh Command")
         profile = self.toolbar.selected_profile
-        target = self.toolbar.selected_target
+        target = self.toolbar.selected_target.strip()
 
         #log.debug(">>> Profile: %s" % profile)
         #log.debug(">>> Target: %s" % target)
         
-        if target == '':
-            target = self.empty_target
-
         try:
             cmd_profile = CommandProfile()
             command = cmd_profile.get_command(profile) % target
@@ -472,7 +507,7 @@ class ScanNotebookPage(HIGVBox):
                 # For these nmap options, target is unecessary.
                 # Removes unnecessary target from the command
                 command = command.replace(target,'').strip()
-            elif target != self.empty_target:
+            elif target:
                 self.toolbar.scan_button.set_sensitive(True)
             else:
                 self.toolbar.scan_button.set_sensitive(False)
@@ -503,16 +538,20 @@ class ScanNotebookPage(HIGVBox):
         if not self.toolbar.scan_button.get_property("sensitive"):
             return
 
-        target = self.toolbar.selected_target
-        command = self.command_toolbar.command
-        profile = self.toolbar.selected_profile
+        # There are a lot of (target|command|profile) emptiness check. To don't
+        # be fooled by whitespaces is better strip them.
+        target = self.toolbar.selected_target.strip()
+        command = self.command_toolbar.command.strip()
+        profile = self.toolbar.selected_profile.strip()
 
         log.debug(">>> Start Scan:")
         log.debug(">>> Target: '%s'" % target)
         log.debug(">>> Profile: '%s'" % profile)
         log.debug(">>> Command: '%s'" % command)
 
-        if target and profile:
+        if self.command_edited:
+            self.set_tab_label(_("Personalized Scan"))
+        elif target and profile:
             self.set_tab_label("%s on %s" %(profile, target))
         elif target:
             self.set_tab_label("Scan on %s" % target)
@@ -526,18 +565,6 @@ class ScanNotebookPage(HIGVBox):
             # correct command to be executed after the refresh_command_target
             # method that will be called by the targetcombo update method.
             self.command_toolbar.command = command
-
-        if (command.find("-iR") == -1 and command.find("-iL") == -1):
-            if command.find("<target>") > 0:
-                warn_dialog = HIGAlertDialog(
-                    message_format=_("No Target Host!"), 
-                    secondary_text=_("Target specification is mandatory. "
-                        "Either by an address in the target input box or "
-                        "through the '-iR' and '-iL' nmap options. "
-                        "Aborting scan."), type=gtk.MESSAGE_ERROR)
-                warn_dialog.run()
-                warn_dialog.destroy()
-                return
 
         if command != '':
             # Setting status to scanning
