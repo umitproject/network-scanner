@@ -263,7 +263,7 @@ class ScanNotebook(HIGNotebook):
     
         index = self.scan_num
         self.scan_num += 1
-        return self.sanitize_tab_title(_('untitled_scan%s') % index)
+        return self.sanitize_tab_title(_('Untitled Scan %s') % index)
 
     def add_tab_title(self, title):
         log.debug(">>> Add tab title: %s" % title)
