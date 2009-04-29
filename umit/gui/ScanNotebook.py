@@ -552,9 +552,9 @@ class ScanNotebookPage(HIGVBox):
         if self.command_edited:
             self.set_tab_label(_("Personalized Scan"))
         elif target and profile:
-            self.set_tab_label("%s on %s" %(profile, target))
+            self.set_tab_label(_("%s on %s") % (profile, target))
         elif target:
-            self.set_tab_label("Scan on %s" % target)
+            self.set_tab_label(_("Scan on %s") % target)
         elif profile:
             self.set_tab_label(profile)
 
