@@ -1,8 +1,8 @@
-# vim: set fileencoding=utf-8 :
+# vim: set encoding=utf-8 :
 
 # Copyright (C) 2007 Adriano Monteiro Marques
 #
-# Author: JoÃ£o Paulo de Souza Medeiros <ignotus21@gmail.com>
+# Author: João Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ import gtk
 import math
 import time
 import copy
+import cairo
 import gobject
 
 
@@ -29,7 +30,7 @@ from umit.core.radialnet.Coordinate import PolarCoordinate, CartesianCoordinate
 from umit.core.radialnet.Interpolation import Linear2DInterpolator
 from umit.core.radialnet.Graph import Graph, Node
 from umit.gui.radialnet.NodeWindow import NodeWindow
-from umit.gui.radialnet.Image import Icons
+from umit.gui.radialnet.Image import Icons, get_pixels_for_cairo_image_surface
 
 
 REGION_COLORS = [(1.0, 0.0, 0.0), (1.0, 1.0, 0.0), (0.0, 1.0, 0.0)]
@@ -54,6 +55,11 @@ LAYOUT_WEIGHTED  = 1
 
 INTERPOLATION_CARTESIAN = 0
 INTERPOLATION_POLAR     = 1
+
+FILE_TYPE_PDF = 1
+FILE_TYPE_PNG = 2
+FILE_TYPE_PS  = 3
+FILE_TYPE_SVG = 4
 
 
 class RadialNet(gtk.DrawingArea):
@@ -108,6 +114,8 @@ class RadialNet(gtk.DrawingArea):
         self.__last_group_node = None
 
         self.__pointer_status = POINTER_JUMP_TO
+ 
+        self.__print_to_file = (None, None)
 
         self.__sorted_nodes = list()
         self.__reverse_sorted_nodes = list()
@@ -168,6 +176,19 @@ class RadialNet(gtk.DrawingArea):
             return function(*args)
 
         return check_animation_status
+
+
+    def save_drawing_to_file(self, file, type=FILE_TYPE_PNG):
+        """
+        """
+        if type in [FILE_TYPE_PDF, FILE_TYPE_PNG, FILE_TYPE_PS, FILE_TYPE_SVG]:
+
+            self.__print_to_file = (file, type)
+            self.queue_draw()
+
+            return True
+
+        return False
 
 
     def get_slow_inout(self):
@@ -758,13 +779,53 @@ class RadialNet(gtk.DrawingArea):
         @rtype: boolean
         @return: Indicator of the event propagation
         """
-        self.context = widget.window.cairo_create()
+        allocation = self.get_allocation()
+        file, type = self.__print_to_file
 
+        # If type is set write
+        if type:
+            if type == FILE_TYPE_PDF:
+                self.surface = cairo.PDFSurface(file,
+                        allocation.width,
+                        allocation.height)
+            elif type == FILE_TYPE_PNG:
+                self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                        allocation.width,
+                        allocation.height)
+            elif type == FILE_TYPE_PS:
+                self.surface = cairo.PSSurface(file,
+                        allocation.width,
+                        allocation.height)
+            elif type == FILE_TYPE_SVG:
+                self.surface = cairo.SVGSurface(file,
+                        allocation.width,
+                        allocation.height)
+            else:
+                raise TypeError, 'unknown surface type'
+
+            self.context = cairo.Context(self.surface)
+
+        else:
+            self.context = widget.window.cairo_create()
+
+        # Drawing using the selected surface
         self.context.rectangle(*event.area)
         self.context.set_source_rgb(1.0, 1.0, 1.0)
         self.context.fill()
 
         self.__draw()
+
+        if type == FILE_TYPE_PNG:
+            self.surface.write_to_png(file)
+
+        # Reset the self.__print_to_file values and queue a new draw
+        if type:
+            # Sometimes the SVGSurface doesn't write the content in file. To
+            # fix this we force flush and finish surface.
+            self.surface.flush()
+            self.surface.finish()
+            self.__print_to_file = (None, None)
+            self.queue_draw()
 
         return False
 
@@ -1060,9 +1121,23 @@ class RadialNet(gtk.DrawingArea):
 
             for icon in icons:
 
-                self.context.set_source_pixbuf(icon,
-                                               round(xc + x + x_gap),
-                                               round(yc - y + y_gap - 6))
+                stride, data = get_pixels_for_cairo_image_surface(icon)
+
+                # Cairo documentation says that the correct way to obtain a
+                # legal stride value is using the function
+                # cairo.ImageSurface.format_stride_for_width().
+                # But this method is only available since cairo 1.6. So we are
+                # using the stride returned by
+                # get_pixels_for_cairo_image_surface() function.
+                surface = cairo.ImageSurface.create_for_data(data,
+                        cairo.FORMAT_ARGB32,
+                        icon.get_width(),
+                        icon.get_height(),
+                        stride)
+
+                self.context.set_source_surface(surface,
+                        round(xc + x + x_gap),
+                        round(yc - y + y_gap - 6))
                 self.context.paint()
 
                 x_gap += 13

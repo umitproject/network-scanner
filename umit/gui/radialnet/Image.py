@@ -1,4 +1,4 @@
-# vim: set fileencoding=utf-8 :
+# vim: set encoding=utf-8 :
 
 # Copyright (C) 2007 Adriano Monteiro Marques
 #
@@ -21,8 +21,45 @@
 import os
 import sys
 import gtk
+import array
 
 from umit.core.Paths import Path
+
+
+FORMAT_RGBA = 4
+FORMAT_RGB  = 3
+
+
+def get_pixels_for_cairo_image_surface(pixbuf):
+    """
+    This method return the imgage stride and a python array.ArrayType
+    containing the icon pixels of a gtk.gdk.Pixbuf that can be used by
+    cairo.ImageSurface.create_for_data() method.
+    """
+    data = array.ArrayType('c')
+    format = pixbuf.get_rowstride() / pixbuf.get_width()
+
+    i = 0
+    j = 0
+    while i < len(pixbuf.get_pixels()):
+
+        b, g, r = pixbuf.get_pixels()[i:i+FORMAT_RGB]
+
+        if format == FORMAT_RGBA:
+            a = pixbuf.get_pixels()[i + FORMAT_RGBA - 1]
+        elif format == FORMAT_RGB:
+            a = '\xff'
+        else:
+            raise TypeError, 'unknown image format'
+
+        data[j:j+FORMAT_RGBA] = array.ArrayType('c', [r, g, b, a])
+
+        i += format
+        j += FORMAT_RGBA
+
+    return (FORMAT_RGBA * pixbuf.get_width(), data)
+
+
 
 class Image:
     """
@@ -61,6 +98,7 @@ class Image:
             return False
 
         return os.path.join(self.__path, icon + "." + image_type)
+
 
 
 
