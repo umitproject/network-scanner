@@ -271,6 +271,44 @@ To well understand the context take a look at this image:
    
    and will be the instance of the :class:`TrayPlugin` class loaded by the plugin system.
 
+PluginReader Class
+------------------
+
+.. class:: PluginReader()
+
+:class:`PluginReader` instance have the following methods:
+
+.. method:: PluginReader.get_logo([w=64, h=64])
+
+   Return a :class:`gtk.gdk.Pixbuf` instance of the plugin logo.
+   Use *w* to resize the width of the pixbuf, and *h* for the height.
+
+.. method:: PluginReader.get_path()
+
+   Return a string representing the full path to the ump plugin file.
+
+.. method:: PluginReader.extract_dir(zip_path, [maxdepth=0])
+
+   Extract the files contained in the directory passed with *zip_path* argument.
+   Use *maxdepth* to limit the recursion limit of the extraction process (0 will do a fully recursive extraction).
+
+   Return a list containing the full path of the files extracted. 
+
+.. method:: PluginReader.extract_file(zip_path, [keep_path=False])
+
+   Extract file accessible with *zip_path* in the ump file.
+   Set *keep_path* to `True` if you want to mantain the original paths in the ump file also after the extraction.
+
+   Return a string representing the full path of extracted file.
+
+.. method:: PluginReader.bind_translation(modfile)
+
+   Use this method if you have a localized plugin. This methods takes care to find the correct `.mo` *modfile* file
+   inside `locale/` directory and returns a `gettext.GNUTranslations` instance that could be used to support i18n in your plugin.
+
+   Take a look to :ref:`localized-plugin` section for additional information.
+
+
 ScanNotebookPage Class
 ----------------------
 
@@ -521,3 +559,104 @@ If everything works as excepted we could build the plugin by using the ``builder
     $ ls /home/stack/.umit/plugins
     helloworld.ump
 
+.. _localized-plugin:
+
+Second Tutorial
+---------------
+
+In this tutorial you'll learn howto localize your plugin taking a look to ``Localized`` plugin.
+
+Start file
+^^^^^^^^^^
+
+This is the content of ``main.py``, our ``start_file``::
+
+    from umit.plugin.Core import Core
+    from umit.plugin.Engine import Plugin
+    from umit.plugin.Atoms import StringFile
+
+    _ = str
+
+    class Localize(Plugin):
+        def start(self, reader):
+            cat = reader.bind_translation("localizer")
+
+            if cat:
+                global _
+                _ = cat.gettext
+
+            print _("What the hell are you doing?")
+
+        def stop(self):
+            print _("Stopping localize ...")
+
+    __plugins__ = [Localize]
+
+Catalog file
+^^^^^^^^^^^^
+
+Now we have to create the catalog for our plugin. This is essentially a ``.pot`` file containing various string that should be translated. This is done by calling ``pygettext.py`` script::
+
+    $ pygettext.py sources/*.py
+
+This generates the ``messages.pot`` file. Now we have to create a ``.po`` file for our favorite language::
+
+    $ LANG=it_IT msginit
+
+Then use your favourite text editor and modify your ``it.po`` file and change::
+
+    #: sources/main.py:37
+    msgid "What the hell are you doing?"
+    msgstr ""
+
+    #: sources/main.py:40
+    msgid "Stopping localize ..."
+    msgstr ""
+
+to::
+
+    #: sources/main.py:37
+    msgid "What the hell are you doing?"
+    msgstr "Che diavolo stai facendo?"
+
+    #: sources/main.py:40
+    msgid "Stopping localize ..."
+    msgstr "Disabilito localize ..."
+
+Update your translation
+^^^^^^^^^^^^^^^^^^^^^^^
+
+If you have changed the code and you have introduced new gettext string is desiderable to regen your catalog (``messages.pot``), and then merge old translation with the new catalog with::
+
+    $ msgmerge -U it.po messages.pot
+
+Now you could update your ``it.po`` file and then pass to the next section.
+
+Compile the ``.po`` file
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+You could now compile ``it.po`` file to ``it.mo`` with::
+
+    $ msgfmt it.po -o it.mo
+
+And then rename your ``it.mo`` to ``localizer.mo`` (see also ``bind_translation()`` in ``main.py`` file), and then move under ``locale/it`` directory.
+
+Now we are ready to pack everything inside a ``.ump`` file.
+
+Setup.py
+^^^^^^^^
+
+This is the ``setup.py`` file::
+
+    # ...
+
+    mo_files = []
+    for filepath in glob("locale/*/*.mo"):
+        path = os.path.dirname(filepath)
+        mo_files.append((path, [filepath]))
+
+    setup(
+        # ...
+        data_files=[('data', ['dist/logo.png'])] + mo_files,
+        # ...
+    )
