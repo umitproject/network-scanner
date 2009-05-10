@@ -18,7 +18,6 @@
 
 import os
 import gtk
-import webbrowser
 from ConfigParser import ConfigParser
 
 from umit.core.Paths import Path
@@ -37,6 +36,7 @@ from higwidgets.higdialogs import HIGAlertDialog
 
 from umit.gui.ProfileCombo import ProfileCombo
 from umit.gui.FileChoosers import DirectoryChooserDialog
+from umit.gui.Help import show_help
 
 pixmaps_dir = Path.pixmaps_dir
     
@@ -363,11 +363,7 @@ directory to save scans output."))
         """
         Show help for Scan Scheduler Editor.
         """
-        webbrowser.open("file://%s" % os.path.join(
-            Path.docs_dir,
-            "scheduler.html#setting-up-a-schedule"),
-            new=open_url_as())
-
+        show_help(self, "scheduler.html#setting-up-a-schedule")
 
     def __set_props(self):
         """
@@ -669,10 +665,7 @@ try to save again."))
         """
         Show help for Scheduling Profiles.
         """
-        webbrowser.open("file://%s" % os.path.join(
-            Path.docs_dir,
-            "scheduler.html#creating-a-new-scheduling-profile"),
-            new=open_url_as())
+        show_help(self,"scheduler.html#creating-a-new-scheduling-profile")
 
 
     def __set_props(self):

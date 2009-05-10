@@ -18,7 +18,6 @@
 
 import os
 import gtk
-import webbrowser
 from ConfigParser import ConfigParser
 
 from umit.core.Paths import Path
@@ -30,6 +29,8 @@ from higwidgets.higlabels import HIGEntryLabel
 from higwidgets.higbuttons import HIGButton
 from higwidgets.higtables import HIGTable
 from higwidgets.higdialogs import HIGAlertDialog
+
+from umit.gui.Help import show_help
 
 pixmaps_dir = Path.pixmaps_dir
     
@@ -260,7 +261,7 @@ need to be filled: Schema Name, Server, Port and Mail from."))
         """
         Open SMTP Setup help
         """
-        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "smtpsetup.html"), new=2)
+        show_help(self, "smtpsetup.html")
 
 
     def __do_layout(self):

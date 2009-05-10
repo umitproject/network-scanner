@@ -25,7 +25,7 @@
 import os
 import gtk
 import sys
-from os.path import split, isfile, join, abspath, exists
+from os.path import split, isfile, join
 import xml.sax.saxutils
 
 from types import StringTypes
@@ -53,6 +53,8 @@ from umit.gui.SchedulerEdit import SchedSchemaEditor
 from umit.gui.SMTPSetup import SMTPSetup
 
 from umit.interfaceeditor.Main import InterfaceEditor
+
+from umit.gui.Help import show_help
 
 from umit.core.Paths import Path
 from umit.core.RecentScans import recent_scans
@@ -1213,26 +1215,8 @@ action's name"))
         d.destroy()
 
     def _show_help(self, action):
-        import webbrowser
-
-        new = 0
-        if sys.hexversion >= 0x2050000:
-            new = 2
-
-        doc_path = abspath(join(Path.docs_dir, "index.html"))
-        log.warning(">>> Openning documentation: %s" % doc_path)
-        if exists(doc_path) and os.access(doc_path, os.R_OK):
-            webbrowser.open("file://%s" % doc_path, new=new)
-        else:
-            d = HIGAlertDialog(parent=self,
-                               message_format=_("Couldn't find \
-documentation files!"),
-                               secondary_text=_("""Umit couldn't find the \
-documentation files. Please, go to Umit's website and have the latest \
-documentation in our Support & Development section."""))
-            d.run()
-            d.destroy()
-
+        show_help(self, "index.html")
+        
     def _exit_cb (self, widget=None, extra=None):
         for page in self.scan_notebook.get_children():
             if not self._close_scan_cb(page):
