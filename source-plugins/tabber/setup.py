@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (C) 2008 Adriano Monteiro Marques
+# Copyright (C) 2009 Adriano Monteiro Marques
 #
 # Author: Francesco Piccinno <stack.box@gmail.com>
 #
@@ -133,11 +133,13 @@ else:
 setup(
     name='Tabber',
     version='1.0',
-    author='Francesco Piccinno (code ripped from PIDA)',
-    url='http://snippets.pornosecurity.org',
+    author=['Francesco Piccinno (code ripped from PIDA)'],
+    url='http://blog.archpwn.org',
     start_file='main',
-    provides='=Tabber-1.0',
+    provide=['=Tabber-1.0'],
     description='Tabber provides docking functionality to UMIT UI (code ripped from PIDA)',
+    license=['GPL'],
+    copyright=['(C) 2009 Adriano Monteiro Marques'],
     data_files=[('data', ['dist/logo.png'])],
     scripts=['sources/main.py'],
     package_dir={'tabber' : 'sources/tabber'},

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (C) 2008 Adriano Monteiro Marques
+# Copyright (C) 2009 Adriano Monteiro Marques
 #
 # Author: Francesco Piccinno <stack.box@gmail.com>
 #
@@ -123,7 +123,9 @@ for file in glob('testfiles%s' % ('/*' * dep_ndir)):
 setup(
     name='TestCase',
     version='1.0',
-    author='Francesco Piccinno',
+    author=['Francesco Piccinno'],
+    license=['GPL'],
+    copyright=['(C) 2009 Adriano Monteiro Marques'],
     url='http://blog.archpwn.org',
     scripts=['sources/main.py'],
     start_file="main",

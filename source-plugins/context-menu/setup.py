@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (C) 2008 Adriano Monteiro Marques
+# Copyright (C) 2009 Adriano Monteiro Marques
 #
 # Author: Francesco Piccinno <stack.box@gmail.com>
 #
@@ -23,10 +23,12 @@ from umit.plugin.Containers import setup
 setup(
     name='Context menu',
     version='1.0',
-    author='Francesco Piccinno',
-    url='http://snippets.pornosecurity.org',
+    author=['Francesco Piccinno'],
+    url='http://blog.archpwn.org',
+    license=['GPL'],
+    copyright=['(C) 2009 Adriano Monteiro Marques'],
     start_file='main',
-    provides='=context-menu-1.0',
+    provide=['=context-menu-1.0'],
     description='a context menu for host list',
     scripts=['sources/main.py'],
     data_files=[('data', ['dist/logo.png'])],

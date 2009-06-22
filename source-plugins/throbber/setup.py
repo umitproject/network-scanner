@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (C) 2008 Francesco Piccinno
+# Copyright (C) 2009 Francesco Piccinno
 #
 # Author: Francesco Piccinno <stack.box@gmail.com>
 #
@@ -23,14 +23,14 @@ from umit.plugin.Containers import setup
 setup(
     name='ThrobberAnimation',
     version='1.0',
-    author='Francesco Piccinno',
+    author=['Francesco Piccinno'],
     url='http://blog.archpwn.org',
     scripts=['sources/main.py'],
     start_file="main",
     data_files=[('data', ['dist/logo.png', 'dist/throbber-16.gif'])],
-    provides='=ThrobberAnimation-1.0',
+    provide=['=ThrobberAnimation-1.0'],
     description='This plugin adds a throbber that\'s showed when a scan is running.',
-    license="GPL",
-    copyright="(C) 2009 - Francesco Piccinno",
+    license=["GPL"],
+    copyright=["(C) 2009 - Francesco Piccinno"],
     output='throbberanimation.ump'
 )

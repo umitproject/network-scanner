@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (C) 2008 Adriano Monteiro Marques
+# Copyright (C) 2009 Adriano Monteiro Marques
 #
 # Author: Francesco Piccinno <stack.box@gmail.com>
 #
@@ -32,12 +32,14 @@ for filepath in glob("locale/*/*.mo"):
 setup(
     name='Localize-Example',
     version='1.0',
-    author='Francesco Piccinno',
-    url='http://snippets.pornosecurity.org',
+    author=['Francesco Piccinno'],
+    url='http://blog.archpwn.org',
     scripts=['sources/main.py'],
     start_file="main",
     data_files=[('data', ['dist/logo.png'])] + mo_files,
-    provides='=localize-1.0',
+    provide=['=localize-1.0'],
     description='a localized plugin for testing',
+    license=['GPL'],
+    copyright=['(C) 2009 Adriano Monteiro Marques'],
     output='Localize.ump'
 )

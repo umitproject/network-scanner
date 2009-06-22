@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (C) 2008 Adriano Monteiro Marques
+# Copyright (C) 2009 Adriano Monteiro Marques
 #
 # Author: Francesco Piccinno <stack.box@gmail.com>
 #
@@ -23,15 +23,16 @@ from umit.plugin.Containers import setup
 setup(
     name='Tray Icon',
     version='2.0',
-    author='Francesco Piccinno',
+    author=['Francesco Piccinno'],
     url='http://blog.archpwn.org',
     start_file='main',
-    provides='=tray-2.0',
+    provide=['=tray-2.0'],
     description='A simple tray icon for Umit',
     scripts=['sources/main.py'],
     data_files=[('data', ['dist/logo.png', 'dist/preferences.xml'])],
     package_dir={'notification' : 'sources/notification'},
     packages=['notification'],
-    license='GPL',
+    license=['GPL'],
+    copyright=['(C) 2009 Adrian Monteiro Marques'],
     output='TrayIcon.ump'
 )

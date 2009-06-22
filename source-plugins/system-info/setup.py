@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (C) 2008 Adriano Monteiro Marques
+# Copyright (C) 2009 Adriano Monteiro Marques
 #
 # Author: Francesco Piccinno <stack.box@gmail.com>
 #
@@ -23,12 +23,14 @@ from umit.plugin.Containers import setup
 setup(
     name='SystemInfo',
     version='0.1',
-    author='Francesco Piccinno',
-    url='http://snippets.pornosecurity.org',
-    update='http://localhost/~stack/plugins/systeminfo',
+    author=['Francesco Piccinno'],
+    url='http://blog.archpwn.org',
+    update=['http://localhost/mia/', 'http://localhost/'],
     start_file='main',
-    provides='>=SystemInfo-1.0',
+    provide=['>=SystemInfo-1.0'],
     description='A plugin that provides info about the system',
+    license=['GPL'],
+    copyright=['(C) 2009 Adriano Monteiro Marques'],
     scripts=['sources/main.py'],
     data_files=[('data', ['dist/logo.png'])],
     output='SystemInfo.ump'
