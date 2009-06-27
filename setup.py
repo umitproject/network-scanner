@@ -311,7 +311,13 @@ class umit_install(install):
         os.chmod(uninstaller_filename, mode)
 
     def set_modules_path(self):
-        umit_name = os.path.split(common.UMIT_MAIN)[1]
+        # UMIT_MAIN
+        self._replace_path(common.UMIT_MAIN)
+        # UMIT_SCHEDULER
+        self._replace_path(os.path.join(common.UMIT_SCHEDULER))
+        
+    def _replace_path(self, file):
+        umit_name = os.path.split(file)[1]
         umit = os.path.join(self.install_scripts, umit_name)
         modules = self.install_lib
 
@@ -335,7 +341,7 @@ class umit_install(install):
         ufile = open(umit, "w")
         ufile.writelines(ucontent)
         ufile.close()
-
+        
     def set_perms(self):
         re_bin = re.compile("(bin)")
         for output in self.get_outputs():

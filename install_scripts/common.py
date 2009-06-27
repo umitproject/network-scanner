@@ -6,7 +6,7 @@ import os
 
 BIN_DIRNAME = 'bin'
 UMIT_MAIN = os.path.join(BIN_DIRNAME, 'umit')
-
+UMIT_SCHEDULER = os.path.join(BIN_DIRNAME, 'umit_scheduler.py')
 # These directories are relative to the installation or dist directory
 # Ex: python setup.py install --prefix=/tmp/umit
 # Will create the directory /tmp/umit with the following directories
