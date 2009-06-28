@@ -56,7 +56,7 @@ from umit.interfaceeditor.Main import InterfaceEditor
 
 from umit.gui.Help import show_help
 
-from umit.core.Paths import Path
+from umit.core.Paths import Path, check_access
 from umit.core.RecentScans import recent_scans
 from umit.core.UmitLogging import log
 from umit.core.I18N import _
@@ -118,6 +118,7 @@ class MainWindow(UmitMainWindow):
         self._create_menubar()
         self._create_toolbar()
         self._create_scan_notebook()
+        self._verify_access_write()
         self._verify_root()
 
         self.running_ni = False
@@ -143,6 +144,16 @@ class MainWindow(UmitMainWindow):
     def _verify_root(self):
         if not root:
             non_root = NonRootWarning()
+            
+    def _verify_access_write(self):
+        if (not check_access(Path.config_file, os.R_OK and os.W_OK )):
+            error_text = _('''You do not have access to config files!\nPlease run Umit as root or change permissions %s 
+            ''' % Path.config_dir)
+
+            d = HIGAlertDialog(message_format=_('Permission Denied'),
+                                secondary_text=error_text)
+            d.run()
+            sys.exit(0)
             
     def _get_running_ni(self):
         """
