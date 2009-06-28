@@ -2,7 +2,7 @@
 
 # Copyright (C) 2007 Adriano Monteiro Marques
 #
-# Author: João Paulo de Souza Medeiros <ignotus21@gmail.com>
+# Author: Joao Paulo de Souza Medeiros <ignotus21@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
