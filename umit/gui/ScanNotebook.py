@@ -1249,7 +1249,7 @@ class ScanResult(gtk.HPaned):
         self.scan_host_view = ScanHostsView()
         self.scan_result_notebook = ScanResultNotebook()
 
-        self.pack1(self.scan_host_view, True, False)
+        self.pack1(self.scan_host_view, True, True)
         self.pack2(self.scan_result_notebook, True, False)
     def set_parse(self, parse):
         self.parsed = parse
