@@ -45,7 +45,7 @@ class FlowContainer(gtk.VBox):
         paned.pack1(scroll(self.text1))
         paned.pack2(scroll(self.text2))
 
-        message = "Not yet avaiable. Try to start a scan!"
+        message = "Not yet available. Try to start a scan!"
 
         self.text1.get_buffer().set_text(message)
         self.text2.get_buffer().set_text(message)
