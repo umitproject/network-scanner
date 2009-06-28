@@ -22,11 +22,21 @@
 
 
 try:
-    from hashlib import md5
+    import hashlib
 except ImportError:
-    # Python 2.4
+    # Python 2.4 - Workaround to keep compatible with >= Python2.5
     import md5
-
+    class Hashmd5:
+        def __init__(self):
+            pass
+        def new(self, str):
+            # It is md5
+            return self
+        def update(self, str):
+            self._str = str
+        def hexdigest(self):
+            return md5.new(self._str).hexdigest()
+    hashlib = Hashmd5()
 
 from umit.core.I18N import _
 
@@ -212,9 +222,9 @@ method. '%s'" % k)
             if "nmap_xml_output" not in kargs or \
                not kargs["nmap_xml_output"]:
                 raise Exception("Can't save result without xml output")
-
-            if not self.verify_digest(md5.new(kargs["nmap_xml_output"]).\
-                                      hexdigest()):
+            h = hashlib.new('md5')
+            h.update(kargs["nmap_xml_output"])
+            if not self.verify_digest(h.hexdigest()):
                 raise Exception("XML output registered already!")
             
             self.scans_id = self.insert(**kargs)
@@ -258,7 +268,9 @@ method. '%s'" % k)
 
     def set_nmap_xml_output(self, nmap_xml_output):
         self.set_item("nmap_xml_output", nmap_xml_output)
-        self.set_item("digest", md5.new(nmap_xml_output).hexdigest())
+        h = hashlib.new('md5')
+        h.update(nmap_xml_output)
+        self.set_item("digest", h.hexdigest())
 
     def get_date(self):
         return self.get_item("date")
