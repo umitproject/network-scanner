@@ -495,11 +495,17 @@ class OptionDisplayMainFrame(OptionDisplay):
 	@type widget: HIGButton
 	"""
 	
-
-	opt = self.get_option()
-	self.optionlist.add(opt)
-	self.add_button.set_sensitive(False)
-	self.emit('need-save', None, None)
+	if self.name_entry.get_text()=="":
+	    d = HIGAlertDialog(type=gtk.MESSAGE_ERROR, 
+			       message_format=_('No fields entered'), 
+			   secondary_text=_('Blank options is not allowed!'))
+	    d.run()
+	    d.destroy()
+	else:
+	    opt = self.get_option()
+	    self.optionlist.add(opt)
+	    self.add_button.set_sensitive(False)
+	    self.emit('need-save', None, None)
 
 TARGET_STRING = 0
 TARGET_ROOTWIN = 1

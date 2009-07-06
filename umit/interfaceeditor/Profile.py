@@ -23,16 +23,11 @@
 import gtk 
 
 import sys
-# Testing at devel 
 from os.path import split, join
 
 from umit.core.Paths import Path
-#Path.set_umit_conf(join(split(__file__)[0], 'config', 'umit.conf'))
-#END DEV TEST
 options = Path.options
 profile_editor = Path.profile_editor
-#XXX This path is too wrong 
-#sys.path.append("selectborder")
 
 
 from higwidgets.higscrollers import HIGScrolledWindow
@@ -327,10 +322,7 @@ class NotebookEditable(HIGNotebook):
 				      False)
 	    command_manager.add_command(cmd)
 				      
-	    
-	    
-
-	    
+	    self._old_select=None
 	else: 
 	    log.debug('Key press event on NotebookEditable -- \
 	    CommandAddRemoveLabel')

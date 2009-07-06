@@ -629,7 +629,8 @@ class NotebookLabel(gtk.EventBox):
         '''
         Construct a voidplace 
         '''
-        
+        #if (self.window == None):
+        #    return
         self._xmp = background_xpm
         win_tmp = self.get_parent_window()
         self._voidplace = gtk.gdk.Window(win_tmp,

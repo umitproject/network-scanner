@@ -45,13 +45,8 @@ from umit.interfaceeditor.WizardEditor import WizardEdit
 
 from umit.core.UmitLogging import log
 from umit.core.I18N import _
-#PWE project
-#from umit.interfaceeditor.PWOptions import PWOptions
-#from umit.interfaceeditor.Editor import Editor
 from umit.interfaceeditor.OptionManager import OptionList, OptionDisplay, OptionDisplayMainFrame
-#END
 from umit.core.Paths import Path
-#Path.set_umit_conf(join(split(__file__)[0], 'config', 'umit.conf'))
 
 profile_editor =  Path.profile_editor
 wizard =  Path.wizard

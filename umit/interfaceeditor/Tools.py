@@ -37,7 +37,6 @@ from umit.core.I18N import _
 from umit.core.Paths import Path
 pixmaps_dir = Path.pixmaps_dir
 import sys
-#sys.path.append("selectborder")
 
 from umit.interfaceeditor.selectborder.WrapperWidgets import NotebookLabel, SpecialHBox
 from umit.interfaceeditor.PageNotebook import BoxEditable, CommandPageNotebook
@@ -241,7 +240,7 @@ class ToolBarInterface(gtk.EventBox):
 	if self.box_editable._old_selected ==None :
 	    d = HIGAlertDialog(type=gtk.MESSAGE_ERROR, 
 			       message_format=_('Select a Option '), 
-			   secondary_text='You do not select any option')
+			   secondary_text=_('You do not select any option'))
 	    d.run()
 	    d.destroy()
 	else:

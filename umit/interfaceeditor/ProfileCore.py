@@ -21,20 +21,13 @@
 
 from types import StringTypes
 from xml.dom import minidom   
-#try:
-    #import xml.dom.ext
-#except:
-    #pass
-# Testing at devel 
+
 from os.path import split, join
 
 from umit.core.Paths import Path
-#Path.set_umit_conf(join(split(__file__)[0], 'config', 'umit.conf'))
-#END DEV TEST
+
 options = Path.options
-#from umit.core.NmapCommand import CommandConstructor
 from umit.core.NmapOptions import NmapOptions
-#from umit.gui.OptionBuilder import OptionBuilder
 
 
 '''
