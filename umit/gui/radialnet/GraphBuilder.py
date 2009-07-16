@@ -285,17 +285,17 @@ class GraphBuilder(Graph):
         node.set_info({'extraports':all_extraports})
     
         # getting traceroute information
-        trace = host.trace
+        trace = host.trace.copy()
         if trace and trace['hop']:
     
             host_hops = trace['hop']
             hops = []
     
             for host_hop in host_hops:
-                hop = host_hop
+                hop = host_hop.copy()
                 hostname = host_hop.get('host', None)
                 hop['ttl'] = int(hop['ttl'])
-                hop['hostname'] = (hostname, '')[hostname is None]
+                hop['host'] = (hostname, '')[hostname is None]
                 if 'host' in hop:
                     hop.pop('host')
     
@@ -325,7 +325,7 @@ class GraphBuilder(Graph):
         
         # for each host in hosts just mount the graph
         for host in hosts:
-            trace = host.trace
+            trace = host.trace.copy()
             # if host has traceroute information mount graph
             if trace and trace['hop']:
                 
@@ -337,12 +337,11 @@ class GraphBuilder(Graph):
                 # getting nodes of host by ttl
                 for ttl in range(1, max(ttls) + 1):
                     if ttl in ttls:
-    
-                        hop = host.get_hop_by_ttl(ttl)
-                        # FIXME: Protect if hop is None
+                        _hop = host.get_hop_by_ttl(ttl)
+                        if _hop == None:
+                            continue
+                        hop = _hop.copy()
                         for node in nodes:
-                            if hop.has_key('ipaddr'):
-                                hop['ip'] = hop['ipaddr']
                             if hop['ipaddr'] == node.get_info('ip'):
                                 break
     
@@ -358,7 +357,7 @@ class GraphBuilder(Graph):
                                                 'radius':NONE_RADIUS})
                             if hop.has_key('host') and hop['host'] is not None:
                                 node.set_info(\
-                                    {'hostname':hop['host']})
+                                    {'host':hop['host']})
     
                         rtt = hop['rtt']
     
@@ -375,7 +374,7 @@ class GraphBuilder(Graph):
                         index += 1
     
                         node.set_draw_info({'valid':False})
-                        node.set_info({'ip':None, 'hostname':None})
+                        node.set_info({'ip':None, 'host':None})
                         node.set_draw_info({'color':(1,1,1), \
                                             'radius':NONE_RADIUS})
     
