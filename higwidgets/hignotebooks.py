@@ -132,9 +132,10 @@ gtk.rc_parse_string("""
 """) 
  	
 class HIGNotebook(gtk.Notebook):
-    def __init__(self):
+    def __init__(self, popup=True):
         gtk.Notebook.__init__(self)
-        self.popup_enable()
+        if popup:
+            self.popup_enable()
 
 class HIGClosableTabLabel(HIGHBox):
     __gsignals__ = { 'close-clicked' : (gobject.SIGNAL_RUN_LAST,
