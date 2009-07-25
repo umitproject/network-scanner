@@ -38,7 +38,6 @@ def get_filename(url):
         p = re.compile('([a-zA-Z0-9]*)\.html')
         list_str = p.findall(url)
         result = ""
-        print list_str
         if len(list_str) != 0:
                 result = list_str.pop(0) + ".html"
         return result
