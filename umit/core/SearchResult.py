@@ -106,6 +106,7 @@ class SearchResult(object):
            self.match_mac(keyword) or \
            self.match_ipv4(keyword) or \
            self.match_ipv6(keyword) or \
+           self.match_port(keyword.split()) or \
            self.match_service(keyword) or \
            self.match_osmatch(keyword) or \
            self.match_product(keyword) or \
