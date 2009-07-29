@@ -158,19 +158,20 @@ class SearchResult(object):
         
         ports = []
         
-        for port in self.parsed_scan.ports:
-            if self.port_open and portid["state"] == "open":
-                ports.append(portid["portid"])
-            elif self.port_filtered and portid["state"] == "filtered":
-                ports.append(portid["portid"])
-            elif self.port_closed and portid["state"] == "closed":
-                ports.append(portid["portid"])
-            elif not self.port_open and \
-                    not self.port_filtered and \
-                    not self.port_closed:
-                # In case every port state is False, add every port
-                ports.append(portid["portid"])
-
+        for p in self.parsed_scan.ports:
+            for portid in p:
+                if self.port_open and portid["state"] == "open":
+                    ports.append(portid["portid"])
+                elif self.port_filtered and portid["state"] == "filtered":
+                    ports.append(portid["portid"])
+                elif self.port_closed and portid["state"] == "closed":
+                    ports.append(portid["portid"])
+                elif not self.port_open and \
+                        not self.port_filtered and \
+                        not self.port_closed:
+                    # In case every port state is False, add every port
+                    ports.append(portid["portid"])
+                    
         for keyport in port:
             if keyport not in ports:
                 return False # No match for asked port
@@ -200,7 +201,7 @@ class SearchResult(object):
         log.debug("Class info: %s" % class_info)
         
         for host in self.parsed_scan.hosts:
-            for oc in host.osclasses:
+            for oc in host.osclass:
                 #log.debug("Vendor: %s" % oc.get("vendor", ""))
                 #log.debug("OS Family: %s" % oc.get("osfamily", ""))
                 #log.debug("OS Gen: %s" % oc.get("osgen", ""))
@@ -235,12 +236,11 @@ class SearchResult(object):
         products = []
         for first in self.parsed_scan.ports:
             for ports in first:
-                for port in ports["port"]:
-                    if fnmatch(port.get("service_product", "").lower(),
-                               "*%s*" % product.lower()):
+                if fnmatch(ports.get("product", "").lower(),
+                           "*%s*" % product.lower()):
 
-                        # Given service product matched current result
-                        return True
+                    # Given service product matched current result
+                    return True
 
         # Given service product didn't match current result
         return False
