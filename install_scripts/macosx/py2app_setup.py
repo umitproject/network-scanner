@@ -44,7 +44,9 @@ py2app_options = dict(
         options = {'py2app': {
             'argv_emulation': True,
             'compressed': True,
-            'includes': ['gtk', 'pango', 'atk', 'gobject', 'pangocairo']}
+            'packages': [ "gobject", "gtk", "cairo"],
+            'includes': ["atk", "pango", "pangocairo"]
+            }
             },
         setup_requires = ["py2app"]
         )
