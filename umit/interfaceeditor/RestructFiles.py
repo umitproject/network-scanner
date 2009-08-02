@@ -35,48 +35,47 @@ class RestructFiles:
         self.optioncore = option_core
         self.wizardcore = wizard_core
         self.profilecore = profile_core
-    
+
     def _search(self, option, core):
         group_list = core.groups 
-        	
-	
-	result = []
-	for section_name in group_list:
-	    grp = core.xml.getElementsByTagName(section_name)[0]
-	    for elem in grp.childNodes:
-		try: elem.getAttribute(u'label')
-		except: pass
-		else: 
-		    
-		    if elem.tagName == 'option_check':
-			if elem.getAttribute(u'option') == option:
-			    result.append([section_name, 
-					   elem.getAttribute(u'label')])
-		    elif elem.tagName == 'option_list':
-			#search in option list: 		
-			for j in elem.childNodes:
-			    try: j.tagName
-			    except:pass
-			    else:
-				if j.getAttribute(u'name')==option:
-				    result.append([section_name, 
-						   elem.getAttribute(u'label'),
-						   j.getAttribute(u'name')])
-	    
-	return result
-	
-    
+
+
+        result = []
+        for section_name in group_list:
+            grp = core.xml.getElementsByTagName(section_name)[0]
+            for elem in grp.childNodes:
+                try: elem.getAttribute(u'label')
+                except: pass
+                else: 
+
+                    if elem.tagName == 'option_check':
+                        if elem.getAttribute(u'option') == option:
+                            result.append([section_name, 
+                                           elem.getAttribute(u'label')])
+                    elif elem.tagName == 'option_list':
+                        #search in option list: 		
+                        for j in elem.childNodes:
+                            try: j.tagName
+                            except:pass
+                            else:
+                                if j.getAttribute(u'name')==option:
+                                    result.append([section_name, 
+                                                   elem.getAttribute(u'label'),
+                                                   j.getAttribute(u'name')])
+
+        return result
+
+
     def _search_profile(self, option):
         return self._search(option, self.profilecore)
     def _search_wizard(self, option):
-	return self._search(option, self.wizardcore)
+        return self._search(option, self.wizardcore)
 
     def get_places(self,option):
         profile = self._search_profile(option)
-	wizard = self._search_wizard(option)
-	return profile, wizard
+        wizard = self._search_wizard(option)
+        return profile, wizard
     def restruct_all_files(self):
         pass
-    
-        
-    
+
+
