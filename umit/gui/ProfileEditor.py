@@ -33,6 +33,7 @@ from higwidgets.higtables import HIGTable
 from higwidgets.higdialogs import HIGAlertDialog, HIGDialog
 
 from umit.gui.OptionBuilder import *
+from umit.gui.Help import show_help
 
 from umit.core.ProfileEditorConf import profile_editor_file
 from umit.core.NmapCommand import CommandConstructor
@@ -90,11 +91,10 @@ class ProfileEditor(HIGWindow):
         self.command_entry.set_text(self.constructor.get_command('<target>'))
 
     def help(self, widget):
-        d = HIGAlertDialog(parent=self,
-                           message_format=_("Help not implemented"),
-                           secondary_text=_("Umit help is not implemented yet."))
-        d.run()
-        d.destroy()
+        """
+        Show help documentation of Profile Editor
+        """
+        show_help(self,"profile_editor.html#introduction")
 
     def __create_widgets(self):
         self.main_vbox = HIGVBox()
