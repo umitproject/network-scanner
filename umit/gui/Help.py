@@ -35,7 +35,7 @@ from os.path import abspath, join, exists
 The goal of this module is management help stuff, like open help as browser, etc.
 """
 def get_filename(url):
-        p = re.compile('([a-zA-Z0-9]*)\.html')
+        p = re.compile('([a-zA-Z0-9_]*)\.html')
         list_str = p.findall(url)
         result = ""
         if len(list_str) != 0:
