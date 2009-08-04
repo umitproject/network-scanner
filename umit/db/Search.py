@@ -86,6 +86,8 @@ class SearchDB(ConnectDB, CompositeRetrieve):
         """
         Convenience method. Performs searches for host_id.
         """
+        if not query:
+            return
         likely_category = query.split()[0]
         meth = None
 

@@ -24,7 +24,6 @@ Inventories Viewer main window.
 import os
 import gtk
 import gobject
-import webbrowser
 
 from higwidgets.higwindows import HIGMainWindow
 from higwidgets.hignotebooks import HIGNotebook, HIGAnimatedTabLabel
@@ -41,6 +40,7 @@ from umit.db.Search import SearchDB
 
 from umit.gui.BugReport import BugReport
 from umit.gui.SchedulerControl import SchedControl
+from umit.gui.Help import show_help
 
 from umit.inventory.StartupSettings import startup_options
 from umit.inventory.NewInventory import NewInventory
@@ -797,8 +797,7 @@ class InventoryViewer(HIGMainWindow):
         """
         Open help manual.
         """
-        webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
-            "index.html"), new=open_url_as())
+        show_help(self,"index.html")
 
 
     def _show_bug_report(self, event):

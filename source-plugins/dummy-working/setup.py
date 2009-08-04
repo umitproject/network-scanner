@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (C) 2008 Adriano Monteiro Marques
+# Copyright (C) 2009 Adriano Monteiro Marques
 #
 # Author: Francesco Piccinno <stack.box@gmail.com>
 #
@@ -23,13 +23,15 @@ from umit.plugin.Containers import setup
 setup(
     name='dummy-working',
     version='1.0',
-    author='Francesco Piccinno',
-    url='http://snippets.pornosecurity.org',
-    update='http://localhost/~stack/plugins/dummywork',
+    author=['Francesco Piccinno'],
+    url='http://blog.archpwn.org',
+    update=['http://localhost/~stack/plugins/dummywork'],
+    license=['GPL'],
+    copyright=['(C) 2009 Adriano Monteiro Marques'],
     scripts=['sources/main.py'],
     start_file="main",
     data_files=[('data', ['dist/logo.png'])],
-    provides='=dummy-1.0',
+    provide=['=dummy-1.0'],
     description='a dummy plugin (working)',
     package_dir={'dummy' : 'sources/dummy'},
     packages=['dummy'],

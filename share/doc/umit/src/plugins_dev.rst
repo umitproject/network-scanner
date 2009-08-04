@@ -45,69 +45,101 @@ Manifest File
 
 The entire plugin system is based on the ``Manifest.xml`` file previously introduceed. This file is responsible to provide information to the Plugin Engine. These information are provided trough an xml file.
 
-You could add you custom elements to the xml file but someone are reserved by UMIT Plugin system:
+You could add you custom elements to the xml file but someone are reserved by UMIT Plugin system (Elements marked with * could compare several times in the Manifest file):
 
-   +--------------------+-------------------------------------------------------+
-   | Element            |                                                       |
-   +====================+=======================================================+
-   | ``<needs>``        | A list (``VersionString``) of needed virtual plugins  |
-   |                    | that must be already loaded to enable the target      |
-   |                    | plugin.                                               |
-   +--------------------+-------------------------------------------------------+
-   | ``<conflicts>``    | A list (``VersionString``) of conflicting virtual     |
-   |                    | plugins that must be **NOT** present to load the      |
-   |                    | target plugin.                                        |
-   +--------------------+-------------------------------------------------------+
-   | ``<provides>``     | A list (``VersionString``) of exported virtual names  |
-   |                    | that the target plugin provides to the others.        |
-   +--------------------+-------------------------------------------------------+
-   | ``<start-file>``   | A string pointing to the main file in ``bin/``        |
-   |                    | directory.                                            |
-   +--------------------+-------------------------------------------------------+
-   | ``<url>``          |A string (URL) pointing to the target plugins homepage.|
-   +--------------------+-------------------------------------------------------+
-   | ``<author>``       | A string representing the name of the plugin's author.|
-   +--------------------+-------------------------------------------------------+
-   | ``<license>``      | A string representing the license used for the plugin.|
-   +--------------------+-------------------------------------------------------+
-   | ``<name>``         | A *non-operator* ``VersionString`` describing the     |
-   |                    | plugin.                                               |
-   +--------------------+-------------------------------------------------------+
-   | ``<update>``       | A string (URL) pointing to the target plugins update  |
-   |                    | directory.                                            |
-   +--------------------+-------------------------------------------------------+
-   | ``<description>``  | A string containing a description of the plugin.      |
-   +--------------------+-------------------------------------------------------+
-   | ``<version>``      | A string represetnting the plugin version.            |
-   +--------------------+-------------------------------------------------------+
-   | ``<contributors>`` | A list of plugin's contributors.                      |
-   +--------------------+-------------------------------------------------------+
-   | ``<translators>``  | A list of plugin's translators.                       |
-   +--------------------+-------------------------------------------------------+
-   | ``<artists>``      | A list of plugin's artists.                           |
-   +--------------------+-------------------------------------------------------+
+   +---------------------+---------------------------------------------------------------------+
+   | /UmitPlugin         | Description                                                         |
+   +=====================+=====================================================================+
+   | ``<name>``          | A string representing the plugin name.                              |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<version>``       | A string represetnting the plugin version.                          |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<description>``   | A string containing a description of the plugin.                    |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<url>``           | A URI string pointing to the target plugins homepage.               |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<runtime>``       | Required.                                                           |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<deptree>``       | Optional.                                                           |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<credits>``       | Required.                                                           |
+   +---------------------+---------------------------------------------------------------------+
+
+``<runtime>`` description:
+
+   +---------------------+---------------------------------------------------------------------+
+   | /UmitPlugin/runtime | Description                                                         |
+   +=====================+=====================================================================+
+   | ``<start_file>``    | A string pointing to the main file in ``bin/`` directory.           |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<update>`` *      | A URI string pointing to the target plugins update remote location. |
+   |                     | In a manifest you could provide multiple ``<update>`` elements for  |
+   |                     | mirroring reasons. Optional.                                        |
+   +---------------------+---------------------------------------------------------------------+
+
+``<deptree>`` description (all elements are optional here):
+
+   +---------------------+---------------------------------------------------------------------+
+   | /UmitPlugin/deptree | Description                                                         |
+   +=====================+=====================================================================+
+   | ``<provide>`` *     | A ``VersionString`` that describes what the target plugin provides  |
+   |                     | to the others. Example ``=ftplib-1.0`` or ``=trayicon-2.0``.        |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<need>`` *        | A ``VersionString`` of a needed virtual plugin that must be loaded  |
+   |                     | in order to enable the target plugin.                               |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<conflict>`` *    | A ``VersionString`` of a conflicting virtual plugin that must be    |
+   |                     | **NOT** loaded in order to enable the target plugin.                |
+   +---------------------+---------------------------------------------------------------------+
+
+``credits`` description:
+
+   +---------------------+---------------------------------------------------------------------+
+   | /UmitPlugin/credits | Description                                                         |
+   +=====================+=====================================================================+
+   | ``<license>`` *     | A string representing the license used for the plugin.              |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<copyright>`` *   | A string representing the copyright information for plugin.         |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<author>`` *      | A string representing a plugin's author.                            |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<contributor>`` * | A string representing a plugin's contributor. Optional.             |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<translator>`` *  | A string representing a plugin's translator. Optional.              |
+   +---------------------+---------------------------------------------------------------------+
+   | ``<artist>`` *      | A string representing a plugin's artist. Optional.                  |
+   +---------------------+---------------------------------------------------------------------+
+
+
+UmitPlugin element could have also an attribute called type to indicate if the plugin is a UI addition or just a library. You could have respectively ``<UmitPlugin .. type="ui">`` or ``<UmitPlugin .. type="lib">``.
 
 Following an example of a Manifest.xml::
 
-    <?xml version="1.0" ?>
-    <UmitPlugin>
-      <url>http://www.umitproject.org</url>
-      <conflicts></conflicts>
-      <provides>&gt;=SystemInfo-1.0</provides>
-      <needs></needs><type></type>
-      <start_file>main</start_file>
+    <?xml version="1.0" encoding="utf-8"?>
+    <UmitPlugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.umitproject.org" xsi:schemaLocation="http://www.umitproject.org UmitPlugins.xsd" type="ui">
       <name>SystemInfo</name>
       <version>0.1</version>
       <description>A plugin that provides info about the system</description>
-      <author>Francesco Piccinno</author>
-      <license>GPL</license>
-      <update>http://localhost/~stack/plugins/systeminfo</update>
+      <url>http://blog.archpwn.org</url>
+      <runtime>
+        <start_file>main</start_file>
+        <update>http://localhost/mia/</update>
+        <update>http://localhost/</update>
+      </runtime>
+      <deptree>
+        <provide>&gt;=SystemInfo-1.0</provide>
+      </deptree>
+      <credits>
+        <license>GPL</license>
+        <copyright>(C) 2009 Adriano Monteiro Marques</copyright>
+        <author>Francesco Piccinno</author>
+      </credits>
     </UmitPlugin>
 
 Version String
 ^^^^^^^^^^^^^^
 
-Elements like ``<needs>`` , ``<conflicts>`` , ``<provides>`` and ``<name>`` are ``VersionString`` elements.
+Elements like ``<need>`` , ``<conflict>`` , ``<provide>`` are ``VersionString`` elements.
 
 EBNF/regex form for op and *non-operator* ``VersionString`` is::
 
@@ -143,26 +175,43 @@ For example if we have a plugin with ``<update>`` element in Manifest.xml file s
 The ``latest.xml`` file contains information regarding the update process. It's a plain XML file containing fixed elements:
 
    +--------------------+-------------------------------------------------------+
-   | Element            |                                                       |
+   | /UmitPluginUpdate  | Description                                           |
    +====================+=======================================================+
-   | ``<update-uri>``   | A string (URL) pointing to the new version of the     |
-   |                    | plugin.                                               |
-   +--------------------+-------------------------------------------------------+
    | ``<version>``      | A *non-operative* ``VersionString`` like for Manifest.|
    +--------------------+-------------------------------------------------------+
-   | ``<md5>``          | This element is optional and contains the MD5 hex     |
-   |                    | digest string used for integrity check on the         |
-   |                    | downloaded file (the ``<update-uri>`` file).          |
+   | ``<desciption>``   | A string representing a description of the update or  |
+   |                    | a changelog. Optional.                                |
+   +--------------------+-------------------------------------------------------+
+   | ``<url>`` *        | A string (URL) pointing to the new version of the     |
+   |                    | plugin.                                               |
+   +--------------------+-------------------------------------------------------+
+   | ``<integrity>`` *  | This element is optional and could compare several    |
+   |                    | times. You have to set also ``<type>`` and            |
+   |                    | ``value`` attribute. Example:                         |
+   |                    | ``<integrity type="sha1" value="yourhexdigest"/>``    |
    +--------------------+-------------------------------------------------------+
 
 An example of the ``latest.xml`` follows::
 
-    <UmitPluginUpdate>
-        <update-uri>http://localhost/~stack/plugins/systeminfo/SystemInfo.ump</update-uri>
-        <version>2.0.0</version>
-        <md5>c7487b08545f58999512f6155852050e</md5>
+    <UmitPluginUpdate xmlns="http://www.umitproject.org" xsi:schemaLocation="http://www.umitproject.org UmitPlugins.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <update>
+            <version>2.0</version>
+            <description>Don't use this is only there for testing.</description>
+            <url>http://localhost/test.ump</url>
+        </update>
+        <update>
+            <version>0.1</version>
+            <description>&lt;tt&gt;Changelog:
+    &lt;b&gt;* Version 1.0&lt;/b&gt;:
+    - Fixed blah
+    - Fixed blah
+    - Fixed blah
+    - Fixed blah&lt;/tt&gt;</description>
+            <url>http://localhost/system.ump</url>
+            <integrity type="md5" value="d488cbec9b6a3de7de1502ab962a907a"/>
+            <integrity type="sha1" value="1851a284568c2fa5fab81384559a3e945b1f2744"/>
+        </update>
     </UmitPluginUpdate>
-
 
 API Reference
 =============
@@ -250,7 +299,7 @@ To well understand the context take a look at this image:
 
    That returns an instance of the class *classname* (optional) of the plugin that provides *needstr* or the respective module if *need_module* is True, or None on error.
    
-   For example taking a look to the setup.py of Notifier plugin we could see that the autogenerated ``Manifest.xml`` will have the ``<needs>`` element set to ``>=tray-2.0``. Assuming that we have already loaded the TrayPlugin that's taking care of providing ``=tray-2.0`` in his ``<provides>`` element in the Manifest file, we will have something like that::
+   For example taking a look to the setup.py of Notifier plugin we could see that the autogenerated ``Manifest.xml`` will have the ``<need>`` element set to ``>=tray-2.0``. Assuming that we have already loaded the TrayPlugin that's taking care of providing ``=tray-2.0`` in his ``<provide>`` element in the Manifest file, we will have something like that::
 
         DEBUG - 2009-04-25 11:26:35,422 - >>> Core.get_need() -> [<main.TrayPlugin object at 0xa4c986c>] (module: False)
         DEBUG - 2009-04-25 11:26:35,422 - >>> Core.get_need(): No classname specified. Returning first instance
@@ -270,6 +319,44 @@ To well understand the context take a look at this image:
         __plugins__ = [TrayPlugin]
    
    and will be the instance of the :class:`TrayPlugin` class loaded by the plugin system.
+
+PluginReader Class
+------------------
+
+.. class:: PluginReader()
+
+:class:`PluginReader` instance have the following methods:
+
+.. method:: PluginReader.get_logo([w=64, h=64])
+
+   Return a :class:`gtk.gdk.Pixbuf` instance of the plugin logo.
+   Use *w* to resize the width of the pixbuf, and *h* for the height.
+
+.. method:: PluginReader.get_path()
+
+   Return a string representing the full path to the ump plugin file.
+
+.. method:: PluginReader.extract_dir(zip_path, [maxdepth=0])
+
+   Extract the files contained in the directory passed with *zip_path* argument.
+   Use *maxdepth* to limit the recursion limit of the extraction process (0 will do a fully recursive extraction).
+
+   Return a list containing the full path of the files extracted. 
+
+.. method:: PluginReader.extract_file(zip_path, [keep_path=False])
+
+   Extract file accessible with *zip_path* in the ump file.
+   Set *keep_path* to `True` if you want to mantain the original paths in the ump file also after the extraction.
+
+   Return a string representing the full path of extracted file.
+
+.. method:: PluginReader.bind_translation(modfile)
+
+   Use this method if you have a localized plugin. This methods takes care to find the correct `.mo` *modfile* file
+   inside `locale/` directory and returns a `gettext.GNUTranslations` instance that could be used to support i18n in your plugin.
+
+   Take a look to :ref:`localized-plugin` section for additional information.
+
 
 ScanNotebookPage Class
 ----------------------
@@ -453,9 +540,11 @@ The entire build process of ump file is dictated by the ``setup.py`` file. It's 
     setup(
         name='helloworld',
         version='1.0',
-        author='Francesco Piccinno',
+        author=['Francesco Piccinno'],
         url='http://www.umitproject.org',
-        #update='http://localhost/~stack/plugins/dummywork',
+        #update=['http://localhost/~stack/plugins/dummywork'],
+        license=['GPL'],
+        copyright=['(C) 2009 Francesco Piccinno'],
         scripts=['sources/main.py'],
         start_file="main",
         data_files=[('data', ['dist/logo.png'])],
@@ -495,20 +584,6 @@ If everything works as excepted we could build the plugin by using the ``builder
     copying dist/logo.png -> output/data
     running install_egg_info
     >> Creating plugin
-    Field url setted to http://www.umitproject.org
-    Field conflicts setted to
-    Field provides setted to =helloworld-1.0
-    Field needs setted to
-    Field type setted to
-    Field start_file setted to main
-    Field name setted to helloworld
-    Field version setted to 1.0
-    Field description setted to Say hello to world!
-    Field author setted to Francesco Piccinno
-    Field license setted to
-    Field artist setted to
-    Field copyright setted to
-    Field update setted to
     Adding file bin main.py bin
     Adding file data logo.png data
     Adding file lib/hello italian.py lib
@@ -521,3 +596,104 @@ If everything works as excepted we could build the plugin by using the ``builder
     $ ls /home/stack/.umit/plugins
     helloworld.ump
 
+.. _localized-plugin:
+
+Second Tutorial
+---------------
+
+In this tutorial you'll learn howto localize your plugin taking a look to ``Localized`` plugin.
+
+Start file
+^^^^^^^^^^
+
+This is the content of ``main.py``, our ``start_file``::
+
+    from umit.plugin.Core import Core
+    from umit.plugin.Engine import Plugin
+    from umit.plugin.Atoms import StringFile
+
+    _ = str
+
+    class Localize(Plugin):
+        def start(self, reader):
+            cat = reader.bind_translation("localizer")
+
+            if cat:
+                global _
+                _ = cat.gettext
+
+            print _("What the hell are you doing?")
+
+        def stop(self):
+            print _("Stopping localize ...")
+
+    __plugins__ = [Localize]
+
+Catalog file
+^^^^^^^^^^^^
+
+Now we have to create the catalog for our plugin. This is essentially a ``.pot`` file containing various string that should be translated. This is done by calling ``pygettext.py`` script::
+
+    $ pygettext.py sources/*.py
+
+This generates the ``messages.pot`` file. Now we have to create a ``.po`` file for our favorite language::
+
+    $ LANG=it_IT msginit
+
+Then use your favourite text editor and modify your ``it.po`` file and change::
+
+    #: sources/main.py:37
+    msgid "What the hell are you doing?"
+    msgstr ""
+
+    #: sources/main.py:40
+    msgid "Stopping localize ..."
+    msgstr ""
+
+to::
+
+    #: sources/main.py:37
+    msgid "What the hell are you doing?"
+    msgstr "Che diavolo stai facendo?"
+
+    #: sources/main.py:40
+    msgid "Stopping localize ..."
+    msgstr "Disabilito localize ..."
+
+Update your translation
+^^^^^^^^^^^^^^^^^^^^^^^
+
+If you have changed the code and you have introduced new gettext string is desiderable to regen your catalog (``messages.pot``), and then merge old translation with the new catalog with::
+
+    $ msgmerge -U it.po messages.pot
+
+Now you could update your ``it.po`` file and then pass to the next section.
+
+Compile the ``.po`` file
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+You could now compile ``it.po`` file to ``it.mo`` with::
+
+    $ msgfmt it.po -o it.mo
+
+And then rename your ``it.mo`` to ``localizer.mo`` (see also ``bind_translation()`` in ``main.py`` file), and then move under ``locale/it`` directory.
+
+Now we are ready to pack everything inside a ``.ump`` file.
+
+Setup.py
+^^^^^^^^
+
+This is the ``setup.py`` file::
+
+    # ...
+
+    mo_files = []
+    for filepath in glob("locale/*/*.mo"):
+        path = os.path.dirname(filepath)
+        mo_files.append((path, [filepath]))
+
+    setup(
+        # ...
+        data_files=[('data', ['dist/logo.png'])] + mo_files,
+        # ...
+    )

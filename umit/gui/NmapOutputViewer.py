@@ -80,7 +80,6 @@ class NmapOutputViewer (HIGVBox):
 
     def __create_tags(self):
         tag_table = self.text_buffer.get_tag_table()
-        tag_table.foreach(lambda tag, table: table.remove(tag), tag_table)
         
         properties = ["details",
               "date",
@@ -90,6 +89,11 @@ class NmapOutputViewer (HIGVBox):
               "open_port",
               "closed_port",
               "filtered_port"]
+
+        for name in properties:
+            tag = tag_table.lookup(name)
+            if tag:
+                tag_table.remove(tag)
         
         for p in xrange(len(properties)):
             settings = self.nmap_highlight.__getattribute__(properties[p])
@@ -130,6 +134,11 @@ gtk.color_selection_palette_to_string([gtk.gdk.Color(*highlight_color),]))
                   ('#0006FF', '#21C800', pango.WEIGHT_HEAVY),
                   ('#FFFFFF', '#21C800', pango.WEIGHT_HEAVY))
         
+        for name in names:
+            tag = tag_table.lookup(name)
+            if tag:
+                tag_table.remove(tag)
+
         for i in xrange(len(names)):
             tag = gtk.TextTag(names[i])
             for tup in zip(prop, values[i]):

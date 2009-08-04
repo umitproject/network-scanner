@@ -89,7 +89,7 @@ class HIGRichRow(gtk.EventBox):
         cr.stroke()
 
         return True
-    
+
     def do_realize(self):
         gtk.EventBox.do_realize(self)
         self.active = False
@@ -98,7 +98,7 @@ class HIGRichRow(gtk.EventBox):
         if (evt.button == 1) and \
            (evt.type == gtk.gdk._2BUTTON_PRESS) and \
            (self.tree.change_selection(self)):
-            
+
             self.active = True
             self.emit('clicked')
 
@@ -161,20 +161,29 @@ class PluginRow(HIGRichRow):
 
         self.enabled = self._reader.enabled
         self.connect('activate', self.__on_activate)
-        
+
         self.show_all()
 
         self.progressbar.hide()
         self.box_act.hide()
-        self.include_button.hide()
+        self.versions_button.hide()
 
     def __create_widgets(self):
         self.image = gtk.image_new_from_pixbuf(self._reader.get_logo())
 
         self.label = gtk.Label('')
         self.label.set_ellipsize(pango.ELLIPSIZE_END)
-        
-        self.include_button = gtk.CheckButton(_('Include update'))
+
+        self.versions_model = gtk.ListStore(str, str)
+        self.versions_button = gtk.ComboBox(self.versions_model)
+
+        rend = gtk.CellRendererPixbuf()
+        self.versions_button.pack_start(rend, False)
+        self.versions_button.add_attribute(rend, 'stock-id', 0)
+
+        rend = gtk.CellRendererText()
+        self.versions_button.pack_end(rend)
+        self.versions_button.add_attribute(rend, 'text', 1)
 
         self.img_play = gtk.image_new_from_stock(gtk.STOCK_MEDIA_PLAY, \
                                                  gtk.ICON_SIZE_BUTTON)
@@ -196,13 +205,17 @@ class PluginRow(HIGRichRow):
         hbox.pack_start(self.image, False, False, 0)
 
         vbox = gtk.VBox(False, 2)
-        
+
         mhbox = gtk.HBox(False, 2)
         self.label.set_alignment(0, 0.5)
-        
+
         mhbox.pack_start(self.label)
-        mhbox.pack_start(self.include_button, False, False)
-        
+
+        minibox = gtk.VBox()
+        minibox.pack_start(self.versions_button, False, False, 0)
+
+        mhbox.pack_start(minibox, False, False)
+
         vbox.pack_start(mhbox)
         vbox.pack_start(self.progressbar, False, False, 0)
 
@@ -284,15 +297,15 @@ class PluginRow(HIGRichRow):
 
     def get_message(self):
         return self._message
-    
+
     def set_message(self, value):
         """
         If not defined don't update
         """
-        
+
         if value is not None:
             self._message = value
-            
+
             # Used to update the label
             self.enabled = self.enabled
 
@@ -313,20 +326,23 @@ class PluginRow(HIGRichRow):
             self.progressbar.set_fraction(val)
             self.progressbar.set_text('%d %%' % int(val * 100))
             self.progressbar.show()
-    
+
     def get_include(self):
         if self._show_include:
-            return self.include_button.get_active()
+            id = self.versions_button.get_active() -1
+
+            if id >= 0:
+                return True
         else:
             return False
-    
+
     def set_include(self, value):
         self._show_include = value
-        
+
         if value:
-            self.include_button.show()
+            self.versions_button.show()
         else:
-            self.include_button.hide()
+            self.versions_button.hide()
 
     def get_activatable(self):
         return self._activatable
@@ -364,7 +380,7 @@ class HIGRichList(gtk.ScrolledWindow):
         """
 
         gtk.ScrolledWindow.__init__(self)
-        
+
         self.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
         self.set_shadow_type(gtk.SHADOW_ETCHED_IN)
 
@@ -412,7 +428,7 @@ class HIGRichList(gtk.ScrolledWindow):
             parent.remove(widget)
 
         self.vbox.foreach(remove, self.vbox)
-    
+
     def get_rows(self):
         return len(self.vbox)
 

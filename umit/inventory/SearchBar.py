@@ -177,8 +177,16 @@ class SearchBar(gtk.Toolbar):
         combobox.prepend_text(widget.get_text())
         combobox.set_active(0)
 
-        search_text = widget.get_text()
-        search_text = search_text.strip()
+        search_text = widget.get_text().strip()
+
+        # Empty string
+        if not search_text:
+            dlg = HIGAlertDialog(None,
+                message_format=_("Empty string not allow"),
+                secondary_text=_("Suggestions: port 80, change text, etc."))
+            dlg.run()
+            dlg.destroy()
+            return
 
         # check if search_text looks like an ip, if it looks like, then verify
         # for devices in hosts dict.

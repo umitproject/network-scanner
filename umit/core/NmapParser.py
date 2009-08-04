@@ -822,11 +822,10 @@ class NmapParserSAX(ParserBasics, ContentHandler):
             for hname in host.hostnames:
                 if not isinstance(hname, dict):
                     continue
-
                 self.write_parser.startElement('hostname',
                         AttributesImpl({
-                            'name': hname.get('hostname', ''),
-                            'type': hname.get('hostname_type', '')})
+                            'name': hname.get('name', ''),
+                            'type': hname.get('type', '')})
                         )
                 self.write_parser.endElement('hostname')
 
@@ -988,6 +987,24 @@ class NmapParserSAX(ParserBasics, ContentHandler):
                 self.write_parser.endElement('tcptssequence')
             # End of sequences elements
             ###########################
+            
+            # Trace elements
+            
+            if isinstance(host.trace, dict):
+                self.write_parser.startElement('trace',
+                        AttributesImpl({
+                            'port': host.trace.get('port', ''),
+                            'proto': host.trace.get('proto', '')})
+                        )
+                
+                # Write hops:
+                for hop in host.trace['hop']:
+                    self.write_parser.startElement('hop',
+                        AttributesImpl(hop))
+                    self.write_parser.endElement('hop')
+                
+                self.write_parser.endElement('trace')
+            # End trace elements
 
             # End host element
             self.write_parser.endElement('host')

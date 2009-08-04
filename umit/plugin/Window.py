@@ -18,6 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import gtk
+import os.path
 
 from higwidgets.higwindows import HIGWindow
 from higwidgets.higboxes import HIGVBox
@@ -28,6 +29,7 @@ from higwidgets.higtoolbars import HIGToolBar, HIGToolItem
 from PathPage import PathPage
 from PluginPage import PluginPage
 
+from umit.core.Paths import Path
 from umit.plugin.Update import UpdateEngine
 from umit.plugin.Engine import PluginEngine
 
@@ -46,6 +48,7 @@ class PluginWindow(HIGWindow):
         self.set_title(_('Plugin Manager'))
         self.set_position(gtk.WIN_POS_CENTER)
         self.set_size_request(600, 400)
+        self.set_icon_from_file(os.path.join(Path.icons_dir, "umit_16.ico"))
 
         self.__create_widgets()
         self.__pack_widgets()
@@ -96,7 +99,7 @@ class PluginWindow(HIGWindow):
         self.plug_page.install_updates_btn.hide()
         self.plug_page.skip_install_btn.hide()
         self.plug_page.restart_btn.hide()
-        
+
         self.connect('delete-event', self.__on_delete_event)
 
     def __on_delete_event(self, widget, evt):
@@ -108,6 +111,6 @@ class PluginWindow(HIGWindow):
 
         self.plug_page.populate()
         self.path_page.populate()
-    
+
     def __on_switch_page(self, widget, id):
         self.notebook.set_current_page(id)

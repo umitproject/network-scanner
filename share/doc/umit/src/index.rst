@@ -13,7 +13,6 @@ Contents:
    scheduler.rst
    smtpsetup.rst
    ni.rst
-   nse_facilitator.rst
    under_the_roof.rst
    profile_editor.rst
    plugins.rst

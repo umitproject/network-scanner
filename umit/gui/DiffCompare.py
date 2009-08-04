@@ -43,6 +43,8 @@ from tempfile import mktemp
 from types import StringTypes
 from umit.gui.FileChoosers import RegularDiffiesFileFilter, HtmlDiffiesFileFilter
 
+from umit.gui.Help import show_help
+
 try:
     from umit.core.DiffHtml import DiffHtml
     from umit.gui.FileChoosers import AllFilesFileChooserDialog,\
@@ -240,8 +242,7 @@ class DiffWindow(gtk.Window):
         self.initial_size = self.size_request()
 
     def _show_help(self, action):
-        webbrowser.open("file://%s" % os.path.join(Path.docs_dir, "index.html"),
-                        new=2)
+        show_help(self, "index.html")
         
     def _create_widgets(self):
         self.main_vbox = HIGVBox()

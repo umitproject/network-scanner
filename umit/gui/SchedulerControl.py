@@ -25,7 +25,6 @@ import os
 import sys
 import gtk
 import gobject
-import webbrowser
 
 from umit.core.I18N import _
 from umit.core.Paths import Path
@@ -33,6 +32,7 @@ from umit.core.Utils import amiroot, open_url_as
 from umit.core.Scheduler import SchedulerControl
 
 from umit.gui.GenericAlertDialogs import GenericAlert
+from umit.gui.Help import show_help
 
 if os.name == 'nt':
     run_path = Path.get_running_path()
@@ -83,10 +83,7 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
             if resp == gtk.RESPONSE_OK:
                 err = self.schedcontrol.start(from_gui=True)
             elif resp == gtk.RESPONSE_HELP:
-                webbrowser.open("file://%s" % os.path.join(
-                    Path.docs_dir,
-                    "scheduler.html#starting-scheduler-as-root"),
-                    new=open_url_as())
+                show_help(self,"scheduler.html#starting-scheduler-as-root")
 
             alertdlg.destroy()
         else: # running as root
@@ -100,10 +97,7 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
                            2: (gtk.RESPONSE_OK, gtk.STOCK_OK)})
             resp = alertdlg.run()
             if resp == gtk.RESPONSE_HELP:
-                webbrowser.open("file://%s" % os.path.join(
-                    Path.docs_dir,
-                    "scheduler.html#starting-scheduler"),
-                    new=open_url_as())
+                show_help(self,"scheduler.html#starting-scheduler")
             alertdlg.destroy()
 
 
@@ -123,10 +117,7 @@ start it as root."), buttons={1: (gtk.RESPONSE_HELP, gtk.STOCK_HELP),
             resp = alertdlg.run()
 
             if resp == gtk.RESPONSE_HELP:
-                webbrowser.open("file://%s" % os.path.join(
-                    Path.docs_dir,
-                    "scheduler.html#stopping-scheduler"),
-                    new=open_url_as())
+                show_help(self,"scheduler.html#stopping-scheduler")
 
             alertdlg.destroy()
 

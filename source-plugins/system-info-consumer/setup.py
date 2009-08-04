@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (C) 2008 Adriano Monteiro Marques
+# Copyright (C) 2009 Adriano Monteiro Marques
 #
 # Author: Francesco Piccinno <stack.box@gmail.com>
 #
@@ -23,11 +23,13 @@ from umit.plugin.Containers import setup
 setup(
     name='SystemInfo-Consumer',
     version='0.1',
-    author='Francesco Piccinno',
-    url='http://snippets.pornosecurity.org',
+    author=['Francesco Piccinno'],
+    url='http://blog.archpwn.org',
     start_file='main',
-    needs='>=SystemInfo-0.1',
+    need=['>=SystemInfo-0.1'],
     description='A plugin that use SystemInfo <i>calls</i>',
+    license=['GPL'],
+    copyright=['(C) 2009 Adriano Monteiro Marques'],
     data_files=[('data', ['dist/logo.png'])],
     scripts=['sources/main.py'],
     output='SystemInfoConsumer.ump'

@@ -25,7 +25,7 @@
 import os
 import gtk
 import sys
-from os.path import split, isfile, join, abspath, exists
+from os.path import split, isfile, join
 import xml.sax.saxutils
 
 from types import StringTypes
@@ -54,7 +54,9 @@ from umit.gui.SMTPSetup import SMTPSetup
 
 from umit.interfaceeditor.Main import InterfaceEditor
 
-from umit.core.Paths import Path
+from umit.gui.Help import show_help
+
+from umit.core.Paths import Path, check_access
 from umit.core.RecentScans import recent_scans
 from umit.core.UmitLogging import log
 from umit.core.I18N import _
@@ -116,6 +118,7 @@ class MainWindow(UmitMainWindow):
         self._create_menubar()
         self._create_toolbar()
         self._create_scan_notebook()
+        self._verify_access_write()
         self._verify_root()
 
         self.running_ni = False
@@ -141,6 +144,16 @@ class MainWindow(UmitMainWindow):
     def _verify_root(self):
         if not root:
             non_root = NonRootWarning()
+            
+    def _verify_access_write(self):
+        if (not check_access(Path.config_file, os.R_OK and os.W_OK )):
+            error_text = _('''You do not have access to config files!\nPlease run Umit as root or change permissions %s 
+            ''' % Path.config_dir)
+
+            d = HIGAlertDialog(message_format=_('Permission Denied'),
+                                secondary_text=error_text)
+            d.run()
+            sys.exit(0)
             
     def _get_running_ni(self):
         """
@@ -1213,26 +1226,8 @@ action's name"))
         d.destroy()
 
     def _show_help(self, action):
-        import webbrowser
-
-        new = 0
-        if sys.hexversion >= 0x2050000:
-            new = 2
-
-        doc_path = abspath(join(Path.docs_dir, "index.html"))
-        log.warning(">>> Openning documentation: %s" % doc_path)
-        if exists(doc_path) and os.access(doc_path, os.R_OK):
-            webbrowser.open("file://%s" % doc_path, new=new)
-        else:
-            d = HIGAlertDialog(parent=self,
-                               message_format=_("Couldn't find \
-documentation files!"),
-                               secondary_text=_("""Umit couldn't find the \
-documentation files. Please, go to Umit's website and have the latest \
-documentation in our Support & Development section."""))
-            d.run()
-            d.destroy()
-
+        show_help(self, "index.html")
+        
     def _exit_cb (self, widget=None, extra=None):
         for page in self.scan_notebook.get_children():
             if not self._close_scan_cb(page):

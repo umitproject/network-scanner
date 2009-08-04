@@ -22,7 +22,7 @@
 
 import gtk
 import gobject
-
+from higwidgets.higboxes import hig_box_space_holder
 from umit.core.Version import VERSION
 
 class Splash(gtk.Window):
@@ -44,16 +44,20 @@ class Splash(gtk.Window):
         self.version = gtk.Label("%s" % VERSION)
 
         self.version.set_use_markup(True)
-        self.version.set_markup("<span size='22000' weight='heavy'>\
+        self.version.set_markup("<span size='19000' weight='heavy'>\
 %s</span>" % VERSION)
+
+        self.hor = gtk.HBox()
+        self.hor.pack_end(self.version, True, False)
+        self.hor.pack_end(hig_box_space_holder(), True, False)
 
         # These constants are derived from the dimensions of the open space in
         # the splash graphic. We attempt to center the version number.
         self.verbox.set_size_request(152, 56)
-        self.verbox.pack_start(self.version, True, False)
+        self.verbox.pack_start(self.hor, True, False)
 
         fixed = gtk.Fixed()
-        fixed.put(self.verbox, width - 152, height - 56)
+        fixed.put(self.verbox, width - 152, height - (height-26))
         self.add(fixed)
 
         self.hid = self.connect("expose-event", self.set_bg, mask, pixmap)

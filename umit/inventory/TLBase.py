@@ -270,7 +270,7 @@ class TLBase(CalendarManager, DataGrabber):
         else:
             fmtddate = [
 
-                  _("Year %s") % self.year,
+                  _("Year %(year)s") % {'year': self.year},
 
                   "%s, %s" % (monthname(self.month), self.year),
 

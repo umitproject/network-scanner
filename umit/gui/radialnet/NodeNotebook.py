@@ -698,9 +698,9 @@ class TraceroutePage(HIGVBox):
                     count += 1
 
                     self.__trace_store.append([hop['ttl'],
-                                               hop['rtt'],
-                                               hop['ip'],
-                                               hop['hostname'],
+                                               hop.get('rtt',''),
+                                               hop.get('ipaddr',''),
+                                               hop.get('host',''),
                                                HOP_COLOR['known'],
                                                True])
 

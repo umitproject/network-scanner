@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Copyright (C) 2008 Adriano Monteiro Marques
+# Copyright (C) 2009 Adriano Monteiro Marques
 #
 # Author: Francesco Piccinno <stack.box@gmail.com>
 #
@@ -23,11 +23,13 @@ from umit.plugin.Containers import setup
 setup(
     name='Notifier',
     version='0.1',
-    author='Francesco Piccinno',
+    author=['Francesco Piccinno'],
     url='http://blog.archpwn.org',
     start_file='main',
-    needs='>=tray-2.0',
+    need=['>=tray-2.0'],
     description='This plugin will warn you trough ballons or notification that a scan has finished',
+    license=['GPL'],
+    copyright=['(C) 2009 Adriano Monteiro Marques'],
     data_files=[('data', ['dist/logo.png'])],
     scripts=['sources/main.py'],
     output='Notifier.ump'

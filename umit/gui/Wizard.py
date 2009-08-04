@@ -32,6 +32,8 @@ from higwidgets.higtables import HIGTable
 from umit.gui.OptionBuilder import *
 from umit.gui.ProfileEditor import *
 
+from umit.gui.Help import show_help
+
 from umit.core.Paths import Path
 from umit.core.WizardConf import wizard_file
 from umit.core.TargetList import target_list
@@ -206,10 +208,7 @@ class Wizard(HIGWindow):
             self.close_wizard()
 
     def _show_help(self, widget=None):
-        import webbrowser
-        webbrowser.open("file://%s" % os.path.join(Path.docs_dir,
-                                                   "index.html"),
-                                                   new=2)
+	show_help(self, "wizard.html")
 
     def choose_page(self):
         choose = ChoosePage()

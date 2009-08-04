@@ -50,7 +50,7 @@ class PluginPath(object):
     >>> p.get_plugins()
     {}
     """
-    
+
     def __init__(self, path):
         """
         The default constructor
@@ -74,7 +74,7 @@ class PluginPath(object):
 
         for file in os.listdir(self.path):
             path = os.path.join(self.path, file)
-            
+
             if file.endswith(".ump") and \
                os.path.isfile(path):
 
@@ -131,7 +131,7 @@ class PluginEngine(Singleton):
         self.tree = PluginsTree()
         self.core = Core()
 
-        self.avaiable_plugins = None
+        self.available_plugins = None
         self.paths = None
 
         self.apply_updates()
@@ -143,11 +143,11 @@ class PluginEngine(Singleton):
         """
 
         log.debug("Path.config_dir placed under %s" % Path.config_dir)
-        
+
         dest_dir = os.path.join(Path.config_dir, 'plugins')
         temp_dir = os.path.join(Path.config_dir, 'plugins-temp')
         down_dir = os.path.join(Path.config_dir, 'plugins-download')
-        
+
         for file in os.listdir(temp_dir):
             try:
                 os.remove(file)
@@ -168,6 +168,8 @@ class PluginEngine(Singleton):
                 if os.path.exists(dst_name):
                     os.remove(dst_name)
 
+                log.debug("Installing new plugin from update: %s" % dst_name)
+
                 os.rename(path, dst_name)
 
             except Exception, err:
@@ -176,10 +178,10 @@ class PluginEngine(Singleton):
 
     def recache(self):
         """
-        Reinit the avaiable_plugins and paths fields
+        Reinit the available_plugins and paths fields
         """
 
-        self.avaiable_plugins = []
+        self.available_plugins = []
         self.paths = {}
 
         idx = 0
@@ -187,7 +189,7 @@ class PluginEngine(Singleton):
             plug_path = PluginPath(path)
             self.paths[path] = (idx, plug_path)
 
-            self.avaiable_plugins.extend(
+            self.available_plugins.extend(
                 [v for k, v in plug_path.plugins.items()]
             )
 
@@ -282,7 +284,7 @@ class PluginEngine(Singleton):
     def load_plugin(self, reader, force=False):
         """
         Load a plugin
-        
+
         @param reader a PluginReader
         @param force True to not check depends
         """
@@ -304,21 +306,21 @@ class PluginEngine(Singleton):
             if path in lst:
                 log.debug(">>> Removing plugin from autoload")
                 lst.remove(path)
-                
+
                 self.plugins.plugins = lst
 
             return (True, None)
         except PluginException, err:
             return (False, err)
-        
+
     def uninstall_plugin(self, reader):
         """
         Low level uninstall procedure
-        
+
         @param reader a PluginReader
         @return True if ok or False
         """
-        
+
         try:
             os.remove(reader.get_path())
             self.recache()
