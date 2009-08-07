@@ -1,10 +1,10 @@
 Network Topology - RadialNet
-==============
+============================
 
-.. sectionauthor:: João Medeiros
+.. sectionauthor:: João Paulo S. Medeiros
 .. sectionauthor:: Luís A. Bastião Silva
 
-.. moduleauthor:: João Medeiros
+.. moduleauthor:: João Paulo S. Medeiros
 
 .. warning::
 
@@ -37,39 +37,50 @@ What does it do?
 * Complete viewer of traceroute information. 
 
 Visualization - Topology Graph
-------------------------
+------------------------------
 
 The network topology was designed based on mathematical theories that was quick overview below.
 The visualization can show so much information. Sometimes it is needed to hide some of these information to keep the visualization clean.
 
-It offer a user-friendly interface like you can see on :ref:`topology` .
+It offer a user-friendly interface like you can see on
+:ref:`Topology Interface <topology>`.
 
 .. _topology:
 .. figure:: static/radialnet/radialnet.png
    :align: left
 
-   *Network Topology Interface*
+   Topology Interface
 
 
 Animation
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^
 
-You can change the center of visualization by clicking on a node. You can change the method of interpolation between polar or Cartesian. The first method minimizes overlapping in the animation, but the second is cleaner for some people. If the animation is to slow you can decrease the number of frames on the top right-hand side of the control panel. You can also change the coordinate system being used to do the interpolation (polar or Cartesian).
+You can change the center of visualization by clicking on a node.
+You can change the method of interpolation between polar or Cartesian.
+The first method minimizes overlapping in the animation, but the second is
+cleaner for some people.
+If the animation is to slow you can decrease the number of frames on the top
+right-hand side of the control panel.
+You can also change the coordinate system being used to do the interpolation
+(polar or Cartesian).
+
 Node's placement
+^^^^^^^^^^^^^^^^
 
-Two options for a node's placement can be used, Symmetric and Weighted. The 
-first method is easier to view because it better shows the network hierarchy, 
-but the second uses available space much better.
+Two options for a node's placement can be used, Symmetric and Weighted.
+The first method is easier to view because it better shows the network
+hierarchy, but the second uses available space much better.
+
 Grouping
+^^^^^^^^
 
-You can group nodes selecting the 'Group node' option on the top toolbar. The children (only blue line connections) of a node are grouped with it. 
-
-
+You can group nodes selecting the 'Group node' option on the top toolbar.
+The children (only blue line connections) of a node are grouped with it.
 
 Toolbar
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^
 
-The network can be easier management by the user through a could of actions :ref:`toolbar`:
+The network can be easier management by the user through a could of actions :ref:`RadialNet Actions <toolbar>`:
 
  * Actions
  * Interpolation
@@ -80,7 +91,7 @@ The network can be easier management by the user through a could of actions :ref
 .. figure:: static/radialnet/toolbar.png
    :align: left
 
-   *RadialNet Actions*
+   RadialNet Actions
 
 **Actions**   
    
@@ -118,17 +129,17 @@ If the user can prefer see all nodes should use Weighted.
 **View**
 
 Fisheye visualization technique
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sometimes you may wish to focus some regions of the map. To make this possible a fisheye mechanism was implemented. 
 
 
 
 Symbols
-------------------------------
+-------
 
 Icons
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^
 
 
 Each device is identified by a specific icon representing:
@@ -154,23 +165,23 @@ and wireless access points from general purpose hosts.
 
 It assume a vulnerabilities level of nodes.
 
-+-------------------------------------------+----------------------------------+
-| Symbol                                    |  Meaning                         |
-+===========================================+==================================+
-| .. image:: static/radialnet/host_g.png    |  Less than 3 ports opened        |
-+-------------------------------------------+----------------------------------+
-| .. image:: static/radialnet/host_y.png    |  Between 3 ports and 6 opened    |
-+-------------------------------------------+----------------------------------+
-| .. image:: static/radialnet/host_r.png    |  More then 6 ports opened        |
-+-------------------------------------------+----------------------------------+
++-------------------------------------------+-----------------------------------+
+| Symbol                                    |  Meaning                          |
++===========================================+===================================+
+| .. image:: static/radialnet/host_g.png    |  Less than 3 ports opened         |
++-------------------------------------------+-----------------------------------+
+| .. image:: static/radialnet/host_y.png    |  Between 3 ports and 6 opened     |
++-------------------------------------------+-----------------------------------+
+| .. image:: static/radialnet/host_r.png    |  More then 6 ports opened         |
++-------------------------------------------+-----------------------------------+
 | .. image:: static/radialnet/host_sq.png   |  Routers, Switches or Wireless AP |
-+-------------------------------------------+----------------------------------+
++-------------------------------------------+-----------------------------------+
 
 
 
 
 Lines
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^
 
 TODO: I'm not feeling comfortable enought to write it 
 
@@ -178,9 +189,10 @@ TODO: I'm not feeling comfortable enought to write it
 
 
 Host Viewers
------------------
+------------
 
-:ref:`topology` is a interface to show information about hosts
+:ref:`Host Viewers <hostviewers>` is a interface to show information about
+hosts
 
  * General information (Address, Operation System, Sequences, etc)
  * Services (Ports and info about services running)
@@ -191,14 +203,14 @@ Host Viewers
 .. figure:: static/radialnet/host-view.png
    :align: left
 
-   *Host Viewers*
+   Host Viewers
    
-:ref:`topology` can be reached also through the right click in each node
-showing specific information about the node selected.
+:ref:`Host Viewers <hostviewers>` can be reached also through the right click
+in each node showing specific information about the node selected.
 
 
 Save Network Topology
-------------------------------------------
+---------------------
 
 This feature allow you export the topology for a file and it become easier life
 of user to include network topology of network in articles, reports, etc.
@@ -211,7 +223,7 @@ There are some formats able to export:
 
 
 Some examples of Profiles and scans
------------------------------
+-----------------------------------
 
 In the case to see topology of a network in the Internet you should use the 
 ``--traceroute`` option, that can be found in Profile Editor.
