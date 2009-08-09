@@ -18,13 +18,13 @@ Introduction
 
 **Umit Network Scanner** is able to discovering new hosts based on *Nmap*.
 Topology is a network visualizer able to show a great networks with a large
-number of nodes connected, even in different networks handy throught a easier interface.
+number of nodes connected, even in different networks handy throught a easier
+interface.
 Besides the interface is ready for everyone navigate in topology network.
 
 
 What does it do?
 ^^^^^^^^^^^^^^^^
-
 
 * Visualization of network topology with Nmap XML as input.
 
@@ -36,11 +36,15 @@ What does it do?
 
 * Complete viewer of traceroute information. 
 
+
 Visualization - Topology Graph
 ------------------------------
 
-The network topology was designed based on mathematical theories that was quick overview below.
-The visualization can show so much information. Sometimes it is needed to hide some of these information to keep the visualization clean.
+The network topology was designed based on mathematical theories that was quick
+overview below.
+The visualization can show so much information.
+Sometimes it is needed to hide some of these information to keep the
+visualization clean.
 
 It offer a user-friendly interface like you can see on
 :ref:`Topology Interface <topology>`.
@@ -64,6 +68,7 @@ right-hand side of the control panel.
 You can also change the coordinate system being used to do the interpolation
 (polar or Cartesian).
 
+
 Node's placement
 ^^^^^^^^^^^^^^^^
 
@@ -71,16 +76,19 @@ Two options for a node's placement can be used, Symmetric and Weighted.
 The first method is easier to view because it better shows the network
 hierarchy, but the second uses available space much better.
 
+
 Grouping
 ^^^^^^^^
 
 You can group nodes selecting the 'Group node' option on the top toolbar.
 The children (only blue line connections) of a node are grouped with it.
 
+
 Toolbar
 ^^^^^^^
 
-The network can be easier management by the user through a could of actions :ref:`RadialNet Actions <toolbar>`:
+The network can be easier management by the user through a could of actions
+:ref:`RadialNet Actions <toolbar>`:
 
  * Actions
  * Interpolation
@@ -128,11 +136,12 @@ If the user can prefer see all nodes should use Weighted.
 
 **View**
 
+
 Fisheye visualization technique
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Sometimes you may wish to focus some regions of the map. To make this possible a fisheye mechanism was implemented. 
-
+Sometimes you may wish to focus some regions of the map. To make this possible
+a fisheye mechanism was implemented. 
 
 
 Symbols
@@ -178,14 +187,10 @@ It assume a vulnerabilities level of nodes.
 +-------------------------------------------+-----------------------------------+
 
 
-
-
 Lines
 ^^^^^
 
 TODO: I'm not feeling comfortable enought to write it 
-
-
 
 
 Host Viewers
