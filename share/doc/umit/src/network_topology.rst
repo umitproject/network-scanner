@@ -50,7 +50,7 @@ It offer a user-friendly interface like you can see on
 :ref:`Topology Interface <topology>`.
 
 .. _topology:
-.. figure:: static/radialnet/radialnet.png
+.. figure:: static/radialnet.png
    :align: left
 
    Topology Interface
@@ -96,7 +96,7 @@ The network can be easier management by the user through a could of actions
  * View
 
 .. _toolbar:
-.. figure:: static/radialnet/toolbar.png
+.. figure:: static/toolbar.png
    :align: left
 
    RadialNet Actions
@@ -154,19 +154,19 @@ Icons
 Each device is identified by a specific icon representing:
 
 
-+-------------------------------------------+----------------------------------+
-| Symbol                                    |  Meaning                         |
-+===========================================+==================================+
-| .. image:: static/radialnet/wireless.png  |  Access Point - Wireleess        |
-+-------------------------------------------+----------------------------------+
-| .. image:: static/radialnet/firewall.png  |  the host is a firewall          |
-+-------------------------------------------+----------------------------------+
-| .. image:: static/radialnet/router.png    |  the host is a router            |
-+-------------------------------------------+----------------------------------+
-| .. image:: static/radialnet/switch.png    |  the host is a switch            |
-+-------------------------------------------+----------------------------------+
-| .. image:: static/radialnet/padlock.png   |  the host has filtered port      |
-+-------------------------------------------+----------------------------------+
++---------------------------------+----------------------------------+
+| Symbol                          |  Meaning                         |
++=================================+==================================+
+| .. image:: static/wireless.png  |  Access Point - Wireleess        |
++---------------------------------+----------------------------------+
+| .. image:: static/firewall.png  |  the host is a firewall          |
++---------------------------------+----------------------------------+
+| .. image:: static/router.png    |  the host is a router            |
++---------------------------------+----------------------------------+
+| .. image:: static/switch.png    |  the host is a switch            |
++---------------------------------+----------------------------------+
+| .. image:: static/padlock.png   |  the host has filtered port      |
++---------------------------------+----------------------------------+
 
 
 It use also squares to easily distinguish devices like routers, switches 
@@ -174,17 +174,17 @@ and wireless access points from general purpose hosts.
 
 It assume a vulnerabilities level of nodes.
 
-+-------------------------------------------+-----------------------------------+
-| Symbol                                    |  Meaning                          |
-+===========================================+===================================+
-| .. image:: static/radialnet/host_g.png    |  Less than 3 ports opened         |
-+-------------------------------------------+-----------------------------------+
-| .. image:: static/radialnet/host_y.png    |  Between 3 ports and 6 opened     |
-+-------------------------------------------+-----------------------------------+
-| .. image:: static/radialnet/host_r.png    |  More then 6 ports opened         |
-+-------------------------------------------+-----------------------------------+
-| .. image:: static/radialnet/host_sq.png   |  Routers, Switches or Wireless AP |
-+-------------------------------------------+-----------------------------------+
++---------------------------------+-----------------------------------+
+| Symbol                          |  Meaning                          |
++=================================+===================================+
+| .. image:: static/host_g.png    |  Less than 3 ports opened         |
++---------------------------------+-----------------------------------+
+| .. image:: static/host_y.png    |  Between 3 ports and 6 opened     |
++---------------------------------+-----------------------------------+
+| .. image:: static/host_r.png    |  More then 6 ports opened         |
++---------------------------------+-----------------------------------+
+| .. image:: static/host_sq.png   |  Routers, Switches or Wireless AP |
++---------------------------------+-----------------------------------+
 
 
 Lines
@@ -205,7 +205,7 @@ hosts
 
 
 .. _hostviewers:
-.. figure:: static/radialnet/host-view.png
+.. figure:: static/host-view.png
    :align: left
 
    Host Viewers
