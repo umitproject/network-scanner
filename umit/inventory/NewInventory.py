@@ -316,7 +316,7 @@ class NewInventory(HIGWindow):
         invname = self.invname.get_text()
         notinuse = (self.invname_inuse.state == gtk.STATE_INSENSITIVE)
         command_adv = self.scan_command.get_text()
-
+        
         # checking for errors
         if not notinuse or not len(invname) and not self.edit_mode:
             dlg = HIGAlertDialog(self,
@@ -386,6 +386,7 @@ class NewInventory(HIGWindow):
             return 0
 
         if new_sec:
+            # New Section
             s_cfg.set(invname, 'profile', schedule)
             s_cfg.set(invname, 'command', command)
             s_cfg.set(invname, 'enabled', enabled)
@@ -394,8 +395,10 @@ class NewInventory(HIGWindow):
             s_cfg.set(invname, 'mailto', '')
             s_cfg.set(invname, 'smtp', '')
         else:
+            # Edit Mode
             s_cfg.set(invname, 'profile', schedule)
             s_cfg.set(invname, 'enabled', enabled)
+            s_cfg.set(invname, 'command', self.cmd_entry.get_text())
 
         s_cfg.write(open(Path.sched_schemas, 'w'))
 
@@ -515,13 +518,14 @@ class NewInventory(HIGWindow):
         main_vbox._pack_noexpand_nofill(scan_hbox)
         main_vbox._pack_noexpand_nofill(scanadv_hbox)
         main_vbox._pack_noexpand_nofill(scantarget_hbox)
-
+        
         if self.loaded_command and self.edit_mode:
             view_cmd_box = HIGHBox()
             view_cmd_box._pack_noexpand_nofill(gtk.Label(_("Command")))
-            cmd_entry = gtk.Entry()
-            cmd_entry.set_text(self.loaded_command)
-            view_cmd_box._pack_expand_fill(cmd_entry)
+            # XXX Why don't reuse scan_command?
+            self.cmd_entry = gtk.Entry()
+            self.cmd_entry.set_text(self.loaded_command)
+            view_cmd_box._pack_expand_fill(self.cmd_entry)
             img_info = gtk.Image()
             img_info.set_from_stock(gtk.STOCK_INFO, gtk.ICON_SIZE_MENU)
             eb = gtk.EventBox()
