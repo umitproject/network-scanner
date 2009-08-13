@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # Copyright (C) 2009 Adriano Monteiro Marques
 #
 # Author:  Guilherme Polo <ggpolo@gmail.com>
@@ -44,6 +46,7 @@ def file_merger(from_dir, to_dir, nowarn=False, *files):
     """Merge the files in to_dir according to the supposed newer files in
     from_dir."""
     for filename in files:
+        print filename
         from_file = os.path.join(from_dir, filename)
         to_file = os.path.join(to_dir, filename)
 

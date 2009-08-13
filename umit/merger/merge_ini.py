@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # Copyright (C) 2009 Adriano Monteiro Marques
 #
 # Authors:  Luís A. Bastião Silva <luis.kop@gmail.com>
