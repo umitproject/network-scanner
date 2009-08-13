@@ -142,36 +142,47 @@ UmitGUI: %s
                 "Description\n%s\n%s" % (
                     '=' * 10, extrainfo, '-' * 20, crash_text))
 
-        try:
-            try:
-                cwin = CrashReport("Umit Crash - '%s'" % emsg,
-                        crashmsg, description_dialog=crashmsg_dialog)
-                cwin.show_all()
-                while True:
-                    # keeping running while bug report is not sent
-                    # successfully, or until the user closes the window.
-                    result = cwin.run()
-                    if result in (gtk.RESPONSE_CANCEL,
-                        gtk.RESPONSE_DELETE_EVENT,
-                        gtk.RESPONSE_NONE):
+        # If umit started running then gtk.main was invoked. Let's end this
+        # main loop now so when the Crash Report is closed, umit is also
+        # closed.
+        if gtk.main_level():
+            gtk.main_quit()
+            # We registered App().safe_shutdown for the SIGTERM signal,
+            # now we can retrieve it and find out the umit's main window if
+            # it got created.
+            safeshutdown_meth = signal.getsignal(signal.SIGTERM)
+            mainwindow = getattr(
+                    safeshutdown_meth.im_self, 'main_window', None)
+            # Disable controls.
+            if mainwindow is not None:
+                mainwindow.disable_window()
 
-                        cwin.destroy()
-                        break
-            except:
-                tempfd, tempname = tempfile.mkstemp()
-                os.write(tempfd, crashmsg_dialog)
-                d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
+        try:
+            cwin = CrashReport("Umit Crash - '%s'" % emsg,
+                    crashmsg, description_dialog=crashmsg_dialog)
+            cwin.show_all()
+            cwin.connect('destroy', gtk.main_quit)
+            from umit.gui.App import main_is_frozen
+            if main_is_frozen():
+                gtk.gdk.threads_enter()
+            gtk.main()
+            if main_is_frozen():
+                gtk.gdk.threads_leave()
+        except:
+            import traceback
+            traceback.print_exc()
+            tempfd, tempname = tempfile.mkstemp()
+            os.write(tempfd, crashmsg_dialog)
+            d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
                     message_format=_("Bug not reported"),
                     secondary_text=_("A critical error occourried during "
                         "Umit execution, \nand it was not properly reported "
                         "to our bug tracker. The crash description was saved "
                         "to: %s, so you can still report it on our bug "
                         "tracker.") % tempname)
-                os.close(tempfd)
-                d.run()
-                d.destroy()
-        finally:
-            gtk.main_quit()
+            os.close(tempfd)
+            d.run()
+            d.destroy()
 
 
 if not development_mode(default=True):

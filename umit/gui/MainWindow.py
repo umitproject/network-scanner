@@ -121,7 +121,9 @@ class MainWindow(UmitMainWindow):
         self._verify_access_write()
         self._verify_root()
 
-        self.running_ni = False
+        self.running_ni = False # Running NetworkInventory
+        self.running_ie = False # Running InterfaceEditor
+        self.running_pm = False # Running ProfileManager
 
         # These dialogs should be instanciated on demand
         # Unfortunately, due to a GTK bug on the filefilters (or our own
@@ -137,14 +139,46 @@ class MainWindow(UmitMainWindow):
         if len(files) >= 1:
             for file in files:
                 self._load(filename=file)
-
+                
+        # Create a Window List ( Something like SearchWindow,etc)
+        self.wlist = []
+        self.niwin = None
+        self.uie = None
+        self.pm = None
+        
     def configure_focus_chain(self):
         self.vbox.set_focus_chain()
+        
+    def disable_window(self):
+        """Disable all windows of Umit Network Scanner.
+        After execute this functions you can not play with Umit again"""
+        # Disable MainWindow
+        self.set_sensitive(False)
+        # Disable Window List
+        print self.wlist
+        for window in self.wlist:
+            window.set_sensitive(False)
+        # Disable Umit Plugis Window
+        self._plugin_win.set_sensitive(False)
+        # Disable Network Inventory
+        if self.niwin!= None:
+            self.niwin.set_sensitive(False)
+        # Disable Interface Editor
+        if self.uie!=None:
+            self.uie.set_sensitive(False)
+        # Disable Profile Manager
+        if self.pm != None:
+            self.pm.set_sensitive(False)
+        
 
     def _verify_root(self):
         if not root:
             non_root = NonRootWarning()
-            
+    
+    def __remove_wlist(self, widget):
+        """Remove Window from list to disable"""
+        self.wlist.remove(widget)            
+        
     def _verify_access_write(self):
         if (not check_access(Path.config_file, os.R_OK and os.W_OK )):
             error_text = _('''You do not have access to config files!\nPlease run Umit as root or change permissions %s 
@@ -547,7 +581,9 @@ class MainWindow(UmitMainWindow):
     def _search_scan_result(self, widget):
         search_window = SearchWindow(self._load_search_result,
                                      self.scan_notebook)
+        search_window.connect("destroy", self.__remove_wlist)
         search_window.show_all()
+        self.wlist.append(search_window)
 
     def _load_search_result(self, results):
         for result in results:
@@ -1157,16 +1193,26 @@ access to this path.'))
         # return page
         
     def _uie(self, p):
-        uie = InterfaceEditor()
-        uie.show_all()
+        """
+        Show Interface Editor
+        """
+        if self.running_ie:
+            return
+        else:
+            self.uie = InterfaceEditor(self)
+            self.uie.show_all()
+            self.running_ie = True
     def _profile_manager(self,p):
         pm = ProfileManager()
         pm.show_all()
     def _profile_manager(self,p):
         """ Show Profile Manager """
-        pm = ProfileManager()
-        pm.set_notebook(self.scan_notebook)
-        pm.show_all()
+        if self.running_pm:
+            return
+        self.pm = ProfileManager(self)
+        self.pm.set_notebook(self.scan_notebook)
+        self.pm.show_all()
+        self.running_pm = True
     
     def _new_scan_profile_cb(self, p):
         pe = ProfileEditor()
@@ -1262,7 +1308,8 @@ action's name"))
             dic[scan_name] = page.parsed
 
         self.diff_window = DiffWindow(dic)
-
+        self.diff_window.connect("destroy", self.__remove_wlist)
+        self.wlist.append(self.diff_window)
         self.diff_window.show_all()
 
 

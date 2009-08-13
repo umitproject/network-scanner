@@ -57,7 +57,7 @@ from umit.interfaceeditor.Command import command_manager
 
 
 class InterfaceEditor(HIGMainWindow):
-    def __init__(self):
+    def __init__(self, daddy=None):
         HIGMainWindow.__init__(self)
         self._proprieties = None
         self.profile_box = None 
@@ -85,7 +85,6 @@ class InterfaceEditor(HIGMainWindow):
         self.__option_display()
         self.edit_mode_opt = "Options"
 
-
         self.connect("delete_event", self._destroy)
 
         self.opt_display.set_profile(self.profile_box)
@@ -95,6 +94,8 @@ class InterfaceEditor(HIGMainWindow):
         self.profile_box.notebook.connect_after('changed', self._update_menu)
         self.wizard_box.notebook.connect_after('changed', self._update_menu)
         self.opt_display.connect_after('need-save', self._update_menu_s)
+        
+        self.daddy = daddy
 
     def _update_menu(self, actions, others, page):
         obj = None 
@@ -145,7 +146,8 @@ class InterfaceEditor(HIGMainWindow):
 
 
     def _destroy(self, widget, event):
-        self.destroy()
+        self.quit(widget)
+
     def create_wizard_edit(self):
         '''
         create a profile area editing 
@@ -517,7 +519,15 @@ class InterfaceEditor(HIGMainWindow):
 
         obj.save()
     def quit(self, widget):
-        self.destroy()
+        """
+        Leaving of Interface Editor
+        """
+        if self.daddy: # Run from Umit Network Scanner by menus
+            self.daddy.running_ie = False
+            self.destroy()
+        else: # Run from command line directly
+            gtk.main_quit()
+           
     def np(self, widget):
         print "Don't work yet"
     def __create_ui_manager(self):

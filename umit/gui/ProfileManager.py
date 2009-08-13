@@ -47,7 +47,7 @@ class ProfileManager(HIGWindow):
     """
     Create a Profile Manager 
     """
-    def __init__(self):
+    def __init__(self, daddy=None):
         HIGWindow.__init__(self, type=gtk.WINDOW_TOPLEVEL)
         self.set_title('Profile Manager')
         self.set_position(gtk.WIN_POS_CENTER)
@@ -56,6 +56,8 @@ class ProfileManager(HIGWindow):
         self.__fill_widgets()
         self.__pack_widgets()
         self.__scan_notebook = None
+        
+        self.daddy = daddy
 
 
     def __create_widgets(self):
@@ -104,6 +106,8 @@ class ProfileManager(HIGWindow):
         #Apply Buttons
         self.cancel_button = HIGButton(stock='gtk-close')
         self.cancel_button.connect("clicked", self.quit)
+        
+        self.connect("delete-event", self.quit)
 
     def __fill_widgets(self):
 
@@ -270,6 +274,12 @@ class ProfileManager(HIGWindow):
     def quit(self, widget):
         self.destroy()
 
+    def quit(self, widget, data=None):
+        if self.daddy:
+            self.daddy.running_pm = False
+            self.destroy()
+        else:
+            gtk.main_quit()
 
 class ProfileName(HIGDialog):
     def __init__(self, text):
@@ -337,7 +347,7 @@ class ProfileChosse(HIGHBox):
 
 
 if __name__=="__main__":
-    pm = ProfileManager()
+    pm = ProfileManager(None)
     pm.show_all()
     gtk.main()
 
