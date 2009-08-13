@@ -401,7 +401,7 @@ class NmapOutputHighlight(object):
 
     def set_details(self, settings):
         self.__set_it("details", settings)
-
+        
     def get_enable(self):
         enable = True
         try:
@@ -446,7 +446,7 @@ class NmapOutputHighlight(object):
                 "underline": str(True),
                 "text": [0, 111, 65535],
                 "highlight": [65535, 65535, 65535],
-                "regex": "(\w{2,}://)*\w{2,}\.\w{2,}(\.\w{2,})*(/[\w{2,}]*)*"
+                "regex":"(\w{2,}://)?(([a-zA-Z0-9]|-)+\.)+([a-zA-Z]{2,}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)([\w\d#/])*"
                 },
             "ip": {
                 "bold": str(True),
