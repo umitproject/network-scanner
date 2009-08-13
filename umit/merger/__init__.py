@@ -57,9 +57,13 @@ def file_merger(from_dir, to_dir, nowarn=False, *files):
         elif ext == '.db':
             # .db files are merged using sqlitedb merger
             merger = sqlitedb
-
         try:
-            merger.merge(from_file.encode('utf-8'), to_file.encode('utf-8'))
+            if filename != 'umit.conf':
+                merger.merge(from_file.encode('utf-8'), 
+                             to_file.encode('utf-8'))
+            else:
+                merger.merge_umit_conf(from_file.encode('utf-8'), 
+                             to_file.encode('utf-8'))
         except OriginError:
             # Received a filename that is not even present in the from_dir,
             # warn the caller about it.

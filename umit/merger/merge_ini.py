@@ -35,7 +35,7 @@ def merge(from_file, to_file):
         raise OriginError(from_file)
     if not os.path.exists(to_file):
         raise DestinationError(to_file)
-
+    
     # Read new file
     config_new = ConfigParser.RawConfigParser()
     config_new.read(from_file)
@@ -67,6 +67,72 @@ def merge(from_file, to_file):
         f = open(to_file, 'wb')
         config.write(f)
 
+        
+# This function was copied from merge function
+# It just merge umit.conf, the goal is just increase performance during 
+# start up of Umit because there is a bug related with regex
+def merge_umit_conf(from_file, to_file):        
+    """
+    This function merge just umit.conf
+    
+    @from_file: Path to a supposed newer ini file
+    @to_file: Path to a supposed older ini file
+    @return true or false
+    """
+    
+    if not os.path.exists(from_file):
+        raise OriginError(from_file)
+    if not os.path.exists(to_file):
+        raise DestinationError(to_file)
+    
+    # Read new file
+    config_new = ConfigParser.RawConfigParser()
+    config_new.read(from_file)
+
+    # Read old file
+    config = ConfigParser.RawConfigParser()
+    config.read(to_file)
+
+    # Merge files
+    changed = False
+    
+    # Inside Hostnames Highlight
+    hostnames_highlight = False
+    OBSOLETE_HOSTNAME_HIGHLIGHT = "(\w{2,}://)*\w{2,}\.\w{2,}(\.\w{2,})*(/[\w{2,}]*)*"
+    
+    # #### 
+    
+    for section in config_new.sections():
+        if section == "hostname_highlight":
+            hostnames_highlight = True
+        if config.has_section(section):
+            # Merge section's content
+            for option, value in config_new.items(section):
+                
+                if not config.has_option(section, option):
+                    # Add the new option
+                    config.set(section, option, value)
+                    changed = True
+                elif hostnames_highlight and option == "regex"\
+                     and config.get(section,option) == OBSOLETE_HOSTNAME_HIGHLIGHT:
+                    config.set(section, option, value)
+                    changed = True
+        else:
+            # section does not exist in the old ini file, copy it there
+            copy_section(config, config_new, section)
+            changed = True
+            
+        # Not in this section anymore     
+        hostnames_highlight = False
+        
+    if changed:
+        # Backup the destination
+        shutil.copyfile(to_file, to_file + '.bak')
+
+        # Write back the merged configuration
+        f = open(to_file, 'wb')
+        config.write(f)
+        
 def copy_section(config, config_new, section):
     config.add_section(section)
     for k, v in config_new.items(section):
