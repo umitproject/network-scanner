@@ -81,6 +81,8 @@ GNU/Linux Installation
    After putting the bin directory in the PATH, execute Umit:
    $ umit.pyw
 
+Packing   
+   
    If you want to define also a root to install umit in a chroot environment
    or if you are packing for you favorite distro, and you are a package
    maintainer probably you should use the --root option in addition with
