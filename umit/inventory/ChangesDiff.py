@@ -148,22 +148,32 @@ class ChangesDiff(gtk.VBox):
             (ports_o, ep_o, uptime_o, tcp_seq_o,
             tcp_ts_seq_o, ip_id_seq_o,
             osclasses_o, osmatch_o) = self.get_data_for_host_from_db(hostid_old)
+            
 
         # ports diff
-        self.port_diff(ports_o, ports_n, do_diff)
+        if self.__verify_if_available([ports_o, ports_n]):
+            self.port_diff(ports_o, ports_n, do_diff)
 
         # Extraports
-        self.extraports_diff(ep_o, ep_n, do_diff)
+        if self.__verify_if_available([ep_o, ep_n]):
+            self.extraports_diff(ep_o, ep_n, do_diff)
 
         # Fingerprint
-        self.fingerprint_diff(uptime_o, uptime_n, tcp_seq_o, tcp_seq_n,
-            tcp_ts_seq_o, tcp_ts_seq_n, ip_id_seq_o, ip_id_seq_n, do_diff)
+        diff_fingerprint = [uptime_o, uptime_n, tcp_seq_o, tcp_seq_n,
+                                  tcp_ts_seq_o, tcp_ts_seq_n, ip_id_seq_o, 
+                                  ip_id_seq_n]
+        if self.__verify_if_available(diff_fingerprint):
+            self.fingerprint_diff(uptime_o, uptime_n, tcp_seq_o, tcp_seq_n,
+                                  tcp_ts_seq_o, tcp_ts_seq_n, ip_id_seq_o, 
+                                  ip_id_seq_n, do_diff)
 
         # OS Classes
-        self.osclasses_diff(osclasses_o, osclasses_n, do_diff)
+        if self.__verify_if_available([osclasses_o, osclasses_n]):
+            self.osclasses_diff(osclasses_o, osclasses_n, do_diff)
 
         # OS Match
-        self.osmatch_diff(osmatch_o, osmatch_n, do_diff)
+        if self.__verify_if_available([osmatch_o, osmatch_n]):
+            self.osmatch_diff(osmatch_o, osmatch_n, do_diff)
 
 
     def port_diff(self, old, new, diff=True):
@@ -287,6 +297,7 @@ class ChangesDiff(gtk.VBox):
         """
         Do fingerprint diff.
         """
+        
         if not diff:
             status = "Added"
         elif (up_old != up_new) or (ts_old != ts_new) or (tts_old != tts_new) \
@@ -454,6 +465,9 @@ class ChangesDiff(gtk.VBox):
         Append data to tree according to changes between old and new.
         If diff=False, will classify all as 'Added'.
         """
+        some_available = self.__verify_if_available([old,new])
+        if not some_available:
+            return 
         if not diff:
             status = "Added"
             old = new
@@ -616,8 +630,23 @@ class ChangesDiff(gtk.VBox):
         dlg = DiffLegendWindow(self.colors)
         dlg.run()
         dlg.destroy()
-
-
+    
+    def __verify_if_available(self, list_values):
+        """
+        Verify if some fiends are available
+        """
+        all_not_available = True
+        for d in list_values:
+            if not all_not_available:
+                break
+            for k in d.keys():
+                if k != "Not Available" or d[k] != "Not Available":
+                    all_not_available = False
+                    break
+        return not all_not_available
+        
+        
+        
     def __layout(self):
         """
         Layout widgets.
