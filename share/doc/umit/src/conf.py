@@ -47,7 +47,7 @@ copyright = '2007-%s, Adriano Marques' % time.strftime('%Y')
 # The short X.Y version.
 version = '1.0'
 # The full version, including alpha/beta/rc tags.
-release = '1.0beta2'
+release = '1.0RC'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
