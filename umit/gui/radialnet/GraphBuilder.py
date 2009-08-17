@@ -241,7 +241,10 @@ class GraphBuilder(Graph):
                 service['version'] = port.pop('version', '')
                 service['method'] = port.pop('method', '')
                 service['product'] = port.pop('product', '')
-                service['extrainfo'] = port.pop('extrainfo', '')
+                extrainfo = port.pop('extrainfo', '')
+                if extrainfo != '':
+                    print extrainfo
+                    service['extrainfo'] = extrainfo
                 service['conf'] = port.pop('conf', '')
 
             port['state'] = {'state': port['state']}
