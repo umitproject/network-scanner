@@ -247,8 +247,8 @@ class ToolBarInterface(gtk.EventBox):
             self.box_editable.delete_on_item(self.box_editable._old_selected)
     def _add_section(self, widget):
         '''
-	Add a new section 
-	'''
+        Add a new section 
+        '''
         new_name = self.notebook.get_new_name()
         page =  BoxEditable(new_name, self._profilecore, self._optionlist,
                             self.notebook, True)
@@ -325,6 +325,12 @@ class CommandChangeLabel(TwiceCommand,Command):
         if self._is_section :
             self._profilecore.rename_section(text1, text2)
             self._page.set_name(text2)
+            
+            # Rename all sections in widgets of Page
+            
+            for widget_opt in self._page._table.get_children():
+                widget_opt.get_profileoption().set_section(text2)
+            
         else: 
             section = self._widget.get_profileoption().get_section()
             self._profilecore.rename_option(section, text1, text2)
@@ -612,7 +618,7 @@ class Proprieties(HIGScrolledWindow):
                          self._profilecore, self._selected, _('List of items'))
     def _update_label(self, widget):
         #XXX Replace by Command
-        print "Update Label"
+        log.debug("Update Label")
         selected = self._selected
         cmd = CommandChangeLabel(selected, self._entry_name.get_text(), 
                                  self._profilecore,self._boxeditable, True)

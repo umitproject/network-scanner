@@ -29,6 +29,7 @@ from umit.core.Paths import Path
 options = Path.options
 from umit.core.NmapOptions import NmapOptions
 
+from umit.core.UmitLogging import log
 
 '''
 ProfileCore manage all of the profile.xml
@@ -364,7 +365,7 @@ class ProfileCore(object):
         @return: A node with a element found or None if not found 
         @rtype: ChildNode element or None 
         '''
-
+        log.debug('Section Name - searching: ' + section_name)
         grp = self.xml.getElementsByTagName(section_name)[0]
         result = None 
         for elem in grp.childNodes:
