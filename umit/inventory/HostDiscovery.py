@@ -1,6 +1,7 @@
 # Copyright (C) 2007 Adriano Monteiro Marques
 #
 # Authors: Guilherme Polo <ggpolo@gmail.com>
+# 
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,6 +19,7 @@
 # USA
 
 import os
+import sys
 import re
 import gtk
 import socket
@@ -48,26 +50,46 @@ PLATFORM = os.name
 if PLATFORM == 'nt':
     import win32com.client
 else:
-    import array
-    import fcntl
-    import struct
-    import platform
+    if sys.platform.startswith( "darwin" ):
+        # Mac OS / Darwin Systems
+        from ctypes import *
+        class ifa_ifu_u( Union ):
+            _fields_ = [ ( "ifu_broadaddr", c_void_p ),
+                         ( "ifu_dstaddr", c_void_p ) ]
 
-    bits = platform.architecture()[0]
-    if not bits or bits == '32bit':
-        offset = 32
+
+        class ifaddrs( Structure ):
+
+            _fields_ = [ ( "ifa_next", c_void_p ),
+                         ( "ifa_name", c_char_p ),
+                         ( "ifa_flags", c_uint ),
+                         ( "ifa_addr", c_void_p ),
+                         ( "ifa_netmask", c_void_p ),
+                         ( "ifa_ifu", ifa_ifu_u ),
+                         ( "ifa_data", c_void_p ) ]
+
     else:
-        offset = 40
-
-    # Taken from net/if.h
-    IF_NAMESIZE = 16
-    IFF_UP = 0x1
-    IFF_LOOPBACK = 0x8
-
-    # Taken from bits/ioctls.h
-    SIOCGIFCONF = 0x8912
-    SIOCGIFFLAGS = 0x8913
-    SIOCGIFNETMASK = 0x891b
+        # Linux
+        import array
+        import fcntl
+        import struct
+        import platform
+    
+        bits = platform.architecture()[0]
+        if not bits or bits == '32bit':
+            offset = 32
+        else:
+            offset = 40
+    
+        # Taken from net/if.h
+        IF_NAMESIZE = 16
+        IFF_UP = 0x1
+        IFF_LOOPBACK = 0x8
+    
+        # Taken from bits/ioctls.h
+        SIOCGIFCONF = 0x8912
+        SIOCGIFFLAGS = 0x8913
+        SIOCGIFNETMASK = 0x891b
 
 
 class NetIface(object):
@@ -150,11 +172,11 @@ def _unix_get_addresses(no_loopback=True, do_aliases=False):
     while True:
         ifaces_buf = array.array('B', '\0' * size_guess)
         mem_addr = ifaces_buf.buffer_info()[0]
-
+        pack = struct.pack('iL', size_guess, mem_addr)
         res = fcntl.ioctl(
                 sockfd,
                 SIOCGIFCONF,
-                struct.pack('iL', size_guess, mem_addr))
+                pack)
         outbytes = struct.unpack('iL', res)[0]
         if outbytes == last_len:
             # Success, found the real size.
@@ -204,11 +226,94 @@ def _unix_get_addresses(no_loopback=True, do_aliases=False):
 
     return ifaces
 
-def tryto_detect_networks():
-    if PLATFORM == 'nt':
-        return _nt_get_addresses()
-    else:
-        return _unix_get_addresses()
+def _darwin_get_addresses(no_loopback=True, do_aliases=False):
+    # XXX do_aliases not using in this function
+
+    # This code was based in some suggestions made in this thread:
+    # http://www.developerweb.net/forum/archive/index.php/t-4616.html
+    
+    ifaces = []
+    
+    # Structures of BSD
+    class sockaddr ( Structure ):
+        _fields_ = [ ( "sa_len", c_uint8 ),
+                     ( "sa_family", c_uint8 ),
+                     ( "sa_data", ( c_uint8 * 14 ) ) ]
+
+    # Connect to libc
+    libc = CDLL("libc.dylib")
+    # Create a simulater pointer 
+    ptr = c_void_p( None )
+    # Calls getifaddrs ( man getifaddrs in *BSD )
+    result = libc.getifaddrs( pointer( ptr ) )
+
+    # If there is no results empty list will returned now
+    if result:
+        return ifaces
+    
+    # Let's play with pointers and get first
+    ifa = ifaddrs.from_address( ptr.value )
+    def cat_ip(ip_array):
+        ip = ""
+        i = 0 
+        for byte in ip_array:
+            if i==3:
+                ip = ip + str(byte) 
+            else:
+                ip = ip +  str(byte) + "."
+            i = i + 1 
+        return ip
+            
+    while (True):
+        # Interface name ( ie, en1, en0, vmnet8, etc) 
+        name = ""
+        for ch in ifa.ifa_name:
+            if ord( ch ):
+                name += ch
+            else:
+                break
+        if no_loopback:
+            cond = name.startswith("en")
+        else:
+            cond = name.startswith( "en" ) or name.startswith ("lo")
+        if cond:
+            if sockaddr.from_address( ifa.ifa_addr ).sa_family == socket.AF_INET:
+                mask_ip = sockaddr.from_address( ifa.ifa_netmask )  # Contains IP and Mask
+                # Structure to Get IP and Mask:
+                # Mask [2:6]
+                # IP [10:14]
+                ifaces.append(NetIface(name, cat_ip(mask_ip.sa_data[10:14]),
+                                       cat_ip(mask_ip.sa_data[2:6])
+                                      ))
+
+        # Next (pointer)
+        if ifa.ifa_next:
+            ifa = ifaddrs.from_address( ifa.ifa_next )
+        else:
+            break
+    
+    # Free allocated memory 
+    libc.freeifaddrs( ptr )
+    return ifaces 
+
+def _generic_get_addresses(no_loopback=True, do_aliases=False):
+    """
+    Generic function
+    """
+    return [NetIface("lo", socket.gethostbyname(socket.gethostname()), "255.255.255.0")] 
+    
+
+if PLATFORM == 'nt': # Windows family
+    tryto_detect_networks =  _nt_get_addresses
+else: # POSIX Family
+    _posix = sys.platform
+    # Mac OS
+    if _posix.startswith("darwin"):
+        tryto_detect_networks =  _darwin_get_addresses
+    elif _posix.startswith("linux"):
+        tryto_detect_networks =  _unix_get_addresses
+    else: # Avoid traceback using cross-platform function of Python
+        tryto_detect_networks =  _generic_get_addresses
 
 
 class HostDiscovery(gtk.Window):
