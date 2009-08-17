@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-09 16:09-0300\n"
+"POT-Creation-Date: 2009-08-17 20:30+0100\n"
 "PO-Revision-Date: 2008-04-14 01:00-0300\n"
 "Last-Translator: Devtar Singh <devtar@gmail.com>\n"
 "Language-Team: Simplified Chineese <zh_CN@li.org>\n"
@@ -17,1865 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: umit/inventory/About.py:48
-msgid "Build"
-msgstr ""
-
-#: umit/inventory/About.py:51
-msgid "UMIT Network Inventory and UMIT Scheduler are UMIT\n"
-msgstr ""
-
-#: umit/inventory/About.py:52
-msgid "extensions developed by"
-msgstr ""
-
-#: umit/inventory/About.py:53
-msgid ""
-"and was sponsored by Google during the Summer of Code 2007.\n"
-"Thanks Google!"
-msgstr ""
-
-#: umit/inventory/About.py:70 umit/inventory/Viewer.py:675
-msgid "About UMIT Network Inventory"
-msgstr ""
-
-#: umit/inventory/Calendar.py:32
-msgid "January"
-msgstr "一月"
-
-#: umit/inventory/Calendar.py:32
-msgid "February"
-msgstr "二月"
-
-#: umit/inventory/Calendar.py:32
-msgid "March"
-msgstr "三月"
-
-#: umit/inventory/Calendar.py:32
-msgid "April"
-msgstr "四月"
-
-#: umit/inventory/Calendar.py:32
-msgid "May"
-msgstr "五月"
-
-#: umit/inventory/Calendar.py:33
-msgid "June"
-msgstr "六月"
-
-#: umit/inventory/Calendar.py:33
-msgid "July"
-msgstr "七月"
-
-#: umit/inventory/Calendar.py:33
-msgid "August"
-msgstr "八月"
-
-#: umit/inventory/Calendar.py:33
-msgid "September"
-msgstr "九月"
-
-#: umit/inventory/Calendar.py:34
-msgid "October"
-msgstr "十月"
-
-#: umit/inventory/Calendar.py:34
-msgid "November"
-msgstr "十一月"
-
-#: umit/inventory/Calendar.py:34
-msgid "December"
-msgstr "十二月"
-
-#: umit/inventory/Calendar.py:37
-#, fuzzy
-msgid "Monday"
-msgstr "五月"
-
-#: umit/inventory/Calendar.py:37
-msgid "Tuesday"
-msgstr ""
-
-#: umit/inventory/Calendar.py:37
-msgid "Wednesday"
-msgstr ""
-
-#: umit/inventory/Calendar.py:37
-msgid "Thursday"
-msgstr ""
-
-#: umit/inventory/Calendar.py:38
-msgid "Friday"
-msgstr ""
-
-#: umit/inventory/Calendar.py:38
-msgid "Saturday"
-msgstr ""
-
-#: umit/inventory/Calendar.py:38
-#, fuzzy
-msgid "Sunday"
-msgstr "摘要"
-
-#: umit/inventory/ChangesDiff.py:31
-msgid "Nothing being shown."
-msgstr ""
-
-#: umit/inventory/ChangesDiff.py:32 umit/gui/ScanHostDetailsPage.py:258
-#: umit/gui/ScanHostDetailsPage.py:293
-msgid "Not Available"
-msgstr "不可用"
-
-#: umit/inventory/ChangesDiff.py:35
-#, fuzzy
-msgid "Status"
-msgstr "状态"
-
-#: umit/inventory/ChangesDiff.py:35 umit/interfaceeditor/Main.py:548
-#: umit/gui/DiffCompare.py:569
-#, fuzzy
-msgid "Section"
-msgstr "分节部分"
-
-#: umit/inventory/ChangesDiff.py:35 umit/gui/DiffCompare.py:570
-#, fuzzy
-msgid "Property"
-msgstr "特征"
-
-#: umit/inventory/ChangesDiff.py:36
-msgid "Previous value"
-msgstr ""
-
-#: umit/inventory/ChangesDiff.py:36 umit/gui/DiffCompare.py:572
-msgid "Current value"
-msgstr "当前值"
-
-#: umit/inventory/ChangesDiff.py:53
-msgid "L"
-msgstr ""
-
-#: umit/inventory/ChangesDiff.py:121
-#, fuzzy
-msgid "No data"
-msgstr "无扫描标签"
-
-#: umit/inventory/ChangesDiff.py:122
-msgid "No data available for this host on this date"
-msgstr ""
-
-#: umit/inventory/ChangesDiff.py:181 umit/inventory/TLBase.py:45
-#: umit/gui/DiffCompare.py:798
-#, fuzzy
-msgid "Ports"
-msgstr "端口"
-
-#: umit/inventory/ChangesDiff.py:201 umit/inventory/ChangesDiff.py:240
-#: umit/db/InventoryChanges.py:255 umit/db/InventoryChanges.py:342
-#: umit/gui/SMTPSetup.py:65 umit/gui/ScanOpenPortsPage.py:65
-#: umit/gui/ScanOpenPortsPage.py:85
-msgid "Port"
-msgstr "端口"
-
-#: umit/inventory/ChangesDiff.py:260 umit/gui/DiffCompare.py:866
-#, fuzzy
-msgid "Extraports"
-msgstr "额外端口"
-
-#: umit/inventory/ChangesDiff.py:269 umit/inventory/ChangesDiff.py:270
-#: umit/inventory/ChangesDiff.py:281
-#, fuzzy
-msgid "count"
-msgstr "数量"
-
-#: umit/inventory/ChangesDiff.py:298 umit/inventory/TLBase.py:44
-#: umit/db/Search.py:115
-msgid "Fingerprint"
-msgstr ""
-
-#: umit/inventory/ChangesDiff.py:301
-#, fuzzy
-msgid "Uptime"
-msgstr "运行时间："
-
-#: umit/inventory/ChangesDiff.py:304 umit/gui/ScanHostDetailsPage.py:59
-msgid "TCP Sequence"
-msgstr "TCP 序列"
-
-#: umit/inventory/ChangesDiff.py:307 umit/gui/ScanHostDetailsPage.py:61
-msgid "TCP TS Sequence"
-msgstr "TCP TS 序列"
-
-#: umit/inventory/ChangesDiff.py:310 umit/gui/ScanHostDetailsPage.py:60
-msgid "IP ID Sequence"
-msgstr "IP ID 序列"
-
-#: umit/inventory/ChangesDiff.py:325 umit/db/InventoryChanges.py:287
-#: umit/db/Search.py:109
-#, fuzzy
-msgid "OS Classes"
-msgstr "操作系统类别"
-
-#: umit/inventory/ChangesDiff.py:346 umit/inventory/ChangesDiff.py:391
-#: umit/gui/ScanHostDetailsPage.py:369
-msgid "Accuracy"
-msgstr "精确度"
-
-#: umit/inventory/ChangesDiff.py:352 umit/inventory/ChangesDiff.py:370
-#: umit/inventory/ChangesDiff.py:386 umit/inventory/ChangesDiff.py:395
-#: umit/gui/ScanHostDetailsPage.py:58
-msgid "OS Class"
-msgstr "操作系统类别"
-
-#: umit/inventory/ChangesDiff.py:411 umit/db/Search.py:106
-#: umit/gui/DiffCompare.py:775
-#, fuzzy
-msgid "OS Match"
-msgstr "操作系统匹配"
-
-#: umit/inventory/ChangesDiff.py:534
-#, fuzzy
-msgid "TCP Sequence Class"
-msgstr "TCP 序列"
-
-#: umit/inventory/ChangesDiff.py:535
-#, fuzzy
-msgid "TCP Sequence Index"
-msgstr "TCP 序列"
-
-#: umit/inventory/ChangesDiff.py:536
-#, fuzzy
-msgid "TCP Sequence Difficulty"
-msgstr "TCP 序列"
-
-#: umit/inventory/ChangesDiff.py:538
-#, fuzzy
-msgid "TCP Sequence Value"
-msgstr "TCP 序列"
-
-#: umit/inventory/ChangesDiff.py:540
-#, fuzzy
-msgid "IP ID Sequence Class"
-msgstr "IP ID 序列"
-
-#: umit/inventory/ChangesDiff.py:542
-#, fuzzy
-msgid "IP ID Sequence Value"
-msgstr "IP ID 序列"
-
-#: umit/inventory/ChangesDiff.py:545
-#, fuzzy
-msgid "TCP TS Sequence Class"
-msgstr "TCP TS 序列"
-
-#: umit/inventory/ChangesDiff.py:547
-#, fuzzy
-msgid "TCP TS Sequence Value"
-msgstr "TCP TS 序列"
-
-#: umit/inventory/ChangesList.py:95 umit/inventory/ChangesList.py:324
-#: umit/inventory/ChangesList.py:344
-msgid "Inventories"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:97 umit/gui/ScriptManager.py:362
-msgid "Categories"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:221 umit/inventory/TLBase.py:41
-#: umit/inventory/Viewer.py:530
-msgid "Inventory"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:221
-#, fuzzy
-msgid "Host address"
-msgstr "机器名"
-
-#: umit/inventory/ChangesList.py:222
-msgid "Category"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:222
-#, fuzzy
-msgid "Short change description"
-msgstr "服务描述"
-
-#: umit/inventory/ChangesList.py:223
-msgid "Change date"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:320 umit/gui/ScriptManager.py:335
-msgid "Refresh"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:325
-msgid "Timeline for this host"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:345
-#, fuzzy
-msgid "Options"
-msgstr "选项"
-
-#: umit/inventory/ChangesList.py:402 umit/inventory/Timeline.py:68
-#, fuzzy
-msgid "Viewing"
-msgstr "查看(_V)"
-
-#: umit/inventory/ChangesList.py:403
-msgid "of"
-msgstr ""
-
-#: umit/inventory/ChangesList.py:405
-#, fuzzy
-msgid "Nothing to view"
-msgstr "没有任何可以保存的"
-
-#: umit/inventory/DataRemoval.py:44
-msgid "Delete data older than"
-msgstr ""
-
-#: umit/inventory/DataRemoval.py:45
-#, fuzzy
-msgid "days"
-msgstr "天"
-
-#: umit/inventory/DataRemoval.py:50
-msgid "Set value as 0 to disable data removal"
-msgstr ""
-
-#: umit/inventory/DataRemoval.py:81
-msgid "Configure Inventory Data Removal"
-msgstr ""
-
-#: umit/inventory/DataRemoval.py:117
-msgid "<b>Please wait...</b>"
-msgstr ""
-
-#: umit/inventory/DataRemoval.py:119
-msgid "Removing data from Network Inventory database"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:225
-#, fuzzy
-msgid "Host Discovery"
-msgstr "站点详情"
-
-#: umit/inventory/HostDiscovery.py:235
-msgid "Detect network(s)"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:238
-msgid "Add new entry"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:240
-msgid "Find hosts"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:243 umit/inventory/HostDiscovery.py:416
-#: umit/inventory/HostDiscovery.py:449
-#, fuzzy
-msgid "Target list"
-msgstr "target_list"
-
-#: umit/inventory/HostDiscovery.py:249 umit/inventory/Viewer.py:530
-#: umit/gui/DiffCompare.py:749 umit/gui/ScanHostsView.py:67
-#: umit/gui/ScanOpenPortsPage.py:63 umit/gui/SearchGUI.py:298
-#, fuzzy
-msgid "Host"
-msgstr "站点"
-
-#: umit/inventory/HostDiscovery.py:250
-msgid "Network"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:258
-msgid "Remove from list"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:271
-msgid "Add new entry for a network"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:273
-msgid "Try to detect network(s)"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:275
-msgid "Find hosts in entered network(s)"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:277
-msgid "Remove selection from target list"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:351
-#, fuzzy
-msgid "No network(s) detected."
-msgstr "没有选择站点！"
-
-#: umit/inventory/HostDiscovery.py:352
-msgid ""
-"You will need to especify the network(s) yourself before detecting hosts."
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:388
-msgid "No network."
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:389
-msgid "You need to specify at least one network to search for hosts."
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:414 umit/inventory/InventoryTree.py:267
-#: umit/inventory/InventoryTree.py:319
-#, fuzzy
-msgid "scan"
-msgstr "扫描"
-
-#: umit/inventory/HostDiscovery.py:418 umit/inventory/InventoryTree.py:267
-#: umit/inventory/InventoryTree.py:321
-#, fuzzy
-msgid " running"
-msgstr "正在扫描"
-
-#: umit/inventory/HostDiscovery.py:459
-msgid "Invalid network(s)."
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:461
-msgid "There is some invalid character in network"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:462
-msgid "please verify."
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:489
-msgid "Network list"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:494
-msgid "Sample 192.168.254.0/24"
-msgstr ""
-
-#: umit/inventory/HostDiscovery.py:519
-#, fuzzy
-msgid "Use target list"
-msgstr "target_list"
-
-#: umit/inventory/InventoryCommonDialog.py:12
-msgid "Inventory without scheduling profile."
-msgstr ""
-
-#: umit/inventory/InventoryCommonDialog.py:14
-msgid ""
-"This Inventory was created when a scan realized in UMIT was requested to be "
-"added to the Network Inventory Viewer, so there is no scheduling profile for "
-"it.\n"
-"\n"
-"This Inventory is not editable.\n"
-"\n"
-"(If the mentioned reason above is incorrect, either you have a database from "
-"somewhere else or report as bug)"
-msgstr ""
-
-#: umit/inventory/InventoryException.py:9
-msgid "No inventory named"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:42 umit/inventory/Viewer.py:61
-#, fuzzy
-msgid "Info"
-msgstr "Umit 信息"
-
-#: umit/inventory/InventoryTree.py:44 umit/gui/SearchGUI.py:149
-#, fuzzy
-msgid "IPv4"
-msgstr "IPv4"
-
-#: umit/inventory/InventoryTree.py:44 umit/gui/SearchGUI.py:150
-#, fuzzy
-msgid "IPv6"
-msgstr "IPv6"
-
-#: umit/inventory/InventoryTree.py:44 umit/db/Search.py:112
-#: umit/gui/SearchGUI.py:148
-#, fuzzy
-msgid "MAC"
-msgstr "MAC:"
-
-#: umit/inventory/InventoryTree.py:44 umit/db/Search.py:103
-#: umit/gui/ScanOpenPortsPage.py:82
-#, fuzzy
-msgid "Hostname"
-msgstr "机器名"
-
-#: umit/inventory/InventoryTree.py:62 umit/inventory/InventoryTree.py:189
-msgid "My Inventories"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:225
-#, fuzzy
-msgid "Scan will not run!"
-msgstr "正在扫描"
-
-#: umit/inventory/InventoryTree.py:226 umit/inventory/InventoryTree.py:283
-msgid "You tried running scan for Inventory"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:228
-msgid ""
-"but it has no data in Scheduler schemas file, neither in database.\n"
-"\n"
-"Error returned:"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:282
-msgid "Scan failed to run!"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:285
-msgid "but it returned the following"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:301
-msgid "Database couldn't be updated!"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:302
-msgid "The scan for the Inventory"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:304
-msgid "finished but it couldn't be added to the database."
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:355
-msgid "Expand All"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:359
-msgid "Collapse All"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:366 umit/inventory/InventoryTree.py:376
-#, fuzzy
-msgid "View by"
-msgstr "查看(_V)"
-
-#: umit/inventory/InventoryTree.py:410
-#, python-format
-msgid "Edit %s"
-msgstr ""
-
-#: umit/inventory/InventoryTree.py:413
-msgid "Run scan now"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:65
-msgid "Editing Inventory"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:67
-msgid "New Inventory"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:77
-msgid "Inventory's name"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:80
-#, fuzzy
-msgid "in use"
-msgstr "分钟"
-
-#: umit/inventory/NewInventory.py:82 umit/gui/SchedulerEdit.py:99
-msgid "Enabled"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:85
-msgid "Use default scan options"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:91
-msgid "Use advanced scan options"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:92 umit/gui/SchedulerEdit.py:73
-#, fuzzy
-msgid "Scan Profile"
-msgstr "档案"
-
-#: umit/inventory/NewInventory.py:100
-#, fuzzy
-msgid "Command Wizard"
-msgstr "命令向导(_C)"
-
-#: umit/inventory/NewInventory.py:103 umit/inventory/NewInventory.py:521
-#: umit/gui/DiffCompare.py:703 umit/gui/ProfileEditor.py:104
-#: umit/gui/SchedulerEdit.py:79 umit/gui/Wizard.py:141 umit/gui/Wizard.py:473
-msgid "Command"
-msgstr "命令"
-
-#: umit/inventory/NewInventory.py:109
-#, fuzzy
-msgid "Scan target"
-msgstr "任意目标"
-
-#: umit/inventory/NewInventory.py:111
-msgid "Use host discovery"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:114 umit/gui/SchedulerEdit.py:82
-#: umit/gui/SchedulerEdit.py:518
-#, fuzzy
-msgid "Scheduling Profile"
-msgstr "删除档案"
-
-#: umit/inventory/NewInventory.py:119 umit/gui/SchedulerEdit.py:86
-#, fuzzy
-msgid "Edit Profiles"
-msgstr "档案"
-
-#: umit/inventory/NewInventory.py:131
-msgid "nmap -T Aggressive -sV -n -O -v target"
-msgstr ""
-
-#: umit/inventory/NewInventory.py:323 umit/inventory/NewInventory.py:343
-#: umit/inventory/NewInventory.py:363
-msgid "New Inventory - Error while creating."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:324
-msgid "You tried to use an existing Inventory name or you didn't specify one."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:333
-msgid "New Inventory - Error  while creating."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:334
-msgid "You didn't specify any target."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:344
-msgid "You need to toggle \"Use default scan options\" or specify a command."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:364
-msgid ""
-"It seems you removed <target> from the Scan command entry, you need to leave "
-"it somewhere there."
-msgstr ""
-
-#: umit/inventory/NewInventory.py:529
-msgid "Changes in command won't be saved!"
-msgstr ""
-
-#: umit/inventory/RefreshDialog.py:35
-msgid "Refresh Time"
-msgstr ""
-
-#: umit/inventory/RefreshDialog.py:39 umit/inventory/TLBase.py:80
-#: umit/core/UmitConf.py:160
-#, fuzzy
-msgid "Minutes"
-msgstr "分钟"
-
-#: umit/inventory/SchedulerLog.py:81
-msgid "Scheduler Log"
-msgstr ""
-
-#: umit/inventory/SearchBar.py:54
-#, fuzzy
-msgid "Search term"
-msgstr "搜索选项"
-
-#: umit/inventory/SearchBar.py:65
-#, fuzzy
-msgid "Find devices"
-msgstr "任意服务"
-
-#: umit/inventory/SearchBar.py:88 umit/inventory/SearchBar.py:92
-#, fuzzy
-msgid "Search in"
-msgstr "搜错窗口"
-
-#: umit/inventory/SearchBar.py:89 umit/inventory/SearchBar.py:93
-msgid "All Inventories"
-msgstr ""
-
-#: umit/inventory/SearchBar.py:130
-msgid "Impossible to perform search."
-msgstr ""
-
-#: umit/inventory/SearchBar.py:131
-msgid ""
-"Connection to the database isn't established. There are some possible "
-"reasons: your UMIT database could be corrupted, missing, or something more "
-"strange, or, you aren't running this inside UMIT.\n"
-"\n"
-"If you suspect this is a bug, please report it."
-msgstr ""
-
-#: umit/inventory/SearchBar.py:145
-msgid "Specify an Inventory."
-msgstr ""
-
-#: umit/inventory/SearchBar.py:146
-msgid "You need to select one or All Inventories in order to perform a search."
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:43
-msgid "Timeline Settings"
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:44
-msgid "Timeline view mode"
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:45
-msgid "Timeline view kind"
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:49
-#, fuzzy
-msgid "Devices tab"
-msgstr "服务"
-
-#: umit/inventory/SettingsWin.py:50 umit/inventory/Viewer.py:690
-msgid "Place close button"
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:52 umit/gui/ScriptManager.py:358
-#, fuzzy
-msgid "Statusbar"
-msgstr "站点状态"
-
-#: umit/inventory/SettingsWin.py:53
-msgid "Show tips"
-msgstr ""
-
-#: umit/inventory/SettingsWin.py:153
-msgid "Network Inventory Settings"
-msgstr ""
-
-#: umit/inventory/TLBarDisplay.py:35
-#, fuzzy
-msgid "No Selection"
-msgstr "分节部分"
-
-#: umit/inventory/TLBarDisplay.py:36
-#, fuzzy
-msgid "No Changes"
-msgstr "保存修改"
-
-#: umit/inventory/TLBarDisplay.py:37
-msgid "Changes Statistics"
-msgstr ""
-
-#: umit/inventory/TLBase.py:40
-#, fuzzy
-msgid "Nothing"
-msgstr "没有任何可以保存的"
-
-#: umit/inventory/TLBase.py:42
-#, fuzzy
-msgid "Availability"
-msgstr "不可用"
-
-#: umit/inventory/TLBase.py:43
-#, fuzzy
-msgid "Several"
-msgstr "一般"
-
-#: umit/inventory/TLBase.py:49 umit/inventory/TLBase.py:70
-msgid "Changes Sum"
-msgstr ""
-
-#: umit/inventory/TLBase.py:54
-msgid "Yearly View"
-msgstr ""
-
-#: umit/inventory/TLBase.py:55
-msgid "Monthly View"
-msgstr ""
-
-#: umit/inventory/TLBase.py:56
-msgid "Daily View"
-msgstr ""
-
-#: umit/inventory/TLBase.py:57
-msgid "Hourly View"
-msgstr ""
-
-#: umit/inventory/TLBase.py:63
-#, fuzzy
-msgid "Year"
-msgstr "年"
-
-#: umit/inventory/TLBase.py:64 umit/gui/SchedulerEdit.py:529
-#, fuzzy
-msgid "Month"
-msgstr "月"
-
-#: umit/inventory/TLBase.py:65
-#, fuzzy
-msgid "Day"
-msgstr "天"
-
-#: umit/inventory/TLBase.py:66 umit/gui/SchedulerEdit.py:525
-#, fuzzy
-msgid "Hour"
-msgstr "小时"
-
-#: umit/inventory/TLBase.py:71
-msgid "By Category"
-msgstr ""
-
-#: umit/inventory/TLBase.py:77 umit/core/UmitConf.py:158
-#, fuzzy
-msgid "Months"
-msgstr "月"
-
-#: umit/inventory/TLBase.py:78 umit/core/UmitConf.py:156
-#, fuzzy
-msgid "Days"
-msgstr "天"
-
-#: umit/inventory/TLBase.py:79 umit/core/UmitConf.py:155
-msgid "Hours"
-msgstr "小时"
-
-#: umit/inventory/TLBase.py:223
-msgid "end of a week"
-msgstr ""
-
-#: umit/inventory/TLBase.py:223
-msgid "end of 12 hours period"
-msgstr ""
-
-#: umit/inventory/TLBase.py:224
-msgid "end of half hour period"
-msgstr ""
-
-#: umit/inventory/TLBase.py:224
-msgid "end of a minute"
-msgstr ""
-
-#: umit/inventory/TLBase.py:227
-msgid "Each point break represents "
-msgstr ""
-
-#: umit/inventory/TLBase.py:273
-#, fuzzy, python-format
-msgid "Year %s"
-msgstr "年"
-
-#: umit/inventory/TLChangesTree.py:27
-#, fuzzy
-msgid "View all changes"
-msgstr "保存修改"
-
-#: umit/inventory/TLChangesTree.py:28
-msgid "Changes listing"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:32
-#: umit/inventory/TLGraphPreferences.py:208
-#: umit/inventory/TLGraphPreferences.py:211
-#: umit/inventory/TLGraphPreferences.py:296
-#: umit/inventory/TLGraphToolbar.py:43
-msgid "Custom"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:32
-#: umit/inventory/TLGraphPreferences.py:179
-#: umit/inventory/TLGraphPreferences.py:189
-#: umit/inventory/TLGraphPreferences.py:292
-msgid "Standard"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:32
-#: umit/inventory/TLGraphPreferences.py:179
-#: umit/inventory/TLGraphPreferences.py:190
-#: umit/inventory/TLGraphPreferences.py:293
-msgid "Best Performance"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:33
-#: umit/inventory/TLGraphPreferences.py:179
-#: umit/inventory/TLGraphPreferences.py:192
-#: umit/inventory/TLGraphPreferences.py:294
-msgid "Best Visual"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:52
-msgid "Graph Preferences Editor"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:62 umit/gui/DiffCompare.py:689
-#: umit/gui/ProfileEditor.py:154 umit/gui/SearchGUI.py:126
-#: umit/gui/Wizard.py:472
-msgid "Profile"
-msgstr "档案"
-
-#: umit/inventory/TLGraphPreferences.py:65
-msgid "Horizontal divisors"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:70
-msgid "<b>Points higlight</b>"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:71
-#, fuzzy
-msgid "On Selection"
-msgstr "分节部分"
-
-#: umit/inventory/TLGraphPreferences.py:73
-#, fuzzy
-msgid "Always"
-msgstr "天"
-
-#: umit/inventory/TLGraphPreferences.py:74
-msgid "Boundary points only"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:76
-msgid "Every point"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:77
-msgid "Show balloons on selection"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:79
-msgid "Draw vertical lines"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:80
-#, fuzzy
-msgid "Dashed"
-msgstr "天"
-
-#: umit/inventory/TLGraphPreferences.py:82
-msgid "Solid"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:84
-msgid "Gradient background"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:85
-msgid "Vertical gradient"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:87
-msgid "Horizontal gradient"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:89
-msgid "On selection do progressive fill"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:91
-msgid "Solid fill"
-msgstr ""
-
-#: umit/inventory/TLGraphPreferences.py:93
-msgid "Gradient fill"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:39
-msgid "Refresh Now"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:39
-msgid "Refresh Enabled"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:40
-msgid "Refresh Every minute"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:41
-msgid "Refresh Every 5 minutes"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:42
-msgid "Refresh Every hour"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:114
-#, fuzzy
-msgid "Select visualization"
-msgstr "可视化扫描结果"
-
-#: umit/inventory/TLGraphToolbar.py:136
-msgid "Line Graph"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:136
-msgid "Area Graph"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:138
-msgid "Select a graph style"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:153
-msgid "Visible"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:153
-#, fuzzy
-msgid "Hidden"
-msgstr "提示"
-
-#: umit/inventory/TLGraphToolbar.py:155
-msgid "Graph visibility"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:176
-msgid "Graph Preferences"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:181
-msgid "Edit Graph Preferences"
-msgstr ""
-
-#: umit/inventory/TLGraphToolbar.py:260
-msgid "Graph Refresh"
-msgstr ""
-
-#: umit/inventory/Timeline.py:56
-msgid "Number of events"
-msgstr ""
-
-#: umit/inventory/Utils.py:5 umit/db/InventoryChanges.py:328
-msgid "s"
-msgstr ""
-
-#: umit/inventory/Viewer.py:360
-#, fuzzy
-msgid "Scan count:"
-msgstr "扫描类型"
-
-#: umit/inventory/Viewer.py:368
-#, fuzzy
-msgid "Last scan date:"
-msgstr "已扫描的站点："
-
-#: umit/inventory/Viewer.py:374
-#, fuzzy
-msgid "Scan args"
-msgstr "扫描"
-
-#: umit/inventory/Viewer.py:374
-msgid "XML output version"
-msgstr ""
-
-#: umit/inventory/Viewer.py:374
-#, fuzzy
-msgid "Verbose"
-msgstr "详细程度"
-
-#: umit/inventory/Viewer.py:375 umit/gui/DiffCompare.py:699
-msgid "Debugging"
-msgstr "调试"
-
-#: umit/inventory/Viewer.py:375
-#, fuzzy
-msgid "Scanner name"
-msgstr "扫描器版本"
-
-#: umit/inventory/Viewer.py:375 umit/gui/DiffCompare.py:705
-#, fuzzy
-msgid "Scanner version"
-msgstr "扫描器版本"
-
-#: umit/inventory/Viewer.py:389
-#, fuzzy
-msgid "Hosts: "
-msgstr "站点"
-
-#: umit/inventory/Viewer.py:394
-#, fuzzy
-msgid "Host count:"
-msgstr "未开启的站点："
-
-#: umit/inventory/Viewer.py:519
-msgid "A page was open at Historic tab!"
-msgstr ""
-
-#: umit/inventory/Viewer.py:531
-msgid "First Matched Category"
-msgstr ""
-
-#: umit/inventory/Viewer.py:531
-msgid "Entry Date"
-msgstr ""
-
-#: umit/inventory/Viewer.py:547
-#, fuzzy
-msgid "result"
-msgstr "扫描结果"
-
-#: umit/inventory/Viewer.py:550
-msgid " found."
-msgstr ""
-
-#: umit/inventory/Viewer.py:569
-#, fuzzy, python-format
-msgid "Search: %s"
-msgstr "搜索选项"
-
-#: umit/inventory/Viewer.py:608 umit/interfaceeditor/Main.py:536
-#: umit/gui/ScriptManager.py:308
-#, fuzzy
-msgid "_File"
-msgstr "档案(_P)"
-
-#: umit/inventory/Viewer.py:609
-#, fuzzy
-msgid "_Edit"
-msgstr "退出(_Q)"
-
-#: umit/inventory/Viewer.py:610 umit/gui/MainWindow.py:312
-msgid "_Scheduler"
-msgstr ""
-
-#: umit/inventory/Viewer.py:611 umit/inventory/Viewer.py:664
-#: umit/gui/MainWindow.py:329 umit/gui/MainWindow.py:349
-msgid "_Help"
-msgstr "帮助(_H)"
-
-#: umit/inventory/Viewer.py:613
-msgid "Tool_bar"
-msgstr ""
-
-#: umit/inventory/Viewer.py:614
-#, fuzzy
-msgid "Devices _tab"
-msgstr "服务"
-
-#: umit/inventory/Viewer.py:615
-msgid "_Inventories"
-msgstr ""
-
-#: umit/inventory/Viewer.py:619
-msgid "_New Inventory"
-msgstr ""
-
-#: umit/inventory/Viewer.py:620
-msgid "Create new Inventory"
-msgstr ""
-
-#: umit/inventory/Viewer.py:624
-#, fuzzy
-msgid "Close Device tab"
-msgstr "关闭当前的扫描标签"
-
-#: umit/inventory/Viewer.py:625
-#, fuzzy
-msgid "Close current host tab"
-msgstr "关闭当前的扫描标签"
-
-#: umit/inventory/Viewer.py:629
-#, fuzzy
-msgid "Close Inventory tab"
-msgstr "关闭当前的扫描标签"
-
-#: umit/inventory/Viewer.py:630
-#, fuzzy
-msgid "Close current Inventory tab"
-msgstr "关闭当前的扫描标签"
-
-#: umit/inventory/Viewer.py:634 umit/interfaceeditor/Main.py:540
-#: umit/gui/MainWindow.py:277
-msgid "_Quit"
-msgstr "退出(_Q)"
-
-#: umit/inventory/Viewer.py:635
-msgid "Close Network Inventory"
-msgstr ""
-
-#: umit/inventory/Viewer.py:640 umit/inventory/Viewer.py:641
-msgid "Data Removal"
-msgstr ""
-
-#: umit/inventory/Viewer.py:645 umit/inventory/Viewer.py:646
-msgid "Startup settings"
-msgstr ""
-
-#: umit/inventory/Viewer.py:652
-msgid "Scheduler log"
-msgstr ""
-
-#: umit/inventory/Viewer.py:653
-msgid "View Scheduler log"
-msgstr ""
-
-#: umit/inventory/Viewer.py:665 umit/gui/MainWindow.py:351
-msgid "Shows the application help"
-msgstr "显示该应用程序的帮助"
-
-#: umit/inventory/Viewer.py:669 umit/gui/MainWindow.py:333
-msgid "_Report a bug"
-msgstr "报告错误(_R)"
-
-#: umit/inventory/Viewer.py:670 umit/gui/MainWindow.py:335
-msgid "Report a bug"
-msgstr "报告一个错误"
-
-#: umit/inventory/Viewer.py:674 umit/interfaceeditor/Main.py:575
-#: umit/gui/MainWindow.py:341
-msgid "_About"
-msgstr "关于(_A)"
-
-#: umit/inventory/Viewer.py:683
-msgid "Show ti_ps"
-msgstr ""
-
-#: umit/inventory/Viewer.py:684
-msgid "Enable disable tip showing"
-msgstr ""
-
-#: umit/inventory/Viewer.py:691
-msgid "Place a close button upon tab creation"
-msgstr ""
-
-#: umit/inventory/Viewer.py:893
-msgid "UMIT Network Inventory"
-msgstr ""
-
-#: umit/inventory/Viewer.py:932
-msgid " Historic "
-msgstr ""
-
-#: umit/inventory/Viewer.py:933
-msgid " Timeline "
-msgstr ""
-
-#: umit/db/InventoryChanges.py:114
-#, fuzzy
-msgid "Host down"
-msgstr "未开启的站点："
-
-#: umit/db/InventoryChanges.py:168
-msgid "Host added to the Inventory."
-msgstr ""
-
-#: umit/db/InventoryChanges.py:258
-#, fuzzy
-msgid "changed info"
-msgstr "扫描信息"
-
-#: umit/db/InventoryChanges.py:267
-#, fuzzy
-msgid "Fingerprint, "
-msgstr "服务指纹报告"
-
-#: umit/db/InventoryChanges.py:275
-#, fuzzy
-msgid "OS Match, "
-msgstr "操作系统匹配"
-
-#: umit/db/InventoryChanges.py:285
-#, fuzzy
-msgid "and OS Classes"
-msgstr "操作系统类别"
-
-#: umit/db/InventoryChanges.py:295
-#, fuzzy
-msgid " changed."
-msgstr "保存修改"
-
-#: umit/db/InventoryChanges.py:310
-msgid "No noticeables changes since last sucessful scan."
-msgstr ""
-
-#: umit/db/InventoryChanges.py:339
-#, fuzzy
-msgid "closed"
-msgstr "已关闭"
-
-#: umit/db/InventoryChanges.py:340
-#, fuzzy
-msgid "open"
-msgstr "打开"
-
-#: umit/db/InventoryChanges.py:341
-#, fuzzy
-msgid "now"
-msgstr "未知"
-
-#: umit/db/InventoryChanges.py:343
-#, fuzzy
-msgid "and"
-msgstr "命令"
-
-#: umit/db/Search.py:28
-#, fuzzy
-msgid "change"
-msgstr "保存修改"
-
-#: umit/db/Search.py:28
-#, fuzzy
-msgid "changes"
-msgstr "保存修改"
-
-#: umit/db/Search.py:29
-#, fuzzy
-msgid "port"
-msgstr "端口"
-
-#: umit/db/Search.py:29
-#, fuzzy
-msgid "ports"
-msgstr "端口"
-
-#: umit/db/Search.py:29
-#, fuzzy
-msgid "service"
-msgstr "服务"
-
-#: umit/db/Search.py:178 umit/gui/SearchGUI.py:168
-#, fuzzy
-msgid "Port number"
-msgstr "端口号"
-
-#: umit/db/Search.py:205
-#, fuzzy
-msgid "Service name"
-msgstr "服务名称"
-
-#: umit/db/Search.py:212
-#, fuzzy
-msgid "Service info"
-msgstr "服务设置"
-
-#: umit/db/Search.py:239
-#, fuzzy
-msgid "Changes"
-msgstr "保存修改"
-
-#: umit/core/Diff.py:34 umit/core/DiffHtml.py:135 umit/core/I18N.py:77
-msgid "Umit - Take the red pill"
-msgstr ""
-
-#: umit/core/Diff.py:35
-#, fuzzy
-msgid "http://www.umitproject.org"
-msgstr "http://umit.sourceforge.net"
-
-#: umit/core/Diff.py:37 umit/core/DiffHtml.py:136
-#, fuzzy
-msgid "This diff was generated by Umit"
-msgstr "此比较结果由 UMIT 生成"
-
-#: umit/core/Diff.py:38
-#, fuzzy
-msgid "(Changes to this file can make Umit unable to read it.)"
-msgstr "(修改此文件将导致其无法被 UMIT 读入)"
-
-#: umit/core/Diff.py:42
-msgid " Start of diff "
-msgstr "比较结果起始"
-
-#: umit/core/Diff.py:44
-msgid " End of diff "
-msgstr "比较结果结束"
-
-#: umit/core/DiffHtml.py:156
-#, fuzzy
-msgid "Changes to this file can make Umit unable to read it."
-msgstr "修改此文件将导致其无法被 UMIT 读入"
-
-#: umit/core/DiffHtml.py:157
-msgid "Regular Text Diff: "
-msgstr "普通文本比较结果："
-
-#: umit/core/NmapCommand.py:39
-msgid "Python 2.4 or later is required."
-msgstr "需要 Python 2.4 或更新版本。"
-
-#: umit/core/Scheduler.py:710
-msgid "UMIT: Status Report for scheduled schema"
-msgstr ""
-
-#: umit/core/Scheduler.py:713
-msgid "There was a scheduled job that just "
-msgstr ""
-
-#: umit/core/Scheduler.py:715
-msgid "Follows an attachment of the job output."
-msgstr ""
-
-#: umit/core/UmitConf.py:157
-msgid "Weeks"
-msgstr "周"
-
-#: umit/core/UmitConf.py:159
-msgid "Years"
-msgstr "年"
-
-#: umit/core/UmitConf.py:161
-#, fuzzy
-msgid "Seconds"
-msgstr "秒"
-
-#: umit/core/UmitDB.py:43
-#, fuzzy
-msgid ""
-"No module named pysqlite2 or sqlite3.\n"
-"            Please install pysqlite2 or sqlite3."
-msgstr "未找到模块 dbapi2.pysqlite2 或 sqlite3"
-
-#: umit/core/UmitOptionParser.py:40
-msgid "Start Umit Network Inventory."
-msgstr ""
-
-#: umit/core/UmitOptionParser.py:49
-msgid "Open Umit and runs a Nmap scan with specified args."
-msgstr "启动 Umit 并运行指定参数的 Nmap 扫描"
-
-#: umit/core/UmitOptionParser.py:57
-msgid ""
-"Open Umit with the specified profile selected. If combined with the -t (--"
-"target) option, open Umit and automatically run the profile against the "
-"specified target."
-msgstr ""
-"按选定的扫描模式启动 Umit。与 -t (--target) 选项联合使用时，将启动 Umit 并自"
-"动运行该扫描模式对目标进行扫描。"
-
-#: umit/core/UmitOptionParser.py:66
-msgid ""
-"*NOT IMPLEMENTED* - Open the diff compare window, in compare mode comparing "
-"the two given scan result files (Nmap XML output or usr (Umit Scan Result) "
-"file)."
-msgstr ""
-"*尚未执行* - 开启比较窗口，在比较模式下比较两个给定的扫描结果文件(Nmap XML 输"
-"出或 usr (Umit 扫描结果) 文件"
-
-#: umit/core/UmitOptionParser.py:75
-msgid ""
-"*NOT IMPLEMENTED* - Open the diff compare window, in text mode comparing the "
-"two given scan result files (Nmap XML output or usr, Umit Scan Result)."
-msgstr ""
-"*尚未执行* - 打开比较窗口，以文本模式比较给定的扫描结果文件(Nmap XML 输出或 "
-"usr (Umit 扫描结果)文件)"
-
-#: umit/core/UmitOptionParser.py:85
-msgid ""
-"*NOT IMPLEMENTED* - Take two scan result files (Nmap XML output or usr, Umit "
-"Scan Result), make a text diff and print it in the terminal without openning "
-"Umit Interface."
-msgstr ""
-"*尚未执行* - 读入两个扫描结果文件(Nmap XML 输出或usr, Umit 扫描结果)，进行文"
-"本比较并在终端输出结果。不会开启 Umit 用户界面。"
-
-#: umit/core/UmitOptionParser.py:96
-msgid ""
-"*NOT IMPLEMENTED* - Run Umit and go straight to NSE Facilitator Interface. "
-"You may specify nse scripts as arguments if you want use them."
-msgstr ""
-"*尚未执行* - 启动 Umit 后直接开启 NSE Facilitator 界面。您可以直接指定 NSE 脚"
-"本作为参数以使用它们。"
-
-#: umit/core/UmitOptionParser.py:107
-msgid ""
-"Specify a target to be used along with other options. If specified alone, "
-"opens Umit with the target field filled with the specified target"
-msgstr ""
-"用以为其它的选项指定一个扫描目标。若单独给出此选项，将启动 Umit 并在“扫描目"
-"标”中填入此选项。"
-
-#: umit/core/UmitOptionParser.py:122
-msgid ""
-"Specify a scan result file in Nmap XML Output or Umit Scan Result file. Can "
-"be used more than once to specify several scan result files."
-msgstr ""
-"指定 Nmap XML 输出文件或是 Umit 扫描结果文件。可使用多次以指定多个扫描结果文"
-"件。"
-
-#: umit/core/UmitOptionParser.py:131
-msgid "*NOT IMPLEMENTED* - Open Umit showing the given file at Umit Mapper"
-msgstr "*尚未执行* - 打开 Umit 并在 Umit Mapper 中显示给定的文件。"
-
-#: umit/core/UmitOptionParser.py:138
-msgid ""
-"Increase verbosity of the output. May be used more than once to get even "
-"more verbosity"
-msgstr "增加输出的详细程度。可以指定多次以得到更详细的输出。"
-
-#: umit/interfaceeditor/DependencesOption.py:46
-msgid "Dependence of Option "
-msgstr ""
-
-#: umit/interfaceeditor/DependencesOption.py:54
-msgid ""
-"There is a problem deleting this option. This options have dependences.  "
-msgstr ""
-
-#: umit/interfaceeditor/DependencesOption.py:55
-msgid ""
-"Are you sure that can remove this option? Dependences should be removed too"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:76 umit/gui/MainWindow.py:256
-#, fuzzy
-msgid "Interface Editor"
-msgstr "档案编辑器"
-
-#: umit/interfaceeditor/Main.py:229
-#, fuzzy
-msgid "Edit Modes"
-msgstr "文本模式"
-
-#: umit/interfaceeditor/Main.py:237
-#, fuzzy
-msgid "Option List"
-msgstr "选项"
-
-#: umit/interfaceeditor/Main.py:296 umit/interfaceeditor/Tools.py:573
-#: umit/gui/ProfileManager.py:78
-#, fuzzy
-msgid "Name"
-msgstr "名称："
-
-#: umit/interfaceeditor/Main.py:408 umit/gui/About.py:181
-msgid "Design"
-msgstr "设计"
-
-#: umit/interfaceeditor/Main.py:410
-#, fuzzy
-msgid "Proprieties"
-msgstr "特征"
-
-#: umit/interfaceeditor/Main.py:537
-#, fuzzy
-msgid "_Save"
-msgstr "保存扫描(_S)"
-
-#: umit/interfaceeditor/Main.py:537
-#, fuzzy
-msgid "Save"
-msgstr "状态"
-
-#: umit/interfaceeditor/Main.py:538
-#, fuzzy
-msgid "_Save all"
-msgstr "保存扫描(_S)"
-
-#: umit/interfaceeditor/Main.py:538
-#, fuzzy
-msgid "Save all"
-msgstr "保存扫描"
-
-#: umit/interfaceeditor/Main.py:540 umit/gui/ScriptManager.py:327
-#, fuzzy
-msgid "Quit"
-msgstr "退出(_Q)"
-
-#: umit/interfaceeditor/Main.py:541 umit/gui/ScriptManager.py:343
-msgid "Edit"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:542
-msgid "_Undo"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:542
-#, fuzzy
-msgid "Undo"
-msgstr "生产商"
-
-#: umit/interfaceeditor/Main.py:543
-msgid "_Redo"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:543
-#, fuzzy
-msgid "Redo"
-msgstr "生产商"
-
-#: umit/interfaceeditor/Main.py:544
-#, fuzzy
-msgid "View"
-msgstr "查看(_V)"
-
-#: umit/interfaceeditor/Main.py:545
-msgid "_Right Bar"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:546
-msgid "Right Bar"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:547
-#, fuzzy
-msgid "Tools"
-msgstr "工具(_T)"
-
-#: umit/interfaceeditor/Main.py:549
-#, fuzzy
-msgid "Items"
-msgstr "附注"
-
-#: umit/interfaceeditor/Main.py:550
-msgid "_Label"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:551
-msgid "Insert label"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:552
-#, fuzzy
-msgid "_New Section"
-msgstr "新建扫描(_N)"
-
-#: umit/interfaceeditor/Main.py:553
-#, fuzzy
-msgid "New Section"
-msgstr "分节部分"
-
-#: umit/interfaceeditor/Main.py:554
-msgid "_Remove Section Label"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:555
-msgid "Remove Section Label"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:556 umit/interfaceeditor/Tools.py:186
-#, fuzzy
-msgid "_Remove Section"
-msgstr "分节部分"
-
-#: umit/interfaceeditor/Main.py:557 umit/interfaceeditor/Tools.py:187
-#, fuzzy
-msgid "Remove Section"
-msgstr "分节部分"
-
-#: umit/interfaceeditor/Main.py:558
-msgid "_Add new voidplace"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:559
-msgid "Add new voidplace"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:560
-#, fuzzy
-msgid "_Remove Option"
-msgstr "档案选项"
-
-#: umit/interfaceeditor/Main.py:561
-#, fuzzy
-msgid "Remove option"
-msgstr "任意选项"
-
-#: umit/interfaceeditor/Main.py:562
-msgid "_Remove voidplace"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:563
-msgid "Remove voidplace"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:564
-#, fuzzy
-msgid "_Add option selected"
-msgstr "没有选择站点！"
-
-#: umit/interfaceeditor/Main.py:565
-#, fuzzy
-msgid "Add option selected"
-msgstr "没有选择站点！"
-
-#: umit/interfaceeditor/Main.py:566 umit/interfaceeditor/Tools.py:180
-msgid "_Move Section Left"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:567 umit/interfaceeditor/Tools.py:181
-msgid "Move Section Left"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:568 umit/interfaceeditor/Tools.py:182
-msgid "_Move Section Right"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:569 umit/interfaceeditor/Tools.py:183
-msgid "Move Section Right"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:570
-msgid "_Move Item Down"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:571
-msgid "Move Item Down"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:572
-msgid "_Move Item Up"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:573
-msgid "Move Item Up"
-msgstr ""
-
-#: umit/interfaceeditor/Main.py:574
-#, fuzzy
-msgid "Help"
-msgstr "帮助(_H)"
-
-#: umit/interfaceeditor/Main.py:575
-#, fuzzy
-msgid "About"
-msgstr "关于(_A)"
-
-#: umit/interfaceeditor/OptionManager.py:130
-#: umit/gui/ScanHostDetailsPage.py:283
-msgid "Name:"
-msgstr "名称："
-
-#: umit/interfaceeditor/OptionManager.py:135
-#, fuzzy
-msgid "Hint:"
-msgstr "提示"
-
-#: umit/interfaceeditor/OptionManager.py:140
-msgid "Need root"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:145
-#, fuzzy
-msgid "Options:"
-msgstr "选项"
-
-#: umit/interfaceeditor/OptionManager.py:154
-msgid "Arguments:"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:186
-msgid "Arguments"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:188
-msgid "Insert the description to argument:"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:354
-#, fuzzy
-msgid "Invalid option "
-msgstr "任意选项"
-
-#: umit/interfaceeditor/OptionManager.py:445
-msgid "ERROR"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:446
-msgid "Option do not exists"
-msgstr ""
-
-#: umit/interfaceeditor/OptionManager.py:468
-msgid "Invalid name option "
-msgstr ""
-
-#: umit/interfaceeditor/PageNotebook.py:68
-#: umit/interfaceeditor/PageNotebook.py:145
-msgid "Add/Remove Voidplace"
-msgstr ""
-
-#: umit/interfaceeditor/PageNotebook.py:198
-msgid "Move item"
-msgstr ""
-
-#: umit/interfaceeditor/PageNotebook.py:350
-msgid "Add/Remove Option"
-msgstr ""
-
-#: umit/interfaceeditor/PageNotebook.py:435
-msgid "Add/Remove Page"
-msgstr ""
-
-#: umit/interfaceeditor/Profile.py:74
-msgid "Add Label"
-msgstr ""
-
-#: umit/interfaceeditor/Profile.py:124
-msgid "Move Page"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:175
-msgid "_Move up"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:175
-msgid "Move up"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:177
-msgid "_Move down"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:178
-#, fuzzy
-msgid "Move down"
-msgstr "未开启的站点："
-
-#: umit/interfaceeditor/Tools.py:184
-#, fuzzy
-msgid "_Add Section"
-msgstr "分节部分"
-
-#: umit/interfaceeditor/Tools.py:185
-#, fuzzy
-msgid "Add Section"
-msgstr "分节部分"
-
-#: umit/interfaceeditor/Tools.py:188 umit/interfaceeditor/Tools.py:189
-msgid "Add Place"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:190 umit/interfaceeditor/Tools.py:191
-#, fuzzy
-msgid "Remove Option"
-msgstr "档案选项"
-
-#: umit/interfaceeditor/Tools.py:243
-#, fuzzy
-msgid "Select a Option "
-msgstr "选择扫描结果"
-
-#: umit/interfaceeditor/Tools.py:297
-msgid "Change Label"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:362
-msgid "Update OptionList"
-msgstr ""
-
-#: umit/interfaceeditor/Tools.py:579 umit/gui/ScanHostDetailsPage.py:365
-msgid "Type"
-msgstr "类型"
-
-#: umit/interfaceeditor/Tools.py:587 umit/gui/SearchGUI.py:125
-#, fuzzy
-msgid "Option"
-msgstr "选项"
-
-#: umit/interfaceeditor/Tools.py:613
-msgid "List of items"
-msgstr ""
-
-#: umit/gui/About.py:40 umit/gui/MainWindow.py:343
+#: umit/gui/About.py:40 umit/gui/MainWindow.py:394
 #, fuzzy
 msgid "About Umit"
 msgstr "关于 UMIT"
@@ -1905,6 +47,10 @@ msgstr "UMIT 致谢"
 #: umit/gui/About.py:179
 msgid "Written by"
 msgstr "作者"
+
+#: umit/gui/About.py:181 umit/interfaceeditor/Main.py:404
+msgid "Design"
+msgstr "设计"
 
 #: umit/gui/About.py:183
 msgid "SoC 2007"
@@ -2093,11 +239,11 @@ msgstr ""
 "完美运行，但我们建议您安装它以得到更好的速度体验。请于 http://psyco.sf.net/ "
 "下载。"
 
-#: umit/gui/BugReport.py:44
+#: umit/gui/BugReport.py:45
 msgid "Could not open default Web Browser"
 msgstr "无法打开默认的浏览器。"
 
-#: umit/gui/BugReport.py:45
+#: umit/gui/BugReport.py:46
 msgid ""
 "Umit was unable to open your default web browser to show the bug tracker "
 "page with the report status. Try visiting Umit's bug tracker page to see if "
@@ -2106,15 +252,19 @@ msgstr ""
 "Umit 无法打开您的默认网络浏览器以显示错误跟踪页面以及状态报告。请尝试访问"
 "Umit 的错误跟踪页面来查看您提交的错误报告。"
 
-#: umit/gui/BugReport.py:65
+#: umit/gui/BugReport.py:73
 msgid "Bug Report"
 msgstr "错误报告"
 
-#: umit/gui/BugReport.py:100
+#: umit/gui/BugReport.py:95
+msgid "CrashReport automatically created"
+msgstr ""
+
+#: umit/gui/BugReport.py:116
 msgid "Category (optional)"
 msgstr "类别 (可选)"
 
-#: umit/gui/BugReport.py:101
+#: umit/gui/BugReport.py:117
 #, fuzzy
 msgid ""
 "If you know in which section of the program is the bug, please, select it "
@@ -2123,11 +273,11 @@ msgstr ""
 "如果你知道错误发生在程序的哪一部分，请在下拉选框中选择。如果您不知道该选择什"
 "么，留空即可。"
 
-#: umit/gui/BugReport.py:107
+#: umit/gui/BugReport.py:123
 msgid "Email"
 msgstr "电子邮件"
 
-#: umit/gui/BugReport.py:108
+#: umit/gui/BugReport.py:124
 msgid ""
 "Please inform a valid e-mail address from where you can be reached to be "
 "notified when the bug gets fixed. Not used for other purposes."
@@ -2135,32 +285,32 @@ msgstr ""
 "请填写正确的电子邮件地，以便在故障得到修复时我们能及时通知您。该地址不会被用"
 "做其它用途。"
 
-#: umit/gui/BugReport.py:113
+#: umit/gui/BugReport.py:129
 #, fuzzy
 msgid "Summary"
 msgstr "摘要"
 
-#: umit/gui/BugReport.py:114
+#: umit/gui/BugReport.py:130
 msgid ""
 "This should be a quick description of the issue. Try to be clear and concise."
 msgstr "这里是对问题的一个简短描述。请尽量描述得简洁清晰。"
 
-#: umit/gui/BugReport.py:118 umit/gui/ProfileEditor.py:117
-#: umit/gui/ScriptManager.py:366 umit/gui/Wizard.py:410
+#: umit/gui/BugReport.py:134 umit/gui/ProfileEditor.py:117
+#: umit/gui/Wizard.py:409
 msgid "Description"
 msgstr "描述"
 
-#: umit/gui/BugReport.py:119
+#: umit/gui/BugReport.py:135
+#, fuzzy
 msgid ""
 "This is where you should write about the bug, describing it as clear as "
-"possible and giving as many informations as you can along with your system "
-"informations, like: Which operating system are you using? Which Nmap version "
-"do you have installed?"
+"possible and giving as many informations as you can and how to reproduce the "
+"bug."
 msgstr ""
 "这里是对此错误的描述，请尽可能给出清晰的描述，并给出关于您的系统的信息，例"
 "如：您使用什么操作系统？您安装了哪个版本的 Nmap ？"
 
-#: umit/gui/BugReport.py:128
+#: umit/gui/BugReport.py:142
 msgid ""
 "This Bug Report dialog allows you to easily tell us about a problem that you "
 "may have found on Umit. Doing so, you help us to help you, by fixing and "
@@ -2169,11 +319,16 @@ msgstr ""
 "错误报告对话框可以使您更容易地告知我们您在使用 Umit 的过程中遇到的问题。这即"
 "是对我们的帮助也是对您的帮助，可以更快地修复或改进 Umit。"
 
-#: umit/gui/BugReport.py:211
+#: umit/gui/BugReport.py:150
+#, fuzzy
+msgid "Show Details"
+msgstr "站点详情"
+
+#: umit/gui/BugReport.py:261
 msgid "Bug report is incomplete!"
 msgstr "错误报告不完整！"
 
-#: umit/gui/BugReport.py:212
+#: umit/gui/BugReport.py:262
 msgid ""
 "The bug report is incomplete. You must inform a description that explains "
 "clearly what is happening and a valid e-mail, so you can be contacted when "
@@ -2182,11 +337,11 @@ msgstr ""
 "错误报告不完整。您必须填写错误描述以解释发生了什么，以及一个有效的电子邮件地"
 "址，以便错误被修复时我们能够及时通知您。"
 
-#: umit/gui/BugReport.py:237
+#: umit/gui/BugReport.py:287
 msgid "Bug not reported!"
 msgstr "错误报告未被提交！"
 
-#: umit/gui/BugReport.py:238
+#: umit/gui/BugReport.py:288
 msgid ""
 "The bug description could not be reported. This problem may be caused by the "
 "lack of Internet access or indisponibility of the bug tracker server. "
@@ -2196,11 +351,11 @@ msgstr ""
 "此错误描述未被提交。这可能是由于无法访问 Internet 或是错误跟踪服务器不可用。"
 "请您检验网络连接，并尝试再次提交错误报告。"
 
-#: umit/gui/BugReport.py:247
+#: umit/gui/BugReport.py:297
 msgid "Bug sucessfully reported!"
 msgstr "错误报告提交成功！"
 
-#: umit/gui/BugReport.py:248
+#: umit/gui/BugReport.py:298
 msgid ""
 "The bug description was sucessfully reported. A web page with detailed "
 "description about this report will be opened in your default web browser now."
@@ -2208,221 +363,297 @@ msgstr ""
 "错误描述已被成功地提交。一个包含关于此错误报告的详细描述信息的网页将在您的默"
 "认浏览器中打开。"
 
-#: umit/gui/BugReport.py:287
+#: umit/gui/BugReport.py:339
 #, fuzzy
 msgid "Crash Report"
 msgstr "软件碰撞报告"
 
-#: umit/gui/DiffCompare.py:85
+#: umit/gui/BugReport.py:367
+#, fuzzy
+msgid "Bug report details that will be send!"
+msgstr "错误报告不完整！"
+
+#: umit/gui/BugReport.py:374
+#, python-format
+msgid ""
+"Reporter: %s\n"
+"Summary: %s\n"
+"Category: %s\n"
+"Comments: %s\n"
+"\n"
+"Description: %s"
+msgstr ""
+
+#: umit/gui/DiffCompare.py:87
 msgid "Scan Result"
 msgstr "扫描结果"
 
-#: umit/gui/DiffCompare.py:92
+#: umit/gui/DiffCompare.py:94
 msgid "Scan Result Visualization"
 msgstr "可视化扫描结果"
 
-#: umit/gui/DiffCompare.py:149
+#: umit/gui/DiffCompare.py:151
 msgid "Select Scan Result"
 msgstr "选择扫描结果"
 
-#: umit/gui/DiffCompare.py:161
+#: umit/gui/DiffCompare.py:163
 msgid "File is not a Umit Scan Result"
 msgstr "此文件不是 Umit 扫描结果"
 
-#: umit/gui/DiffCompare.py:163
+#: umit/gui/DiffCompare.py:165
 msgid ""
 "Selected file is not a Umit Scan Result file. Umit can not parse this file. "
 "Please, select another."
 msgstr "选定的文件不是 Umit 扫描结果。 Umit 无法解析此文件。请选择其它文件。"
 
-#: umit/gui/DiffCompare.py:176 umit/gui/ScriptManager.py:269
+#: umit/gui/DiffCompare.py:178
 msgid "Can not open selected file"
 msgstr "无法打开选定的文件"
 
-#: umit/gui/DiffCompare.py:177 umit/gui/ScriptManager.py:270
+#: umit/gui/DiffCompare.py:179
 msgid "Umit can not open selected file. Please, select another."
 msgstr "Umit 无法打开选定的文件。请选择其它文件。"
 
-#: umit/gui/DiffCompare.py:217 umit/gui/MainWindow.py:288
+#: umit/gui/DiffCompare.py:219 umit/gui/MainWindow.py:339
 msgid "Compare Results"
 msgstr "比较结果"
 
-#: umit/gui/DiffCompare.py:252
+#: umit/gui/DiffCompare.py:253
 msgid "Open in Browser"
 msgstr "在浏览器中打开"
 
-#: umit/gui/DiffCompare.py:256
+#: umit/gui/DiffCompare.py:257
 msgid "Enable colored diffies"
 msgstr "开启彩色比较"
 
-#: umit/gui/DiffCompare.py:257 umit/gui/DiffCompare.py:907
+#: umit/gui/DiffCompare.py:258 umit/gui/DiffCompare.py:908
 #, fuzzy
 msgid "Color Descriptions"
 msgstr "彩色描述"
 
-#: umit/gui/DiffCompare.py:259
+#: umit/gui/DiffCompare.py:260
 msgid "Text Mode"
 msgstr "文本模式"
 
-#: umit/gui/DiffCompare.py:260
+#: umit/gui/DiffCompare.py:261
 #, fuzzy
 msgid "Compare Mode"
 msgstr "比较模式"
 
-#: umit/gui/DiffCompare.py:316
+#: umit/gui/DiffCompare.py:317
 msgid "Select Scan"
 msgstr "选择扫描结果"
 
-#: umit/gui/DiffCompare.py:317
+#: umit/gui/DiffCompare.py:318
 msgid "You must select two different scans to generate diff."
 msgstr "您必须选择两个不同的扫描结果来进行比较"
 
-#: umit/gui/DiffCompare.py:457
+#: umit/gui/DiffCompare.py:458
 msgid "Diff Result"
 msgstr "比较结果"
 
-#: umit/gui/DiffCompare.py:571
+#: umit/gui/DiffCompare.py:570 umit/inventory/ChangesDiff.py:35
+#: umit/interfaceeditor/Main.py:552
+#, fuzzy
+msgid "Section"
+msgstr "分节部分"
+
+#: umit/gui/DiffCompare.py:571 umit/inventory/ChangesDiff.py:35
+#, fuzzy
+msgid "Property"
+msgstr "特征"
+
+#: umit/gui/DiffCompare.py:572
 msgid "Original value"
 msgstr "原作值"
 
-#: umit/gui/DiffCompare.py:687
+#: umit/gui/DiffCompare.py:573 umit/inventory/ChangesDiff.py:36
+msgid "Current value"
+msgstr "当前值"
+
+#: umit/gui/DiffCompare.py:688
 #, fuzzy
 msgid "Umit Info"
 msgstr "Umit 信息"
 
-#: umit/gui/DiffCompare.py:690
+#: umit/gui/DiffCompare.py:690 umit/gui/ProfileEditor.py:154
+#: umit/gui/SearchGUI.py:126 umit/gui/Wizard.py:471
+#: umit/inventory/TLGraphPreferences.py:62
+msgid "Profile"
+msgstr "档案"
+
+#: umit/gui/DiffCompare.py:691
 #, fuzzy
 msgid "Profile Name"
 msgstr "档案名称"
 
-#: umit/gui/DiffCompare.py:692
+#: umit/gui/DiffCompare.py:693
 #, fuzzy
 msgid "Profile Options"
 msgstr "档案选项"
 
-#: umit/gui/DiffCompare.py:694 umit/gui/SearchGUI.py:147
-#: umit/gui/Wizard.py:477
+#: umit/gui/DiffCompare.py:695 umit/gui/SearchGUI.py:147
+#: umit/gui/Wizard.py:476
 msgid "Target"
 msgstr "目标"
 
-#: umit/gui/DiffCompare.py:696
+#: umit/gui/DiffCompare.py:697
 #, fuzzy
 msgid "Nmap Info"
 msgstr "Nmap 信息"
 
-#: umit/gui/DiffCompare.py:701
+#: umit/gui/DiffCompare.py:700 umit/inventory/Viewer.py:375
+msgid "Debugging"
+msgstr "调试"
+
+#: umit/gui/DiffCompare.py:702
 msgid "Verbosity"
 msgstr "详细程度"
 
-#: umit/gui/DiffCompare.py:708 umit/gui/ScanRunDetailsPage.py:191
+#: umit/gui/DiffCompare.py:704 umit/gui/ProfileEditor.py:104
+#: umit/gui/SchedulerEdit.py:79 umit/gui/Wizard.py:143 umit/gui/Wizard.py:472
+#: umit/inventory/NewInventory.py:103 umit/inventory/NewInventory.py:524
+msgid "Command"
+msgstr "命令"
+
+#: umit/gui/DiffCompare.py:706 umit/inventory/Viewer.py:375
+#, fuzzy
+msgid "Scanner version"
+msgstr "扫描器版本"
+
+#: umit/gui/DiffCompare.py:709 umit/gui/ScanRunDetailsPage.py:191
 msgid "Scan Info"
 msgstr "扫描信息"
 
-#: umit/gui/DiffCompare.py:711
+#: umit/gui/DiffCompare.py:712
 msgid "Open Ports"
 msgstr "打开的端口"
 
-#: umit/gui/DiffCompare.py:713
+#: umit/gui/DiffCompare.py:714
 #, fuzzy
 msgid "Filtered Ports"
 msgstr "屏蔽的端口："
 
-#: umit/gui/DiffCompare.py:715
+#: umit/gui/DiffCompare.py:716
 #, fuzzy
 msgid "Closed Ports"
 msgstr "关闭的端口："
 
-#: umit/gui/DiffCompare.py:717
+#: umit/gui/DiffCompare.py:718
 #, fuzzy
 msgid "Hosts Up"
 msgstr "运行中的站点："
 
-#: umit/gui/DiffCompare.py:719
+#: umit/gui/DiffCompare.py:720
 #, fuzzy
 msgid "Hosts Down"
 msgstr "未开启的站点："
 
-#: umit/gui/DiffCompare.py:721
+#: umit/gui/DiffCompare.py:722
 #, fuzzy
 msgid "Hosts Scanned"
 msgstr "已扫描的站点："
 
-#: umit/gui/DiffCompare.py:723
+#: umit/gui/DiffCompare.py:724
 #, fuzzy
 msgid "Finish date"
 msgstr "结束于："
 
-#: umit/gui/DiffCompare.py:751 umit/gui/DiffCompare.py:753
-#: umit/gui/DiffCompare.py:755
+#: umit/gui/DiffCompare.py:750 umit/gui/ScanHostsView.py:67
+#: umit/gui/ScanOpenPortsPage.py:63 umit/gui/SearchGUI.py:298
+#: umit/inventory/HostDiscovery.py:354 umit/inventory/Viewer.py:530
+#, fuzzy
+msgid "Host"
+msgstr "站点"
+
+#: umit/gui/DiffCompare.py:752 umit/gui/DiffCompare.py:754
+#: umit/gui/DiffCompare.py:756
 #, fuzzy, python-format
 msgid "Host %s"
 msgstr "站点 %s"
 
-#: umit/gui/DiffCompare.py:759
+#: umit/gui/DiffCompare.py:760
 #, fuzzy
 msgid "Comment"
 msgstr "注释"
 
-#: umit/gui/DiffCompare.py:763
+#: umit/gui/DiffCompare.py:764
 #, fuzzy
 msgid "LastBoot"
 msgstr "上次启动时间"
 
-#: umit/gui/DiffCompare.py:833 umit/gui/DiffCompare.py:872
+#: umit/gui/DiffCompare.py:776 umit/inventory/ChangesDiff.py:422
+#: umit/db/Search.py:108
+#, fuzzy
+msgid "OS Match"
+msgstr "操作系统匹配"
+
+#: umit/gui/DiffCompare.py:799 umit/inventory/ChangesDiff.py:191
+#: umit/inventory/TLBase.py:45
+#, fuzzy
+msgid "Ports"
+msgstr "端口"
+
+#: umit/gui/DiffCompare.py:834 umit/gui/DiffCompare.py:873
 #: umit/gui/ScanOpenPortsPage.py:67 umit/gui/ScanOpenPortsPage.py:86
 #, fuzzy
 msgid "State"
 msgstr "状态"
 
-#: umit/gui/DiffCompare.py:837 umit/gui/ServiceFingerprintReport.py:57
+#: umit/gui/DiffCompare.py:838 umit/gui/ServiceFingerprintReport.py:57
 #, fuzzy
 msgid "Service Name"
 msgstr "服务名称"
 
-#: umit/gui/DiffCompare.py:841 umit/gui/SearchGUI.py:170
+#: umit/gui/DiffCompare.py:842 umit/gui/SearchGUI.py:170
 #, fuzzy
 msgid "Product"
 msgstr "产品"
 
-#: umit/gui/DiffCompare.py:845
+#: umit/gui/DiffCompare.py:846
 #, fuzzy
 msgid "Service Version"
 msgstr "服务版本"
 
-#: umit/gui/DiffCompare.py:849 umit/gui/ScanOpenPortsPage.py:66
+#: umit/gui/DiffCompare.py:850 umit/gui/ScanOpenPortsPage.py:66
 #: umit/gui/ScanOpenPortsPage.py:84
 #, fuzzy
 msgid "Protocol"
 msgstr "协议"
 
-#: umit/gui/DiffCompare.py:853
+#: umit/gui/DiffCompare.py:854
 #, fuzzy
 msgid "Extra Info"
 msgstr "附加信息"
 
-#: umit/gui/DiffCompare.py:857
+#: umit/gui/DiffCompare.py:858
 #, fuzzy
 msgid "Service Conf"
 msgstr "服务设置"
 
-#: umit/gui/DiffCompare.py:870
+#: umit/gui/DiffCompare.py:867 umit/inventory/ChangesDiff.py:270
+#, fuzzy
+msgid "Extraports"
+msgstr "额外端口"
+
+#: umit/gui/DiffCompare.py:871
 #, fuzzy
 msgid "Count"
 msgstr "数量"
 
-#: umit/gui/DiffCompare.py:919
+#: umit/gui/DiffCompare.py:920
 msgid "Property remained <b>U</b>nchanged"
 msgstr "<b>未改变</b>的属性"
 
-#: umit/gui/DiffCompare.py:922
+#: umit/gui/DiffCompare.py:923
 msgid "Property was <b>A</b>dded"
 msgstr "<b>新加入</b>的属性"
 
-#: umit/gui/DiffCompare.py:925
+#: umit/gui/DiffCompare.py:926
 msgid "Property was <b>M</b>odified"
 msgstr "<b>已改变</b>的属性"
 
-#: umit/gui/DiffCompare.py:928
+#: umit/gui/DiffCompare.py:929
 msgid "Property is <b>N</b>ot present"
 msgstr "<b>已移除</b>的属性"
 
@@ -2451,233 +682,293 @@ msgstr "UMIT 普通比较结果 (%s)"
 msgid "Umit HTML Diff (%s)"
 msgstr "UMIT HTML 比较结果 (%s)"
 
-#: umit/gui/MainWindow.py:98
+#: umit/gui/Help.py:56
+msgid "Couldn't find documentation files!"
+msgstr "无法找到说明文档文件"
+
+#: umit/gui/Help.py:58
+msgid ""
+"Umit couldn't find the documentation files. Please, go to Umit's website and "
+"have the latest documentation in our Support & Development section."
+msgstr ""
+"Umit 无法找到说明文档文件。请至 Umit 网站的“支持与文档”部分查阅最新的文档。"
+
+#: umit/gui/MainWindow.py:104
 #, fuzzy
 msgid "Umit"
 msgstr "Umit"
 
-#: umit/gui/MainWindow.py:179
+#: umit/gui/MainWindow.py:184
+#, python-format
+msgid ""
+"You do not have access to config files!\n"
+"Please run Umit as root or change permissions %s \n"
+"            "
+msgstr ""
+
+#: umit/gui/MainWindow.py:187
+#, fuzzy
+msgid "Permission Denied"
+msgstr "访问被拒绝"
+
+#: umit/gui/MainWindow.py:230
 #, fuzzy
 msgid "Sc_an"
 msgstr "扫描(_a)"
 
-#: umit/gui/MainWindow.py:183
+#: umit/gui/MainWindow.py:234
 msgid "_Command Wizard"
 msgstr "命令向导(_C)"
 
-#: umit/gui/MainWindow.py:185
+#: umit/gui/MainWindow.py:236
 msgid "Open nmap command constructor wizard"
 msgstr "打开 nmap 命令行创建向导"
 
-#: umit/gui/MainWindow.py:190
+#: umit/gui/MainWindow.py:241
 msgid "_Save Scan"
 msgstr "保存扫描(_S)"
 
-#: umit/gui/MainWindow.py:192
+#: umit/gui/MainWindow.py:243
 msgid "Save current scan results"
 msgstr "保存当前扫描结果"
 
-#: umit/gui/MainWindow.py:197
+#: umit/gui/MainWindow.py:248
 msgid "_Open Scan"
 msgstr "打开扫描(_O)"
 
-#: umit/gui/MainWindow.py:199
+#: umit/gui/MainWindow.py:250
 msgid "Open the results of a previous scan"
 msgstr "打开先前的扫描结果"
 
-#: umit/gui/MainWindow.py:203
+#: umit/gui/MainWindow.py:254
 msgid "_Tools"
 msgstr "工具(_T)"
 
-#: umit/gui/MainWindow.py:207
+#: umit/gui/MainWindow.py:258
 msgid "_New Scan"
 msgstr "新建扫描(_N)"
 
-#: umit/gui/MainWindow.py:209
+#: umit/gui/MainWindow.py:260
 #, fuzzy
 msgid "Create a new Scan Tab"
 msgstr "创建一个新的扫描模式"
 
-#: umit/gui/MainWindow.py:214
+#: umit/gui/MainWindow.py:265
 msgid "Close Scan"
 msgstr "关闭扫描"
 
-#: umit/gui/MainWindow.py:216
+#: umit/gui/MainWindow.py:267
 msgid "Close current scan tab"
 msgstr "关闭当前的扫描标签"
 
-#: umit/gui/MainWindow.py:221
+#: umit/gui/MainWindow.py:272
 msgid "New _Profile"
 msgstr "新建扫描模式(_P)"
 
-#: umit/gui/MainWindow.py:223
+#: umit/gui/MainWindow.py:274
 msgid "Create a new scan profile"
 msgstr "创建一个新的扫描模式"
 
-#: umit/gui/MainWindow.py:228
+#: umit/gui/MainWindow.py:279
 #, fuzzy
 msgid "Search Scan Results"
 msgstr "选择扫描结果"
 
-#: umit/gui/MainWindow.py:230
+#: umit/gui/MainWindow.py:281
 #, fuzzy
 msgid "Search for a scan result"
 msgstr "保存当前扫描结果"
 
-#: umit/gui/MainWindow.py:235
+#: umit/gui/MainWindow.py:286
 msgid "_Edit Selected Profile"
 msgstr "编辑选定的档案(_E)"
 
-#: umit/gui/MainWindow.py:237
+#: umit/gui/MainWindow.py:288
 msgid "Edit selected scan profile"
 msgstr "编辑选定的扫描档案"
 
-#: umit/gui/MainWindow.py:242
+#: umit/gui/MainWindow.py:293
 #, fuzzy
 msgid "_Delete Selected Profile"
 msgstr "编辑选定的档案(_E)"
 
-#: umit/gui/MainWindow.py:244
+#: umit/gui/MainWindow.py:295
 #, fuzzy
 msgid "Delete selected scan profile"
 msgstr "编辑选定的扫描档案"
 
-#: umit/gui/MainWindow.py:249
+#: umit/gui/MainWindow.py:300
 #, fuzzy
 msgid "Profile Manager"
 msgstr "档案名称"
 
-#: umit/gui/MainWindow.py:251
+#: umit/gui/MainWindow.py:302
 #, fuzzy
 msgid "Use to manage profiles"
 msgstr "未命名的档案"
 
-#: umit/gui/MainWindow.py:258
+#: umit/gui/MainWindow.py:307 umit/interfaceeditor/Main.py:71
+#, fuzzy
+msgid "Interface Editor"
+msgstr "档案编辑器"
+
+#: umit/gui/MainWindow.py:309
 msgid "Use to edit profile/wizard"
 msgstr ""
 
-#: umit/gui/MainWindow.py:263
+#: umit/gui/MainWindow.py:314
 msgid "New P_rofile with Selected"
 msgstr "由当前选定的创建(_r)"
 
-#: umit/gui/MainWindow.py:265
+#: umit/gui/MainWindow.py:316
 msgid "Use the selected scan profile to create another"
 msgstr "由当前选定的扫描档案来创建一个新的"
 
-#: umit/gui/MainWindow.py:270
+#: umit/gui/MainWindow.py:321
 #, fuzzy
 msgid "_Extensions"
 msgstr "文件扩展名"
 
-#: umit/gui/MainWindow.py:272
+#: umit/gui/MainWindow.py:323
 msgid "Extensions manager"
 msgstr ""
 
-#: umit/gui/MainWindow.py:279
+#: umit/gui/MainWindow.py:328 umit/inventory/Viewer.py:634
+#: umit/interfaceeditor/Main.py:544
+msgid "_Quit"
+msgstr "退出(_Q)"
+
+#: umit/gui/MainWindow.py:330
 msgid "Quit this application"
 msgstr "退出本程序"
 
-#: umit/gui/MainWindow.py:284
+#: umit/gui/MainWindow.py:335
 msgid "_Profile"
 msgstr "档案(_P)"
 
-#: umit/gui/MainWindow.py:290
+#: umit/gui/MainWindow.py:341
 msgid "Compare Scan Results using Diffies"
 msgstr "对一组扫描结果进行比较"
 
-#: umit/gui/MainWindow.py:294
+#: umit/gui/MainWindow.py:345
 msgid "_Inventory"
 msgstr ""
 
-#: umit/gui/MainWindow.py:298
+#: umit/gui/MainWindow.py:349
 msgid "_Add scan to Inventory"
 msgstr ""
 
-#: umit/gui/MainWindow.py:299
+#: umit/gui/MainWindow.py:350
 msgid "Add finished scan on current tab to Network Inventory"
 msgstr ""
 
-#: umit/gui/MainWindow.py:305
+#: umit/gui/MainWindow.py:356
 msgid "Network _Inventory"
 msgstr ""
 
-#: umit/gui/MainWindow.py:307
+#: umit/gui/MainWindow.py:358
 msgid "Run Network Inventory"
 msgstr ""
 
-#: umit/gui/MainWindow.py:319
+#: umit/gui/MainWindow.py:363 umit/inventory/Viewer.py:610
+msgid "_Scheduler"
+msgstr ""
+
+#: umit/gui/MainWindow.py:370
 msgid "_Editor"
 msgstr ""
 
-#: umit/gui/MainWindow.py:320
+#: umit/gui/MainWindow.py:371
 msgid "Open Scheduler Editor"
 msgstr ""
 
-#: umit/gui/MainWindow.py:324
+#: umit/gui/MainWindow.py:375
 msgid "SMTP Setup"
 msgstr ""
 
-#: umit/gui/MainWindow.py:325
+#: umit/gui/MainWindow.py:376
 msgid "Open SMTP Accounts editor"
 msgstr ""
 
-#: umit/gui/MainWindow.py:476 umit/gui/MainWindow.py:489
-#: umit/gui/MainWindow.py:1006
+#: umit/gui/MainWindow.py:380 umit/gui/MainWindow.py:400
+#: umit/inventory/Viewer.py:611 umit/inventory/Viewer.py:664
+msgid "_Help"
+msgstr "帮助(_H)"
+
+#: umit/gui/MainWindow.py:384 umit/inventory/Viewer.py:669
+msgid "_Report a bug"
+msgstr "报告错误(_R)"
+
+#: umit/gui/MainWindow.py:386 umit/inventory/Viewer.py:670
+msgid "Report a bug"
+msgstr "报告一个错误"
+
+#: umit/gui/MainWindow.py:392 umit/inventory/Viewer.py:674
+#: umit/interfaceeditor/Main.py:579
+msgid "_About"
+msgstr "关于(_A)"
+
+#: umit/gui/MainWindow.py:402 umit/inventory/Viewer.py:665
+msgid "Shows the application help"
+msgstr "显示该应用程序的帮助"
+
+#: umit/gui/MainWindow.py:527 umit/gui/MainWindow.py:540
+#: umit/gui/MainWindow.py:1059
 #, fuzzy
 msgid "No scan tab"
 msgstr "无扫描标签"
 
-#: umit/gui/MainWindow.py:477
+#: umit/gui/MainWindow.py:528
 #, fuzzy
 msgid ""
 "There is no scan tab or scan result being shown. Run a scan and then retry "
 "adding."
 msgstr "没有扫描标签或是扫描结果可以被显示。请运行一个扫描任务并保存结果。"
 
-#: umit/gui/MainWindow.py:486
+#: umit/gui/MainWindow.py:537
 msgid ""
 "You tried adding a scan to the Inventory, but there isn't a finished scan on "
 "the active tab!"
 msgstr ""
 
-#: umit/gui/MainWindow.py:515
+#: umit/gui/MainWindow.py:566
 msgid "Insertion finished!"
 msgstr ""
 
-#: umit/gui/MainWindow.py:517
+#: umit/gui/MainWindow.py:568
 msgid "Scan has been added to the"
 msgstr ""
 
-#: umit/gui/MainWindow.py:519
+#: umit/gui/MainWindow.py:570
 #, fuzzy
 msgid "inventory."
 msgstr "目录"
 
-#: umit/gui/MainWindow.py:570 umit/gui/MainWindow.py:616
+#: umit/gui/MainWindow.py:623 umit/gui/MainWindow.py:669
 msgid "Close anyway"
 msgstr "不保存并关闭"
 
-#: umit/gui/MainWindow.py:577
+#: umit/gui/MainWindow.py:630
 msgid "Save changes on"
 msgstr "保存修改到.."
 
-#: umit/gui/MainWindow.py:580
+#: umit/gui/MainWindow.py:633
 msgid "Save changes"
 msgstr "保存修改"
 
-#: umit/gui/MainWindow.py:582
+#: umit/gui/MainWindow.py:635
 #, fuzzy
 msgid ""
 "The given scan has unsaved changes.\n"
 "What do you want to do?"
 msgstr "指定的扫描包含未保存的结果，您想如何做？"
 
-#: umit/gui/MainWindow.py:623 umit/gui/MainWindow.py:626
+#: umit/gui/MainWindow.py:676 umit/gui/MainWindow.py:679
 #, fuzzy
 msgid "Trying to close"
 msgstr "正在尝试关闭"
 
-#: umit/gui/MainWindow.py:628
+#: umit/gui/MainWindow.py:681
 msgid ""
 "The page you are trying to close has a scan running at the background.\n"
 "What do you want to do?"
@@ -2685,112 +976,101 @@ msgstr ""
 "您正在尝试关闭的页面包含正在后台运行的扫描任务。\n"
 "您想如何做？"
 
-#: umit/gui/MainWindow.py:657
+#: umit/gui/MainWindow.py:710
 #, fuzzy
 msgid "Closing current Scan Tab"
 msgstr "关闭当前的扫描标签"
 
-#: umit/gui/MainWindow.py:658
+#: umit/gui/MainWindow.py:711
 msgid "Are you sure you want to close current Scan Tab?"
 msgstr "您确定要关闭当前的扫描标签么？"
 
-#: umit/gui/MainWindow.py:976 umit/gui/MainWindow.py:1121
+#: umit/gui/MainWindow.py:1029 umit/gui/MainWindow.py:1174
 msgid "Permission denied"
 msgstr "访问被拒绝"
 
-#: umit/gui/MainWindow.py:977
+#: umit/gui/MainWindow.py:1030
 msgid "Don't have read access to the path"
 msgstr "没有给定路径的读取权限"
 
-#: umit/gui/MainWindow.py:983
+#: umit/gui/MainWindow.py:1036
 #, fuzzy
 msgid "Could not load result"
 msgstr "无法载入文件"
 
-#: umit/gui/MainWindow.py:984
+#: umit/gui/MainWindow.py:1037
 #, fuzzy
 msgid ""
 "An unidentified error occouried and the scan result was unable to be loaded "
 "properly."
 msgstr "发生了未知的错误，扫描结果无法被正确读入。"
 
-#: umit/gui/MainWindow.py:1007
+#: umit/gui/MainWindow.py:1060
 msgid ""
 "There is no scan tab or scan result been shown. Run a scan and then try to "
 "save it."
 msgstr "没有扫描标签或是扫描结果可以被显示。请运行一个扫描任务并保存结果。"
 
-#: umit/gui/MainWindow.py:1018 umit/gui/MainWindow.py:1025
-#: umit/gui/MainWindow.py:1074
+#: umit/gui/MainWindow.py:1071 umit/gui/MainWindow.py:1078
+#: umit/gui/MainWindow.py:1127
 msgid "Nothing to save"
 msgstr "没有任何可以保存的"
 
-#: umit/gui/MainWindow.py:1019 umit/gui/MainWindow.py:1075
+#: umit/gui/MainWindow.py:1072 umit/gui/MainWindow.py:1128
 msgid "No scan on this tab. Start a scan an then try again"
 msgstr "此标签无扫描任务。请在开始扫描后重试"
 
-#: umit/gui/MainWindow.py:1026
+#: umit/gui/MainWindow.py:1079
 msgid "The scan has failed! There is nothing to be saved."
 msgstr "扫描失败！将不会有信息被保存。"
 
-#: umit/gui/MainWindow.py:1033
+#: umit/gui/MainWindow.py:1086
 #, fuzzy
 msgid "Parsing the result"
 msgstr "正在解析扫描结果"
 
-#: umit/gui/MainWindow.py:1034
+#: umit/gui/MainWindow.py:1087
 msgid "The result is still been parsed. You can not save the result yet."
 msgstr "扫描结果仍在解析，您现在无法保存结果。"
 
-#: umit/gui/MainWindow.py:1041
+#: umit/gui/MainWindow.py:1094
 #, fuzzy
 msgid "Scan is running"
 msgstr "正在扫描"
 
-#: umit/gui/MainWindow.py:1042
+#: umit/gui/MainWindow.py:1095
 #, fuzzy
 msgid ""
 "The scan process is not finished yet. Wait until the scan is finished and "
 "then try to save it again."
 msgstr "扫描过程尚未完成。请等待扫描完成后再尝试保存。"
 
-#: umit/gui/MainWindow.py:1052
+#: umit/gui/MainWindow.py:1105
 msgid "Save Scan"
 msgstr "保存扫描"
 
-#: umit/gui/MainWindow.py:1091
+#: umit/gui/MainWindow.py:1144
 msgid "Can't save file"
 msgstr "无法保存文件"
 
-#: umit/gui/MainWindow.py:1092
+#: umit/gui/MainWindow.py:1145
 msgid "Can't open file to write"
 msgstr "无法打开文件用于写入"
 
-#: umit/gui/MainWindow.py:1122
+#: umit/gui/MainWindow.py:1175
 #, fuzzy
 msgid "Don't have write access to this path."
 msgstr "没有给定路径的写入权限"
 
-#: umit/gui/MainWindow.py:1206
+#: umit/gui/MainWindow.py:1269
 msgid "The text above is this action's name"
 msgstr "以上的文字为此行为的名称"
 
-#: umit/gui/MainWindow.py:1224
-msgid "Couldn't find documentation files!"
-msgstr "无法找到说明文档文件"
-
-#: umit/gui/MainWindow.py:1226
-msgid ""
-"Umit couldn't find the documentation files. Please, go to Umit's website and "
-"have the latest documentation in our Support & Development section."
-msgstr ""
-"Umit 无法找到说明文档文件。请至 Umit 网站的“支持与文档”部分查阅最新的文档。"
-
-#: umit/gui/MainWindow.py:1261
+#: umit/gui/MainWindow.py:1306
 msgid "Scan "
 msgstr "扫描"
 
-#: umit/gui/MainWindow.py:1276
+#: umit/gui/MainWindow.py:1322
 #, fuzzy
 msgid ""
 "You are trying to run Umit with a non-root user!\n"
@@ -2801,17 +1081,17 @@ msgstr ""
 "\n"
 "某些 nmap 功能需要超级用户权限才可执行。"
 
-#: umit/gui/MainWindow.py:1279
+#: umit/gui/MainWindow.py:1325
 msgid "Non root user"
 msgstr "非超级用户"
 
-#: umit/gui/MainWindow.py:1288
+#: umit/gui/MainWindow.py:1334
 msgid ""
 "You run the umit with nmap option and didn't specified a valid target (see "
 "the umit options)"
 msgstr ""
 
-#: umit/gui/MainWindow.py:1291
+#: umit/gui/MainWindow.py:1337
 #, fuzzy
 msgid "Non valid target"
 msgstr "任意目标"
@@ -2880,7 +1160,7 @@ msgstr "文本颜色"
 msgid "highlight color"
 msgstr "高亮颜色"
 
-#: umit/gui/NmapOutputViewer.py:152
+#: umit/gui/NmapOutputViewer.py:161
 msgid "Enable Nmap output highlight"
 msgstr "开启 Nmap 输出高亮"
 
@@ -2999,40 +1279,32 @@ msgstr ""
 msgid "Choose file"
 msgstr "选择文件"
 
-#: umit/gui/ProfileEditor.py:48
+#: umit/gui/ProfileEditor.py:49
 msgid "Profile Editor"
 msgstr "档案编辑器"
-
-#: umit/gui/ProfileEditor.py:94
-msgid "Help not implemented"
-msgstr "帮助尚未执行"
-
-#: umit/gui/ProfileEditor.py:95
-msgid "Umit help is not implemented yet."
-msgstr "Umit 帮助尚未执行"
 
 #: umit/gui/ProfileEditor.py:112
 msgid "Profile Information"
 msgstr "档案信息"
 
-#: umit/gui/ProfileEditor.py:113 umit/gui/Wizard.py:408
+#: umit/gui/ProfileEditor.py:113 umit/gui/Wizard.py:407
 msgid "Profile name"
 msgstr "档案名称"
 
-#: umit/gui/ProfileEditor.py:115 umit/gui/ProfileManager.py:81
-#: umit/gui/Wizard.py:409
+#: umit/gui/ProfileEditor.py:115 umit/gui/ProfileManager.py:83
+#: umit/gui/Wizard.py:408
 msgid "Hint"
 msgstr "提示"
 
-#: umit/gui/ProfileEditor.py:121 umit/gui/Wizard.py:411
+#: umit/gui/ProfileEditor.py:121 umit/gui/Wizard.py:410
 msgid "Annotation"
 msgstr "注解"
 
-#: umit/gui/ProfileEditor.py:246 umit/gui/Wizard.py:267
+#: umit/gui/ProfileEditor.py:246 umit/gui/Wizard.py:266
 msgid "Unnamed profile"
 msgstr "未命名的档案"
 
-#: umit/gui/ProfileEditor.py:247 umit/gui/Wizard.py:268
+#: umit/gui/ProfileEditor.py:247 umit/gui/Wizard.py:267
 msgid "You must provide a name for this profile."
 msgstr "您必须为该档案指定名称。"
 
@@ -3040,13 +1312,26 @@ msgstr "您必须为该档案指定名称。"
 msgid "Deleting Profile"
 msgstr "删除档案"
 
-#: umit/gui/ProfileEditor.py:297 umit/gui/ProfileEditor.py:343
+#: umit/gui/ProfileEditor.py:297
+#, fuzzy
+msgid ""
+"Your profile is going to be deleted! Click                                   "
+"Ok to continue, or Cancel to go back to Profile Editor."
+msgstr "您的档案将被删除！点击“确定”继续，或点击“取消”返回档案编辑器。"
+
+#: umit/gui/ProfileEditor.py:343
 msgid ""
 "Your profile is going to be deleted! Click Ok to continue, or Cancel to go "
 "back to Profile Editor."
 msgstr "您的档案将被删除！点击“确定”继续，或点击“取消”返回档案编辑器。"
 
-#: umit/gui/ProfileManager.py:214
+#: umit/gui/ProfileManager.py:80 umit/interfaceeditor/Main.py:293
+#: umit/interfaceeditor/Tools.py:578
+#, fuzzy
+msgid "Name"
+msgstr "名称："
+
+#: umit/gui/ProfileManager.py:208
 #, fuzzy
 msgid "Insert a profile name"
 msgstr "档案名称"
@@ -3064,50 +1349,57 @@ msgstr ""
 msgid "Profile:"
 msgstr "档案："
 
-#: umit/gui/SMTPSetup.py:49
+#: umit/gui/SMTPSetup.py:50
 msgid "SMTP Account Editor"
 msgstr ""
 
-#: umit/gui/SMTPSetup.py:59
+#: umit/gui/SMTPSetup.py:60
 #, fuzzy
 msgid "Schema name"
 msgstr "服务名称"
 
-#: umit/gui/SMTPSetup.py:63
+#: umit/gui/SMTPSetup.py:64
 #, fuzzy
 msgid "Server"
 msgstr "服务"
 
-#: umit/gui/SMTPSetup.py:68
+#: umit/gui/SMTPSetup.py:66 umit/gui/ScanOpenPortsPage.py:65
+#: umit/gui/ScanOpenPortsPage.py:85 umit/inventory/ChangesDiff.py:211
+#: umit/inventory/ChangesDiff.py:250 umit/db/InventoryChanges.py:255
+#: umit/db/InventoryChanges.py:342
+msgid "Port"
+msgstr "端口"
+
+#: umit/gui/SMTPSetup.py:69
 msgid "Mail from"
 msgstr ""
 
-#: umit/gui/SMTPSetup.py:71
+#: umit/gui/SMTPSetup.py:72
 msgid "Servers requires authentication"
 msgstr ""
 
-#: umit/gui/SMTPSetup.py:73
+#: umit/gui/SMTPSetup.py:74
 #, fuzzy
 msgid "Username"
 msgstr "主机名称"
 
-#: umit/gui/SMTPSetup.py:75
+#: umit/gui/SMTPSetup.py:76
 msgid "Password"
 msgstr ""
 
-#: umit/gui/SMTPSetup.py:80
+#: umit/gui/SMTPSetup.py:81
 msgid "Use TLS Encryption"
 msgstr ""
 
-#: umit/gui/SMTPSetup.py:190 umit/gui/SMTPSetup.py:201
+#: umit/gui/SMTPSetup.py:191 umit/gui/SMTPSetup.py:202
 msgid "SMTP Schema - Error while saving."
 msgstr ""
 
-#: umit/gui/SMTPSetup.py:192
+#: umit/gui/SMTPSetup.py:193
 msgid "You need to specify an username and password for this SMTP Schema."
 msgstr ""
 
-#: umit/gui/SMTPSetup.py:203
+#: umit/gui/SMTPSetup.py:204
 msgid ""
 "The following fields need to be filled: Schema Name, Server, Port and Mail "
 "from."
@@ -3136,6 +1428,24 @@ msgstr "操作系统"
 #: umit/gui/ScanHostDetailsPage.py:57
 msgid "Ports used"
 msgstr "使用的端口"
+
+#: umit/gui/ScanHostDetailsPage.py:58 umit/inventory/ChangesDiff.py:363
+#: umit/inventory/ChangesDiff.py:381 umit/inventory/ChangesDiff.py:397
+#: umit/inventory/ChangesDiff.py:406
+msgid "OS Class"
+msgstr "操作系统类别"
+
+#: umit/gui/ScanHostDetailsPage.py:59 umit/inventory/ChangesDiff.py:315
+msgid "TCP Sequence"
+msgstr "TCP 序列"
+
+#: umit/gui/ScanHostDetailsPage.py:60 umit/inventory/ChangesDiff.py:321
+msgid "IP ID Sequence"
+msgstr "IP ID 序列"
+
+#: umit/gui/ScanHostDetailsPage.py:61 umit/inventory/ChangesDiff.py:318
+msgid "TCP TS Sequence"
+msgstr "TCP TS 序列"
 
 #: umit/gui/ScanHostDetailsPage.py:62
 msgid "Comments"
@@ -3190,6 +1500,16 @@ msgstr "生产商："
 msgid "Name - Type:"
 msgstr "名称 - 类型："
 
+#: umit/gui/ScanHostDetailsPage.py:258 umit/gui/ScanHostDetailsPage.py:293
+#: umit/inventory/ChangesDiff.py:32
+msgid "Not Available"
+msgstr "不可用"
+
+#: umit/gui/ScanHostDetailsPage.py:283
+#: umit/interfaceeditor/OptionManager.py:130
+msgid "Name:"
+msgstr "名称："
+
 #: umit/gui/ScanHostDetailsPage.py:295
 msgid "Accuracy:"
 msgstr "精确度："
@@ -3197,6 +1517,10 @@ msgstr "精确度："
 #: umit/gui/ScanHostDetailsPage.py:344
 msgid "Port-Protocol-State:"
 msgstr "端口 - 协议 - 状态："
+
+#: umit/gui/ScanHostDetailsPage.py:365 umit/interfaceeditor/Tools.py:584
+msgid "Type"
+msgstr "类型"
 
 #: umit/gui/ScanHostDetailsPage.py:366
 msgid "Vendor"
@@ -3209,6 +1533,11 @@ msgstr "操作系统类别"
 #: umit/gui/ScanHostDetailsPage.py:368
 msgid "OS Generation"
 msgstr "操作系统版本"
+
+#: umit/gui/ScanHostDetailsPage.py:369 umit/inventory/ChangesDiff.py:357
+#: umit/inventory/ChangesDiff.py:402
+msgid "Accuracy"
+msgstr "精确度"
 
 #: umit/gui/ScanHostDetailsPage.py:396 umit/gui/ScanHostDetailsPage.py:421
 #: umit/gui/ScanHostDetailsPage.py:440
@@ -3253,44 +1582,41 @@ msgstr "操作系统"
 msgid "Service"
 msgstr "服务"
 
-#: umit/gui/ScanNotebook.py:265
+#: umit/gui/ScanNotebook.py:266
 #, fuzzy, python-format
-msgid "untitled_scan%s"
+msgid "Untitled Scan %s"
 msgstr "无标题的_扫描%s"
 
-#: umit/gui/ScanNotebook.py:378
-msgid "<target>"
-msgstr "<目标>"
-
-#: umit/gui/ScanNotebook.py:487
+#: umit/gui/ScanNotebook.py:523
 #, fuzzy
 msgid "Profile not found!"
 msgstr "档案尚未找到!"
 
-#: umit/gui/ScanNotebook.py:488
+#: umit/gui/ScanNotebook.py:524
 msgid ""
 "The profile name you selected/typed couldn't be found, and probably doesn't "
 "exist. Please, check the profile name and try again."
 msgstr "您选择或输入的档案名未找到，它可能不存在。请检查此档案名并再试。"
 
-#: umit/gui/ScanNotebook.py:532
-#, fuzzy
-msgid "No Target Host!"
-msgstr "未选择扫描目标！"
-
-#: umit/gui/ScanNotebook.py:533
-msgid ""
-"Target specification is mandatory. Either by an address in the target input "
-"box or through the '-iR' and '-iL' nmap options. Aborting scan."
+#: umit/gui/ScanNotebook.py:553
+msgid "Personalized Scan"
 msgstr ""
-"必须指定目标。在扫描目标输入框中输入地址或是通过 '-iR' 及 '-iL' Nmap 选项指"
-"定。扫描终止。"
 
-#: umit/gui/ScanNotebook.py:547
+#: umit/gui/ScanNotebook.py:555
+#, python-format
+msgid "%s on %s"
+msgstr ""
+
+#: umit/gui/ScanNotebook.py:557
+#, fuzzy, python-format
+msgid "Scan on %s"
+msgstr "扫描类型"
+
+#: umit/gui/ScanNotebook.py:575
 msgid "Empty Nmap Command!"
 msgstr "空的 Nmap 命令行"
 
-#: umit/gui/ScanNotebook.py:548
+#: umit/gui/ScanNotebook.py:576
 msgid ""
 "There is no command to execute! Maybe the selected/typed profile doesn't "
 "exist. Please, check the profile name or type the nmap command you would "
@@ -3299,12 +1625,12 @@ msgstr ""
 "没有命令被执行！可能选择或输入的档案不存在。请检查档案名或输入您想执行的 "
 "Nmap 命令。"
 
-#: umit/gui/ScanNotebook.py:597
+#: umit/gui/ScanNotebook.py:625
 #, fuzzy
 msgid "Scan has not finished yet"
 msgstr "扫描尚未完成"
 
-#: umit/gui/ScanNotebook.py:598
+#: umit/gui/ScanNotebook.py:626
 msgid ""
 "Another scan is running in the background. To start another scan and kill "
 "the old one, click Ok. To wait for the conclusion of the old scan, choose "
@@ -3313,86 +1639,86 @@ msgstr ""
 "另一个扫描任务正在后台运行。要启动新的扫描并中止当前扫描，请点击“确定”。要等"
 "待当前扫描结果，请点击“取消”。"
 
-#: umit/gui/ScanNotebook.py:620
+#: umit/gui/ScanNotebook.py:648
 msgid "Nmap couldn't be found"
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:621
+#: umit/gui/ScanNotebook.py:649
 msgid ""
 "Umit couldn't find Nmap. Maybe you don't have it installed, or you need to "
 "set your PATH environment variable."
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:629
+#: umit/gui/ScanNotebook.py:657
 #, fuzzy
 msgid "Command is missing!"
 msgstr "缺少命令！"
 
-#: umit/gui/ScanNotebook.py:630
+#: umit/gui/ScanNotebook.py:658
 msgid ""
 "It seems that your profile's command is missing or something else went "
 "wrong. Please, try to remove and recreate your profile."
 msgstr "您的档案已丢失或存在某些错误。请移除并重建您的档案。"
 
-#: umit/gui/ScanNotebook.py:751
+#: umit/gui/ScanNotebook.py:779
 msgid "Couldn't retrieve the error raised by the command!"
 msgstr "无法得到由命令产生的错误！"
 
-#: umit/gui/ScanNotebook.py:754
+#: umit/gui/ScanNotebook.py:782
 msgid "Unknown error!"
 msgstr "未知错误！"
 
-#: umit/gui/ScanNotebook.py:761
+#: umit/gui/ScanNotebook.py:789
 msgid "Root privileges are needed!"
 msgstr "需要超级用户权限！"
 
-#: umit/gui/ScanNotebook.py:767
+#: umit/gui/ScanNotebook.py:795
 #, fuzzy
 msgid "An unexpected error occourried!"
 msgstr "发生了非预期的错误！"
 
-#: umit/gui/ScanNotebook.py:923
+#: umit/gui/ScanNotebook.py:951
 #, python-format
 msgid "you network scan discovered an unknown fingerprint sent by the host %s"
 msgstr "您的网络扫描发现了由站点 %s 发送的未知指纹"
 
-#: umit/gui/ScanNotebook.py:929
+#: umit/gui/ScanNotebook.py:957
 #, fuzzy
 msgid ""
 "your network scan discovered several unknown fingerprints sent by the "
 "follwoing hosts: "
 msgstr "您的网络扫描发现了由如下站点发送的未知指纹："
 
-#: umit/gui/ScanNotebook.py:940
+#: umit/gui/ScanNotebook.py:968
 msgid "Unrecognized Services/OS Fingerprints Found!"
 msgstr "找到了无法识别的服务或操作系统指纹！"
 
-#: umit/gui/ScanNotebook.py:1286
+#: umit/gui/ScanNotebook.py:1314
+msgid "Nmap Output"
+msgstr "Nmap 输出"
+
+#: umit/gui/ScanNotebook.py:1315
 #, fuzzy
 msgid "Ports / Hosts"
 msgstr "端口 / 站点"
 
-#: umit/gui/ScanNotebook.py:1287
-msgid "Nmap Output"
-msgstr "Nmap 输出"
-
-#: umit/gui/ScanNotebook.py:1288
+#: umit/gui/ScanNotebook.py:1316
 msgid "Host Details"
 msgstr "站点详情"
 
-#: umit/gui/ScanNotebook.py:1289
+#: umit/gui/ScanNotebook.py:1317
 msgid "Scan Details"
 msgstr "扫描详情"
 
-#: umit/gui/ScanNotebook.py:1290 umit/gui/radialnet/Toolbar.py:247
+#: umit/gui/ScanNotebook.py:1318 umit/gui/radialnet/Toolbar.py:310
 msgid "Topology"
 msgstr ""
 
-#: umit/gui/ScanNotebook.py:1322
+#: umit/gui/ScanNotebook.py:1350
 msgid "No host selected!"
 msgstr "没有选择站点！"
 
-#: umit/gui/ScanNotebook.py:1325
+#: umit/gui/ScanNotebook.py:1353
 msgid "Scan is not finished yet!"
 msgstr "扫描尚未完成！"
 
@@ -3400,6 +1726,12 @@ msgstr "扫描尚未完成！"
 #, fuzzy
 msgid "Version"
 msgstr "版本"
+
+#: umit/gui/ScanOpenPortsPage.py:82 umit/inventory/InventoryTree.py:44
+#: umit/db/Search.py:105
+#, fuzzy
+msgid "Hostname"
+msgstr "机器名"
 
 #: umit/gui/ScanOpenPortsPage.py:87
 msgid "Server product"
@@ -3495,8 +1827,8 @@ msgstr "开始扫描"
 msgid "Stop Scheduler"
 msgstr ""
 
-#: umit/gui/SchedulerControl.py:71 umit/gui/SchedulerControl.py:96
-#: umit/gui/SchedulerControl.py:117
+#: umit/gui/SchedulerControl.py:71 umit/gui/SchedulerControl.py:93
+#: umit/gui/SchedulerControl.py:111
 msgid "Scheduler Controller"
 msgstr ""
 
@@ -3514,19 +1846,19 @@ msgid ""
 "how you can start it as root."
 msgstr ""
 
-#: umit/gui/SchedulerControl.py:97
+#: umit/gui/SchedulerControl.py:94
 msgid ""
 "The Scheduler couldn't be started, reason:\n"
 "\n"
 msgstr ""
 
-#: umit/gui/SchedulerControl.py:118
+#: umit/gui/SchedulerControl.py:112
 msgid ""
 "The Scheduler couldn't be stopped, reason:\n"
 "\n"
 msgstr ""
 
-#: umit/gui/SchedulerControl.py:183
+#: umit/gui/SchedulerControl.py:174
 #, fuzzy
 msgid "Scheduler is not running!"
 msgstr "正在扫描"
@@ -3539,6 +1871,22 @@ msgstr ""
 #, fuzzy
 msgid "Schema Name"
 msgstr "服务名称"
+
+#: umit/gui/SchedulerEdit.py:73 umit/inventory/NewInventory.py:92
+#, fuzzy
+msgid "Scan Profile"
+msgstr "档案"
+
+#: umit/gui/SchedulerEdit.py:82 umit/gui/SchedulerEdit.py:514
+#: umit/inventory/NewInventory.py:114
+#, fuzzy
+msgid "Scheduling Profile"
+msgstr "删除档案"
+
+#: umit/gui/SchedulerEdit.py:86 umit/inventory/NewInventory.py:119
+#, fuzzy
+msgid "Edit Profiles"
+msgstr "档案"
 
 #: umit/gui/SchedulerEdit.py:90
 #, fuzzy
@@ -3559,6 +1907,10 @@ msgstr ""
 
 #: umit/gui/SchedulerEdit.py:98
 msgid "Add to the Inventory"
+msgstr ""
+
+#: umit/gui/SchedulerEdit.py:99 umit/inventory/NewInventory.py:82
+msgid "Enabled"
 msgstr ""
 
 #: umit/gui/SchedulerEdit.py:258
@@ -3589,227 +1941,50 @@ msgstr ""
 msgid "You especified an invalid directory to save scans output."
 msgstr ""
 
-#: umit/gui/SchedulerEdit.py:507
+#: umit/gui/SchedulerEdit.py:503
 #, fuzzy
 msgid "Scheduling Profiles Editor"
 msgstr "档案编辑器"
 
-#: umit/gui/SchedulerEdit.py:522
+#: umit/gui/SchedulerEdit.py:518
 msgid "Schedule"
 msgstr ""
 
-#: umit/gui/SchedulerEdit.py:523
+#: umit/gui/SchedulerEdit.py:519
 #, fuzzy
 msgid "Minute"
 msgstr "分钟"
 
-#: umit/gui/SchedulerEdit.py:527
+#: umit/gui/SchedulerEdit.py:521 umit/inventory/TLBase.py:66
+#, fuzzy
+msgid "Hour"
+msgstr "小时"
+
+#: umit/gui/SchedulerEdit.py:523
 msgid "Day of month"
 msgstr ""
 
-#: umit/gui/SchedulerEdit.py:531
+#: umit/gui/SchedulerEdit.py:525 umit/inventory/TLBase.py:64
+#, fuzzy
+msgid "Month"
+msgstr "月"
+
+#: umit/gui/SchedulerEdit.py:527
 #, fuzzy
 msgid "Weekday"
 msgstr "周"
 
-#: umit/gui/SchedulerEdit.py:607 umit/gui/SchedulerEdit.py:629
+#: umit/gui/SchedulerEdit.py:603 umit/gui/SchedulerEdit.py:625
 msgid "Scheduling Profile - Error while saving"
 msgstr ""
 
-#: umit/gui/SchedulerEdit.py:609
+#: umit/gui/SchedulerEdit.py:605
 #, fuzzy
 msgid "You need to specify a name for Profile."
 msgstr "您必须为该档案指定名称。"
 
-#: umit/gui/SchedulerEdit.py:631
+#: umit/gui/SchedulerEdit.py:627
 msgid "Check your cron syntax and try to save again."
-msgstr ""
-
-#: umit/gui/ScriptManager.py:147
-#, fuzzy
-msgid "No descriptions"
-msgstr "彩色描述"
-
-#: umit/gui/ScriptManager.py:148
-msgid "unnamed"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:150 umit/gui/ScriptManager.py:154
-msgid "untagged"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:261
-#, fuzzy
-msgid "Select Script"
-msgstr "选择扫描结果"
-
-#: umit/gui/ScriptManager.py:277
-#, fuzzy
-msgid "File is not a NSE script file"
-msgstr "此文件不是 Umit 扫描结果"
-
-#: umit/gui/ScriptManager.py:278
-#, fuzzy
-msgid ""
-"Selected file is not a NSE script file. Umit can not parse this file. "
-"Please, select another."
-msgstr "选定的文件不是 Umit 扫描结果。 Umit 无法解析此文件。请选择其它文件。"
-
-#: umit/gui/ScriptManager.py:282
-msgid "Select Scripts Directory"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:292
-msgid "Can not find any NSE script files in the directory"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:293
-#, fuzzy
-msgid ""
-"Umit can not find any NSE script files in the selected directory. Please, "
-"select another."
-msgstr "Umit 无法打开选定的文件。请选择其它文件。"
-
-#: umit/gui/ScriptManager.py:301
-msgid "Script Manager"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:311 umit/gui/ScriptManager.py:619
-msgid "Add File..."
-msgstr ""
-
-#: umit/gui/ScriptManager.py:312
-msgid "Add single script file"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:315 umit/gui/ScriptManager.py:623
-#, fuzzy
-msgid "Add Directory..."
-msgstr "目录"
-
-#: umit/gui/ScriptManager.py:316
-msgid "Add directory with script files"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:319 umit/gui/ScriptManager.py:627
-msgid "Add URL File..."
-msgstr ""
-
-#: umit/gui/ScriptManager.py:320
-msgid "Add single script file from Web"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:323 umit/gui/ScriptManager.py:631
-msgid "Add URL Base..."
-msgstr ""
-
-#: umit/gui/ScriptManager.py:324
-msgid "Add base with script files from Web"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:328
-msgid "Quit from Script Manager"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:330
-msgid "_View"
-msgstr "查看(_V)"
-
-#: umit/gui/ScriptManager.py:332
-#, fuzzy
-msgid "_Settings"
-msgstr "分节部分"
-
-#: umit/gui/ScriptManager.py:336
-msgid "Refresh scripts list"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:339
-#, fuzzy
-msgid "Search"
-msgstr "三月"
-
-#: umit/gui/ScriptManager.py:340
-msgid "Search necessory scripts"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:344
-#, fuzzy
-msgid "Edit selected script"
-msgstr "编辑选定的扫描档案"
-
-#: umit/gui/ScriptManager.py:347
-msgid "Preferences"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:348
-msgid "Script Manager settings"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:354
-#, fuzzy
-msgid "Toolbar"
-msgstr "工具(_T)"
-
-#: umit/gui/ScriptManager.py:355
-msgid "Show/hide toolbar"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:359
-msgid "Show/hide statusbar"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:363
-msgid "Show/hide Categories sidebar"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:367
-#, fuzzy
-msgid "Show/hide Description sidebar"
-msgstr "服务描述"
-
-#: umit/gui/ScriptManager.py:497
-msgid "All"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:601
-msgid "Script Manager Preferences"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:613
-msgid "Scripts Catalog"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:635
-msgid "Remove..."
-msgstr ""
-
-#: umit/gui/ScriptManager.py:645
-#, fuzzy
-msgid "Text Editor"
-msgstr "档案编辑器"
-
-#: umit/gui/ScriptManager.py:648
-#, fuzzy
-msgid "Internal Editor"
-msgstr "档案编辑器"
-
-#: umit/gui/ScriptManager.py:651
-#, fuzzy
-msgid "External Editor"
-msgstr "档案编辑器"
-
-#: umit/gui/ScriptManager.py:667
-msgid "Catalog"
-msgstr ""
-
-#: umit/gui/ScriptManager.py:668
-#, fuzzy
-msgid "Editor"
-msgstr "档案编辑器"
-
-#: umit/gui/ScriptManager.py:698
-msgid "Select Necessory Scripts"
 msgstr ""
 
 #: umit/gui/Search.py:65
@@ -3887,6 +2062,11 @@ msgstr "日期"
 msgid "General search parameters"
 msgstr "一般搜索参数"
 
+#: umit/gui/SearchGUI.py:125 umit/interfaceeditor/Tools.py:592
+#, fuzzy
+msgid "Option"
+msgstr "选项"
+
 #: umit/gui/SearchGUI.py:129
 msgid "Keyword"
 msgstr "关键字"
@@ -3895,9 +2075,30 @@ msgstr "关键字"
 msgid "Host search parameters"
 msgstr "站点搜索参数"
 
+#: umit/gui/SearchGUI.py:148 umit/inventory/InventoryTree.py:44
+#: umit/db/Search.py:114
+#, fuzzy
+msgid "MAC"
+msgstr "MAC:"
+
+#: umit/gui/SearchGUI.py:149 umit/inventory/InventoryTree.py:44
+#, fuzzy
+msgid "IPv4"
+msgstr "IPv4"
+
+#: umit/gui/SearchGUI.py:150 umit/inventory/InventoryTree.py:44
+#, fuzzy
+msgid "IPv6"
+msgstr "IPv6"
+
 #: umit/gui/SearchGUI.py:165
 msgid "Service search parameters"
 msgstr "服务搜索参数"
+
+#: umit/gui/SearchGUI.py:168 umit/db/Search.py:180
+#, fuzzy
+msgid "Port number"
+msgstr "端口号"
 
 #: umit/gui/SearchGUI.py:171
 #, fuzzy
@@ -4120,55 +2321,111 @@ msgid ""
 "web browser."
 msgstr "服务指纹已成功提交。包含详细信息的页面将在您的默认网络浏览器中打开。"
 
-#: umit/gui/Wizard.py:87
+#: umit/gui/Wizard.py:89
 #, fuzzy
 msgid "Umit Command constructor wizard"
 msgstr "UMIT 命令行创建向导"
 
-#: umit/gui/Wizard.py:226
+#: umit/gui/Wizard.py:225
 msgid "No target selected!"
 msgstr "未选择扫描目标！"
 
-#: umit/gui/Wizard.py:227
+#: umit/gui/Wizard.py:226
 msgid "You must provide a target to be scanned."
 msgstr "您必须指定一个扫描目标。"
 
-#: umit/gui/Wizard.py:390
+#: umit/gui/Wizard.py:389
 #, fuzzy
 msgid "Umit generated the nmap command. Click Apply to finish this wizard."
 msgstr "UMIT 已生成 NMAP 命令行。点击”确定“结束本向导。"
 
-#: umit/gui/Wizard.py:405
+#: umit/gui/Wizard.py:404
 msgid ""
 "Please, enter the profile name, and optionally, enter a hint, description "
 "and annotation for this new profile"
 msgstr "请为档案指定名称，您还可以可选地为此档案指定提示，描述及注解"
 
-#: umit/gui/Wizard.py:449
+#: umit/gui/Wizard.py:448
 #, fuzzy
 msgid "Umit allow user to construct powerful commands in two distinct ways:"
 msgstr "UMIT 允许用户通过两种方式创建强大的扫描命令行"
 
-#: umit/gui/Wizard.py:451
+#: umit/gui/Wizard.py:450
 msgid "Novice"
 msgstr "简单模式"
 
-#: umit/gui/Wizard.py:452
+#: umit/gui/Wizard.py:451
 msgid "Expert"
 msgstr "专家模式"
 
-#: umit/gui/Wizard.py:470
+#: umit/gui/Wizard.py:469
 msgid ""
 "You wish to create a new profile, or just want to quickly create a command "
 "and run it once?"
 msgstr "您希望创建一个新的扫描模式，或是快速地创建一次性的扫描命令？"
 
-#: umit/plugin/Network.py:49
-#, python-format
-msgid ">>> safecall(): Ignoring exception %s"
+#: umit/gui/radialnet/SaveDialog.py:40
+msgid "Save Topology"
 msgstr ""
 
-#: umit/plugin/Network.py:109
+#: umit/gui/radialnet/SaveDialog.py:54
+msgid "Select the output type:"
+msgstr ""
+
+#: umit/gui/radialnet/SaveDialog.py:70
+#, fuzzy
+msgid "Can't create file"
+msgstr "无法保存文件"
+
+#: umit/gui/radialnet/SaveDialog.py:71
+msgid "Please check if you have permission to write this file."
+msgstr ""
+
+#: umit/gui/radialnet/Toolbar.py:55
+#, fuzzy
+msgid "Hosts viewer"
+msgstr "未开启的站点："
+
+#: umit/gui/radialnet/Toolbar.py:61
+msgid "Save snapshot"
+msgstr ""
+
+#: umit/gui/radialnet/Toolbar.py:166 umit/interfaceeditor/Main.py:551
+#, fuzzy
+msgid "Tools"
+msgstr "工具(_T)"
+
+#: umit/gui/radialnet/Toolbar.py:172
+#, fuzzy
+msgid "Controls"
+msgstr "投稿者"
+
+#: umit/gui/radialnet/Toolbar.py:175
+msgid "Show control panel"
+msgstr ""
+
+#: umit/gui/radialnet/Toolbar.py:179
+msgid "Fisheye"
+msgstr ""
+
+#: umit/gui/radialnet/Toolbar.py:182
+msgid "Enable fisheye"
+msgstr ""
+
+#: umit/gui/radialnet/Toolbar.py:186
+msgid "Fullscreen"
+msgstr ""
+
+#: umit/gui/radialnet/Toolbar.py:189
+msgid "Toggle fullscreen"
+msgstr ""
+
+#: umit/plugin/Network.py:49
+#, python-format
+msgid ">>> safecall(): Ignoring exception %s -> %s (%s, %s)"
+msgstr ""
+
+#: umit/plugin/Network.py:113
 #, python-format
 msgid ">>> Calling get_url() for %s"
 msgstr ""
@@ -4187,120 +2444,140 @@ msgstr ""
 msgid "Need UMIT restart to disable."
 msgstr ""
 
-#: umit/plugin/PluginPage.py:57
+#: umit/plugin/PluginPage.py:58
 #, fuzzy
 msgid "Find updates"
 msgstr "结束于："
 
-#: umit/plugin/PluginPage.py:59
+#: umit/plugin/PluginPage.py:60
 msgid "Install updates"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:61
+#: umit/plugin/PluginPage.py:62 umit/plugin/PluginPage.py:414
 #, fuzzy
 msgid "Skip"
 msgstr "ip"
 
-#: umit/plugin/PluginPage.py:63
+#: umit/plugin/PluginPage.py:64
 msgid "Restart UMIT"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:135
+#: umit/plugin/PluginPage.py:136
 msgid ""
 "Remember that you have to restart UMIT to make new version of plugins to be "
 "loaded correctly."
 msgstr ""
 
-#: umit/plugin/PluginPage.py:154
+#: umit/plugin/PluginPage.py:159
+msgid "Rembember to restart UMIT to use new version of plugins."
+msgstr ""
+
+#: umit/plugin/PluginPage.py:163
 msgid "Update skipped"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:189
+#: umit/plugin/PluginPage.py:204
 msgid "<b>Downloading updates ...</b>"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:228
-msgid "Update phase complete. Now restart UMIT to changes make effects."
+#: umit/plugin/PluginPage.py:248
+#, python-format
+msgid "Update phase complete%s. Now restart UMIT to changes make effects."
 msgstr ""
 
-#: umit/plugin/PluginPage.py:257
+#: umit/plugin/PluginPage.py:279
 msgid "Waiting ..."
 msgstr ""
 
-#: umit/plugin/PluginPage.py:270
-msgid "No plugins provides update url. Cannot procede."
+#: umit/plugin/PluginPage.py:292
+msgid "No plugins provide an update URL. Cannot proceed."
 msgstr ""
 
-#: umit/plugin/PluginPage.py:284
+#: umit/plugin/PluginPage.py:306
 #, python-format
 msgid "<b>Looking for %d updates ...</b>"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:336
+#: umit/plugin/PluginPage.py:373
 msgid "<b>No updates found</b>"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:348
+#: umit/plugin/PluginPage.py:385
 #, python-format
 msgid "<b>Updates found: %d</b>"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:353
+#: umit/plugin/PluginPage.py:390
 #, python-format
 msgid "<b>Updates found: %d with %d errors</b>"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:393
+#: umit/plugin/PluginPage.py:423
+#, fuzzy, python-format
+msgid "Update to %s"
+msgstr "开启彩色比较"
+
+#: umit/plugin/PluginPage.py:428
+#, python-format
+msgid "Reinstall %s"
+msgstr ""
+
+#: umit/plugin/PluginPage.py:433
+#, python-format
+msgid "Downgrade to %s"
+msgstr ""
+
+#: umit/plugin/PluginPage.py:468
 msgid "<b>Preferences</b>"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:394
+#: umit/plugin/PluginPage.py:469
 msgid "Visit homepage"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:395
+#: umit/plugin/PluginPage.py:470
 #, fuzzy, python-format
 msgid "About %s"
 msgstr "关于(_A)"
 
-#: umit/plugin/PluginPage.py:397
+#: umit/plugin/PluginPage.py:472
 msgid "Enable"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:397
+#: umit/plugin/PluginPage.py:472
 msgid "Disable"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:398
+#: umit/plugin/PluginPage.py:473
 msgid "Uninstall"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:468
+#: umit/plugin/PluginPage.py:543
 msgid "Disabling Plugin"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:469
+#: umit/plugin/PluginPage.py:544
 #, python-format
 msgid "Do you want to disable %s plugin?"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:481
+#: umit/plugin/PluginPage.py:556
 msgid "Can not disable Plugin"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:482
+#: umit/plugin/PluginPage.py:557
 #, python-format
 msgid ""
 "%s\n"
 "Do you want to force the unload phase for %s plugin?"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:512
+#: umit/plugin/PluginPage.py:587
 #, python-format
 msgid "Unable to uninstall %s plugin."
 msgstr ""
 
-#: umit/plugin/PluginPage.py:520
+#: umit/plugin/PluginPage.py:595
 #, python-format
 msgid "No preferences for %s"
 msgstr ""
@@ -4314,64 +2591,1835 @@ msgstr "开启彩色比较"
 msgid "Plugin already loaded."
 msgstr ""
 
-#: umit/plugin/Update.py:200
+#: umit/plugin/Update.py:241 umit/plugin/Update.py:374
+#: umit/plugin/Update.py:395
+msgid "Cycling to next update url. Waiting..."
+msgstr ""
+
+#: umit/plugin/Update.py:244
+#, python-format
+msgid "Download failed: %s"
+msgstr ""
+
+#: umit/plugin/Update.py:262
 msgid "Checking validity ..."
 msgstr ""
 
-#: umit/plugin/Update.py:217 umit/plugin/Update.py:229
+#: umit/plugin/Update.py:287 umit/plugin/Update.py:299
 msgid "Updated. Restart to take effect"
 msgstr ""
 
-#: umit/plugin/Update.py:220
+#: umit/plugin/Update.py:290
 #, fuzzy
 msgid "Corrupted file."
 msgstr "选择文件"
 
-#: umit/plugin/Update.py:265
+#: umit/plugin/Update.py:335
 msgid "Downloading ..."
 msgstr ""
 
-#: umit/plugin/Update.py:298
+#: umit/plugin/Update.py:354
+msgid "Downloading update information..."
+msgstr ""
+
+#: umit/plugin/Update.py:379 umit/plugin/Update.py:400
 #, python-format
 msgid "Cannot find newer version (%s)"
 msgstr ""
 
-#: umit/plugin/Update.py:333
-#, python-format
-msgid "Version %s avaiable but need manual update."
+#: umit/plugin/Update.py:435
+msgid "Various versions available but require manual intervention."
 msgstr ""
 
-#: umit/plugin/Update.py:335
-#, python-format
-msgid "Version %s avaiable but need manual downgrade."
-msgstr ""
-
-#: umit/plugin/Update.py:338
+#: umit/plugin/Update.py:437
 #, fuzzy, python-format
-msgid "Version %s avaiable."
+msgid "Version %s available but need manual update."
 msgstr "不可用"
 
-#: umit/plugin/Update.py:347
+#: umit/plugin/Update.py:439
+#, python-format
+msgid "Version %s available but need manual downgrade."
+msgstr ""
+
+#: umit/plugin/Update.py:443
+#, fuzzy
+msgid "Various versions available"
+msgstr "不可用"
+
+#: umit/plugin/Update.py:445
+#, fuzzy, python-format
+msgid "Version %s available."
+msgstr "不可用"
+
+#: umit/plugin/Update.py:451
 msgid "Unable to parse latest.xml"
 msgstr ""
 
-#: umit/plugin/Update.py:349
+#: umit/plugin/Update.py:453
 msgid "No applicable updates found"
 msgstr ""
 
-#: umit/plugin/Window.py:46
+#: umit/plugin/Window.py:48
 msgid "Plugin Manager"
 msgstr ""
 
-#: umit/plugin/Window.py:82
+#: umit/plugin/Window.py:85
 #, fuzzy
 msgid "Extensions"
 msgstr "文件扩展名"
 
-#: umit/plugin/Window.py:82
+#: umit/plugin/Window.py:85
 #, fuzzy
 msgid "Paths"
 msgstr "端口"
+
+#: umit/inventory/About.py:48
+msgid "Build"
+msgstr ""
+
+#: umit/inventory/About.py:51
+msgid "UMIT Network Inventory and UMIT Scheduler are UMIT\n"
+msgstr ""
+
+#: umit/inventory/About.py:52
+msgid "extensions developed by"
+msgstr ""
+
+#: umit/inventory/About.py:53
+msgid ""
+"and was sponsored by Google during the Summer of Code 2007.\n"
+"Thanks Google!"
+msgstr ""
+
+#: umit/inventory/About.py:70 umit/inventory/Viewer.py:675
+msgid "About UMIT Network Inventory"
+msgstr ""
+
+#: umit/inventory/Calendar.py:32
+msgid "January"
+msgstr "一月"
+
+#: umit/inventory/Calendar.py:32
+msgid "February"
+msgstr "二月"
+
+#: umit/inventory/Calendar.py:32
+msgid "March"
+msgstr "三月"
+
+#: umit/inventory/Calendar.py:32
+msgid "April"
+msgstr "四月"
+
+#: umit/inventory/Calendar.py:32
+msgid "May"
+msgstr "五月"
+
+#: umit/inventory/Calendar.py:33
+msgid "June"
+msgstr "六月"
+
+#: umit/inventory/Calendar.py:33
+msgid "July"
+msgstr "七月"
+
+#: umit/inventory/Calendar.py:33
+msgid "August"
+msgstr "八月"
+
+#: umit/inventory/Calendar.py:33
+msgid "September"
+msgstr "九月"
+
+#: umit/inventory/Calendar.py:34
+msgid "October"
+msgstr "十月"
+
+#: umit/inventory/Calendar.py:34
+msgid "November"
+msgstr "十一月"
+
+#: umit/inventory/Calendar.py:34
+msgid "December"
+msgstr "十二月"
+
+#: umit/inventory/Calendar.py:37
+#, fuzzy
+msgid "Monday"
+msgstr "五月"
+
+#: umit/inventory/Calendar.py:37
+msgid "Tuesday"
+msgstr ""
+
+#: umit/inventory/Calendar.py:37
+msgid "Wednesday"
+msgstr ""
+
+#: umit/inventory/Calendar.py:37
+msgid "Thursday"
+msgstr ""
+
+#: umit/inventory/Calendar.py:38
+msgid "Friday"
+msgstr ""
+
+#: umit/inventory/Calendar.py:38
+msgid "Saturday"
+msgstr ""
+
+#: umit/inventory/Calendar.py:38
+#, fuzzy
+msgid "Sunday"
+msgstr "摘要"
+
+#: umit/inventory/ChangesDiff.py:31
+msgid "Nothing being shown."
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:35
+#, fuzzy
+msgid "Status"
+msgstr "状态"
+
+#: umit/inventory/ChangesDiff.py:36
+msgid "Previous value"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:53
+msgid "L"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:121
+#, fuzzy
+msgid "No data"
+msgstr "无扫描标签"
+
+#: umit/inventory/ChangesDiff.py:122
+msgid "No data available for this host on this date"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:279 umit/inventory/ChangesDiff.py:280
+#: umit/inventory/ChangesDiff.py:291
+#, fuzzy
+msgid "count"
+msgstr "数量"
+
+#: umit/inventory/ChangesDiff.py:309 umit/inventory/TLBase.py:44
+#: umit/db/Search.py:117
+msgid "Fingerprint"
+msgstr ""
+
+#: umit/inventory/ChangesDiff.py:312
+#, fuzzy
+msgid "Uptime"
+msgstr "运行时间："
+
+#: umit/inventory/ChangesDiff.py:336 umit/db/InventoryChanges.py:287
+#: umit/db/Search.py:111
+#, fuzzy
+msgid "OS Classes"
+msgstr "操作系统类别"
+
+#: umit/inventory/ChangesDiff.py:548
+#, fuzzy
+msgid "TCP Sequence Class"
+msgstr "TCP 序列"
+
+#: umit/inventory/ChangesDiff.py:549
+#, fuzzy
+msgid "TCP Sequence Index"
+msgstr "TCP 序列"
+
+#: umit/inventory/ChangesDiff.py:550
+#, fuzzy
+msgid "TCP Sequence Difficulty"
+msgstr "TCP 序列"
+
+#: umit/inventory/ChangesDiff.py:552
+#, fuzzy
+msgid "TCP Sequence Value"
+msgstr "TCP 序列"
+
+#: umit/inventory/ChangesDiff.py:554
+#, fuzzy
+msgid "IP ID Sequence Class"
+msgstr "IP ID 序列"
+
+#: umit/inventory/ChangesDiff.py:556
+#, fuzzy
+msgid "IP ID Sequence Value"
+msgstr "IP ID 序列"
+
+#: umit/inventory/ChangesDiff.py:559
+#, fuzzy
+msgid "TCP TS Sequence Class"
+msgstr "TCP TS 序列"
+
+#: umit/inventory/ChangesDiff.py:561
+#, fuzzy
+msgid "TCP TS Sequence Value"
+msgstr "TCP TS 序列"
+
+#: umit/inventory/ChangesList.py:95 umit/inventory/ChangesList.py:324
+#: umit/inventory/ChangesList.py:344
+msgid "Inventories"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:97
+msgid "Categories"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:221 umit/inventory/TLBase.py:41
+#: umit/inventory/Viewer.py:530
+msgid "Inventory"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:221
+#, fuzzy
+msgid "Host address"
+msgstr "机器名"
+
+#: umit/inventory/ChangesList.py:222
+msgid "Category"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:222
+#, fuzzy
+msgid "Short change description"
+msgstr "服务描述"
+
+#: umit/inventory/ChangesList.py:223
+msgid "Change date"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:320
+msgid "Refresh"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:325
+msgid "Timeline for this host"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:345
+#, fuzzy
+msgid "Options"
+msgstr "选项"
+
+#: umit/inventory/ChangesList.py:402 umit/inventory/Timeline.py:68
+#, fuzzy
+msgid "Viewing"
+msgstr "查看(_V)"
+
+#: umit/inventory/ChangesList.py:403
+msgid "of"
+msgstr ""
+
+#: umit/inventory/ChangesList.py:405
+#, fuzzy
+msgid "Nothing to view"
+msgstr "没有任何可以保存的"
+
+#: umit/inventory/DataRemoval.py:44
+msgid "Delete data older than"
+msgstr ""
+
+#: umit/inventory/DataRemoval.py:45
+#, fuzzy
+msgid "days"
+msgstr "天"
+
+#: umit/inventory/DataRemoval.py:50
+msgid "Set value as 0 to disable data removal"
+msgstr ""
+
+#: umit/inventory/DataRemoval.py:81
+msgid "Configure Inventory Data Removal"
+msgstr ""
+
+#: umit/inventory/DataRemoval.py:117
+msgid "<b>Please wait...</b>"
+msgstr ""
+
+#: umit/inventory/DataRemoval.py:119
+msgid "Removing data from Network Inventory database"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:330
+#, fuzzy
+msgid "Host Discovery"
+msgstr "站点详情"
+
+#: umit/inventory/HostDiscovery.py:340
+msgid "Detect network(s)"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:343
+msgid "Add new entry"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:345
+msgid "Find hosts"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:348 umit/inventory/HostDiscovery.py:521
+#: umit/inventory/HostDiscovery.py:554
+#, fuzzy
+msgid "Target list"
+msgstr "target_list"
+
+#: umit/inventory/HostDiscovery.py:355
+msgid "Network"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:363
+msgid "Remove from list"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:376
+msgid "Add new entry for a network"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:378
+msgid "Try to detect network(s)"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:380
+msgid "Find hosts in entered network(s)"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:382
+msgid "Remove selection from target list"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:456
+#, fuzzy
+msgid "No network(s) detected."
+msgstr "没有选择站点！"
+
+#: umit/inventory/HostDiscovery.py:457
+msgid ""
+"You will need to especify the network(s) yourself before detecting hosts."
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:493
+msgid "No network."
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:494
+msgid "You need to specify at least one network to search for hosts."
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:519 umit/inventory/InventoryTree.py:267
+#: umit/inventory/InventoryTree.py:319
+#, fuzzy
+msgid "scan"
+msgstr "扫描"
+
+#: umit/inventory/HostDiscovery.py:523 umit/inventory/InventoryTree.py:267
+#: umit/inventory/InventoryTree.py:321
+#, fuzzy
+msgid " running"
+msgstr "正在扫描"
+
+#: umit/inventory/HostDiscovery.py:564
+msgid "Invalid network(s)."
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:566
+msgid "There is some invalid character in network"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:567
+msgid "please verify."
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:594
+msgid "Network list"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:599
+msgid "Sample 192.168.254.0/24"
+msgstr ""
+
+#: umit/inventory/HostDiscovery.py:624
+#, fuzzy
+msgid "Use target list"
+msgstr "target_list"
+
+#: umit/inventory/InventoryCommonDialog.py:12
+msgid "Inventory without scheduling profile."
+msgstr ""
+
+#: umit/inventory/InventoryCommonDialog.py:14
+msgid ""
+"This Inventory was created when a scan realized in UMIT was requested to be "
+"added to the Network Inventory Viewer, so there is no scheduling profile for "
+"it.\n"
+"\n"
+"This Inventory is not editable.\n"
+"\n"
+"(If the mentioned reason above is incorrect, either you have a database from "
+"somewhere else or report as bug)"
+msgstr ""
+
+#: umit/inventory/InventoryException.py:9
+msgid "No inventory named"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:42 umit/inventory/Viewer.py:61
+#, fuzzy
+msgid "Info"
+msgstr "Umit 信息"
+
+#: umit/inventory/InventoryTree.py:62 umit/inventory/InventoryTree.py:189
+msgid "My Inventories"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:225
+#, fuzzy
+msgid "Scan will not run!"
+msgstr "正在扫描"
+
+#: umit/inventory/InventoryTree.py:226 umit/inventory/InventoryTree.py:283
+msgid "You tried running scan for Inventory"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:228
+msgid ""
+"but it has no data in Scheduler schemas file, neither in database.\n"
+"\n"
+"Error returned:"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:282
+msgid "Scan failed to run!"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:285
+msgid "but it returned the following"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:301
+msgid "Database couldn't be updated!"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:302
+msgid "The scan for the Inventory"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:304
+msgid "finished but it couldn't be added to the database."
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:355
+msgid "Expand All"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:359
+msgid "Collapse All"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:366 umit/inventory/InventoryTree.py:376
+#, fuzzy
+msgid "View by"
+msgstr "查看(_V)"
+
+#: umit/inventory/InventoryTree.py:410
+#, python-format
+msgid "Edit %s"
+msgstr ""
+
+#: umit/inventory/InventoryTree.py:413
+msgid "Run scan now"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:65
+msgid "Editing Inventory"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:67
+msgid "New Inventory"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:77
+msgid "Inventory's name"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:80
+#, fuzzy
+msgid "in use"
+msgstr "分钟"
+
+#: umit/inventory/NewInventory.py:85
+msgid "Use default scan options"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:91
+msgid "Use advanced scan options"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:100
+#, fuzzy
+msgid "Command Wizard"
+msgstr "命令向导(_C)"
+
+#: umit/inventory/NewInventory.py:109
+#, fuzzy
+msgid "Scan target"
+msgstr "任意目标"
+
+#: umit/inventory/NewInventory.py:111
+msgid "Use host discovery"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:131
+msgid "nmap -T Aggressive -sV -n -O -v target"
+msgstr ""
+
+#: umit/inventory/NewInventory.py:323 umit/inventory/NewInventory.py:343
+#: umit/inventory/NewInventory.py:363
+msgid "New Inventory - Error while creating."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:324
+msgid "You tried to use an existing Inventory name or you didn't specify one."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:333
+msgid "New Inventory - Error  while creating."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:334
+msgid "You didn't specify any target."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:344
+msgid "You need to toggle \"Use default scan options\" or specify a command."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:364
+msgid ""
+"It seems you removed <target> from the Scan command entry, you need to leave "
+"it somewhere there."
+msgstr ""
+
+#: umit/inventory/NewInventory.py:533
+msgid "Changes in command won't be saved!"
+msgstr ""
+
+#: umit/inventory/RefreshDialog.py:35
+msgid "Refresh Time"
+msgstr ""
+
+#: umit/inventory/RefreshDialog.py:39 umit/inventory/TLBase.py:80
+#: umit/core/UmitConf.py:160
+#, fuzzy
+msgid "Minutes"
+msgstr "分钟"
+
+#: umit/inventory/SchedulerLog.py:81
+msgid "Scheduler Log"
+msgstr ""
+
+#: umit/inventory/SearchBar.py:54
+#, fuzzy
+msgid "Search term"
+msgstr "搜索选项"
+
+#: umit/inventory/SearchBar.py:65
+#, fuzzy
+msgid "Find devices"
+msgstr "任意服务"
+
+#: umit/inventory/SearchBar.py:88 umit/inventory/SearchBar.py:92
+#, fuzzy
+msgid "Search in"
+msgstr "搜错窗口"
+
+#: umit/inventory/SearchBar.py:89 umit/inventory/SearchBar.py:93
+msgid "All Inventories"
+msgstr ""
+
+#: umit/inventory/SearchBar.py:130
+msgid "Impossible to perform search."
+msgstr ""
+
+#: umit/inventory/SearchBar.py:131
+msgid ""
+"Connection to the database isn't established. There are some possible "
+"reasons: your UMIT database could be corrupted, missing, or something more "
+"strange, or, you aren't running this inside UMIT.\n"
+"\n"
+"If you suspect this is a bug, please report it."
+msgstr ""
+
+#: umit/inventory/SearchBar.py:145
+msgid "Specify an Inventory."
+msgstr ""
+
+#: umit/inventory/SearchBar.py:146
+msgid "You need to select one or All Inventories in order to perform a search."
+msgstr ""
+
+#: umit/inventory/SearchBar.py:185
+msgid "Empty string not allow"
+msgstr ""
+
+#: umit/inventory/SearchBar.py:186
+msgid "Suggestions: port 80, change text, etc."
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:43
+msgid "Timeline Settings"
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:44
+msgid "Timeline view mode"
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:45
+msgid "Timeline view kind"
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:49
+#, fuzzy
+msgid "Devices tab"
+msgstr "服务"
+
+#: umit/inventory/SettingsWin.py:50 umit/inventory/Viewer.py:690
+msgid "Place close button"
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:52
+#, fuzzy
+msgid "Statusbar"
+msgstr "站点状态"
+
+#: umit/inventory/SettingsWin.py:53
+msgid "Show tips"
+msgstr ""
+
+#: umit/inventory/SettingsWin.py:153
+msgid "Network Inventory Settings"
+msgstr ""
+
+#: umit/inventory/TLBarDisplay.py:35
+#, fuzzy
+msgid "No Selection"
+msgstr "分节部分"
+
+#: umit/inventory/TLBarDisplay.py:36
+#, fuzzy
+msgid "No Changes"
+msgstr "保存修改"
+
+#: umit/inventory/TLBarDisplay.py:37
+msgid "Changes Statistics"
+msgstr ""
+
+#: umit/inventory/TLBase.py:40
+#, fuzzy
+msgid "Nothing"
+msgstr "没有任何可以保存的"
+
+#: umit/inventory/TLBase.py:42
+#, fuzzy
+msgid "Availability"
+msgstr "不可用"
+
+#: umit/inventory/TLBase.py:43
+#, fuzzy
+msgid "Several"
+msgstr "一般"
+
+#: umit/inventory/TLBase.py:49 umit/inventory/TLBase.py:70
+msgid "Changes Sum"
+msgstr ""
+
+#: umit/inventory/TLBase.py:54
+msgid "Yearly View"
+msgstr ""
+
+#: umit/inventory/TLBase.py:55
+msgid "Monthly View"
+msgstr ""
+
+#: umit/inventory/TLBase.py:56
+msgid "Daily View"
+msgstr ""
+
+#: umit/inventory/TLBase.py:57
+msgid "Hourly View"
+msgstr ""
+
+#: umit/inventory/TLBase.py:63
+#, fuzzy
+msgid "Year"
+msgstr "年"
+
+#: umit/inventory/TLBase.py:65
+#, fuzzy
+msgid "Day"
+msgstr "天"
+
+#: umit/inventory/TLBase.py:71
+msgid "By Category"
+msgstr ""
+
+#: umit/inventory/TLBase.py:77 umit/core/UmitConf.py:158
+#, fuzzy
+msgid "Months"
+msgstr "月"
+
+#: umit/inventory/TLBase.py:78 umit/core/UmitConf.py:156
+#, fuzzy
+msgid "Days"
+msgstr "天"
+
+#: umit/inventory/TLBase.py:79 umit/core/UmitConf.py:155
+msgid "Hours"
+msgstr "小时"
+
+#: umit/inventory/TLBase.py:223
+msgid "end of a week"
+msgstr ""
+
+#: umit/inventory/TLBase.py:223
+msgid "end of 12 hours period"
+msgstr ""
+
+#: umit/inventory/TLBase.py:224
+msgid "end of half hour period"
+msgstr ""
+
+#: umit/inventory/TLBase.py:224
+msgid "end of a minute"
+msgstr ""
+
+#: umit/inventory/TLBase.py:227
+msgid "Each point break represents "
+msgstr ""
+
+#: umit/inventory/TLBase.py:273
+#, fuzzy, python-format
+msgid "Year %(year)s"
+msgstr "年"
+
+#: umit/inventory/TLChangesTree.py:27
+#, fuzzy
+msgid "View all changes"
+msgstr "保存修改"
+
+#: umit/inventory/TLChangesTree.py:28
+msgid "Changes listing"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:32
+#: umit/inventory/TLGraphPreferences.py:208
+#: umit/inventory/TLGraphPreferences.py:211
+#: umit/inventory/TLGraphPreferences.py:296
+#: umit/inventory/TLGraphToolbar.py:43
+msgid "Custom"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:32
+#: umit/inventory/TLGraphPreferences.py:179
+#: umit/inventory/TLGraphPreferences.py:189
+#: umit/inventory/TLGraphPreferences.py:292
+msgid "Standard"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:32
+#: umit/inventory/TLGraphPreferences.py:179
+#: umit/inventory/TLGraphPreferences.py:190
+#: umit/inventory/TLGraphPreferences.py:293
+msgid "Best Performance"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:33
+#: umit/inventory/TLGraphPreferences.py:179
+#: umit/inventory/TLGraphPreferences.py:192
+#: umit/inventory/TLGraphPreferences.py:294
+msgid "Best Visual"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:52
+msgid "Graph Preferences Editor"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:65
+msgid "Horizontal divisors"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:70
+msgid "<b>Points higlight</b>"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:71
+#, fuzzy
+msgid "On Selection"
+msgstr "分节部分"
+
+#: umit/inventory/TLGraphPreferences.py:73
+#, fuzzy
+msgid "Always"
+msgstr "天"
+
+#: umit/inventory/TLGraphPreferences.py:74
+msgid "Boundary points only"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:76
+msgid "Every point"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:77
+msgid "Show balloons on selection"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:79
+msgid "Draw vertical lines"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:80
+#, fuzzy
+msgid "Dashed"
+msgstr "天"
+
+#: umit/inventory/TLGraphPreferences.py:82
+msgid "Solid"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:84
+msgid "Gradient background"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:85
+msgid "Vertical gradient"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:87
+msgid "Horizontal gradient"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:89
+msgid "On selection do progressive fill"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:91
+msgid "Solid fill"
+msgstr ""
+
+#: umit/inventory/TLGraphPreferences.py:93
+msgid "Gradient fill"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:39
+msgid "Refresh Now"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:39
+msgid "Refresh Enabled"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:40
+msgid "Refresh Every minute"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:41
+msgid "Refresh Every 5 minutes"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:42
+msgid "Refresh Every hour"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:114
+#, fuzzy
+msgid "Select visualization"
+msgstr "可视化扫描结果"
+
+#: umit/inventory/TLGraphToolbar.py:136
+msgid "Line Graph"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:136
+msgid "Area Graph"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:138
+msgid "Select a graph style"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:153
+msgid "Visible"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:153
+#, fuzzy
+msgid "Hidden"
+msgstr "提示"
+
+#: umit/inventory/TLGraphToolbar.py:155
+msgid "Graph visibility"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:176
+msgid "Graph Preferences"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:181
+msgid "Edit Graph Preferences"
+msgstr ""
+
+#: umit/inventory/TLGraphToolbar.py:260
+msgid "Graph Refresh"
+msgstr ""
+
+#: umit/inventory/Timeline.py:56
+msgid "Number of events"
+msgstr ""
+
+#: umit/inventory/Utils.py:5 umit/db/InventoryChanges.py:328
+msgid "s"
+msgstr ""
+
+#: umit/inventory/Viewer.py:360
+#, fuzzy
+msgid "Scan count:"
+msgstr "扫描类型"
+
+#: umit/inventory/Viewer.py:368
+#, fuzzy
+msgid "Last scan date:"
+msgstr "已扫描的站点："
+
+#: umit/inventory/Viewer.py:374
+#, fuzzy
+msgid "Scan args"
+msgstr "扫描"
+
+#: umit/inventory/Viewer.py:374
+msgid "XML output version"
+msgstr ""
+
+#: umit/inventory/Viewer.py:374
+#, fuzzy
+msgid "Verbose"
+msgstr "详细程度"
+
+#: umit/inventory/Viewer.py:375
+#, fuzzy
+msgid "Scanner name"
+msgstr "扫描器版本"
+
+#: umit/inventory/Viewer.py:389
+#, fuzzy
+msgid "Hosts: "
+msgstr "站点"
+
+#: umit/inventory/Viewer.py:394
+#, fuzzy
+msgid "Host count:"
+msgstr "未开启的站点："
+
+#: umit/inventory/Viewer.py:519
+msgid "A page was open at Historic tab!"
+msgstr ""
+
+#: umit/inventory/Viewer.py:531
+msgid "First Matched Category"
+msgstr ""
+
+#: umit/inventory/Viewer.py:531
+msgid "Entry Date"
+msgstr ""
+
+#: umit/inventory/Viewer.py:547
+#, fuzzy
+msgid "result"
+msgstr "扫描结果"
+
+#: umit/inventory/Viewer.py:550
+msgid " found."
+msgstr ""
+
+#: umit/inventory/Viewer.py:569
+#, fuzzy, python-format
+msgid "Search: %s"
+msgstr "搜索选项"
+
+#: umit/inventory/Viewer.py:608 umit/interfaceeditor/Main.py:540
+#, fuzzy
+msgid "_File"
+msgstr "档案(_P)"
+
+#: umit/inventory/Viewer.py:609
+#, fuzzy
+msgid "_Edit"
+msgstr "退出(_Q)"
+
+#: umit/inventory/Viewer.py:613
+msgid "Tool_bar"
+msgstr ""
+
+#: umit/inventory/Viewer.py:614
+#, fuzzy
+msgid "Devices _tab"
+msgstr "服务"
+
+#: umit/inventory/Viewer.py:615
+msgid "_Inventories"
+msgstr ""
+
+#: umit/inventory/Viewer.py:619
+msgid "_New Inventory"
+msgstr ""
+
+#: umit/inventory/Viewer.py:620
+msgid "Create new Inventory"
+msgstr ""
+
+#: umit/inventory/Viewer.py:624
+#, fuzzy
+msgid "Close Device tab"
+msgstr "关闭当前的扫描标签"
+
+#: umit/inventory/Viewer.py:625
+#, fuzzy
+msgid "Close current host tab"
+msgstr "关闭当前的扫描标签"
+
+#: umit/inventory/Viewer.py:629
+#, fuzzy
+msgid "Close Inventory tab"
+msgstr "关闭当前的扫描标签"
+
+#: umit/inventory/Viewer.py:630
+#, fuzzy
+msgid "Close current Inventory tab"
+msgstr "关闭当前的扫描标签"
+
+#: umit/inventory/Viewer.py:635
+msgid "Close Network Inventory"
+msgstr ""
+
+#: umit/inventory/Viewer.py:640 umit/inventory/Viewer.py:641
+msgid "Data Removal"
+msgstr ""
+
+#: umit/inventory/Viewer.py:645 umit/inventory/Viewer.py:646
+msgid "Startup settings"
+msgstr ""
+
+#: umit/inventory/Viewer.py:652
+msgid "Scheduler log"
+msgstr ""
+
+#: umit/inventory/Viewer.py:653
+msgid "View Scheduler log"
+msgstr ""
+
+#: umit/inventory/Viewer.py:683
+msgid "Show ti_ps"
+msgstr ""
+
+#: umit/inventory/Viewer.py:684
+msgid "Enable disable tip showing"
+msgstr ""
+
+#: umit/inventory/Viewer.py:691
+msgid "Place a close button upon tab creation"
+msgstr ""
+
+#: umit/inventory/Viewer.py:892
+msgid "UMIT Network Inventory"
+msgstr ""
+
+#: umit/inventory/Viewer.py:931
+msgid " Historic "
+msgstr ""
+
+#: umit/inventory/Viewer.py:932
+msgid " Timeline "
+msgstr ""
+
+#: umit/core/Diff.py:34 umit/core/DiffHtml.py:135 umit/core/I18N.py:77
+msgid "Umit - Take the red pill"
+msgstr ""
+
+#: umit/core/Diff.py:35
+#, fuzzy
+msgid "http://www.umitproject.org"
+msgstr "http://umit.sourceforge.net"
+
+#: umit/core/Diff.py:37 umit/core/DiffHtml.py:136
+#, fuzzy
+msgid "This diff was generated by Umit"
+msgstr "此比较结果由 UMIT 生成"
+
+#: umit/core/Diff.py:38
+#, fuzzy
+msgid "(Changes to this file can make Umit unable to read it.)"
+msgstr "(修改此文件将导致其无法被 UMIT 读入)"
+
+#: umit/core/Diff.py:42
+msgid " Start of diff "
+msgstr "比较结果起始"
+
+#: umit/core/Diff.py:44
+msgid " End of diff "
+msgstr "比较结果结束"
+
+#: umit/core/DiffHtml.py:156
+#, fuzzy
+msgid "Changes to this file can make Umit unable to read it."
+msgstr "修改此文件将导致其无法被 UMIT 读入"
+
+#: umit/core/DiffHtml.py:157
+msgid "Regular Text Diff: "
+msgstr "普通文本比较结果："
+
+#: umit/core/NmapCommand.py:39
+msgid "Python 2.4 or later is required."
+msgstr "需要 Python 2.4 或更新版本。"
+
+#: umit/core/Scheduler.py:710
+msgid "UMIT: Status Report for scheduled schema"
+msgstr ""
+
+#: umit/core/Scheduler.py:713
+msgid "There was a scheduled job that just "
+msgstr ""
+
+#: umit/core/Scheduler.py:715
+msgid "Follows an attachment of the job output."
+msgstr ""
+
+#: umit/core/UmitConf.py:157
+msgid "Weeks"
+msgstr "周"
+
+#: umit/core/UmitConf.py:159
+msgid "Years"
+msgstr "年"
+
+#: umit/core/UmitConf.py:161
+#, fuzzy
+msgid "Seconds"
+msgstr "秒"
+
+#: umit/core/UmitDB.py:53
+#, fuzzy
+msgid ""
+"No module named pysqlite2 or sqlite3.\n"
+"            Please install pysqlite2 or sqlite3."
+msgstr "未找到模块 dbapi2.pysqlite2 或 sqlite3"
+
+#: umit/core/UmitOptionParser.py:40
+msgid "Start Umit Network Inventory."
+msgstr ""
+
+#: umit/core/UmitOptionParser.py:49
+msgid "Open Umit and runs a Nmap scan with specified args."
+msgstr "启动 Umit 并运行指定参数的 Nmap 扫描"
+
+#: umit/core/UmitOptionParser.py:57
+msgid ""
+"Open Umit with the specified profile selected. If combined with the -t (--"
+"target) option, open Umit and automatically run the profile against the "
+"specified target."
+msgstr ""
+"按选定的扫描模式启动 Umit。与 -t (--target) 选项联合使用时，将启动 Umit 并自"
+"动运行该扫描模式对目标进行扫描。"
+
+#: umit/core/UmitOptionParser.py:66
+msgid ""
+"*NOT IMPLEMENTED* - Open the diff compare window, in compare mode comparing "
+"the two given scan result files (Nmap XML output or usr (Umit Scan Result) "
+"file)."
+msgstr ""
+"*尚未执行* - 开启比较窗口，在比较模式下比较两个给定的扫描结果文件(Nmap XML 输"
+"出或 usr (Umit 扫描结果) 文件"
+
+#: umit/core/UmitOptionParser.py:75
+msgid ""
+"*NOT IMPLEMENTED* - Open the diff compare window, in text mode comparing the "
+"two given scan result files (Nmap XML output or usr, Umit Scan Result)."
+msgstr ""
+"*尚未执行* - 打开比较窗口，以文本模式比较给定的扫描结果文件(Nmap XML 输出或 "
+"usr (Umit 扫描结果)文件)"
+
+#: umit/core/UmitOptionParser.py:85
+msgid ""
+"*NOT IMPLEMENTED* - Take two scan result files (Nmap XML output or usr, Umit "
+"Scan Result), make a text diff and print it in the terminal without openning "
+"Umit Interface."
+msgstr ""
+"*尚未执行* - 读入两个扫描结果文件(Nmap XML 输出或usr, Umit 扫描结果)，进行文"
+"本比较并在终端输出结果。不会开启 Umit 用户界面。"
+
+#: umit/core/UmitOptionParser.py:96
+msgid ""
+"*NOT IMPLEMENTED* - Run Umit and go straight to NSE Facilitator Interface. "
+"You may specify nse scripts as arguments if you want use them."
+msgstr ""
+"*尚未执行* - 启动 Umit 后直接开启 NSE Facilitator 界面。您可以直接指定 NSE 脚"
+"本作为参数以使用它们。"
+
+#: umit/core/UmitOptionParser.py:107
+msgid ""
+"Specify a target to be used along with other options. If specified alone, "
+"opens Umit with the target field filled with the specified target"
+msgstr ""
+"用以为其它的选项指定一个扫描目标。若单独给出此选项，将启动 Umit 并在“扫描目"
+"标”中填入此选项。"
+
+#: umit/core/UmitOptionParser.py:122
+msgid ""
+"Specify a scan result file in Nmap XML Output or Umit Scan Result file. Can "
+"be used more than once to specify several scan result files."
+msgstr ""
+"指定 Nmap XML 输出文件或是 Umit 扫描结果文件。可使用多次以指定多个扫描结果文"
+"件。"
+
+#: umit/core/UmitOptionParser.py:131
+msgid "*NOT IMPLEMENTED* - Open Umit showing the given file at Umit Mapper"
+msgstr "*尚未执行* - 打开 Umit 并在 Umit Mapper 中显示给定的文件。"
+
+#: umit/core/UmitOptionParser.py:138
+msgid ""
+"Increase verbosity of the output. May be used more than once to get even "
+"more verbosity"
+msgstr "增加输出的详细程度。可以指定多次以得到更详细的输出。"
+
+#: umit/db/InventoryChanges.py:114
+#, fuzzy
+msgid "Host down"
+msgstr "未开启的站点："
+
+#: umit/db/InventoryChanges.py:168
+msgid "Host added to the Inventory."
+msgstr ""
+
+#: umit/db/InventoryChanges.py:258
+#, fuzzy
+msgid "changed info"
+msgstr "扫描信息"
+
+#: umit/db/InventoryChanges.py:267
+#, fuzzy
+msgid "Fingerprint, "
+msgstr "服务指纹报告"
+
+#: umit/db/InventoryChanges.py:275
+#, fuzzy
+msgid "OS Match, "
+msgstr "操作系统匹配"
+
+#: umit/db/InventoryChanges.py:285
+#, fuzzy
+msgid "and OS Classes"
+msgstr "操作系统类别"
+
+#: umit/db/InventoryChanges.py:295
+#, fuzzy
+msgid " changed."
+msgstr "保存修改"
+
+#: umit/db/InventoryChanges.py:310
+msgid "No noticeables changes since last sucessful scan."
+msgstr ""
+
+#: umit/db/InventoryChanges.py:339
+#, fuzzy
+msgid "closed"
+msgstr "已关闭"
+
+#: umit/db/InventoryChanges.py:340
+#, fuzzy
+msgid "open"
+msgstr "打开"
+
+#: umit/db/InventoryChanges.py:341
+#, fuzzy
+msgid "now"
+msgstr "未知"
+
+#: umit/db/InventoryChanges.py:343
+#, fuzzy
+msgid "and"
+msgstr "命令"
+
+#: umit/db/Search.py:28
+#, fuzzy
+msgid "change"
+msgstr "保存修改"
+
+#: umit/db/Search.py:28
+#, fuzzy
+msgid "changes"
+msgstr "保存修改"
+
+#: umit/db/Search.py:29
+#, fuzzy
+msgid "port"
+msgstr "端口"
+
+#: umit/db/Search.py:29
+#, fuzzy
+msgid "ports"
+msgstr "端口"
+
+#: umit/db/Search.py:29
+#, fuzzy
+msgid "service"
+msgstr "服务"
+
+#: umit/db/Search.py:207
+#, fuzzy
+msgid "Service name"
+msgstr "服务名称"
+
+#: umit/db/Search.py:214
+#, fuzzy
+msgid "Service info"
+msgstr "服务设置"
+
+#: umit/db/Search.py:241
+#, fuzzy
+msgid "Changes"
+msgstr "保存修改"
+
+#: umit/interfaceeditor/DependencesOption.py:46
+msgid "Dependence of Option "
+msgstr ""
+
+#: umit/interfaceeditor/DependencesOption.py:54
+msgid ""
+"There is a problem deleting this option. This options have dependences.  "
+msgstr ""
+
+#: umit/interfaceeditor/DependencesOption.py:55
+msgid ""
+"Are you sure that can remove this option? Dependences should be removed too"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:226
+#, fuzzy
+msgid "Edit Modes"
+msgstr "文本模式"
+
+#: umit/interfaceeditor/Main.py:234
+#, fuzzy
+msgid "Option List"
+msgstr "选项"
+
+#: umit/interfaceeditor/Main.py:406
+#, fuzzy
+msgid "Proprieties"
+msgstr "特征"
+
+#: umit/interfaceeditor/Main.py:541
+#, fuzzy
+msgid "_Save"
+msgstr "保存扫描(_S)"
+
+#: umit/interfaceeditor/Main.py:541
+#, fuzzy
+msgid "Save"
+msgstr "状态"
+
+#: umit/interfaceeditor/Main.py:542
+#, fuzzy
+msgid "_Save all"
+msgstr "保存扫描(_S)"
+
+#: umit/interfaceeditor/Main.py:542
+#, fuzzy
+msgid "Save all"
+msgstr "保存扫描"
+
+#: umit/interfaceeditor/Main.py:544
+#, fuzzy
+msgid "Quit"
+msgstr "退出(_Q)"
+
+#: umit/interfaceeditor/Main.py:545
+msgid "Edit"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:546
+msgid "_Undo"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:546
+#, fuzzy
+msgid "Undo"
+msgstr "生产商"
+
+#: umit/interfaceeditor/Main.py:547
+msgid "_Redo"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:547
+#, fuzzy
+msgid "Redo"
+msgstr "生产商"
+
+#: umit/interfaceeditor/Main.py:548
+#, fuzzy
+msgid "View"
+msgstr "查看(_V)"
+
+#: umit/interfaceeditor/Main.py:549
+msgid "_Right Bar"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:550
+msgid "Right Bar"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:553
+#, fuzzy
+msgid "Items"
+msgstr "附注"
+
+#: umit/interfaceeditor/Main.py:554
+msgid "_Label"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:555
+msgid "Insert label"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:556
+#, fuzzy
+msgid "_New Section"
+msgstr "新建扫描(_N)"
+
+#: umit/interfaceeditor/Main.py:557
+#, fuzzy
+msgid "New Section"
+msgstr "分节部分"
+
+#: umit/interfaceeditor/Main.py:558
+msgid "_Remove Section Label"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:559
+msgid "Remove Section Label"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:560 umit/interfaceeditor/Tools.py:185
+#, fuzzy
+msgid "_Remove Section"
+msgstr "分节部分"
+
+#: umit/interfaceeditor/Main.py:561 umit/interfaceeditor/Tools.py:186
+#, fuzzy
+msgid "Remove Section"
+msgstr "分节部分"
+
+#: umit/interfaceeditor/Main.py:562
+msgid "_Add new voidplace"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:563
+msgid "Add new voidplace"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:564
+#, fuzzy
+msgid "_Remove Option"
+msgstr "档案选项"
+
+#: umit/interfaceeditor/Main.py:565
+#, fuzzy
+msgid "Remove option"
+msgstr "任意选项"
+
+#: umit/interfaceeditor/Main.py:566
+msgid "_Remove voidplace"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:567
+msgid "Remove voidplace"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:568
+#, fuzzy
+msgid "_Add option selected"
+msgstr "没有选择站点！"
+
+#: umit/interfaceeditor/Main.py:569
+#, fuzzy
+msgid "Add option selected"
+msgstr "没有选择站点！"
+
+#: umit/interfaceeditor/Main.py:570 umit/interfaceeditor/Tools.py:179
+msgid "_Move Section Left"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:571 umit/interfaceeditor/Tools.py:180
+msgid "Move Section Left"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:572 umit/interfaceeditor/Tools.py:181
+msgid "_Move Section Right"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:573 umit/interfaceeditor/Tools.py:182
+msgid "Move Section Right"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:574
+msgid "_Move Item Down"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:575
+msgid "Move Item Down"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:576
+msgid "_Move Item Up"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:577
+msgid "Move Item Up"
+msgstr ""
+
+#: umit/interfaceeditor/Main.py:578
+#, fuzzy
+msgid "Help"
+msgstr "帮助(_H)"
+
+#: umit/interfaceeditor/Main.py:579
+#, fuzzy
+msgid "About"
+msgstr "关于(_A)"
+
+#: umit/interfaceeditor/OptionManager.py:135
+#, fuzzy
+msgid "Hint:"
+msgstr "提示"
+
+#: umit/interfaceeditor/OptionManager.py:140
+msgid "Need root"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:145
+#, fuzzy
+msgid "Options:"
+msgstr "选项"
+
+#: umit/interfaceeditor/OptionManager.py:154
+msgid "Arguments:"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:186
+msgid "Arguments"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:188
+msgid "Insert the description to argument:"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:354
+#, fuzzy
+msgid "Invalid option "
+msgstr "任意选项"
+
+#: umit/interfaceeditor/OptionManager.py:445
+msgid "ERROR"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:446
+msgid "Option do not exists"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:468
+msgid "Invalid name option "
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:500
+msgid "No fields entered"
+msgstr ""
+
+#: umit/interfaceeditor/OptionManager.py:501
+msgid "Blank options is not allowed!"
+msgstr ""
+
+#: umit/interfaceeditor/PageNotebook.py:68
+#: umit/interfaceeditor/PageNotebook.py:145
+msgid "Add/Remove Voidplace"
+msgstr ""
+
+#: umit/interfaceeditor/PageNotebook.py:198
+msgid "Move item"
+msgstr ""
+
+#: umit/interfaceeditor/PageNotebook.py:350
+msgid "Add/Remove Option"
+msgstr ""
+
+#: umit/interfaceeditor/PageNotebook.py:435
+msgid "Add/Remove Page"
+msgstr ""
+
+#: umit/interfaceeditor/Profile.py:69
+msgid "Add Label"
+msgstr ""
+
+#: umit/interfaceeditor/Profile.py:119
+msgid "Move Page"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:174
+msgid "_Move up"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:174
+msgid "Move up"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:176
+msgid "_Move down"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:177
+#, fuzzy
+msgid "Move down"
+msgstr "未开启的站点："
+
+#: umit/interfaceeditor/Tools.py:183
+#, fuzzy
+msgid "_Add Section"
+msgstr "分节部分"
+
+#: umit/interfaceeditor/Tools.py:184
+#, fuzzy
+msgid "Add Section"
+msgstr "分节部分"
+
+#: umit/interfaceeditor/Tools.py:187 umit/interfaceeditor/Tools.py:188
+msgid "Add Place"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:189 umit/interfaceeditor/Tools.py:190
+#, fuzzy
+msgid "Remove Option"
+msgstr "档案选项"
+
+#: umit/interfaceeditor/Tools.py:242
+#, fuzzy
+msgid "Select a Option "
+msgstr "选择扫描结果"
+
+#: umit/interfaceeditor/Tools.py:243
+msgid "You do not select any option"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:296
+msgid "Change Label"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:367
+msgid "Update OptionList"
+msgstr ""
+
+#: umit/interfaceeditor/Tools.py:618
+msgid "List of items"
+msgstr ""
+
+#, fuzzy
+#~ msgid "No descriptions"
+#~ msgstr "彩色描述"
+
+#, fuzzy
+#~ msgid "Select Script"
+#~ msgstr "选择扫描结果"
+
+#, fuzzy
+#~ msgid "File is not a NSE script file"
+#~ msgstr "此文件不是 Umit 扫描结果"
+
+#, fuzzy
+#~ msgid ""
+#~ "Selected file is not a NSE script file. Umit can not parse this file. "
+#~ "Please, select another."
+#~ msgstr ""
+#~ "选定的文件不是 Umit 扫描结果。 Umit 无法解析此文件。请选择其它文件。"
+
+#, fuzzy
+#~ msgid ""
+#~ "Umit can not find any NSE script files in the selected directory. Please, "
+#~ "select another."
+#~ msgstr "Umit 无法打开选定的文件。请选择其它文件。"
+
+#, fuzzy
+#~ msgid "Add Directory..."
+#~ msgstr "目录"
+
+#~ msgid "_View"
+#~ msgstr "查看(_V)"
+
+#, fuzzy
+#~ msgid "_Settings"
+#~ msgstr "分节部分"
+
+#, fuzzy
+#~ msgid "Search"
+#~ msgstr "三月"
+
+#, fuzzy
+#~ msgid "Edit selected script"
+#~ msgstr "编辑选定的扫描档案"
+
+#, fuzzy
+#~ msgid "Toolbar"
+#~ msgstr "工具(_T)"
+
+#, fuzzy
+#~ msgid "Show/hide Description sidebar"
+#~ msgstr "服务描述"
+
+#, fuzzy
+#~ msgid "Text Editor"
+#~ msgstr "档案编辑器"
+
+#, fuzzy
+#~ msgid "Internal Editor"
+#~ msgstr "档案编辑器"
+
+#, fuzzy
+#~ msgid "External Editor"
+#~ msgstr "档案编辑器"
+
+#, fuzzy
+#~ msgid "Editor"
+#~ msgstr "档案编辑器"
+
+#~ msgid "Help not implemented"
+#~ msgstr "帮助尚未执行"
+
+#~ msgid "Umit help is not implemented yet."
+#~ msgstr "Umit 帮助尚未执行"
+
+#~ msgid "<target>"
+#~ msgstr "<目标>"
+
+#, fuzzy
+#~ msgid "No Target Host!"
+#~ msgstr "未选择扫描目标！"
+
+#~ msgid ""
+#~ "Target specification is mandatory. Either by an address in the target "
+#~ "input box or through the '-iR' and '-iL' nmap options. Aborting scan."
+#~ msgstr ""
+#~ "必须指定目标。在扫描目标输入框中输入地址或是通过 '-iR' 及 '-iL' Nmap 选项"
+#~ "指定。扫描终止。"
 
 #, fuzzy
 #~ msgid ""
