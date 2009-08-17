@@ -28,7 +28,6 @@ from higwidgets.higboxes import HIGHBox
 from higwidgets.higlabels import HIGEntryLabel
 from higwidgets.higbuttons import HIGButton
 
-from umit.gui.ScriptManager import ScriptChooserDialog
 from umit.gui.FileChoosers import AllFilesFileChooserDialog
 
 from umit.core.NmapOptions import NmapOptions
@@ -111,8 +110,7 @@ class OptionTab(object):
                 "float": OptionFloatSpin,
                 "level": OptionLevelSpin,
                 "path": OptionFile,
-                "interface": OptionInterface,
-                "scriptlist": OptionScriptList}
+                "interface": OptionInterface}
 
         additional = None
         if type_mapping.has_key(arg_type):
@@ -327,23 +325,6 @@ class OptionCheckIcon(HIGHBox, OptionWidget):
     def get_option(self):
         return self.cbutton.get_option()
 
-class OptionScriptList(HIGHBox, OptionWidget, object):
-    def __init__(self):
-        HIGHBox.__init__(self)
-
-        self.entry = OptionEntry()
-        self.button = HIGButton(stock=gtk.STOCK_EDIT)
-
-        self._pack_expand_fill(self.entry)
-        self._pack_noexpand_nofill(self.button)
-
-        self.button.connect('clicked', self.open_dialog_cb)
-
-    def open_dialog_cb(self, widget):
-        dialog = ScriptChooserDialog(self.entry.get_text())
-        if dialog.run() == gtk.RESPONSE_OK:
-            self.entry.set_text(dialog.get_scripts())
-        dialog.destroy()
 
 class OptionCheck(gtk.CheckButton, OptionWidget):
     def __init__(self, label=None, option=None):

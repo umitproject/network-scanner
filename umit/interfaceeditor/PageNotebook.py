@@ -55,7 +55,6 @@ type_mapping = {
     "level": OptionLevelSpin, 
     "path": OptionFile,
     "interface": OptionInterface, 
-    "scriptlist": OptionScriptList
 }
 
 class CommandAddRemoveVoidplace(TwiceCommand, Command):
