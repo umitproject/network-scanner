@@ -14,7 +14,6 @@ Contents:
    smtpsetup.rst
    ni.rst
    network_topology.rst
-   zion.rst
    under_the_roof.rst
    profile_editor.rst
    plugins.rst
