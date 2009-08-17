@@ -462,7 +462,7 @@ FunctionEnd
 !define MUI_UNABORTWARNING
 
 !define APPLICATION_NAME "Umit"
-!define APPLICATION_VERSION "1.0beta3"
+!define APPLICATION_VERSION "1.0RC"
 !define WINPCAP "WinPcap_4_0_2.exe"
 
 Name "${APPLICATION_NAME}"
