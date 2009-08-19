@@ -65,10 +65,10 @@ class About(HIGWindow):
 developed in PyGTK by Adriano Monteiro 
 Marques <adriano@umitproject.org>
 and was sponsored by Google during the
-Summer of Code 2005, 2006, 2007 and 2008. Thanks Google!"""))
+Summer of Code 2005, 2006, 2007, 2008 and 2009. Thanks Google!"""))
         
         self.lbl_copyright=gtk.Label("<small>Copyright (C) 2005-2006 \
-Insecure.Com LLC. and (C) 2007-2008 Adriano Monteiro Marques</small>")
+Insecure.Com LLC. and (C) 2007-2009 Adriano Monteiro Marques</small>")
         
         self.lbl_program_website = gtk.Label(\
             "<span underline='single' \
