@@ -11,7 +11,7 @@ set UmitOrig=.
 set UmitDir=C:\UmitTemp
 set DistDir=%UmitDir%\dist
 set GTKDir=C:\GTK
-set NmapDir=C:\Nmap
+set NmapDir=C:\Programas\Nmap
 set WinpcapDir=C:\programas\Winpcap
 set WinInstallDir=%UmitDir%\install_scripts\windows
 set Output=%UmitDir%\win_install.log
@@ -57,11 +57,13 @@ copy %GTKDir%\bin\librsvg*.dll %DistDir% >> %Output%
 
 echo Creating Nmap dist dirs...
 mkdir %DistDir%\Nmap
-
+mkdir %DistDir%\Nmap\nselib
+mkdir %DistDir%\Nmap\scripts
 
 echo Copying Nmap to his dist directory...
 xcopy %NmapDir%\*.* %DistDir%\Nmap >> %Output%
-
+xcopy %NmapDir%\nselib\*.* %DistDir%\Nmap\nselib >> %Output%
+xcopy %NmapDir%\scripts\*.* %DistDir%\Nmap\scripts >> %Output%
 
 echo Copying setup.py...
 xcopy setup.py %UmitDir% /Y
