@@ -206,6 +206,10 @@ def main(args):
     #################################
     Path.set_running_path(os.path.abspath(os.path.dirname(args[0])))
 
+    # Check permissions
+    from umit.gui.Utils import verify_config_access
+    verify_config_access()
+    
     from umit.gui.App import App
 
     umit_app = App()
