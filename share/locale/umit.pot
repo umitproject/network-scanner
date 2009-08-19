@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-17 20:30+0100\n"
+"POT-Creation-Date: 2009-08-19 22:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgid ""
 "developed in PyGTK by Adriano Monteiro \n"
 "Marques <adriano@umitproject.org>\n"
 "and was sponsored by Google during the\n"
-"Summer of Code 2005, 2006, 2007 and 2008. Thanks Google!"
+"Summer of Code 2005, 2006, 2007, 2008 and 2009. Thanks Google!"
 msgstr ""
 
 #: umit/gui/About.py:78
@@ -1150,7 +1150,7 @@ msgid ""
 "default web browser."
 msgstr ""
 
-#: umit/gui/OptionBuilder.py:393
+#: umit/gui/OptionBuilder.py:374
 msgid "Choose file"
 msgstr ""
 
@@ -3895,20 +3895,20 @@ msgstr ""
 msgid "Blank options is not allowed!"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:68
-#: umit/interfaceeditor/PageNotebook.py:145
+#: umit/interfaceeditor/PageNotebook.py:67
+#: umit/interfaceeditor/PageNotebook.py:144
 msgid "Add/Remove Voidplace"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:198
+#: umit/interfaceeditor/PageNotebook.py:197
 msgid "Move item"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:350
+#: umit/interfaceeditor/PageNotebook.py:349
 msgid "Add/Remove Option"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:435
+#: umit/interfaceeditor/PageNotebook.py:434
 msgid "Add/Remove Page"
 msgstr ""
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pt_PT\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-17 20:30+0100\n"
+"POT-Creation-Date: 2009-08-19 21:52+0100\n"
 "PO-Revision-Date: 2009-08-17 20:28+0100\n"
 "Last-Translator: Luís A. Bastião Silva <luis.kop@gmail.com>\n"
 "Language-Team: pt_PT <LL@li.org>\n"
@@ -19,12 +19,13 @@ msgid "About Umit"
 msgstr "Sobre o UMIT"
 
 #: umit/gui/About.py:64
+#, fuzzy
 msgid ""
 "Umit is network scanning frontend frontend,\n"
 "developed in PyGTK by Adriano Monteiro \n"
 "Marques <adriano@umitproject.org>\n"
 "and was sponsored by Google during the\n"
-"Summer of Code 2005, 2006, 2007 and 2008. Thanks Google!"
+"Summer of Code 2005, 2006, 2007, 2008 and 2009. Thanks Google!"
 msgstr ""
 "O UMIT é um frontend para o nmap, desenvolvido em PyGTK\n"
 "por Adriano Monteiro Marques <py.adriano@gmail.com\n"
@@ -1201,7 +1202,7 @@ msgid ""
 "default web browser."
 msgstr ""
 
-#: umit/gui/OptionBuilder.py:393
+#: umit/gui/OptionBuilder.py:374
 msgid "Choose file"
 msgstr "Escolher ficheiro"
 
@@ -2368,9 +2369,9 @@ msgid "<b>Updates found: %d with %d errors</b>"
 msgstr ""
 
 #: umit/plugin/PluginPage.py:423
-#, fuzzy, python-format
+#, python-format
 msgid "Update to %s"
-msgstr "Activar cores do detector de diferenças"
+msgstr ""
 
 #: umit/plugin/PluginPage.py:428
 #, python-format
@@ -2391,9 +2392,9 @@ msgid "Visit homepage"
 msgstr ""
 
 #: umit/plugin/PluginPage.py:470
-#, fuzzy, python-format
+#, python-format
 msgid "About %s"
-msgstr "_Sobre"
+msgstr "Sobre %s"
 
 #: umit/plugin/PluginPage.py:472
 msgid "Enable"
@@ -2438,9 +2439,9 @@ msgid "No preferences for %s"
 msgstr ""
 
 #: umit/plugin/Tree.py:93
-#, fuzzy, python-format
+#, python-format
 msgid "Unable to load %s"
-msgstr "Activar cores do detector de diferenças"
+msgstr "Incapaz de carregar %s"
 
 #: umit/plugin/Tree.py:288
 msgid "Plugin already loaded."
@@ -2487,9 +2488,9 @@ msgid "Various versions available but require manual intervention."
 msgstr ""
 
 #: umit/plugin/Update.py:437
-#, fuzzy, python-format
+#, python-format
 msgid "Version %s available but need manual update."
-msgstr "Não disponível"
+msgstr ""
 
 #: umit/plugin/Update.py:439
 #, python-format
@@ -2502,9 +2503,9 @@ msgid "Various versions available"
 msgstr "Não disponível"
 
 #: umit/plugin/Update.py:445
-#, fuzzy, python-format
+#, python-format
 msgid "Version %s available."
-msgstr "Não disponível"
+msgstr ""
 
 #: umit/plugin/Update.py:451
 msgid "Unable to parse latest.xml"
@@ -3242,9 +3243,9 @@ msgid "Each point break represents "
 msgstr ""
 
 #: umit/inventory/TLBase.py:273
-#, fuzzy, python-format
+#, python-format
 msgid "Year %(year)s"
-msgstr "Anos"
+msgstr ""
 
 #: umit/inventory/TLChangesTree.py:27
 #, fuzzy
@@ -3486,9 +3487,9 @@ msgid " found."
 msgstr ""
 
 #: umit/inventory/Viewer.py:569
-#, fuzzy, python-format
+#, python-format
 msgid "Search: %s"
-msgstr "Opções de Procura"
+msgstr ""
 
 #: umit/inventory/Viewer.py:608 umit/interfaceeditor/Main.py:540
 msgid "_File"
@@ -4087,20 +4088,20 @@ msgstr ""
 msgid "Blank options is not allowed!"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:68
-#: umit/interfaceeditor/PageNotebook.py:145
+#: umit/interfaceeditor/PageNotebook.py:67
+#: umit/interfaceeditor/PageNotebook.py:144
 msgid "Add/Remove Voidplace"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:198
+#: umit/interfaceeditor/PageNotebook.py:197
 msgid "Move item"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:350
+#: umit/interfaceeditor/PageNotebook.py:349
 msgid "Add/Remove Option"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:435
+#: umit/interfaceeditor/PageNotebook.py:434
 msgid "Add/Remove Page"
 msgstr ""
 

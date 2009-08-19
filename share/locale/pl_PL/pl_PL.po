@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl_PL\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-17 20:30+0100\n"
-"PO-Revision-Date: 2009-02-15 22:30+0100\n"
+"POT-Creation-Date: 2009-08-19 21:43+0100\n"
+"PO-Revision-Date: 2009-08-19 21:55+0100\n"
 "Last-Translator: Bartosz SKOWRON <getxsick@umitproject.org>\n"
 "Language-Team: pl_PL <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,17 +14,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: umit/gui/About.py:40 umit/gui/MainWindow.py:394
+#: umit/gui/About.py:40
+#: umit/gui/MainWindow.py:394
 msgid "About Umit"
 msgstr "O Umit"
 
 #: umit/gui/About.py:64
+#, fuzzy
 msgid ""
 "Umit is network scanning frontend frontend,\n"
 "developed in PyGTK by Adriano Monteiro \n"
 "Marques <adriano@umitproject.org>\n"
 "and was sponsored by Google during the\n"
-"Summer of Code 2005, 2006, 2007 and 2008. Thanks Google!"
+"Summer of Code 2005, 2006, 2007, 2008 and 2009. Thanks Google!"
 msgstr ""
 "Umit jest to graficzny frontend dla nmap, wykonany w PyGTK\n"
 "przez Adriano Monteiro Marques <py.adriano@gmail.com>\n"
@@ -43,7 +45,8 @@ msgstr "Zasługi dla Umit"
 msgid "Written by"
 msgstr "Napisany przez"
 
-#: umit/gui/About.py:181 umit/interfaceeditor/Main.py:404
+#: umit/gui/About.py:181
+#: umit/interfaceeditor/Main.py:404
 msgid "Design"
 msgstr "Wygląd"
 
@@ -277,30 +280,16 @@ msgstr "URUCHOMIONY BEZ PSYCO!"
 
 #: umit/gui/App.py:103
 #, fuzzy
-msgid ""
-"psyco is a module that speeds up the execution of Python applications. It is "
-"not a requirement, and Umit will work normally without it, but you're "
-"encouraged to install it to have a better speed experience. Download psyco "
-"at http://psyco.sf.net/"
-msgstr ""
-"Psyco to moduł, który przyśpiesza wykonanie się aplikacji. Nie jest wymagany "
-"i Umit działa doskonale zarówno z i jak bez niego, ale zachęcamy do "
-"zainstalowania go, aby otrzymać lepszą wydajność programu. Możesz go "
-"ściągnąć z http://psyco.sf.net/"
+msgid "psyco is a module that speeds up the execution of Python applications. It is not a requirement, and Umit will work normally without it, but you're encouraged to install it to have a better speed experience. Download psyco at http://psyco.sf.net/"
+msgstr "Psyco to moduł, który przyśpiesza wykonanie się aplikacji. Nie jest wymagany i Umit działa doskonale zarówno z i jak bez niego, ale zachęcamy do zainstalowania go, aby otrzymać lepszą wydajność programu. Możesz go ściągnąć z http://psyco.sf.net/"
 
 #: umit/gui/BugReport.py:45
 msgid "Could not open default Web Browser"
 msgstr "Nie można otworzyć standardowej przeglądarki internetowej"
 
 #: umit/gui/BugReport.py:46
-msgid ""
-"Umit was unable to open your default web browser to show the bug tracker "
-"page with the report status. Try visiting Umit's bug tracker page to see if "
-"your bug was reported."
-msgstr ""
-"Umit nie mógł otworzyć Twojej standardowej przeglądarki internetowej aby "
-"pokazać stronę z raportem o błędzie. Spróbuj odwiedzić stronę z błędami "
-"Umita, aby zobaczyć czy Twój błąd został zgłoszony."
+msgid "Umit was unable to open your default web browser to show the bug tracker page with the report status. Try visiting Umit's bug tracker page to see if your bug was reported."
+msgstr "Umit nie mógł otworzyć Twojej standardowej przeglądarki internetowej aby pokazać stronę z raportem o błędzie. Spróbuj odwiedzić stronę z błędami Umita, aby zobaczyć czy Twój błąd został zgłoszony."
 
 #: umit/gui/BugReport.py:73
 msgid "Bug Report"
@@ -315,64 +304,39 @@ msgid "Category (optional)"
 msgstr "Kategoria (opcjonalnie)"
 
 #: umit/gui/BugReport.py:117
-msgid ""
-"If you know in which section of the program is the bug, please, select it "
-"from the choosebox. If you don't know what section to choose, leave it blank."
-msgstr ""
-"Jeżeli wiesz w której sekcji programu jest błąd, proszę, zaznacz ją z listy "
-"rozwijalnej. Jeżeli jednak nie wiesz, którą sekcje wybrać, zostaw to pole "
-"puste."
+msgid "If you know in which section of the program is the bug, please, select it from the choosebox. If you don't know what section to choose, leave it blank."
+msgstr "Jeżeli wiesz w której sekcji programu jest błąd, proszę, zaznacz ją z listy rozwijalnej. Jeżeli jednak nie wiesz, którą sekcje wybrać, zostaw to pole puste."
 
 #: umit/gui/BugReport.py:123
 msgid "Email"
 msgstr ""
 
 #: umit/gui/BugReport.py:124
-msgid ""
-"Please inform a valid e-mail address from where you can be reached to be "
-"notified when the bug gets fixed. Not used for other purposes."
-msgstr ""
-"Proszę podać poprawny adres e-mail pod którym jesteś osiągalny, aby zostać "
-"powiadomionym jak błąd zostanie naprawiony. Adres ten nie będzie używany do "
-"innych celów."
+msgid "Please inform a valid e-mail address from where you can be reached to be notified when the bug gets fixed. Not used for other purposes."
+msgstr "Proszę podać poprawny adres e-mail pod którym jesteś osiągalny, aby zostać powiadomionym jak błąd zostanie naprawiony. Adres ten nie będzie używany do innych celów."
 
 #: umit/gui/BugReport.py:129
 msgid "Summary"
 msgstr "Podsumowanie"
 
 #: umit/gui/BugReport.py:130
-msgid ""
-"This should be a quick description of the issue. Try to be clear and concise."
-msgstr ""
-"Tutaj powinien znaleźć się krótki opis problemu. Spróbuj być klarowny i "
-"zwięzły."
+msgid "This should be a quick description of the issue. Try to be clear and concise."
+msgstr "Tutaj powinien znaleźć się krótki opis problemu. Spróbuj być klarowny i zwięzły."
 
-#: umit/gui/BugReport.py:134 umit/gui/ProfileEditor.py:117
+#: umit/gui/BugReport.py:134
+#: umit/gui/ProfileEditor.py:117
 #: umit/gui/Wizard.py:409
 msgid "Description"
 msgstr "Opis"
 
 #: umit/gui/BugReport.py:135
 #, fuzzy
-msgid ""
-"This is where you should write about the bug, describing it as clear as "
-"possible and giving as many informations as you can and how to reproduce the "
-"bug."
-msgstr ""
-"Tutaj powinieneś napisać o błędzie, opisać go tak jasno jak to tylko jest "
-"możliwe i przekazać jak najwięcej informacji także na temat Twojego systemu, "
-"np: Jakiego systemu operacyjnego uzywasz? Jaką wersji Nmap masz "
-"zainstalowaną?"
+msgid "This is where you should write about the bug, describing it as clear as possible and giving as many informations as you can and how to reproduce the bug."
+msgstr "Tutaj powinieneś napisać o błędzie, opisać go tak jasno jak to tylko jest możliwe i przekazać jak najwięcej informacji także na temat Twojego systemu, np: Jakiego systemu operacyjnego uzywasz? Jaką wersji Nmap masz zainstalowaną?"
 
 #: umit/gui/BugReport.py:142
-msgid ""
-"This Bug Report dialog allows you to easily tell us about a problem that you "
-"may have found on Umit. Doing so, you help us to help you, by fixing and "
-"improving Umit faster than usual."
-msgstr ""
-"Formularz Raportu Błędu pozwoli Ci w łatwy sposób poinformować nas o "
-"problemie, który znalazłeś w Umit. Robiąc to, pomagasz nam w pomocy Tobie, "
-"aby naprawić i ulepszyć Umit, aby był lepszy niż do tej pory."
+msgid "This Bug Report dialog allows you to easily tell us about a problem that you may have found on Umit. Doing so, you help us to help you, by fixing and improving Umit faster than usual."
+msgstr "Formularz Raportu Błędu pozwoli Ci w łatwy sposób poinformować nas o problemie, który znalazłeś w Umit. Robiąc to, pomagasz nam w pomocy Tobie, aby naprawić i ulepszyć Umit, aby był lepszy niż do tej pory."
 
 #: umit/gui/BugReport.py:150
 #, fuzzy
@@ -384,42 +348,24 @@ msgid "Bug report is incomplete!"
 msgstr "Raport błędu jest niepełny!"
 
 #: umit/gui/BugReport.py:262
-msgid ""
-"The bug report is incomplete. You must inform a description that explains "
-"clearly what is happening and a valid e-mail, so you can be contacted when "
-"the bug gets fixed."
-msgstr ""
-"Raport błędu jest niepełny. Musisz podać opis problemu w jasny sposób i "
-"poprawny e-mail, abyśmy mogli skontaktować się z Tobą kiedy problem zostanie "
-"naprawiony."
+msgid "The bug report is incomplete. You must inform a description that explains clearly what is happening and a valid e-mail, so you can be contacted when the bug gets fixed."
+msgstr "Raport błędu jest niepełny. Musisz podać opis problemu w jasny sposób i poprawny e-mail, abyśmy mogli skontaktować się z Tobą kiedy problem zostanie naprawiony."
 
 #: umit/gui/BugReport.py:287
 msgid "Bug not reported!"
 msgstr "Raport nie został zgłoszony!"
 
 #: umit/gui/BugReport.py:288
-msgid ""
-"The bug description could not be reported. This problem may be caused by the "
-"lack of Internet access or indisponibility of the bug tracker server. "
-"Please, verify your internet access, and then try to report the bug once "
-"again."
-msgstr ""
-"Opis błędu nie mógł być dostarczony. Problem z dostarczenie mógł być "
-"spowodowany problem z dostępem do Internetu lub niedyspozyjnością serwera do "
-"zgłaszania błedów. Proszę sprawdzić swoje połączenie z Internetem i "
-"sporóbować zgłosić błąd raz jeszcze."
+msgid "The bug description could not be reported. This problem may be caused by the lack of Internet access or indisponibility of the bug tracker server. Please, verify your internet access, and then try to report the bug once again."
+msgstr "Opis błędu nie mógł być dostarczony. Problem z dostarczenie mógł być spowodowany problem z dostępem do Internetu lub niedyspozyjnością serwera do zgłaszania błedów. Proszę sprawdzić swoje połączenie z Internetem i sporóbować zgłosić błąd raz jeszcze."
 
 #: umit/gui/BugReport.py:297
 msgid "Bug sucessfully reported!"
 msgstr "Błąd pomyślnie zgłoszony!"
 
 #: umit/gui/BugReport.py:298
-msgid ""
-"The bug description was sucessfully reported. A web page with detailed "
-"description about this report will be opened in your default web browser now."
-msgstr ""
-"Opis błędu został pomyślnie zgłoszony. Strona web z dokładnym opisem o tym "
-"raporcie zostanie teraz otworzona w Twojej standardowej przeglądarce stron."
+msgid "The bug description was sucessfully reported. A web page with detailed description about this report will be opened in your default web browser now."
+msgstr "Opis błędu został pomyślnie zgłoszony. Strona web z dokładnym opisem o tym raporcie zostanie teraz otworzona w Twojej standardowej przeglądarce stron."
 
 #: umit/gui/BugReport.py:339
 msgid "Crash Report"
@@ -458,12 +404,8 @@ msgid "File is not a Umit Scan Result"
 msgstr "Plik nie jest typu Umit Scan Result"
 
 #: umit/gui/DiffCompare.py:165
-msgid ""
-"Selected file is not a Umit Scan Result file. Umit can not parse this file. "
-"Please, select another."
-msgstr ""
-"Wybrany plik nie jest plikiem Umit Scan Result. Umit nie może odtworzyć tego "
-"pliku. Proszę wybrać następny."
+msgid "Selected file is not a Umit Scan Result file. Umit can not parse this file. Please, select another."
+msgstr "Wybrany plik nie jest plikiem Umit Scan Result. Umit nie może odtworzyć tego pliku. Proszę wybrać następny."
 
 #: umit/gui/DiffCompare.py:178
 msgid "Can not open selected file"
@@ -473,7 +415,8 @@ msgstr "Nie można otworzyć wybranego pliku"
 msgid "Umit can not open selected file. Please, select another."
 msgstr "Umit nie może otworzyć wybranego pliku. Proszę wybrać następny."
 
-#: umit/gui/DiffCompare.py:219 umit/gui/MainWindow.py:339
+#: umit/gui/DiffCompare.py:219
+#: umit/gui/MainWindow.py:339
 msgid "Compare Results"
 msgstr "Wyniki Porównania"
 
@@ -485,7 +428,8 @@ msgstr "Otwórz w przeglądarce"
 msgid "Enable colored diffies"
 msgstr "Włącz kolorowanie różnic"
 
-#: umit/gui/DiffCompare.py:258 umit/gui/DiffCompare.py:908
+#: umit/gui/DiffCompare.py:258
+#: umit/gui/DiffCompare.py:908
 msgid "Color Descriptions"
 msgstr "Ustawienia kolorów"
 
@@ -509,12 +453,14 @@ msgstr "Musisz wybrać dwa rózne skany, aby wygenerować różnicę (diff)."
 msgid "Diff Result"
 msgstr "Wynik Różnicy (diff)"
 
-#: umit/gui/DiffCompare.py:570 umit/inventory/ChangesDiff.py:35
+#: umit/gui/DiffCompare.py:570
+#: umit/inventory/ChangesDiff.py:35
 #: umit/interfaceeditor/Main.py:552
 msgid "Section"
 msgstr "Sekcja"
 
-#: umit/gui/DiffCompare.py:571 umit/inventory/ChangesDiff.py:35
+#: umit/gui/DiffCompare.py:571
+#: umit/inventory/ChangesDiff.py:35
 msgid "Property"
 msgstr "Własność"
 
@@ -522,7 +468,8 @@ msgstr "Własność"
 msgid "Original value"
 msgstr "Oryginalna wartość"
 
-#: umit/gui/DiffCompare.py:573 umit/inventory/ChangesDiff.py:36
+#: umit/gui/DiffCompare.py:573
+#: umit/inventory/ChangesDiff.py:36
 msgid "Current value"
 msgstr "Aktualna wartość"
 
@@ -530,8 +477,10 @@ msgstr "Aktualna wartość"
 msgid "Umit Info"
 msgstr "Informacja Umit"
 
-#: umit/gui/DiffCompare.py:690 umit/gui/ProfileEditor.py:154
-#: umit/gui/SearchGUI.py:126 umit/gui/Wizard.py:471
+#: umit/gui/DiffCompare.py:690
+#: umit/gui/ProfileEditor.py:154
+#: umit/gui/SearchGUI.py:126
+#: umit/gui/Wizard.py:471
 #: umit/inventory/TLGraphPreferences.py:62
 msgid "Profile"
 msgstr "Profil"
@@ -544,7 +493,8 @@ msgstr "Nazwa Profilu"
 msgid "Profile Options"
 msgstr "Opcje Profilu"
 
-#: umit/gui/DiffCompare.py:695 umit/gui/SearchGUI.py:147
+#: umit/gui/DiffCompare.py:695
+#: umit/gui/SearchGUI.py:147
 #: umit/gui/Wizard.py:476
 msgid "Target"
 msgstr "Cel"
@@ -553,7 +503,8 @@ msgstr "Cel"
 msgid "Nmap Info"
 msgstr "Informacja Nmap"
 
-#: umit/gui/DiffCompare.py:700 umit/inventory/Viewer.py:375
+#: umit/gui/DiffCompare.py:700
+#: umit/inventory/Viewer.py:375
 msgid "Debugging"
 msgstr ""
 
@@ -561,17 +512,23 @@ msgstr ""
 msgid "Verbosity"
 msgstr "Gadatliwość"
 
-#: umit/gui/DiffCompare.py:704 umit/gui/ProfileEditor.py:104
-#: umit/gui/SchedulerEdit.py:79 umit/gui/Wizard.py:143 umit/gui/Wizard.py:472
-#: umit/inventory/NewInventory.py:103 umit/inventory/NewInventory.py:524
+#: umit/gui/DiffCompare.py:704
+#: umit/gui/ProfileEditor.py:104
+#: umit/gui/SchedulerEdit.py:79
+#: umit/gui/Wizard.py:143
+#: umit/gui/Wizard.py:472
+#: umit/inventory/NewInventory.py:103
+#: umit/inventory/NewInventory.py:524
 msgid "Command"
 msgstr "Polecenie"
 
-#: umit/gui/DiffCompare.py:706 umit/inventory/Viewer.py:375
+#: umit/gui/DiffCompare.py:706
+#: umit/inventory/Viewer.py:375
 msgid "Scanner version"
 msgstr "Wersja skanera"
 
-#: umit/gui/DiffCompare.py:709 umit/gui/ScanRunDetailsPage.py:191
+#: umit/gui/DiffCompare.py:709
+#: umit/gui/ScanRunDetailsPage.py:191
 msgid "Scan Info"
 msgstr "Informacja skanowania"
 
@@ -603,13 +560,17 @@ msgstr "Zeskanowane Hosty"
 msgid "Finish date"
 msgstr "Data zakończenia"
 
-#: umit/gui/DiffCompare.py:750 umit/gui/ScanHostsView.py:67
-#: umit/gui/ScanOpenPortsPage.py:63 umit/gui/SearchGUI.py:298
-#: umit/inventory/HostDiscovery.py:354 umit/inventory/Viewer.py:530
+#: umit/gui/DiffCompare.py:750
+#: umit/gui/ScanHostsView.py:67
+#: umit/gui/ScanOpenPortsPage.py:63
+#: umit/gui/SearchGUI.py:298
+#: umit/inventory/HostDiscovery.py:354
+#: umit/inventory/Viewer.py:530
 msgid "Host"
 msgstr ""
 
-#: umit/gui/DiffCompare.py:752 umit/gui/DiffCompare.py:754
+#: umit/gui/DiffCompare.py:752
+#: umit/gui/DiffCompare.py:754
 #: umit/gui/DiffCompare.py:756
 #, python-format
 msgid "Host %s"
@@ -623,26 +584,32 @@ msgstr "Komentarz"
 msgid "LastBoot"
 msgstr ""
 
-#: umit/gui/DiffCompare.py:776 umit/inventory/ChangesDiff.py:422
+#: umit/gui/DiffCompare.py:776
+#: umit/inventory/ChangesDiff.py:422
 #: umit/db/Search.py:108
 msgid "OS Match"
 msgstr ""
 
-#: umit/gui/DiffCompare.py:799 umit/inventory/ChangesDiff.py:191
+#: umit/gui/DiffCompare.py:799
+#: umit/inventory/ChangesDiff.py:191
 #: umit/inventory/TLBase.py:45
 msgid "Ports"
 msgstr "Porty"
 
-#: umit/gui/DiffCompare.py:834 umit/gui/DiffCompare.py:873
-#: umit/gui/ScanOpenPortsPage.py:67 umit/gui/ScanOpenPortsPage.py:86
+#: umit/gui/DiffCompare.py:834
+#: umit/gui/DiffCompare.py:873
+#: umit/gui/ScanOpenPortsPage.py:67
+#: umit/gui/ScanOpenPortsPage.py:86
 msgid "State"
 msgstr "Stan"
 
-#: umit/gui/DiffCompare.py:838 umit/gui/ServiceFingerprintReport.py:57
+#: umit/gui/DiffCompare.py:838
+#: umit/gui/ServiceFingerprintReport.py:57
 msgid "Service Name"
 msgstr "Nazwa Usługi"
 
-#: umit/gui/DiffCompare.py:842 umit/gui/SearchGUI.py:170
+#: umit/gui/DiffCompare.py:842
+#: umit/gui/SearchGUI.py:170
 msgid "Product"
 msgstr "Produkt"
 
@@ -650,7 +617,8 @@ msgstr "Produkt"
 msgid "Service Version"
 msgstr "Wersja Usługi"
 
-#: umit/gui/DiffCompare.py:850 umit/gui/ScanOpenPortsPage.py:66
+#: umit/gui/DiffCompare.py:850
+#: umit/gui/ScanOpenPortsPage.py:66
 #: umit/gui/ScanOpenPortsPage.py:84
 msgid "Protocol"
 msgstr "Protokół"
@@ -663,7 +631,8 @@ msgstr "Dodatkowe Informacje"
 msgid "Service Conf"
 msgstr ""
 
-#: umit/gui/DiffCompare.py:867 umit/inventory/ChangesDiff.py:270
+#: umit/gui/DiffCompare.py:867
+#: umit/inventory/ChangesDiff.py:270
 msgid "Extraports"
 msgstr ""
 
@@ -717,13 +686,8 @@ msgid "Couldn't find documentation files!"
 msgstr "Nie można znaleźć plików dokumentacji!"
 
 #: umit/gui/Help.py:58
-msgid ""
-"Umit couldn't find the documentation files. Please, go to Umit's website and "
-"have the latest documentation in our Support & Development section."
-msgstr ""
-"Umit nie mógł znaleźć plików dokumentacji. Proszę, wejdź na stronę "
-"internetową Umit i ściągnij najnowszą dokumentację w naszym dziale Support & "
-"Development."
+msgid "Umit couldn't find the documentation files. Please, go to Umit's website and have the latest documentation in our Support & Development section."
+msgstr "Umit nie mógł znaleźć plików dokumentacji. Proszę, wejdź na stronę internetową Umit i ściągnij najnowszą dokumentację w naszym dziale Support & Development."
 
 #: umit/gui/MainWindow.py:104
 msgid "Umit"
@@ -830,7 +794,8 @@ msgstr "Menadżer Profili"
 msgid "Use to manage profiles"
 msgstr "Użyj do zarządzania profilami"
 
-#: umit/gui/MainWindow.py:307 umit/interfaceeditor/Main.py:71
+#: umit/gui/MainWindow.py:307
+#: umit/interfaceeditor/Main.py:71
 #, fuzzy
 msgid "Interface Editor"
 msgstr "Menadżer Profili"
@@ -855,7 +820,8 @@ msgstr "_Rozszerzenia"
 msgid "Extensions manager"
 msgstr ""
 
-#: umit/gui/MainWindow.py:328 umit/inventory/Viewer.py:634
+#: umit/gui/MainWindow.py:328
+#: umit/inventory/Viewer.py:634
 #: umit/interfaceeditor/Main.py:544
 msgid "_Quit"
 msgstr "_Wyjdź"
@@ -892,7 +858,8 @@ msgstr ""
 msgid "Run Network Inventory"
 msgstr ""
 
-#: umit/gui/MainWindow.py:363 umit/inventory/Viewer.py:610
+#: umit/gui/MainWindow.py:363
+#: umit/inventory/Viewer.py:610
 msgid "_Scheduler"
 msgstr ""
 
@@ -912,46 +879,47 @@ msgstr ""
 msgid "Open SMTP Accounts editor"
 msgstr ""
 
-#: umit/gui/MainWindow.py:380 umit/gui/MainWindow.py:400
-#: umit/inventory/Viewer.py:611 umit/inventory/Viewer.py:664
+#: umit/gui/MainWindow.py:380
+#: umit/gui/MainWindow.py:400
+#: umit/inventory/Viewer.py:611
+#: umit/inventory/Viewer.py:664
 msgid "_Help"
 msgstr "_Pomoc"
 
-#: umit/gui/MainWindow.py:384 umit/inventory/Viewer.py:669
+#: umit/gui/MainWindow.py:384
+#: umit/inventory/Viewer.py:669
 msgid "_Report a bug"
 msgstr "_Zgłoś błąd"
 
-#: umit/gui/MainWindow.py:386 umit/inventory/Viewer.py:670
+#: umit/gui/MainWindow.py:386
+#: umit/inventory/Viewer.py:670
 msgid "Report a bug"
 msgstr "Zgłoś błąd"
 
-#: umit/gui/MainWindow.py:392 umit/inventory/Viewer.py:674
+#: umit/gui/MainWindow.py:392
+#: umit/inventory/Viewer.py:674
 #: umit/interfaceeditor/Main.py:579
 msgid "_About"
 msgstr "_O programie"
 
-#: umit/gui/MainWindow.py:402 umit/inventory/Viewer.py:665
+#: umit/gui/MainWindow.py:402
+#: umit/inventory/Viewer.py:665
 msgid "Shows the application help"
 msgstr "Pokazuje pomoc aplikacji"
 
-#: umit/gui/MainWindow.py:527 umit/gui/MainWindow.py:540
+#: umit/gui/MainWindow.py:527
+#: umit/gui/MainWindow.py:540
 #: umit/gui/MainWindow.py:1059
 msgid "No scan tab"
 msgstr "Brak zakładek skanowania"
 
 #: umit/gui/MainWindow.py:528
 #, fuzzy
-msgid ""
-"There is no scan tab or scan result being shown. Run a scan and then retry "
-"adding."
-msgstr ""
-"Nie ma zakładek skanowania lub wyniku skanowania. Uruchom skanowanie i wtedy "
-"spróbuj dodać hosty."
+msgid "There is no scan tab or scan result being shown. Run a scan and then retry adding."
+msgstr "Nie ma zakładek skanowania lub wyniku skanowania. Uruchom skanowanie i wtedy spróbuj dodać hosty."
 
 #: umit/gui/MainWindow.py:537
-msgid ""
-"You tried adding a scan to the Inventory, but there isn't a finished scan on "
-"the active tab!"
+msgid "You tried adding a scan to the Inventory, but there isn't a finished scan on the active tab!"
 msgstr ""
 
 #: umit/gui/MainWindow.py:566
@@ -966,7 +934,8 @@ msgstr ""
 msgid "inventory."
 msgstr "inwentarz."
 
-#: umit/gui/MainWindow.py:623 umit/gui/MainWindow.py:669
+#: umit/gui/MainWindow.py:623
+#: umit/gui/MainWindow.py:669
 msgid "Close anyway"
 msgstr "Zamknij i tak"
 
@@ -986,7 +955,8 @@ msgstr ""
 "Podany skan ma niezapisane zmiany.\n"
 "Co chcesz zrobić?"
 
-#: umit/gui/MainWindow.py:676 umit/gui/MainWindow.py:679
+#: umit/gui/MainWindow.py:676
+#: umit/gui/MainWindow.py:679
 msgid "Trying to close"
 msgstr "Próbuję zamknąć"
 
@@ -1006,7 +976,8 @@ msgstr "Zamykam bieżący Zakładkę Skanowania"
 msgid "Are you sure you want to close current Scan Tab?"
 msgstr "Jesteś pewien, że chcesz zamknąć bieżącą Zakładkę Skanowania?"
 
-#: umit/gui/MainWindow.py:1029 umit/gui/MainWindow.py:1174
+#: umit/gui/MainWindow.py:1029
+#: umit/gui/MainWindow.py:1174
 msgid "Permission denied"
 msgstr "Brak pozwolenia"
 
@@ -1019,30 +990,23 @@ msgid "Could not load result"
 msgstr "Nie może wczytać wyników"
 
 #: umit/gui/MainWindow.py:1037
-msgid ""
-"An unidentified error occouried and the scan result was unable to be loaded "
-"properly."
-msgstr ""
-"Wystąpił nieznany błąd i wyniki skanowania nie mogły zostać wczytane "
-"poprawnie."
+msgid "An unidentified error occouried and the scan result was unable to be loaded properly."
+msgstr "Wystąpił nieznany błąd i wyniki skanowania nie mogły zostać wczytane poprawnie."
 
 #: umit/gui/MainWindow.py:1060
-msgid ""
-"There is no scan tab or scan result been shown. Run a scan and then try to "
-"save it."
-msgstr ""
-"Nie ma zakładek skanowania lub wynik skanowania pokazany. Uruchom skanowanie "
-"i wtedy spróbuj zapisać."
+msgid "There is no scan tab or scan result been shown. Run a scan and then try to save it."
+msgstr "Nie ma zakładek skanowania lub wynik skanowania pokazany. Uruchom skanowanie i wtedy spróbuj zapisać."
 
-#: umit/gui/MainWindow.py:1071 umit/gui/MainWindow.py:1078
+#: umit/gui/MainWindow.py:1071
+#: umit/gui/MainWindow.py:1078
 #: umit/gui/MainWindow.py:1127
 msgid "Nothing to save"
 msgstr "Nic do zapisania."
 
-#: umit/gui/MainWindow.py:1072 umit/gui/MainWindow.py:1128
+#: umit/gui/MainWindow.py:1072
+#: umit/gui/MainWindow.py:1128
 msgid "No scan on this tab. Start a scan an then try again"
-msgstr ""
-"Brak skanów w tej zakładce. Rozpocznij skanowanie i wtedy spróbuj ponownie."
+msgstr "Brak skanów w tej zakładce. Rozpocznij skanowanie i wtedy spróbuj ponownie."
 
 #: umit/gui/MainWindow.py:1079
 msgid "The scan has failed! There is nothing to be saved."
@@ -1061,12 +1025,8 @@ msgid "Scan is running"
 msgstr "Skanowanie trwa"
 
 #: umit/gui/MainWindow.py:1095
-msgid ""
-"The scan process is not finished yet. Wait until the scan is finished and "
-"then try to save it again."
-msgstr ""
-"Proces skanowania jeszcze nie zakończony. Poczekaj, aż skanowanie zostanie "
-"zakończone i spróbuj zapisać ponownie."
+msgid "The scan process is not finished yet. Wait until the scan is finished and then try to save it again."
+msgstr "Proces skanowania jeszcze nie zakończony. Poczekaj, aż skanowanie zostanie zakończone i spróbuj zapisać ponownie."
 
 #: umit/gui/MainWindow.py:1105
 msgid "Save Scan"
@@ -1107,12 +1067,8 @@ msgid "Non root user"
 msgstr ""
 
 #: umit/gui/MainWindow.py:1334
-msgid ""
-"You run the umit with nmap option and didn't specified a valid target (see "
-"the umit options)"
-msgstr ""
-"Uruchamiasz umit z opcją programu nmap, a nie podałeś docelowego celu "
-"(zobacz opcje)"
+msgid "You run the umit with nmap option and didn't specified a valid target (see the umit options)"
+msgstr "Uruchamiasz umit z opcją programu nmap, a nie podałeś docelowego celu (zobacz opcje)"
 
 #: umit/gui/MainWindow.py:1337
 msgid "Non valid target"
@@ -1182,44 +1138,23 @@ msgstr "Włącz podświetlenie wyjścia Nmapa"
 msgid "Operating System Fingerprint Report"
 msgstr "Raport z Odcisku Systemu Operacyjnego (Fingerprint)"
 
-#: umit/gui/OSFingerprintReport.py:62 umit/gui/ServiceFingerprintReport.py:51
+#: umit/gui/OSFingerprintReport.py:62
+#: umit/gui/ServiceFingerprintReport.py:51
 msgid "Submitted by (optional)"
 msgstr "Złożone przez (opcjonalnie)"
 
-#: umit/gui/OSFingerprintReport.py:63 umit/gui/ServiceFingerprintReport.py:52
-msgid ""
-"Enter your name and e-mail address if we can contact you with any questions. "
-"(kept private, used for nothing else)"
-msgstr ""
-"Wprowadź swoje imię i nazwisko oraz adres email abyśmy mogli skontaktować "
-"się z Tobą jeśli będziemy mieć jakieś pytania (dane trzymane prywatnie, "
-"nieużywane do niczego innego)"
+#: umit/gui/OSFingerprintReport.py:63
+#: umit/gui/ServiceFingerprintReport.py:52
+msgid "Enter your name and e-mail address if we can contact you with any questions. (kept private, used for nothing else)"
+msgstr "Wprowadź swoje imię i nazwisko oraz adres email abyśmy mogli skontaktować się z Tobą jeśli będziemy mieć jakieś pytania (dane trzymane prywatnie, nieużywane do niczego innego)"
 
 #: umit/gui/OSFingerprintReport.py:68
 msgid "Target OS/device info"
 msgstr "Informacja o celu OS/urządzenie"
 
 #: umit/gui/OSFingerprintReport.py:69
-msgid ""
-"<b>The more details the better!</b> For UNIX machines, '<i>uname -a</i>' "
-"often gives the proper version number. On Linux, please also specify the "
-"distribution version (such asRedhat 9.0) if you are using a vendor-provided "
-"kernel. For Windows, the '<i>winver</i>' command (if available) should show "
-"you any service pack information. If a Windows target has no service packs "
-"installed, please say so explicitly. For appliances/embedded devices, please "
-"mention the model number and what it is (printer, webcam, DSL router, VOIP "
-"phone, etc). Try to provide the architecture (X86, SPARC, etc.) where "
-"appropriate."
-msgstr ""
-"<b>Czym więcej szczegółów tym lepiej!</b> Dla maszyn UNIX-owych, '<i>uname -"
-"a</i>' często pokazuje poprawną wersję. Pod Linuxem, proszę także "
-"wyszczególnić wersję dystrybucji (np. Redhat 9.0) jeżeli używasz "
-"dostarczanego przez dystrybucję jądra. Dla Windows, '<i>winver</i>' "
-"polecenie (jeżeli dostępne) powinno pokazać informację o service pack. "
-"Jeżeli docelowy Windows nie posiada żadnych service packów, proszę opisać "
-"jak najwyraźniej. Dla wbudowanych urządzeń, proszę podać numer modelu i co "
-"to za urządzenie (drukarka, kamera internetowa, router DSL, telefon VOIP, "
-"wibrator, etc.). Spróbuj opisać architekturę (X86, SPARC itd)."
+msgid "<b>The more details the better!</b> For UNIX machines, '<i>uname -a</i>' often gives the proper version number. On Linux, please also specify the distribution version (such asRedhat 9.0) if you are using a vendor-provided kernel. For Windows, the '<i>winver</i>' command (if available) should show you any service pack information. If a Windows target has no service packs installed, please say so explicitly. For appliances/embedded devices, please mention the model number and what it is (printer, webcam, DSL router, VOIP phone, etc). Try to provide the architecture (X86, SPARC, etc.) where appropriate."
+msgstr "<b>Czym więcej szczegółów tym lepiej!</b> Dla maszyn UNIX-owych, '<i>uname -a</i>' często pokazuje poprawną wersję. Pod Linuxem, proszę także wyszczególnić wersję dystrybucji (np. Redhat 9.0) jeżeli używasz dostarczanego przez dystrybucję jądra. Dla Windows, '<i>winver</i>' polecenie (jeżeli dostępne) powinno pokazać informację o service pack. Jeżeli docelowy Windows nie posiada żadnych service packów, proszę opisać jak najwyraźniej. Dla wbudowanych urządzeń, proszę podać numer modelu i co to za urządzenie (drukarka, kamera internetowa, router DSL, telefon VOIP, wibrator, etc.). Spróbuj opisać architekturę (X86, SPARC itd)."
 
 #: umit/gui/OSFingerprintReport.py:80
 msgid "Classification"
@@ -1229,75 +1164,44 @@ msgstr "Klasyfikacja"
 msgid "Please select the Device/OS info from this alphabetized choosebox"
 msgstr "Proszę wybrać urządzenie/OS z posortowanej listy"
 
-#: umit/gui/OSFingerprintReport.py:87 umit/gui/ServiceFingerprintReport.py:80
+#: umit/gui/OSFingerprintReport.py:87
+#: umit/gui/ServiceFingerprintReport.py:80
 msgid "Notes"
 msgstr "Notatki"
 
 #: umit/gui/OSFingerprintReport.py:88
-msgid ""
-"Fill with further info on the device, any special network conditions, etc."
-msgstr ""
-"Wypełnij kolejne informację o urządzeniu, specjalne warunki sieciowe, etc."
+msgid "Fill with further info on the device, any special network conditions, etc."
+msgstr "Wypełnij kolejne informację o urządzeniu, specjalne warunki sieciowe, etc."
 
 #: umit/gui/OSFingerprintReport.py:94
-msgid ""
-"This form allows you to contribute new operating system fingerprints to the "
-"Nmap database. Thanks for helping! <b>Please do not fill this out unless you "
-"are sure that you know what application is running on the machine you are "
-"submitting</b>. Incorrect entries can pollute the database. By submitting "
-"fingerprints you are transfering any copyright interest in the data to "
-"Fyodor so that he can modify it, relicense it, incorporate it into programs "
-"such as Nmap, etc."
-msgstr ""
-"Ten formularz pozwala Tobie przyczynić się do powiększenia bazy systemów "
-"operacyjnych w programie Nmap. Dziękuję za pomoc! <b>Proszę nie wypełniąć "
-"tego jeżeli nie jesteś pewien jakie aplikację są uruchomione na maszynię, "
-"którą zgłaszasz<b>. Niepoprawne dane mogą źlę wpłynąć na bazę. Podpisując "
-"odcisk systemu, wszystkie prawa co do danych zostają przekazane Fyodorowi, "
-"aby mógł je modyfikować, zmieniać licencję etc."
+msgid "This form allows you to contribute new operating system fingerprints to the Nmap database. Thanks for helping! <b>Please do not fill this out unless you are sure that you know what application is running on the machine you are submitting</b>. Incorrect entries can pollute the database. By submitting fingerprints you are transfering any copyright interest in the data to Fyodor so that he can modify it, relicense it, incorporate it into programs such as Nmap, etc."
+msgstr "Ten formularz pozwala Tobie przyczynić się do powiększenia bazy systemów operacyjnych w programie Nmap. Dziękuję za pomoc! <b>Proszę nie wypełniąć tego jeżeli nie jesteś pewien jakie aplikację są uruchomione na maszynię, którą zgłaszasz<b>. Niepoprawne dane mogą źlę wpłynąć na bazę. Podpisując odcisk systemu, wszystkie prawa co do danych zostają przekazane Fyodorowi, aby mógł je modyfikować, zmieniać licencję etc."
 
 #: umit/gui/OSFingerprintReport.py:158
 msgid "Operating System Fingerprint report is incomplete!"
 msgstr "Raport Odcisku Systemu Operacyjnego (Fingerprint) niekompletny!"
 
 #: umit/gui/OSFingerprintReport.py:160
-msgid ""
-"The Operating System Fingerprint report is incomplete. Please, try to "
-"provide as much information as possible."
-msgstr ""
-"Raport Odcisku Systemu Operacyjnego (Fingerprint) jest niekompletny. Proszę "
-"dostarczyć tak dużo informacji jak tylko możliwe."
+msgid "The Operating System Fingerprint report is incomplete. Please, try to provide as much information as possible."
+msgstr "Raport Odcisku Systemu Operacyjnego (Fingerprint) jest niekompletny. Proszę dostarczyć tak dużo informacji jak tylko możliwe."
 
 #: umit/gui/OSFingerprintReport.py:180
 msgid "Operating System Fingerprint not registered!"
 msgstr "Odcisk Systemu Operacyjnego nie zarejestrowany!"
 
 #: umit/gui/OSFingerprintReport.py:182
-msgid ""
-"The Operating System Fingerprint could not be registered. This problem may "
-"be caused by the lack of Internet Access or indisponibility of the "
-"fingerprint server. Please, verify your internet access, and then try to "
-"register the operating system fingerprint once again."
-msgstr ""
-"Odcisk Systemu Operacyjnego nie mógł być zarejestrowany. Problem mógł "
-"wyniknąć z powodu dostępu do Internetu lub niedyspozyjności serwera "
-"odcisków. Proszę sprawdzić swoję połączenie z Internetem i spróbwać ponownie."
+msgid "The Operating System Fingerprint could not be registered. This problem may be caused by the lack of Internet Access or indisponibility of the fingerprint server. Please, verify your internet access, and then try to register the operating system fingerprint once again."
+msgstr "Odcisk Systemu Operacyjnego nie mógł być zarejestrowany. Problem mógł wyniknąć z powodu dostępu do Internetu lub niedyspozyjności serwera odcisków. Proszę sprawdzić swoję połączenie z Internetem i spróbwać ponownie."
 
 #: umit/gui/OSFingerprintReport.py:191
 msgid "Operating System Fingerprint sucessfully registered!"
 msgstr "Odcisk Systemu Operacyjnego pomyślnie zarejestrowany!"
 
 #: umit/gui/OSFingerprintReport.py:193
-msgid ""
-"The Operating System Fingerprint was sucessfully registered. A web page with "
-"detailed description about this registration is going to be openned in your "
-"default web browser."
-msgstr ""
-"Odcisk Systemu Operacyjnego został pomyślnie zarejestrowany. Strona "
-"internetowa z szczegółowym opisem o tej rejestracji będzie otwarta w Twojej "
-"domyślnej przeglądarce."
+msgid "The Operating System Fingerprint was sucessfully registered. A web page with detailed description about this registration is going to be openned in your default web browser."
+msgstr "Odcisk Systemu Operacyjnego został pomyślnie zarejestrowany. Strona internetowa z szczegółowym opisem o tej rejestracji będzie otwarta w Twojej domyślnej przeglądarce."
 
-#: umit/gui/OptionBuilder.py:393
+#: umit/gui/OptionBuilder.py:374
 msgid "Choose file"
 msgstr "Wybierz plik"
 
@@ -1309,49 +1213,48 @@ msgstr "Edytor Profilu"
 msgid "Profile Information"
 msgstr "Informacje o Profilu"
 
-#: umit/gui/ProfileEditor.py:113 umit/gui/Wizard.py:407
+#: umit/gui/ProfileEditor.py:113
+#: umit/gui/Wizard.py:407
 msgid "Profile name"
 msgstr "Nazwa Profilu"
 
-#: umit/gui/ProfileEditor.py:115 umit/gui/ProfileManager.py:83
+#: umit/gui/ProfileEditor.py:115
+#: umit/gui/ProfileManager.py:83
 #: umit/gui/Wizard.py:408
 msgid "Hint"
 msgstr "Podpowiedź"
 
-#: umit/gui/ProfileEditor.py:121 umit/gui/Wizard.py:410
+#: umit/gui/ProfileEditor.py:121
+#: umit/gui/Wizard.py:410
 msgid "Annotation"
 msgstr "Adnotacje"
 
-#: umit/gui/ProfileEditor.py:246 umit/gui/Wizard.py:266
+#: umit/gui/ProfileEditor.py:246
+#: umit/gui/Wizard.py:266
 msgid "Unnamed profile"
 msgstr "Nienazwany profil"
 
-#: umit/gui/ProfileEditor.py:247 umit/gui/Wizard.py:267
+#: umit/gui/ProfileEditor.py:247
+#: umit/gui/Wizard.py:267
 msgid "You must provide a name for this profile."
 msgstr "Musisz wprowadzić nazwę dla tego profilu."
 
-#: umit/gui/ProfileEditor.py:296 umit/gui/ProfileEditor.py:342
+#: umit/gui/ProfileEditor.py:296
+#: umit/gui/ProfileEditor.py:342
 msgid "Deleting Profile"
 msgstr "Usuwanie Profilu"
 
 #: umit/gui/ProfileEditor.py:297
 #, fuzzy
-msgid ""
-"Your profile is going to be deleted! Click                                   "
-"Ok to continue, or Cancel to go back to Profile Editor."
-msgstr ""
-"Twój profil zostanie usunięty! Kliknij OK, aby kontynuować lub Anuluj, aby "
-"wrócić do Edytora Profilu."
+msgid "Your profile is going to be deleted! Click                                   Ok to continue, or Cancel to go back to Profile Editor."
+msgstr "Twój profil zostanie usunięty! Kliknij OK, aby kontynuować lub Anuluj, aby wrócić do Edytora Profilu."
 
 #: umit/gui/ProfileEditor.py:343
-msgid ""
-"Your profile is going to be deleted! Click Ok to continue, or Cancel to go "
-"back to Profile Editor."
-msgstr ""
-"Twój profil zostanie usunięty! Kliknij OK, aby kontynuować lub Anuluj, aby "
-"wrócić do Edytora Profilu."
+msgid "Your profile is going to be deleted! Click Ok to continue, or Cancel to go back to Profile Editor."
+msgstr "Twój profil zostanie usunięty! Kliknij OK, aby kontynuować lub Anuluj, aby wrócić do Edytora Profilu."
 
-#: umit/gui/ProfileManager.py:80 umit/interfaceeditor/Main.py:293
+#: umit/gui/ProfileManager.py:80
+#: umit/interfaceeditor/Main.py:293
 #: umit/interfaceeditor/Tools.py:578
 msgid "Name"
 msgstr "Nazwa"
@@ -1368,7 +1271,8 @@ msgstr "Nazwa Profilu"
 msgid "Change"
 msgstr ""
 
-#: umit/gui/ProfileManager.py:338 umit/gui/ScanToolbar.py:89
+#: umit/gui/ProfileManager.py:338
+#: umit/gui/ScanToolbar.py:89
 msgid "Profile:"
 msgstr "Profil:"
 
@@ -1384,9 +1288,12 @@ msgstr "Nazwa Schematu"
 msgid "Server"
 msgstr "Serwer"
 
-#: umit/gui/SMTPSetup.py:66 umit/gui/ScanOpenPortsPage.py:65
-#: umit/gui/ScanOpenPortsPage.py:85 umit/inventory/ChangesDiff.py:211
-#: umit/inventory/ChangesDiff.py:250 umit/db/InventoryChanges.py:255
+#: umit/gui/SMTPSetup.py:66
+#: umit/gui/ScanOpenPortsPage.py:65
+#: umit/gui/ScanOpenPortsPage.py:85
+#: umit/inventory/ChangesDiff.py:211
+#: umit/inventory/ChangesDiff.py:250
+#: umit/db/InventoryChanges.py:255
 #: umit/db/InventoryChanges.py:342
 msgid "Port"
 msgstr ""
@@ -1411,7 +1318,8 @@ msgstr ""
 msgid "Use TLS Encryption"
 msgstr ""
 
-#: umit/gui/SMTPSetup.py:191 umit/gui/SMTPSetup.py:202
+#: umit/gui/SMTPSetup.py:191
+#: umit/gui/SMTPSetup.py:202
 msgid "SMTP Schema - Error while saving."
 msgstr ""
 
@@ -1420,12 +1328,11 @@ msgid "You need to specify an username and password for this SMTP Schema."
 msgstr "Musisz podać użytkownika i hasło dla SMTP Schematu."
 
 #: umit/gui/SMTPSetup.py:204
-msgid ""
-"The following fields need to be filled: Schema Name, Server, Port and Mail "
-"from."
+msgid "The following fields need to be filled: Schema Name, Server, Port and Mail from."
 msgstr ""
 
-#: umit/gui/ScanHostDetailsPage.py:34 umit/gui/ScanRunDetailsPage.py:38
+#: umit/gui/ScanHostDetailsPage.py:34
+#: umit/gui/ScanRunDetailsPage.py:38
 msgid "Not available"
 msgstr "Niedostępne"
 
@@ -1449,21 +1356,26 @@ msgstr "System Operacyjny"
 msgid "Ports used"
 msgstr "Używane porty"
 
-#: umit/gui/ScanHostDetailsPage.py:58 umit/inventory/ChangesDiff.py:363
-#: umit/inventory/ChangesDiff.py:381 umit/inventory/ChangesDiff.py:397
+#: umit/gui/ScanHostDetailsPage.py:58
+#: umit/inventory/ChangesDiff.py:363
+#: umit/inventory/ChangesDiff.py:381
+#: umit/inventory/ChangesDiff.py:397
 #: umit/inventory/ChangesDiff.py:406
 msgid "OS Class"
 msgstr "Klasa OS"
 
-#: umit/gui/ScanHostDetailsPage.py:59 umit/inventory/ChangesDiff.py:315
+#: umit/gui/ScanHostDetailsPage.py:59
+#: umit/inventory/ChangesDiff.py:315
 msgid "TCP Sequence"
 msgstr "Sekwencja TCP"
 
-#: umit/gui/ScanHostDetailsPage.py:60 umit/inventory/ChangesDiff.py:321
+#: umit/gui/ScanHostDetailsPage.py:60
+#: umit/inventory/ChangesDiff.py:321
 msgid "IP ID Sequence"
 msgstr "Sekwencja IP ID"
 
-#: umit/gui/ScanHostDetailsPage.py:61 umit/inventory/ChangesDiff.py:318
+#: umit/gui/ScanHostDetailsPage.py:61
+#: umit/inventory/ChangesDiff.py:318
 msgid "TCP TS Sequence"
 msgstr "Sekwencja TCP TS"
 
@@ -1475,15 +1387,18 @@ msgstr "Komentarze"
 msgid "State:"
 msgstr "Stan:"
 
-#: umit/gui/ScanHostDetailsPage.py:70 umit/gui/ScanRunDetailsPage.py:74
+#: umit/gui/ScanHostDetailsPage.py:70
+#: umit/gui/ScanRunDetailsPage.py:74
 msgid "Open ports:"
 msgstr "Otwarte porty:"
 
-#: umit/gui/ScanHostDetailsPage.py:73 umit/gui/ScanRunDetailsPage.py:77
+#: umit/gui/ScanHostDetailsPage.py:73
+#: umit/gui/ScanRunDetailsPage.py:77
 msgid "Filtered ports:"
 msgstr "Filtrowane porty:"
 
-#: umit/gui/ScanHostDetailsPage.py:76 umit/gui/ScanRunDetailsPage.py:80
+#: umit/gui/ScanHostDetailsPage.py:76
+#: umit/gui/ScanRunDetailsPage.py:80
 msgid "Closed ports:"
 msgstr "Zamknięte porty:"
 
@@ -1519,7 +1434,8 @@ msgstr "Producent"
 msgid "Name - Type:"
 msgstr "Nazwa - Typ:"
 
-#: umit/gui/ScanHostDetailsPage.py:258 umit/gui/ScanHostDetailsPage.py:293
+#: umit/gui/ScanHostDetailsPage.py:258
+#: umit/gui/ScanHostDetailsPage.py:293
 #: umit/inventory/ChangesDiff.py:32
 msgid "Not Available"
 msgstr "Niedostępne"
@@ -1537,7 +1453,8 @@ msgstr "Dokładność"
 msgid "Port-Protocol-State:"
 msgstr "Port-Protokół-Stan:"
 
-#: umit/gui/ScanHostDetailsPage.py:365 umit/interfaceeditor/Tools.py:584
+#: umit/gui/ScanHostDetailsPage.py:365
+#: umit/interfaceeditor/Tools.py:584
 msgid "Type"
 msgstr "Typ"
 
@@ -1553,12 +1470,14 @@ msgstr "Rodzina OS"
 msgid "OS Generation"
 msgstr "Generacja OS"
 
-#: umit/gui/ScanHostDetailsPage.py:369 umit/inventory/ChangesDiff.py:357
+#: umit/gui/ScanHostDetailsPage.py:369
+#: umit/inventory/ChangesDiff.py:357
 #: umit/inventory/ChangesDiff.py:402
 msgid "Accuracy"
 msgstr "Dokładność"
 
-#: umit/gui/ScanHostDetailsPage.py:396 umit/gui/ScanHostDetailsPage.py:421
+#: umit/gui/ScanHostDetailsPage.py:396
+#: umit/gui/ScanHostDetailsPage.py:421
 #: umit/gui/ScanHostDetailsPage.py:440
 msgid "Class:"
 msgstr "Klasa:"
@@ -1571,7 +1490,8 @@ msgstr "Trudność:"
 msgid "Index:"
 msgstr "Indeks:"
 
-#: umit/gui/ScanHostDetailsPage.py:405 umit/gui/ScanHostDetailsPage.py:424
+#: umit/gui/ScanHostDetailsPage.py:405
+#: umit/gui/ScanHostDetailsPage.py:424
 #: umit/gui/ScanHostDetailsPage.py:443
 msgid "Values:"
 msgstr "Wartości:"
@@ -1588,12 +1508,15 @@ msgstr "Hosty"
 msgid "Services"
 msgstr "Usługi"
 
-#: umit/gui/ScanHostsView.py:66 umit/gui/SearchGUI.py:335
+#: umit/gui/ScanHostsView.py:66
+#: umit/gui/SearchGUI.py:335
 msgid "OS"
 msgstr ""
 
-#: umit/gui/ScanHostsView.py:74 umit/gui/ScanOpenPortsPage.py:68
-#: umit/gui/ScanOpenPortsPage.py:81 umit/gui/SearchGUI.py:169
+#: umit/gui/ScanHostsView.py:74
+#: umit/gui/ScanOpenPortsPage.py:68
+#: umit/gui/ScanOpenPortsPage.py:81
+#: umit/gui/SearchGUI.py:169
 #: umit/gui/SearchGUI.py:319
 msgid "Service"
 msgstr "Usługa"
@@ -1608,12 +1531,8 @@ msgid "Profile not found!"
 msgstr "Profil nie znaleziony!"
 
 #: umit/gui/ScanNotebook.py:524
-msgid ""
-"The profile name you selected/typed couldn't be found, and probably doesn't "
-"exist. Please, check the profile name and try again."
-msgstr ""
-"Wybrana nazwa profilu nie znaleziona i prawdopodobnie nie istnieje. Proszę "
-"sprawdzić nazwę profilu i spróbować ponownie."
+msgid "The profile name you selected/typed couldn't be found, and probably doesn't exist. Please, check the profile name and try again."
+msgstr "Wybrana nazwa profilu nie znaleziona i prawdopodobnie nie istnieje. Proszę sprawdzić nazwę profilu i spróbować ponownie."
 
 #: umit/gui/ScanNotebook.py:553
 msgid "Personalized Scan"
@@ -1625,36 +1544,25 @@ msgid "%s on %s"
 msgstr ""
 
 #: umit/gui/ScanNotebook.py:557
-#, fuzzy, python-format
+#, python-format
 msgid "Scan on %s"
-msgstr "Rodzaj skanowania:"
+msgstr ""
 
 #: umit/gui/ScanNotebook.py:575
 msgid "Empty Nmap Command!"
 msgstr "Puste Polecenie Nmap"
 
 #: umit/gui/ScanNotebook.py:576
-msgid ""
-"There is no command to execute! Maybe the selected/typed profile doesn't "
-"exist. Please, check the profile name or type the nmap command you would "
-"like to execute."
-msgstr ""
-"Brak polecenia do wykonania! Możliwe, że wybrany profil nie istnieje. Proszę "
-"sprawdzić nazwę profilu lub wprowadzić polecenie nmapa, które chcesz wykonać."
+msgid "There is no command to execute! Maybe the selected/typed profile doesn't exist. Please, check the profile name or type the nmap command you would like to execute."
+msgstr "Brak polecenia do wykonania! Możliwe, że wybrany profil nie istnieje. Proszę sprawdzić nazwę profilu lub wprowadzić polecenie nmapa, które chcesz wykonać."
 
 #: umit/gui/ScanNotebook.py:625
 msgid "Scan has not finished yet"
 msgstr "Skanowanie jeszcze się nie zakończyło"
 
 #: umit/gui/ScanNotebook.py:626
-msgid ""
-"Another scan is running in the background. To start another scan and kill "
-"the old one, click Ok. To wait for the conclusion of the old scan, choose "
-"Cancel."
-msgstr ""
-"Inne skanowania jest uruchomione w tle. Aby zacząć następne skanowania i "
-"usunąć poprzednie, kliknij Ok. Aby poczekąć na zakończenie poprzedniego "
-"skanowania, wybierz Anuluj."
+msgid "Another scan is running in the background. To start another scan and kill the old one, click Ok. To wait for the conclusion of the old scan, choose Cancel."
+msgstr "Inne skanowania jest uruchomione w tle. Aby zacząć następne skanowania i usunąć poprzednie, kliknij Ok. Aby poczekąć na zakończenie poprzedniego skanowania, wybierz Anuluj."
 
 #: umit/gui/ScanNotebook.py:648
 msgid "Nmap couldn't be found"
@@ -1662,24 +1570,16 @@ msgstr "Nmap nie znaleziony"
 
 #: umit/gui/ScanNotebook.py:649
 #, fuzzy
-msgid ""
-"Umit couldn't find Nmap. Maybe you don't have it installed, or you need to "
-"set your PATH environment variable."
-msgstr ""
-"Umit nie mógł znaleźć Nmap. Prawdopodobnie nie masz go zainstalowanego lub "
-"musisz ustawić swoją zmienną środowiskową PATH."
+msgid "Umit couldn't find Nmap. Maybe you don't have it installed, or you need to set your PATH environment variable."
+msgstr "Umit nie mógł znaleźć Nmap. Prawdopodobnie nie masz go zainstalowanego lub musisz ustawić swoją zmienną środowiskową PATH."
 
 #: umit/gui/ScanNotebook.py:657
 msgid "Command is missing!"
 msgstr "Brak polecenie!"
 
 #: umit/gui/ScanNotebook.py:658
-msgid ""
-"It seems that your profile's command is missing or something else went "
-"wrong. Please, try to remove and recreate your profile."
-msgstr ""
-"Wygląda, że brakuje polecenia z Twojego profilu lub coś poszło nie tak. "
-"Proszę spróbować usunąć i jeszcze raz stworzyć profil."
+msgid "It seems that your profile's command is missing or something else went wrong. Please, try to remove and recreate your profile."
+msgstr "Wygląda, że brakuje polecenia z Twojego profilu lub coś poszło nie tak. Proszę spróbować usunąć i jeszcze raz stworzyć profil."
 
 #: umit/gui/ScanNotebook.py:779
 msgid "Couldn't retrieve the error raised by the command!"
@@ -1700,17 +1600,11 @@ msgstr "Wystąpił niespodziewany błąd!"
 #: umit/gui/ScanNotebook.py:951
 #, python-format
 msgid "you network scan discovered an unknown fingerprint sent by the host %s"
-msgstr ""
-"twoje skanowanie sieci odkryło nieznany odcisk (fingerprint) wysłany przez "
-"host %s"
+msgstr "twoje skanowanie sieci odkryło nieznany odcisk (fingerprint) wysłany przez host %s"
 
 #: umit/gui/ScanNotebook.py:957
-msgid ""
-"your network scan discovered several unknown fingerprints sent by the "
-"follwoing hosts: "
-msgstr ""
-"twoje skanowanie sieci odkryło nieznany odcisk (fingerprint) wysłany przez "
-"następujące hosty"
+msgid "your network scan discovered several unknown fingerprints sent by the follwoing hosts: "
+msgstr "twoje skanowanie sieci odkryło nieznany odcisk (fingerprint) wysłany przez następujące hosty"
 
 #: umit/gui/ScanNotebook.py:968
 msgid "Unrecognized Services/OS Fingerprints Found!"
@@ -1732,7 +1626,8 @@ msgstr "Szczegóły Hosta"
 msgid "Scan Details"
 msgstr "Szczegóły skanowania"
 
-#: umit/gui/ScanNotebook.py:1318 umit/gui/radialnet/Toolbar.py:310
+#: umit/gui/ScanNotebook.py:1318
+#: umit/gui/radialnet/Toolbar.py:310
 msgid "Topology"
 msgstr ""
 
@@ -1744,11 +1639,13 @@ msgstr "Brak zaznaczonego hosta!"
 msgid "Scan is not finished yet!"
 msgstr "Skanowanie jeszcze nie skończone!"
 
-#: umit/gui/ScanOpenPortsPage.py:69 umit/gui/ScanOpenPortsPage.py:88
+#: umit/gui/ScanOpenPortsPage.py:69
+#: umit/gui/ScanOpenPortsPage.py:88
 msgid "Version"
 msgstr "Wersja"
 
-#: umit/gui/ScanOpenPortsPage.py:82 umit/inventory/InventoryTree.py:44
+#: umit/gui/ScanOpenPortsPage.py:82
+#: umit/inventory/InventoryTree.py:44
 #: umit/db/Search.py:105
 msgid "Hostname"
 msgstr "Nazwa hosta"
@@ -1777,7 +1674,8 @@ msgstr "Informacja o Poleceniu"
 msgid "General Info"
 msgstr "Ogólne Informacje"
 
-#: umit/gui/ScanRunDetailsPage.py:43 umit/gui/ScanToolbar.py:38
+#: umit/gui/ScanRunDetailsPage.py:43
+#: umit/gui/ScanToolbar.py:38
 msgid "Command:"
 msgstr "Polecenie:"
 
@@ -1829,7 +1727,8 @@ msgstr "# zeskanowanych portów:"
 msgid "Services:"
 msgstr "Usługi:"
 
-#: umit/gui/ScanToolbar.py:59 umit/gui/SearchGUI.py:107
+#: umit/gui/ScanToolbar.py:59
+#: umit/gui/SearchGUI.py:107
 msgid "Scan"
 msgstr "Skanowanie"
 
@@ -1845,7 +1744,8 @@ msgstr ""
 msgid "Stop Scheduler"
 msgstr ""
 
-#: umit/gui/SchedulerControl.py:71 umit/gui/SchedulerControl.py:93
+#: umit/gui/SchedulerControl.py:71
+#: umit/gui/SchedulerControl.py:93
 #: umit/gui/SchedulerControl.py:111
 msgid "Scheduler Controller"
 msgstr ""
@@ -1888,16 +1788,19 @@ msgstr ""
 msgid "Schema Name"
 msgstr "Nazwa Schematu"
 
-#: umit/gui/SchedulerEdit.py:73 umit/inventory/NewInventory.py:92
+#: umit/gui/SchedulerEdit.py:73
+#: umit/inventory/NewInventory.py:92
 msgid "Scan Profile"
 msgstr "Profil Skanowania"
 
-#: umit/gui/SchedulerEdit.py:82 umit/gui/SchedulerEdit.py:514
+#: umit/gui/SchedulerEdit.py:82
+#: umit/gui/SchedulerEdit.py:514
 #: umit/inventory/NewInventory.py:114
 msgid "Scheduling Profile"
 msgstr "Scheduling Profil"
 
-#: umit/gui/SchedulerEdit.py:86 umit/inventory/NewInventory.py:119
+#: umit/gui/SchedulerEdit.py:86
+#: umit/inventory/NewInventory.py:119
 msgid "Edit Profiles"
 msgstr "Edytuj Profile"
 
@@ -1921,7 +1824,8 @@ msgstr ""
 msgid "Add to the Inventory"
 msgstr ""
 
-#: umit/gui/SchedulerEdit.py:99 umit/inventory/NewInventory.py:82
+#: umit/gui/SchedulerEdit.py:99
+#: umit/inventory/NewInventory.py:82
 msgid "Enabled"
 msgstr ""
 
@@ -1929,15 +1833,15 @@ msgstr ""
 msgid "Select a directory"
 msgstr "Wybierz katalog"
 
-#: umit/gui/SchedulerEdit.py:277 umit/gui/SchedulerEdit.py:291
+#: umit/gui/SchedulerEdit.py:277
+#: umit/gui/SchedulerEdit.py:291
 #: umit/gui/SchedulerEdit.py:305
 msgid "Scheduling Schema - Error while saving."
 msgstr ""
 
 #: umit/gui/SchedulerEdit.py:279
 msgid ""
-"There is some error in at least one of the following fields: \"Schema name"
-"\", \"Command\" or \"Scheduling Profile\"\n"
+"There is some error in at least one of the following fields: \"Schema name\", \"Command\" or \"Scheduling Profile\"\n"
 "\n"
 "Check if \"Schema name\" is not empty.\n"
 "Check if \"Command\" does contain \"<target>\" on it.\n"
@@ -1964,7 +1868,8 @@ msgstr ""
 msgid "Minute"
 msgstr "Minuta"
 
-#: umit/gui/SchedulerEdit.py:521 umit/inventory/TLBase.py:66
+#: umit/gui/SchedulerEdit.py:521
+#: umit/inventory/TLBase.py:66
 msgid "Hour"
 msgstr "Godzina"
 
@@ -1972,7 +1877,8 @@ msgstr "Godzina"
 msgid "Day of month"
 msgstr ""
 
-#: umit/gui/SchedulerEdit.py:525 umit/inventory/TLBase.py:64
+#: umit/gui/SchedulerEdit.py:525
+#: umit/inventory/TLBase.py:64
 msgid "Month"
 msgstr "Miesiąc"
 
@@ -1980,7 +1886,8 @@ msgstr "Miesiąc"
 msgid "Weekday"
 msgstr "Dzień powszedni"
 
-#: umit/gui/SchedulerEdit.py:603 umit/gui/SchedulerEdit.py:625
+#: umit/gui/SchedulerEdit.py:603
+#: umit/gui/SchedulerEdit.py:625
 msgid "Scheduling Profile - Error while saving"
 msgstr ""
 
@@ -2060,7 +1967,8 @@ msgstr "Data"
 msgid "General search parameters"
 msgstr "Ogólne parametry wyszukiwania"
 
-#: umit/gui/SearchGUI.py:125 umit/interfaceeditor/Tools.py:592
+#: umit/gui/SearchGUI.py:125
+#: umit/interfaceeditor/Tools.py:592
 msgid "Option"
 msgstr "Opcja"
 
@@ -2072,16 +1980,19 @@ msgstr "Słowo kluczowe"
 msgid "Host search parameters"
 msgstr "Parametry wyszukiwania hosta"
 
-#: umit/gui/SearchGUI.py:148 umit/inventory/InventoryTree.py:44
+#: umit/gui/SearchGUI.py:148
+#: umit/inventory/InventoryTree.py:44
 #: umit/db/Search.py:114
 msgid "MAC"
 msgstr ""
 
-#: umit/gui/SearchGUI.py:149 umit/inventory/InventoryTree.py:44
+#: umit/gui/SearchGUI.py:149
+#: umit/inventory/InventoryTree.py:44
 msgid "IPv4"
 msgstr ""
 
-#: umit/gui/SearchGUI.py:150 umit/inventory/InventoryTree.py:44
+#: umit/gui/SearchGUI.py:150
+#: umit/inventory/InventoryTree.py:44
 msgid "IPv6"
 msgstr ""
 
@@ -2089,7 +2000,8 @@ msgstr ""
 msgid "Service search parameters"
 msgstr "Parametry wyszukiwania usługi"
 
-#: umit/gui/SearchGUI.py:168 umit/db/Search.py:180
+#: umit/gui/SearchGUI.py:168
+#: umit/db/Search.py:180
 msgid "Port number"
 msgstr "Numrt portu"
 
@@ -2150,15 +2062,8 @@ msgid "No search method selected!"
 msgstr "Nie zaznaczony sposoby wyszukiwania!"
 
 #: umit/gui/SearchGUI.py:402
-msgid ""
-"Umit can search results on directories or inside it's own database. Please, "
-"select a method by choosing a directory or by checking the search data base "
-"option at the 'Search options' tab before start the search"
-msgstr ""
-"Umit potrafi przeszukiwać wyniki w katalogach lub wewnątrz własnej bazy. "
-"Proszę wybrać metodę poprzez wybór katalogu lub klikając opcję "
-"przeszukiwania bazy danych w zakładce 'Opcje szukania' przed rozpoczęciem "
-"przeszukiwania."
+msgid "Umit can search results on directories or inside it's own database. Please, select a method by choosing a directory or by checking the search data base option at the 'Search options' tab before start the search"
+msgstr "Umit potrafi przeszukiwać wyniki w katalogach lub wewnątrz własnej bazy. Proszę wybrać metodę poprzez wybór katalogu lub klikając opcję przeszukiwania bazy danych w zakładce 'Opcje szukania' przed rozpoczęciem przeszukiwania."
 
 #: umit/gui/SearchGUI.py:468
 msgid "Unknown"
@@ -2201,119 +2106,56 @@ msgid "Service Fingerprint Report"
 msgstr "Raport Usługi Fingerprint"
 
 #: umit/gui/ServiceFingerprintReport.py:58
-msgid ""
-"E.g. smtp, pop-3, http, domain, ssh, etc. Umit tries to automaticly fill "
-"this field for you, based on the Nmap \"SERVICE\" output field. If it is "
-"correct, you don't need to worry about filling out this field. "
-msgstr ""
-"Np. smtp, pop-3, http, domain, ssh, etc. Umit próbuję automatycznie wypełnić "
-"to pole dla Ciebie, bazując na polu wyjściowym Nmap \"USŁUGA\". Jeżeli jest "
-"poprawna, nie powinieneś się martwić o uzupełnianie tego pola."
+msgid "E.g. smtp, pop-3, http, domain, ssh, etc. Umit tries to automaticly fill this field for you, based on the Nmap \"SERVICE\" output field. If it is correct, you don't need to worry about filling out this field. "
+msgstr "Np. smtp, pop-3, http, domain, ssh, etc. Umit próbuję automatycznie wypełnić to pole dla Ciebie, bazując na polu wyjściowym Nmap \"USŁUGA\". Jeżeli jest poprawna, nie powinieneś się martwić o uzupełnianie tego pola."
 
 #: umit/gui/ServiceFingerprintReport.py:64
 msgid "Platform/OS"
 msgstr "Platforma/OS"
 
 #: umit/gui/ServiceFingerprintReport.py:65
-msgid ""
-"The operating system or embedded device the service is running on - Examples "
-"are \"Linux 2.4.X\", \"Windows XP\", \"Cisco 3640 router\", \"Netgear MR814 "
-"WAP\""
-msgstr ""
-"Usługa systemu operacyjnego lub wbudowanego urządzenia jest uruchomiona na - "
-"Przykłady \"Linux 2.4.X\", \"Windows XP\", \"Cisco 3640 router\", \"Netgear "
-"MR814 WAP\""
+msgid "The operating system or embedded device the service is running on - Examples are \"Linux 2.4.X\", \"Windows XP\", \"Cisco 3640 router\", \"Netgear MR814 WAP\""
+msgstr "Usługa systemu operacyjnego lub wbudowanego urządzenia jest uruchomiona na - Przykłady \"Linux 2.4.X\", \"Windows XP\", \"Cisco 3640 router\", \"Netgear MR814 WAP\""
 
 #: umit/gui/ServiceFingerprintReport.py:70
 msgid "Service Description"
 msgstr "Opis Usługi"
 
 #: umit/gui/ServiceFingerprintReport.py:72
-msgid ""
-"Please try to include vendor name, app name, and version number as "
-"applicable. It is OK to leave this blank for embedded devices where you have "
-"described the hardware above and don't have any further details on the "
-"service name/version. Here are a few examples: ISC Bind 9.2.2, Sendmail "
-"8.12.9/8.10.2, Microsoft Exchange 5.5.2656.59, Network Associates WebShield "
-"4.5"
-msgstr ""
-"Proszę spróbować dołączyć nazwę producenta, nazwę aplikacji oraz numer "
-"wersji jeśli istnieje. Można zostawić to pole puste dla urządzeń "
-"wbudowanych, dla których opisałeś sprzęt powyżej i nie masz dodatkowych "
-"szczegółow o nazwie/wersji usługi. Kilka przykładów: ISC Bind 9.2.2, "
-"Sendmail 8.12.9/8.10.2, Microsoft Exchange 5.5.2656.59, Network Associates "
-"WebShield 4.5"
+msgid "Please try to include vendor name, app name, and version number as applicable. It is OK to leave this blank for embedded devices where you have described the hardware above and don't have any further details on the service name/version. Here are a few examples: ISC Bind 9.2.2, Sendmail 8.12.9/8.10.2, Microsoft Exchange 5.5.2656.59, Network Associates WebShield 4.5"
+msgstr "Proszę spróbować dołączyć nazwę producenta, nazwę aplikacji oraz numer wersji jeśli istnieje. Można zostawić to pole puste dla urządzeń wbudowanych, dla których opisałeś sprzęt powyżej i nie masz dodatkowych szczegółow o nazwie/wersji usługi. Kilka przykładów: ISC Bind 9.2.2, Sendmail 8.12.9/8.10.2, Microsoft Exchange 5.5.2656.59, Network Associates WebShield 4.5"
 
 #: umit/gui/ServiceFingerprintReport.py:81
-msgid ""
-"Further info on the device or service, any special customizations, etc. If "
-"it isn't obvious, please let me know what the service is (Virus scanning "
-"email gateway, Gnutella-protocol P2P app, print server web configuration "
-"port, etc"
-msgstr ""
-"Dalsze informacje o urządzenia lub usłudze, jakikolwiek specjane modifykacje "
-"itp. Jeżeli nie jest oczywiste, proszę powiadomoć nas co to za usługa "
-"(Bramka do skanowania poczty przed wirusami, Gnutella-protokół P2P, Webowy "
-"serwer do konfiguracji drukarek sieciowych itp."
+msgid "Further info on the device or service, any special customizations, etc. If it isn't obvious, please let me know what the service is (Virus scanning email gateway, Gnutella-protocol P2P app, print server web configuration port, etc"
+msgstr "Dalsze informacje o urządzenia lub usłudze, jakikolwiek specjane modifykacje itp. Jeżeli nie jest oczywiste, proszę powiadomoć nas co to za usługa (Bramka do skanowania poczty przed wirusami, Gnutella-protokół P2P, Webowy serwer do konfiguracji drukarek sieciowych itp."
 
 #: umit/gui/ServiceFingerprintReport.py:89
-msgid ""
-"This form allows you to contribute new service/version fingerprints to the "
-"Nmap database. Thanks for helping! <b>Please do not fill this out unless you "
-"are sure that you know what application is running on the machine you are "
-"submitting</b>. Incorrect entries can pollute the database. By submitting "
-"fingerprints you are transfering any copyright interest in the data to "
-"Fyodor so that he can modify it, relicense it, incorporate it into programs "
-"such as Nmap, etc."
-msgstr ""
-"Ten formularz pozwala Tobie przyczynić się do powiększenia bazy systemów "
-"operacyjnych w programie Nmap. Dziękuję za pomoc! <b>Proszę nie wypełniąć "
-"tego jeżeli nie jesteś pewien jakie aplikację są uruchomione na maszynię, "
-"którą zgłaszasz<b>. Niepoprawne dane mogą źlę wpłynąć na bazę. Podpisując "
-"odcisk systemu, wszystkie prawa co do danych zostają przekazane Fyodorowi, "
-"aby mógł je modyfikować, zmieniać licencję etc."
+msgid "This form allows you to contribute new service/version fingerprints to the Nmap database. Thanks for helping! <b>Please do not fill this out unless you are sure that you know what application is running on the machine you are submitting</b>. Incorrect entries can pollute the database. By submitting fingerprints you are transfering any copyright interest in the data to Fyodor so that he can modify it, relicense it, incorporate it into programs such as Nmap, etc."
+msgstr "Ten formularz pozwala Tobie przyczynić się do powiększenia bazy systemów operacyjnych w programie Nmap. Dziękuję za pomoc! <b>Proszę nie wypełniąć tego jeżeli nie jesteś pewien jakie aplikację są uruchomione na maszynię, którą zgłaszasz<b>. Niepoprawne dane mogą źlę wpłynąć na bazę. Podpisując odcisk systemu, wszystkie prawa co do danych zostają przekazane Fyodorowi, aby mógł je modyfikować, zmieniać licencję etc."
 
 #: umit/gui/ServiceFingerprintReport.py:157
 msgid "Service Fingerprint report is incomplete!"
 msgstr "Raport usługi Fingerprint jest niekompletny!"
 
 #: umit/gui/ServiceFingerprintReport.py:159
-msgid ""
-"The Service Fingerprint report is incomplete. Please, try to provide as much "
-"information as possible."
-msgstr ""
-"Raport usługi Fingerprint jest niekompletny. Proszę spróbować podać tyle "
-"informacji ile możliwe."
+msgid "The Service Fingerprint report is incomplete. Please, try to provide as much information as possible."
+msgstr "Raport usługi Fingerprint jest niekompletny. Proszę spróbować podać tyle informacji ile możliwe."
 
 #: umit/gui/ServiceFingerprintReport.py:180
 msgid "Service Fingerprint not registered!"
 msgstr "Usługa Fingerprint niezarejestrowana!"
 
 #: umit/gui/ServiceFingerprintReport.py:182
-msgid ""
-"The Service Fingerprint could not be registered. This problem may be caused "
-"by the lack of Internet Access or indisponibility of the fingerprint server. "
-"Please, verify your internet access, and then try to register the service "
-"fingerprint once again."
-msgstr ""
-"Usługa Fingerprint nie mogła zostać zarejestrowana. Problem ten może wynikać "
-"z połączenia do internetu lub z niedyspozyjności serwera fingerprint. Proszę "
-"sprawdzić swoje podłączenie do internetu i spróbować zarejestrować usługę "
-"fingerprint raz jeszcze."
+msgid "The Service Fingerprint could not be registered. This problem may be caused by the lack of Internet Access or indisponibility of the fingerprint server. Please, verify your internet access, and then try to register the service fingerprint once again."
+msgstr "Usługa Fingerprint nie mogła zostać zarejestrowana. Problem ten może wynikać z połączenia do internetu lub z niedyspozyjności serwera fingerprint. Proszę sprawdzić swoje podłączenie do internetu i spróbować zarejestrować usługę fingerprint raz jeszcze."
 
 #: umit/gui/ServiceFingerprintReport.py:191
 msgid "Service Fingerprint sucessfully registered!"
 msgstr "Usługa Fingerprint zarejestrowana pomyślnie!"
 
 #: umit/gui/ServiceFingerprintReport.py:193
-msgid ""
-"The Service Fingerprint was sucessfully registered. A web page with detailed "
-"description about this registration is going to be openned in your default "
-"web browser."
-msgstr ""
-"Usługa Fingerprint została zarejestrowana pomyślnie. Strona internetowa ze "
-"szczegółowym opisem rejestracji zostanie otworzona w Twojej domyślnej "
-"przeglądarce."
+msgid "The Service Fingerprint was sucessfully registered. A web page with detailed description about this registration is going to be openned in your default web browser."
+msgstr "Usługa Fingerprint została zarejestrowana pomyślnie. Strona internetowa ze szczegółowym opisem rejestracji zostanie otworzona w Twojej domyślnej przeglądarce."
 
 #: umit/gui/Wizard.py:89
 msgid "Umit Command constructor wizard"
@@ -2329,22 +2171,15 @@ msgstr "Musisz wybrać cel do skanownaia."
 
 #: umit/gui/Wizard.py:389
 msgid "Umit generated the nmap command. Click Apply to finish this wizard."
-msgstr ""
-"Umit wygenerował polecenie nmap. Kliknij Zastosuj, aby zakończyć wizarda."
+msgstr "Umit wygenerował polecenie nmap. Kliknij Zastosuj, aby zakończyć wizarda."
 
 #: umit/gui/Wizard.py:404
-msgid ""
-"Please, enter the profile name, and optionally, enter a hint, description "
-"and annotation for this new profile"
-msgstr ""
-"Proszę wprowadzić nazwę profilu i opcjonalnie podpowiedź, opis i adnotacje "
-"dla nowego profilu"
+msgid "Please, enter the profile name, and optionally, enter a hint, description and annotation for this new profile"
+msgstr "Proszę wprowadzić nazwę profilu i opcjonalnie podpowiedź, opis i adnotacje dla nowego profilu"
 
 #: umit/gui/Wizard.py:448
 msgid "Umit allow user to construct powerful commands in two distinct ways:"
-msgstr ""
-"UMIT pozwala użytkownikowi konstruować potężne polecenia na dwa różne "
-"sposoby:"
+msgstr "UMIT pozwala użytkownikowi konstruować potężne polecenia na dwa różne sposoby:"
 
 #: umit/gui/Wizard.py:450
 msgid "Novice"
@@ -2355,11 +2190,8 @@ msgid "Expert"
 msgstr "Ekspert"
 
 #: umit/gui/Wizard.py:469
-msgid ""
-"You wish to create a new profile, or just want to quickly create a command "
-"and run it once?"
-msgstr ""
-"Chcesz stworzyć nowy profil czy szybko stworzyć polecenie i uruchomić je?"
+msgid "You wish to create a new profile, or just want to quickly create a command and run it once?"
+msgstr "Chcesz stworzyć nowy profil czy szybko stworzyć polecenie i uruchomić je?"
 
 #: umit/gui/radialnet/SaveDialog.py:40
 msgid "Save Topology"
@@ -2387,7 +2219,8 @@ msgstr "Hosty Nieaktywne"
 msgid "Save snapshot"
 msgstr ""
 
-#: umit/gui/radialnet/Toolbar.py:166 umit/interfaceeditor/Main.py:551
+#: umit/gui/radialnet/Toolbar.py:166
+#: umit/interfaceeditor/Main.py:551
 msgid "Tools"
 msgstr "Narzędzia"
 
@@ -2431,9 +2264,7 @@ msgid "Select a Plugin path"
 msgstr ""
 
 #: umit/plugin/PathPage.py:199
-msgid ""
-"Remember that you have to restart UMIT to changes makes. Plugins disable "
-"pending."
+msgid "Remember that you have to restart UMIT to changes makes. Plugins disable pending."
 msgstr ""
 
 #: umit/plugin/PathPage.py:206
@@ -2448,7 +2279,8 @@ msgstr "Znajdź aktualizacje"
 msgid "Install updates"
 msgstr ""
 
-#: umit/plugin/PluginPage.py:62 umit/plugin/PluginPage.py:414
+#: umit/plugin/PluginPage.py:62
+#: umit/plugin/PluginPage.py:414
 msgid "Skip"
 msgstr ""
 
@@ -2457,9 +2289,7 @@ msgid "Restart UMIT"
 msgstr ""
 
 #: umit/plugin/PluginPage.py:136
-msgid ""
-"Remember that you have to restart UMIT to make new version of plugins to be "
-"loaded correctly."
+msgid "Remember that you have to restart UMIT to make new version of plugins to be loaded correctly."
 msgstr ""
 
 #: umit/plugin/PluginPage.py:159
@@ -2585,7 +2415,8 @@ msgstr "Nie można wczytać %s"
 msgid "Plugin already loaded."
 msgstr ""
 
-#: umit/plugin/Update.py:241 umit/plugin/Update.py:374
+#: umit/plugin/Update.py:241
+#: umit/plugin/Update.py:374
 #: umit/plugin/Update.py:395
 msgid "Cycling to next update url. Waiting..."
 msgstr ""
@@ -2599,7 +2430,8 @@ msgstr ""
 msgid "Checking validity ..."
 msgstr ""
 
-#: umit/plugin/Update.py:287 umit/plugin/Update.py:299
+#: umit/plugin/Update.py:287
+#: umit/plugin/Update.py:299
 msgid "Updated. Restart to take effect"
 msgstr ""
 
@@ -2615,7 +2447,8 @@ msgstr ""
 msgid "Downloading update information..."
 msgstr ""
 
-#: umit/plugin/Update.py:379 umit/plugin/Update.py:400
+#: umit/plugin/Update.py:379
+#: umit/plugin/Update.py:400
 #, python-format
 msgid "Cannot find newer version (%s)"
 msgstr ""
@@ -2682,7 +2515,8 @@ msgid ""
 "Thanks Google!"
 msgstr ""
 
-#: umit/inventory/About.py:70 umit/inventory/Viewer.py:675
+#: umit/inventory/About.py:70
+#: umit/inventory/Viewer.py:675
 msgid "About UMIT Network Inventory"
 msgstr ""
 
@@ -2786,13 +2620,15 @@ msgstr "Brak danych"
 msgid "No data available for this host on this date"
 msgstr ""
 
-#: umit/inventory/ChangesDiff.py:279 umit/inventory/ChangesDiff.py:280
+#: umit/inventory/ChangesDiff.py:279
+#: umit/inventory/ChangesDiff.py:280
 #: umit/inventory/ChangesDiff.py:291
 #, fuzzy
 msgid "count"
 msgstr "Liczba"
 
-#: umit/inventory/ChangesDiff.py:309 umit/inventory/TLBase.py:44
+#: umit/inventory/ChangesDiff.py:309
+#: umit/inventory/TLBase.py:44
 #: umit/db/Search.py:117
 msgid "Fingerprint"
 msgstr ""
@@ -2801,7 +2637,8 @@ msgstr ""
 msgid "Uptime"
 msgstr "Czas pracy"
 
-#: umit/inventory/ChangesDiff.py:336 umit/db/InventoryChanges.py:287
+#: umit/inventory/ChangesDiff.py:336
+#: umit/db/InventoryChanges.py:287
 #: umit/db/Search.py:111
 #, fuzzy
 msgid "OS Classes"
@@ -2847,7 +2684,8 @@ msgstr "Sekwencja TCP TS"
 msgid "TCP TS Sequence Value"
 msgstr "Sekwencja TCP TS"
 
-#: umit/inventory/ChangesList.py:95 umit/inventory/ChangesList.py:324
+#: umit/inventory/ChangesList.py:95
+#: umit/inventory/ChangesList.py:324
 #: umit/inventory/ChangesList.py:344
 msgid "Inventories"
 msgstr ""
@@ -2856,7 +2694,8 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: umit/inventory/ChangesList.py:221 umit/inventory/TLBase.py:41
+#: umit/inventory/ChangesList.py:221
+#: umit/inventory/TLBase.py:41
 #: umit/inventory/Viewer.py:530
 msgid "Inventory"
 msgstr ""
@@ -2890,7 +2729,8 @@ msgstr ""
 msgid "Options"
 msgstr "Opcje"
 
-#: umit/inventory/ChangesList.py:402 umit/inventory/Timeline.py:68
+#: umit/inventory/ChangesList.py:402
+#: umit/inventory/Timeline.py:68
 msgid "Viewing"
 msgstr ""
 
@@ -2943,7 +2783,8 @@ msgstr ""
 msgid "Find hosts"
 msgstr ""
 
-#: umit/inventory/HostDiscovery.py:348 umit/inventory/HostDiscovery.py:521
+#: umit/inventory/HostDiscovery.py:348
+#: umit/inventory/HostDiscovery.py:521
 #: umit/inventory/HostDiscovery.py:554
 msgid "Target list"
 msgstr "Lista Celi"
@@ -2978,8 +2819,7 @@ msgid "No network(s) detected."
 msgstr "Brak zaznaczonego hosta!"
 
 #: umit/inventory/HostDiscovery.py:457
-msgid ""
-"You will need to especify the network(s) yourself before detecting hosts."
+msgid "You will need to especify the network(s) yourself before detecting hosts."
 msgstr ""
 
 #: umit/inventory/HostDiscovery.py:493
@@ -2990,12 +2830,14 @@ msgstr ""
 msgid "You need to specify at least one network to search for hosts."
 msgstr ""
 
-#: umit/inventory/HostDiscovery.py:519 umit/inventory/InventoryTree.py:267
+#: umit/inventory/HostDiscovery.py:519
+#: umit/inventory/InventoryTree.py:267
 #: umit/inventory/InventoryTree.py:319
 msgid "scan"
 msgstr "skan"
 
-#: umit/inventory/HostDiscovery.py:523 umit/inventory/InventoryTree.py:267
+#: umit/inventory/HostDiscovery.py:523
+#: umit/inventory/InventoryTree.py:267
 #: umit/inventory/InventoryTree.py:321
 #, fuzzy
 msgid " running"
@@ -3031,25 +2873,24 @@ msgstr ""
 
 #: umit/inventory/InventoryCommonDialog.py:14
 msgid ""
-"This Inventory was created when a scan realized in UMIT was requested to be "
-"added to the Network Inventory Viewer, so there is no scheduling profile for "
-"it.\n"
+"This Inventory was created when a scan realized in UMIT was requested to be added to the Network Inventory Viewer, so there is no scheduling profile for it.\n"
 "\n"
 "This Inventory is not editable.\n"
 "\n"
-"(If the mentioned reason above is incorrect, either you have a database from "
-"somewhere else or report as bug)"
+"(If the mentioned reason above is incorrect, either you have a database from somewhere else or report as bug)"
 msgstr ""
 
 #: umit/inventory/InventoryException.py:9
 msgid "No inventory named"
 msgstr ""
 
-#: umit/inventory/InventoryTree.py:42 umit/inventory/Viewer.py:61
+#: umit/inventory/InventoryTree.py:42
+#: umit/inventory/Viewer.py:61
 msgid "Info"
 msgstr "Informacja"
 
-#: umit/inventory/InventoryTree.py:62 umit/inventory/InventoryTree.py:189
+#: umit/inventory/InventoryTree.py:62
+#: umit/inventory/InventoryTree.py:189
 msgid "My Inventories"
 msgstr ""
 
@@ -3058,7 +2899,8 @@ msgstr ""
 msgid "Scan will not run!"
 msgstr "Skanowanie trwa"
 
-#: umit/inventory/InventoryTree.py:226 umit/inventory/InventoryTree.py:283
+#: umit/inventory/InventoryTree.py:226
+#: umit/inventory/InventoryTree.py:283
 msgid "You tried running scan for Inventory"
 msgstr ""
 
@@ -3097,7 +2939,8 @@ msgstr ""
 msgid "Collapse All"
 msgstr ""
 
-#: umit/inventory/InventoryTree.py:366 umit/inventory/InventoryTree.py:376
+#: umit/inventory/InventoryTree.py:366
+#: umit/inventory/InventoryTree.py:376
 msgid "View by"
 msgstr ""
 
@@ -3150,7 +2993,8 @@ msgstr ""
 msgid "nmap -T Aggressive -sV -n -O -v target"
 msgstr ""
 
-#: umit/inventory/NewInventory.py:323 umit/inventory/NewInventory.py:343
+#: umit/inventory/NewInventory.py:323
+#: umit/inventory/NewInventory.py:343
 #: umit/inventory/NewInventory.py:363
 msgid "New Inventory - Error while creating."
 msgstr ""
@@ -3172,9 +3016,7 @@ msgid "You need to toggle \"Use default scan options\" or specify a command."
 msgstr ""
 
 #: umit/inventory/NewInventory.py:364
-msgid ""
-"It seems you removed <target> from the Scan command entry, you need to leave "
-"it somewhere there."
+msgid "It seems you removed <target> from the Scan command entry, you need to leave it somewhere there."
 msgstr ""
 
 #: umit/inventory/NewInventory.py:533
@@ -3185,7 +3027,8 @@ msgstr ""
 msgid "Refresh Time"
 msgstr ""
 
-#: umit/inventory/RefreshDialog.py:39 umit/inventory/TLBase.py:80
+#: umit/inventory/RefreshDialog.py:39
+#: umit/inventory/TLBase.py:80
 #: umit/core/UmitConf.py:160
 msgid "Minutes"
 msgstr "Minut"
@@ -3203,11 +3046,13 @@ msgstr "Opcja szukania"
 msgid "Find devices"
 msgstr "Znajdź urządzenia"
 
-#: umit/inventory/SearchBar.py:88 umit/inventory/SearchBar.py:92
+#: umit/inventory/SearchBar.py:88
+#: umit/inventory/SearchBar.py:92
 msgid "Search in"
 msgstr "Szukaj w"
 
-#: umit/inventory/SearchBar.py:89 umit/inventory/SearchBar.py:93
+#: umit/inventory/SearchBar.py:89
+#: umit/inventory/SearchBar.py:93
 msgid "All Inventories"
 msgstr ""
 
@@ -3217,9 +3062,7 @@ msgstr ""
 
 #: umit/inventory/SearchBar.py:131
 msgid ""
-"Connection to the database isn't established. There are some possible "
-"reasons: your UMIT database could be corrupted, missing, or something more "
-"strange, or, you aren't running this inside UMIT.\n"
+"Connection to the database isn't established. There are some possible reasons: your UMIT database could be corrupted, missing, or something more strange, or, you aren't running this inside UMIT.\n"
 "\n"
 "If you suspect this is a bug, please report it."
 msgstr ""
@@ -3257,7 +3100,8 @@ msgstr ""
 msgid "Devices tab"
 msgstr "Usługi"
 
-#: umit/inventory/SettingsWin.py:50 umit/inventory/Viewer.py:690
+#: umit/inventory/SettingsWin.py:50
+#: umit/inventory/Viewer.py:690
 msgid "Place close button"
 msgstr ""
 
@@ -3300,7 +3144,8 @@ msgstr "Niedostępne"
 msgid "Several"
 msgstr "Ogólne"
 
-#: umit/inventory/TLBase.py:49 umit/inventory/TLBase.py:70
+#: umit/inventory/TLBase.py:49
+#: umit/inventory/TLBase.py:70
 msgid "Changes Sum"
 msgstr ""
 
@@ -3332,15 +3177,18 @@ msgstr "Dzień"
 msgid "By Category"
 msgstr ""
 
-#: umit/inventory/TLBase.py:77 umit/core/UmitConf.py:158
+#: umit/inventory/TLBase.py:77
+#: umit/core/UmitConf.py:158
 msgid "Months"
 msgstr "Miesięcy"
 
-#: umit/inventory/TLBase.py:78 umit/core/UmitConf.py:156
+#: umit/inventory/TLBase.py:78
+#: umit/core/UmitConf.py:156
 msgid "Days"
 msgstr "Dni"
 
-#: umit/inventory/TLBase.py:79 umit/core/UmitConf.py:155
+#: umit/inventory/TLBase.py:79
+#: umit/core/UmitConf.py:155
 msgid "Hours"
 msgstr "Godziny"
 
@@ -3365,9 +3213,9 @@ msgid "Each point break represents "
 msgstr ""
 
 #: umit/inventory/TLBase.py:273
-#, fuzzy, python-format
+#, python-format
 msgid "Year %(year)s"
-msgstr "Rok %s"
+msgstr ""
 
 #: umit/inventory/TLChangesTree.py:27
 msgid "View all changes"
@@ -3540,7 +3388,8 @@ msgstr ""
 msgid "Number of events"
 msgstr ""
 
-#: umit/inventory/Utils.py:5 umit/db/InventoryChanges.py:328
+#: umit/inventory/Utils.py:5
+#: umit/db/InventoryChanges.py:328
 msgid "s"
 msgstr ""
 
@@ -3603,7 +3452,8 @@ msgstr ""
 msgid "Search: %s"
 msgstr "Szukaj: %s"
 
-#: umit/inventory/Viewer.py:608 umit/interfaceeditor/Main.py:540
+#: umit/inventory/Viewer.py:608
+#: umit/interfaceeditor/Main.py:540
 msgid "_File"
 msgstr "_Plik"
 
@@ -3655,11 +3505,13 @@ msgstr "Zamknij aktualną zakładkę inwentarza"
 msgid "Close Network Inventory"
 msgstr ""
 
-#: umit/inventory/Viewer.py:640 umit/inventory/Viewer.py:641
+#: umit/inventory/Viewer.py:640
+#: umit/inventory/Viewer.py:641
 msgid "Data Removal"
 msgstr ""
 
-#: umit/inventory/Viewer.py:645 umit/inventory/Viewer.py:646
+#: umit/inventory/Viewer.py:645
+#: umit/inventory/Viewer.py:646
 msgid "Startup settings"
 msgstr ""
 
@@ -3695,7 +3547,9 @@ msgstr ""
 msgid " Timeline "
 msgstr ""
 
-#: umit/core/Diff.py:34 umit/core/DiffHtml.py:135 umit/core/I18N.py:77
+#: umit/core/Diff.py:34
+#: umit/core/DiffHtml.py:135
+#: umit/core/I18N.py:77
 msgid "Umit - Take the red pill"
 msgstr ""
 
@@ -3703,15 +3557,14 @@ msgstr ""
 msgid "http://www.umitproject.org"
 msgstr ""
 
-#: umit/core/Diff.py:37 umit/core/DiffHtml.py:136
+#: umit/core/Diff.py:37
+#: umit/core/DiffHtml.py:136
 msgid "This diff was generated by Umit"
 msgstr "Ten diff został wygenerowany przez Umit"
 
 #: umit/core/Diff.py:38
 msgid "(Changes to this file can make Umit unable to read it.)"
-msgstr ""
-"(Zmiany w tym pliku mogą spowodować, że Umit nie będzie zdolny do "
-"przeczytania pliku.)"
+msgstr "(Zmiany w tym pliku mogą spowodować, że Umit nie będzie zdolny do przeczytania pliku.)"
 
 #: umit/core/Diff.py:42
 msgid " Start of diff "
@@ -3723,9 +3576,7 @@ msgstr " Koniec diff "
 
 #: umit/core/DiffHtml.py:156
 msgid "Changes to this file can make Umit unable to read it."
-msgstr ""
-"Zmiany w tym pliku mogą spowodować, że Umit nie będzie zdolny do "
-"przeczytania pliku."
+msgstr "Zmiany w tym pliku mogą spowodować, że Umit nie będzie zdolny do przeczytania pliku."
 
 #: umit/core/DiffHtml.py:157
 msgid "Regular Text Diff: "
@@ -3776,82 +3627,40 @@ msgid "Open Umit and runs a Nmap scan with specified args."
 msgstr "Otwórz Umit i uruchomi Nmap skanowanie z podanymi opcjami."
 
 #: umit/core/UmitOptionParser.py:57
-msgid ""
-"Open Umit with the specified profile selected. If combined with the -t (--"
-"target) option, open Umit and automatically run the profile against the "
-"specified target."
-msgstr ""
-"Otwiera Umit z określonym profilem. Jeżeli użyto opcji -t (--target), "
-"otwiera Umit i automatycznie uruchomia ten profil z określonym celem."
+msgid "Open Umit with the specified profile selected. If combined with the -t (--target) option, open Umit and automatically run the profile against the specified target."
+msgstr "Otwiera Umit z określonym profilem. Jeżeli użyto opcji -t (--target), otwiera Umit i automatycznie uruchomia ten profil z określonym celem."
 
 #: umit/core/UmitOptionParser.py:66
-msgid ""
-"*NOT IMPLEMENTED* - Open the diff compare window, in compare mode comparing "
-"the two given scan result files (Nmap XML output or usr (Umit Scan Result) "
-"file)."
-msgstr ""
-"*NIE ZAIMPLEMENTOWANE* - Otwiera okno porównywania różnic (diff), w trybie "
-"porównywania porównywane są dwa wskazane pliki z wynikami skanowania (dane "
-"wyjściowe Nmap XML lub plik usr (Umit Scan Result))."
+msgid "*NOT IMPLEMENTED* - Open the diff compare window, in compare mode comparing the two given scan result files (Nmap XML output or usr (Umit Scan Result) file)."
+msgstr "*NIE ZAIMPLEMENTOWANE* - Otwiera okno porównywania różnic (diff), w trybie porównywania porównywane są dwa wskazane pliki z wynikami skanowania (dane wyjściowe Nmap XML lub plik usr (Umit Scan Result))."
 
 #: umit/core/UmitOptionParser.py:75
-msgid ""
-"*NOT IMPLEMENTED* - Open the diff compare window, in text mode comparing the "
-"two given scan result files (Nmap XML output or usr, Umit Scan Result)."
-msgstr ""
-"*NIE ZAIMPLEMENTOWANE* - Otwiera okno porównywania różnic (diff), w "
-"tekstowym trybie porównywane są dwa wskazane pliki (dane wyjściowe Nmap XML "
-"lub usr (Umit Scan Result))."
+msgid "*NOT IMPLEMENTED* - Open the diff compare window, in text mode comparing the two given scan result files (Nmap XML output or usr, Umit Scan Result)."
+msgstr "*NIE ZAIMPLEMENTOWANE* - Otwiera okno porównywania różnic (diff), w tekstowym trybie porównywane są dwa wskazane pliki (dane wyjściowe Nmap XML lub usr (Umit Scan Result))."
 
 #: umit/core/UmitOptionParser.py:85
-msgid ""
-"*NOT IMPLEMENTED* - Take two scan result files (Nmap XML output or usr, Umit "
-"Scan Result), make a text diff and print it in the terminal without openning "
-"Umit Interface."
-msgstr ""
-"*NIE ZAIMPLEMENTOWANE* - Bierze dwa pliki z wynikami skanowania (dane "
-"wyjsciowe Nmap XML lub usr, Umit Scan Result), tworzy tekstową różnicę "
-"pomiędzy nimi (diff) i wyświetla na terminalu wynik różnicy bez otwierania "
-"Umit Interface."
+msgid "*NOT IMPLEMENTED* - Take two scan result files (Nmap XML output or usr, Umit Scan Result), make a text diff and print it in the terminal without openning Umit Interface."
+msgstr "*NIE ZAIMPLEMENTOWANE* - Bierze dwa pliki z wynikami skanowania (dane wyjsciowe Nmap XML lub usr, Umit Scan Result), tworzy tekstową różnicę pomiędzy nimi (diff) i wyświetla na terminalu wynik różnicy bez otwierania Umit Interface."
 
 #: umit/core/UmitOptionParser.py:96
-msgid ""
-"*NOT IMPLEMENTED* - Run Umit and go straight to NSE Facilitator Interface. "
-"You may specify nse scripts as arguments if you want use them."
-msgstr ""
-"*NIE ZAIMPLEMENTOWANE* - Otwiera Umit i przechodzi od razu do NSE "
-"Facilitator Interface. Możesz wyszczególnić skrypy nse jako argumenty jeżeli "
-"chcesz je użyć."
+msgid "*NOT IMPLEMENTED* - Run Umit and go straight to NSE Facilitator Interface. You may specify nse scripts as arguments if you want use them."
+msgstr "*NIE ZAIMPLEMENTOWANE* - Otwiera Umit i przechodzi od razu do NSE Facilitator Interface. Możesz wyszczególnić skrypy nse jako argumenty jeżeli chcesz je użyć."
 
 #: umit/core/UmitOptionParser.py:107
-msgid ""
-"Specify a target to be used along with other options. If specified alone, "
-"opens Umit with the target field filled with the specified target"
-msgstr ""
-"Wskazuje cel, który będzie użyty wraz z innymi opcjami. Jeżeli wskazany jest "
-"sam, otwiera Umit z wypełnionym polem celu."
+msgid "Specify a target to be used along with other options. If specified alone, opens Umit with the target field filled with the specified target"
+msgstr "Wskazuje cel, który będzie użyty wraz z innymi opcjami. Jeżeli wskazany jest sam, otwiera Umit z wypełnionym polem celu."
 
 #: umit/core/UmitOptionParser.py:122
-msgid ""
-"Specify a scan result file in Nmap XML Output or Umit Scan Result file. Can "
-"be used more than once to specify several scan result files."
-msgstr ""
-"Wskazuje plik z wynikami skanowania w NMap XML Output lub Umit Scan Result. "
-"Może być użyty więcej niż raz do wskazanych kilku plików z wynikami "
-"skanowania."
+msgid "Specify a scan result file in Nmap XML Output or Umit Scan Result file. Can be used more than once to specify several scan result files."
+msgstr "Wskazuje plik z wynikami skanowania w NMap XML Output lub Umit Scan Result. Może być użyty więcej niż raz do wskazanych kilku plików z wynikami skanowania."
 
 #: umit/core/UmitOptionParser.py:131
 msgid "*NOT IMPLEMENTED* - Open Umit showing the given file at Umit Mapper"
-msgstr ""
-"*NIE ZAIMPLEMENTOWANE* - Otwiera Umit i pokazuje wskazane pliki w Umit Mapper"
+msgstr "*NIE ZAIMPLEMENTOWANE* - Otwiera Umit i pokazuje wskazane pliki w Umit Mapper"
 
 #: umit/core/UmitOptionParser.py:138
-msgid ""
-"Increase verbosity of the output. May be used more than once to get even "
-"more verbosity"
-msgstr ""
-"Wzrasta gadatliwość na wyjściu. Może być użyte więcej niż raz co zwiększy "
-"efekt rozgadania."
+msgid "Increase verbosity of the output. May be used more than once to get even more verbosity"
+msgstr "Wzrasta gadatliwość na wyjściu. Może być użyte więcej niż raz co zwiększy efekt rozgadania."
 
 #: umit/db/InventoryChanges.py:114
 msgid "Host down"
@@ -3944,13 +3753,11 @@ msgid "Dependence of Option "
 msgstr ""
 
 #: umit/interfaceeditor/DependencesOption.py:54
-msgid ""
-"There is a problem deleting this option. This options have dependences.  "
+msgid "There is a problem deleting this option. This options have dependences.  "
 msgstr ""
 
 #: umit/interfaceeditor/DependencesOption.py:55
-msgid ""
-"Are you sure that can remove this option? Dependences should be removed too"
+msgid "Are you sure that can remove this option? Dependences should be removed too"
 msgstr ""
 
 #: umit/interfaceeditor/Main.py:226
@@ -4046,11 +3853,13 @@ msgstr ""
 msgid "Remove Section Label"
 msgstr ""
 
-#: umit/interfaceeditor/Main.py:560 umit/interfaceeditor/Tools.py:185
+#: umit/interfaceeditor/Main.py:560
+#: umit/interfaceeditor/Tools.py:185
 msgid "_Remove Section"
 msgstr "_Usuń Sekcję"
 
-#: umit/interfaceeditor/Main.py:561 umit/interfaceeditor/Tools.py:186
+#: umit/interfaceeditor/Main.py:561
+#: umit/interfaceeditor/Tools.py:186
 msgid "Remove Section"
 msgstr "Usuń Sekcję"
 
@@ -4086,19 +3895,23 @@ msgstr "_Dodaj zaznaczoną opcję"
 msgid "Add option selected"
 msgstr "Dodaj zaznaczą opcję"
 
-#: umit/interfaceeditor/Main.py:570 umit/interfaceeditor/Tools.py:179
+#: umit/interfaceeditor/Main.py:570
+#: umit/interfaceeditor/Tools.py:179
 msgid "_Move Section Left"
 msgstr ""
 
-#: umit/interfaceeditor/Main.py:571 umit/interfaceeditor/Tools.py:180
+#: umit/interfaceeditor/Main.py:571
+#: umit/interfaceeditor/Tools.py:180
 msgid "Move Section Left"
 msgstr ""
 
-#: umit/interfaceeditor/Main.py:572 umit/interfaceeditor/Tools.py:181
+#: umit/interfaceeditor/Main.py:572
+#: umit/interfaceeditor/Tools.py:181
 msgid "_Move Section Right"
 msgstr ""
 
-#: umit/interfaceeditor/Main.py:573 umit/interfaceeditor/Tools.py:182
+#: umit/interfaceeditor/Main.py:573
+#: umit/interfaceeditor/Tools.py:182
 msgid "Move Section Right"
 msgstr ""
 
@@ -4174,20 +3987,20 @@ msgstr ""
 msgid "Blank options is not allowed!"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:68
-#: umit/interfaceeditor/PageNotebook.py:145
+#: umit/interfaceeditor/PageNotebook.py:67
+#: umit/interfaceeditor/PageNotebook.py:144
 msgid "Add/Remove Voidplace"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:198
+#: umit/interfaceeditor/PageNotebook.py:197
 msgid "Move item"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:350
+#: umit/interfaceeditor/PageNotebook.py:349
 msgid "Add/Remove Option"
 msgstr ""
 
-#: umit/interfaceeditor/PageNotebook.py:435
+#: umit/interfaceeditor/PageNotebook.py:434
 msgid "Add/Remove Page"
 msgstr ""
 
@@ -4223,11 +4036,13 @@ msgstr "_Dodaj sekcję"
 msgid "Add Section"
 msgstr "Dodaj sekcję"
 
-#: umit/interfaceeditor/Tools.py:187 umit/interfaceeditor/Tools.py:188
+#: umit/interfaceeditor/Tools.py:187
+#: umit/interfaceeditor/Tools.py:188
 msgid "Add Place"
 msgstr ""
 
-#: umit/interfaceeditor/Tools.py:189 umit/interfaceeditor/Tools.py:190
+#: umit/interfaceeditor/Tools.py:189
+#: umit/interfaceeditor/Tools.py:190
 msgid "Remove Option"
 msgstr "Usuń opcję"
 
@@ -4253,36 +4068,28 @@ msgstr ""
 
 #~ msgid "No descriptions"
 #~ msgstr "Brak opisu"
-
 #~ msgid "Select Script"
 #~ msgstr "Wybierz skrypt"
-
 #~ msgid "File is not a NSE script file"
 #~ msgstr "Plik nie jest skryptem NSE"
-
 #~ msgid ""
 #~ "Selected file is not a NSE script file. Umit can not parse this file. "
 #~ "Please, select another."
 #~ msgstr ""
 #~ "Wybrany plik nie jest skryptem NSE. Umit nie może poprawnie sparsować "
 #~ "pliku. Proszę wybrać następny."
-
 #~ msgid ""
 #~ "Umit can not find any NSE script files in the selected directory. Please, "
 #~ "select another."
 #~ msgstr ""
 #~ "Umit nie może znaleźć żadnego skryptu NSE w wybranym katalogu. Proszę "
 #~ "wybrać inny."
-
 #~ msgid "Add Directory..."
 #~ msgstr "Dodaj Katalog..."
-
 #~ msgid "_Settings"
 #~ msgstr "_Ustawienia"
-
 #~ msgid "Search"
 #~ msgstr "Szukaj"
-
 #~ msgid "Edit selected script"
 #~ msgstr "Edytuj zaznaczony skrypt"
 
@@ -4293,41 +4100,30 @@ msgstr ""
 #, fuzzy
 #~ msgid "Show/hide Description sidebar"
 #~ msgstr "Opis Usługi"
-
 #~ msgid "Text Editor"
 #~ msgstr "Edytor Tekstowy"
-
 #~ msgid "Internal Editor"
 #~ msgstr "Wewnętrzny Edytor"
-
 #~ msgid "External Editor"
 #~ msgstr "Zewnętrzny Edytor"
-
 #~ msgid "Editor"
 #~ msgstr "Edytor"
-
 #~ msgid "Help not implemented"
 #~ msgstr "Pomoc niedostępna"
-
 #~ msgid "Umit help is not implemented yet."
 #~ msgstr "Pomoc Umita jeszcze niedostępna."
-
 #~ msgid "<target>"
 #~ msgstr "<cel>"
-
 #~ msgid "No Target Host!"
 #~ msgstr "Brak Hosta Celu!"
-
 #~ msgid ""
 #~ "Target specification is mandatory. Either by an address in the target "
 #~ "input box or through the '-iR' and '-iL' nmap options. Aborting scan."
 #~ msgstr ""
 #~ "Specyfikacja celu jest obowiązkowa. Albo adres celu w okienku wpisania. "
 #~ "albo prez opcje nmap '-iR' i '-iL'. Skanowanie anulowane."
-
 #~ msgid "Only Umit project members should read this bug report"
 #~ msgstr "Tylko członkowie projektu Umit powinni przeczytać ten raport błędu"
-
 #~ msgid ""
 #~ "Please, inform a valid e-mail address, from where you can be reached to "
 #~ "be notified when the bug get fixed. Not used for other purposes."
@@ -4335,7 +4131,6 @@ msgstr ""
 #~ "Proszę podać poprawny adres e-mail pod którym jesteś osiągalny, aby "
 #~ "zostać powiadomionym jak błąd zostanie naprawiony. Adres ten nie będzie "
 #~ "używany do innych celów."
-
 #~ msgid ""
 #~ "This is where you should really write about the bug, describing it as "
 #~ "clear as possible, and giving as many informations as you can along with "
@@ -4346,7 +4141,6 @@ msgstr ""
 #~ "możliwe i przekazać jak najwięcej informacji także na temat Twojego "
 #~ "systemu, np: Jakiego systemu operacyjnego używasz? Jaką wersji Nmap masz "
 #~ "zainstalowaną?"
-
 #~ msgid ""
 #~ "This Bug Report dialog, allows you to easily tell us about a problem that "
 #~ "you may have found on Umit. Doing so, you help us to help you, by fixing "
@@ -4355,7 +4149,6 @@ msgstr ""
 #~ "Formularz Raportu Błędu pozwoli Ci w łatwy sposób poinformować nas o "
 #~ "problemie, który znalazłeś w Umit. Robiąc to, pomagasz nam w pomocy "
 #~ "Tobie, aby naprawić i ulepszyć Umit, aby był lepszy niż do tej pory."
-
 #~ msgid ""
 #~ "The bug report is incomplete. You must inform a description that explains "
 #~ "clearly what is happening and a valid e-mail, so you can be contacted "
@@ -4364,7 +4157,6 @@ msgstr ""
 #~ "Raport błędu jest niepełny. Musisz podać opis problemu w jasny sposób i "
 #~ "poprawny e-mail, abyśmy mogli skontaktować się z Tobą kiedy problem "
 #~ "zostanie naprawiony."
-
 #~ msgid ""
 #~ "The bug description could not be reported. This problem may be caused by "
 #~ "the lack of Internet Access or indisponibility of the bug tracker server. "
@@ -4375,7 +4167,6 @@ msgstr ""
 #~ "spowodowany problem z dostępem do Internetu lub niedyspozycyjnością "
 #~ "serwera do zgłaszania błędów. Proszę sprawdzić swoje połączenie z "
 #~ "Internetem i spróbować zgłosić błąd raz jeszcze."
-
 #~ msgid ""
 #~ "The bug description was sucessfully reported. A web page with detailed "
 #~ "description about this report is going to be openned in your default web "
@@ -4384,7 +4175,6 @@ msgstr ""
 #~ "Opis błędu został pomyślnie zgłoszony. Strona web z dokładnym opisem o "
 #~ "tym raporcie zostanie teraz otworzona w Twojej standardowej przeglądarce "
 #~ "stron."
-
 #~ msgid ""
 #~ "Umit was unable to open your default web browser to show the bug tracker "
 #~ "page with the report status. Try to visit the Umit's bug tracker page to "
@@ -4398,84 +4188,69 @@ msgstr ""
 #, fuzzy
 #~ msgid "Profile and Wizard Editor"
 #~ msgstr "Edytor Profilu"
-
 #~ msgid "Option of List"
 #~ msgstr "Lista Opcji"
-
 #~ msgid "_Open"
 #~ msgstr "_Otwórz"
-
 #~ msgid "running"
 #~ msgstr "uruchomiony"
-
 #~ msgid ""
 #~ "umit/core.NmapParser.set_ip_address deprecated! Use umit/core.NmapParser."
 #~ "set_ip instead."
 #~ msgstr ""
 #~ "umit/core.NmapParser.set_ip_address jest przestarzały! Użyj umit/core."
 #~ "NmapParser.set_ip w zamian."
-
 #~ msgid ""
 #~ "umit/core.NmapParser.get_ip_address deprecated! Use umit/core.NmapParser."
 #~ "get_ip instead."
 #~ msgstr ""
 #~ "umit/core.NmapParser.get_ip_address jest przestarzały! Użyj umit/core."
 #~ "NmapParser.get_ip w zamian."
-
 #~ msgid ""
 #~ "umit/core.NmapParser.set_mac_address deprecated! Use umit/core.NmapParser."
 #~ "set_mac instead."
 #~ msgstr ""
 #~ "umit/core.NmapParser.set_mac_address jest przestarzały! Użyj umit/core."
 #~ "NmapParser.set_mac w zamian."
-
 #~ msgid ""
 #~ "umit/core.NmapParser.get_mac_address deprecated! Use umit/core.NmapParser."
 #~ "get_mac instead."
 #~ msgstr ""
 #~ "umit/core.NmapParser.get_mac_address jest przestarzały! Użyj umit/core."
 #~ "NmapParser.get_mac w zamian."
-
 #~ msgid ""
 #~ "umit/core.NmapParser.set_ipv6_address deprecated! Use umit/core."
 #~ "NmapParser.set_ipv6 instead."
 #~ msgstr ""
 #~ "umit/core.NmapParser.set_ipv6_address jest przestarzały! Użyj umit/core."
 #~ "NmapParser.set_ipv6 w zamian."
-
 #~ msgid ""
 #~ "umit/core.NmapParser.get_ipv6_address deprecated! Use umit/core."
 #~ "NmapParser.get_ipv6 instead."
 #~ msgstr ""
 #~ "umit/core.NmapParser.get_ipv6_address przestarzały! Użyj umit/core."
 #~ "NmapParser.get_ipv6 w zamian."
-
 #~ msgid "Unknown Host"
 #~ msgstr "Nieznany Host"
-
 #~ msgid "unknown"
 #~ msgstr "nieznany"
-
 #~ msgid "Unknown version"
 #~ msgstr "Nieznana wersja"
-
 #~ msgid ""
 #~ "umit/core.NmapParser.get_ipv4_address deprecated! Use umit/core."
 #~ "NmapParser.get_ipv4 instead."
 #~ msgstr ""
 #~ "umit/core.NmapParser.get_ipv4_address przestarzały! Użyj umit/core."
 #~ "NmapParser.get_ipv4 w zamian."
-
 #~ msgid ""
 #~ "*NOT IMPLEMENTED* - Start Umit and go straight to Network Inventory "
 #~ "window."
 #~ msgstr ""
 #~ "*NIE ZAIMPLEMENTOWANE* - Uruchomia Umit i przechodzi od razu do okna "
 #~ "Network Inventory."
-
 #~ msgid "UMIT - The nmap frontend"
 #~ msgstr "UMIT - graficzny frontend dla nmap"
-
 #~ msgid "No scan on this tab. Start a scan  an then try again"
 #~ msgstr ""
 #~ "Brak skanowania w tej zakładce. Zacznij skanowanie i spróbuj ponownie."
+
