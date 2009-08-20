@@ -58,7 +58,7 @@ class HIGFrameRNet(gtk.Frame):
 
         self.add(self.__alignment)
 
-        self.bw_set_label(label)
+        self._set_label(label)
 
 
     def _set_label(self, label):
