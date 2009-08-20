@@ -1,5 +1,5 @@
 Interface Editor
-==============
+================
 
 .. sectionauthor:: Luís A. Bastião Silva
 .. moduleauthor:: Luís A. Bastião Silva
@@ -39,12 +39,13 @@ Interface Editor can be opened using:
 
    * The key-stroke that open Interface Editor is CTRL + N
 
+
 2. **Access from the Main Menu**
 
    * Go to the *Main Menu* (the one on the top of the application)
-   :menuselection:`Profile --> Interface Editor`
-   
-   
+     :menuselection:`Profile --> Interface Editor`
+
+
 Once Interface Editor is opened it have three modes of editing:
 
 * Options 
@@ -97,12 +98,13 @@ A new options have this parameters
    The options is the real option of Nmap like: `-b -oX -A -6 -p21` and others.
    In some cases some arguments of **Nmap** can be mixed with arguments
    An argument can be:
-      - Level ( Increate a number ) 
-      - Integer
-      - Float
-      - String
-      - Interface ( Option list) 
-      - Chooser Path (Something to choose a file)
+
+   - Level ( Increate a number ) 
+   - Integer
+   - Float
+   - String
+   - Interface ( Option list) 
+   - Chooser Path (Something to choose a file)
    
 
 * Arguments
