@@ -72,8 +72,6 @@ echo Compiling Umit using py2exe...
 cd %UmitDir%
 %PythonEXE% -OO setup.py py2exe
 
-echo Copy manifest file
-xcopy %UmitDir%\install_scripts\window\umit.exe.manifest %DistDir%\ >> %Output%
 
 echo Copying some more GTK files to dist directory...
 xcopy %GTKDir%\lib %DistDir%\lib /S /I >> %Output%

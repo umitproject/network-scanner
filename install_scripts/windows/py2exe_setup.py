@@ -67,6 +67,8 @@ py2exe_options = dict(
         service = [{'modules': ['umit_scheduler'], 'cmdline_style': 'custom'}],
         windows = [{
             "script": common.UMIT_MAIN,
+            "dest_base": "umit",
+            "uac_info": "requireAdministrator",
             "icon_resources": [
                 (1, os.path.join(common.ICONS_DIR, "umit_48.ico"))]
             }],
