@@ -40,7 +40,8 @@ from install_scripts.common import BIN_DIRNAME, PIXMAPS_DIR, \
                                    ICONS_DIR, BASE_DOCS_DIR, \
                                    DOCS_DIR, LOCALE_DIR, \
                                    CONFIG_DIR, MISC_DIR, \
-                                   SQL_DIR, PLUGINS_DIR
+                                   SQL_DIR, PLUGINS_DIR, \
+                                   PLUGINS_TEMP_DIR, PLUGINS_DOWNLOAD_DIR
 from install_scripts import common
 
 py2exe_cmdclass = py2exe_options = py2app_options = revert_rename = None
@@ -419,7 +420,11 @@ class umit_sdist(sdist):
                 line = line[:-1]
             if line.find('umit.mo') != -1:
                 self.filelist.files.remove(line)
-
+                
+    def _create_empty_directories(self):
+        folder_dist = "umit-"+VERSION
+        os.mkdir(os.path.join(folder_dist, PLUGINS_TEMP_DIR))
+        os.mkdir(os.path.join(folder_dist, PLUGINS_DOWNLOAD_DIR))
     def run(self):
         from distutils.filelist import FileList
         self.keep_temp = 1
@@ -432,9 +437,39 @@ class umit_sdist(sdist):
         self.read_manifest_no_mo()
         if self.manifest_only:
             return
+        
         self.make_distribution()
-
         self.finish_banner()
+        
+    # It was overwride to trigger in the middle (creating empty dir)
+    def make_distribution (self):
+        """Create the source distribution(s).  First, we create the release
+        tree with 'make_release_tree()'; then, we create all required
+        archive files (according to 'self.formats') from the release tree.
+        Finally, we clean up by blowing away the release tree (unless
+        'self.keep_temp' is true).  The list of archive files created is
+        stored so it can be retrieved later by 'get_archive_files()'.
+        """
+        # Don't warn about missing meta-data here -- should be (and is!)
+        # done elsewhere.
+        base_dir = self.distribution.get_fullname()
+        base_name = os.path.join(self.dist_dir, base_dir)
+
+        self.make_release_tree(base_dir, self.filelist.files)
+        archive_files = []              # remember names of files we create
+
+        # Create empty directories 
+        self._create_empty_directories()
+        
+        for fmt in self.formats:
+            file = self.make_archive(base_name, fmt, base_dir=base_dir)
+            archive_files.append(file)
+            self.distribution.dist_files.append(('sdist', '', file))
+
+        self.archive_files = archive_files
+
+        if not self.keep_temp:
+            dir_util.remove_tree(base_dir, dry_run=self.dry_run)
 
     def finish_banner(self):
         print

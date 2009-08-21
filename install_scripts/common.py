@@ -19,3 +19,7 @@ DOCS_DIR = os.path.join(BASE_DOCS_DIR, 'html')
 MISC_DIR = os.path.join('share', 'umit', 'misc')
 SQL_DIR = os.path.join('share', 'umit', 'sql')
 PLUGINS_DIR = os.path.join('share', 'umit', 'plugins')
+PLUGINS_TEMP_DIR = os.path.join('share', 'umit', 'config','plugins-temp')
+PLUGINS_DOWNLOAD_DIR = os.path.join('share', 'umit', 'config', 'plugins-download')
+
+
