@@ -292,12 +292,15 @@ class umit_install(install):
                 "print\n"
                 "print '%(line)s Uninstalling Umit %(version)s... %(line)s'\n"
                 "print\n" % {'version': VERSION, 'line': '-' * 10})
-
+        
         for output in self.get_outputs():
             uninstaller.append(
                     "print 'Removing %(output)s...'\n"
-                    "if os.path.exists('%(output)s'):\n"
-                    "    os.remove('%(output)s')\n" % {'output': output})
+                    "if os.path.exists('%(output)s') and\\\n"
+                    "   os.path.isfile('%(output)s'):\n"
+                    "    os.remove('%(output)s')\n"
+                    "else:\n"
+                    "    os.rmdir('%(output)s')\n" % {'output': output})
 
         uninstaller.append(
                 "print 'Removing uninstaller itself...'\n"
