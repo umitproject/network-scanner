@@ -51,12 +51,13 @@ class TestGetIPv4(unittest.TestCase):
             command = "ipconfig" # Windows 
             
         shell_state = (sys.platform == "win32")
-        subprocess.Popen(command, bufsize= 1,
+        p = subprocess.Popen(command, bufsize= 1,
                                          stdin=subprocess.PIPE,
                                          stdout=stdout_output.fileno(),
                                          stderr=stderr_output.fileno(),
                                          shell=shell_state)
 
+	p.wait()
         # Read contents of 
         normal_desc = open(stdout_output.name, "r")
         normal = normal_desc.read()
