@@ -382,6 +382,7 @@ Luis Antonio Bastião Silva <luis.kop@gmail.com>
 Simplified Chinese:
 Devtar Singh <devtar@gmail.com>
 Haoyu Bai <baihaoyu@gmail.com>
+Aron Xu <happyaron.xu@gmail.com>
 
 Swedish:
 Daniel Nylander <po@danielnylander.se>
