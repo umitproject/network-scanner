@@ -63,7 +63,10 @@ class HostsViewer(HIGMainWindow):
         self.__list = HostsList(self, self.__nodes)
 
         self.__panel.add1(self.__list)
-        self.__panel.add2(self.__view)
+
+        if self.__view:
+            self.__panel.add2(self.__view)
+
         self.__panel.set_position(int(DIMENSION[0] / 5))
 
         self.add(self.__panel)
@@ -164,11 +167,11 @@ class HostsList(gtk.ScrolledWindow):
         """
         """
         path = widget.get_cursor()[0]
-        iter = self.__hosts_store.get_iter(path)
 
-        node = self.__nodes[self.__hosts_store.get_value(iter, 0)]
-
-        self.__parent.change_notebook(node)
+        if path:
+            iter = self.__hosts_store.get_iter(path)
+            node = self.__nodes[self.__hosts_store.get_value(iter, 0)]
+            self.__parent.change_notebook(node)
 
 
     def __host_sort(self, treemodel, iter1, iter2):
