@@ -242,10 +242,20 @@ class ProfileEditor(HIGWindow):
 
     def save_profile(self, widget):
         profile_name = self.profile_name_entry.get_text()
+
         if profile_name == '':
             alert = HIGAlertDialog(message_format=_('Unnamed profile'),\
                                    secondary_text=_('You must provide a name \
 for this profile.'))
+
+        elif profile_name.lower() == 'default':
+            alert = HIGAlertDialog(message_format=_('Reserved profile name'),\
+                                   secondary_text=_('Cannot assign "default" \
+name to this profile. Please rename it and retry.'))
+        else:
+            alert = None
+
+        if alert:
             alert.run()
             alert.destroy()
 

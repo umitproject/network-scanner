@@ -262,17 +262,28 @@ to be scanned.'))
         return profile
     
     def profile_forward(self, widget):
-        if self.directions['Profile'].profile_entry.get_text() == '':
+        profile_name = self.directions['Profile'].profile_entry.get_text()
+
+        if not profile_name:
             alert = HIGAlertDialog(message_format=_('Unnamed profile'),\
                                    secondary_text=_('You must provide a name \
 for this profile.'))
+        elif profile_name.lower() == 'default':
+            alert = HIGAlertDialog(message_format=_('Reserved profile name'),\
+                                   secondary_text=_('Cannot assign "default" \
+name to this profile. Please rename it and retry.'))
+        else:
+            alert = None
+
+        if alert:
+
             alert.run()
             alert.destroy()
-            
+
             self.directions['Profile'].profile_entry.grab_focus()
-            
+
             return None
-        
+
         self.main_vbox.remove(self.directions['Profile'])
         self.main_vbox._pack_expand_fill(self.directions['Command'])
         self.directions['Profile'].hide()
@@ -348,6 +359,7 @@ for this profile.'))
             buffer = self.directions['Profile'].annotation_text.get_buffer()
             annotation = buffer.get_text(buffer.get_start_iter(),\
                                           buffer.get_end_iter())
+
             self.profile.add_profile(profile_name,\
                                      command=command,\
                                      hint=hint,\

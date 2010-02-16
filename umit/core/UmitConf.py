@@ -199,6 +199,8 @@ class Profile(UmitConfigParser, object):
             self.add_section(profile_name)
         except DuplicateSectionError:
             return None
+        except ValueError:
+            return None
 
         for attr in attributes:
             if attr != "options":
