@@ -782,8 +782,8 @@ to close current Scan Tab?'),
                              None,
                              scan,
                              self._load_recent_scan)
-                new_rscan_xml += "<menuitem action='%s'/>\n" % \
-                              xml.sax.saxutils.escape(scan)
+                new_rscan_xml += "<menuitem action=%s/>\n" % \
+                              xml.sax.saxutils.quoteattr(scan)
                 actions.append(new_rscan)
         new_rscan_xml += "<separator />\n"
 
