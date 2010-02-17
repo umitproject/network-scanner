@@ -38,16 +38,16 @@ class Core(Singleton, gobject.GObject):
         'ScanResultNotebook-created' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_OBJECT, )),
         'ScanNotebookPage-created' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_OBJECT, ))
     }
-    
+
     def __init__(self):
         gobject.GObject.__init__(self)
-        
+
         self.mainwindow = None
         gtk.about_dialog_set_url_hook(self.__about_dialog_url, None)
 
     #
     # MainWindow related functions
-    
+
     def get_main_toolbar(self):
         "@return the toolbar of the MainWindow"
         return self.mainwindow.toolbar
@@ -55,7 +55,7 @@ class Core(Singleton, gobject.GObject):
     def get_main_menu(self):
         "@return the menubar of the MainWindow"
         return self.mainwindow.menubar
-    
+
     def get_main_scan_notebook(self):
         "@return the scan_notebook of the MainWindow"
         return self.mainwindow.scan_notebook
@@ -137,6 +137,9 @@ class Core(Singleton, gobject.GObject):
                 if not attr or attr == "":
                     return
 
+                if isinstance(attr, (tuple, list)):
+                    attr = '\n'.join(attr)
+
                 if c:
                     attr = [attr, ]
 
@@ -152,7 +155,7 @@ class Core(Singleton, gobject.GObject):
         set_field(pkg, d.set_authors, 'author', True)
         set_field(pkg, d.set_documenters, 'documenter', True)
         set_field(pkg, d.set_artists, 'artist', True)
-        
+
         d.set_logo(pkg.get_logo())
 
         return d
