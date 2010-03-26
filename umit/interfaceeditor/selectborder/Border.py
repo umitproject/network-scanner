@@ -73,7 +73,6 @@ class Border(object):
         self._selected = widget
         if old_selected != widget:
             self.queue_draw()
-            print "queue"
 
 
     def pack_start(self, child, expand=True, fill=True, padding=0):
@@ -111,7 +110,6 @@ class Border(object):
         self.window.draw_rectangle(self._draw_gc, False,
                                    x - (border / 2), y - (border / 2),
                                    w + border, h + border)
-        print "print mesmo"
         self.draw_nodes(x,y,w,h)
         
     # GtkWidget

@@ -642,11 +642,8 @@ class InterfaceEditor(HIGMainWindow):
         #END ENABLE 
 
         self.ui_manager.insert_action_group(self.main_action_group, 0)
-        #try:
         self.ui_manager.add_ui_from_string(self.ui_info)
         self.add_accel_group(self.main_accel_group)     
-        #except gobject.GError, msg:
-        #    print "Fails %s" % msg
 
 
     # ACTIONS 

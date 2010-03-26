@@ -169,10 +169,6 @@ class ProfileCore(object):
             for option_element in self.tabs[root_tab].childNodes:
                 try:option_element.tagName
                 except:pass
-                else:
-                    print option_element.tagName
-                    #self.widgets_list.append(actions[option_element.tagName](option_element, options_used))
-                #print ".."
 
     def create_element_optlist(self, name):
         element = self.xml_parse.createElementNS(None, 'option')

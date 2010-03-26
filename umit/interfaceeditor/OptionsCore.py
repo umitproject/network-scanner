@@ -140,10 +140,6 @@ class ListOptions(NmapOptions):
         NmapOptions.__init__(self, profile)
         self.modified = False
 
-    def noname (self):
-        for i in self.nmap_options:
-            print i 
-
     def add_option(self, name, option, hint, arguments,
                    need_root, arg_type=None):
         ''' 

@@ -33,12 +33,10 @@ class PWOptions:
         self.doc = minidom.parse(filename)
         #xml_desc.close()
     def read(self,tag="option",name="name",option="option"):
-        #print tag, name, option	
         result = []
         for node in self.doc.getElementsByTagName(tag):
             tmp_name= node.getAttribute(name)
             tmp_option = node.getAttribute(option)
-            #print option
             result.append((tmp_name,tmp_option))
         return result
 

@@ -95,8 +95,8 @@ class CommandAddRemoveVoidplace(TwiceCommand, Command):
         #self._widget.do_voidplace()
 
         self._table.set_row_spacing(self._x,self._spacing)
-        from umit.interfaceeditor.BugDiff import BugDiff
-        BugDiff.pdic(self._coords)
+        #from umit.interfaceeditor.BugDiff import BugDiff
+        #BugDiff.pdic(self._coords)
         log.debug('CommandVoidplace: add voidplace')
 
     _execute_1 = _add 
@@ -120,8 +120,8 @@ class CommandAddRemoveVoidplace(TwiceCommand, Command):
             self._widget.set_view(False)
             self._table.set_row_spacing(self._x,0)
             self._widget.set_size_request(-1, 0)
-        from umit.interfaceeditor.BugDiff import BugDiff
-        BugDiff.pdic(self._coords)
+        #from umit.interfaceeditor.BugDiff import BugDiff
+        #BugDiff.pdic(self._coords)
     _execute_2 = _remove
 
 
