@@ -158,8 +158,6 @@ class Toolbar(gtk.Toolbar):
     def __create_widgets(self):
         """
         """
-        self.__tooltips = gtk.Tooltips()
-
         self.__tools_menu = ToolsMenu(self.radialnet)
 
         self.__tools_button = gtk.MenuToolButton(gtk.STOCK_PREFERENCES)
@@ -172,21 +170,21 @@ class Toolbar(gtk.Toolbar):
         self.__control.set_label(_("Controls"))
         self.__control.set_is_important(True)
         self.__control.connect('clicked', self.__control_callback)
-        self.__control.set_tooltip(self.__tooltips, _("Show control panel"))
+        self.__control.set_tooltip_text(_("Show control panel"))
         self.__control.set_active(False)
 
         self.__fisheye = gtk.ToggleToolButton(gtk.STOCK_ZOOM_FIT)
         self.__fisheye.set_label(_("Fisheye"))
         self.__fisheye.set_is_important(True)
         self.__fisheye.connect('clicked', self.__fisheye_callback)
-        self.__fisheye.set_tooltip(self.__tooltips, _("Enable fisheye"))
+        self.__fisheye.set_tooltip_text(_("Enable fisheye"))
         self.__fisheye.set_active(False)
 
         self.__fullscreen = gtk.ToggleToolButton(gtk.STOCK_FULLSCREEN)
         self.__fullscreen.set_label(_("Fullscreen"))
         self.__fullscreen.set_is_important(True)
         self.__fullscreen.connect('clicked', self.__fullscreen_callback)
-        self.__fullscreen.set_tooltip(self.__tooltips, _("Toggle fullscreen"))
+        self.__fullscreen.set_tooltip_text(_("Toggle fullscreen"))
 
         self.__separator = gtk.SeparatorToolItem()
         self.__expander = gtk.SeparatorToolItem()

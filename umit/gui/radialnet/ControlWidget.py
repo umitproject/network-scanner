@@ -94,29 +94,27 @@ class ControlAction(HIGExpanderRNet):
         self.__tbox._set_spacing(0)
         self.__vbox = HIGVBox()
 
-        self.__tooltips = gtk.Tooltips()
-
         self.__jump_to = gtk.RadioToolButton(None, gtk.STOCK_JUMP_TO)
-        self.__jump_to.set_tooltip(self.__tooltips, 'Change focus')
+        self.__jump_to.set_tooltip_text('Change focus')
         self.__jump_to.connect('toggled',
                                self.__change_pointer,
                                POINTER_JUMP_TO)
 
         self.__info = gtk.RadioToolButton(self.__jump_to, gtk.STOCK_INFO)
-        self.__info.set_tooltip(self.__tooltips, 'Show information')
+        self.__info.set_tooltip_text('Show information')
         self.__info.connect('toggled',
                             self.__change_pointer,
                             POINTER_INFO)
 
         self.__group = gtk.RadioToolButton(self.__jump_to, gtk.STOCK_ADD)
-        self.__group.set_tooltip(self.__tooltips, 'Group children')
+        self.__group.set_tooltip_text('Group children')
         self.__group.connect('toggled',
                              self.__change_pointer,
                              POINTER_GROUP)
 
         self.__region = gtk.RadioToolButton(self.__jump_to,
                                             gtk.STOCK_SELECT_COLOR)
-        self.__region.set_tooltip(self.__tooltips, 'Fill region')
+        self.__region.set_tooltip_text('Fill region')
         self.__region.connect('toggled',
                               self.__change_pointer,
                               POINTER_FILL)
