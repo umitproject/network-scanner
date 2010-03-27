@@ -157,6 +157,9 @@ class Credits(HIGWindow):
         self.soc2008_scroll = HIGScrolledWindow()
         self.soc2008_text = HIGTextView()
 
+        self.soc2009_scroll = HIGScrolledWindow()
+        self.soc2009_text = HIGTextView()
+        
         self.contributors_scroll = HIGScrolledWindow()
         self.contributors_text = HIGTextView()
         
@@ -183,6 +186,8 @@ class Credits(HIGWindow):
                                   gtk.Label(_("SoC 2007")))
         self.notebook.append_page(self.soc2008_scroll,
                                   gtk.Label(_("SoC 2008")))
+        self.notebook.append_page(self.soc2009_scroll,
+                                  gtk.Label(_("SoC 2009")))
         self.notebook.append_page(self.contributors_scroll,
                                   gtk.Label(_("Contributors")))
         self.notebook.append_page(self.translation_scroll,
@@ -200,6 +205,9 @@ class Credits(HIGWindow):
 
         self.soc2008_scroll.add(self.soc2008_text)
         self.soc2008_text.set_wrap_mode(gtk.WRAP_NONE)
+        
+        self.soc2009_scroll.add(self.soc2009_text)
+        self.soc2009_text.set_wrap_mode(gtk.WRAP_NONE)
 
         self.contributors_scroll.add(self.contributors_text)
         self.contributors_text.set_wrap_mode(gtk.WRAP_NONE)
@@ -256,9 +264,6 @@ Rodolfo da Silva Carvalho <rodolfo@umitproject.org>"""))
         b.set_text(_("""Packet Manipulation Backend
 Bartosz Adam Skowron <getxsick@umitproject.org>
 
-Quick Scan:
-Daniel Mendes Cassiano <danielcassiano@gmail.com>
-
 Bluetooth Scanner & Vulnerabilities Database System:
 Devtar Singh <devtar@gmail.com>
 
@@ -270,10 +275,33 @@ Luis Antonio Bastião Silva <luis.kop@gmail.com>
 
 UmitWeb Improvements and Independent Features:
 Rodolfo da Silva Carvalho <rodolfo@umitproject.org>
+"""))
+        
+        b = self.soc2009_text.get_buffer()
+        b.set_text(_("""UMPA Improvements
+Bartosz Adam Skowron <getxsick@umitproject.org>
 
-Umit GNU/Linux:
-Túlio Gonçalves <tulhera@gmail.com>"""))
+Quick Scan:
+Daniel Mendes Cassiano <danielcassiano@gmail.com>
 
+Bluetooth Sniffer:
+Shu Yang Quek <quekshuy@gmail.com>
+
+Audits Framework
+Francesco Piccinno <stack.box@gmail.com>
+
+ZION
+João Paulo de Souza Medeiros <ignotus21@gmail.com>
+
+USoC:
+
+Message Sequence Chart
+Abhiram Kasina <abhiram.casina@gmail.com>
+
+Independent Features and Test Suite
+Mahesh PM <mahesh20081984@gmail.com>
+"""))
+        
         b = self.contributors_text.get_buffer()
         b.set_text(_("""Sponsored by (SoC 2005, 2006, 2007 and 2008):
 Google <code.summer@gmail.com>
