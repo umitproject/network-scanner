@@ -122,7 +122,7 @@ class TestSearchConfig(unittest.TestCase):
         self.search_umit.save_time
 
     def testGetSaveTime2(self):
-        self.assert_(type(self.search_umit.save_time) == type([]),
+        self.assert_(isinstance(self.search_umit.save_time, list)),
                      "Failed to get save_time as a list.")
 
     def testSetSaveTime1(self):
