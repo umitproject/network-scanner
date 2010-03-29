@@ -20,7 +20,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-from types import StringTypes
 from xml.dom import minidom
 
 
@@ -57,7 +56,7 @@ class NmapOptions:
         otherwise you'll get an error, trying to merge 'args' with the command
         option
         '''
-        if type (args) in StringTypes and args:
+        if isinstance(args, basestring) and args:
             args = [args]
         
         if args:
