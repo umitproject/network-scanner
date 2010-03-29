@@ -133,32 +133,30 @@ class OptionTab(object):
                 table.attach(widget[1], 1, 2, y, y+1, yoptions=yopt)
 
         for widget in self.widgets_list:
-            te = type(widget[1])
-            if te == type(OptionList()):
+            if isinstance(widget[1], OptionList):
                 widget[1].connect('changed',self.update_list_option)
-            elif te == type(OptionIntSpin()) or\
-                 te == type(OptionFloatSpin()) or\
-                 te == type(OptionEntry()):
+            elif isinstance(widget[1], OptionIntSpin) or\
+                 isinstance(widget[1], OptionFloatSpin) or\
+                 isinstance(widget[1], OptionEntry):
                 widget[1].connect('changed', self.update_entry, widget[0])
-            elif te == type(OptionLevelSpin()):
+            elif isinstance(widget[1], OptionLevelSpin):
                 widget[1].connect('changed', self.update_level, widget[0])
-            elif te == type(OptionFile()):
+            elif isinstance(widget[1], OptionFile):
                 widget[1].entry.connect('changed', self.update_entry, widget[0])
-            elif te == type(OptionInterface()):
+            elif isinstance(widget[1], OptionInterface):
                 widget[1].child.connect('changed', self.update_entry, widget[0])
 
     def update_check(self, check, extra):
         if check.get_active():
-            te = type(extra)
-            if te == type(OptionEntry()) or\
-               te == type(OptionIntSpin()) or\
-               te == type(OptionFloatSpin()):
+            if isinstance(extra, OptionEntry) or\
+               isinstance(extra, OptionIntSpin) or\
+               isinstance(extra, OptionFloatSpin):
                 self.update_entry(extra, check)
-            elif te == type(OptionLevelSpin()):
+            elif isinstance(extra, OptionLevelSpin):
                 self.update_level(extra, check)
-            elif te == type(OptionFile()):
+            elif isinstance(extra, OptionFile):
                 self.update_entry(extra.entry, check)
-            elif te == type(OptionInterface()):
+            elif isinstance(extra, OptionInterface):
                 self.update_entry(extra.child, check)
             else:
                 self.constructor.add_option(check.option['name'])
