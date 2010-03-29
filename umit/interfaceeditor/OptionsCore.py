@@ -23,7 +23,6 @@
 
 from umit.core.NmapOptions import  NmapOptions
 
-from types import StringTypes
 from xml.dom import minidom   
 #import xml.dom.ext
 

@@ -28,7 +28,6 @@ import sys
 from os.path import split, isfile, join
 import xml.sax.saxutils
 
-from types import StringTypes
 from time import time
 from tempfile import mktemp
 
