@@ -247,7 +247,7 @@ class HostDetails(HIGVBox):
         self.set_os_image(get_os_logo(current_selection))
         
         for os_match in self.current_os_list:
-            if type(os_match) == type({}) and \
+            if isinstance(os_match, dict) and \
                current_selection == os_match.get('name', None):
                 self.os_progress.set_fraction(float(os_match['accuracy'])/100.0)
                 self.os_progress.set_text(os_match['accuracy'] + "%")

@@ -22,7 +22,6 @@
 
 import gtk
 
-from types import StringTypes
 from higwidgets.higboxes import HIGVBox
 from umit.core.I18N import _
 
@@ -193,10 +192,10 @@ class ScanHostsView(HIGVBox, object):
             self.host_list.append([host[h]['stock'], h])
 
     def add_service(self, service):
-        if type(service) == type([]):
+        if isinstance(service, list):
             for s in service:
                 self.service_list.append([s])
-        elif type(service) in StringTypes:
+        elif isinstance(service, basestring):
             self.service_list.append([service])
     
     def get_action(self, host):

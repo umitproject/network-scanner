@@ -34,7 +34,6 @@ from higwidgets.higtables import HIGTable
 from higwidgets.higdialogs import HIGAlertDialog
 
 from time import localtime
-from types import StringTypes
 
 from umit.core.I18N import _
 from umit.core.UmitLogging import log
@@ -530,9 +529,9 @@ tab before start the search"))
         return self.serv_port_entry.get_text().split(";")
 
     def set_port(self, port):
-        if type(port) in StringTypes:
+        if isinstance(port, basestring):
             self.serv_port_entry.set_text(port)
-        elif type(port) == type([]):
+        elif isinstance(port, list):
             self.serv_port_entry.set_text(";".join(port))
 
     def get_port_open(self):
@@ -599,9 +598,9 @@ tab before start the search"))
         return self.opt_extension_entry.get_text().split(";")
 
     def set_file_extension(self, file_extension):
-        if type(file_extension) == type([]):
+        if isinstance(file_extension, list):
             self.opt_extension_entry.set_text(";".join(file_extension))
-        elif type(file_extension) in StringTypes:
+        elif isinstance(file_extension, basestring):
             self.opt_extension_entry.set_text(file_extension)
 
     def get_save_time(self):
@@ -744,10 +743,10 @@ class Date(gtk.HBox, object):
 
     def set_time(self, time):
         print time
-        if type(time) == type([]):
+        if isinstance(time, list):
             self.hour.set_value(time[0])
             self.minute.set_value(time[1])
-        elif type(time) in StringTypes:
+        elif isinstance(time, basestring):
             time = time.split(";")
             self.hour.set_value(time[0])
             self.minute.set_value(time[1])

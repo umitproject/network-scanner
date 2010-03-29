@@ -50,8 +50,6 @@ from umit.core.Utils import is_maemo
 
 from umit.plugin.Engine import PluginEngine
 
-from types import StringTypes
-
 icon_dir = Path.pixmaps_dir
 
 class PageStatus(object):
@@ -256,7 +254,7 @@ class ScanNotebook(HIGNotebook):
                 return self.sanitize_tab_title(parsed_result.scan_name)
             try:
                 filename = parsed_result.nmap_xml_file
-                if filename and type(filename) in StringTypes:
+                if filename and isinstance(filename, basestring):
                     return self.sanitize_tab_title(filename)
             except:
                 pass
@@ -1084,7 +1082,7 @@ class ScanNotebookPage(HIGVBox):
             parent.remove(child)
 
     def switch_host_details(self, page):
-        if type(page) == type([]):
+        if isinstance(page, list):
             if len(page) > 1:
                 for p in page:
                     p.hide()

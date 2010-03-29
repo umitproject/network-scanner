@@ -40,7 +40,6 @@ from umit.core.UmitLogging import log
 from umit.core.I18N import _
 
 from tempfile import mktemp
-from types import StringTypes
 from umit.gui.FileChoosers import RegularDiffiesFileFilter, HtmlDiffiesFileFilter
 
 from umit.gui.Help import show_help
@@ -822,8 +821,8 @@ class DiffTree(HIGVBox, object):
 
 
     def add_port_diff(self, port_parent, state, port1, port2):
-        if (port1 or port2) and (type(port1) == type({})) and\
-           (type(port2) == type({})):
+        if (port1 or port2) and isinstance(port1, dict) and\
+           isinstance(port2, dict):
             section = port1.get("portid", False)
             if not section: # If port1 is empty, then, try port2
                 section = port2.get("portid", "")
@@ -974,7 +973,7 @@ class Colors(object):
         return gtk.gdk.Color(*self.diff_colors.unchanged)
 
     def set_unchanged(self, color):
-        if type(color) == type([]) or type(color) in StringTypes:
+        if isinstance(color, list) or isinstance(color, basestring):
             self.diff_colors.unchanged = color
         else:
             self.diff_colors.unchanged = [color.red, color.green, color.blue]
@@ -983,7 +982,7 @@ class Colors(object):
         return gtk.gdk.Color(*self.diff_colors.added)
 
     def set_added(self, color):
-        if type(color) == type([]) or type(color) in StringTypes:
+        if isinstance(color, list) or isinstance(color, basestring):
             self.diff_colors.added = color
         else:
             self.diff_colors.added = [color.red, color.green, color.blue]
@@ -992,7 +991,7 @@ class Colors(object):
         return gtk.gdk.Color(*self.diff_colors.modified)
 
     def set_modified(self, color):
-        if type(color) == type([]) or type(color) in StringTypes:
+        if isinstance(color, list) or isinstance(color, basestring):
             self.diff_colors.modified = color
         else:
             self.diff_colors.modified = [color.red, color.green, color.blue]
@@ -1001,7 +1000,7 @@ class Colors(object):
         return gtk.gdk.Color(*self.diff_colors.not_present)
 
     def set_not_present(self, color):
-        if type(color) == type([]) or type(color) in StringTypes:
+        if isinstance(color, list) or isinstance(color, basestring):
             self.diff_colors.not_present = color
         else:
             self.diff_colors.not_present = [color.red, color.green, color.blue]
@@ -1019,7 +1018,7 @@ class Colors(object):
         return self._get_hex(self.not_present)
 
     def _get_hex(self, color):
-        if type(color) == type([]):
+        if isinstance(color, list):
             return "#%4s%4s%4s" % (hex(color[0])[2:].zfill(4),
                                    hex(color[1])[2:].zfill(4),
                                    hex(color[2])[2:].zfill(4))
