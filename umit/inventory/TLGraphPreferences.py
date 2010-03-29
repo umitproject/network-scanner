@@ -305,7 +305,7 @@ class GraphPreferences(HIGWindow):
 
         indx = 0
         for control in controls:
-            if isinstance(control, tuple)): # group of controls
+            if isinstance(control, tuple): # group of controls
                 enable = True
                 if not control[0].get_active():
                     enable = False
