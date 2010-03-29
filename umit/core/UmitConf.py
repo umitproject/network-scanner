@@ -23,7 +23,6 @@
 import re
 import os
 
-from types import StringTypes
 from ConfigParser import NoSectionError, NoOptionError, DuplicateSectionError
 
 from umit.core.Paths import Path
@@ -117,18 +116,18 @@ class SearchConfig(UmitConfigParser, object):
         return self._get_it("file_extension", "usr").split(";")
 
     def set_file_extension(self, file_extension):
-        if type(file_extension) == type([]):
+        if isinstance(file_extension, list):
             self._set_it("file_extension", ";".join(file_extension))
-        elif type(file_extension) in StringTypes:
+        elif isinstance(file_extension, basestring):
             self._set_it("file_extension", file_extension)
 
     def get_save_time(self):
         return self._get_it("save_time", "60;Days").split(";")
 
     def set_save_time(self, save_time):
-        if type(save_time) == type([]):
+        if isinstance(save_time, list):
             self._set_it("save_time", ";".join(save_time))
-        elif type(save_time) in StringTypes:
+        elif isinstance(save_time, basestring):
             self._set_it("save_time", save_time)
 
     def get_store_results(self):
@@ -341,11 +340,11 @@ class NmapOutputHighlight(object):
         settings[2] = self.boolean_sanity(settings[2])
 
         tuple_regex = "[\(\[]\s?(\d+)\s?,\s?(\d+)\s?,\s?(\d+)\s?[\)\]]"
-        if type(settings[3]) == type(""):
+        if isinstance(settings[3], basestring):
             settings[3] = [int(t) \
                            for t in re.findall(tuple_regex, settings[3])[0]]
 
-        if type(settings[4]) == type(""):
+        if isinstance(settings[4], basestring):
             settings[4]= [int(h) \
                           for h in re.findall(tuple_regex, settings[4])[0]]
 
@@ -519,7 +518,7 @@ class DiffColors(object):
         log.debug(">>> Sanitize %s" % str(settings))
         
         tuple_regex = "[\(\[]\s?(\d+)\s?,\s?(\d+)\s?,\s?(\d+)\s?[\)\]]"
-        if type(settings) == type(""):
+        if isinstance(settings, basestring):
             settings = [int(t) for t in re.findall(tuple_regex, settings)[0]]
 
         return settings

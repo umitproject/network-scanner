@@ -25,7 +25,6 @@ import re
 import sys
 import threading
 import tempfile
-from types import StringTypes
 
 from umit.core.NmapOptions import NmapOptions
 from umit.core.OptionsConf import options_file
@@ -111,7 +110,7 @@ class NmapCommand(object):
             self.command = command
 
     def get_command(self):
-        if type(self._command) == type(""):
+        if isinstance(self._command, basestring):
             return self._command.split()
         return self._command
 
@@ -126,7 +125,7 @@ class NmapCommand(object):
         return command
 
     def _verify_output_options(self, command):
-        if type(command) == type([]):
+        if isinstance(command, list):
             command = " ".join(command)
 
         # Removing comments from command
@@ -166,7 +165,7 @@ class NmapCommand(object):
         return splited
 
     def _remove_double_space(self, command):
-        if type(command) == type([]):
+        if isinstance(command, list):
             command = " ".join(command)
 
         ## Found a better solution for this problem
@@ -348,7 +347,7 @@ class CommandConstructor:
             option = self.option_profile.get_option(option_name)
             args, level = self.options[option_name]
 
-            if type(args) in StringTypes:
+            if isinstance(args, basestring):
                 args = [args]
 
             if level:

@@ -26,7 +26,6 @@ import os.path
 from glob import glob
 from fnmatch import fnmatch
 from tempfile import mktemp
-from types import StringTypes
 
 from umit.core.UmitDB import UmitDB
 from umit.core.NmapParser import NmapParser
@@ -286,9 +285,9 @@ class SearchDir(SearchResult, object):
         log.debug(">>> SearchDir initialized")
         self.search_directory = search_directory
 
-        if type(file_extensions) in StringTypes:
+        if isinstance(file_extensions, basestring):
             self.file_extensions = file_extensions.split(";")
-        elif type(file_extensions) == type([]):
+        elif isinstance(file_extensions, list):
             self.file_extensions = file_extensions
         else:
             raise Exception("Wrong file extension format! '%s'" %

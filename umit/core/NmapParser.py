@@ -380,7 +380,7 @@ class ParserBasics(object):
         self.nmap['nmaprun']['start'] = start
 
     def set_date(self, date):
-        if type(date) == type(int):
+        if isinstance(date, int):
             self.nmap['nmaprun']['start'] = date
         else:
             raise Exception("Wrong date format. Date should be saved "
