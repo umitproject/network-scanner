@@ -262,7 +262,7 @@ Rodolfo da Silva Carvalho <rodolfo@umitproject.org>"""))
 
         b = self.soc2008_text.get_buffer()
         b.set_text(_("""Packet Manipulation Backend
-Bartosz Adam Skowron <getxsick@umitproject.org>
+Bartosz Adam Skowron <getxsick@gmail.com>
 
 Bluetooth Scanner & Vulnerabilities Database System:
 Devtar Singh <devtar@gmail.com>
@@ -279,7 +279,7 @@ Rodolfo da Silva Carvalho <rodolfo@umitproject.org>
         
         b = self.soc2009_text.get_buffer()
         b.set_text(_("""UMPA Improvements
-Bartosz Adam Skowron <getxsick@umitproject.org>
+Bartosz Adam Skowron <getxsick@gmail.com>
 
 Quick Scan:
 Daniel Mendes Cassiano <danielcassiano@gmail.com>
@@ -338,7 +338,7 @@ Daniel Mendes Cassiano <danielcassiano@gmail.com>
 Luiz Paulo de Souza Medeiros <luizpaulo13@gmail.com>
 
 Beta testers for 0.9.5RC1:
-Bartosz Adam Skowron <getxsick@umitproject.org>
+Bartosz Adam Skowron <getxsick@gmail.com>
 Denis Kurov <deniskurov@gmail.com>
 Devtar Singh <devtar@gmail.com>
 Drew Miller <securitygeek@fribble.org>
@@ -402,7 +402,7 @@ Italian:
 Francesco Piccinno <stack.box@gmail.com>
 
 Polish:
-Bartosz Adam Skowron <getxsick@umitproject.org>
+Bartosz Adam Skowron <getxsick@gmail.com>
 
 Portuguese Portugal:
 Luis Antonio Bastião Silva <luis.kop@gmail.com>
