@@ -67,7 +67,7 @@ def pkgc_version_check(name, longname, req_version):
         return 0
 
 def pkc_get_include_dirs(names):
-    if type(names) != tuple:
+    if not isinstance(names, tuple):
         names = (names,)
     retval = []
     for name in names:
@@ -76,7 +76,7 @@ def pkc_get_include_dirs(names):
     return retval
 
 def pkc_get_libraries(names):
-    if type(names) != tuple:
+    if not isinstance(names, tuple):
         names = (names,)
     retval = []
     for name in names:
@@ -85,7 +85,7 @@ def pkc_get_libraries(names):
     return retval
 
 def pkc_get_library_dirs(names):
-    if type(names) != tuple:
+    if not isinstance(names, tuple):
         names = (names,)
     retval = []
     for name in names:
