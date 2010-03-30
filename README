@@ -4,7 +4,7 @@ Introduction
 
    Umit is developed in the Python programming language, and its
    interface is built with the GTK Toolkit. It's also worth to mention
-   that the initial development is sponsored by Google's Summer of Code.
+   that the initial development was sponsored by Google's Summer of Code.
 
    The project goal is to develop a network scanning frontend that is really
    useful for advanced users and easy to be used by newbies. With Umit, a
