@@ -50,7 +50,7 @@ def merge():
         backup_path = old_path + '_backup'
         if os.path.exists(old_path):
             # Move the old ~/.umit to ~/.umit_backup so next time this
-            # merger runs it will notice the ausence of ~/.umit
+            # merger runs it will notice the absence of ~/.umit
             shutil.move(old_path, backup_path)
 
             new_path = os.path.join(BasePaths.HOME, BasePaths.UMIT_CFG_DIR)
