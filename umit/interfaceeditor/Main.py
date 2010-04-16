@@ -24,7 +24,7 @@ from gettext import gettext as _
 
 import gtk
 
-#HIG
+# Importing higwidgets
 
 from higwidgets.higwindows import HIGWindow, HIGMainWindow 
 from higwidgets.higboxes import HIGVBox, HIGHBox, HIGSpacer,hig_box_space_holder
@@ -141,10 +141,6 @@ class InterfaceEditor(HIGMainWindow):
                  self.wizard_box.is_changed() or self.profile_box.is_changed()
         self.main_action_group.get_action('Save all').set_sensitive(save_all)
 
-
-        #
-
-
     def _destroy(self, widget, event):
         self.quit(widget)
 
@@ -155,12 +151,9 @@ class InterfaceEditor(HIGMainWindow):
         '''
         if self.wizard_box != None:
             self.wizard_box.set_proprieties(self._proprieties)
-            #return
         if self.wizard_box ==None :
             self.wizard_box = WizardEdit(self.list_options_box.get_list_option())
-        #else:
-        #    self.profile_box.show_all()
-        #command_manager.connect_after('changed', self._update_undo_redo_cb)
+            
         self.wizard_box.set_notebook(self.notebook)
 
     def create_profile_edit(self):
@@ -170,13 +163,13 @@ class InterfaceEditor(HIGMainWindow):
         '''
         if self.profile_box != None:
             self.profile_box.set_proprieties(self._proprieties)
-            #return
+            
         if self.profile_box ==None :
             self.profile_box = ProfileEdit(self.list_options_box.get_list_option())
-        #else:
-        #    self.profile_box.show_all()
+            
         command_manager.connect_after('changed', self._update_undo_redo_cb)
         self.profile_box.set_notebook(self.notebook)
+        
     def _update_undo_redo_cb(self, action, other):
         '''
         Verify if exists undo and redo
@@ -221,13 +214,8 @@ class InterfaceEditor(HIGMainWindow):
         self.vbox_right = HIGVBox()
         self.vbox_left = HIGVBox()
 
-
-
         self.edit_mode_exp = gtk.Expander(_('Edit Modes'))
         self.edit_mode_box = self.create_edit_mode()
-
-
-
 
         self.notebook.set_scrollable(True)
         self.notebook.append_page(self.list_options_box, 
@@ -236,6 +224,7 @@ class InterfaceEditor(HIGMainWindow):
         self.list_options_box.reload()
 
         self.__create_status_bar()
+        
     def __option_display(self):
 
         self.display_frame.set_label('Options')
@@ -296,7 +285,6 @@ class InterfaceEditor(HIGMainWindow):
         column.pack_start(renderer, True)
         column.add_attribute(renderer, 'text', 1)
 
-
         self.edit_mode_tv.append_column(column)
         myiter = model.insert_before(None, None)
         icon = gtk.Image()
@@ -330,10 +318,8 @@ class InterfaceEditor(HIGMainWindow):
         (model,iter) = selection.get_selected()	
         edit = model.get_value(iter, 1)
         if edit == "Options" and not self.edit_mode_opt == "Options":
-            #
             self._remove_previews()
             self.edit_mode_opt = "Options"
-            #self.vbox_left.pack_start(self.display_frame, False, False )
             self.display_frame.show_all()
             if self.notebook.get_n_pages > 1 :
                 self.notebook.remove_page(-1)
@@ -342,7 +328,6 @@ class InterfaceEditor(HIGMainWindow):
 
 
         elif edit == "Profile" and not self.edit_mode_opt == "Profile":
-            #
             self._remove_previews()
             self.edit_mode_opt="Profile"
             bool = self.profile_box_b==None 
@@ -372,7 +357,7 @@ class InterfaceEditor(HIGMainWindow):
             self.wizard_box.notebook.put_on_page()
             self._create_tooldesign()
             self.wizard_box.show()
-            self.obj = self.wizard_box	    
+            self.obj = self.wizard_box
 
 
     def _remove_previews(self):

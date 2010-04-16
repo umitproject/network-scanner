@@ -20,7 +20,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 from xml.dom import minidom   
-#import xml.dom.ext
 
 from umit.core.NmapOptions import  NmapOptions
 
@@ -276,10 +275,6 @@ class ListOptions(NmapOptions):
         str = str[0:len(str)-2] 
         return str 
 
-        #for i in dic:
-            #str = str + i + ", "
-        #str = str[0:len(str)-1]
-        #return str  
     def print_screen(self):
         xml.dom.ext.PrettyPrint(self.option_xml)
     def write_file(self,filename):
@@ -290,7 +285,6 @@ class ListOptions(NmapOptions):
         '''
 
         file_object = open(filename, "w")
-        #xml.dom.ext.PrettyPrint(self.option_xml, file_object)
         self.option_xml.writexml(file_object)
         file_object.close()
 

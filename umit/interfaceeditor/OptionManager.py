@@ -104,12 +104,11 @@ class CommandAddRemoveOptionMode(TwiceCommand, Command):
                 break
             iter = m.iter_next(iter)
 
-
         #(model,iter) = self.optionlist.get_selected_option()
         if result==None:
-            log.debug('Something happen!! ERROR')
+            log.debug('Something happen! ERROR')
             return
-        m.remove(iter)	
+        m.remove(iter)
         self.optiondisplay.clear()
 
     _execute_2 = _remove_option
@@ -155,7 +154,7 @@ class OptionDisplay(HIGTable):
         self.arguments_entry = HIGTextEntry()
         self.arguments_entry.set_editable(False)
         self.attach(self.aguments_label, 0,1, 5,6)
-        self.attach(self.arguments_entry, 1,3,5,6)	
+        self.attach(self.arguments_entry, 1,3,5,6)
 
 
     def update_args(self, widget):
@@ -175,7 +174,7 @@ class OptionDisplay(HIGTable):
                 right = text_entry[cursor_index:len(text_entry)]
                 final = left + "%s" + right
                 self.options_entry.set_text(final)
-            self.arguments_entry.set_text(arg_description)	
+            self.arguments_entry.set_text(arg_description)
 
 
     def dialog_args(self):
@@ -262,8 +261,8 @@ class OptionDisplay(HIGTable):
 
 
     def set_option(self,name, hint,
-                   arguments, need_root, 
-                   options, arg_type):        
+                   arguments, need_root,
+                   options, arg_type):
         """
         fill fields
         buggy arguments.
@@ -430,15 +429,6 @@ class OptionDisplayMainFrame(OptionDisplay):
 
                     else: 
                         return
-
-
-
-                #self.optionlist.options.remove_option(name)
-
-                ##Update treeview
-                #(model,iter) = self.optionlist.get_selected_option()
-                #model.remove(iter)	
-                #self.clear()
 
             else: 
                 d = HIGAlertDialog(type= gtk.MESSAGE_ERROR, 
@@ -641,23 +631,6 @@ class OptionList(HIGVBox):
                                          True)
         command_manager.add_command(cmd)
 
-
-        #opt = option.get_option_dic()
-        #self.options.add_option_from_dic(opt)
-
-        #myiter = self.__model.insert_before(None, None)
-        #arg = option.get_arg_type()
-        #icon = gtk.Image()
-        #s = self._arg_img(arg)
-        #img_dir =  os.path.join(pixmaps_dir, '%s.png' % s)
-        #icon.set_from_file(img_dir)
-        #icon = icon.get_pixbuf()
-        #self.__model.set_value(myiter, 0, icon)
-        #self.__model.set_value(myiter, 1, option.get_name())
-        #self.options.reload_opt()
-
-
-
     def save(self):
         """
         Save from option treeview to xml file 
@@ -667,4 +640,3 @@ class OptionList(HIGVBox):
 
 if __name__ == "__main__":
     o = OptionList()
-

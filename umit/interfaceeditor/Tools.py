@@ -149,13 +149,6 @@ class ToolDesign(HIGScrolledWindow):
         box = self._box 
         box.pack_start(self.button_list, False, False)
         box.pack_start(self.button_label, False, False)
-        #box.pack_start(self.button_check, False, False)
-        #box.pack_start(self.button_path, False, False)
-        #box.pack_start(self.button_float, False, False)
-        #box.pack_start(self.button_integer, False, False)
-        #box.pack_start(self.button_level, False, False)
-
-
 
 class ToolBarInterface(gtk.EventBox):
     '''
@@ -623,20 +616,7 @@ class Proprieties(HIGScrolledWindow):
         cmd = CommandChangeLabel(selected, self._entry_name.get_text(), 
                                  self._profilecore,self._boxeditable, True)
         command_manager.add_command(cmd)
-        #if isinstance(selected, NotebookLabel):
-            #log.debug('update NotebookLabel')
-            #selected.set_text(self._entry_name.get_text())
-            #return 
-        #childs = selected.get_children()
-        #child_label = childs[0]
-        #if isinstance(child_label, gtk.HBox):
-            #self._button_list.hide()
-            #child_label.cbutton.set_label(self._entry_name.get_text())
-        #elif isinstance(child_label, gtk.EventBox):
-            #self._button_list.show()
-            #other = child_label.get_children()[0]
-            #other.set_label(self._entry_name.get_text())
-
+        
     def change_combo(self,combo):
         model = combo.get_model()
         index = combo.get_active()
