@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Umit Network Scanner
+GenericName=Network Scanner
+Comment=Explore the network and scan ports
+Icon=/usr/share/pixmaps/umit/umit_ico_48px.svg
+Exec=gksudo umit
+Terminal=false
+Type=Application
+Categories=Network;

@@ -1,0 +1,24 @@
+IMPORTANTE MESSAGE FOR DEVELOPERS AND PACKAGE MAINTAINERS:
+
+Generating windows installer:
+
+ 1 - Install the required dependencies for windows (including PIL)
+ 2 - Run: install_scripts\windows\generate_windows_installer.bat
+
+ Obs: Some path adaptations may be needed in the script above in order to make
+ it work in your system.
+
+
+Generating unix packages:
+
+ 1 - You don't need gtk, pygtk, psyco, pysqlite2 installed, but you need PIL
+ 2 - Run: install_scripts/unix/generate_linux_packages.sh
+
+
+Generating Mac OS X App:
+
+ 1 - Install the required dependencies for Mac OS X (including PIL)
+ 2 - Run setup.py py2app
+
+ Obs: Some path adaptations may be needed in the script above in order to make
+ it work in your system.

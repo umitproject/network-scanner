@@ -1,0 +1,228 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2005-2006 Insecure.Com LLC.
+# Copyright (C) 2007-2008 Adriano Monteiro Marques
+#
+# Authors: Adriano Monteiro Marques <adriano@umitproject.org>
+#          Cleber Rodrigues <cleber.gnu@gmail.com>
+#          Frederico Silva Ribeiro <ribeiro.fsilva@gmail.com>
+#          Guilherme Polo <ggpolo@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+
+import os
+import sys
+import signal
+import platform
+import tempfile
+import cgitb
+
+if not hasattr(sys, 'frozen'):
+    _source_path = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), os.path.pardir))
+    if os.path.exists(os.path.join(_source_path, 'setup.py')):
+        # Assuming umit is being executed from a svn checkout.
+        sys.path.insert(0, _source_path)
+
+from umit.core.I18N import _
+from umit.core.Version import VERSION
+from umit.core.Utils import development_mode
+
+
+class UmitExceptionHook(object):
+    def __call__(self, etype, emsg, etb):
+        import warnings
+        warnings.filterwarnings("error", module = "gtk")
+        try:
+            import gtk
+        except Warning, e:
+            print e.message
+            sys.exit(-1)
+        warnings.resetwarnings()
+
+        from umit.gui.BugReport import CrashReport
+        from higwidgets.higdialogs import HIGAlertDialog
+
+        if etype == ImportError:
+            d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
+                message_format=_("Import error"),
+                secondary_text=_("\nA required module was not "
+                    "found.\n\nError:") + " %s" % emsg)
+            d.run()
+            d.destroy()
+            return
+
+        # Getting dependencies versions
+        import higwidgets
+        import umit.core
+        import umit.gui
+
+        # Try to get the correct path to nmap
+        from umit.core.Paths import Path
+        try:
+            nmap_path = Path.nmap_command_path
+        except Exception:
+            # The configuration file hasn't been set yet, too bad.
+            nmap_path = 'nmap'
+
+        gtk_version = "%s.%s.%s" % gtk.gtk_version
+        pygtk_version = "%s.%s.%s" % gtk.ver
+        higwidgets_version = getattr(higwidgets, "__version__", "< 0.9.5")
+        python_version = sys.version
+        nmap_version = os.popen2('"%s" -V' % nmap_path)[1].read().strip("\n")
+        try:
+            osuname = " ".join(os.uname())
+        except AttributeError:
+            # os.uname is not available under Windows, and other unlikely
+            # systems
+            try:
+                osuname = " ".join(platform.win32_ver())
+            except AttributeError:
+                osuname = "UNKNOWN"
+
+        umit_version = VERSION
+        umitCore_version = getattr(umit.core, "__version__", "< 0.9.5")
+        umitGUI_version = getattr(umit.gui, "__version__", "< 0.9.5")
+
+        versions = _("""
+Versions:
+---
+GTK: %s
+PyGTK: %s
+HIGWidgets: %s
+Python: %s
+Nmap: %s
+Operating System: %s
+Umit: %s
+UmitCore: %s
+UmitGUI: %s
+---""") % (gtk_version,
+           pygtk_version,
+           higwidgets_version,
+           python_version,
+           nmap_version,
+           osuname,
+           umit_version,
+           umitCore_version,
+           umitGUI_version)
+
+        crash_text = cgitb.text((etype, emsg, etb))
+        crash_text_dialog = "\n%s\n%s\n" % (versions, crash_text)
+        crash_text = "{{{\n%s\n%s\n}}}" % (versions, crash_text)
+
+        #Dialog info
+        extrainfo_dialog = "%-17s %s\n%-17s %s\n%-17s %s\n%-17s %s\n" % (
+            "sys.platform", sys.platform, "os.name", os.name,
+            "Gtk version", '.'.join(map(str, gtk.gtk_version)),
+            "Umit version", VERSION)
+        crashmsg_dialog = "Crash Report\n%s\n%s\nDescription\n%s\n%s" % (
+                '=' * 10, extrainfo_dialog, '-' * 20, crash_text_dialog)
+
+        extrainfo = (
+                "%-17s %s\n[[BR]]%-17s %s\n[[BR]]%-17s %s\n"
+                "[[BR]]%-17s %s[[BR]]\n" % (
+                    "sys.platform", sys.platform, "os.name", os.name,
+                    "Gtk version", '.'.join(map(str, gtk.gtk_version)),
+                    "Umit version", VERSION))
+        crashmsg = (
+                "Crash Report\n[[BR]]%s[[BR]]\n[[BR]]%s\n"
+                "Description\n%s\n%s" % (
+                    '=' * 10, extrainfo, '-' * 20, crash_text))
+
+        # If umit started running then gtk.main was invoked. Let's end this
+        # main loop now so when the Crash Report is closed, umit is also
+        # closed.
+        if gtk.main_level():
+            gtk.main_quit()
+            # We registered App().safe_shutdown for the SIGTERM signal,
+            # now we can retrieve it and find out the umit's main window if
+            # it got created.
+            safeshutdown_meth = signal.getsignal(signal.SIGTERM)
+            mainwindow = getattr(
+                    safeshutdown_meth.im_self, 'main_window', None)
+            # Disable controls.
+            if mainwindow is not None:
+                mainwindow.disable_window()
+
+        try:
+            cwin = CrashReport("Umit Crash - '%s'" % emsg,
+                    crashmsg, description_dialog=crashmsg_dialog)
+            cwin.show_all()
+            cwin.connect('destroy', gtk.main_quit)
+            from umit.gui.App import main_is_frozen
+            if main_is_frozen():
+                gtk.gdk.threads_enter()
+            gtk.main()
+            if main_is_frozen():
+                gtk.gdk.threads_leave()
+        except:
+            import traceback
+            traceback.print_exc()
+            tempfd, tempname = tempfile.mkstemp()
+            os.write(tempfd, crashmsg_dialog)
+            d = HIGAlertDialog(type=gtk.MESSAGE_ERROR,
+                    message_format=_("Bug not reported"),
+                    secondary_text=_("A critical error occourried during "
+                        "Umit execution, \nand it was not properly reported "
+                        "to our bug tracker. The crash description was saved "
+                        "to: %s, so you can still report it on our bug "
+                        "tracker.") % tempname)
+            os.close(tempfd)
+            d.run()
+            d.destroy()
+
+
+if not development_mode(default=True):
+    # Generating temporary files names
+    stdout_output = tempfile.mktemp()
+    stderr_output = tempfile.mktemp()
+
+    _stdout = open(stdout_output, "w")
+    _stderr = open(stderr_output, "w")
+
+    sys.stdout = _stdout
+    sys.stderr = _stderr
+
+    sys.excepthook = UmitExceptionHook()
+
+
+def main(args):
+    # Setting the umit home directory
+    from umit.core.Paths import Path
+    Path.set_umit_conf(os.path.dirname(args[0]))
+    #################################
+    Path.set_running_path(os.path.abspath(os.path.dirname(args[0])))
+
+    # Check permissions
+    from umit.gui.Utils import verify_config_access
+    verify_config_access()
+    
+    from umit.gui.App import App
+
+    umit_app = App()
+
+    if os.name == "posix":
+        signal.signal(signal.SIGHUP, umit_app.safe_shutdown)
+    signal.signal(signal.SIGTERM, umit_app.safe_shutdown)
+    signal.signal(signal.SIGINT, umit_app.safe_shutdown)
+
+    try:
+        umit_app.run()
+    except KeyboardInterrupt:
+        sys.exit(signal.SIGINT)
+
+if __name__ == "__main__":
+    main(sys.argv)

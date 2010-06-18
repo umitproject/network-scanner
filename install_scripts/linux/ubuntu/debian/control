@@ -1,0 +1,23 @@
+Source: umit
+Section: net
+Priority: optional
+Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
+Build-Depends: debhelper (>= 5), python, cdbs (>= 0.4.49)
+Build-Depends-Indep: python-central (>= 0.6.1)
+XSBC-Original-Maintainer: Luis A. Bastiao Silva <luis.kop@gmail.com>
+XS-Python-Version: current
+Standards-Version: 3.8.0
+Homepage: http://www.umitproject.org
+
+Package: umit
+Architecture: all
+Depends: ${python:Depends}, python-gnome2-extras, nmap (>= 4.50), python-gtk2, python-pysqlite2, python-gobject
+XB-Python-Version: ${python:Versions}
+Recommends: python-psyco
+Description: network tool and graphical frontend for nmap
+ Scan the hosts in your network discovering open ports and the services and
+ operating systems that they are running.
+ .
+ With umit, you have all the power provided by nmap through its regular
+ command line interface, and a lot more, in a highly usable and portable
+ graphical interface.

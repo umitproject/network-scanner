@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+DEB_PYTHON_SYSTEM=pycentral
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/python-distutils.mk
+#include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+DEB_INSTALL_MANPAGES_umit = debian/umit.1
+DEB_PYTHON_INSTALL_ARGS_ALL = --prefix=/usr --install-lib=usr/share/umit -P
+
+clean::
+	rm -rf build
+	find share/locale -name "umit.mo" -exec rm {} \;
+	
+install/umit::
+	# Silent lintian warnings 
+	find debian/umit/usr/share/locale -name "umit.mo" -exec chmod -x {} \;
+	rm -rf debian/umit/usr/lib/python-support

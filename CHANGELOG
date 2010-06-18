@@ -1,0 +1,4 @@
+Since Version 0.9.5RC1:
+    - Fixed a bug  when delete profiles. 
+        (ProfileEditor, And Edit Profile Selected)
+        

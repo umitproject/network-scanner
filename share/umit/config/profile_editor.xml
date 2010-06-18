@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<interface>
+  <groups>
+    <group name="Scan"/>
+    <group name="Ping"/>
+    <group name="Target"/>
+    <group name="Source"/>
+    <group name="Other"/>
+    <group name="Advanced"/>
+  </groups>
+  <Scan label="Scan options">
+    <option_list label="TCP scan: ">
+      <option name="None"/>
+      <option name="ACK scan"/>
+      <option name="FIN scan"/>
+      <option name="Null Scan"/>
+      <option name="TCP SYN Scan"/>
+      <option name="TCP connect Scan"/>
+      <option name="Window Scan"/>
+      <option name="Xmas Tree"/>
+    </option_list>    
+    <option_list label="Special scans: ">
+      <option name="None"/>
+      <option name="IP protocol Scan"/>
+      <option name="List Scan"/>
+      <option name="Ping scanning"/>
+    </option_list>    
+    <option_list label="Timing: ">
+      <option name="None"/>
+      <option name="Paranoid"/>
+      <option name="Sneaky"/>
+      <option name="Polite"/>
+      <option name="Normal"/>
+      <option name="Aggressive"/>
+      <option name="Insane"/>
+    </option_list>    
+    <option_check label="FTP bounce attack" option="FTP bounce attack" />
+    <option_check label="Idle Scan (Zombie)" option="Idle Scan" />
+    <option_check label="Services version detection" option="Version detection"/>
+    <option_check label="Operating system detection" option="Operating system detection"/>
+    <option_check label="Disable reverse DNS resolution" option="Disable reverse DNS resolution"/>
+    <option_check label="IPv6 support" option="IPv6 support"/>
+    <option_check label="Maximum Retries" option="Max Retries" />
+  </Scan>
+  <Ping label="Ping options">
+    <option_check label="Don't ping before scanning" option="Ping after Scan"/>
+    <option_check label="ICMP ping" option="ICMP ping"/>
+    <option_check label="ICMP timestamp request" option="ICMP timestamp"/>
+    <option_check label="ICMP netmask request" option="ICMP netmask"/>
+    <option_check label="Default ping type" option="Default ping"/>
+    <option_check label="ACK ping" option="TCP ACK" />
+    <option_check label="SYN ping" option="TCP SYN" />
+    <option_check label="UDP probes" option="UDP Probe" />
+	<option_check arg_type="" label="Disable ping" option="Disable ping"/>
+	<option_check arg_type="" label="Traceroute" option="Traceroute"/>
+  </Ping>
+  <Target label="Target options">
+    <option_check label="Excluded hosts/networks" option="Excluded hosts/networks" />
+    <option_check label="Excluded hosts/networks from file" option="Excluded hosts/networks from file" />
+    <option_check label="Read hosts to be scanned from file" option="Read hosts from file" />
+    <option_check label="Scan random hosts" option="Scan random hosts" />
+    <option_check label="Ports to scan" option="Ports to scan" />
+    <option_check label="Only scan ports listed on services" option="Scan services ports"/>
+  </Target>
+  <Source label="Source options">
+    <option_check label="Use decoys to hide identity" option="Use decoys" />
+    <option_check label="Set source IP address" option="Set source IP" />
+    <option_check label="Set source port" option="Set source port" />
+    <option_check label="Set network interface" option="Set network interface" />
+  </Source>
+  <Other label="Other options">
+    <option_check label="Extra options definied by user" option="Extra" />
+    <option_check label="Set IPv4 time to live (ttl)" option="Set IPv4 ttl" />
+    <option_check label="Fragment IP packets" option="Fragment IP Packets"/>
+    <option_check label="Verbosity level" option="Verbose" />
+    <option_check label="Debugging level" option="Debug" />
+    <option_check label="Watch packets" option="Watch packets"/>
+    <option_check label="Disable randomizing scanned ports" option="Disable randomizing scanned ports"/>
+  </Other>
+  <Advanced label="Advanced options">
+    <option_check label="Time spent before giving up on an IP" option="Time before give up IP" />
+    <option_check label="Time spent before retransmitting or timing out" option="Time before retransmitting" />
+    <option_check label="Minimum timeout time per probe" option="Min timeout per probe" />
+    <option_check label="Specifies the initial probe timeout" option="Initial probe timeout" />
+    <option_check label="Maximum number of hosts in parallel" option="Max parallel hosts" />
+    <option_check label="Minimum number of hosts in parallel" option="Min parallel hosts" />
+    <option_check label="Maximum number of scans in parallel" option="Max parallel scans" />
+    <option_check label="Minimum number of scans in parallel" option="Min parallel scans" />
+    <option_check label="Maximum amount of time between probes" option="Max time between probes" />
+    <option_check label="Minimum amount of time between probes" option="Min time between probes" />
+  </Advanced>
+</interface>

@@ -1,0 +1,15 @@
+First create the catalog if it's not present
+$ pygettext.py sources/*.py
+
+Then create your translations with
+$ LANG=it_IT msginit
+
+If the code is updated and you have already an it.po you could update the translation
+withous losing data with:
+
+$ msgmerge -U it.po messages.pot
+
+If you have finished you could finally create the .mo file with:
+
+$ msgfmt it.po -o it.mo
+$ mkdir locale/it && mv it.mo locale/it/
