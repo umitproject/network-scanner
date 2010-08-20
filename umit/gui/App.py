@@ -46,6 +46,7 @@ def main_is_frozen():
 
 class App:
     def __init__(self, args=sys.argv):
+        self.main_window = None
         # Initialite the PluginEngine
         PluginEngine()
 
@@ -78,7 +79,7 @@ class App:
         log.debug("\n\n%s\nSAFE SHUTDOWN!\n%s\n" % ("#" * 30, "#" * 30))
         log.debug("SIGNUM: %s" % signum)
 
-        try:
+        if self.main_window:
             scans = self.main_window.scan_notebook.get_children()
             for scan in scans:
                 log.debug(">>> Killing Scan: %s" % scan.get_tab_label())
@@ -86,10 +87,8 @@ class App:
                 scan.close_tab()
                 self.main_window.scan_notebook.remove(scan)
                 del(scan)
-        except NameError:
-            pass
 
-        self.main_window._exit_cb()
+            self.main_window._exit_cb()
         sys.exit(signum)
 
     def run(self):

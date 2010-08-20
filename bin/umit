@@ -41,7 +41,6 @@ from umit.core.I18N import _
 from umit.core.Version import VERSION
 from umit.core.Utils import development_mode
 
-
 class UmitExceptionHook(object):
     def __call__(self, etype, emsg, etb):
         import warnings
@@ -200,19 +199,24 @@ if not development_mode(default=True):
 
 
 def main(args):
-    # Setting the umit home directory
-    from umit.core.Paths import Path
-    Path.set_umit_conf(os.path.dirname(args[0]))
-    #################################
-    Path.set_running_path(os.path.abspath(os.path.dirname(args[0])))
+    try:
+        # Setting the umit home directory
+        from umit.core.Paths import Path
+        Path.set_umit_conf(os.path.dirname(args[0]))
+        #################################
+        Path.set_running_path(os.path.abspath(os.path.dirname(args[0])))
 
-    # Check permissions
-    from umit.gui.Utils import verify_config_access
-    verify_config_access()
-    
-    from umit.gui.App import App
+        # Check permissions
+        from umit.gui.Utils import verify_config_access
+        verify_config_access()
+        
+        from umit.gui.App import App
 
-    umit_app = App()
+        umit_app = App()
+    except KeyboardInterrupt:
+        # there is no need to run safe_shutdown()
+        # cause we haven't created App instance yet
+        sys.exit(signal.SIGINT)
 
     if os.name == "posix":
         signal.signal(signal.SIGHUP, umit_app.safe_shutdown)
