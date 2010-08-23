@@ -61,7 +61,7 @@ class About(HIGWindow):
 <span size='30000' weight='heavy'>Umit %s</span>""" % VERSION)
         
         self.lbl_program_description = gtk.Label(\
-            _("""Umit is network scanning frontend frontend,
+            _("""Umit is network scanning frontend,
 developed in PyGTK by Adriano Monteiro 
 Marques <adriano@umitproject.org>
 and was sponsored by Google during the
