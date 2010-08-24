@@ -346,6 +346,7 @@ name to this profile. Please rename it and retry.'))
     
     def save_profile(self, widget):
         command = self.constructor.get_command('%s')
+        close_popup = True
 
         if self.directions['Choose'].profile_radio.get_active():
             profile_name = self.directions['Profile'].profile_entry.get_text()
@@ -376,22 +377,31 @@ name to this profile. Please rename it and retry.'))
                 page.toolbar.profile_entry.update()
         elif self.notebook:
             target = self.directions['Choose'].target_entry.get_text()
-            cmd = command % target
+	    
+            try:
+                cmd = command % target
+            except TypeError:
+                alert = HIGAlertDialog(message_format=_('Invalid Command'),\
+                                       secondary_text=_('The command is invalid.'))
+                alert.run()
+                alert.destroy()
+                close_popup = False
+            else:
+                current_page = self.notebook.get_nth_page(\
+                    self.notebook.get_current_page())
+                if current_page is None:
+                    current_page = self.notebook.add_scan_page(target)
 
-            current_page = self.notebook.get_nth_page(\
-                self.notebook.get_current_page())
-            if current_page is None:
-                current_page = self.notebook.add_scan_page(target)
+                current_page.execute_command(cmd)
 
-            current_page.execute_command(cmd)
-
-            current_page.toolbar.target_entry.selected_target = self.\
-                                directions['Choose'].target_entry.get_text()
-            current_page.command_toolbar.command_entry.command = cmd
-            current_page.command_toolbar.set_command(cmd)
-	if self.profilemanager:
-	    self.update_profilemanager()
-        self.close_wizard()
+                current_page.toolbar.target_entry.selected_target = self.\
+                                    directions['Choose'].target_entry.get_text()
+                current_page.command_toolbar.command_entry.command = cmd
+                current_page.command_toolbar.set_command(cmd)
+        if self.profilemanager:
+            self.update_profilemanager()
+        if close_popup:    
+            self.close_wizard()
 
 class FinishPage(HIGVBox):
     def __init__(self):
