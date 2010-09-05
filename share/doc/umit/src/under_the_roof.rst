@@ -7,8 +7,8 @@ Under Umit's Roof
 .. warning::
 
    This documentation is not finished! Part or all of it's content may be
-   missing or inaccurate. As Umit is under constant development and
-   improvement, expect changes in this documentation at upcoming releases.
+   missing or inaccurate. As Umit Network Scanner is under constant development
+   and improvement, expect changes in this documentation at upcoming releases.
 
 
 .. _UMIT_CFG_DIR:
@@ -16,12 +16,12 @@ Under Umit's Roof
 Configuration Files
 -------------------
 
-Umit will always try to create a $HOME/.umit configuration directory if it
-doesn't exists yet, under UNIX. Under Windows it will try to a configuration
-directory named umit under user's local application data. We call this
-configuration directory as UMIT_CFG_DIR.
+Umit Network Scanner will always try to create a $HOME/.umit configuration 
+directory if it doesn't exists yet, under UNIX. Under Windows it will try to a 
+configuration directory named umit under user's local application data. 
+We call this configuration directory as UMIT_CFG_DIR.
 
-The steps bellow, describes how Umit is going to behave on every
+The steps bellow, describes how Umit Network Scanner is going to behave on every
 startup in order to load the configuration files:
 
    1. Check if the location of the hardcoded paths does exist
@@ -50,4 +50,4 @@ Install the subversion client, and then run the command bellow::
 Easter Eggs
 -----------
 
-Yes, there are easter eggs in Umit. Go find them!
+Yes, there are easter eggs in Umit Network Scanner. Go find them!

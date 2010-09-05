@@ -7,8 +7,8 @@ Interface Editor
 .. warning::
 
    This documentation is not finished! Part or all of it's content may be
-   missing or inaccurate. As Umit is under constant development and
-   improvement, expect changes in this documentation at upcoming releases.
+   missing or inaccurate. As Umit Network Scanner is under constant development
+   and improvement, expect changes in this documentation at upcoming releases.
 
 
 Introduction
@@ -17,8 +17,9 @@ Introduction
 Interface Editor is a customizer of Profile Editor and Wizard, so end user 
 should be able to add, edit and remove **Nmap** options.
 
-Profile Editor and Wizard are using XML files to load his options. Interface Editor
-management this XMLs and show a graphical interface to handle it in run-time.
+Profile Editor and Wizard are using XML files to load his options. Interface 
+Editor management this XMLs and show a graphical interface to handle it 
+in run-time.
 
 What does it do?
 ^^^^^^^^^^^^^^^^
@@ -90,8 +91,8 @@ A new options have this parameters
 
 * Need Root 
    
-   If "Need Root" is able this option will be not considered if Umit is running without 
-   Administrator level.
+   If "Need Root" is able this option will be not considered if Umit Network
+   Scanner is running without Administrator level.
 
 * Options + Args 
 
@@ -111,15 +112,16 @@ A new options have this parameters
 
    The description of input parameters of Nmap introduced in "Args" button
 
-If you add a new option or delete it will be added to Undo/Redo stack and you can easier rollback changes.
+If you add a new option or delete it will be added to Undo/Redo stack and you 
+can easier rollback changes.
    
    
 Remove options
 ^^^^^^^^^^^^^^
 
 
-If a user can remove an option it can be done, just selecting the option in the list
-and then press in "Delete" button.
+If a user can remove an option it can be done, just selecting the option in the 
+list and then press in "Delete" button.
 
 
 .. _ieditorremoveoption:
@@ -128,8 +130,8 @@ and then press in "Delete" button.
 
    Interface Editor - Remove Option with Dependence
 
-In :ref:`Remove Option <ieditorremoveoption>` there is dependence in Profile and Wizard.
-If you remove the option it will removed also from Profile Editor and Wizard.
+In :ref:`Remove Option <ieditorremoveoption>` there is dependence in Profile and
+Wizard. If you remove the option it will removed also from Profile Editor and Wizard.
 
 
 
@@ -157,11 +159,12 @@ A **voidplace** is a spot when you can insert new option.
 It can be inserted by "Items" menu or by the toolbar in left side.
 
 
-If you remove an option (just selecting, and press "Delele" or throught the tooolbar/menu)
-automatically you get a voidplace. Then user will be able to exchange the option.
+If you remove an option (just selecting, and press "Delele" or throught the 
+tooolbar/menu) automatically you get a voidplace. Then user will be able to
+exchange the option.
 
-In each option user can put the option up or down from the others just using menu "Items"
-or using the left toolbar.
+In each option user can put the option up or down from the others just using 
+menu "Items" or using the left toolbar.
 
 *Sections*
 

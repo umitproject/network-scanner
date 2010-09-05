@@ -7,8 +7,8 @@ Profile Editor
 .. warning::
 
    This documentation is not finished! Part or all of it's content may be
-   missing or inaccurate. As Umit is under constant development and
-   improvement, expect changes in this documentation at upcoming releases.
+   missing or inaccurate. As Umit Network Scanner is under constant development
+   and improvement, expect changes in this documentation at upcoming releases.
 
 
 Introduction
@@ -21,7 +21,8 @@ Profile Editor is able to create profiles. With it you should
 be able to save the nmap arguments and run scans with some parameters in the
 future. 
 
-Since Umit Network Scanner 1.0 it was included a manager of Profiles called ProfileManager.
+Since Umit Network Scanner 1.0 it was included a manager of Profiles called 
+ProfileManager.
 
 What does it do?
 ^^^^^^^^^^^^^^^^
@@ -57,7 +58,8 @@ The screenshot above shows the Profile Editor.
 2. **Access from the Main Menu**
 
    * Go to the *Main Menu* (the one on the top of the application)
-   :menuselection:`Profile --> New Profile`
+   
+    :menuselection:`Profile --> New Profile`
 
 3. **Access from the ProfileManager**
     
@@ -164,7 +166,8 @@ procedures below.
 Profile Manager
 -----------------------------
 
-The *Profile Manager* is able to create, edit and delete new profiles as we explain above.
+The *Profile Manager* is able to create, edit and delete new profiles as we 
+explain above.
 
    .. image:: static/profile_manager.png
       :align: center

@@ -6,17 +6,17 @@ Plugins
 .. warning::
 
    This documentation is not finished! Part or all of it's content may be
-   missing or inaccurate. As Umit is under constant development and
-   improvement, expect changes in this documentation at upcoming releases.
+   missing or inaccurate. As Umit Network Scanner is under constant development
+   and improvement, expect changes in this documentation at upcoming releases.
 
 Introduction
 ------------
 
 Plugins are useful to implement indipendent features that could help the user
-to customize the UMIT experience.
+to customize the Umit Network Scanner experience.
 
-From the Plugin Window you could manage UMIT plugins. The window is divided in
-two sections the *Extensions* and *Path* view.
+From the Plugin Window you could manage Umit Network Scanner plugins. 
+The window is divided in two sections the *Extensions* and *Path* view.
 
 Extensions View
 ---------------
@@ -116,7 +116,7 @@ http://trac.umitproject.org/wiki/Plugins
 After having found your plugin you could download it and place under one of
 Plugin Path directory, listed in the *Paths* View.
 
-For example on *NIX system you could do::
+For example on *NIX* system you could do::
 
    $ cd ~/.umit/plugins
    $ wget http://trac.umitproject.org/attachment/wiki/Plugins/throbberanimation.ump

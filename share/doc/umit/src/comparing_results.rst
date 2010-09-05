@@ -20,28 +20,23 @@ regular scans of it's network can be compared to show abnormalities.
 Openning Instructions
 ---------------------
 
-To reach the Compare Results Window, make sure that Umit is open, and then
-do one of  the following:
+To reach the Compare Results Window, make sure that Umit Network Scanner is open, 
+and then do one of  the following:
 
    1. **Use the key-stroke**
 
       * The key-stroke that shows the Compare Results Window is CTRL + D.
 
-   2. **Single click on the Compare Results Icon in the Main Toolbar**
-
-      * The Compare Results Icon in the Main Toolbar may differ from theme
-        to theme, but it is always the 6th icon counting from left to right.
-
-   3. **Access from the Main Menu**
+   2. **Access from the Main Menu**
 
       * Go to the *Main Menu* (the one on the top of the application),
-        File->Compare Results.
+        Tools->Compare Results.
 
 
 Loaded/Loading Results
 ----------------------
 
-To avoid too much user interaction, and usability problems, Umit
+To avoid too much user interaction, and usability problems, Umit Network Scanner
 automatically make available at the *Compare Results Window* combo boxes,
 the scan results currently loaded in the main interface. As you may have
 already noted, scans are loaded separatedly inside scan tabs, that are
@@ -51,16 +46,16 @@ tabs titles, are used as identifiers that loads the respective scan result for
 comparison when selected at those combo boxes.
 
 If one or both of the scan results that you wish to compare are not loaded in
-Umit's main interface, you can compare then by loading then inside the
-*Compare Results Window* without the need of closing the window, loading the
-results into scan tabs, and then openning the *Compare Results Window* again.
-To load then directly, use the Open button that resides on the right of each
-combo box.
+Umit Network Scanner's main interface, you can compare then by loading then 
+inside the *Compare Results Window* without the need of closing the window, 
+loading the results into scan tabs, and then openning the 
+*Compare Results Window* again. To load then directly, use the Open button 
+that resides on the right of each combo box.
 
 You may also want to compare results that are not saved into files, but inside
-the Umit's search data base. To load those results, you'll have to load then
-into scan tabs first, and then open the *Compare Results Window* to compare
-them. It's a bit cumbersome, but loading then directly from the
+the Umit Network Scanner's search data base. To load those results, you'll 
+have to load then into scan tabs first, and then open the *Compare Results Window* 
+to compare them. It's a bit cumbersome, but loading then directly from the
 *Compare Results Window* would implicate on creating more widgets inside
 the window and making it more complex, thus lowing it's usability anyway.
 
@@ -83,9 +78,9 @@ hosts has left your network in the mean time, or, which ports appeared or
 disappeared, etc. By selecting the newest one first, you'll have a not so
 usefull comparison.
 
-Let's say that you have two different scans loaded in Umit, and you wish
-to compare then. The first one, called *"Quick Scan on 192.168.204.128"* is
-a scan result made 2 days ago, and the second one, called
+Let's say that you have two different scans loaded in Umit Network Scanner, and 
+you wish to compare then. The first one, called *"Quick Scan on 192.168.204.128"* 
+is a scan result made 2 days ago, and the second one, called
 *"Regular Scan on 192.168.204.128"* is a just finished scan result. The goal
 is to verify if something has changed during this 2 days, like if a service
 has been put up, or down in the mean while.
@@ -103,13 +98,14 @@ running the *"Compare Mode"*  just after it's openning.
 At *Scan Result 1* combo box, select *"Quick Scan on 192.168.204.128"*
 and at *Scan Result 2* select *"Regular Scan on 192.168.204.128"*.
 In the moment you finish the selection of the results you want to compare,
-Umit detects your choices and generates automatically the comparison result.
+Umit Network Scanner detects your choices and generates automatically 
+the comparison result.
 
    .. image:: static/comparing_results2.png
       :align: center
 
 The *Compare Results Window* with selected results and the comparison
-generated automatically by Umit.
+generated automatically by Umit Network Scanner.
 
    .. image:: static/comparing_results3.png
       :align: center
@@ -120,8 +116,8 @@ The same window, now showing the *"Text mode"* comparison result.
 The Text Diff Mode
 ------------------
 
-If you're an old Umit user, you won't be surprised with the text mode.
-But maybe, if you are a new user, you will probably be questionning why
+If you're an old Umit Network Scanner user, you won't be surprised with the text 
+mode. But maybe, if you are a new user, you will probably be questionning why
 there is a *"Text mode"*, if you've got the *"Compare mode"*, that is easier
 to read and understand. Here goes the answer: The *"Text mode"* is the first
 comparison mode, and it's quite useful in some situations. If you simply
@@ -130,7 +126,8 @@ what you need. But, if you need to report changes and save them for historical
 purposes, the *"Text mode"* will generate for you a text diff that can be
 copied and pasted anywhere. This mode is not so complete as the
 *"Compare mode"*, but it's the only one that you can save for latter analysis.
-In the future, Umit will feature a report generation tool, to ease this task.
+In the future, Umit Network Scanner will feature a report generation tool, 
+to ease this task.
 
 
 Reading and Understanding
@@ -250,5 +247,5 @@ or historical purposes, if needed.
 Known issues
 ^^^^^^^^^^^^
 
-There's a bug that avoids the use of this feature when Umit is been executed
-with *sudo* in Linux.
+There's a bug that avoids the use of this feature when Umit Network Scanner is 
+been executed with *sudo* in Linux.

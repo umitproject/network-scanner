@@ -6,16 +6,16 @@ Scanning
 .. warning::
 
    This documentation is not finished! Part or all of it's content may be
-   missing or inaccurate. As Umit is under constant development and
-   improvement, expect changes in this documentation at upcoming releases.
+   missing or inaccurate. As Umit Network Scanner is under constant development
+   and improvement, expect changes in this documentation at upcoming releases.
 
 
 Introduction
 ------------
 
-Umit was designed to accomodate and run more than one scan at time. Each scan
-is executed and shown inside a *Scan Tab*, which has a title and organize
-every information obtained in the scan result.
+Umit Network Scanner was designed to accomodate and run more than one scan at 
+time. Each scan is executed and shown inside a *Scan Tab*, which has a title 
+and organize every information obtained in the scan result.
 
 The *Scan Tab* tries to facilitate your life, by making the unformations
 easier to navigate and search for a given information. Usually, if you wanted
@@ -30,8 +30,8 @@ which of the 200 hosts found are serving ssh, what were you going to do?
 Maybe it won't seen impossible for you, (and it's not) but surely it's
 a boring task that gets worst when you have to do that more than once.
 
-An answer to your problem is Umit, that can handle this task easily, with
-just a couple of clicks.
+An answer to your problem is Umit Network Scanner, that can handle this task 
+easily, with just a couple of clicks.
 
 So, if you're wondering if you should retire the command line, I would say
 **NO!**. The Nmap's command interface is very useful when you want to scan a
@@ -44,18 +44,18 @@ to know which services are up, for example. If you're at the command line,
 you won't want to open a graphical application to do so, if you can quickly
 pull off your doubt about what is up or down from were you stand.
 
-Umit is intended to help you manage your network, by giving you a better
-way to examine carefully your network peers. If your intention is to
-*know* better your network, then Umit is what you need.
+Umit Network Scanner is intended to help you manage your network, by giving you
+a better way to examine carefully your network peers. If your intention is to
+*know* better your network, then Umit Network Scanner is what you need.
 
 
 Starting a scan
 ---------------
 
 To start a scan, you need an empty *Scan Tab*. At the time you start
-Umit, a new *Scan Tab* is made available, and as soon as the main interface
-is shown, you can start typing the target address. If you already used this
-*Scan Tab*, you can create a new one, by doing one of the following:
+Umit Network Scanner, a new *Scan Tab* is made available, and as soon as the 
+main interface is shown, you can start typing the target address. If you already
+used this *Scan Tab*, you can create a new one, by doing one of the following:
 
    1. **Use the key-stroke**
 
@@ -76,11 +76,11 @@ is shown, you can start typing the target address. If you already used this
 Setting a Target
 ----------------
 
-By the moment you start Umit, or create a new scan tab, you can start typing
-the address of the target(s) that you want to scan. Every target inserted into
-the Target field is recorded and remembered in case you need it in the future.
-As this field features an auto-completation, it's going to be easy the reuse of
-targets.
+By the moment you start Umit Network Scanner, or create a new scan tab, you can 
+start typing the address of the target(s) that you want to scan. Every target 
+inserted into the Target field is recorded and remembered in case you need it in
+the future. As this field features an auto-completation, it's going to be easy 
+the reuse of targets.
 
 
 Conducting a scan
