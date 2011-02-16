@@ -102,12 +102,13 @@ class BugReport(HIGDialog):
 
     def _set_category_list(self):
         # Obtained at bug tracker page source code
-        
-        self.category_list.append(["umitCore","umitCore"])
-        self.category_list.append(["umitGUI","umitGUI"])
+        # The following two lines are commented due to component deprecation
+        #self.category_list.append(["umitCore","umitCore"])
+        #self.category_list.append(["umitGUI","umitGUI"])
+        self.category_list.append(["Umit","Umit"])
         self.category_list.append(["CrashReport","CrashReport"])
         self.category_list.append(["Documentation", "Documentation"])
-        self.category_list.append(["umitWeb","umitWeb"])
+        self.category_list.append(["UmitWeb","UmitWeb"])
         self.category_list.append(["InterfaceEditor", "InterfaceEditor"])
         self.category_list.append(["NetworkInventory", "NetworkInventory"])
         self.category_list.append(["website","website"])
