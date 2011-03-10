@@ -205,6 +205,16 @@ def main(args):
         Path.set_umit_conf(os.path.dirname(args[0]))
         #################################
         Path.set_running_path(os.path.abspath(os.path.dirname(args[0])))
+        from umit.core.BasePaths import base_paths
+        if not os.path.exists(base_paths['pixmaps_dir']):
+            from higwidgets.higdialogs import HIGAlertDialog
+            alert = HIGAlertDialog(message_format=_('Missing share directory'),
+                                       secondary_text=_('Don\'t have read share\
+directory. Please reinstall the application.'))
+            alert.run()
+            alert.destroy()
+            sys.exit(1)
+        
 
         # Check permissions
         from umit.gui.Utils import verify_config_access
