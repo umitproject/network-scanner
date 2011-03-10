@@ -48,10 +48,20 @@ def merge():
         old_path = old_path.decode(locale.getdefaultlocale()[1])
 
         backup_path = old_path + '_backup'
-        if os.path.exists(old_path):
+        if os.path.exists(old_path) and \
+           not os.path.exists(os.path.join(old_path, "MERGED")) \
+           and not os.path.exists(backup_path) :
             # Move the old ~/.umit to ~/.umit_backup so next time this
             # merger runs it will notice the absence of ~/.umit
-            shutil.move(old_path, backup_path)
+            # If UmitWeb is an old version, it will keep ~/.umit alive 
+            if os.path.exists(os.path.join(old_path, "umitweb.log")):
+                shutil.copytree(old_path, backup_path)
+                # Create a file to tag that was already merged
+                file = open(os.path.join(old_path, "MERGED"), 'w')
+                file.write('')
+                file.close()
+            else:
+                shutil.move(old_path, backup_path)
 
             new_path = os.path.join(BasePaths.HOME, BasePaths.UMIT_CFG_DIR)
             if os.path.exists(new_path):
