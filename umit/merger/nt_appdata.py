@@ -47,12 +47,14 @@ def merge():
         old_path = os.path.join(os.path.expanduser("~"), ".umit")
         old_path = old_path.decode(locale.getdefaultlocale()[1])
         
+        backup_path = old_path + '_backup'
+
         i = 0
         while os.path.exists(backup_path):
             backup_path = backup_path + i
             i = i + 1
         
-        backup_path = old_path + '_backup'
+
         if os.path.exists(old_path) and \
            not os.path.exists(os.path.join(old_path, "MERGED")) \
            and not os.path.exists(backup_path) :
