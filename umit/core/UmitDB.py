@@ -156,7 +156,7 @@ class UmitDB(object):
             connection.commit()
 
         
-        creation_string = ("""CREATE TABLE scans (scans_id INTEGER \
+        creation_string = ("""CREATE TABLE IF NOT EXISTS scans (scans_id INTEGER \
                                                   PRIMARY KEY AUTOINCREMENT,
                                                   scan_name TEXT,
                                                   nmap_xml_output TEXT,
