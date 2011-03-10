@@ -590,6 +590,7 @@ class NmapParserSAX(ParserBasics, ContentHandler):
 
         self.nmap_xml_file = None
         self.unsaved = False
+        self.valid_xml = False
 
     def set_parser(self, parser):
         self.parser = parser
@@ -606,12 +607,15 @@ class NmapParserSAX(ParserBasics, ContentHandler):
                 self.parser.parse(self.nmap_xml_file)
         else:
             raise Exception("There's no file to be parsed!")
+        if not self.valid_xml:
+            raise Exception("Invalid XML file!")
 
     def generate_id(self):
         self.id_sequence += 1
         return self.id_sequence
 
     def _parse_nmaprun(self, attrs):
+        self.valid_xml = True
         d = self.nmap['nmaprun']
 
         self.scanner = attrs.get('scanner', '')
