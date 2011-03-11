@@ -6,16 +6,16 @@ echo ####################
 echo .
 
 echo Setting installation variables...
-set PythonEXE=C:\Python26\python.exe
+set PythonEXE=C:\Python27\python.exe
 set UmitOrig=.
 set UmitDir=C:\UmitTemp
 set DistDir=%UmitDir%\dist
 set GTKDir=C:\GTK
-set NmapDir=C:\Programas\Nmap
-set WinpcapDir=C:\programas\Winpcap
+set NmapDir="C:\Program Files (x86)\Nmap"
+set WinpcapDir="C:\Program Files (x86)\Winpcap"
 set WinInstallDir=%UmitDir%\install_scripts\windows
 set Output=%UmitDir%\win_install.log
-set MakeNSIS=C:\programas\NSIS\makensis.exe
+set MakeNSIS="C:\Program Files (x86)\NSIS\makensis.exe"
 set UtilsDir=%UmitDir%\install_scripts\utils
 
 echo Writing output to %Output%
