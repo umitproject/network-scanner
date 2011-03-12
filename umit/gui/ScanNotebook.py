@@ -22,6 +22,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 import re
+import os
 import gtk
 import gobject
 import webbrowser
@@ -825,8 +826,9 @@ class ScanNotebookPage(HIGVBox):
                 host_info = self.hosts[hostname]['host']
                 
                 try:
+                    
                     host_details.set_os_image(
-                        get_os_logo(host.get_osmatch()['name']))
+                        get_os_logo(host.osmatch[-1].get("name")))
                 except:
                     host_details.set_os_image(get_os_logo(''))
                 
@@ -835,7 +837,7 @@ class ScanNotebookPage(HIGVBox):
                 
                     
                 icon = None
-                try:icon = get_os_icon(host.get_osmatch()['name'])
+                try:icon = get_os_icon(host.osmatch[-1].get("name"))
                 except:icon = get_os_icon('')
                     
                 self.scan_result.scan_host_view.add_host(
