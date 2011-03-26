@@ -77,7 +77,7 @@ py2exe_options = dict(
             "optimize": 2,
             "packages": "encodings",
             "includes": [
-                'pango', 'atk', 'gobject', 'pickle', 'bz2',
+                'pango', 'atk', 'gobject', 'pickle', 'bz2', 'gio',
                 'encodings', 'encodings.*', 'cairo', 'pangocairo'],
             # Ignore psyco if it is not installed
             "ignores": ['psyco'],
