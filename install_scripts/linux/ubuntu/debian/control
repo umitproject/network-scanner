@@ -11,7 +11,7 @@ Homepage: http://www.umitproject.org
 
 Package: umit
 Architecture: all
-Depends: ${python:Depends}, python-gnome2-extras, nmap (>= 4.50), python-gtk2, python-pysqlite2, python-gobject
+Depends: ${python:Depends}, nmap (>= 4.50), python-gtk2, python-gobject
 XB-Python-Version: ${python:Versions}
 Recommends: python-psyco
 Description: network tool and graphical frontend for nmap
