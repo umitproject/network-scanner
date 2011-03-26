@@ -75,7 +75,7 @@ py2exe_options = dict(
         options = {"py2exe": {
             "compressed": 1,
             "optimize": 2,
-            "packages": "encodings",
+            "packages": ["encodings", "email"],
             "includes": [
                 'pango', 'atk', 'gobject', 'pickle', 'bz2', 'gio',
                 'encodings', 'encodings.*', 'cairo', 'pangocairo'],
