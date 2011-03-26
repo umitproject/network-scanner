@@ -72,6 +72,8 @@ echo Compiling Umit using py2exe...
 cd %UmitDir%
 %PythonEXE% -OO setup.py py2exe
 
+echo Copying the html docs
+xcopy share\doc\umit\html\*.* %DistDir%\share\doc\umit\html\ /S /I >> %Output%
 
 echo Copying some more GTK files to dist directory...
 xcopy %GTKDir%\lib %DistDir%\lib /S /I >> %Output%
