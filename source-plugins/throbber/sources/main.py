@@ -159,7 +159,7 @@ class Throbber(Plugin):
 
         log.info('We\'re going to hook a class man. Pay attention.')
 
-        Core().connect('ScanNotebookPage-created', self.__on_new_nb_page)
+        Core().connect('NmapScanNotebookPage-created', self.__on_new_nb_page)
 
         path = reader.extract_file('data/throbber-16.gif')
 

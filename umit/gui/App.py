@@ -30,7 +30,11 @@ from umit.core.UmitOptionParser import option_parser
 from umit.core.Utils import is_maemo, development_mode
 from umit.core.I18N import _
 from umit.core.UmitLogging import log
+from umit.core.UmitConf import GeneralSettingsConf
 
+from umit.preferences.conf.ExposeConf import expose_conf
+general_settings = GeneralSettingsConf()
+        
 from umit.plugin.Engine import PluginEngine
 
 # Script found at http://www.py2exe.org/index.cgi/HowToDetermineIfRunningFromExe
@@ -74,6 +78,8 @@ class App:
             self.hildon_app.add_window(self.main_window)
 
         self.main_window.show_all()
+        if not expose_conf.show_toolbar:
+            self.main_window.toolbar.hide_all()
     
     def safe_shutdown(self, signum, stack):
         log.debug("\n\n%s\nSAFE SHUTDOWN!\n%s\n" % ("#" * 30, "#" * 30))
@@ -128,14 +134,18 @@ class App:
             print e.message
             sys.exit(-1)
         warnings.resetwarnings()
+        
         import gobject
-        from umit.gui.Splash import Splash
-        log.info(">>> Pixmaps path: %s" % Path.pixmaps_dir)
-        if not is_maemo():
-            pixmap_d = Path.pixmaps_dir
-            if pixmap_d:
-                pixmap_file = os.path.join(pixmap_d, 'splash.png')
-                self.splash = Splash(pixmap_file, 1400)
+        log.info('>>> Splash run or not ?')
+        if general_settings.splash:
+            log.info(' >>> Running splash ')
+            from umit.gui.Splash import Splash
+            log.info(">>> Pixmaps path: %s" % Path.pixmaps_dir)
+            if not is_maemo():
+                pixmap_d = Path.pixmaps_dir
+                if pixmap_d:
+                    pixmap_file = os.path.join(pixmap_d, 'splash.png')
+                    self.splash = Splash(pixmap_file, 1400)
 
         if main_is_frozen():
             # This is needed by py2exe
@@ -143,8 +153,11 @@ class App:
             gtk.gdk.threads_enter()
 
         # Create and show the main window as soon as possible
-        gobject.idle_add(self.__create_show_main_window)
-
+        if general_settings.splash:
+            gobject.idle_add(self.__create_show_main_window)
+        else:
+            self.__create_show_main_window()
+            
         # Run main loop
         #gobject.threads_init()
         gtk.main()

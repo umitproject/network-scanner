@@ -1,0 +1,47 @@
+additional:
+- __doc__ for GUI modules
+- GPG sign
+- NSE version checking
+- progress on reload (f**g threading lock)
+
+- Properties dialog for script
+- documents list in editor
+- search/replace in editor
+- smart syntax coloring
+- popup menu in editor
+- GUI for genbase
+
+done:
++ NSE Config parser
++ NSE Base parser
++ command line tool
++ script manager preferences
++ editor preferences
++ add source dialog
++ more columns support
++ show/hide unnecessory elements
++ new/open/save file
++ more careful modified flag, copy/paste sensitive
++ undo/redo fixes
++ small fixes in pySourceView
++ general coloring improvenment
++ statusbar
++ search in manager
++ script selection categories
++ simple syntax coloring
++ next/prev document
++ checking 'Read Only'
++ Save All / Close All
++ careful script list in chooser
++ upgrading/updating
++ new script wizard
++ MD5 and SHA1 checking
++ __doc__ for core modules
++ support proxy servers
++ help buttons
++ documentation
++ sync with trunk
+
++ file chooser dialogs smaller
++ UmitConf propose
+

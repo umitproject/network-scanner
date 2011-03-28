@@ -39,7 +39,33 @@ class NISettings(HIGWindow):
 
     def __init__(self):
         HIGWindow.__init__(self)
+        self.add(NISettingsBox().get_layout())
+        self.__set_props()
+        
+        
+    def __set_props(self):
+        """
+        Window properties.
+        """
+        self.set_title(_("Network Inventory Settings"))
+        self.set_default_size(305, -1)
 
+
+class NISettingsBox():
+    
+    def __init__(self, create_buttons=True):
+
+        self.__create_widgets()
+
+        if(create_buttons):
+            self.__create_buttons()
+
+        self._fill_comboboxes()
+        self._load_settings()
+        self.main_vbox = self.__do_layout(create_buttons)
+        
+        
+    def __create_widgets(self):
         self.timeline = HIGFrame(_("Timeline Settings"))
         self.tl_mode_lbl = gtk.Label(_("Timeline view mode"))
         self.tl_kind_lbl = gtk.Label(_("Timeline view kind"))
@@ -51,7 +77,9 @@ class NISettings(HIGWindow):
 
         self.sbar = HIGFrame(_("Statusbar"))
         self.sbar_tips = gtk.CheckButton(_("Show tips"))
-
+        
+        
+    def __create_buttons(self):
         # bottom buttons
         self.apply = HIGButton(stock=gtk.STOCK_APPLY)
         self.cancel = HIGButton(stock=gtk.STOCK_CANCEL)
@@ -60,12 +88,6 @@ class NISettings(HIGWindow):
         self.apply.connect("clicked", self._apply_settings)
         self.ok.connect("clicked", self._apply_settings_exit)
         self.cancel.connect("clicked", self._exit)
-
-        self._fill_comboboxes()
-        self._load_settings()
-        self.__set_props()
-        self.__do_layout()
-
 
     def _fill_comboboxes(self):
         """
@@ -154,9 +176,8 @@ class NISettings(HIGWindow):
         self.set_default_size(305, -1)
 
 
-    def __do_layout(self):
+    def __do_layout(self, create_buttons):
         main_vbox = HIGVBox()
-        btnsbox = HIGHBox()
 
         # timeline frame
         tl_settings_align = gtk.Alignment(0.5, 0.5, 1, 1)
@@ -200,13 +221,21 @@ class NISettings(HIGWindow):
         main_vbox._pack_noexpand_nofill(self.tabs)
         # end tabs frame
 
-        btnsbox._pack_noexpand_nofill(self.apply)
-        btnsbox._pack_noexpand_nofill(self.cancel)
-        btnsbox._pack_noexpand_nofill(self.ok)
-        bbox = gtk.HBox()
-        bbox.pack_end(btnsbox, False, False, 0)
+        if create_buttons:
+            # buttons box
+            btnsbox = HIGHBox()
+            btnsbox._pack_noexpand_nofill(self.apply)
+            btnsbox._pack_noexpand_nofill(self.cancel)
+            btnsbox._pack_noexpand_nofill(self.ok)
+            bbox = gtk.HBox()
+            bbox.pack_end(btnsbox, False, False, 0)
+            
+            main_vbox.pack_end(bbox, False, False, 0)
+            main_vbox.pack_end(gtk.HSeparator(), False, False, 0)
+            # end buttons box
 
-        main_vbox.pack_end(bbox, False, False, 0)
-        main_vbox.pack_end(gtk.HSeparator(), False, False, 0)
-
-        self.add(main_vbox)
+        return main_vbox
+    
+    
+    def get_layout(self):
+        return self.main_vbox

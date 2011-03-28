@@ -63,6 +63,22 @@ class HtmlDiffiesFileFilter(gtk.FileFilter):
         pattern = "*.html"
         self.add_pattern(pattern)
         self.set_name(_("Umit HTML Diff (%s)") % pattern)
+        
+class HtmlFileFilter(gtk.FileFilter):
+    def __init__(self):
+        gtk.FileFilter.__init__(self)
+
+        pattern = "*.html"
+        self.add_pattern(pattern)
+        self.set_name(_("Umit HTML (%s)") % pattern)        
+        
+class NSEFileFilter(gtk.FileFilter):
+    def __init__(self):
+        gtk.FileFilter.__init__(self)
+
+        pattern = "*.nse"
+        self.add_pattern(pattern)
+        self.set_name(_("NSE Script File (%s)") % pattern)
 
 class ProfileFileChooserDialog(gtk.FileChooserDialog):
     def __init__(self, title="", parent=None,
@@ -109,6 +125,19 @@ class SaveResultsFileChooserDialog(gtk.FileChooserDialog):
 
         for f in (ResultsFileFilter(), AllFilesFileFilter()):
             self.add_filter(f)
+            
+            
+class ExportHTMLResultsFileChooserDialog(gtk.FileChooserDialog):
+    def __init__(self, title="", parent=None,
+                 action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                 buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                          gtk.STOCK_SAVE, gtk.RESPONSE_OK), backend=None):
+
+        gtk.FileChooserDialog.__init__(self, title, parent, action, buttons)
+
+        for f in (HtmlFileFilter(), AllFilesFileFilter()):
+            self.add_filter(f)
+            
 
 class FullDiffiesFileChooserDialog(gtk.FileChooserDialog):
     def __init__(self, title="", parent=None,
@@ -140,3 +169,25 @@ class DirectoryChooserDialog(gtk.FileChooserDialog):
                           gtk.STOCK_OPEN, gtk.RESPONSE_OK), backend=None):
 
         gtk.FileChooserDialog.__init__(self, title, parent, action, buttons)
+        
+class NSEFileChooserDialog(gtk.FileChooserDialog):
+    def __init__(self, title="", parent=None,
+                 action=gtk.FILE_CHOOSER_ACTION_OPEN,
+                 buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                          gtk.STOCK_OPEN, gtk.RESPONSE_OK), backend=None):
+        
+        gtk.FileChooserDialog.__init__(self, title, parent,
+                                       action, buttons)
+        
+        self.add_filter(NSEFileFilter())
+        
+class SaveNSEFileChooserDialog(gtk.FileChooserDialog):
+    def __init__(self, title="", parent=None,
+                 action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                 buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                          gtk.STOCK_OPEN, gtk.RESPONSE_OK), backend=None):
+        
+        gtk.FileChooserDialog.__init__(self, title, parent,
+                                       action, buttons)
+        
+        self.add_filter(NSEFileFilter())

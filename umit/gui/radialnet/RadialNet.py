@@ -3,6 +3,7 @@
 # Copyright (C) 2007 Adriano Monteiro Marques
 #
 # Author: Joao Paulo de Souza Medeiros <ignotus21@gmail.com>
+#         Diogo Ricardo Marques Pinheiro <diogormpinheiro@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,6 +32,7 @@ from umit.core.radialnet.Interpolation import Linear2DInterpolator
 from umit.core.radialnet.Graph import Graph, Node
 from umit.gui.radialnet.NodeWindow import NodeWindow
 from umit.gui.radialnet.Image import Icons, get_pixels_for_cairo_image_surface
+from umit.preferences.conf.MapperConf import mapper_conf
 
 
 REGION_COLORS = [(1.0, 0.0, 0.0), (1.0, 1.0, 0.0), (0.0, 1.0, 0.0)]
@@ -76,18 +78,17 @@ class RadialNet(gtk.DrawingArea):
         self.__graph = None
 
         self.__number_of_rings = 0
-        self.__ring_gap = 30
-        self.__min_ring_gap = 10
+        self.__ring_gap = mapper_conf.ring
+        self.__min_ring_gap = mapper_conf.lower_ring
 
-        self.__layout = layout
-        self.__interpolation = INTERPOLATION_POLAR
-        self.__interpolation_slow_in_out = True
+        self.__layout = mapper_conf.layout
+        self.__interpolation = mapper_conf.interpolation
 
         self.__animating = False
         self.__animation_rate = 1000 / 60 # 60Hz (human perception factor)
-        self.__number_of_frames = 60
+        self.__number_of_frames = mapper_conf.frames
 
-        self.__scale = 1.0
+        self.__scale = mapper_conf.zoom
         self.__rotate = 225
         self.__translation = (0, 0)
 
@@ -102,12 +103,14 @@ class RadialNet(gtk.DrawingArea):
         self.__fisheye_spread = 0.5
         self.__fisheye_interest = 2
 
-        self.__show_address = True
-        self.__show_hostname = True
-        self.__show_icon = True
-        self.__show_latency = False
-        self.__show_ring = True
-        self.__show_region = True
+        self.__show_address = 'address' in mapper_conf.view
+        self.__show_hostname = 'hostname' in mapper_conf.view
+        self.__show_icon = 'icon' in mapper_conf.view
+        self.__show_latency = 'latency' in mapper_conf.view
+        self.__show_ring = 'ring' in mapper_conf.view
+        self.__show_region = 'region' in mapper_conf.view
+        self.__interpolation_slow_in_out = 'slow' in mapper_conf.view
+            
         self.__region_color = REGION_RED
 
         self.__node_views = dict()

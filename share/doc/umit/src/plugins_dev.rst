@@ -240,21 +240,21 @@ Core Class
 :class:`Core` instance have the following signals:
 
 
-.. method:: Core.connect("ScanNotebookPage-created", callback)
+.. method:: Core.connect("NmapScanNotebookPage-created", callback)
 
-   This signal is emitted when a :class:`ScanNotebookPage` is created.
+   This signal is emitted when a :class:`NmapScanNotebookPage` is created.
    
    This happens for example when the user click on the *New Scan* button in the toolbar.
    
    The callback should be in the form of:
    
-   .. function:: callback(core, scannotebookpage)
+   .. function:: callback(core, nmapscannotebookpage)
 
 .. method:: Core.connect("ScanResultNotebook-created", callback)
 
    This signal is emitted when a :class:`ScanResultNotebook` is created.
    
-   This object is created in the :class:`ScanNotebookPage` constructor, and the signals emitted when the object construction is complete. Useful to add new custom tabs.
+   This object is created in the :class:`NmapScanNotebookPage` constructor, and the signals emitted when the object construction is complete. Useful to add new custom tabs.
    
    The callback should be in the form of:
    
@@ -264,7 +264,7 @@ Core Class
 
    This signal is emitted when a ScanHostView is created.
    
-   This object, like the :class:`ScanResultNotebook` is created in the :class:`ScanNotebookPage` constructor, and the signals emitted when the object construction is complete.
+   This object, like the :class:`ScanResultNotebook` is created in the :class:`NmapScanNotebookPage` constructor, and the signals emitted when the object construction is complete.
    
    The callback should be in the form of:
    
@@ -358,94 +358,94 @@ PluginReader Class
    Take a look to :ref:`localized-plugin` section for additional information.
 
 
-ScanNotebookPage Class
+NmapScanNotebookPage Class
 ----------------------
 
-.. class:: ScanNotebookPage()
+.. class:: NmapScanNotebookPage()
 
-:class:`ScanNotebookPage` instance have the following signals:
+:class:`NmapScanNotebookPage` instance have the following signals:
 
-.. method:: ScanNotebookPage.connect("scan-finished", callback)
+.. method:: NmapScanNotebookPage.connect("scan-finished", callback)
 
-   This signal is emitted when a scan finish. The plugin have to check the status of the scan. It's not assured that the scans terminates correctly. To check the status of the scan see also :attr:`ScanNotebookPage.status`.
+   This signal is emitted when a scan finish. The plugin have to check the status of the scan. It's not assured that the scans terminates correctly. To check the status of the scan see also :attr:`NmapScanNotebookPage.status`.
    
    The callback should be in the form of:
    
-   .. function:: callback(core, scannotebookpage)
+   .. function:: callback(core, nmapscannotebookpage)
 
-:class:`ScanNotebookPage` instance have the following methods:
+:class:`NmapScanNotebookPage` instance have the following methods:
 
-.. method:: ScanNotebookPage.get_tab_label()
+.. method:: NmapScanNotebookPage.get_tab_label()
 
    Return the title of the current scan.
 
-.. method:: ScanNotebookPage.set_tab_label(label)
+.. method:: NmapScanNotebookPage.set_tab_label(label)
 
    Set the title of the current scan to *label*.
 
-.. method:: ScanNotebookPage.close_tab()
+.. method:: NmapScanNotebookPage.close_tab()
 
    Close the current scan.
 
-:class:`ScanNotebookPage` instance have the following attributes:
+:class:`NmapScanNotebookPage` instance have the following attributes:
 
-.. attribute:: ScanNotebookPage.status
+.. attribute:: NmapScanNotebookPage.status
 
    :class:`PageStatus` instance representing the status of the scan.
 
-.. attribute:: ScanNotebookPage.changes
+.. attribute:: NmapScanNotebookPage.changes
 
    A :ctype:`bool` setted to True if the the current Scan has unsaved changes.
 
-.. attribute:: ScanNotebookPage.comments
+.. attribute:: NmapScanNotebookPage.comments
 
    A :ctype:`dict` object.
 
-.. attribute:: ScanNotebookPage.hosts
+.. attribute:: NmapScanNotebookPage.hosts
 
    A :ctype:`dict` object.
 
-.. attribute:: ScanNotebookPage.services
+.. attribute:: NmapScanNotebookPage.services
 
    A :ctype:`dict` object.
 
-.. attribute:: ScanNotebookPage.parsed
+.. attribute:: NmapScanNotebookPage.parsed
 
    A :class:`NmapParser` instance.
 
-.. attribute:: ScanNotebookPage.top_box
+.. attribute:: NmapScanNotebookPage.top_box
 
    A :class:`HIGVBox` instance.
 
-.. attribute:: ScanNotebookPage.saved
+.. attribute:: NmapScanNotebookPage.saved
 
    A :ctype:`bool` setted to True if the the current Scan is saved.
 
-.. attribute:: ScanNotebookPage.saved_filename
+.. attribute:: NmapScanNotebookPage.saved_filename
 
    A :ctype:`str` setted representing the filename of the scan.
 
-.. attribute:: ScanNotebookPage.scan_result
+.. attribute:: NmapScanNotebookPage.scan_result
 
    A :class:`ScanResult` instance.
 
-.. attribute:: ScanNotebookPage.host_view_selection
+.. attribute:: NmapScanNotebookPage.host_view_selection
 
    The :class:`gtk.TreeSelection` of :attr:`ScanHostsView.host_view`.
 
-.. attribute:: ScanNotebookPage.service_view_selection
+.. attribute:: NmapScanNotebookPage.service_view_selection
 
    The :class:`gtk.TreeSelection` of :attr:`ScanHostsView.service_view`.
 
-.. attribute:: ScanNotebookPage.toolbar
+.. attribute:: NmapScanNotebookPage.toolbar
 
    A :class:`ScanToolbar` instance.
 
-.. attribute:: ScanNotebookPage.empty_target
+.. attribute:: NmapScanNotebookPage.empty_target
 
    A :ctype:`str` representing an empty target (The value could change because it's a gettext string. With ``LANG=C`` the value is ``<target>``).
 
-.. attribute:: ScanNotebookPage.command_toolbar
+.. attribute:: NmapScanNotebookPage.command_toolbar
 
    A :class:`ScanCommandToolbar` instance.
 

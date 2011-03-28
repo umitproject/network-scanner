@@ -24,7 +24,7 @@ import sys
 from umit.plugin.Core import Core
 from umit.plugin.Engine import Plugin
 from higwidgets.higanimates import HIGAnimatedBar
-from umit.gui.ScanNotebook import ScanNotebookPage
+from umit.gui.ScanNotebook import NmapScanNotebookPage
 
 class FlowContainer(gtk.VBox):
     def __init__(self):
@@ -69,10 +69,10 @@ class FlowContainer(gtk.VBox):
 
 class FlowPlugin(Plugin):
     def start(self, reader):
-        self.id = Core().connect('ScanNotebookPage-created', self.__on_created)
+        self.id = Core().connect('NmapScanNotebookPage-created', self.__on_created)
 
         for page in Core().get_main_scan_notebook():
-            if isinstance(page, ScanNotebookPage):
+            if isinstance(page, NmapScanNotebookPage):
                 self.__on_created(Core(), page)
                 page.emit('scan-finished')
 
@@ -80,7 +80,7 @@ class FlowPlugin(Plugin):
         Core().disconnect(self.id)
 
         for page in Core().get_main_scan_notebook():
-            if not isinstance(page, ScanNotebookPage):
+            if not isinstance(page, NmapScanNotebookPage):
                 continue
 
             for child in page.scan_result.scan_result_notebook:

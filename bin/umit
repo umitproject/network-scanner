@@ -40,6 +40,7 @@ if not hasattr(sys, 'frozen'):
 from umit.core.I18N import _
 from umit.core.Version import VERSION
 from umit.core.Utils import development_mode
+#########################
 
 class UmitExceptionHook(object):
     def __call__(self, etype, emsg, etb):
@@ -93,8 +94,8 @@ class UmitExceptionHook(object):
                 osuname = "UNKNOWN"
 
         umit_version = VERSION
-        umitCore_version = getattr(umit.core, "__version__", "< 0.9.5")
-        umitGUI_version = getattr(umit.gui, "__version__", "< 0.9.5")
+        umitCore_version = getattr(umitCore, "__version__", "< 0.9.5")
+        umitGUI_version = getattr(umitGUI, "__version__", "< 0.9.5")
 
         versions = _("""
 Versions:
@@ -129,6 +130,10 @@ UmitGUI: %s
             "Umit version", VERSION)
         crashmsg_dialog = "Crash Report\n%s\n%s\nDescription\n%s\n%s" % (
                 '=' * 10, extrainfo_dialog, '-' * 20, crash_text_dialog)
+        
+                
+        if not gs.crash_report:
+            return 
 
         extrainfo = (
                 "%-17s %s\n[[BR]]%-17s %s\n[[BR]]%-17s %s\n"
@@ -184,17 +189,30 @@ UmitGUI: %s
             d.destroy()
 
 
+# Setting the umit home directory
+from umit.core.Paths import Path
+Path.set_umit_conf(os.path.split('umit'))
+from umit.core.UmitConf import GeneralSettingsConf
+gs = GeneralSettingsConf()
+            
 if not development_mode(default=True):
-    # Generating temporary files names
-    stdout_output = tempfile.mktemp()
-    stderr_output = tempfile.mktemp()
-
-    _stdout = open(stdout_output, "w")
-    _stderr = open(stderr_output, "w")
-
-    sys.stdout = _stdout
-    sys.stderr = _stderr
-
+    
+    if gs.log == "None" or gs.log == "File":
+        # Generating temporary files names
+        stdout_output = tempfile.mktemp()
+        stderr_output = tempfile.mktemp()
+    
+        old_stdout = sys.stdout
+        old_stderr = sys.stderr
+    
+        _stdout = open(stdout_output, "w")
+        _stderr = open(stderr_output, "w")
+    
+        sys.stdout = _stdout
+        sys.stderr = _stderr
+    elif gs.log == "Debug":
+        pass
+    
     sys.excepthook = UmitExceptionHook()
 
 

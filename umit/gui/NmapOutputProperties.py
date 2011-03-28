@@ -125,6 +125,90 @@ class NmapOutputProperties(HIGDialog):
         self.properties_notebook.append_page(self.highlight_main_vbox,
                                           gtk.Label(_("Highlight definitions")))
 
+class NmapOutputPropertiesBox(HIGVBox):
+    def __init__(self, nmap_output_view):
+        HIGVBox.__init__(self)
+        
+        self.nmap_highlight = NmapOutputHighlight()
+        self.vbox = self
+        
+        self.highlight_tab()
+
+        self.__pack_widgets()
+        self.vbox.show_all()
+
+    def __pack_widgets(self):
+        self.vbox.pack_start(self.highlight_main_vbox)
+
+    def highlight_tab(self):
+        # Creating highlight tab main box
+        self.highlight_main_vbox = HIGVBox()
+
+        # Creating highlight tab main table
+        self.highlight_main_table = HIGTable()
+        self.highlight_main_table.set_border_width(6)
+
+        #############
+        # Properties:
+        self.property_names = {"details": [_("details"), "MAC Address:"],
+                               "port_list": [_("port listing title"),
+                                             "PORT   STATE   SERVICE"],
+                               "open_port": [_("open port"),
+                                             "22/tcp   open   ssh"],
+                               "closed_port": [_("closed port"),
+                                               "70/tcp   closed   gopher"],
+                               "filtered_port": [_("filtered port"),
+                                                 "80/tcp   filtered   http"],
+                               "date": [_("date"),
+                                        "2006-05-26 11:14 BRT"],
+                               "hostname": [_("hostname"),
+                                            "scanme.nmap.org"],
+                               "ip": [_("ip"),
+                                      "127.0.0.1"]}
+
+        for p in self.property_names:
+            settings = self.nmap_highlight.__getattribute__(p)
+
+            self.property_names[p].append(settings[0])
+            self.property_names[p].append(settings[1])
+            self.property_names[p].append(settings[2])
+            self.property_names[p].append(gtk.gdk.Color(*settings[3]))
+            self.property_names[p].append(gtk.gdk.Color(*settings[4]))
+            self.property_names[p].append(settings[5])
+            
+        # Creating properties and related widgets and attaching it to main table
+        y1 = 0
+        y2 = 1
+        for p in self.property_names:
+            hp = HighlightProperty(p, self.property_names[p])
+            self.highlight_main_table.attach(hp.property_name_label,
+                                             0, 1, y1, y2)
+            self.highlight_main_table.attach(hp.example_label,
+                                             1, 2, y1, y2)
+            self.highlight_main_table.attach(hp.bold_tg_button,
+                                             2, 3, y1, y2)
+            self.highlight_main_table.attach(hp.italic_tg_button,
+                                             3, 4, y1, y2)
+            self.highlight_main_table.attach(hp.underline_tg_button,
+                                             4, 5, y1, y2)
+            self.highlight_main_table.attach(hp.text_color_button,
+                                             5, 6, y1, y2)
+            self.highlight_main_table.attach(hp.highlight_color_button,
+                                             6, 7, y1, y2)
+
+            # Setting example styles and colors
+            hp.update_example()
+
+            self.property_names[p].append(hp)
+            
+            y1 += 1
+            y2 += 1
+
+
+        # Packing main table into main vbox
+        self.highlight_main_vbox.pack_start(self.highlight_main_table)
+
+
 
 class HighlightProperty(object):
     def __init__(self, property_name, property):
@@ -146,9 +230,9 @@ class HighlightProperty(object):
     def __create_widgets(self):
         self.property_name_label = HIGEntryLabel("")
         self.example_label = HIGEntryLabel("")
-        self.bold_tg_button = HIGToggleButton("", gtk.STOCK_BOLD)
-        self.italic_tg_button = HIGToggleButton("", gtk.STOCK_ITALIC)
-        self.underline_tg_button = HIGToggleButton("", gtk.STOCK_UNDERLINE)
+        self.bold_tg_button = HIGToggleButton(" ", gtk.STOCK_BOLD)
+        self.italic_tg_button = HIGToggleButton(" ", gtk.STOCK_ITALIC)
+        self.underline_tg_button = HIGToggleButton(" ", gtk.STOCK_UNDERLINE)
         self.text_color_button = HIGButton(_("Text"),
                                            stock=gtk.STOCK_SELECT_COLOR)
         self.highlight_color_button = HIGButton(_("Highlight"),

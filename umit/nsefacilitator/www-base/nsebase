@@ -1,0 +1,389 @@
+Name: showSMTPVersion
+ID: SMTP version
+Description: Simple script which queries and prints the version of an SMTP server.
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: demo
+URL: http\://localhost/www-base/showSMTPVersion.nse
+Size: 562
+MD5: 3eae541f67f7db639d62a08283a272c1
+SHA1: c8ec358c95e4c42ec51d2214bfc5253d5d27ad7e
+
+Name: MSSQLm
+ID: MS SQL
+Description: Attempts to extract information from Microsoft SQL Server
+Author: Thomas Buchanan <tbuchanan@thecompassgrp.net>
+License: See nmaps COPYING for licence
+Categories: intrusive, discovery
+URL: http\://localhost/www-base/MSSQLm.nse
+Size: 9248
+MD5: 48c2ff9f84e335517fc4c05d9e90df97
+SHA1: 995672fcf760aa3760107ef651c1657a4119424b
+
+Name: showOwner
+ID: Service owner
+Description: Opens a connection to the scanned port, opens a connection to port 113, queries the owner
+of the service on the scanned port and prints it.
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: safe
+Rule: port
+URL: http\://localhost/www-base/showOwner.nse
+Size: 1402
+MD5: c07e56a6a9e2e7e92a0cea1174db0ed5
+SHA1: 7415d360688f94d84861e1845492b47f5c75cf55
+
+Name: showHTTPVersion
+ID: HTTP version
+Description: Demonstration of a version detection NSE script. It checks and reports
+the version of a remote web server. For real life purposes it is better to use the
+Nmap version detection.
+Author\: Diman Todorov
+License\: see nmaps' COPYING for license
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+URL: http\://localhost/www-base/showHTTPVersion.nse
+Size: 2169
+MD5: cbc76075c349819bdcf02677b0ee8e1e
+SHA1: f5aacea25a5e5520402f54ff43c8301fcf040767
+
+Name: dns-test-open-recursion
+ID: Nameserver open recursive querys (CVE-1999-0024) (BID 136, 678)
+Description: Checks whether a Nameserver on udp/53 allows querys for third-party names. If is expected that recursion will be enabled on your own internal nameserver.
+Author: Felix Groebert <felix@groebert.org>
+License: See nmaps COPYING for licence
+Categories: intrusive
+URL: http\://localhost/www-base/dns-test-open-recursion.nse
+Size: 1189
+MD5: 5749038059700bbe56c85ac21ec78c3b
+SHA1: 00f822489c60db5066c38637ce46c5efcd152324
+
+Name: SSLv2-support
+ID: SSLv2
+Description: determines whether the server (still) supports SSL-v2, and what cyphers it offers.
+Author: Matt <mb2263@bristol.ac.uk>
+License: See nmaps COPYING for licence
+Categories: intrusive
+URL: http\://localhost/www-base/SSLv2-support.nse
+Size: 5962
+MD5: 491f58ef3b00c82aabd6177ea9daecd7
+SHA1: 486c36a983eee76522a61ef9336d276b145ea4c4
+
+Name: strangeSMTPport
+ID: Unexpected SMTP
+Description: .
+If smtp is running on a strange port
+there be a backdoor set up by crackers to send spam
+or even control your machine.
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: backdoor
+Rule: port
+URL: http\://localhost/www-base/strangeSMTPport.nse
+Size: 626
+MD5: 50083d8e68286fea42c05c3ec64cabf1
+SHA1: c368b115d32b6df9d2043ee86eac8d90b23879d2
+
+Name: skype_v2-version
+ID: Skype v2
+Description: Determines if remote service is Skype protocol version 2
+Author: Brandon Enright <bmenrigh@ucsd.edu>
+License: See nmaps COPYING for licence
+Categories: version
+Rule: port
+URL: http\://localhost/www-base/skype_v2-version.nse
+Size: 1525
+MD5: 8966838ff060df31d0246094d6f1de30
+SHA1: 52b7846e76b0e79221e6768bc3e3598fa5ea7019
+
+Name: iax2Detect
+ID: IAX2 Service Detection
+Description: Detects an listening UDP IAX2 service by using a
+IAX Control Frame POKE request.
+Author: Ferdy Riphagen <f.riphagen@nsec.nl>
+License: See nmap's COPYING for license
+Categories: version
+URL: http\://localhost/www-base/iax2Detect.nse
+Size: 1278
+MD5: 7cb9141e5e912d2686165a653faf7869
+SHA1: 9ceea375e442e40a77860ab4eba4202dabddbeb8
+
+Name: HTTPAuth
+ID: HTTP Auth
+Description: If a web server requires authentication, prints the authentication scheme and realm
+Author: Thomas Buchanan <tbuchanan@thecompassgrp.net>
+License: See nmaps COPYING for licence
+Categories: intrusive
+URL: http\://localhost/www-base/HTTPAuth.nse
+Size: 4634
+MD5: 96f95453a4303513ee6bec74e7a0c0a3
+SHA1: 700fc222238130da81cd211fc489366df6767ed2
+
+Name: nbstat
+ID: NBSTAT
+Description: Sends a NetBIOS query to target host to try to determine
+the NetBIOS name and MAC address.
+Author: Brandon Enright <bmenrigh@ucsd.edu>
+License: See nmaps COPYING for licence
+Categories: safe, discovery
+Rule: host
+URL: http\://localhost/www-base/nbstat.nse
+Size: 6402
+MD5: baa3a36ff47cd11cc2179b8f0047210d
+SHA1: 130b4f4d98ef519d86ded68bd1c3304c89a60270
+
+Name: kibuvDetection
+ID: Kibuv worm
+Description: .
+A fake FTP server was installed by the KIBUV.B worm
+on this port. This worm uses known security flaws to
+infect the system.
+.
+This machine may already be a 'zombi' used by crackers
+to perform distributed denial of service.
+.
+http\://www.trendmicro.com/vinfo/virusencyclo/default5.asp?VName=WORM_KIBUV.B&VSect=T
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: malware
+URL: http\://localhost/www-base/kibuvDetection.nse
+Size: 888
+Version: 1.0.0
+MD5: c9de9a9c2d9c7b8db8d204f593d67308
+SHA1: c338050c98622c6e2d93db589b70239696b45b6a
+
+Name: echoTest
+ID: Echo
+Description: Connects to the UDP echo service, sends a string, receives a string and if both
+strings are equal reports success.
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: demo
+URL: http\://localhost/www-base/echoTest.nse
+Size: 654
+MD5: f8cfa820f51679df81cdc6cefa888fef
+SHA1: 7b8d75204ade6392796c112195200ba5f0dfa4de
+
+Name: chargenTest
+ID: Chargen
+Description: Connects to the UDP chargen service and tries to read some bytes
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: demo
+URL: http\://localhost/www-base/chargenTest.nse
+Size: 603
+MD5: a5b350f38964e18189442bd4c7170384
+SHA1: 149b9ef6a5d7ebbbf8502d5cf563ee627d021347
+
+Name: ircZombieTest
+ID: IRC zombie
+Description: If port 113 responds before we ask it then something is fishy.
+Usually this means that the host is an irc zombie.
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: malware
+URL: http\://localhost/www-base/ircZombieTest.nse
+Size: 630
+MD5: da1da3a58db8e7fcfa42a620087cfa8c
+SHA1: b5f7c97e9a4d79ddffb285d4ba10497ae565e919
+
+Name: finger
+ID: Finger Results
+Description: attempts to get a list of usernames via the finger service
+Author: Eddie Bell <ejlbell@gmail.com>
+License: See nmaps COPYING for licence
+Categories: discovery
+URL: http\://localhost/www-base/finger.nse
+Size: 708
+MD5: b012dd709ecb70ec50568d0b178c3717
+SHA1: 9476ed1b8941c5d211a3df8b589fb49e78a39e1f
+
+Name: RealVNC_auth_bypass
+ID: RealVNC Authentication Bypass (CVE-2006-2369)
+Description: Checks to see if the VNC Server is vulnerable to the RealVNC authentication bypass.
+Author: Brandon Enright <bmenrigh@ucsd.edu>
+License: See nmaps COPYING for licence
+Categories: backdoor
+URL: http\://localhost/www-base/RealVNC_auth_bypass.nse
+Size: 1043
+MD5: 09247cd2fdf8a907f50fe632544ccc9d
+SHA1: ac2ee5b49ed9c03040dc603b9784e73e0bd49e18
+
+Name: HTTP_open_proxy
+ID: Open Proxy Test
+Description: Test if a discovered proxy is open to us by connecting to www.google.com and checking for the 'Server\: GWS/' header response.
+Rule: port
+URL: http\://localhost/www-base/HTTP_open_proxy.nse
+Size: 2438
+MD5: 6d5f6c9e0921e06c997c906deaf1ad11
+SHA1: cf2cedd1a37fcc4461980837af8c48b5069274a2
+
+Name: showHTMLTitle
+ID: HTML title
+Description: Connects to an HTTP server and extracts the title of the default page.
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: demo, safe
+URL: http\://localhost/www-base/showHTMLTitle.nse
+Size: 1463
+MD5: 15faaa87a9dbc74c688a5406dcc1f181
+SHA1: a4f47cad835170b8f2860a10034061fd125a6185
+
+Name: SQLInject
+URL: http\://localhost/www-base/SQLInject.nse
+Size: 6490
+MD5: 45b8d1242740506375b6c24b7b7af8a4
+SHA1: 48318eaeebd80c77a783dc4ffdcdf38b0fdd8f33
+
+Name: ftpbounce
+ID: FTP bounce check
+Description: Checks to see if a FTP server allows port scanning using FTP bounce method
+Author: Marek Majkowski <majek04<at>gmail.com>
+License: See nmaps COPYING for licence
+Categories: intrusive
+URL: http\://localhost/www-base/ftpbounce.nse
+Size: 3777
+MD5: c57f40da3d98a21b70d8e4174083bfc2
+SHA1: a1f03c50cb30eded253ea94a6b6dc2238fd7dad8
+
+Name: robots
+URL: http\://localhost/www-base/robots.nse
+Size: 1787
+MD5: fe4260cd66b5369e51c812e1baa41300
+SHA1: e53b87639e388e33ebf4adf382b1a14d49dac035
+
+Name: SNMPsysdesr
+ID: SNMPv1
+Description: Attempts to extract system information from SNMP service
+Author: Thomas Buchanan <tbuchanan@thecompassgrp.net>
+License: See nmaps COPYING for licence
+Categories: safe, discovery
+URL: http\://localhost/www-base/SNMPsysdesr.nse
+Size: 3141
+MD5: 9d7b534adabc9f871bbc5d27692280f9
+SHA1: 3ad392d00826e10f0b6575295b94a8d229aea80e
+
+Name: xamppDefaultPass
+ID: XAMPP default pwd
+Description: If the remote host is running XAMP (an Apache distribution
+designed for easy installation and administration) and XAMPP's FTP server is
+allows access with nobody/xampp then we report it.
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: vulnerability
+URL: http\://localhost/www-base/xamppDefaultPass.nse
+Size: 1173
+MD5: 5c99db21a95c8545ca1c6b522d4a1414
+SHA1: 352e89965a04d09cf9f3b4da93dd45ba3d294e8e
+
+Name: showSSHVersion
+ID: Stealth SSH version
+Description: Connects to an SSH server, queries the version string and echos it back. This tends to result
+in the scanning attempt not being logged by the ssh daemon on the target.
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: demo
+URL: http\://localhost/www-base/showSSHVersion.nse
+Size: 750
+MD5: e866182fe8075b9b55c2e61b5c29d214
+SHA1: 26dcf4e556b1b987d354b9230a492fa211d1c203
+
+Name: daytimeTest
+ID: Daytime
+Description: Connects to the UDP daytime service and on success prints the daytime.
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: demo
+URL: http\://localhost/www-base/daytimeTest.nse
+Size: 565
+MD5: cdde71915168b9e4098d598674be8dc3
+SHA1: 19f9ccfab743162b09a3fc65bde0412914e5e698
+
+Name: ircServerInfo
+ID: IRC Server Info
+Description: Gets information from an IRC server by issuing STATS, LUSERS, etc queries.
+Author: Doug Hoyte
+License: See Nmap's COPYING
+Categories: discovery
+URL: http\://localhost/www-base/ircServerInfo.nse
+Size: 6230
+MD5: d96753f3d75b655062d6fd738193432a
+SHA1: 3dc4232f87d4ddeb39cf2bdeb33cce7e2f731e89
+
+Name: zoneTrans
+URL: http\://localhost/www-base/zoneTrans.nse
+Size: 9110
+MD5: 30ca306107657148f34272fc8a16de80
+SHA1: e1544cdc578844b7f7dc7926075f0bc4541801c0
+
+Name: SSHv1-support
+ID: SSH Protocol Version 1
+Description: Checks to see if SSH server supports SSH Protocol Version 1.
+Author: Brandon Enright <bmenrigh@ucsd.edu>
+License: See nmaps COPYING for licence
+Categories: intrusive
+URL: http\://localhost/www-base/SSHv1-support.nse
+Size: 1211
+MD5: e4fd09b7ae53c88dc8a13714c7ee42ec
+SHA1: 73581be8f2df9ac3d0131a0d33784df0e3e77361
+
+Name: mswindowsShell
+ID: MS Windows shell
+Description: If port 8888 is open and it echos a specific string then we
+might have found an open MSWindows shell.
+Author: Diman Todorov <diman.todorov@gmail.com>
+License: See nmaps COPYING for licence
+Categories: backdoor
+URL: http\://localhost/www-base/mswindowsShell.nse
+Size: 676
+MD5: eeceb065c1904401728edc83683f75ef
+SHA1: 5a55153f87c96e2ea2a0fb0283bf1981434a8506
+
+Name: SMTP_openrelay_test
+ID: Open Relay SMTP
+Description: Checks to see if a SMTP server is an open relay
+Categories: demo
+URL: http\://localhost/www-base/SMTP_openrelay_test.nse
+Size: 4364
+MD5: eac034a2f3cd453803e84992b269d0fa
+SHA1: 0d2e26a31e2ea84bf4fe32103e4cd74fe3f2a6b0
+
+Name: ripeQuery
+URL: http\://localhost/www-base/ripeQuery.nse
+Size: 896
+MD5: 3fa21c981c8971fcf4b0f0110926320b
+SHA1: 9e39c44de38c77a68209505d881306767e77f379
+
+Name: bruteTelnet
+ID: bruteforce
+Description: brute force telnet login credientials
+Author: Eddie Bell <ejlbell@gmail.com>
+License: See nmaps COPYING for licence
+Categories: intrusive
+URL: http\://localhost/www-base/bruteTelnet.nse
+Size: 5241
+MD5: 1f92f1abbbcd61d4cac097e96debebd0
+SHA1: 26852b3e2d7a6808f29e55a85896569c5ef571cd
+
+Name: SMTPcommands
+ID: SMTP
+Description: Attempts to use EHLO to gather the Extended commands an SMTP server supports.
+Author: Jason DePriest <jrdepriest@gmail.com>
+License: See nmaps COPYING for licence
+Categories: intrusive, discovery
+URL: http\://localhost/www-base/SMTPcommands.nse
+Size: 1624
+MD5: 39be55f46651e6d370f9268c82e69626
+SHA1: c343a879b776358396ab34504559dbcc3b6496b0
+
+Name: anonFTP
+ID: Anonymous FTP
+Description: Checks to see if a FTP server allows anonymous logins
+Author: Eddie Bell <ejlbell@gmail.com>
+License: See nmaps COPYING for licence
+Categories: intrusive
+URL: http\://localhost/www-base/anonFTP.nse
+Size: 886
+MD5: f4eb1c5cbe29febd093f821ca52bcfce
+SHA1: 9921ba53335fb671023ebbeefb0d12f597931576
+

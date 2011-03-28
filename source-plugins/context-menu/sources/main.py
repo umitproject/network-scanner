@@ -24,7 +24,7 @@ import sys
 from umit.plugin.Core import Core
 from umit.plugin.Engine import Plugin
 from higwidgets.higanimates import HIGAnimatedBar
-from umit.gui.ScanNotebook import ScanNotebookPage, ScanResult
+from umit.gui.ScanNotebook import NmapScanNotebookPage, ScanResult
 
 class MyWidget(HIGAnimatedBar):
     pass
@@ -36,7 +36,7 @@ class MenuPlugin(Plugin):
         self.id = Core().connect('ScanHostsView-created', self.__on_created_hosts)
 
         for page in Core().get_main_scan_notebook():
-            if isinstance(page, ScanNotebookPage):
+            if isinstance(page, NmapScanNotebookPage):
                 self.__on_created_hosts( \
                     Core(), page.scan_result.scan_host_view)
 
@@ -44,7 +44,7 @@ class MenuPlugin(Plugin):
         Core().disconnect(self.id)
 
         for page in Core().get_main_scan_notebook():
-            if not isinstance(page, ScanNotebookPage):
+            if not isinstance(page, NmapScanNotebookPage):
                 continue
 
             for child in page.scan_result.scan_host_view:

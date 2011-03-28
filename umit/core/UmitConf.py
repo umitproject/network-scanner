@@ -5,6 +5,7 @@
 # Copyright (C) 2007-2008 Adriano Monteiro Marques
 #
 # Author: Adriano Monteiro Marques <adriano@umitproject.org>
+#         Luis A. Bastião Silva <luis.kop@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +23,7 @@
 
 import re
 import os
+import gtk
 
 from ConfigParser import NoSectionError, NoOptionError, DuplicateSectionError
 
@@ -246,6 +248,9 @@ class CommandProfile (Profile, object):
     
     def get_annotation(self, profile):
         return self._get_it(profile, 'annotation')
+    
+    def get_tool(self, profile):
+        return self._get_it(profile, 'tool')
 
     def get_options(self, profile):
         dic = {}
@@ -271,6 +276,9 @@ class CommandProfile (Profile, object):
     
     def set_annotation (self, profile, annotation=''):
         self._set_it(profile, 'annotation', annotation)
+        
+    def set_tool (self, profile, tool='nmap'):
+        self._set_it(profile, 'tool', tool)
     
     def set_options(self, profile, options={}):
         for opt in options:
@@ -284,7 +292,314 @@ class CommandProfile (Profile, object):
                 'hint':self.get_hint(profile_name), \
                 'description':self.get_description(profile_name), \
                 'annotation':self.get_annotation(profile_name),\
-                'options':self.get_options(profile_name)}
+                'options':self.get_options(profile_name), \
+                'tool':self.get_tool(profile_name)}
+    
+    
+# Preferences
+
+
+"""
+General Settings Configuration class (Core)
+"""
+
+class GeneralSettingsConf(UmitConfigParser, object):
+    """ 
+    General Settings defining the settings like enable splash/warnings
+    nmap command, remove history (using targets, and recents class), etc
+    """
+    def __init__(self):
+        """ Constructor generalsettings conf"""
+        self.parser = Path.config_parser
+        self.section_name = "general_settings"
+        if not self.parser.has_section(self.section_name):
+            self.create_section()
+        self.attributes = {} 
+    def create_section(self):
+        print "creating general_settings section"
+        self.parser.add_section(self.section_name)
+        self.splash = True
+        self.warnings_extensions = False
+        self.silent_root = False
+        self.crash_report = True
+        self.log = "None"
+        self.warnings_save = True
+    def boolean_sanity(self, attr):
+        if attr == True or \
+           attr == "True" or \
+           attr == "true" or \
+           attr == "1":
+
+            return 1
+
+        return 0
+
+    def _get_it(self, p_name, default):
+        return self.parser.get(self.section_name, p_name, default)
+
+    def _set_it(self, p_name, value):
+        self.parser.set(self.section_name, p_name, value)
+        
+    def save_changes(self):
+        log.debug('call save changes')
+        self.parser.save_changes()
+        
+    # API
+    def get_splash(self):
+        return self.boolean_sanity(self._get_it("splash", True))
+    def set_splash(self, splash):
+        self._set_it("splash", self.boolean_sanity(splash))
+    
+    def set_warnings_extensions(self, extensions):
+        self._set_it("warnings", self.boolean_sanity(extensions))
+    def get_warnings_extensions(self):
+        return self.boolean_sanity(self._get_it("warnings", True))
+
+    def set_silent_root(self, root):
+        self._set_it("silent_root", self.boolean_sanity(root))
+    def get_silent_root(self):
+        return self.boolean_sanity(self._get_it("silent_root", False))
+   
+    def set_crash_report(self, crash):
+        self._set_it("crash_report", self.boolean_sanity(crash))
+    def get_crash_report(self):
+        return self.boolean_sanity(self._get_it("crash_report", True))
+    
+    def get_log(self):
+        """
+        return str: (None, Debug or File)
+        """
+        return self._get_it("log", "None")
+    def set_log(self, log):
+        self._set_it("log", log)
+        
+    def get_log_file(self):
+        return self._get_it("log_file", "umit.log")
+    def set_log_file(self, filename):
+        self._set_it("log_file", filename)
+    
+    
+    def set_warnings_save(self, save):
+        self._set_it("warnings_save", self.boolean_sanity(save))
+    def get_warnings_save(self):
+        return self.boolean_sanity(self._get_it("warnings_save", True))
+        
+    splash = property(get_splash, set_splash)
+    warnings_extensions = property(get_warnings_extensions, \
+                                   set_warnings_extensions)
+    silent_root = property(get_silent_root, set_silent_root)
+    crash_report = property(get_crash_report, set_crash_report)
+    log = property(get_log, set_log)
+    log_file = property(get_log_file, set_log_file)
+    warnings_save = property(get_warnings_save, set_warnings_save) 
+
+"""
+Expose settings 
+"""
+
+class ExposeConf(UmitConfigParser, object):
+    """ 
+    Expose 
+    """
+    def __init__(self):
+        """ Constructor expose_settings conf"""
+        self.parser = Path.config_parser
+        self.section_name = "expose"
+        if not self.parser.has_section(self.section_name):
+            self.create_section()
+        self.attributes = {} 
+    def create_section(self):
+        self.parser.add_section(self.section_name)
+        self.icons_toolbar = "Both"
+        self.show_toolbar = True
+        self.host_list = True
+        self.details = True
+        self.page_inside = True
+        
+    def boolean_sanity(self, attr):
+        if attr == True or \
+           attr == "True" or \
+           attr == "true" or \
+           attr == "1":
+
+            return 1
+
+        return 0
+
+    def _get_it(self, p_name, default):
+        return self.parser.get(self.section_name, p_name, default)
+
+    def _set_it(self, p_name, value):
+        self.parser.set(self.section_name, p_name, value)
+        
+    def save_changes(self):
+        log.debug('call save changes')
+        self.parser.save_changes()
+        
+    def get_icons_toolbar_size(self):
+        return self._get_it("icons_toolbar_size", "")
+    def set_icons_toolbar_size(self, icons):
+        self._set_it("icons_toolbar_size", icons)
+        
+    def get_icons_toolbar(self):
+        return self._get_it("icons_toolbar", "")
+    def set_icons_toolbar(self, icons):
+        self._set_it("icons_toolbar", icons)
+            
+    def get_show_toolbar(self):
+        return self.boolean_sanity(self._get_it("show_toolbar", True))
+    
+    def set_show_toolbar(self, toolbar):
+        self._set_it("show_toolbar", self.boolean_sanity(toolbar))
+        
+    def get_host_list(self):
+        return self.boolean_sanity(self._get_it("host_list", True))
+    
+    def set_host_list(self, hl):
+        self._set_it("host_list", self.boolean_sanity(hl)) 
+        
+    def set_details(self, details):
+        self._set_it("details", self.boolean_sanity(details)) 
+    def get_details(self):
+        return self.boolean_sanity(self._get_it("details", True))
+    
+    def get_page_inside(self):
+        return self.boolean_sanity(self._get_it("page_inside", True))
+    
+    def set_page_inside(self, page):
+        self._set_it("page_inside", self.boolean_sanity(page)) 
+      
+    icons_toolbar_size = property(get_icons_toolbar_size,set_icons_toolbar_size)
+    icons_toolbar = property(get_icons_toolbar,set_icons_toolbar)
+    show_toolbar = property(get_show_toolbar, set_show_toolbar)
+    host_list = property(get_host_list, set_host_list)
+    details = property(get_details, set_details)
+    page_inside = property(get_page_inside, set_page_inside)
+    
+    
+class ProfilesConf(UmitConfigParser, object):
+    """ 
+    Profiles
+    """
+    def __init__(self):
+        """ Constructor profiles conf"""
+        self.parser = Path.config_parser
+        self.section_name = "profiles"
+        if not self.parser.has_section(self.section_name):
+            self.create_section()
+        self.attributes = {} 
+    def create_section(self):
+        self.parser.add_section(self.section_name)
+
+    def _get_it(self, p_name, default):
+        return self.parser.get(self.section_name, p_name, default)
+
+    def _set_it(self, p_name, value):
+        self.parser.set(self.section_name, p_name, value)
+        
+    def get_profile(self):
+        return self._get_it("profile", "")
+    def set_profile(self, profile):
+        self._set_it("profile", profile)
+        
+    def get_wizard(self):
+        return self._get_it("wizard", "")
+    def set_wizard(self, wizard):
+        self._set_it("wizard", wizard)
+    
+    def get_options(self):
+        return self._get_it("options", "")
+    def set_options(self, options):
+        self._set_it("options", options)
+        
+    def get_scan_profiles(self):
+        return self._get_it("scan_profile", "")
+    def set_scan_profiles(self, profile):
+        self._set_it("scan_profile", profile)
+        
+    profile = property(get_profile, set_profile)
+    scan_profiles = property(get_scan_profiles, set_scan_profiles)
+    options = property(get_options, set_options)
+    wizard = property(get_wizard, set_wizard)
+    
+    
+"""
+Network settings 
+"""
+
+class NetworkConf(UmitConfigParser, object):
+    """ 
+    Network Settings
+    """
+    def __init__(self):
+        """ Constructor network_settings conf"""
+        self.parser = Path.config_parser
+        self.section_name = "network"
+        if not self.parser.has_section(self.section_name):
+            self.create_section()
+        self.attributes = {} 
+    def create_section(self):
+        self.parser.add_section(self.section_name)
+        self.proxy_enable = False 
+        self.hostname = ""
+        self.port = ""
+        self.username = ""
+        self.password = ""
+        
+    def boolean_sanity(self, attr):
+        if attr == True or \
+           attr == "True" or \
+           attr == "true" or \
+           attr == "1":
+
+            return 1
+
+        return 0
+
+    def _get_it(self, p_name, default):
+        return self.parser.get(self.section_name, p_name, default)
+
+    def _set_it(self, p_name, value):
+        self.parser.set(self.section_name, p_name, value)
+        
+    def save_changes(self):
+        log.debug('call save changes - network settings')
+        self.parser.save_changes()
+   
+    # API
+    
+    def get_proxy(self):
+        return self.boolean_sanity(self._get_it("proxy", False))   
+    def set_proxy(self, proxy):
+        self._set_it("proxy", self.boolean_sanity(proxy))
+    
+    def get_hostname(self):
+        return self._get_it("hostname", "")
+    def set_hostname(self, hostname):
+        self._set_it("hostname", hostname)
+        
+    def get_port(self):
+        return self._get_it("port", "80")
+    def set_port(self, port):
+        self._set_it("port", str(port))
+        
+    def get_username(self):
+        return self._get_it("username", "")
+    def set_username(self, username):
+        self._set_it("username", username)
+        
+    def get_password(self):
+        return self._get_it("username", "")
+    def set_password(self, password):
+        self._set_it("password", password)
+        
+    
+        
+    proxy = property(get_proxy, set_proxy)
+    hostname = property(get_hostname, set_hostname)
+    port = property(get_port, set_port)
+    username = property(get_username, set_username)
+    password = property(get_password, set_password)    
 
 
 class NmapOutputHighlight(object):
@@ -604,6 +919,137 @@ class Plugins(object):
 
     paths = property(get_paths, set_paths)
     plugins = property(get_plugins, set_plugins)
+    
+
+def boolean_sanity_(attr):
+    if attr == True or attr == "True" or attr == "true" or attr == "1":
+        return True
+    return False
+
+def simple_property(to_python, from_python):
+    def _property(attrname, default):
+        def get(self):
+            result = default
+            try:
+                result = to_python(self.parser.get(self.section_name, attrname))
+            except (NoSectionError, NoOptionError):
+                self.parser.set(self.section_name, attrname, from_python(default))
+            return result
+
+        def set(self, value):
+            self.parser.set(self.section_name, attrname, from_python(value))
+
+        return (attrname, get, set)
+    return _property
+
+def enum_property(enum_list):
+    to_python_dict = dict(enum_list)
+    from_python_dict = dict([(v, k) for k, v in enum_list])
+    return simple_property(to_python_dict.get, from_python_dict.get)
+
+def list_property():
+    def to_python(x):
+        return [s.strip() for s in x.split(';')]
+    def from_python(x):
+        return ";".join(x)
+    return simple_property(to_python, from_python)
+
+bool_property = simple_property(boolean_sanity_, str)
+int_property = simple_property(int, str)
+str_property = simple_property(str, str)
+float_property = simple_property(float, str)
+color_property = simple_property(lambda x: gtk.gdk.Color(*color_sanity(x)),
+                                 lambda x: str([x.red, x.green, x.blue]))
+wrap_property = enum_property([('none', gtk.WRAP_NONE),
+                               ('char', gtk.WRAP_CHAR),
+                               ('word', gtk.WRAP_WORD)])
+columns_property = list_property()
+    
+class metaConfig(type):
+    def __new__(cls, classname, bases, classdict):
+        params = classdict.get('__params__', [])
+        for attrname, get, set in params:
+            classdict['get_' + attrname] = get
+            classdict['set_' + attrname] = set
+            classdict[attrname] = property(get, set)
+        return type.__new__(cls, classname, bases, classdict)
+    
+class NSEManagerConfig(object):
+    __metaclass__ = metaConfig
+    __params__ = [
+        bool_property('use_internal_editor', True),
+        str_property('external_command', 'gedit %%s'),
+        columns_property('columns_visible', ['I', 'Name', 'Type', 'ID']),
+        columns_property('columns_order',
+                      ['I', 'Name', 'Type', 'Description', 'Author', 'Categories', 'ID']),
+        bool_property('view_categories', True),
+        bool_property('view_description', True),
+        bool_property('view_toolbar', True),
+        bool_property('view_statusbar', True),
+        str_property('http_proxy', ":3128"),
+        str_property('ftp_proxy', ":3128")
+        ]
+
+    def __init__(self, *args):
+        self.parser = Path.config_parser
+        self.section_name = "script_manager"
+        
+    def save_changes(self):
+        pass
+        
+class EditorConfig(object):
+    __metaclass__ = metaConfig
+    __params__ = [
+        bool_property('show_line_numbers', True),
+        bool_property('use_system_font', True),
+        str_property('font', 'Monospace 10'),
+        bool_property('auto_indent', True),
+        bool_property('check_brackets', True),
+        int_property('tabs_width', 8),
+        bool_property('insert_spaces_instead_of_tabs', True),
+        bool_property('highlight_current_line', True),
+        wrap_property('wrap_mode', gtk.WRAP_NONE),
+        bool_property('show_margin', True),
+        int_property('margin', 80),
+        bool_property('smart_home_end', True),
+        bool_property('use_default_theme', True),
+        color_property('text_color', gtk.gdk.Color(0, 0, 0)),
+        color_property('background_color', gtk.gdk.Color(65535, 65535, 65535)),
+        color_property('selected_color', gtk.gdk.Color(65535, 65535, 65535)),
+        color_property('selection_color', gtk.gdk.Color(0, 0, 40092)),
+        bool_property('view_toolbar', True),
+        bool_property('view_statusbar', True),
+        bool_property('enable_highlight', True),
+        str_property('wizard_author', ''),
+        str_property('wizard_version', '1.0.0'),
+        str_property('wizard_license', 'See nmaps COPYING for licence')
+        ]
+
+    def __init__(self):
+        self.parser = Path.config_parser
+        self.section_name = "editor"
+        
+        
+        
+class MapperConf(object):
+    """ 
+    Topology Settings
+    """        
+    __metaclass__ = metaConfig
+    __params__ = [
+        int_property('frames', 69),
+        int_property('interpolation', 1),
+        int_property('layout', 1),
+        float_property('zoom', 1.0),
+        int_property('ring', 33),
+        int_property('lower_ring', 11),
+        columns_property('view', ['address','hostname','icon','ring','region','slow'])
+        ]
+
+    def __init__(self, *args):
+        self.parser = Path.config_parser
+        self.section_name = "mapper"
+    
 
 # Exceptions
 class ProfileNotFound:

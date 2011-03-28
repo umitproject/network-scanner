@@ -15,6 +15,7 @@ Contents:
    ni.rst
    network_topology.rst
    interface_editor.rst
+   zion.rst
    under_the_roof.rst
    profile_editor.rst
    plugins.rst

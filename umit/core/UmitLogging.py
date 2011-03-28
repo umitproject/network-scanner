@@ -27,15 +27,21 @@ from umit.core.UmitOptionParser import option_parser
 
 LOGLEVEL = option_parser.get_verbose()
 
+from umit.core.FirstSettings import GeneralSettingsConf
+gs = GeneralSettingsConf()
+
 class Log(Logger, object):
     def __init__(self, name, level=0, file_output=None):
         Logger.__init__(self, name, level)
         self.formatter = self.format
-
+        
         if file_output:
             handler = FileHandler(file_output)
         else:
-            handler = StreamHandler()
+            if gs.log == "File" and file_output:
+                handler = FileHandler(gs.log_file)
+            else:
+                handler = StreamHandler()
 
         handler.setFormatter(self.formatter)
         

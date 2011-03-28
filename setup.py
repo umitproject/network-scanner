@@ -44,6 +44,8 @@ from install_scripts.common import BIN_DIRNAME, PIXMAPS_DIR, \
                                    PLUGINS_TEMP_DIR, PLUGINS_DOWNLOAD_DIR
 from install_scripts import common
 
+NT = os.name == 'nt'
+
 py2exe_cmdclass = py2exe_options = py2app_options = revert_rename = None
 if 'py2exe' in sys.argv:
     from install_scripts.windows.py2exe_setup import py2exe_cmdclass, \
@@ -247,7 +249,22 @@ class umit_build(build):
         self.delete_mo_files()
         self.build_mo_files()
         self.build_html_doc()
+        self.build_clann()
+        if not NT:
+            self.build_keybinder()
         build.run(self)
+        
+    def build_clann(self):
+        cur = os.getcwd()
+        os.chdir("umit/clann")
+        os.system("make")
+        os.chdir(cur)
+    
+    def build_keybinder(self):
+        cur = os.getcwd()
+        os.chdir("umit/libkeybinder")
+        os.system("make")
+        os.chdir(cur)
 
 
 class umit_install(install):
@@ -319,6 +336,8 @@ class umit_install(install):
         self._replace_path(common.UMIT_MAIN)
         # UMIT_SCHEDULER
         self._replace_path(os.path.join(common.UMIT_SCHEDULER))
+        # QUICKSCAN
+        self._replace_path(os.path.join(common.QUICKSCAN_LAUNCHER))
         
     def _replace_path(self, file):
         umit_name = os.path.split(file)[1]
@@ -428,6 +447,7 @@ class umit_sdist(sdist):
         folder_dist = "umit-"+VERSION
         os.mkdir(os.path.join(folder_dist, PLUGINS_TEMP_DIR))
         os.mkdir(os.path.join(folder_dist, PLUGINS_DOWNLOAD_DIR))
+        
     def run(self):
         from distutils.filelist import FileList
         self.keep_temp = 1
@@ -519,12 +539,16 @@ options = dict(
         version = VERSION,
         scripts = [
             common.UMIT_MAIN,
-            os.path.join(BIN_DIRNAME, 'umit_scheduler.py')],
+            os.path.join(BIN_DIRNAME, 'umit_scheduler.py'),
+            common.QUICKSCAN_LAUNCHER],
         packages = [
             'umit', 'umit.core', 'umit.core.radialnet', 'umit.db',
             'umit.gui', 'umit.gui.radialnet', 'umit.interfaceeditor',
             'umit.interfaceeditor.selectborder', 'umit.inventory',
-            'umit.merger', 'umit.plugin', 'higwidgets'],
+            'umit.merger', 'umit.plugin', 'higwidgets', 'umit.core.qs',
+            'umit.gui.qs', 'umit.scan', 'umit.scan.zion', 'umit.scan.zion.gui',
+            'umit.libkeybinder', 'umit.nsefacilitator', 'umit.preferences',
+            'umit.preferences.conf', 'umit.preferences.widgets'],
         data_files = data_files,
         cmdclass = cmdclasses,
         classifiers = [

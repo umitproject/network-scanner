@@ -36,7 +36,7 @@ class Core(Singleton, gobject.GObject):
     __gsignals__ = {
         'ScanHostsView-created' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_OBJECT, )),
         'ScanResultNotebook-created' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_OBJECT, )),
-        'ScanNotebookPage-created' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_OBJECT, ))
+        'NmapScanNotebookPage-created' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_OBJECT, ))
     }
 
     def __init__(self):

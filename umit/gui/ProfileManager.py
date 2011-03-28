@@ -258,7 +258,11 @@ class ProfileManager(HIGWindow):
         """
         Reload a list of profiles
         """
-        profiles = self.profiles.sections()
+        profiles = []
+        all_profiles = self.profiles.sections()
+        for profile in all_profiles:
+            if self.profiles.get(profile, 'tool') == 'nmap':
+                profiles.append(profile)
         profiles.sort()
         self.model.clear()
 

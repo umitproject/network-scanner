@@ -6,6 +6,7 @@ import os
 
 BIN_DIRNAME = 'bin'
 UMIT_MAIN = os.path.join(BIN_DIRNAME, 'umit')
+QUICKSCAN_LAUNCHER = os.path.join(BIN_DIRNAME, 'quickscan_launcher.py')
 UMIT_SCHEDULER = os.path.join(BIN_DIRNAME, 'umit_scheduler.py')
 # These directories are relative to the installation or dist directory
 # Ex: python setup.py install --prefix=/tmp/umit

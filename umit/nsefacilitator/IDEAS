@@ -1,0 +1,133 @@
+NSE Facilitator will provide easy script management, sharing and updating. 
+It's interface will very closer (and simplifier version) to apt-get/aptitude/Synaptic 
+for deb packages distribution.
+
+Local settings will be placed in two files:
+- NSE configuration (~/.umit/nseconfig)
+- NSE script base (~/.umit/nsebase)
+
+NSE CONFIGURATION
+=================
+
+Configuration file describes script sources and installation settings (currently, only
+installation directory(-es))
+
+Several sources provided:
+- single local file (FILE)
+  for simple file-adding from any local place
+- local directory   (DIR)
+  for adding directory of scripts (like default Nmap script folders, development one or etc.)
+- url file          (URL)
+  for simple file-sharing in Web
+- url base          (URLBASE)
+  for powerful many files sharing and updating thorough Web
+
+Also installation destinations (INSTALLDIR) will be provided, if there are several
+installation directories provided they will be tried in order of appearing in configuration
+file.
+
+Configuration file is a simple text file in form <type> - <path> on each line.
+Sample configuration file can looks like:
+INSTALLDIR /usr/share/nmap/scripts/
+INSTALLDIR ~/.umit/scripts
+DIR     /usr/local/share/nmap/scripts/
+FILE    ~/dev/scripts/nextWorm.nse
+FILE    ~/dev/scripts/nextWormGen2.nse
+URLBASE http://insecure.org/scriptbase
+URL     http://myfriends.org/bestScript.nse
+
+INSTALLDIR always included DIR source facilities, so it isn't need to include
+the same directory two times.
+
+Commented lines begins from #.
+
+This file can be easily edited by hand or by using GUI interface which will 
+be provided in Umit.
+
+NSE SCRIPT BASE
+===============
+
+Script base will have the syntax similar to deb and consists of sequence 
+of scripts descriptions like:
+
+name: Armageddon
+id: Total Armageddon
+description: This script begins Armageddon on all scanned hosts.
+  No way to escape from them and no way to protect from them.
+  .
+  This is a holy script.
+author: The God <god@heaven.org>
+license: holy
+categories: demo
+rule: host
+
+The following attributes will be supported:
+
+attrname    default     description
+-----------------------------------------------------------
+name        NECESSARY   name for simple authentication one
+id          same name   short description
+description ""          full description
+type        "nse"       script type (currently only "nse")
+author      ""          author information
+license     "unknown"   type of license for this script
+categories  "untagged"  comma-separated list of script categories
+rule        "unknown"   (port|host|unknown) applied rule
+version     "0.0.0"     script version in form x.x.x
+path        ""          installed path
+url         ""          url to download from
+size        0           file size
+md5         ""          md5 hash
+sha1        ""          sha1 hash
+gpg         --          gpg signature
+
+Attribute names are case insensitive, so 'Name', 'name', 'NAME' are the same.
+Descriptions separated by empty lines from each other. If one needs to 
+include empty line in some attribute value (like description) he must
+put single dot at that line.
+
+Local script base (~/.umit/nsebase) contains all information
+about scripts accessible throw NSE configuration sources. If
+some script haven't yet downloaded and installed it has empty
+or no path attribute and not-empty url for downloading from.
+
+The same database format are using for URLBASE bases.
+
+AVAILABLE OPERATIONS
+====================
+
+RELOAD: update script base file according to current sources status, i. e.:
+  * remove single file from base if it have been deleted or add it elsewhere 
+  * update source directory structure
+  * download actual file version from url
+  * add new scripts/versions from url base
+  
+INSTALL: install script by name from server with url base source
+
+INSTALLALL: install all scripts which have not yet been installed
+
+REMOVE: remove previously installed script
+
+UPGRADE: upgrade script by name to current actual version
+
+UPGRADEALL: upgrade all installed scripts to actual versions
+
+install/remove/upgrade
+
+INTERFACE
+=========
+
+This functionality will be provided in two forms:
+* command-line Python script, supported operation from previous section
+* GUI tool integrated into Umit with additional editor for script sources
+  and script text
+
+CURRENT STATUS
+==============
+
+Currently GUI part have been mostly done and has all necessary components.
+Now core logic according to this specification are implementing.
+
+The SVN repository are located at https://umit.svn.sourceforge.net/svnroot/umit/branch/max/umitNSEFacilitator/
+
+

@@ -41,6 +41,7 @@
     <option_check label="Disable reverse DNS resolution" option="Disable reverse DNS resolution"/>
     <option_check label="IPv6 support" option="IPv6 support"/>
     <option_check label="Maximum Retries" option="Max Retries" />
+	<option_check label="Use Scripts" option="Script List" /> 
   </Scan>
   <Ping label="Ping options">
     <option_check label="Don't ping before scanning" option="Ping after Scan"/>

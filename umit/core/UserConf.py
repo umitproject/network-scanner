@@ -44,61 +44,97 @@ target_list_content = ''' '''
 
 recent_scans_content = ''' '''
 
-scan_profile_content = '''[Quick Scan]
+scan_profile_content = '''[Nmap Quick Scan]
+tool = nmap
 description = 
 hint = 
 options = Disable reverse DNS resolution,Aggressive,Verbose
 command = nmap -T Aggressive -v -n %s
 annotation = 
 
-[Intense Scan]
+[Nmap Intense Scan]
+tool = nmap
 description = 
 hint = 
 options = Version detection,Operating system detection,Aggressive, Verbose
 command = nmap -T Aggressive -A -v %s
 annotation = 
 
-[Regular Scan]
+[Nmap Regular Scan]
+tool = nmap
 description = 
 hint = 
 options = Verbose
 command = nmap -v %s
 annotation = 
 
-[Quick and verbose scan]
+[Nmap Quick and verbose scan]
+tool = nmap
 description = 
 hint = 
 options = Watch packets,Verbose,Debug,Aggressive,Disable reverse DNS resolution
 command = nmap -d -T Aggressive --packet_trace -v -n %s
 annotation = 
 
-[Operating System Detection]
+[Nmap Operating System Detection]
+tool = nmap
 description = 
 hint = 
 options = Operating system detection,Verbose
 command = nmap -O -v %s
 annotation = 
 
-[Quick Services version detection]
+[Nmap Quick Services version detection]
+tool = nmap
 description = 
 hint = 
 options = Version detection,Aggressive,Verbose
 command = nmap -T Aggressive -sV -v %s
 annotation = 
 
-[Quick Full version Detection Scan]
+[Nmap Quick Full version Detection Scan]
+tool = nmap
 description = 
 hint = 
 options = Aggressive,Version detection,Operating system detection,Disable reverse DNS resolution,Verbose
 command = nmap -T Aggressive -sV -n -O -v %s
 annotation = 
 
-[Quick Operating System detection]
+[Nmap Quick Operating System detection]
+tool = nmap
 description = 
 hint = 
 options = Operating system detection,Aggressive,Verbose
 command = nmap -T Aggressive -O -v %s
-annotation =  '''
+annotation =  
+
+[Zion Honeyd Detection]
+tool = zion
+zion_id = 1
+description = Detect Honeyd using one TCP open port
+hint = 
+annotation = 
+
+[Zion OS Detection]
+tool = zion
+zion_id = 2
+description = Detect Operating System using one TCP open port
+hint = 
+annotation = 
+
+[Zion Prompt]
+tool = zion
+zion_id = 3
+description = Show a Zion prompt to allow user uses the backend
+hint = 
+annotation = 
+
+[Zion SYN Proxy Detection]
+tool = zion
+zion_id = 4
+description = Detect SYN Proxies using one TCP open port
+hint = 
+annotation ='''
 
 profile_editor_content = '''<?xml version="1.0"?>
 <interface>
@@ -18483,6 +18519,26 @@ def create_user_dir(user_home):
                 profile_editor=create_profile_editor(user_dir),
                 options=create_options(user_dir),
                 wizard=create_wizard(user_dir))
+def reset_user_dir(user_dir):
+    log.debug("Reset user dir %s"%user_dir)
+    
+    delete_config_file(user_dir, base_paths['recent_scans'])
+    create_user_dir(user_dir)
+    
+def delete_config_file(user_dir, filename):
+    log.debug("delete_config_file %s "%filename)
+    config_file_path = os.path.join(user_dir, filename)
+    
+    
+    deleted = False
+    if os.path.exists(config_file_path) \
+       and os.access(config_file_path, os.F_OK):
+        # Remove file
+        log.debug("delete_config_file -> Removing %s "% config_file_path)
+        os.remove(config_file_path)
+        deleted = True 
+    return deleted
+
 
 def create_config_file(user_dir, filename, default_content):
     log.debug("create_config_file %s" % filename)
@@ -18543,6 +18599,7 @@ def get_os_dump(user_dir):
     return create_config_file(user_dir,
                               base_paths['os_dump'],
                               os_dump_content)
+
 
 if __name__ == "__main__":
     create_user_dir("/home/adriano")

@@ -49,7 +49,7 @@ class Notifier(Plugin):
 
     def __connect_signals(self):
         # Here we're going to connect various signals.
-        Core().connect('ScanNotebookPage-created',
+        Core().connect('NmapScanNotebookPage-created',
             lambda core, page, obj: \
                 page.connect('scan-finished', obj.__on_scan_finished),
             self

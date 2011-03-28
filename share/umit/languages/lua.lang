@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<!--
+
+ Author: Bjørn Lindeijer <bjorn@lindeijer.nl>
+ Copyright (C) 2004 Bjørn Lindeijer <bjorn@lindeijer.nl>
+
+ This library is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+-->
+<language _name="Lua" version="1.0" _section="Scripts" mimetypes="text/x-lua">
+
+	<escape-char>\</escape-char>
+
+
+	<block-comment _name = "Block Comment" style = "Comment">
+		<start-regex>--\[\[</start-regex>
+		<end-regex>]]</end-regex>
+	</block-comment>
+
+	<line-comment _name = "Line Comment" style= "Comment">
+		<start-regex>#</start-regex>
+	</line-comment>
+
+	<line-comment _name = "Line Comment 2" style= "Comment">
+		<start-regex>--</start-regex>
+	</line-comment>
+
+	<string _name = "Multiline String" style = "String" end-at-line-end = "FALSE">
+		<start-regex>[uUrR]?&quot;&quot;&quot;</start-regex>
+		<end-regex>&quot;&quot;&quot;</end-regex>
+	</string>
+
+	<string _name = "Multiline String 2" style = "String" end-at-line-end = "FALSE">
+		<start-regex>[uUrR]?&apos;&apos;&apos;</start-regex>
+		<end-regex>&apos;&apos;&apos;</end-regex>
+	</string>
+
+	<string _name = "String" style = "String" end-at-line-end = "TRUE">
+		<start-regex>[uUrR]?&quot;</start-regex>
+		<end-regex>&quot;</end-regex>
+	</string>
+
+	<string _name = "String 2" style = "String" end-at-line-end = "TRUE">
+		<start-regex>[uUrR]?&apos;</start-regex>
+		<end-regex>&apos;</end-regex>
+	</string>
+
+	<keyword-list _name = "Keywords" style = "Keyword" case-sensitive="TRUE">
+		<keyword>and</keyword>
+		<keyword>break</keyword>
+		<keyword>do</keyword>
+		<keyword>else</keyword>
+		<keyword>elseif</keyword>
+		<keyword>end</keyword>
+		<keyword>false</keyword>
+		<keyword>for</keyword>
+		<keyword>function</keyword>
+		<keyword>if</keyword>
+		<keyword>in</keyword>
+		<keyword>local</keyword>
+		<keyword>nil</keyword>
+		<keyword>not</keyword>
+		<keyword>or</keyword>
+		<keyword>repeat</keyword>
+		<keyword>return</keyword>
+		<keyword>then</keyword>
+		<keyword>true</keyword>
+		<keyword>until</keyword>
+		<keyword>while</keyword>
+	</keyword-list>
+
+	<keyword-list _name = "Functions" style = "Other" case-sensitive="TRUE">
+		<keyword>assert</keyword>
+		<keyword>collectgarbage</keyword>
+		<keyword>dofile</keyword>
+		<keyword>error</keyword>
+		<keyword>_G</keyword>
+		<keyword>getfenv</keyword>
+		<keyword>getmetatable</keyword>
+		<keyword>gcinfo</keyword>
+		<keyword>ipairs</keyword>
+		<keyword>loadfile</keyword>
+		<keyword>loadlib</keyword>
+		<keyword>loadstring</keyword>
+		<keyword>next</keyword>
+		<keyword>pairs</keyword>
+		<keyword>pcall</keyword>
+		<keyword>print</keyword>
+		<keyword>rawequal</keyword>
+		<keyword>rawget</keyword>
+		<keyword>rawset</keyword>
+		<keyword>require</keyword>
+		<keyword>setfenv</keyword>
+		<keyword>setmetatable</keyword>
+		<keyword>tonumber</keyword>
+		<keyword>tostring</keyword>
+		<keyword>type</keyword>
+		<keyword>unpack</keyword>
+		<keyword>_VERSION</keyword>
+		<keyword>xpcall</keyword>
+	</keyword-list>
+
+</language>

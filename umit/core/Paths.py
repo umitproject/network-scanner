@@ -30,6 +30,7 @@ from umit.core.Version import VERSION
 from umit.core.BasePaths import base_paths, HOME
 from umit.core.BasePaths import CONFIG_DIR, LOCALE_DIR, MISC_DIR
 from umit.core.BasePaths import ICONS_DIR, PIXMAPS_DIR, DOCS_DIR
+from umit.core.BasePaths import LANGUAGES_DIR, STYLES_DIR
 from umit.merger import file_merger, dir_creator, nt_appdata
 
 def root_dir():
@@ -57,7 +58,9 @@ class Paths(object):
                  "icons_dir",
                  "misc_dir",
                  "config_dir",
-                 "docs_dir"]
+                 "docs_dir",
+                 "styles_dir",
+                 "languages_dir"]
 
     config_files_list = ["config_file",
                          "profile_editor",
@@ -103,6 +106,8 @@ class Paths(object):
         self.icons_dir = ICONS_DIR
         self.misc_dir = MISC_DIR
         self.docs_dir = DOCS_DIR
+        self.styles_dir = STYLES_DIR
+        self.languages_dir = LANGUAGES_DIR
 
         log.debug(">>> Config file: %s" % config_file)
         log.debug(">>> Locale: %s" % self.locale_dir)
@@ -110,6 +115,8 @@ class Paths(object):
         log.debug(">>> Icons: %s" % self.icons_dir)
         log.debug(">>> Misc: %s" % self.misc_dir)
         log.debug(">>> Docs: %s" % self.docs_dir)
+        log.debug(">>> Styles: %s" % self.styles_dir)
+        log.debug(">>> Languages: %s" % self.languages_dir)
 
     def get_running_path(self):
         return self.__runpath
@@ -283,7 +290,7 @@ userdir_files = (
         "wizard.xml", "umit_version", "umitng.db", "timeline-settings.conf",
         "tl_colors_evt_std.conf", "scheduler-schemas.conf",
         "scheduler-profiles.conf", "scheduler.log", "smtp-schemas.conf")
-userdir_dirs = ("plugins", "plugins-download", "plugins-temp")
+userdir_dirs = ("plugins", "plugins-download", "plugins-temp", "nsetemplates")
 
 def create_user_dir(config_file, user_home):
     log.debug(">>> Create user dir at given home: %s" % user_home)

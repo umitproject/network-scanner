@@ -282,6 +282,7 @@ name to this profile. Please rename it and retry.'))
                                  hint=hint,\
                                  description=description,\
                                  annotation=annotation,\
+                                 tool='nmap',\
                                  options=self.constructor.get_options())
         self.deleted = False
         if self.profilemanager:
