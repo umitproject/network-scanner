@@ -1,0 +1,18 @@
+Folks,
+
+During this stage Network Scanner just run on Linux and Windows.
+
+Anyway, you have to compile clann and umit-keybinders.
+
+Just do:
+
+
+$ cd umit/libkeybinder/
+$ make 
+$ cd ..
+$ cd clann 
+$ make
+
+
+Any doubts, let me know.
+LuísA. Bastião Silva
