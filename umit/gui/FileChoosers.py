@@ -40,6 +40,14 @@ class ProfileFileFilter(gtk.FileFilter):
         self.add_pattern(pattern)
         self.set_name(_("Umit Scan Profile (%s)") % pattern)
 
+class ResultUmitBluetooth(gtk.FileFilter):
+    def __init__(self):
+        gtk.FileFilter.__init__(self)
+
+        pattern = "*.ubt"
+        self.add_pattern(pattern)
+        self.set_name(_("Umit bluetooth (%s)") % pattern)
+
 class ResultsFileFilter(gtk.FileFilter):
     def __init__(self):
         gtk.FileFilter.__init__(self)
@@ -112,7 +120,7 @@ class ResultsFileChooserDialog(gtk.FileChooserDialog):
         gtk.FileChooserDialog.__init__(self, title, parent,
                                        action, buttons)
 
-        for f in (ResultsFileFilter(), AllFilesFileFilter()):
+        for f in (ResultsFileFilter(), ResultUmitBluetooth(), AllFilesFileFilter()):
             self.add_filter(f)
 
 class SaveResultsFileChooserDialog(gtk.FileChooserDialog):
