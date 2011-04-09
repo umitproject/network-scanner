@@ -315,7 +315,7 @@ class ScanNotebookPageBT(HIGVBox):
         'scan-finished' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, ())
     }
 
-    def __init__(self):
+    def __init__(self, page):
         HIGVBox.__init__(self)
         # The borders are consuming too much space on Maemo. Setting it to
         # 0 pixels while on Maemo
@@ -344,9 +344,20 @@ class ScanNotebookPageBT(HIGVBox):
 
         self._pack_expand_fill(self.vpaned)
         self._pack_expand_fill(self.status_bar)
+        #TODO: Add BT to Plugins
+        #PluginEngine().core.emit('ScanNotebookPageBT-created', self)
+    def create_references(self):
+        """
+        """
 
-        PluginEngine().core.emit('ScanNotebookPage-created', self)
-
+    def delete_references(self):
+        """
+        """
+        
+    def profile_changed(self, widget, event=None): 
+        """
+        """
+        
     def __create_topbar(self):
         hbox1 = gtk.HBox()
         #Progressbar
@@ -467,7 +478,8 @@ class ScanNotebookPage(HIGVBox):
 
         self.__tool = 'nmap'
         self.__page = {'nmap': NmapScanNotebookPage(self),
-                       'zion': ZionScanNotebookPage(self)}
+                       'zion': ZionScanNotebookPage(self),
+                       'umitbt': ScanNotebookPageBT(self)}
         
     def get_page(self):
         return self.__page[self.__tool]
