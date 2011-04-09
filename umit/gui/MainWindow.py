@@ -40,7 +40,7 @@ from higwidgets.higboxes import HIGHBox, HIGVBox
 from umit.gui.FileChoosers import ResultsFileChooserDialog
 from umit.gui.FileChoosers import SaveResultsFileChooserDialog
 from umit.gui.FileChoosers import ExportHTMLResultsFileChooserDialog
-from umit.gui.ScanNotebook import ScanNotebook, ScanNotebookPage, NmapScanNotebookPage, ScanNotebookPageBT
+from umit.gui.ScanNotebook import ScanNotebook, ScanNotebookPage, NmapScanNotebookPage
 from umit.gui.ScanPage import ScanPage
 from umit.gui.ProfileEditor import ProfileEditor
 from umit.gui.ProfileManager import ProfileManager
@@ -271,9 +271,9 @@ class MainWindow(UmitMainWindow):
 
                ('New Scan',
                 gtk.STOCK_NEW,
-                _('_New nmap Scan'),
+                _('_New Scan'),
                 "<Control>T",
-                _('Create a new nmap Scan Tab'),
+                _('Create a new Scan Tab'),
                 self._new_scan_cb),
 
                 ('Close Scan',
@@ -1094,12 +1094,6 @@ to close current Scan Tab?'),
             log.debug(">>> Loading file: %s" % filename)
             log.debug(">>> Permissions to access file? %s" % os.access(filename,
                                                                        os.R_OK))
-            base, ext = os.path.splitext(filename)
-            if ext==".ubt" :
-                current_page.toolbar.profile_entry.set_selected_profile("umitbluetooth")
-                #scan_page.scan_result = ScanNotebookPageBT()
-                scan_page.scan_result.on_load(filename)
-                return
 
             # Parse result
             f = open(filename)
@@ -1145,8 +1139,6 @@ this scan result yet")
 
     def _save_scan_results_cb(self, saving_page):
         current_page = self._current_page()
-        if current_page.toolbar.selected_profile=="umitbluetooth":
-            current_page.scan_result.on_save()
         
         try:
             status = current_page.status
