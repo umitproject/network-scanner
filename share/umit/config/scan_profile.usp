@@ -63,7 +63,7 @@ annotation =
 command = nmap -PN -p80 --traceroute %s
 options = Disable ping,Ports to scan,Traceroute
 
-[umitbluetooth]
+[bluetooth]
 tool = umitbt
 description = 
 hint = 

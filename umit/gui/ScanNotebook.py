@@ -674,10 +674,10 @@ class NmapScanNotebookPage(HIGVBox):
         #log.debug(">>> Profile: %s" % profile)
         #log.debug(">>> Target: %s" % target)
         
-        if profile == "umitbluetooth":
+        if profile == "bluetooth":
             self.scan_result = ScanNotebookPageBT()
             self.remove(self.get_children()[1])
-            self.command_toolbar.command="umitbluetooth"
+            self.command_toolbar.command="bluetooth"
             self.command_toolbar.set_sensitive(False)
             self.toolbar.target_entry.set_sensitive(False)
             self.toolbar.scan_button.set_sensitive(False)
