@@ -46,6 +46,8 @@ from umit.gui.Icons import get_os_icon, get_os_logo, get_vulnerability_logo
 from umit.core.NmapCommand import NmapCommand
 from umit.core.UmitConf import CommandProfile, ProfileNotFound, Profile
 from umit.core.NmapParser import NmapParser
+from umit.core.umitbluetooth.ubt_parser import XMLDocument
+from umit.core.umitbluetooth import btcore
 from umit.core.Paths import Path
 from umit.core.UmitLogging import log
 from umit.core.I18N import _
@@ -308,6 +310,126 @@ def get_service_info(service):
             service.get('service_product', ''),
             service.get('service_version', ''))
 
+class ScanNotebookPageBT(HIGVBox):
+    __gsignals__ = {
+        'scan-finished' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, ())
+    }
+
+    def __init__(self):
+        HIGVBox.__init__(self)
+        # The borders are consuming too much space on Maemo. Setting it to
+        # 0 pixels while on Maemo
+        if is_maemo():
+            self.set_border_width(0)
+        
+        self.set_spacing(0)
+        self.status = PageStatus()
+        self.status.set_empty()
+        
+        self.changes = False
+        self.comments = {}
+        self.hosts = {}
+        self.services = {}
+
+        self.parsed = XMLDocument()#XXX file to be included for this ubt_parser.py
+        self.vpaned = gtk.VPaned()
+
+        self.__create_topbar()
+        self.__create_BT_MAP()
+        self.__create_SDPview()
+        self.__create_statusbar()
+        
+        self.saved = False
+        self.saved_filename = ''
+
+        self._pack_expand_fill(self.vpaned)
+        self._pack_expand_fill(self.status_bar)
+
+        PluginEngine().core.emit('ScanNotebookPage-created', self)
+
+    def __create_topbar(self):
+        hbox1 = gtk.HBox()
+        #Progressbar
+        self.progb = gtk.ProgressBar()
+        self.progb.set_text("")
+        self.progb.set_fraction(0)
+        hbox1.pack_end(self.progb, False, False, 5)
+
+        #Button
+        self.scanbutton = gtk.Button("Probe Devices")
+        self.scanbutton.connect("clicked", self.enter_cb)
+        hbox1.pack_end(self.scanbutton, False, False, 0)
+
+        #toggle button
+        self.sdp_borwsing= gtk.ToggleButton(label="SDP Browsing", use_underline=False)
+        self.sdp_borwsing.connect("toggled", self.sdp_cb)
+
+        hbox1.pack_end(self.sdp_borwsing, False, False, 0)
+        self._pack_noexpand_nofill(hbox1)
+
+    def __create_BT_MAP(self):
+        
+         # BT Map
+        self.scrolled_map = gtk.ScrolledWindow()
+        self.scrolled_map.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.mapmodel = gtk.ListStore(str, gtk.gdk.Pixbuf)
+        self.btmap =   gtk.IconView(self.mapmodel)      
+        self.btmap.connect("item-activated", self.iconclick_cb)
+        self.btmap.set_text_column(0)
+        self.btmap.set_pixbuf_column(1)
+        self.scrolled_map.add(self.btmap)
+        self.vpaned.pack1(self.scrolled_map, True, True)
+
+    def __create_SDPview(self):
+        hbox2 = gtk.HBox()
+        # Labels  
+        self.label = gtk.Label("Device Details\t\t\t\t\n\nName: " + "\nMAC: " + "\nManufacturer: ")
+        self.label.set_selectable(True)
+        self.label.set_alignment(0.4,0)
+        hbox2.pack_start(self.label, False)
+        
+        # SDP View
+        self.scrolled_info = gtk.ScrolledWindow()
+        self.scrolled_info.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)       
+        self.sdpview = gtk.TextView()   
+        self.sdpview.set_editable(False)
+        self.sdpview.get_buffer().set_text("SDP Info\n\nNote: Option Disabled by Default. To enable SDP, select the SDP option under the Preference tab.")
+        self.scrolled_info.add(self.sdpview)    
+        hbox2.pack_start(self.scrolled_info, True)      
+        self.vpaned.pack2(hbox2, True, True)
+
+    def __create_statusbar(self):
+        # Statusbar
+        self.status_bar = gtk.Statusbar()      
+        self.context_id = self.status_bar.get_context_id("Scan Status")
+        message_id = self.status_bar.push(self.context_id, "Idle")
+        self.status_bar.set_has_resize_grip(True)
+
+    def enter_cb(self, widget):
+        btcore.btcore().scan(self)
+
+    def iconclick_cb(self, path, action):        
+        iter = self.btmap.get_cursor()
+        buffer = str(iter[0])[:2].replace("(","")
+        btid = int(buffer)
+        print "Clicked Icon: "+ str(buffer)
+        btcore.btcore().set_info(self, btid)
+        #outputs the location of the icon numerically
+
+    def sdp_cb(self, action):
+        # action has not toggled yet         
+        text = ('Enabled', 'Disabled')[self.sdp_borwsing.get_active()==False]        
+        message_id = self.status_bar.push(self.context_id, "SDP Browsing is %s"%text)
+        btcore.btcore().set_sdp(text)        
+        return
+
+    def on_load(self, filename):
+        btcore.btcore().load_scan(self, filename)
+       
+    def on_save(self):
+        btcore.btcore().save_scan(self)
+
+
 
 class ScanNotebookPage(HIGVBox):
     __gsignals__ = {
@@ -540,29 +662,45 @@ class NmapScanNotebookPage(HIGVBox):
         #log.debug(">>> Profile: %s" % profile)
         #log.debug(">>> Target: %s" % target)
         
-        try:
-            cmd_profile = CommandProfile()
-            command = cmd_profile.get_command(profile) % target
-            del(cmd_profile)
-            
-            # scan button must be enable if -iR or -iL options are passed
-            if command.find('-iR') != -1 or command.find('-iL') != -1:
-                self.page.toolbar.scan_button.set_sensitive(True)
+        if profile == "umitbluetooth":
+            self.scan_result = ScanNotebookPageBT()
+            self.remove(self.get_children()[1])
+            self.command_toolbar.command="umitbluetooth"
+            self.command_toolbar.set_sensitive(False)
+            self.toolbar.target_entry.set_sensitive(False)
+            self.toolbar.scan_button.set_sensitive(False)
+            self._pack_expand_fill(self.scan_result)
+            self.show_all()
+        else:
+            self.scan_result = ScanResult()
+            self.remove(self.get_children()[1])
+            self.command_toolbar.set_sensitive(True)
+            self.toolbar.target_entry.set_sensitive(True)
+            self._pack_expand_fill(self.scan_result)
+            self.show_all()
+            try:
+                cmd_profile = CommandProfile()
+                command = cmd_profile.get_command(profile) % target
+                del(cmd_profile)
+                
+                # scan button must be enable if -iR or -iL options are passed
+                if command.find('-iR') != -1 or command.find('-iL') != -1:
+                    self.toolbar.scan_button.set_sensitive(True)
 
-                # For these nmap options, target is unnecessary.
-                # Removes unnecessary target from the command
-                command = command.replace(target,'').strip()
-            elif target:
-                self.page.toolbar.scan_button.set_sensitive(True)
-            else:
-                self.page.toolbar.scan_button.set_sensitive(False)
+                    # For these nmap options, target is unnecessary.
+                    # Removes unnecessary target from the command
+                    command = command.replace(target,'').strip()
+                elif target:
+                    self.page.toolbar.scan_button.set_sensitive(True)
+                else:
+                    self.page.toolbar.scan_button.set_sensitive(False)
 
-            self.command_toolbar.command = command
-        except ProfileNotFound:
-            pass
-            #self.profile_not_found_dialog()
-        except TypeError:
-            pass # That means that the command string conversion "%" didn't work
+                self.command_toolbar.command = command
+            except ProfileNotFound:
+                pass
+                #self.profile_not_found_dialog()
+            except TypeError:
+                pass # That means that the command string conversion "%" didn't work
 
     def __create_scan_result(self):
         self.scan_result = NmapScanResult()
