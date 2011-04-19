@@ -25,21 +25,33 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 
+from higwidgets.higdialogs import HIGDialog, HIGAlertDialog
+
+def missing_bt_library(library_name):
+    dlg = HIGAlertDialog(type=gtk.MESSAGE_WARNING, 
+                                 message_format=('Missing ' + library_name), 
+                                 secondary_text=("Bluetooth library could not be found"))
+    dlg.run()
+    dlg.destroy()
+      
+
 if(platform.system()=="Darwin"):
    try:
       import lightblue
    except ImportError:
       print >> sys.stderr, "Error loading LightBlue dependency.Exiting UmitBT..."
-      raise
+      missing_bt_library("lightblue") 
+      #raise
 else:
    try:
       import bluetooth
    except ImportError:
       print >> sys.stderr, "Error loading PyBluez dependency. Exiting UmitBT..."
+      missing_bt_library("pybluez") 
       raise
 
 #from umitCore.I18N import _
-from higwidgets.higdialogs import HIGDialog, HIGAlertDialog
+
 
 import umit.scan.bt.gui.io
 import umit.scan.bt.core.path
