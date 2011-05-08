@@ -1,0 +1,12 @@
+[submodule "deps/zion"]
+	path = deps/zion
+	url = http://git.umitproject.org/zion.git
+[submodule "deps/clann"]
+	path = deps/clann
+	url = http://git.umitproject.org/zion.git
+[submodule "deps/umpa"]
+	path = deps/umpa
+	url = http://git.umitproject.org/umpa.git
+[submodule "deps/libkeybinder"]
+	path = deps/libkeybinder
+	url = http://git.umitproject.org/umit-keybinder.git
