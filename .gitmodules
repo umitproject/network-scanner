@@ -10,3 +10,6 @@
 [submodule "deps/umpa"]
 	path = deps/umpa
 	url = http://git.umitproject.org/umpa.git
+[submodule "deps/umit-common"]
+	path = deps/umit-common
+	url = http://git.umitproject.org/umit-common.git
