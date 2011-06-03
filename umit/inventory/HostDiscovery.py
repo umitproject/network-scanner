@@ -129,6 +129,16 @@ def _is_ipv4(addr):
     else:
         return True
 
+def _is_ipv6(addr):
+	try:
+		rex = "^(?:(?:(?:[A-F0-9]{1,4}:){6}|(?=(?:[A-F0-9]{0,4}:){0,6}(?:[0-9]{1,3}\.){3}[0-9]{1,3}$)(([0-9A-F]{1,4}:){0,5}|:)((:[0-9A-F]{1,4}){1,5}:|:))(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}|(?=(?:[A-F0-9]{0,4}:){0,7}[A-F0-9]{0,4}$)(([0-9A-F]{1,4}:){1,7}|:)((:[0-9A-F]{1,4}){1,7}|:))$"
+		regex = re.compile(rex, re.IGNORECASE)
+		re.match(regex,addr)
+	except ValueError:
+		return False
+	else:
+		return True
+
 def _nt_get_addresses(no_loopback=True, do_aliases=False):
     # XXX do_aliases parameters is not used on this function
     ifaces = []

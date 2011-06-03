@@ -39,6 +39,7 @@ from umit.core.NmapCommand import NmapCommand
 from umit.core.NmapParser import nmap_parser_sax
 from umit.core.qs.ImportData import QSData
 from umit.core.qs.Nmap import Nmap
+from umit.core import Ipv6
 from umit.core.TargetList import TargetList
 from umit.core.UmitLogging import log
 from umit.gui.NmapOutputViewer import NmapOutputViewer
@@ -409,6 +410,18 @@ class EntryField(object):
                 nmap_option = "-T Aggressive -v -n"
 
             print "QuickScan: running scan: %s on %s" % (nmap_option, host)
+            #
+            #
+            #
+            #
+            #ipv6 option
+            #check for ipv6 address and -6 to command option 
+            #
+            #
+            #
+            #
+            if Ipv6.is_ipv6(host):
+            	namp_option = nmap_option + " -6"
             
             self.command_execution = NmapCommand('%s %s %s' % (Path.nmap_command_path,
                                                                nmap_option,

@@ -46,6 +46,7 @@ from umit.gui.Icons import get_os_icon, get_os_logo, get_vulnerability_logo
 from umit.core.NmapCommand import NmapCommand
 from umit.core.UmitConf import CommandProfile, ProfileNotFound, Profile
 from umit.core.NmapParser import NmapParser
+from umit.core import Ipv6
 from umit.scan.bt.core.ubt_parser import XMLDocument
 from umit.scan.bt.gui import btcore
 from umit.core.Paths import Path
@@ -643,6 +644,13 @@ class NmapScanNotebookPage(HIGVBox):
         
         if profile:
             target = self.page.toolbar.selected_target
+            
+            if Ipv6.is_ipv6(target):
+            	ipv6_option = True
+            else:
+            	ipv6_option = False
+           
+				
             if not target:
                 self.page.toolbar.scan_button.set_sensitive(False)
             else:
@@ -650,7 +658,14 @@ class NmapScanNotebookPage(HIGVBox):
 
             try:
                 cmd_profile = CommandProfile()
-                command = cmd_profile.get_command(profile) % target
+                if ipv6_option:
+                	command = cmd_profile.get_command(profile) + " -6 " % target
+                else:
+                	command = cmd_profile.get_command(profile) % target
+                
+
+					
+                #command = cmd_profile.get_command(profile) % target
                 del(cmd_profile)
                 
                 self.command_toolbar.command = command
@@ -670,7 +685,15 @@ class NmapScanNotebookPage(HIGVBox):
         #log.debug(">>> Refresh Command")
         profile = self.page.toolbar.selected_profile
         target = self.page.toolbar.selected_target.strip()
+        if Ipv6.is_ipv6(target):
+        	ipv6_option = True
+        else:
+        	ipv6_option = False
+        
 
+       
+        
+        
         #log.debug(">>> Profile: %s" % profile)
         #log.debug(">>> Target: %s" % target)
         
@@ -692,7 +715,15 @@ class NmapScanNotebookPage(HIGVBox):
             #self.show_all()
             try:
                 cmd_profile = CommandProfile()
-                command = cmd_profile.get_command(profile) % target
+                if ipv6_option:
+                	command = cmd_profile.get_command(profile) + " -6 " % target
+                else:
+                	command = cmd_profile.get_command(profile) % target
+                
+
+					
+				#command = cmd_profile.get_command(profile) % target
+				
                 del(cmd_profile)
                 
                 # scan button must be enable if -iR or -iL options are passed
@@ -750,9 +781,18 @@ class NmapScanNotebookPage(HIGVBox):
         try:
             no_profile = False
             target = self.page.toolbar.selected_target.strip()
+            if Ipv6.is_ipv6(target):
+            	ipv6_option = True
+            else:
+            	ipv6_option = False
 
+			
             profile = self.page.toolbar.selected_profile
-            command = CommandProfile().get_command(profile) % target
+            if ipv6_option:
+            	command = CommandProfile().get_command(profile) + " -6 " % target
+            else:
+            	command = CommandProfile().get_command(profile) % target
+            
 
         except (ProfileNotFound, TypeError):
             no_profile = True

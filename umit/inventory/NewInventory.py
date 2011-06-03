@@ -23,6 +23,7 @@ from ConfigParser import ConfigParser
 
 from umit.core.I18N import _
 from umit.core.Paths import Path
+from umit.core import Ipv6
 from umit.core.UmitConf import CommandProfile
 
 from umit.gui.SchedulerEdit import SchedProfileEditor
@@ -336,7 +337,7 @@ class NewInventory(HIGWindow):
             dlg.run()
             dlg.destroy()
             return 0
-
+	
         if not len(command_adv) and not self.scandefault.get_active() \
             and not self.edit_mode:
             dlg = HIGAlertDialog(self,
@@ -350,14 +351,14 @@ class NewInventory(HIGWindow):
         # end error checking
 
         if self.scandefault.get_active() and not self.edit_mode:
-            command = "nmap -T Aggressive -sV -n -O -v " + target
+            command = "nmap -T Aggressive -sV -n -O -v "+ option + target
         elif not self.edit_mode:
             target_cmd = "<target>"
             target_pos = command_adv.find(target_cmd)
             if target_pos != -1:
                 start = target_pos
                 end = target_pos + len(target_cmd)
-                command = command_adv[:start] + target + command_adv[end:]
+                command = command_adv[:start] + option + target + command_adv[end:]
             else:
                 dlg = HIGAlertDialog(self,
                     message_format=_("New Inventory - Error while creating."),
