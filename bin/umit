@@ -44,6 +44,17 @@ if not hasattr(sys, 'frozen'):
         sys.path.insert(0, os.path.join("."))
         
 
+
+
+execfile(os.path.join("deps", "umit-common", "utils", "importer.py"))
+
+sys.path.insert(0, os.path.join("deps", "libkeybinder"))
+sys.path.insert(0, os.path.join("deps", "clann"))
+sys.path.insert(0, os.path.join("deps", "umpa"))
+sys.path.insert(0, os.path.join("deps", "zion"))
+
+
+
 from umit.core.I18N import _
 from umit.core.Version import VERSION
 from umit.core.Utils import development_mode
