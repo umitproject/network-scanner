@@ -791,12 +791,16 @@ class NmapScanNotebookPage(HIGVBox):
         # be fooled by whitespaces is better strip them.
         target = self.page.toolbar.selected_target.strip()
         #command = self.command_toolbar.command.strip()
+        option = ""
         if Ipv6.is_ipv6(target):
-        	target = "-6 " + target
+        	option = "-6 "
+        	#target = "-6 " + target
+        else:
+        	option = ""
         
         
         profile = self.page.toolbar.selected_profile.strip()
-        command = CommandProfile().get_command(profile) % target
+        command = CommandProfile().get_command(profile)  % ( option + target )
 
         log.debug(">>> Start Scan:")
         log.debug(">>> Target: '%s'" % target)

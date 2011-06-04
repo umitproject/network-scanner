@@ -410,16 +410,7 @@ class EntryField(object):
                 nmap_option = "-T Aggressive -v -n"
 
             print "QuickScan: running scan: %s on %s" % (nmap_option, host)
-            #
-            #
-            #
-            #
-            #ipv6 option
-            #check for ipv6 address and -6 to command option 
-            #
-            #
-            #
-            #
+            
             if Ipv6.is_ipv6(host):
             	namp_option = nmap_option + " -6"
             

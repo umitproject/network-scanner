@@ -47,7 +47,7 @@ class Nmap(object):
         #
         #
         #
-        print "I am here "
+        
         if Ipv6.is_ipv6(host):
             	command = command +" -6"
         self.host = host

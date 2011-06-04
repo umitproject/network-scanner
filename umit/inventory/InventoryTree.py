@@ -177,8 +177,8 @@ class InventoryTree(gtk.Notebook):
                     if addr[2]: # check for mac existence
                         append_now =  addr[2]
 
-                if len(append_now) > 21:
-                    append_now = append_now[:20] + '..'
+                #if len(append_now) > 21:
+                #    append_now = append_now[:20] + '..'
 
                 relations[append_now] = addr[0]
                 tr.append(root, [self.render_icon(
