@@ -420,7 +420,17 @@ class NewInventory(HIGWindow):
             s_cfg.set(invname, 'profile', schedule)
             s_cfg.set(invname, 'enabled', enabled)
             #here i have to put check for scan target field
-            s_cfg.set(invname, 'command', self.cmd_entry.get_text())
+            command_text = self.cmd_entry.get_text()
+            if command_text.find("nmap") == -1:
+            	dlg = HIGAlertDialog(self,
+            		message_format=_("Edit Inventory - Error while creating."),
+            		secondary_text=_("It seems you have not entered namp in "
+            			"command field. enter correct command with target."))
+            	dlg.run()
+            	dlg.destroy()
+            	return 0
+            	
+            s_cfg.set(invname, 'command', command_text)
 
         s_cfg.write(open(Path.sched_schemas, 'w'))
 
