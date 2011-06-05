@@ -32,6 +32,8 @@ from umit.gui.Wizard import Wizard
 from umit.inventory.HostDiscovery import HostDiscovery
 from umit.inventory.InventoryCommonDialog import NoScheduleDlg
 from umit.inventory.InventoryException import NoInventory
+from umit.inventory.AddressChecker import Address_Checker
+
 
 from higwidgets.higdialogs import HIGAlertDialog
 from higwidgets.higwindows import HIGWindow
@@ -336,6 +338,25 @@ class NewInventory(HIGWindow):
             dlg.run()
             dlg.destroy()
             return 0
+            
+       
+        if not self.edit_mode:
+        	if Address_Checker(target) == "IPV4" :
+        		option = ""
+        	elif Address_Checker(target) == "IPV6":
+        		option = "-6 "
+        	elif Address_Checker(target) == "MAC":
+        		option = ""
+        	else:
+        		option = ""
+        		dlg = HIGAlertDialog(self,
+        			message_format=_("New Inentory - Error While Creating."),
+        			secondary_text=_("You need to enter correct address either"
+        				"IPV4 or IPv6 or MAC address"))
+        		dlg.run()
+        		dlg.destroy()
+        		return 0
+
 
         if not len(command_adv) and not self.scandefault.get_active() \
             and not self.edit_mode:
@@ -350,14 +371,14 @@ class NewInventory(HIGWindow):
         # end error checking
 
         if self.scandefault.get_active() and not self.edit_mode:
-            command = "nmap -T Aggressive -sV -n -O -v " + target
+            command = "nmap -T Aggressive -sV -n -O -v " + option +target
         elif not self.edit_mode:
             target_cmd = "<target>"
             target_pos = command_adv.find(target_cmd)
             if target_pos != -1:
                 start = target_pos
                 end = target_pos + len(target_cmd)
-                command = command_adv[:start] + target + command_adv[end:]
+                command = command_adv[:start] + option +target + command_adv[end:]
             else:
                 dlg = HIGAlertDialog(self,
                     message_format=_("New Inventory - Error while creating."),
@@ -398,6 +419,7 @@ class NewInventory(HIGWindow):
             # Edit Mode
             s_cfg.set(invname, 'profile', schedule)
             s_cfg.set(invname, 'enabled', enabled)
+            #here i have to put check for scan target field
             s_cfg.set(invname, 'command', self.cmd_entry.get_text())
 
         s_cfg.write(open(Path.sched_schemas, 'w'))
