@@ -24,7 +24,7 @@ def _is_ipv4(addr):
 	I have to add for "/" in ipv4 address. This regex doesnot support for 
 	address like "127.0.0.1/22".
 	"""
-	rex = "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+	rex = "((25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)"
 	regex = re.compile(rex, re.IGNORECASE)
 	if re.match(regex,addr):
 		return True
