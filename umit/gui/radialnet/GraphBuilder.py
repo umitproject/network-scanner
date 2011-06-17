@@ -85,9 +85,10 @@ class GraphBuilder(Graph):
             if addr['addrtype'] == 'ipv4':
                 host_addresses = addr
                 
+
         else:
-            host_addresses = addr
-            print "in else case in grapbuilder"
+        	host_addresses = addr
+        	print "in else case in grapbuilder"
         if host_addresses.has_key('vendor') and host_addresses['vendor'] == '':
             host_addresses['vendor'] = None
 

@@ -447,15 +447,18 @@ class ZionProfileHoneyd(ZionProfile):
 		"""        
 		self.result.get_hosts_list().clear_hosts()
 		targets = []
+		addr_list = []
 		print "self.Target Value is -"
 		print(self.target)
 		if self.target.find('/') == -1:
+			print "It does not contain /"
 			if address.recognize(self.target) == address.Unknown:
 				if address.is_name(self.target):
 					l = probe.get_addr_from_name(self.target)
 					for i in l:
 						try:
 							targets.append(host.Host(i, self.target))
+							addr_list.append(i)
 							host_str = '%s\n%s' % (i, self.target)
 							self.result.get_hosts_list().add_host(host_str)
 						except:
@@ -464,15 +467,45 @@ class ZionProfileHoneyd(ZionProfile):
 					print "Error : Doesnot recoginise Target"
 			else:
 				targets.append(host.Host(self.target))
+				addr_list.append(self.target)
 				self.result.get_hosts_list().add_host(self.target)
 		else:
 			for ip in IPNetwork(self.target):
 				ip_str = '%s' % ip
 				targets.append(host.Host(ip_str))
+				addr_list.append(ip_str)
 				self.result.get_hosts_list().add_host(ip_str)
 
 		device = get_default_device()
-		saddr = get_ip_address(device)
+		#addr = iter(addr_list)
+		destaddr = addr_list[0]
+		print "Destination Address-"
+		print(destaddr)
+		if address.recognize(destaddr) == address.IPv4:
+			saddr = get_ip_address(device)
+		elif address.recognize(destaddr) == address.IPv6:
+			temp_addr = get_ipv6_address(device)
+			print(temp_addr)
+			if temp_addr.find('%') != -1:
+				saddr = temp_addr.split('%')[0]
+				print "Value of Temp addr in if case ",
+				print(temp_addr)
+				print "Value of Temp addr in if case ",
+				print(saddr)
+				#saddr = "2001:0:53aa:64c:2c70:cf79:c44e:bda4"
+			else:
+				saddr = temp_addr
+				print "Value of Temp addr else ",
+				print(temp_addr)
+				saddr = temp_addr
+		else:
+			print "Unknown address format"
+		
+			
+		print "Source address -",
+		print(saddr)
+		
+
 
 		opts = options.Options()
 		opts.add("-c",device)
@@ -507,6 +540,8 @@ class ZionProfileOS(ZionProfile):
 		# verify address to scan
 		print "self.Target Value is -"
 		print(self.target)
+		addr_list = []
+		
 		if self.target.find('/') == -1:
 			if address.recognize(self.target) == address.Unknown:
 				if address.is_name(self.target):
@@ -515,6 +550,7 @@ class ZionProfileOS(ZionProfile):
 						try:
 							z.append_target(host.Host(i, self.target))
 							host_str = '%s\n%s' % (i, self.target)
+							addr_list.append(i)
 							self.result.get_hosts_list().add_host(host_str)
 						except:
 							print "Unimplemented support to address: %s." % i
@@ -522,16 +558,46 @@ class ZionProfileOS(ZionProfile):
 					print "Error : Doesnot recoginise Target"
 			else:
 				z.append_target(host.Host(self.target))
+				addr_list.append(self.target)
 				self.result.get_hosts_list().add_host(self.target)
 		else:
 			for ip in IPNetwork(self.target):
 				ip_str = '%s' % ip
 				z.append_target(host.Host(ip_str))
+				addr_list.append(ip_str)
 				self.result.get_hosts_list().add_host(ip_str)
 		
 		# configure zion options
 		device = get_default_device()
-		saddr = get_ip_address(device)
+		#addr = iter(addr_list)
+		destaddr = addr_list[0]
+		print "Destination Address-"
+		print(destaddr)
+		if address.recognize(destaddr) == address.IPv4:
+			saddr = get_ip_address(device)
+		elif address.recognize(destaddr) == address.IPv6:
+			temp_addr = get_ipv6_address(device)
+			print(temp_addr)
+			if temp_addr.find('%') != -1:
+				saddr = temp_addr.split('%')[0]
+				print "Value of Temp addr in if case ",
+				print(temp_addr)
+				print "Value of Temp addr in if case ",
+				print(saddr)
+				saddr = "2001:0:53aa:64c:2c70:cf79:c44e:bda4"
+			else:
+				saddr = temp_addr
+				print "Value of Temp addr else ",
+				print(temp_addr)
+				saddr = temp_addr
+		else:
+			print "Unknown address format"
+		
+			
+		print "Source address -",
+		print(saddr)
+		#saddr = get_ip_address(device)
+		
 		z.get_option_object().add("-c",device)
 		z.get_option_object().add("-d")
 		z.get_option_object().add("--forge-addr",saddr)
@@ -622,30 +688,63 @@ class ZionProfileSYNProxy(ZionProfile):
 		"""        
 		self.result.get_hosts_list().clear_hosts()
 		targets = []
+		addr_list = []
+		print "self.Target Value is -"
+		print(self.target)
 		if self.target.find('/') == -1:
+			print "It does not contain /"
 			if address.recognize(self.target) == address.Unknown:
 				if address.is_name(self.target):
 					l = probe.get_addr_from_name(self.target)
 					for i in l:
 						try:
 							targets.append(host.Host(i, self.target))
+							addr_list.append(i)
 							host_str = '%s\n%s' % (i, self.target)
 							self.result.get_hosts_list().add_host(host_str)
 						except:
 							print "Unimplemented support to address: %s." % i
 				else:
-					print "Error: Unknown Address"
+					print "Error : Doesnot recoginise Target"
 			else:
 				targets.append(host.Host(self.target))
+				addr_list.append(self.target)
 				self.result.get_hosts_list().add_host(self.target)
 		else:
 			for ip in IPNetwork(self.target):
-					ip_str = '%s' % ip
-					targets.append(host.Host(ip_str))
-					self.result.get_hosts_list().add_host(ip_str)
-		    
+				ip_str = '%s' % ip
+				targets.append(host.Host(ip_str))
+				addr_list.append(ip_str)
+				self.result.get_hosts_list().add_host(ip_str)
+
 		device = get_default_device()
-		saddr = get_ip_address(device)
+		#addr = iter(addr_list)
+		destaddr = addr_list[0]
+		print "Destination Address-"
+		print(destaddr)
+		if address.recognize(destaddr) == address.IPv4:
+			saddr = get_ip_address(device)
+		elif address.recognize(destaddr) == address.IPv6:
+			temp_addr = get_ipv6_address(device)
+			print(temp_addr)
+			if temp_addr.find('%') != -1:
+				saddr = temp_addr.split('%')[0]
+				print "Value of Temp addr in if case ",
+				print(temp_addr)
+				print "Value of Temp addr in if case ",
+				print(saddr)
+				#saddr = "2001:0:53aa:64c:2c70:cf79:c44e:bda4"
+			else:
+				saddr = temp_addr
+				print "Value of Temp addr else ",
+				print(temp_addr)
+				saddr = temp_addr
+		else:
+			print "Unknown address format"
+		
+			
+		print "Source address -",
+		print(saddr)
 
 		opts = options.Options()
 		opts.add("-c",device)
@@ -782,3 +881,7 @@ def get_default_device():
 def get_ip_address(interface):
     """ Return the ip address of the specified interface """
     return netifaces.ifaddresses(interface)[netifaces.AF_INET][0]['addr']
+    
+def get_ipv6_address(interface):
+    """ Return the ip address of the specified interface """
+    return netifaces.ifaddresses(interface)[netifaces.AF_INET6][0]['addr']
