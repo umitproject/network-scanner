@@ -492,7 +492,7 @@ class ZionProfileHoneyd(ZionProfile):
 				print(temp_addr)
 				print "Value of Temp addr in if case ",
 				print(saddr)
-				#saddr = "2001:0:53aa:64c:2c70:cf79:c44e:bda4"
+				
 			else:
 				saddr = temp_addr
 				print "Value of Temp addr else ",
@@ -502,6 +502,7 @@ class ZionProfileHoneyd(ZionProfile):
 			print "Unknown address format"
 		
 			
+		#saddr = "2001:0:53aa:64c:2496:d8dd:c44e:b5fd"
 		print "Source address -",
 		print(saddr)
 		
@@ -584,7 +585,7 @@ class ZionProfileOS(ZionProfile):
 				print(temp_addr)
 				print "Value of Temp addr in if case ",
 				print(saddr)
-				saddr = "2001:0:53aa:64c:2c70:cf79:c44e:bda4"
+				#saddr = "2001:0:53aa:64c:389d:9c27:87c7:55a8"
 			else:
 				saddr = temp_addr
 				print "Value of Temp addr else ",
@@ -593,7 +594,7 @@ class ZionProfileOS(ZionProfile):
 		else:
 			print "Unknown address format"
 		
-			
+		##saddr = "2001:0:53aa:64c:38d3:b950:c44e:b128"	
 		print "Source address -",
 		print(saddr)
 		#saddr = get_ip_address(device)
@@ -874,7 +875,7 @@ def get_default_device():
     """
 
     # TODO: read device from options
-    device = "eth0"
+    device = "lo"
     #device = netifaces.interfaces()[0]
     return device
 
