@@ -1098,14 +1098,17 @@ class NmapScanNotebookPage(HIGVBox):
                 icon = None
                 try:icon = get_os_icon(host.osmatch[-1].get("name"))
                 except:icon = get_os_icon('')
-                    
+                 
                 self.scan_result.scan_host_view.add_host(
-                    {hostname: {'stock': icon, 'action':None}})
-                
+                    {hostname: {'stock': icon, 'action':None}} , host._get_status_state())
+
+            
             # Select the first host found
+
             self.host_view_selection.select_iter(
                 self.scan_result.scan_host_view.host_list.get_iter_root())
 
+                
         self.scan_result.scan_host_view.set_services(self.services.keys())
 
         saved_output = self.parsed.get_nmap_output()
@@ -1467,9 +1470,11 @@ class NmapScanNotebookPage(HIGVBox):
         host_page.clear_host_list()
 
         for h in service:
+            print "i am host 1"
             host_page.add_host(
                     (self.findout_service_icon(h), ) +
                     get_service_info(h))
+            print "i am host 1"
 
     def set_multiple_host_port(self, host_list):
         host_page = self.scan_result.scan_result_notebook.open_ports.host

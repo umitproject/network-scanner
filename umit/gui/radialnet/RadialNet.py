@@ -609,7 +609,7 @@ class RadialNet(gtk.DrawingArea):
         @param event: Gtk event of widget
         @rtype: boolean
         @return: Indicator of the event propagation
-        """
+        """ 
         result = self.__get_node_by_coordinate(self.get_pointer())
 
         if event.button == 1: self.__button1_press = True
@@ -1235,6 +1235,8 @@ class RadialNet(gtk.DrawingArea):
 
             else:
                 ring = node.get_draw_info('ring')
+                #print "The value of ring in _update_nodes_positions"
+                #print ring
                 node.set_coordinate_radius(self.__calc_radius(ring))
 
 
@@ -1367,9 +1369,7 @@ class RadialNet(gtk.DrawingArea):
         
 
         
-        ring_radius = self.__graph.get_main_node().minimal_radius(self.__graph, self.__graph.get_main_node())
 
-        self.set_ring_gap(ring_radius)
 
 
         self.__graph.get_main_node().calc_needed_space()
@@ -1457,6 +1457,10 @@ class RadialNet(gtk.DrawingArea):
     def __calc_layout(self, reference):
         """
         """
+        
+        ring_radius = self.__graph.get_main_node().minimal_radius(self.__graph, self.__graph.get_main_node())
+
+        self.set_ring_gap(ring_radius)        
         # selecting layout algorithm
         if self.__layout == LAYOUT_SYMMETRIC:
             self.__symmetric_layout()
@@ -1487,7 +1491,9 @@ class RadialNet(gtk.DrawingArea):
         # set nodes' hierarchy
         self.__arrange_nodes()
         self.calc_sorted_nodes()
+        ring_radius = self.__graph.get_main_node().minimal_radius(self.__graph, self.__graph.get_main_node())
 
+        self.set_ring_gap(ring_radius)
         # set nodes' coordinate radius
         for node in self.__graph.get_nodes():
 
