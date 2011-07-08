@@ -505,9 +505,13 @@ class RadialNet(gtk.DrawingArea):
     def set_ring_gap(self, ring_gap):
         """
         """
-        if ring_gap >= self.__min_ring_gap:
+        if ring_gap >= self.__min_ring_gap and ring_gap  < 400.00:
 
             self.__ring_gap = ring_gap
+            self.__update_nodes_positions()
+            self.queue_draw()
+        else:
+            self.__ring_gap = ring_gap/2
             self.__update_nodes_positions()
             self.queue_draw()
 
@@ -543,6 +547,7 @@ class RadialNet(gtk.DrawingArea):
         elif key == 'Page_Down':
             self.set_scale(self.__scale - 0.01)
 
+        
         self.queue_draw()
 
         return True
@@ -572,6 +577,7 @@ class RadialNet(gtk.DrawingArea):
         elif key == 'l':
             self.__show_latency = not self.__show_latency
 
+        self.__update_nodes_positions()
         self.queue_draw()
 
         return True
@@ -594,6 +600,7 @@ class RadialNet(gtk.DrawingArea):
         for node in self.__graph.get_nodes():
             node.set_draw_info({'over':False})
 
+        
         self.queue_draw()
 
         return False
@@ -681,6 +688,7 @@ class RadialNet(gtk.DrawingArea):
                 else:
                     node.set_draw_info({'region': self.__region_color})
 
+                self.__update_nodes_positions()
                 self.queue_draw()
 
         # show node details
@@ -767,6 +775,7 @@ class RadialNet(gtk.DrawingArea):
         self.__last_motion_point = pointer
 
         self.grab_focus()
+        self.__update_nodes_positions()
         self.queue_draw()
         
         return False
@@ -1230,14 +1239,24 @@ class RadialNet(gtk.DrawingArea):
                 while group.get_draw_info('group_node') is not None:
                     group = group.get_draw_info('group_node')
 
-                ring = group.get_draw_info('ring')
-                node.set_coordinate_radius(self.__calc_radius(ring))
+                #ring = group.get_draw_info('ring')
+                #node.set_coordinate_radius(self.__calc_radius(ring))
+                radius = self.__calc_radius(group.get_draw_info('ring'))
+                flip = group.get_draw_info('flip')
 
             else:
-                ring = node.get_draw_info('ring')
+                #ring = node.get_draw_info('ring')
                 #print "The value of ring in _update_nodes_positions"
                 #print ring
-                node.set_coordinate_radius(self.__calc_radius(ring))
+                #node.set_coordinate_radius(self.__calc_radius(ring))
+                radius = self.__calc_radius(node.get_draw_info('ring'))
+                flip = node.get_draw_info('flip')
+                
+            if flip:
+                radius += flip
+                
+            node.set_coordinate_radius(radius)
+            
 
 
     @graph_is_not_empty
@@ -1394,11 +1413,22 @@ class RadialNet(gtk.DrawingArea):
 
                     node_total = max - min
                     children_need = node.get_draw_info('children_need')
+                    
+                    flip = 1
 
                     for child in children:
 
                         child_need = child.get_draw_info('space_need')
                         child_total = node_total * child_need / children_need
+                        
+                        if node_total < children_need:
+                            r = child.get_draw_info('radius')
+                            child.set_draw_info({'flip':(r * flip)})
+                            flip *= -1
+                            
+                        else:
+                            child.set_draw_info({'flip':0})
+                            
 
                         theta = child_total / 2 + min + self.__rotate
 
@@ -1497,8 +1527,15 @@ class RadialNet(gtk.DrawingArea):
         # set nodes' coordinate radius
         for node in self.__graph.get_nodes():
 
-            ring = node.get_draw_info('ring')
-            node.set_coordinate_radius(self.__calc_radius(ring))
+            #ring = node.get_draw_info('ring')
+            #node.set_coordinate_radius(self.__calc_radius(ring))
+            radius = self.__calc_radius(node.get_draw_info('ring'))
+            flip = node.get_draw_info('flip')
+            
+            if flip:
+                radius += flip
+                
+            node.set_coordinate_radius(radius)
 
         # set nodes' coordinate theta
         self.__calc_layout(reference)
@@ -1952,7 +1989,7 @@ class RadialNet(gtk.DrawingArea):
     def angle_from_object(distance, size):
         """
         """
-        return math.degrees(math.atan2(size / 2.0, distance))
+        return math.degrees(math.atan2(size , distance))
         
     # End of Geometry
     
