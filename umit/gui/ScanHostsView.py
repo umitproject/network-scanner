@@ -21,7 +21,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 import gtk
-
+from time import sleep
 from higwidgets.higboxes import HIGVBox
 from umit.core.I18N import _
 
@@ -60,7 +60,7 @@ class ScanHostsView(HIGVBox, object):
         self.main_vbox = HIGVBox()
 
         # Host list
-        self.host_list = gtk.ListStore(str,str)
+        self.host_list = gtk.ListStore(str,str,str,str)
         self.host_view = gtk.TreeView(self.host_list)
         self.pic_column = gtk.TreeViewColumn(_('OS'))
         self.host_column = gtk.TreeViewColumn(_('Host'))
@@ -133,9 +133,11 @@ class ScanHostsView(HIGVBox, object):
         self.service_column.pack_start(self.service_cell, True)
         self.service_column.set_attributes(self.service_cell, text=0)
         
+        
         self.set_services(services)
 
     def _set_host_list(self, hosts):
+
         self.host_view.set_enable_search(True)
         self.host_view.set_search_column(1)
         
@@ -157,11 +159,12 @@ class ScanHostsView(HIGVBox, object):
         self.pic_column.pack_start(self.os_cell, True)
         self.host_column.pack_start(self.host_cell, True)
         
-        self.pic_column.set_attributes(self.os_cell, stock_id=0)
+        self.pic_column.set_attributes(self.os_cell, stock_id=0 ,cell_background=3)
         self.pic_column.set_min_width(35)
-        self.host_column.set_attributes(self.host_cell, text=1)
+        self.host_column.set_attributes(self.host_cell, text=1 , foreground=2, background=3)
         
         self.set_hosts(hosts)
+
     
     def clear_host_list(self):
         for i in range(len(self.host_list)):
@@ -178,7 +181,8 @@ class ScanHostsView(HIGVBox, object):
         self.clear_host_list()
 
         for host in hosts:
-            self.host_list.append ([hosts[host]['stock'], host])
+            self.host_list.append ([hosts[host]['stock'], host , '#FF0000' , '#C9C9C9'])
+
 
     def set_services(self, services):
         self.services = services
@@ -187,9 +191,13 @@ class ScanHostsView(HIGVBox, object):
         for service in services:
             self.service_list.append([service])
     
-    def add_host(self, host):
+    def add_host(self, host , status):
         for h in host:
-            self.host_list.append([host[h]['stock'], h])
+            if status == "up":
+                self.host_list.append([host[h]['stock'], h , '#000000' , '#00FF00'])
+            else:
+                self.host_list.append([host[h]['stock'], h , '#000000' , '#FF0000'])
+
 
     def add_service(self, service):
         if isinstance(service, list):

@@ -36,6 +36,13 @@ if not hasattr(sys, 'frozen'):
     if os.path.exists(os.path.join(_source_path, 'setup.py')):
         # Assuming umit is being executed from a svn checkout.
         sys.path.insert(0, _source_path)
+        execfile(os.path.join('deps', 'umit-common', 'utils', 'importer.py'))
+        sys.path.insert(0, os.path.join('deps', 'clann'))
+        sys.path.insert(0, os.path.join('deps', 'zion'))
+        sys.path.insert(0, os.path.join('deps', 'libkeybinder'))
+        sys.path.insert(0, os.path.join('deps', 'umpa'))
+        sys.path.insert(0, os.path.join("."))
+        
 
 
 
