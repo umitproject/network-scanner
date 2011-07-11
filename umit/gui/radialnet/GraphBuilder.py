@@ -89,6 +89,9 @@ class GraphBuilder(Graph):
             if addr['addrtype'] == 'ipv4':
                 host_addresses = addr
                 break
+            elif addr['addrtype'] == 'ipv6':
+                host_addresses = addr
+                break
         else:
             host_addresses = {}
         if host_addresses.has_key('vendor') and host_addresses['vendor'] == '':
