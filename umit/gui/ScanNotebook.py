@@ -441,6 +441,11 @@ class ScanNotebookPageBT(HIGVBox):
     def on_save(self):
         btcore.btcore().save_scan(self)
 
+    def close_tab(self):
+        try:
+            gobject.source_remove(self.verify_thread_timeout_id)
+        except:
+            pass
 
 
 class ScanNotebookPage(HIGVBox):

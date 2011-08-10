@@ -3,6 +3,7 @@
 # Copyright (C) 2009 Adriano Monteiro Marques.
 #
 # Author: Daniel Mendes Cassiano <dcassiano@umitproject.org>
+# 
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,12 +42,7 @@ class Nmap(object):
         #
         #
         #check for ipv6 address and -6 to command option 
-        #
-        #
-        #
-        #
-        #
-        #
+
         
         if Ipv6.is_ipv6(host):
             	command = command +" -6"

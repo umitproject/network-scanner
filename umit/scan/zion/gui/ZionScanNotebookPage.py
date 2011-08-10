@@ -479,8 +479,6 @@ class ZionProfileHoneyd(ZionProfile):
 		device = get_default_device()
 		#addr = iter(addr_list)
 		destaddr = addr_list[0]
-		print "Destination Address-"
-		print(destaddr)
 		if address.recognize(destaddr) == address.IPv4:
 			saddr = get_ip_address(device)
 		elif address.recognize(destaddr) == address.IPv6:
@@ -488,15 +486,8 @@ class ZionProfileHoneyd(ZionProfile):
 			print(temp_addr)
 			if temp_addr.find('%') != -1:
 				saddr = temp_addr.split('%')[0]
-				print "Value of Temp addr in if case ",
-				print(temp_addr)
-				print "Value of Temp addr in if case ",
-				print(saddr)
 				
 			else:
-				saddr = temp_addr
-				print "Value of Temp addr else ",
-				print(temp_addr)
 				saddr = temp_addr
 		else:
 			print "Unknown address format"
@@ -539,8 +530,6 @@ class ZionProfileOS(ZionProfile):
 		self.result.get_hosts_list().clear_hosts()
 
 		# verify address to scan
-		print "self.Target Value is -"
-		print(self.target)
 		addr_list = []
 		
 		if self.target.find('/') == -1:
@@ -572,8 +561,6 @@ class ZionProfileOS(ZionProfile):
 		device = get_default_device()
 		#addr = iter(addr_list)
 		destaddr = addr_list[0]
-		print "Destination Address-"
-		print(destaddr)
 		if address.recognize(destaddr) == address.IPv4:
 			saddr = get_ip_address(device)
 		elif address.recognize(destaddr) == address.IPv6:
@@ -581,22 +568,13 @@ class ZionProfileOS(ZionProfile):
 			print(temp_addr)
 			if temp_addr.find('%') != -1:
 				saddr = temp_addr.split('%')[0]
-				print "Value of Temp addr in if case ",
-				print(temp_addr)
-				print "Value of Temp addr in if case ",
-				print(saddr)
 				#saddr = "2001:0:53aa:64c:389d:9c27:87c7:55a8"
 			else:
-				saddr = temp_addr
-				print "Value of Temp addr else ",
-				print(temp_addr)
 				saddr = temp_addr
 		else:
 			print "Unknown address format"
 		
-		##saddr = "2001:0:53aa:64c:38d3:b950:c44e:b128"	
-		print "Source address -",
-		print(saddr)
+		##saddr = "2001:0:53aa:64c:38d3:b950:c44e:b128"
 		#saddr = get_ip_address(device)
 		
 		z.get_option_object().add("-c",device)
@@ -690,8 +668,6 @@ class ZionProfileSYNProxy(ZionProfile):
 		self.result.get_hosts_list().clear_hosts()
 		targets = []
 		addr_list = []
-		print "self.Target Value is -"
-		print(self.target)
 		if self.target.find('/') == -1:
 			print "It does not contain /"
 			if address.recognize(self.target) == address.Unknown:
@@ -727,18 +703,10 @@ class ZionProfileSYNProxy(ZionProfile):
 			saddr = get_ip_address(device)
 		elif address.recognize(destaddr) == address.IPv6:
 			temp_addr = get_ipv6_address(device)
-			print(temp_addr)
 			if temp_addr.find('%') != -1:
 				saddr = temp_addr.split('%')[0]
-				print "Value of Temp addr in if case ",
-				print(temp_addr)
-				print "Value of Temp addr in if case ",
-				print(saddr)
 				#saddr = "2001:0:53aa:64c:2c70:cf79:c44e:bda4"
 			else:
-				saddr = temp_addr
-				print "Value of Temp addr else ",
-				print(temp_addr)
 				saddr = temp_addr
 		else:
 			print "Unknown address format"
