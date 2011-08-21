@@ -3,6 +3,7 @@
 # Copyright (C) 2009 Adriano Monteiro Marques.
 #
 # Author: Daniel Mendes Cassiano <dcassiano@umitproject.org>
+# 
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,6 +26,7 @@ from datetime import datetime
 
 from umit.core.NmapCommand import NmapCommand
 from umit.core.Paths import Path
+from umit.core import Ipv6
 
 class Nmap(object):
     """
@@ -36,6 +38,14 @@ class Nmap(object):
         Path.set_running_path(os.path.abspath(os.path.dirname(sys.argv[0])))
         self.nmap_path = nmap_path
         self.command = command
+        #add option for ipv6 address by checking the host
+        #
+        #
+        #check for ipv6 address and -6 to command option 
+
+        
+        if Ipv6.is_ipv6(host):
+            	command = command +" -6"
         self.host = host
         #threading.Thread.__init__(self)
         

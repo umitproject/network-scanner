@@ -1,6 +1,8 @@
-# Copyright (C) 2010 Adriano Monteiro Marques.
+# vim: set encoding=utf-8 :
+
+# Copyright (C) 2009 Adriano Monteiro Marques.
 #
-# Author: Diogo Ricardo Marques Pinheiro <diogormpinheiro@gmail.com>
+# Author: Joao Paulo de Souza Medeiros <ignotus@umitproject.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,14 +17,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
-
-
-
-from umit.core.UmitConf import NSEManagerConfig
-
-## Particular Singleton
-nse_conf = NSEManagerConfig()
-
-
 

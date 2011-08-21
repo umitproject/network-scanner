@@ -44,6 +44,12 @@ if not hasattr(sys, 'frozen'):
         # We want quickscan_launcher to be an importable module.
         sys.path.append(_bin_path)
 
+
+execfile(os.path.join("deps", "umit-common", "utils", "importer.py"))
+
+sys.path.insert(0, os.path.join("deps", "libkeybinder"))
+
+
 from umit.core.BGProcess import WindowsService
 from umit.core.BasePaths import HOME
 from umit.core.I18N import _

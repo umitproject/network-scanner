@@ -40,8 +40,7 @@ if(platform.system()=="Darwin"):
       import lightblue
    except ImportError:
       print >> sys.stderr, "Error loading LightBlue dependency.Exiting UmitBT..."
-      missing_bt_library("lightblue") 
-      #raise
+      raise
 else:
    try:
       import bluetooth
@@ -51,7 +50,7 @@ else:
       raise
 
 #from umitCore.I18N import _
-
+from higwidgets.higdialogs import HIGDialog, HIGAlertDialog
 
 import umit.scan.bt.gui.io
 import umit.scan.bt.core.path

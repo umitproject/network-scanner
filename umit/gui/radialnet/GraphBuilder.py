@@ -74,6 +74,10 @@ class GraphBuilder(Graph):
     
         # getting vulnerability score
         self.__calc_vulnerability_level(node, host)
+        #print "In graph builder set  node info "
+        #print "node value-",
+        #print node
+        #print host
     
         radius = BASE_RADIUS + node.get_info('number_of_scanned_ports') / 2
         node.set_draw_info({'color':COLORS[\
@@ -83,6 +87,9 @@ class GraphBuilder(Graph):
         # getting address and hostnames
         for addr in host.address:
             if addr['addrtype'] == 'ipv4':
+                host_addresses = addr
+                break
+            elif addr['addrtype'] == 'ipv6':
                 host_addresses = addr
                 break
         else:

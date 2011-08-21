@@ -76,6 +76,7 @@ class RadialNet(gtk.DrawingArea):
         """
         self.__center_of_widget = (0, 0)
         self.__graph = None
+        self.__radius_gap_set = 0
 
         self.__number_of_rings = 0
         self.__ring_gap = mapper_conf.ring
@@ -505,11 +506,31 @@ class RadialNet(gtk.DrawingArea):
     def set_ring_gap(self, ring_gap):
         """
         """
-        if ring_gap >= self.__min_ring_gap:
+        if  self.__radius_gap_set == 0:
+            if ring_gap >= self.__min_ring_gap and ring_gap < 500.0 :
 
+                #print "i am herre"
+                #print ring_gap
+                self.__ring_gap = ring_gap
+                self.__update_nodes_positions()
+                self.queue_draw()
+            else :
+                self.__ring_gap = ring_gap/2.0
+                #self.__ring_gap = ring_gap
+                self.__update_nodes_positions()
+                self.queue_draw()
+        else:
             self.__ring_gap = ring_gap
             self.__update_nodes_positions()
             self.queue_draw()
+            
+        #print self.__ring_gap
+        #print ring_gap
+        if self.__ring_gap == ring_gap/2 and self.__ring_gap > 0 and ring_gap > 0:
+            self.__radius_gap_set = 1
+            
+        #print "gap sewt value",
+        #print self.__radius_gap_set
 
 
     def scroll_event(self, widget, event):
@@ -609,7 +630,7 @@ class RadialNet(gtk.DrawingArea):
         @param event: Gtk event of widget
         @rtype: boolean
         @return: Indicator of the event propagation
-        """
+        """ 
         result = self.__get_node_by_coordinate(self.get_pointer())
 
         if event.button == 1: self.__button1_press = True
@@ -681,6 +702,7 @@ class RadialNet(gtk.DrawingArea):
                 else:
                     node.set_draw_info({'region': self.__region_color})
 
+                
                 self.queue_draw()
 
         # show node details
@@ -767,6 +789,7 @@ class RadialNet(gtk.DrawingArea):
         self.__last_motion_point = pointer
 
         self.grab_focus()
+        #self.__update_nodes_positions()
         self.queue_draw()
         
         return False
@@ -1230,12 +1253,21 @@ class RadialNet(gtk.DrawingArea):
                 while group.get_draw_info('group_node') is not None:
                     group = group.get_draw_info('group_node')
 
-                ring = group.get_draw_info('ring')
-                node.set_coordinate_radius(self.__calc_radius(ring))
+                #ring = group.get_draw_info('ring')
+                #node.set_coordinate_radius(self.__calc_radius(ring))
+                radius = self.__calc_radius(group.get_draw_info('ring'))
+                flip = group.get_draw_info('flip')
 
             else:
-                ring = node.get_draw_info('ring')
-                node.set_coordinate_radius(self.__calc_radius(ring))
+                #ring = node.get_draw_info('ring')
+                #node.set_coordinate_radius(self.__calc_radius(ring))
+                radius = self.__calc_radius(node.get_draw_info('ring'))
+                flip = node.get_draw_info('flip')
+                
+            if flip:
+                radius += flip
+                
+            node.set_coordinate_radius(radius)
 
 
     @graph_is_not_empty
@@ -1364,6 +1396,11 @@ class RadialNet(gtk.DrawingArea):
         # calculating the space needed by each node
         self.__graph.get_main_node().set_draw_info({'range':(0, 360)})
         new_nodes = [self.__graph.get_main_node()]
+        
+
+        
+
+
 
         self.__graph.get_main_node().calc_needed_space()
 
@@ -1384,6 +1421,8 @@ class RadialNet(gtk.DrawingArea):
                 if len(children) > 0:
 
                     min, max = node.get_draw_info('range')
+                    
+                    flip = 1                    
 
                     node_total = max - min
                     children_need = node.get_draw_info('children_need')
@@ -1392,6 +1431,16 @@ class RadialNet(gtk.DrawingArea):
 
                         child_need = child.get_draw_info('space_need')
                         child_total = node_total * child_need / children_need
+                        
+                        if node_total < children_need:
+                            r = child.get_draw_info('radius')
+                            child.set_draw_info({'flip':(r * flip)})
+                            
+                            flip *= -1
+                            
+                        else:
+                            child.set_draw_info({'flip':0})
+
 
                         theta = child_total / 2 + min + self.__rotate
 
@@ -1450,6 +1499,10 @@ class RadialNet(gtk.DrawingArea):
     def __calc_layout(self, reference):
         """
         """
+        
+        ring_radius = self.__graph.get_main_node().minimal_radius(self.__graph, self.__graph.get_main_node())
+
+        self.set_ring_gap(ring_radius)        
         # selecting layout algorithm
         if self.__layout == LAYOUT_SYMMETRIC:
             self.__symmetric_layout()
@@ -1480,12 +1533,21 @@ class RadialNet(gtk.DrawingArea):
         # set nodes' hierarchy
         self.__arrange_nodes()
         self.calc_sorted_nodes()
+        #ring_radius = self.__graph.get_main_node().minimal_radius(self.__graph, self.__graph.get_main_node())
 
+        #self.set_ring_gap(ring_radius)
         # set nodes' coordinate radius
         for node in self.__graph.get_nodes():
 
-            ring = node.get_draw_info('ring')
-            node.set_coordinate_radius(self.__calc_radius(ring))
+            #ring = node.get_draw_info('ring')
+            #node.set_coordinate_radius(self.__calc_radius(ring))
+            radius = self.__calc_radius(node.get_draw_info('ring'))
+            flip = node.get_draw_info('flip')
+            
+            if flip:
+                radius += flip
+                
+            node.set_coordinate_radius(radius)
 
         # set nodes' coordinate theta
         self.__calc_layout(reference)
@@ -1632,6 +1694,7 @@ class RadialNet(gtk.DrawingArea):
             elif self.__interpolation == INTERPOLATION_CARTESIAN:
                 node.set_cartesian_coordinate(a, b)
 
+        #self.__update_nodes_positions()
         self.queue_draw()
 
         # animation continue condition
@@ -1656,6 +1719,10 @@ class RadialNet(gtk.DrawingArea):
         if graph.get_number_of_nodes() > 0:
 
             self.__graph = graph
+            
+            #ring_radius = self.__graph.get_main_node().minimal_radius(self.__graph, self.__graph.get_main_node())
+            #print "ring radius is "
+            #self.set_ring_gap(ring_radius)
 
             self.__calc_node_positions()
             self.queue_draw()
@@ -1935,7 +2002,7 @@ class RadialNet(gtk.DrawingArea):
     def angle_from_object(distance, size):
         """
         """
-        return math.degrees(math.atan2(size / 2.0, distance))
+        return math.degrees(math.atan2(size, distance))
         
     # End of Geometry
     
@@ -2108,4 +2175,49 @@ class NetNode(Node):
 
         self.set_draw_info({'children_need':sum_angle})
         self.set_draw_info({'space_need':max(sum_angle, own_angle)})
+
+    def node_space(self,node,ring_level,radius):
+        """
+        """
+        node_radius = node.get_draw_info('radius')
+
+        thethan = 2*math.asin((node_radius)/(ring_level*radius))
+
+        thethal = 0
+        
+        for child in node.get_draw_info('children'):
+            thethal = thethal + self.node_space(child,ring_level+1, radius)
+        
+
+        if thethan > thethal:
+            return thethan
+        return thethal
+    
+    def minimal_radius(self, graph, node):
+        """
+        """
+        radiusS = 0
+        for edge in graph.get_edges():
+            v,w = edge.get_nodes()
+            v_radius = v.get_draw_info('radius')
+            w_radius = w.get_draw_info('radius')
+            if radiusS < (v_radius+w_radius):
+                radiusS = v_radius + w_radius
+        
+        thethas = 0
+        new_nodes = [node]
+        
+        #for vertex in new_nodes:
+        #    print vertex
+            
+        if len(node.get_draw_info('children')) > 0 :
+            for child in node.get_draw_info('children'):
+                thethas = thethas + self.node_space(child, 1, radiusS )
+        
+
+        if thethas > (2*math.pi):
+            return (thethas*radiusS)/(2*math.pi)
+        
+        return radiusS
+        
 

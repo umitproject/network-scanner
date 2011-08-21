@@ -28,6 +28,7 @@ from higwidgets.higscrollers import HIGScrolledWindow
 from umit.core.UmitConf import CommandProfile, ProfileNotFound
 from umit.core.Utils import is_maemo
 from umit.core.NmapParser import NmapParser
+from umit.core import Ipv6
 
 from umit.core.NmapCommand import NmapCommand
 
@@ -340,9 +341,19 @@ class ScanPage(HIGVBox):
         try:
             no_profile = False
             target = self.toolbar.selected_target.strip()
-
+            if Ipv6.is_ipv6(target):
+            	ipv6_option = True
+            else:
+            	ipv6_option = False
+			
             profile = self.toolbar.selected_profile
-            command = CommandProfile().get_command(profile) % target
+            if ipv6_option:
+            	command = CommandProfile().get_command(profile) + " -6 " % target
+            else:
+            	command = CommandProfile().get_command(profile) % target
+            
+	
+            #command = CommandProfile().get_command(profile) % target
 
         except (ProfileNotFound, TypeError):
             no_profile = True
@@ -380,6 +391,12 @@ class ScanPage(HIGVBox):
         
         if profile:
             target = self.toolbar.selected_target
+            if Ipv6.is_ipv6(target):
+            	ipv6_option = True
+            else:
+            	ipv6_option = False
+       
+			
             if not target:
                 self.toolbar.scan_button.set_sensitive(False)
             else:
@@ -387,7 +404,13 @@ class ScanPage(HIGVBox):
 
             try:
                 cmd_profile = CommandProfile()
-                command = cmd_profile.get_command(profile) % target
+                if ipv6_option:
+                	command = cmd_profile.get_command(profile) + " -6 " % target
+                else:
+                	command = cmd_profile.get_command(profile) % target
+                
+
+                #command = cmd_profile.get_command(profile) % target
                 del(cmd_profile)
                 
                 self.command_toolbar.command = command
@@ -401,13 +424,25 @@ class ScanPage(HIGVBox):
         #log.debug(">>> Refresh Command")
         profile = self.toolbar.selected_profile
         target = self.toolbar.selected_target.strip()
+        if Ipv6.is_ipv6(target):
+        	ipv6_option = True
+        else:
+        	ipv6_option = False
+		
 
         #log.debug(">>> Profile: %s" % profile)
         #log.debug(">>> Target: %s" % target)
         
         try:
             cmd_profile = CommandProfile()
-            command = cmd_profile.get_command(profile) % target
+            if ipv6_option:
+            	command = cmd_profile.get_command(profile) + " -6 " % target
+            else:
+            	command = cmd_profile.get_command(profile) % target
+            	
+
+					
+            #command = cmd_profile.get_command(profile) % target
             del(cmd_profile)
             
             # scan button must be enable if -iR or -iL options are passed

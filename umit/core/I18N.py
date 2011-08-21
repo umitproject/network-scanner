@@ -38,9 +38,13 @@ except locale.Error, error_msg:
     print "Your locale setting is not supported. Umit will continue using \
 using your system's preferred language."
     LC_ALL = locale.setlocale(locale.LC_ALL, None)
+try:
+    LANG, ENC = locale.getdefaultlocale()
+    ERRORS = "ignore"
 
-LANG, ENC = locale.getdefaultlocale()
-ERRORS = "ignore"
+except ValueError:
+    LANG=None
+    ENC=None
 
 # If not correct locale could be retrieved, set en_US.utf8 as default
 if ENC is None:

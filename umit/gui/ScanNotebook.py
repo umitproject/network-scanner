@@ -44,6 +44,7 @@ from umit.gui.ScanMapperPage import ScanMapperPage
 from umit.gui.Icons import get_os_icon, get_os_logo, get_vulnerability_logo
 
 from umit.core.NmapCommand import NmapCommand
+from umit.core import Ipv6
 from umit.core.UmitConf import CommandProfile, ProfileNotFound, Profile
 from umit.core.NmapParser import NmapParser
 from umit.scan.bt.core.ubt_parser import XMLDocument
@@ -440,6 +441,11 @@ class ScanNotebookPageBT(HIGVBox):
     def on_save(self):
         btcore.btcore().save_scan(self)
 
+    def close_tab(self):
+        try:
+            gobject.source_remove(self.verify_thread_timeout_id)
+        except:
+            pass
 
 
 class ScanNotebookPage(HIGVBox):
@@ -789,8 +795,17 @@ class NmapScanNotebookPage(HIGVBox):
         # There are a lot of (target|command|profile) emptiness check. To don't
         # be fooled by whitespaces is better strip them.
         target = self.page.toolbar.selected_target.strip()
-        command = self.command_toolbar.command.strip()
+        #command = self.command_toolbar.command.strip()
+        option = ""
+        if Ipv6.is_ipv6(target):
+        	option = "-6 "
+        	#target = "-6 " + target
+        else:
+        	option = ""
+        
+        
         profile = self.page.toolbar.selected_profile.strip()
+        command = CommandProfile().get_command(profile)  % ( option + target )
 
         log.debug(">>> Start Scan:")
         log.debug(">>> Target: '%s'" % target)
@@ -1088,14 +1103,17 @@ class NmapScanNotebookPage(HIGVBox):
                 icon = None
                 try:icon = get_os_icon(host.osmatch[-1].get("name"))
                 except:icon = get_os_icon('')
-                    
+                 
                 self.scan_result.scan_host_view.add_host(
-                    {hostname: {'stock': icon, 'action':None}})
-                
+                    {hostname: {'stock': icon, 'action':None}} , host._get_status_state())
+
+            
             # Select the first host found
+
             self.host_view_selection.select_iter(
                 self.scan_result.scan_host_view.host_list.get_iter_root())
 
+                
         self.scan_result.scan_host_view.set_services(self.services.keys())
 
         saved_output = self.parsed.get_nmap_output()
@@ -1457,9 +1475,11 @@ class NmapScanNotebookPage(HIGVBox):
         host_page.clear_host_list()
 
         for h in service:
+            print "i am host 1"
             host_page.add_host(
                     (self.findout_service_icon(h), ) +
                     get_service_info(h))
+            print "i am host 1"
 
     def set_multiple_host_port(self, host_list):
         host_page = self.scan_result.scan_result_notebook.open_ports.host
