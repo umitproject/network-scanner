@@ -76,6 +76,7 @@ class RadialNet(gtk.DrawingArea):
         """
         self.__center_of_widget = (0, 0)
         self.__graph = None
+        self.__radius_gap_set = 0
 
         self.__number_of_rings = 0
         self.__ring_gap = mapper_conf.ring
@@ -505,15 +506,31 @@ class RadialNet(gtk.DrawingArea):
     def set_ring_gap(self, ring_gap):
         """
         """
-        if ring_gap >= self.__min_ring_gap and ring_gap  < 400.00:
+        if  self.__radius_gap_set == 0:
+            if ring_gap >= self.__min_ring_gap and ring_gap < 500.0 :
 
+                #print "i am herre"
+                #print ring_gap
+                self.__ring_gap = ring_gap
+                self.__update_nodes_positions()
+                self.queue_draw()
+            else :
+                self.__ring_gap = ring_gap/2.0
+                #self.__ring_gap = ring_gap
+                self.__update_nodes_positions()
+                self.queue_draw()
+        else:
             self.__ring_gap = ring_gap
             self.__update_nodes_positions()
             self.queue_draw()
-        else:
-            self.__ring_gap = ring_gap/2
-            self.__update_nodes_positions()
-            self.queue_draw()
+            
+        #print self.__ring_gap
+        #print ring_gap
+        if self.__ring_gap == ring_gap/2 and self.__ring_gap > 0 and ring_gap > 0:
+            self.__radius_gap_set = 1
+            
+        #print "gap sewt value",
+        #print self.__radius_gap_set
 
 
     def scroll_event(self, widget, event):
@@ -547,7 +564,6 @@ class RadialNet(gtk.DrawingArea):
         elif key == 'Page_Down':
             self.set_scale(self.__scale - 0.01)
 
-        
         self.queue_draw()
 
         return True
@@ -577,7 +593,6 @@ class RadialNet(gtk.DrawingArea):
         elif key == 'l':
             self.__show_latency = not self.__show_latency
 
-        self.__update_nodes_positions()
         self.queue_draw()
 
         return True
@@ -600,7 +615,6 @@ class RadialNet(gtk.DrawingArea):
         for node in self.__graph.get_nodes():
             node.set_draw_info({'over':False})
 
-        
         self.queue_draw()
 
         return False
@@ -688,7 +702,7 @@ class RadialNet(gtk.DrawingArea):
                 else:
                     node.set_draw_info({'region': self.__region_color})
 
-                self.__update_nodes_positions()
+                
                 self.queue_draw()
 
         # show node details
@@ -775,7 +789,7 @@ class RadialNet(gtk.DrawingArea):
         self.__last_motion_point = pointer
 
         self.grab_focus()
-        self.__update_nodes_positions()
+        #self.__update_nodes_positions()
         self.queue_draw()
         
         return False
@@ -1246,8 +1260,6 @@ class RadialNet(gtk.DrawingArea):
 
             else:
                 #ring = node.get_draw_info('ring')
-                #print "The value of ring in _update_nodes_positions"
-                #print ring
                 #node.set_coordinate_radius(self.__calc_radius(ring))
                 radius = self.__calc_radius(node.get_draw_info('ring'))
                 flip = node.get_draw_info('flip')
@@ -1256,7 +1268,6 @@ class RadialNet(gtk.DrawingArea):
                 radius += flip
                 
             node.set_coordinate_radius(radius)
-            
 
 
     @graph_is_not_empty
@@ -1410,11 +1421,11 @@ class RadialNet(gtk.DrawingArea):
                 if len(children) > 0:
 
                     min, max = node.get_draw_info('range')
+                    
+                    flip = 1                    
 
                     node_total = max - min
                     children_need = node.get_draw_info('children_need')
-                    
-                    flip = 1
 
                     for child in children:
 
@@ -1424,11 +1435,12 @@ class RadialNet(gtk.DrawingArea):
                         if node_total < children_need:
                             r = child.get_draw_info('radius')
                             child.set_draw_info({'flip':(r * flip)})
+                            
                             flip *= -1
                             
                         else:
                             child.set_draw_info({'flip':0})
-                            
+
 
                         theta = child_total / 2 + min + self.__rotate
 
@@ -1521,9 +1533,9 @@ class RadialNet(gtk.DrawingArea):
         # set nodes' hierarchy
         self.__arrange_nodes()
         self.calc_sorted_nodes()
-        ring_radius = self.__graph.get_main_node().minimal_radius(self.__graph, self.__graph.get_main_node())
+        #ring_radius = self.__graph.get_main_node().minimal_radius(self.__graph, self.__graph.get_main_node())
 
-        self.set_ring_gap(ring_radius)
+        #self.set_ring_gap(ring_radius)
         # set nodes' coordinate radius
         for node in self.__graph.get_nodes():
 
@@ -1682,6 +1694,7 @@ class RadialNet(gtk.DrawingArea):
             elif self.__interpolation == INTERPOLATION_CARTESIAN:
                 node.set_cartesian_coordinate(a, b)
 
+        #self.__update_nodes_positions()
         self.queue_draw()
 
         # animation continue condition
@@ -1989,7 +2002,7 @@ class RadialNet(gtk.DrawingArea):
     def angle_from_object(distance, size):
         """
         """
-        return math.degrees(math.atan2(size , distance))
+        return math.degrees(math.atan2(size, distance))
         
     # End of Geometry
     
