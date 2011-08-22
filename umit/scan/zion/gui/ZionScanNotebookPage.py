@@ -576,6 +576,9 @@ class ZionProfileOS(ZionProfile):
 		
 		##saddr = "2001:0:53aa:64c:38d3:b950:c44e:b128"
 		#saddr = get_ip_address(device)
+		print "----------------------"
+		print saddr
+		print destaddr
 		
 		z.get_option_object().add("-c",device)
 		z.get_option_object().add("-d")
@@ -843,7 +846,7 @@ def get_default_device():
     """
 
     # TODO: read device from options
-    device = "lo"
+    device = "eth0"
     #device = netifaces.interfaces()[0]
     return device
 
