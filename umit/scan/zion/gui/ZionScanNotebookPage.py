@@ -24,6 +24,7 @@ import gobject
 import netifaces
 import thread
 import getopt
+import re
 from multiprocessing import Process, Queue
 from ipaddr import IPNetwork
 
@@ -44,6 +45,7 @@ from umit.scan.zion.gui.AttractorWidget import AttractorWidget
 from umit.zion.scan import probe
 from umit.zion.core import address, options, zion, host
 from umit.zion.core.host import PORT_STATE_OPEN
+
 
 ICON_DIR = 'share/pixmaps/umit/'
 
@@ -476,9 +478,11 @@ class ZionProfileHoneyd(ZionProfile):
 				addr_list.append(ip_str)
 				self.result.get_hosts_list().add_host(ip_str)
 
-		device = get_default_device()
+		
 		#addr = iter(addr_list)
 		destaddr = addr_list[0]
+		device = get_default_device(destaddr)
+		
 		if address.recognize(destaddr) == address.IPv4:
 			saddr = get_ip_address(device)
 		elif address.recognize(destaddr) == address.IPv6:
@@ -494,8 +498,8 @@ class ZionProfileHoneyd(ZionProfile):
 		
 			
 		#saddr = "2001:0:53aa:64c:2496:d8dd:c44e:b5fd"
-		print "Source address -",
-		print(saddr)
+		#print "Source address -",
+		#print(saddr)
 		
 
 
@@ -557,10 +561,12 @@ class ZionProfileOS(ZionProfile):
 				addr_list.append(ip_str)
 				self.result.get_hosts_list().add_host(ip_str)
 		
-		# configure zion options
-		device = get_default_device()
+		
 		#addr = iter(addr_list)
 		destaddr = addr_list[0]
+		# configure zion options
+		device = get_default_device(destaddr)
+		
 		if address.recognize(destaddr) == address.IPv4:
 			saddr = get_ip_address(device)
 		elif address.recognize(destaddr) == address.IPv6:
@@ -576,9 +582,9 @@ class ZionProfileOS(ZionProfile):
 		
 		##saddr = "2001:0:53aa:64c:38d3:b950:c44e:b128"
 		#saddr = get_ip_address(device)
-		print "----------------------"
-		print saddr
-		print destaddr
+		#print "----------------------"
+		#print saddr
+		#print destaddr
 		
 		z.get_option_object().add("-c",device)
 		z.get_option_object().add("-d")
@@ -697,11 +703,12 @@ class ZionProfileSYNProxy(ZionProfile):
 				addr_list.append(ip_str)
 				self.result.get_hosts_list().add_host(ip_str)
 
-		device = get_default_device()
+		
 		#addr = iter(addr_list)
 		destaddr = addr_list[0]
-		print "Destination Address-"
-		print(destaddr)
+		device = get_default_device(destaddr)
+		#print "Destination Address-"
+		#print(destaddr)
 		if address.recognize(destaddr) == address.IPv4:
 			saddr = get_ip_address(device)
 		elif address.recognize(destaddr) == address.IPv6:
@@ -836,17 +843,57 @@ def get_port_info(port):
             port.service,
             '')
 
-def get_default_device():
+def get_default_device(destaddr):
     """
     If any default device is available in options use that, otherwise,
     Return the first (default) network device, which is usually 'eth0' under
     Linux and Windows and varies under BSD.
+    address.recognize(destaddr) == address.IPv4:
+    address.recognize(destaddr) == address.IPv6:
 
     @return: name of the first device.
     """
 
     # TODO: read device from options
-    device = "eth0"
+    #device = "eth0"
+    devices = pypcap.findalldevs()
+    exp = re.compile('usb*', re.IGNORECASE)
+    for dev in devices:
+        if re.match(exp,dev) or dev == 'any':
+            print 
+        else:
+            if address.recognize(destaddr) == address.IPv4:
+                if destaddr == '127.0.0.1':
+                    device = 'lo'
+                    break
+                else:
+                    saddr = netifaces.ifaddresses(dev)[netifaces.AF_INET][0]['addr']
+                    if saddr == '127.0.0.1':
+                        device = dev
+                        continue
+                    else:
+                        device = dev
+                        break
+            elif address.recognize(destaddr) == address.IPv6:
+                if destaddr == '::1' or destaddr == '0000:0000:0000:0000:0000:0000:0000:0001' or destaddr == '0:0:0:0:0:0:0:1':
+                    device = 'lo'
+                    break
+                else:
+                    saddr = netifaces.ifaddresses(dev)[netifaces.AF_INET6][0]['addr']
+                    saddr_re = re.compile('fe80*', re.IGNORECASE)
+                    if saddr == '::1':
+                        continue
+                    elif re.match(saddr_re , saddr):
+                        device = dev
+                        continue
+                    else:
+                        device = dev
+                        break
+            else:
+                 device = devices[0]
+                        
+    print devices
+    print device
     #device = netifaces.interfaces()[0]
     return device
 
