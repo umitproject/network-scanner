@@ -24,6 +24,7 @@ import gtk
 
 from umit.core.UmitConf import CommandProfile
 from umit.core.I18N import _
+from umit.scan.bt.core import btlibrary
 
 class ProfileCombo(gtk.ComboBoxEntry, object):
     def __init__(self):
@@ -43,7 +44,16 @@ class ProfileCombo(gtk.ComboBoxEntry, object):
             del(list[iter])
         
         for command in profiles:
-            list.append([command])
+            #print command
+            if command == "bluetooth":
+                if btlibrary.bluetooth_library_check():
+                    #print "True"
+                    list.append([command])
+                else:
+                    #print "False"
+                    continue
+            else:
+                 list.append([command])
 
         if selection in profiles:
             self.set_active(profiles.index(selection))

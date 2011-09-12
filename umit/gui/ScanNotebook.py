@@ -47,8 +47,13 @@ from umit.core.NmapCommand import NmapCommand
 from umit.core import Ipv6
 from umit.core.UmitConf import CommandProfile, ProfileNotFound, Profile
 from umit.core.NmapParser import NmapParser
+from umit.scan.bt.core import btlibrary
+
 from umit.scan.bt.core.ubt_parser import XMLDocument
-from umit.scan.bt.gui import btcore
+
+if btlibrary.bluetooth_library_check():
+    from umit.scan.bt.gui import btcore
+    
 from umit.core.Paths import Path
 from umit.core.UmitLogging import log
 from umit.core.I18N import _
