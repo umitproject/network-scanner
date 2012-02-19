@@ -34,6 +34,14 @@ then
 	find ./libkeybinder -type d -name '*' -exec mkdir -p ../umit/{} \;
 	find ./libkeybinder -type f -name '*' -exec cp {} ../umit/{} \;
 
+
+	svn checkout http://pypcap.googlecode.com/svn/trunk/ pypcap-read-only
+	cd pypcap-read-only
+	make
+	sudo make install 
+
+
+
 	##############################################################
 	
 	cd ..
