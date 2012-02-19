@@ -466,7 +466,7 @@ class ZionProfileHoneyd(ZionProfile):
 						except:
 							print "Unimplemented support to address: %s." % i
 				else:
-					print "Error : Doesnot recoginise Target"
+					print "Error : Does not recoginise target"
 			else:
 				targets.append(host.Host(self.target))
 				addr_list.append(self.target)
@@ -549,7 +549,7 @@ class ZionProfileOS(ZionProfile):
 						except:
 							print "Unimplemented support to address: %s." % i
 				else:
-					print "Error : Doesnot recoginise Target"
+					print "Error : Does not recoginise target"
 			else:
 				z.append_target(host.Host(self.target))
 				addr_list.append(self.target)
@@ -563,6 +563,7 @@ class ZionProfileOS(ZionProfile):
 		
 		
 		#addr = iter(addr_list)
+		print addr_list
 		destaddr = addr_list[0]
 		# configure zion options
 		device = get_default_device(destaddr)
@@ -691,7 +692,7 @@ class ZionProfileSYNProxy(ZionProfile):
 						except:
 							print "Unimplemented support to address: %s." % i
 				else:
-					print "Error : Doesnot recoginise Target"
+					print "Error : Does not recoginise target"
 			else:
 				targets.append(host.Host(self.target))
 				addr_list.append(self.target)
