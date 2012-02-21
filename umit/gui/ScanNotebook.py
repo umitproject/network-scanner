@@ -708,7 +708,7 @@ class NmapScanNotebookPage(HIGVBox):
                 
                 # scan button must be enable if -iR or -iL options are passed
                 if command.find('-iR') != -1 or command.find('-iL') != -1:
-                    self.toolbar.scan_button.set_sensitive(True)
+                    self.page.toolbar.scan_button.set_sensitive(True)
 
                     # For these nmap options, target is unnecessary.
                     # Removes unnecessary target from the command
