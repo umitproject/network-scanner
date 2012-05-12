@@ -20,27 +20,28 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-from os.path import exists
-from os import access, R_OK
-from tempfile import mktemp
+import os
+
+from tempfile import mkstemp
 
 from umit.core.Paths import Path
 from umit.core.UmitLogging import log
 
 def get_config_file(filename, original_content):
-    config_file = mktemp()
+    
+    fd, config_file = mkstemp()
 
     try:
         c = Path.__getattr__(filename)
-        if exists(c) and access(c, R_OK):
+        if os.path.exists(c) and os.access(c, os.R_OK):
             config_file = c
         else:
             raise Exception()
     except:
-        # Using temporary file
         cfile = open(config_file, "w")
         cfile.write(original_content)
         cfile.close()
+        os.close(fd)
 
     log.debug(">>> Get config file %s: %s" % (filename, config_file))
     return config_file

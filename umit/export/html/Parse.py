@@ -20,9 +20,12 @@
 from umit.export.Parse import Export
 from umit.export.html.Node import Node, STYLE
 
+import sys
+
 BR = Node(None, None, "<br />")
 
 class ExportHTML(Export):
+
     def __init__(self, parse, filename):
         Export.__init__(self, parse, filename)
         
@@ -30,14 +33,18 @@ class ExportHTML(Export):
         self.head = Node('html')
         head = Node('head')
         self.head.add_child(head)
-        self.add_style(STYLE)
-    def add_style(self, style_t):
+        self.add_style()
+        self.html = None
+
+    def add_style(self):
         headtag = self.head.get_childs()[0]
-        style = Node('style', [{'name':'type', 'value':'text/css'}])
-        style.add_child(Node(None, None ,style_t))
+        style = Node( 'style', 
+                      [{ 'name':'type', 'value':'text/css' }], STYLE )
         headtag.add_child(style)
+
     def get(self):
-        return self.generate_html()
+        return self.html
+
     def get_name(self):
         np = self.parse 
         if np.scan_name == "":
@@ -45,150 +52,207 @@ class ExportHTML(Export):
         else:
             name = np.scan_name
         return name
+
     def generate_html(self):
         
         # Header / Title 
         np = self.parse 
-        head = self.head.get_childs()[0]
-
-        head.add_child(Node('title',text = self.get_name()\
-                            + " - "  + np.profile_name ))
-        body = self.get_body(head)
+        body = self.get_body()
         self.head.add_child(body)
-        hosts = self.get_hosts()
-        
-        
-        # Packing Body 
-        body.add_child(Node(None, text="<h1><b>"+self.get_name()+" - "+\
-                            np.profile_name+\
-                            "</b></h1>"+"</br></br>" ))
-        body.add_child(self.get_nmap_command())
-        
-        title = Node(None, None, '<b><h2>Available hosts:</h2></b> <br />')
-        body.add_child(title)
-        body.add_child(hosts)
+      
+        # Main Container
+        main_container = Node('div', [{'name':'class', 'value':'container'}])
+        # Main Title
+        main_title = self.get_main_title(np)
+        # Nmap Command
+        nmap_command = self.get_nmap_command()
+        # Available Hosts
+        available_hosts = self.get_available_hosts()
         # Services
-        
-        title = Node(None, None, '<b><h2>Services:</h2></b> <br />')
-        body.add_child(title)
         services = self.get_port_services()
-        body.add_child(services)
-        body.add_child(self.get_nmap_output())
-        return self.head.get_html()
-    def get_body(self, head):
+
+        # Packing Body 
+        main_container.add_child(main_title)
+        main_container.add_child(nmap_command)
+        main_container.add_child(Node('hr'))
+        main_container.add_child(available_hosts)
+        main_container.add_child(Node('hr'))
+        main_container.add_child(services)
+        main_container.add_child(Node('hr'))
+        main_container.add_child(self.get_nmap_output())
+        body.add_child(main_container)
+
+        # Assign html code to variable which will be used for saving.
+        self.html = self.head.get_html()
+
+    def get_body(self):
         # Customize Page
         body = Node('body')
         return body
     
     def get_nmap_command(self):
-        nmap = Node(None,None, "Nmap command: <b>" + self.parse.nmap_command + \
-                    "</b><br /><br />")
-        return nmap 
+        row = self.get_row()
+        nmap_title = Node( 'h3', 
+                           attr=[{'name':'class','value':'nmap-command'}], 
+                           text="Nmap command : " + self.parse.nmap_command )
+        row.add_child(nmap_title)
+        return row
     
-    def get_hosts(self):
+    def get_row(self):
+        return Node('div',[{'name':'class', 'value':'row-fluid'}])
+
+    def get_main_title(self, np):
+
+        # main title hero-unit
+        hero_unit = Node('div', [{'name':'class', 'value':'hero-unit'}])
         
-        
-        
-        table = Node('table', [{'name':'border', 'value':'1'}])
-        
-        res = self.get_list_host()
-        
-        # Header host table 
+        #1 TODO: PEP8!
+        #2 TODO: Put logo and css location in an exact place and 
+        #        load from there
+
+        # main title div
+        title_div = Node('div')
+        title = Node( 'h2', 
+                      attr = [{'name':'class', 'value':'umit-title'}], 
+                      text = self.get_name() + " - " + np.profile_name )
+        title_div.add_child(title) 
+
+        # add div to hero-unit
+        hero_unit.add_child(title_div)
+
+        # wrap everything in a row  
+        row = self.get_row()
+        row.add_child(hero_unit)
+
+        return row   
+
+    def get_available_hosts(self):
+
+        table = Node('table', [{'name':'class', 'value':'table'}])
+
+        # Header host table
+        thead = Node('thead')
+        tbody = Node('tbody')
         tr = Node('tr')
-        td = Node('td')
-        td.add_child(Node(None, None, "<b>"+\
-                          self.get_dname('addr', '_ip')+"</b>"))
-        tr.add_child(td)
-        td = Node('td')
-        td.add_child(Node(None, None, "OS"))
-        tr.add_child(td)        
-        
-        table.add_child(tr)
-        
-        for i in res:
+        th = Node('th')
+        th = Node('th')
+        th.add_child(Node(None, None, self.get_dname('addr', '_ip')))
+        tr.add_child(th)
+        th = Node('th')
+        th.add_child(Node(None, None, "OS"))
+        tr.add_child(th)
+
+        thead.add_child(tr) 
+        table.add_child(thead)
+
+        res = self.get_list_host()
+
+        for r in res:
             tr = Node('tr')
             # Ip
             td = Node('td')
-            td.add_child(Node(None, None, i['_ip']['addr']))
+            td.add_child(Node(None, None, r['address'][0]['addr']))
             tr.add_child(td)
             
-            
-            # OS Classes Values
-            #for j in i['_osclasses']:
-                #for key in j:
-                    #value =  j[key]
-                    #td = Node('td')
-                    #td.add_child(Node(None, None, value))
-                    #tr.add_child(td)
-                
-                        
             # OS Matches Values
-            if i.has_key('_osmatch'):
-                for key in i['_osmatch']:
-                    value =  i['_osmatch'][key]
-                    td = Node('td')
-                    if value is list:
-                        value = value[0]['osfamily']
-                        print value
-                    if not (value is str):
-                        value = " - "
-                    td.add_child(Node(None, None, value))
-                    tr.add_child(td)
-                table.add_child(tr)
-            
-        return table
+            if r.has_key('osmatch'):
+                for i in range(len(r['osmatch'])):
+                    for key in r['osmatch'][i].keys():
+                        td = Node('td')
+                        if key == 'osclass':
+                            osclass = r['osmatch'][i][key]
+                            if osclass:
+                                value = osclass[0]['osfamily']
+                            else:
+                                value = "---"    
+                            td.add_child(Node(None, None, value))
+                            tr.add_child(td)
+            tbody.add_child(tr)
+        table.add_child(tbody)
+
+        well_div = Node('div', [{'name':'class', 'value':'well'}])
+        available_hosts = Node( 'h3', 
+                                [{'name':'class','value':'umit-result-title'}],
+                                'Available hosts : ')
+        # pack all components
+        row = self.get_row()
+        row.add_child(table)
+        well_div.add_child(available_hosts)
+        well_div.add_child(row)
+
+        return well_div
     
     def get_port_services(self):
         """
         Returns port and services
         """
         
-        
-        group = Node('div', [{'name':'width', 'value':'60%'}])
-        
+        well_div = Node('div', [{'name':'class', 'value':'well'}])
+        row = self.get_row()
+        services_title = Node( "h3",
+                      [{'name':'class','value':'umit-result-title'}], 
+                      'Services : ' )
+        row.add_child(services_title)
+
+        # Table Part
         res = self.get_list_host()
-        
+
         for host in res:
+            # Add host ip
+            ip_addr = Node( "h4", 
+                            [{'name':'class', 'value':'umit-ip'}], 
+                            "IP:" + host['address'][0]['addr'] )
+            row.add_child(ip_addr)
+
+            # Hosts table
+            # TODO : Check if these definitons should be here or not?
+            table = Node('table', [{'name':'class', 'value':'table'}])
+            thead = Node('thead')
+            tbody = Node('tbody')
             
-            title = Node(None, None, "<b>IP:" +host['_ip']['addr'] + "</b>")
-            group.add_child(title)
-            
-            table = Node('table', [{'name':'border', 'value':'1'}, \
-                                   {'name':'width', 'value':'60%'}])
-            # ###### Header #########
-            for portlist in host['_ports'][0]['port']:
+            # Header Preparation
+            tr = None
+            for portlist in host['ports']:
                 tr = Node('tr')
                 for port in portlist:
-                    td = Node('td')
-                    td.add_child(Node(None, None, \
-                                      port))
-                    tr.add_child(td)
-            table.add_child(tr)
-            # ######################
-            
-            for portlist in host['_ports'][0]['port']:
-                tr = Node('tr')
-                for port in portlist:
+                    th = Node('th')
+                    th.add_child(Node(None, None, port))
+                    tr.add_child(th)
+            if tr:
+                thead.add_child(tr)
+                table.add_child(thead)
+
+                for portlist in host['ports']:
+                    tr = Node('tr')
+                    for port in portlist:
+                        td = Node('td')
+                        td.add_child(Node(None, None, portlist[port]))
+                        tr.add_child(td)
+                    tbody.add_child(tr)
                     
-                    td = Node('td')
-                    td.add_child(Node(None, None, \
-                                      portlist[port]))
-                    tr.add_child(td)
-                table.add_child(tr)
-                
-            group.add_child(table)
-            group.add_child(BR)
-        return group
+            table.add_child(tbody)
+            row.add_child(table)
+       
+        well_div.add_child(row)         
+        return well_div
+
     def get_nmap_output(self):
-        """ Return Node with nmap output """
+        """
+            Return Node with nmap output 
+        """
         
-        div = Node('div',[{'name':'width', 'value':'60%'}])
-        title = Node(None, None, '<b><h2>Nmap outpuut:</h2></b> <br />')
-        div.add_child(title)
+        nmap_title = Node( 'h3', 
+                           [{'name':'class','value':'umit-result-title'}],
+                           'Nmap Output : ')
+        nmap_output = ""
+        output = self.parse.nmap_output
+        for output in self.parse.nmap_output.split("\n")[1:]:
+            nmap_output += output + '<br>'
+        nmap_output = Node(None, None, nmap_output)
+        well_div = Node('div', [{'name':'class', 'value':'well'}])
+        row = self.get_row()
+        row.add_child(nmap_title)
+        row.add_child(nmap_output)
+        well_div.add_child(row)
         
-        pre = Node('pre' , [{'name':'width', 'value':'60%'}])
-        output = Node(None, None, self.parse.nmap_output)
-        pre.add_child(output)
-        div.add_child(pre)
-        
-        return div
+        return well_div

@@ -39,7 +39,7 @@ from umit.core.Paths import check_access, Path
 from umit.core.UmitLogging import log
 from umit.core.I18N import _
 
-from tempfile import mktemp
+from tempfile import mkstemp
 from umit.gui.FileChoosers import RegularDiffiesFileFilter, HtmlDiffiesFileFilter
 
 from umit.gui.Help import show_help
@@ -323,7 +323,7 @@ generate diff."))
         text1 = text1.split('\n')
         text2 = text2.split('\n')
         
-        self.temp_view = mktemp('.html')
+        fd, self.temp_view = mkstemp('.html')
         
         text1 = [text+'\n' for text in text1]
         text2 = [text+'\n' for text in text2]
@@ -334,9 +334,9 @@ generate diff."))
 
             file_desc = open(self.temp_view, 'w')
             file_desc.write(''.join(diff))
-
             # Closing file to avoid problems with file descriptors
             file_desc.close()
+
         else:
             diff = Diff(text1, text2)
             diff = diff.generate ()
@@ -349,6 +349,7 @@ because you dont have Python 2.4 or higher.)\n''')
 
             # Closing file to avoid problems with file descriptors
             file_desc.close()
+        os.close(fd)
         
         webbrowser.open("file://" + self.temp_view, autoraise=1)
 

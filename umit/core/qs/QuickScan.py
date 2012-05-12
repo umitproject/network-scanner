@@ -159,8 +159,8 @@ def start(winhndl=None):
     
     if not development_mode(default=True):
         # Generating temporary files names
-        stdout_output = tempfile.mktemp()
-        stderr_output = tempfile.mktemp()
+        fd1, stdout_output = tempfile.mkstemp()
+        fd2, stderr_output = tempfile.mkstemp()
     
         _stdout = open(stdout_output, "w")
         _stderr = open(stderr_output, "w")

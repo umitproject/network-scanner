@@ -31,7 +31,7 @@ from xml.sax import handler, make_parser
 from xml.sax.saxutils import XMLGenerator
 from xml.sax.xmlreader import AttributesImpl
 
-from tempfile import mktemp
+from tempfile import mkstemp
 
 from umit.plugin.Parser import Parser
 from umit.plugin.Atoms import StringFile
@@ -350,12 +350,11 @@ class PluginReader(ManifestLoader):
         "@return a gtk.dk.Pixbuf"
 
         try:
-            # TODO: eliminate the mktemp workaround
-
-            name = mktemp('.png')
+            fd, name = mkstemp('.png')
             f = open(name, 'wb')
             f.write(self.file.read('data/logo.png'))
             f.close()
+            os.close(fd)
 
             import gtk
 

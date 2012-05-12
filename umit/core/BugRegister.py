@@ -23,7 +23,7 @@
 import re
 import urllib
 import urllib2
-from tempfile import mktemp
+from tempfile import mkstemp
 
 from umit.core.Version import VERSION
 

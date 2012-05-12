@@ -217,8 +217,8 @@ if not development_mode(default=True):
     
     if gs.log == "None" or gs.log == "File":
         # Generating temporary files names
-        stdout_output = tempfile.mktemp()
-        stderr_output = tempfile.mktemp()
+        fd1, stdout_output = tempfile.mkstemp()
+        fd2, stderr_output = tempfile.mkstemp()
     
         old_stdout = sys.stdout
         old_stderr = sys.stderr

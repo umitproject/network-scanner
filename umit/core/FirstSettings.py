@@ -27,7 +27,7 @@ It's only for GSoC
 """
 from os import R_OK, W_OK, access, mkdir, getcwd, environ, getcwd
 from os.path import exists, join, split, abspath, dirname
-from tempfile import mktemp
+from tempfile import mkstemp
 from types import StringTypes
 
 

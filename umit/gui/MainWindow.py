@@ -30,7 +30,7 @@ from os.path import split, isfile, join
 import xml.sax.saxutils
 
 from time import time
-from tempfile import mktemp
+from tempfile import mkstemp
 
 from higwidgets.higwindows import HIGMainWindow
 from higwidgets.higdialogs import HIGDialog, HIGAlertDialog
@@ -594,16 +594,17 @@ class MainWindow(UmitMainWindow):
         # if we got to this point, it should be possible to add this scan
         inventory_title = self.scan_notebook.get_tab_title(current_page)
 
-        xml_scanfile = mktemp()
+        fd, xml_scanfile = mkstemp()
         f = open(xml_scanfile, "w")
-        current_page.parsed.write_xml(f)
+        current_page.get_parser().write_xml(f)
         f.close()
+        os.close(fd)
 
         log.debug("Adding scan to inventory database..")
 
         xmlstore = XMLStore(Path.umitdb_ng, False)
         try:
-            xmlstore.store(xml_scanfile, current_page.parsed, inventory_title)
+            xmlstore.store(xml_scanfile, current_page.get_parser(), inventory_title)
         finally:
             # close connection to the inventory's database
             xmlstore.close()
@@ -785,10 +786,11 @@ to close current Scan Tab?'),
         page.get_parser().scan_name = self.scan_notebook.get_tab_title(page)
 
         if not filename:
-            filename = mktemp()
+            fd, filename = mkstemp()
             f = open(filename, "w")
             page.get_parser().write_xml(f)
             f.close()
+            os.close(fd)
 
         search_config = SearchConfig()
         if search_config.store_results:
@@ -920,7 +922,7 @@ to close current Scan Tab?'),
             return False
 
         log.debug(">>> Changing scan_name")
-        page.parsed.set_scan_name(new_text)
+        page.get_parser().set_scan_name(new_text)
 
         # Ok we can change this title.
         return True
@@ -1315,7 +1317,7 @@ Start a scan an then try again'))
         log.info('Exporting ..')
         
         import umit.export.html.Parse
-        a = umit.export.html.Parse.ExportHTML(saving_page.parsed, \
+        a = umit.export.html.Parse.ExportHTML(saving_page.get_parser(), \
                                              filename)
         a.generate_html()
         a.save()
@@ -1526,7 +1528,7 @@ action's name"))
             if not scan_name:
                 scan_name = _("Scan ") + str(i+1)
 
-            dic[scan_name] = page.parsed
+            dic[scan_name] = page.get_parser()
 
         self.diff_window = DiffWindow(dic)
         self.diff_window.connect("destroy", self.__remove_wlist)

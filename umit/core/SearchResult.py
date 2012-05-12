@@ -25,7 +25,7 @@ import os.path
 
 from glob import glob
 from fnmatch import fnmatch
-from tempfile import mktemp
+from tempfile import mkstemp
 
 from umit.core.UmitDB import UmitDB
 from umit.core.NmapParser import NmapParser
@@ -261,11 +261,12 @@ class SearchDB(SearchResult, object):
             log.debug(">>> Retrieving result of scans_id %s" % scan.scans_id)
             log.debug(">>> Nmap xml output: %s" % scan.nmap_xml_output)
             
-            temp_file = mktemp(".usr", "umit_")
+            fd, temp_file = mkstemp(".usr", "umit_")
             
             tmp = open(temp_file, "w")
             tmp.write(scan.nmap_xml_output)
             tmp.close()
+            os.close(fd)
 
             try:
                 parsed = NmapParser()

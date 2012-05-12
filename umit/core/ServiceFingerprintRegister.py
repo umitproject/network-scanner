@@ -57,10 +57,10 @@ class ServiceFingerprintRegister(object):
         request = urllib2.Request(nmap_submission_page + "?" + data, data)
         response = urllib2.urlopen(request)
 
-        from tempfile import mktemp
+        from tempfile import mkstemp
         import webbrowser
 
-        tfile = mktemp()
+        fd, tfile = mkstemp()
         open(tfile, "w").write(response.read())
         webbrowser.open(tfile)
 
