@@ -1,0 +1,19 @@
+[submodule "deps/umpa"]
+	path = deps/umpa
+	url = https://github.com/umitproject/umpa.git
+[submodule "deps/libkeybinder"]
+	path = deps/libkeybinder
+	url = https://github.com/umitproject/umit-keybinder.git
+[submodule "deps/umit-common"]
+	path = deps/umit-common
+	url = https://github.com/umitproject/umit-common.git
+[submodule "deps/pypcap"]
+	path = deps/pypcap
+	url = https://github.com/umitproject/pypcap.git
+[submodule "deps/zion"]
+	path = deps/zion
+	url = https://github.com/umitproject/zion.git
+
+[submodule "deps/clann"]
+	path = deps/clann
+	url = https://github.com/umitproject/zion.git
