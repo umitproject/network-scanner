@@ -2,17 +2,15 @@ Folks,
 
 During this stage Network Scanner just run on Linux and Windows.
 
-Anyway, you have to compile clann, umit-keybinders, zion and umpa.
+You can find all dependencies in our github repository http://github.com/umitproject. 
 
-Just do:
+To install all dependencies automatically, just do:
 
 $ sh umit.sh deps
 
 To run:
 
 $ sh umit.sh run 
-
-
 
 Any doubts, let me know.
 Luís A. Bastião Silva

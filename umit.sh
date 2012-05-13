@@ -7,55 +7,64 @@ then
     
 elif [ $1 = "deps" ]
 then
-	############ Make Deps ##################
-	cd deps/clann/
-	make
+    # Update & Install & Copy Submodules ------------------#
 
-	cd ../../
+    # Initialize all submodules ; 
+    # zion, clann, pypcap, libkeybinder, umpa, umit-common  
 
-	cd deps/libkeybinder/ 
-	make
+    git submodule update --init
 
-	cd ../../
-	##############################################
+    cd deps
 
-	cd deps
+    # clann -------------------------------------------#
 
-	####### Copy The clann in umit/ ############
+    cd clann
+    git checkout origin/origin/clann
+    make
 
+    cd ..
 
-	find ./clann -type d -name '*' -exec mkdir -p ../umit/{} \;
-	find ./clann -type f -name '*' -exec cp {} ../umit/{} \;
+    # copy clann in umit/
+    find ./clann -type d -name '*' -exec mkdir -p ../umit/{} \;
+    find ./clann -type f -name '*' -exec cp {} ../umit/{} \;
 
+    # libkeybinder ------------------------------------#
 
-	####### Copy The libkeybinder in umit/ ############
+    cd libkeybinder/ 
+    make
+    
+    cd .. 
 
+    # copy libkeybinder in umit/
+    find ./libkeybinder -type d -name '*' -exec mkdir -p ../umit/{} \;
+    find ./libkeybinder -type f -name '*' -exec cp {} ../umit/{} \;
 
-	find ./libkeybinder -type d -name '*' -exec mkdir -p ../umit/{} \;
-	find ./libkeybinder -type f -name '*' -exec cp {} ../umit/{} \;
+    # umpa --------------------------------------------#
+    
+    cd umpa/
+    python setup.py install
 
-	cd ..
+    cd ..
 
-	svn checkout http://pypcap.googlecode.com/svn/trunk/ pypcap-read-only
-	cd pypcap-read-only
-	make
-	sudo make install 
+    # pypcap ------------------------------------------#
 
-	cd ..
+    cd pypcap
+    make
+    sudo make install 
 
-	##############################################################
-	
+    cd ..
 
-	
+    # -------------------------------------------------#
+    
 elif [ $1 = "umit" ]
 then
-	sudo python bin/umit
+    sudo python bin/umit
 elif [ $1 = "run" ]
 then
-	./umit.sh deps
-	./umit.sh umit
+    ./umit.sh deps
+    ./umit.sh umit
 
 else
-	echo "Enter correct arg : deps, umit , run"
+    echo "Enter correct arg : deps, umit , run"
 fi
 
