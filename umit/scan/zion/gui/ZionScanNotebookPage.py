@@ -37,6 +37,7 @@ from umit.core.UmitConf import ProfileNotFound, Profile
 from umit.core.Paths import Path
 from umit.core.UmitLogging import log
 from umit.core.I18N import _
+from umit.core.UmitLogging import log
 from umit.umpa.sniffing.libpcap import pypcap
 
 from umit.gui.ScanOpenPortsPage import ScanOpenPortsPage
@@ -450,10 +451,9 @@ class ZionProfileHoneyd(ZionProfile):
         self.result.get_hosts_list().clear_hosts()
         targets = []
         addr_list = []
-        print "self.Target Value is -"
-        print(self.target)
+        log.debug("self.Target Value is -%s" % self.target)
         if self.target.find('/') == -1:
-            print "It does not contain /"
+            log.debug("It does not contain /")
             if address.recognize(self.target) == address.Unknown:
                 if address.is_name(self.target):
                     l = probe.get_addr_from_name(self.target)
@@ -464,9 +464,9 @@ class ZionProfileHoneyd(ZionProfile):
                             host_str = '%s\n%s' % (i, self.target)
                             self.result.get_hosts_list().add_host(host_str)
                         except:
-                            print "Unimplemented support to address: %s." % i
+                            log.warning("Unimplemented support to address: %s." % i)
                 else:
-                    print "Error : Does not recoginise target"
+                    log.error("Does not recoginise target")
             else:
                 targets.append(host.Host(self.target))
                 addr_list.append(self.target)
@@ -487,14 +487,14 @@ class ZionProfileHoneyd(ZionProfile):
             saddr = get_ip_address(device)
         elif address.recognize(destaddr) == address.IPv6:
             temp_addr = get_ipv6_address(device)
-            print(temp_addr)
+            log.debug(temp_addr)
             if temp_addr.find('%') != -1:
                 saddr = temp_addr.split('%')[0]
                 
             else:
                 saddr = temp_addr
         else:
-            print "Unknown address format"
+            log.debug("Unknown address format")
         
             
         #saddr = "2001:0:53aa:64c:2496:d8dd:c44e:b5fd"
@@ -540,7 +540,6 @@ class ZionProfileOS(ZionProfile):
             if address.recognize(self.target) == address.Unknown:
                 if address.is_name(self.target):
                     l = probe.get_addr_from_name(self.target)
-                    pp.pprint(l)
                     for i in l:
                         try:
                             z.append_target(host.Host(i, self.target))
@@ -548,9 +547,9 @@ class ZionProfileOS(ZionProfile):
                             addr_list.append(i)
                             self.result.get_hosts_list().add_host(host_str)
                         except:
-                            print "Unimplemented support to address: %s." % i
+                            log.warning("Unimplemented support to address: %s." % i)
                 else:
-                    print "Error : Does not recoginise target"
+                    log.error("Does not recoginise target")
             else:
                 z.append_target(host.Host(self.target))
                 addr_list.append(self.target)
@@ -564,7 +563,6 @@ class ZionProfileOS(ZionProfile):
         
         
         #addr = iter(addr_list)
-        pp.pprint(addr_list)
         destaddr = addr_list[0]
         # configure zion options
         device = get_default_device(destaddr)
@@ -580,7 +578,7 @@ class ZionProfileOS(ZionProfile):
             else:
                 saddr = temp_addr
         else:
-            print "Unknown address format"
+            log.debug("Unknown address format")
         
         ##saddr = "2001:0:53aa:64c:38d3:b950:c44e:b128"
         #saddr = get_ip_address(device)
@@ -635,7 +633,7 @@ class ZionProfilePrompt(ZionProfile):
                     options.OPTIONS_SHORT,
                     options.OPTIONS_LONG)
         except getopt.GetoptError, e:
-            print 'Error: %s.' % e
+            log.error('Error: %s.' % e)
             
         for o in opts:
             opt, value = o
@@ -654,7 +652,7 @@ class ZionProfilePrompt(ZionProfile):
                     try:
                         z.append_target(host.Host(i, a))
                     except:
-                        print "Unimplemented support to address: %s." % i
+                        log.warning("Unimplemented support to address: %s." % i)
             else:
                 z.append_target(host.Host(a))
         
@@ -680,7 +678,7 @@ class ZionProfileSYNProxy(ZionProfile):
         targets = []
         addr_list = []
         if self.target.find('/') == -1:
-            print "It does not contain /"
+            log.debug("It does not contain /")
             if address.recognize(self.target) == address.Unknown:
                 if address.is_name(self.target):
                     l = probe.get_addr_from_name(self.target)
@@ -691,9 +689,9 @@ class ZionProfileSYNProxy(ZionProfile):
                             host_str = '%s\n%s' % (i, self.target)
                             self.result.get_hosts_list().add_host(host_str)
                         except:
-                            print "Unimplemented support to address: %s." % i
+                            log.warning("Unimplemented support to address: %s." % i)
                 else:
-                    print "Error : Does not recoginise target"
+                    log.error("Does not recoginise target")
             else:
                 targets.append(host.Host(self.target))
                 addr_list.append(self.target)
@@ -721,11 +719,10 @@ class ZionProfileSYNProxy(ZionProfile):
             else:
                 saddr = temp_addr
         else:
-            print "Unknown address format"
+            log.debug("Unknown address format")
         
             
-        print "Source address -",
-        print(saddr)
+        log.debug("Source address - %s" % print(saddr))
 
         opts = options.Options()
         opts.add("-c",device)
@@ -904,8 +901,8 @@ def get_default_device(destaddr):
             else:
                  device = devices[0]
                         
-    print devices
-    print device
+    log.debug('devices : %s' % devices)
+    log.debug('device : %s' % device)
     #device = netifaces.interfaces()[0]
     return device
 
