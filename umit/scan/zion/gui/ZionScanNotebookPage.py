@@ -435,164 +435,165 @@ class ZionProfile(HIGVBox):
         return True            
 
 class ZionProfileHoneyd(ZionProfile):
-	"""
-	"""
-	def __init__(self, target=None):
-		"""
-		"""
-		ZionProfile.__init__(self, target)
-		# remove attractor box
-		self.result.get_hosts_view().get_scans_page().hide_attractor_box()
-	
-	def start(self):
-		"""
-		"""        
-		self.result.get_hosts_list().clear_hosts()
-		targets = []
-		addr_list = []
-		print "self.Target Value is -"
-		print(self.target)
-		if self.target.find('/') == -1:
-			print "It does not contain /"
-			if address.recognize(self.target) == address.Unknown:
-				if address.is_name(self.target):
-					l = probe.get_addr_from_name(self.target)
-					for i in l:
-						try:
-							targets.append(host.Host(i, self.target))
-							addr_list.append(i)
-							host_str = '%s\n%s' % (i, self.target)
-							self.result.get_hosts_list().add_host(host_str)
-						except:
-							print "Unimplemented support to address: %s." % i
-				else:
-					print "Error : Does not recoginise target"
-			else:
-				targets.append(host.Host(self.target))
-				addr_list.append(self.target)
-				self.result.get_hosts_list().add_host(self.target)
-		else:
-			for ip in IPNetwork(self.target):
-				ip_str = '%s' % ip
-				targets.append(host.Host(ip_str))
-				addr_list.append(ip_str)
-				self.result.get_hosts_list().add_host(ip_str)
+    """
+    """
+    def __init__(self, target=None):
+        """
+        """
+        ZionProfile.__init__(self, target)
+        # remove attractor box
+        self.result.get_hosts_view().get_scans_page().hide_attractor_box()
+    
+    def start(self):
+        """
+        """        
+        self.result.get_hosts_list().clear_hosts()
+        targets = []
+        addr_list = []
+        print "self.Target Value is -"
+        print(self.target)
+        if self.target.find('/') == -1:
+            print "It does not contain /"
+            if address.recognize(self.target) == address.Unknown:
+                if address.is_name(self.target):
+                    l = probe.get_addr_from_name(self.target)
+                    for i in l:
+                        try:
+                            targets.append(host.Host(i, self.target))
+                            addr_list.append(i)
+                            host_str = '%s\n%s' % (i, self.target)
+                            self.result.get_hosts_list().add_host(host_str)
+                        except:
+                            print "Unimplemented support to address: %s." % i
+                else:
+                    print "Error : Does not recoginise target"
+            else:
+                targets.append(host.Host(self.target))
+                addr_list.append(self.target)
+                self.result.get_hosts_list().add_host(self.target)
+        else:
+            for ip in IPNetwork(self.target):
+                ip_str = '%s' % ip
+                targets.append(host.Host(ip_str))
+                addr_list.append(ip_str)
+                self.result.get_hosts_list().add_host(ip_str)
 
-		
-		#addr = iter(addr_list)
-		destaddr = addr_list[0]
-		device = get_default_device(destaddr)
-		
-		if address.recognize(destaddr) == address.IPv4:
-			saddr = get_ip_address(device)
-		elif address.recognize(destaddr) == address.IPv6:
-			temp_addr = get_ipv6_address(device)
-			print(temp_addr)
-			if temp_addr.find('%') != -1:
-				saddr = temp_addr.split('%')[0]
-				
-			else:
-				saddr = temp_addr
-		else:
-			print "Unknown address format"
-		
-			
-		#saddr = "2001:0:53aa:64c:2496:d8dd:c44e:b5fd"
-		#print "Source address -",
-		#print(saddr)
-		
+        
+        #addr = iter(addr_list)
+        destaddr = addr_list[0]
+        device = get_default_device(destaddr)
+        
+        if address.recognize(destaddr) == address.IPv4:
+            saddr = get_ip_address(device)
+        elif address.recognize(destaddr) == address.IPv6:
+            temp_addr = get_ipv6_address(device)
+            print(temp_addr)
+            if temp_addr.find('%') != -1:
+                saddr = temp_addr.split('%')[0]
+                
+            else:
+                saddr = temp_addr
+        else:
+            print "Unknown address format"
+        
+            
+        #saddr = "2001:0:53aa:64c:2496:d8dd:c44e:b5fd"
+        #print "Source address -",
+        #print(saddr)
+        
 
 
-		opts = options.Options()
-		opts.add("-c",device)
-		opts.add("--forge-addr",saddr)
-		# honeyd option
-		opts.add("-n")
-		
-		for target in targets:
-			z = zion.Zion(opts,  [target])
-			p = Process(target=z.run, args=(self.q2,))
-			p.start()
+        opts = options.Options()
+        opts.add("-c",device)
+        opts.add("--forge-addr",saddr)
+        # honeyd option
+        opts.add("-n")
+        
+        for target in targets:
+            z = zion.Zion(opts,  [target])
+            p = Process(target=z.run, args=(self.q2,))
+            p.start()
 
 class ZionProfileOS(ZionProfile):
-	"""
-	"""
-	def __init__(self, target=None):
-		"""
-		"""
-		ZionProfile.__init__(self, target)
-		
-	def start(self):
-		"""
-		"""
-		z = zion.Zion(options.Options(), [])
+    """
+    """
+    def __init__(self, target=None):
+        """
+        """
+        ZionProfile.__init__(self, target)
+        
+    def start(self):
+        """
+        """
+        z = zion.Zion(options.Options(), [])
 
-		self.result.get_hosts_view().get_scans_page().clean()
-		self.result.clear_port_list()
+        self.result.get_hosts_view().get_scans_page().clean()
+        self.result.clear_port_list()
 
-		# clear previous hosts in the list
-		self.result.get_hosts_list().clear_hosts()
+        # clear previous hosts in the list
+        self.result.get_hosts_list().clear_hosts()
 
-		# verify address to scan
-		addr_list = []
-		
-		if self.target.find('/') == -1:
-			if address.recognize(self.target) == address.Unknown:
-				if address.is_name(self.target):
-					l = probe.get_addr_from_name(self.target)
-					for i in l:
-						try:
-							z.append_target(host.Host(i, self.target))
-							host_str = '%s\n%s' % (i, self.target)
-							addr_list.append(i)
-							self.result.get_hosts_list().add_host(host_str)
-						except:
-							print "Unimplemented support to address: %s." % i
-				else:
-					print "Error : Does not recoginise target"
-			else:
-				z.append_target(host.Host(self.target))
-				addr_list.append(self.target)
-				self.result.get_hosts_list().add_host(self.target)
-		else:
-			for ip in IPNetwork(self.target):
-				ip_str = '%s' % ip
-				z.append_target(host.Host(ip_str))
-				addr_list.append(ip_str)
-				self.result.get_hosts_list().add_host(ip_str)
-		
-		
-		#addr = iter(addr_list)
-		print addr_list
-		destaddr = addr_list[0]
-		# configure zion options
-		device = get_default_device(destaddr)
-		
-		if address.recognize(destaddr) == address.IPv4:
-			saddr = get_ip_address(device)
-		elif address.recognize(destaddr) == address.IPv6:
-			temp_addr = get_ipv6_address(device)
-			print(temp_addr)
-			if temp_addr.find('%') != -1:
-				saddr = temp_addr.split('%')[0]
-				#saddr = "2001:0:53aa:64c:389d:9c27:87c7:55a8"
-			else:
-				saddr = temp_addr
-		else:
-			print "Unknown address format"
-		
-		##saddr = "2001:0:53aa:64c:38d3:b950:c44e:b128"
-		#saddr = get_ip_address(device)
-		#print "----------------------"
-		#print saddr
-		#print destaddr
-		
-		z.get_option_object().add("-c",device)
-		z.get_option_object().add("-d")
-		z.get_option_object().add("--forge-addr",saddr)
+        # verify address to scan
+        addr_list = []
 
-		p = Process(target=z.run, args=(self.q2,))
-		p.start()
+        if self.target.find('/') == -1:
+            if address.recognize(self.target) == address.Unknown:
+                if address.is_name(self.target):
+                    l = probe.get_addr_from_name(self.target)
+                    pp.pprint(l)
+                    for i in l:
+                        try:
+                            z.append_target(host.Host(i, self.target))
+                            host_str = '%s\n%s' % (i, self.target)
+                            addr_list.append(i)
+                            self.result.get_hosts_list().add_host(host_str)
+                        except:
+                            print "Unimplemented support to address: %s." % i
+                else:
+                    print "Error : Does not recoginise target"
+            else:
+                z.append_target(host.Host(self.target))
+                addr_list.append(self.target)
+                self.result.get_hosts_list().add_host(self.target)
+        else:
+            for ip in IPNetwork(self.target):
+                ip_str = '%s' % ip
+                z.append_target(host.Host(ip_str))
+                addr_list.append(ip_str)
+                self.result.get_hosts_list().add_host(ip_str)
+        
+        
+        #addr = iter(addr_list)
+        pp.pprint(addr_list)
+        destaddr = addr_list[0]
+        # configure zion options
+        device = get_default_device(destaddr)
+        
+        if address.recognize(destaddr) == address.IPv4:
+            saddr = get_ip_address(device)
+        elif address.recognize(destaddr) == address.IPv6:
+            temp_addr = get_ipv6_address(device)
+            print(temp_addr)
+            if temp_addr.find('%') != -1:
+                saddr = temp_addr.split('%')[0]
+                #saddr = "2001:0:53aa:64c:389d:9c27:87c7:55a8"
+            else:
+                saddr = temp_addr
+        else:
+            print "Unknown address format"
+        
+        ##saddr = "2001:0:53aa:64c:38d3:b950:c44e:b128"
+        #saddr = get_ip_address(device)
+        #print "----------------------"
+        #print saddr
+        #print destaddr
+        
+        z.get_option_object().add("-c",device)
+        z.get_option_object().add("-d")
+        z.get_option_object().add("--forge-addr",saddr)
+
+        p = Process(target=z.run, args=(self.q2,))
+        p.start()
            
 
 class ZionProfilePrompt(ZionProfile):
@@ -663,79 +664,79 @@ class ZionProfilePrompt(ZionProfile):
         
 
 class ZionProfileSYNProxy(ZionProfile):
-	"""
-	"""
-	def __init__(self, target=None):
-		"""
-		"""
-		ZionProfile.__init__(self, target)
-		# remove attractor box
-		self.result.get_hosts_view().get_scans_page().hide_attractor_box()
-		
-	def start(self):
-		"""
-		"""        
-		self.result.get_hosts_list().clear_hosts()
-		targets = []
-		addr_list = []
-		if self.target.find('/') == -1:
-			print "It does not contain /"
-			if address.recognize(self.target) == address.Unknown:
-				if address.is_name(self.target):
-					l = probe.get_addr_from_name(self.target)
-					for i in l:
-						try:
-							targets.append(host.Host(i, self.target))
-							addr_list.append(i)
-							host_str = '%s\n%s' % (i, self.target)
-							self.result.get_hosts_list().add_host(host_str)
-						except:
-							print "Unimplemented support to address: %s." % i
-				else:
-					print "Error : Does not recoginise target"
-			else:
-				targets.append(host.Host(self.target))
-				addr_list.append(self.target)
-				self.result.get_hosts_list().add_host(self.target)
-		else:
-			for ip in IPNetwork(self.target):
-				ip_str = '%s' % ip
-				targets.append(host.Host(ip_str))
-				addr_list.append(ip_str)
-				self.result.get_hosts_list().add_host(ip_str)
+    """
+    """
+    def __init__(self, target=None):
+        """
+        """
+        ZionProfile.__init__(self, target)
+        # remove attractor box
+        self.result.get_hosts_view().get_scans_page().hide_attractor_box()
+        
+    def start(self):
+        """
+        """        
+        self.result.get_hosts_list().clear_hosts()
+        targets = []
+        addr_list = []
+        if self.target.find('/') == -1:
+            print "It does not contain /"
+            if address.recognize(self.target) == address.Unknown:
+                if address.is_name(self.target):
+                    l = probe.get_addr_from_name(self.target)
+                    for i in l:
+                        try:
+                            targets.append(host.Host(i, self.target))
+                            addr_list.append(i)
+                            host_str = '%s\n%s' % (i, self.target)
+                            self.result.get_hosts_list().add_host(host_str)
+                        except:
+                            print "Unimplemented support to address: %s." % i
+                else:
+                    print "Error : Does not recoginise target"
+            else:
+                targets.append(host.Host(self.target))
+                addr_list.append(self.target)
+                self.result.get_hosts_list().add_host(self.target)
+        else:
+            for ip in IPNetwork(self.target):
+                ip_str = '%s' % ip
+                targets.append(host.Host(ip_str))
+                addr_list.append(ip_str)
+                self.result.get_hosts_list().add_host(ip_str)
 
-		
-		#addr = iter(addr_list)
-		destaddr = addr_list[0]
-		device = get_default_device(destaddr)
-		#print "Destination Address-"
-		#print(destaddr)
-		if address.recognize(destaddr) == address.IPv4:
-			saddr = get_ip_address(device)
-		elif address.recognize(destaddr) == address.IPv6:
-			temp_addr = get_ipv6_address(device)
-			if temp_addr.find('%') != -1:
-				saddr = temp_addr.split('%')[0]
-				#saddr = "2001:0:53aa:64c:2c70:cf79:c44e:bda4"
-			else:
-				saddr = temp_addr
-		else:
-			print "Unknown address format"
-		
-			
-		print "Source address -",
-		print(saddr)
+        
+        #addr = iter(addr_list)
+        destaddr = addr_list[0]
+        device = get_default_device(destaddr)
+        #print "Destination Address-"
+        #print(destaddr)
+        if address.recognize(destaddr) == address.IPv4:
+            saddr = get_ip_address(device)
+        elif address.recognize(destaddr) == address.IPv6:
+            temp_addr = get_ipv6_address(device)
+            if temp_addr.find('%') != -1:
+                saddr = temp_addr.split('%')[0]
+                #saddr = "2001:0:53aa:64c:2c70:cf79:c44e:bda4"
+            else:
+                saddr = temp_addr
+        else:
+            print "Unknown address format"
+        
+            
+        print "Source address -",
+        print(saddr)
 
-		opts = options.Options()
-		opts.add("-c",device)
-		opts.add("--forge-addr",saddr)
-		# synproxy option
-		opts.add("-y")
-		        
-		for target in targets:
-			z = zion.Zion(opts,  [target])
-			p = Process(target=z.run, args=(self.q2,))
-			p.start()
+        opts = options.Options()
+        opts.add("-c",device)
+        opts.add("--forge-addr",saddr)
+        # synproxy option
+        opts.add("-y")
+                
+        for target in targets:
+            z = zion.Zion(opts,  [target])
+            p = Process(target=z.run, args=(self.q2,))
+            p.start()
 
 PROFILE_CLASS = {'1': ZionProfileHoneyd,
                  '2': ZionProfileOS,
@@ -868,7 +869,12 @@ def get_default_device(destaddr):
                     device = 'lo'
                     break
                 else:
-                    saddr = netifaces.ifaddresses(dev)[netifaces.AF_INET][0]['addr']
+                    # Iterated interface could be down, so try to get ip first, if an exception
+                    # occurs, pass to the next interface.
+                    try:
+                        saddr = netifaces.ifaddresses(dev)[netifaces.AF_INET][0]['addr']
+                    except KeyError, e:
+                        continue
                     if saddr == '127.0.0.1':
                         device = dev
                         continue
@@ -880,7 +886,12 @@ def get_default_device(destaddr):
                     device = 'lo'
                     break
                 else:
-                    saddr = netifaces.ifaddresses(dev)[netifaces.AF_INET6][0]['addr']
+                    # Iterated interface could be down, so try to get ip first, if an exception
+                    # occurs, pass to the next interface.
+                    try:
+                        saddr = netifaces.ifaddresses(dev)[netifaces.AF_INET6][0]['addr']
+                    except KeyError, e:
+                        continue    
                     saddr_re = re.compile('fe80*', re.IGNORECASE)
                     if saddr == '::1':
                         continue
