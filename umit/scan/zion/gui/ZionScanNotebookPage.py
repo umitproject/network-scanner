@@ -444,6 +444,31 @@ class ZionProfileHoneyd(ZionProfile):
         ZionProfile.__init__(self, target)
         # remove attractor box
         self.result.get_hosts_view().get_scans_page().hide_attractor_box()
+
+        self.__interfaces_hbox = HIGHBox()
+        self.__interfaces_label = gtk.Label(_('Interfaces:'))
+
+        self.interfaces_list = gtk.ListStore(str)
+        self.interfaces_combo = gtk.ComboBoxEntry(self.interfaces_list, 0)
+
+        self.__interfaces_hbox._pack_noexpand_nofill(self.__interfaces_label)
+        self.__interfaces_hbox._pack_noexpand_nofill(self.interfaces_combo)
+
+        self._pack_noexpand_nofill(self.__interfaces_hbox)
+
+        self.fill_interfaces_list()
+
+    def get_interface(self):
+        return self.interfaces_combo.child.get_text()
+
+    def fill_interfaces_list(self):
+        device_list = pypcap.findalldevs()
+        exp = re.compile('usb*', re.IGNORECASE)
+        for dev in device_list:
+            if re.match(exp,dev) or dev == 'any':
+                device_list.remove(dev)
+            else:
+                self.interfaces_list.append([dev])
     
     def start(self):
         """
@@ -481,7 +506,7 @@ class ZionProfileHoneyd(ZionProfile):
         
         #addr = iter(addr_list)
         destaddr = addr_list[0]
-        device = get_default_device(destaddr)
+        device = self.get_interface()
         
         if address.recognize(destaddr) == address.IPv4:
             saddr = get_ip_address(device)
@@ -521,7 +546,32 @@ class ZionProfileOS(ZionProfile):
         """
         """
         ZionProfile.__init__(self, target)
-        
+
+        self.__interfaces_hbox = HIGHBox()
+        self.__interfaces_label = gtk.Label(_('Interfaces:'))
+
+        self.interfaces_list = gtk.ListStore(str)
+        self.interfaces_combo = gtk.ComboBoxEntry(self.interfaces_list, 0)
+
+        self.__interfaces_hbox._pack_noexpand_nofill(self.__interfaces_label)
+        self.__interfaces_hbox._pack_noexpand_nofill(self.interfaces_combo)
+
+        self._pack_noexpand_nofill(self.__interfaces_hbox)
+
+        self.fill_interfaces_list()
+
+    def get_interface(self):
+        return self.interfaces_combo.child.get_text()
+
+    def fill_interfaces_list(self):
+        device_list = pypcap.findalldevs()
+        exp = re.compile('usb*', re.IGNORECASE)
+        for dev in device_list:
+            if re.match(exp,dev) or dev == 'any':
+                device_list.remove(dev)
+            else:
+                self.interfaces_list.append([dev])
+
     def start(self):
         """
         """
@@ -565,7 +615,7 @@ class ZionProfileOS(ZionProfile):
         #addr = iter(addr_list)
         destaddr = addr_list[0]
         # configure zion options
-        device = get_default_device(destaddr)
+        device = self.get_interface()
         
         if address.recognize(destaddr) == address.IPv4:
             saddr = get_ip_address(device)
@@ -670,6 +720,31 @@ class ZionProfileSYNProxy(ZionProfile):
         ZionProfile.__init__(self, target)
         # remove attractor box
         self.result.get_hosts_view().get_scans_page().hide_attractor_box()
+
+        self.__interfaces_hbox = HIGHBox()
+        self.__interfaces_label = gtk.Label(_('Interfaces:'))
+
+        self.interfaces_list = gtk.ListStore(str)
+        self.interfaces_combo = gtk.ComboBoxEntry(self.interfaces_list, 0)
+
+        self.__interfaces_hbox._pack_noexpand_nofill(self.__interfaces_label)
+        self.__interfaces_hbox._pack_noexpand_nofill(self.interfaces_combo)
+
+        self._pack_noexpand_nofill(self.__interfaces_hbox)
+
+        self.fill_interfaces_list()
+
+    def get_interface(self):
+        return self.interfaces_combo.child.get_text()
+
+    def fill_interfaces_list(self):
+        device_list = pypcap.findalldevs()
+        exp = re.compile('usb*', re.IGNORECASE)
+        for dev in device_list:
+            if re.match(exp,dev) or dev == 'any':
+                device_list.remove(dev)
+            else:
+                self.interfaces_list.append([dev])
         
     def start(self):
         """
@@ -706,7 +781,7 @@ class ZionProfileSYNProxy(ZionProfile):
         
         #addr = iter(addr_list)
         destaddr = addr_list[0]
-        device = get_default_device(destaddr)
+        device = self.get_interface()
         #print "Destination Address-"
         #print(destaddr)
         if address.recognize(destaddr) == address.IPv4:
@@ -722,7 +797,7 @@ class ZionProfileSYNProxy(ZionProfile):
             log.debug("Unknown address format")
         
             
-        log.debug("Source address - %s" % print(saddr))
+        log.debug("Source address - %s" % saddr)
 
         opts = options.Options()
         opts.add("-c",device)
