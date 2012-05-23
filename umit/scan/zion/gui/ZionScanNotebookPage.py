@@ -449,14 +449,14 @@ class ZionProfileHoneyd(ZionProfile):
         self.__interfaces_label = gtk.Label(_('Interfaces:'))
 
         self.interfaces_list = gtk.ListStore(str)
+        self.fill_interfaces_list()
         self.interfaces_combo = gtk.ComboBoxEntry(self.interfaces_list, 0)
+        self.interfaces_combo.set_active(0)
 
         self.__interfaces_hbox._pack_noexpand_nofill(self.__interfaces_label)
         self.__interfaces_hbox._pack_noexpand_nofill(self.interfaces_combo)
 
         self._pack_noexpand_nofill(self.__interfaces_hbox)
-
-        self.fill_interfaces_list()
 
     def get_interface(self):
         return self.interfaces_combo.child.get_text()
@@ -482,27 +482,57 @@ class ZionProfileHoneyd(ZionProfile):
             if address.recognize(self.target) == address.Unknown:
                 if address.is_name(self.target):
                     l = probe.get_addr_from_name(self.target)
-                    for i in l:
-                        try:
-                            targets.append(host.Host(i, self.target))
-                            addr_list.append(i)
-                            host_str = '%s\n%s' % (i, self.target)
-                            self.result.get_hosts_list().add_host(host_str)
-                        except:
-                            log.warning("Unimplemented support to address: %s." % i)
+                    if l:
+                        for i in l:
+                            try:
+                                targets.append(host.Host(i, self.target))
+                                addr_list.append(i)
+                                host_str = '%s\n%s' % (i, self.target)
+                                self.result.get_hosts_list().add_host(host_str)
+                            except:
+                                log.warning("Unimplemented support to address: %s." % i)
+                    else:
+                        log.error('couldn\'t get a valid ip address from target : %s' % self.target)
+                        dia = HIGAlertDialog(
+                            parent=None,
+                            message_format=_('Invalid Target Address'),
+                            secondary_text=_('couldn\'t get a valid ip address from target : %s' % self.target)
+                        )
+                        dia.run()
+                        dia.destroy()
+                        return            
                 else:
-                    log.error("Does not recoginise target")
+                    log.error("Does not recognise target")
+                    dia = HIGAlertDialog(
+                        parent=None,
+                        message_format=_('Invalid Target Address'),
+                        secondary_text=_('Does not recognise target')
+                    )
+                    dia.run()
+                    dia.destroy()
+                    return
             else:
                 targets.append(host.Host(self.target))
                 addr_list.append(self.target)
                 self.result.get_hosts_list().add_host(self.target)
         else:
-            for ip in IPNetwork(self.target):
-                ip_str = '%s' % ip
-                targets.append(host.Host(ip_str))
-                addr_list.append(ip_str)
-                self.result.get_hosts_list().add_host(ip_str)
-
+            try:
+                ip_list = IPNetwork(self.target)
+                for ip in ip_list:
+                    ip_str = '%s' % ip
+                    z.append_target(host.Host(ip_str))
+                    addr_list.append(ip_str)
+                    self.result.get_hosts_list().add_host(ip_str)
+            except Exception, e:
+                log.error("Does not look like a valid network address")
+                dia = HIGAlertDialog(
+                    parent=None,
+                    message_format=_('Invalid Target Address'),
+                    secondary_text=_('Does not look like a valid network address')
+                )
+                dia.run()
+                dia.destroy()
+                return
         
         #addr = iter(addr_list)
         destaddr = addr_list[0]
@@ -551,14 +581,14 @@ class ZionProfileOS(ZionProfile):
         self.__interfaces_label = gtk.Label(_('Interfaces:'))
 
         self.interfaces_list = gtk.ListStore(str)
+        self.fill_interfaces_list()
         self.interfaces_combo = gtk.ComboBoxEntry(self.interfaces_list, 0)
+        self.interfaces_combo.set_active(0)
 
         self.__interfaces_hbox._pack_noexpand_nofill(self.__interfaces_label)
         self.__interfaces_hbox._pack_noexpand_nofill(self.interfaces_combo)
 
         self._pack_noexpand_nofill(self.__interfaces_hbox)
-
-        self.fill_interfaces_list()
 
     def get_interface(self):
         return self.interfaces_combo.child.get_text()
@@ -590,27 +620,57 @@ class ZionProfileOS(ZionProfile):
             if address.recognize(self.target) == address.Unknown:
                 if address.is_name(self.target):
                     l = probe.get_addr_from_name(self.target)
-                    for i in l:
-                        try:
-                            z.append_target(host.Host(i, self.target))
-                            host_str = '%s\n%s' % (i, self.target)
-                            addr_list.append(i)
-                            self.result.get_hosts_list().add_host(host_str)
-                        except:
-                            log.warning("Unimplemented support to address: %s." % i)
+                    if l:
+                        for i in l:
+                            try:
+                                z.append_target(host.Host(i, self.target))
+                                host_str = '%s\n%s' % (i, self.target)
+                                addr_list.append(i)
+                                self.result.get_hosts_list().add_host(host_str)
+                            except:
+                                log.warning("Unimplemented support to address: %s." % i)
+                    else:
+                        log.error('couldn\'t get a valid ip address from target : %s' % self.target)
+                        dia = HIGAlertDialog(
+                            parent=None,
+                            message_format=_('Invalid Target Address'),
+                            secondary_text=_('couldn\'t get a valid ip address from target : %s' % self.target)
+                        )
+                        dia.run()
+                        dia.destroy()
+                        return
                 else:
-                    log.error("Does not recoginise target")
+                    log.error("Does not recognise target")
+                    dia = HIGAlertDialog(
+                        parent=None,
+                        message_format=_('Invalid Target Address'),
+                        secondary_text=_('Does not recognise target')
+                    )
+                    dia.run()
+                    dia.destroy()
+                    return
             else:
                 z.append_target(host.Host(self.target))
                 addr_list.append(self.target)
                 self.result.get_hosts_list().add_host(self.target)
         else:
-            for ip in IPNetwork(self.target):
-                ip_str = '%s' % ip
-                z.append_target(host.Host(ip_str))
-                addr_list.append(ip_str)
-                self.result.get_hosts_list().add_host(ip_str)
-        
+            try:
+                ip_list = IPNetwork(self.target)
+                for ip in ip_list:
+                    ip_str = '%s' % ip
+                    z.append_target(host.Host(ip_str))
+                    addr_list.append(ip_str)
+                    self.result.get_hosts_list().add_host(ip_str)
+            except Exception, e:
+                log.error("Does not look like a valid network address")
+                dia = HIGAlertDialog(
+                    parent=None,
+                    message_format=_('Invalid Target Address'),
+                    secondary_text=_('Does not look like a valid network address')
+                )
+                dia.run()
+                dia.destroy()
+                return
         
         #addr = iter(addr_list)
         destaddr = addr_list[0]
@@ -725,14 +785,14 @@ class ZionProfileSYNProxy(ZionProfile):
         self.__interfaces_label = gtk.Label(_('Interfaces:'))
 
         self.interfaces_list = gtk.ListStore(str)
+        self.fill_interfaces_list()
         self.interfaces_combo = gtk.ComboBoxEntry(self.interfaces_list, 0)
+        self.interfaces_combo.set_active(0)
 
         self.__interfaces_hbox._pack_noexpand_nofill(self.__interfaces_label)
         self.__interfaces_hbox._pack_noexpand_nofill(self.interfaces_combo)
 
         self._pack_noexpand_nofill(self.__interfaces_hbox)
-
-        self.fill_interfaces_list()
 
     def get_interface(self):
         return self.interfaces_combo.child.get_text()
@@ -757,27 +817,58 @@ class ZionProfileSYNProxy(ZionProfile):
             if address.recognize(self.target) == address.Unknown:
                 if address.is_name(self.target):
                     l = probe.get_addr_from_name(self.target)
-                    for i in l:
-                        try:
-                            targets.append(host.Host(i, self.target))
-                            addr_list.append(i)
-                            host_str = '%s\n%s' % (i, self.target)
-                            self.result.get_hosts_list().add_host(host_str)
-                        except:
-                            log.warning("Unimplemented support to address: %s." % i)
+                    if l:
+                        for i in l:
+                            try:
+                                targets.append(host.Host(i, self.target))
+                                addr_list.append(i)
+                                host_str = '%s\n%s' % (i, self.target)
+                                self.result.get_hosts_list().add_host(host_str)
+                            except:
+                                log.warning("Unimplemented support to address: %s." % i)
+                    else:
+                        log.error('couldn\'t get a valid ip address from target : %s' % self.target)
+                        dia = HIGAlertDialog(
+                            parent=None,
+                            message_format=_('Invalid Target Address'),
+                            secondary_text=_('couldn\'t get a valid ip address from target : %s' % self.target)
+                        )
+                        dia.run()
+                        dia.destroy()
+                        return            
                 else:
-                    log.error("Does not recoginise target")
+                    log.error("Does not recognise target")
+                    dia = HIGAlertDialog(
+                        parent=None,
+                        message_format=_('Invalid Target Address'),
+                        secondary_text=_('Does not recognise target')
+                    )
+                    dia.run()
+                    dia.destroy()
+                    return
             else:
                 targets.append(host.Host(self.target))
                 addr_list.append(self.target)
                 self.result.get_hosts_list().add_host(self.target)
         else:
-            for ip in IPNetwork(self.target):
-                ip_str = '%s' % ip
-                targets.append(host.Host(ip_str))
-                addr_list.append(ip_str)
-                self.result.get_hosts_list().add_host(ip_str)
-
+            try:
+                ip_list = IPNetwork(self.target)
+                for ip in IPNetwork(self.target):
+                    ip_str = '%s' % ip
+                    targets.append(host.Host(ip_str))
+                    addr_list.append(ip_str)
+                    self.result.get_hosts_list().add_host(ip_str)
+            except Exception, e:
+               log.error("Does not look like a valid network address")
+               dia = HIGAlertDialog(
+                   parent=None,
+                   message_format=_('Invalid Target Address'),
+                   secondary_text=_('Does not look like a valid network address')
+               )
+               dia.run()
+               dia.destroy()
+               return
+                        
         
         #addr = iter(addr_list)
         destaddr = addr_list[0]
@@ -983,7 +1074,11 @@ def get_default_device(destaddr):
 
 def get_ip_address(interface):
     """ Return the ip address of the specified interface """
-    return netifaces.ifaddresses(interface)[netifaces.AF_INET][0]['addr']
+    try:
+        return netifaces.ifaddresses(interface)[netifaces.AF_INET][0]['addr']
+    except Exception, e:
+        log.error('Interface is not up or doesn\'t have an ip')
+        return
     
 def get_ipv6_address(interface):
     """ Return the ip address of the specified interface """
