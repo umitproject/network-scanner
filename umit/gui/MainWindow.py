@@ -922,7 +922,15 @@ to close current Scan Tab?'),
             return False
 
         log.debug(">>> Changing scan_name")
-        page.get_parser().set_scan_name(new_text)
+        try:
+            page.get_parser().set_scan_name(new_text)
+        except Exception, e:
+            log.warning('Zion Profile Scan saving is not supported.')
+            alert = HIGAlertDialog(message_format=_('Scan Save Error.'),
+                                   secondary_text=_('Zion Profile Scan saving is not supported.'))
+            alert.run()
+            alert.destroy()
+            return
 
         # Ok we can change this title.
         return True
