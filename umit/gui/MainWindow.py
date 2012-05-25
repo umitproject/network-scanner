@@ -783,7 +783,11 @@ to close current Scan Tab?'),
         return True
 
     def store_result(self, page, filename):
-        page.get_parser().scan_name = self.scan_notebook.get_tab_title(page)
+        try:
+            page.get_parser().scan_name = self.scan_notebook.get_tab_title(page)
+        except Exception, e:
+            log.error('Couldn\'t store scan results.')
+            return
 
         if not filename:
             fd, filename = mkstemp()
@@ -925,12 +929,8 @@ to close current Scan Tab?'),
         try:
             page.get_parser().set_scan_name(new_text)
         except Exception, e:
-            log.warning('Zion Profile Scan saving is not supported.')
-            alert = HIGAlertDialog(message_format=_('Scan Save Error.'),
-                                   secondary_text=_('Zion Profile Scan saving is not supported.'))
-            alert.run()
-            alert.destroy()
-            return
+            # for zion scan naming
+            page.set_tab_label(new_text)
 
         # Ok we can change this title.
         return True
@@ -1329,12 +1329,22 @@ Start a scan an then try again'))
                                              filename)
         a.generate_html()
         a.save()
+
     def _save(self, saving_page, saved_filename):
         
         # TODO: save Zion scans
-        if saving_page.get_tool()!='nmap':
+
+        #  
+        if saving_page.get_tool() == 'zion':
+            alert = HIGAlertDialog(message_format=_('Can\'t save zion scan.'),
+                                   secondary_text=_('Saving zion scan is not supported.'))
+            alert.run()
+            alert.destroy()
+            `log.debug(">>> Can\'t save zion scan")
+            return
+        elif saving_page.get_tool()!='nmap':
             alert = HIGAlertDialog(message_format=_('Can\'t save file'),
-                                       secondary_text=_('Can\'t open file \
+                                   secondary_text=_('Can\'t open file \
 to write'))
             alert.run()
             alert.destroy()
@@ -1536,7 +1546,9 @@ action's name"))
             if not scan_name:
                 scan_name = _("Scan ") + str(i+1)
 
-            dic[scan_name] = page.get_parser()
+            # Don't load Zion Scans to compare results window.
+            if page.get_parser():
+                dic[scan_name] = page.get_parser()
 
         self.diff_window = DiffWindow(dic)
         self.diff_window.connect("destroy", self.__remove_wlist)
