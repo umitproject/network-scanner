@@ -100,9 +100,18 @@ class ScanChooser(HIGVBox):
 
     def show_scan (self, widget):
         try:
-            self.txt_scan_result.get_buffer().\
-                 set_text(self.normalize_output(\
-                     self.scan_dict[widget.child.get_text()].nmap_output))
+            output = self.scan_dict[widget.child.get_text()].nmap_output
+            n_output = self.normalize_output(output)
+            self.txt_scan_result.get_buffer().set_text(n_output)
+        except AttributeError:    
+            alert = HIGAlertDialog(
+                    message_format='<b>%s</b>' % _('File is not a Umit \
+Scan Result'),
+                    secondary_text=_("Selected file is not an Nmap Scan \
+Result file. Umit can not parse this file. Please, select another."))
+            alert.run()
+            alert.destroy()
+            return False 
         except KeyError:
             # Avoid to raise an error if the user writes within
             # the entry and the scan doesn't exits
