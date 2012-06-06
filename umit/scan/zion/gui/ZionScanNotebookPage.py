@@ -920,6 +920,12 @@ class ZionScanNotebookPage(gtk.Alignment):
     def profile_changed(self, widget, event=None):
         """
         """
+        # get tab label object
+        tab_label_obj = self.page.get_parent().get_tab_label(self.page)
+        anim_label = tab_label_obj.get_animated_label()
+        # and block the title-edited callback handler
+        anim_label.handler_block_by_func(self.page.get_parent().title_edited_cb)
+
         profile = self.page.toolbar.selected_profile
         target = self.page.toolbar.selected_target.strip()
 
