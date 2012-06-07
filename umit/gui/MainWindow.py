@@ -1340,7 +1340,7 @@ Start a scan an then try again'))
                                    secondary_text=_('Saving zion scan is not supported.'))
             alert.run()
             alert.destroy()
-            `log.debug(">>> Can\'t save zion scan")
+            log.debug(">>> Can\'t save zion scan")
             return
         elif saving_page.get_tool()!='nmap':
             alert = HIGAlertDialog(message_format=_('Can\'t save file'),
