@@ -25,6 +25,12 @@ import netifaces
 import thread
 import getopt
 import re
+
+# TODO: Because of a frozen exe, multiprocessing
+# is not working as we want. So, need to use threading on windows.
+# from threading import Thread as Process
+# from Queue import Queue
+
 from multiprocessing import Process, Queue
 from ipaddr import IPNetwork
 
@@ -353,11 +359,12 @@ class ZionProfile(HIGVBox):
         self.result.get_hosts_view().set_current_page(0)
         
         # construct communication queues
-        self.q1 = Queue()
+        #self.q1 = Queue()
         self.q2 = Queue()
-        fd = self.q2._reader.fileno()
+        #fd = self.q2._reader.fileno()
         # observe received messages in queue
-        gobject.io_add_watch(fd, gobject.IO_IN, self.update)
+        #gobject.io_add_watch(fd, gobject.IO_IN, self.update)
+        gobject.timeout_add(500, self.update)
 
     def update_target(self, target):
         """
@@ -419,21 +426,29 @@ class ZionProfile(HIGVBox):
         """
         Update interface with the information received by zion process
         """
+        if self.q2.empty():
+            return False
+        
+        # Avoid blocking but just poll the queue
         signal, params = self.q2.get()
         
         if signal=='update_status':
             self.update_info(params)
         elif signal=='scan_finished':
             self.update_port_info(params)
+            return False
         elif signal=='attractors_built':
             self.update_attractors(params)
         elif signal=='matching_finished':
             self.update_host_information(params)
+            return False
         elif signal=='honeyd_finished':
             self.honeyd_finished(params)
+            return False
         elif signal=='synproxy_finished':
             self.synproxy_finished(params)
-        return True            
+            return False
+        return True
 
 class ZionProfileHoneyd(ZionProfile):
     """
@@ -462,13 +477,12 @@ class ZionProfileHoneyd(ZionProfile):
         return self.interfaces_combo.child.get_text()
 
     def fill_interfaces_list(self):
-        device_list = pypcap.findalldevs()
-        exp = re.compile('usb*', re.IGNORECASE)
-        for dev in device_list:
-            if re.match(exp,dev) or dev == 'any':
-                device_list.remove(dev)
+        for dev in netifaces.interfaces():
+            addresses = netifaces.ifaddresses(dev)
+            if netifaces.AF_INET not in addresses:
+                continue
             else:
-                self.interfaces_list.append([dev])
+                self.interfaces_list.append([dev]) 
     
     def start(self):
         """
@@ -594,11 +608,10 @@ class ZionProfileOS(ZionProfile):
         return self.interfaces_combo.child.get_text()
 
     def fill_interfaces_list(self):
-        device_list = pypcap.findalldevs()
-        exp = re.compile('usb*', re.IGNORECASE)
-        for dev in device_list:
-            if re.match(exp,dev) or dev == 'any':
-                device_list.remove(dev)
+        for dev in netifaces.interfaces():
+            addresses = netifaces.ifaddresses(dev)
+            if netifaces.AF_INET not in addresses:
+                continue
             else:
                 self.interfaces_list.append([dev])
 
@@ -798,11 +811,10 @@ class ZionProfileSYNProxy(ZionProfile):
         return self.interfaces_combo.child.get_text()
 
     def fill_interfaces_list(self):
-        device_list = pypcap.findalldevs()
-        exp = re.compile('usb*', re.IGNORECASE)
-        for dev in device_list:
-            if re.match(exp,dev) or dev == 'any':
-                device_list.remove(dev)
+        for dev in netifaces.interfaces():
+            addresses = netifaces.ifaddresses(dev)
+            if netifaces.AF_INET not in addresses:
+                continue
             else:
                 self.interfaces_list.append([dev])
         
