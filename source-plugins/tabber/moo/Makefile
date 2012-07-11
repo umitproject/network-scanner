@@ -9,7 +9,7 @@ LIBS = `pkg-config --libs gtk+-2.0`
 PYGTK_DEFS_DIR=`pkg-config --variable=defsdir pygtk-2.0`
 
 test: $(OBJECTS)
-	gcc $(LIBS) $(OBJECTS) -o test
+	gcc $(OBJECTS) -o test $(LIBS) $(CFLAGS)
 
 moomarshals.c: moomarshals.list
 	echo '#include "moomarshals.h"' > $@.tmp &&	\
@@ -56,6 +56,9 @@ distcheck:
 
 prepare: moomarshals.c moomarshals.h stock-moo.h moo-pygtk.c
 
+# TODO: use the line below on windows to find the right codegen path.
+#       python /c/Python27/Lib/site-packages/gtk-2.0/codegen/codegen.py
+#       --prefix _moo_stub
 moo-pygtk.c: moo.defs moopaned.defs moo.override moopaned.override
 	pygtk-codegen-2.0 --prefix _moo_stub \
 		--register $(PYGTK_DEFS_DIR)/gtk-types.defs \
