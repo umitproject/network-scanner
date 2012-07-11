@@ -45,8 +45,10 @@ if not hasattr(sys, 'frozen'):
         
 
 
-
+# TODO: put an os.type check for passing execfile on windows.
 execfile(os.path.join("deps", "umit-common", "utils", "importer.py"))
+# TODO: comment out the line below on windows for forwarding log output to umit.exe.log.
+#sys.stderr = open('umit.exe.log', 'w')
 
 sys.path.insert(0, os.path.join("deps", "libkeybinder"))
 sys.path.insert(0, os.path.join("deps", "clann"))

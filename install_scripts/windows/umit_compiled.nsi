@@ -452,15 +452,13 @@ FunctionEnd
 
 !include "MUI.nsh"
 ; MUI Settings:
-;
-;!define MUI_ICON "share\icons\umit_32.ico" # Installer icon
-;!define MUI_UNICON "share\icons\trash_32.ico" # Uninstaller icon
 !define MUI_HEADERIMAGE
-!define MUI_HEADERIMAGE_BITMAP "share\pixmaps\umit\splash.bmp"
-!define MUI_HEADERIMAGE_UNBITMAP "share\pixmaps\umit\splash.bmp"
+!define MUI_HEADERIMAGE_BITMAP "share\pixmaps\umit\setup_splash.bmp"
+!define MUI_HEADERIMAGE_UNBITMAP "share\pixmaps\umit\setup_splash.bmp"
+!define MUI_ICON "share\icons\umit\umit_32.ico" # Installer icon
+!define MUI_UNICON "share\icons\umit\trash_32.ico" # Uninstaller icon
 !define MUI_ABORTWARNING
 !define MUI_UNABORTWARNING
-
 !define APPLICATION_NAME "Umit"
 !define APPLICATION_VERSION "1.0"
 !define WINPCAP "WinPcap_4_0_2.exe"
@@ -479,6 +477,7 @@ InstallDir "$PROGRAMFILES\${APPLICATION_NAME}\"
 Outfile ${APPLICATION_NAME}-${APPLICATION_VERSION}.exe
 
 ; MUI Installer Pages
+SetFont Courrier 9
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "COPYING"
 !insertmacro MUI_PAGE_LICENSE "COPYING_HIGWIDGETS"

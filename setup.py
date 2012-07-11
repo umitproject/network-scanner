@@ -541,6 +541,7 @@ options = dict(
             common.UMIT_MAIN,
             os.path.join(BIN_DIRNAME, 'umit_scheduler.py'),
             common.QUICKSCAN_LAUNCHER],
+        # TODO: comment out libkeybinder on windows
         packages = [
             'umit', 'umit.core', 'umit.core.radialnet', 'umit.db',
             'umit.gui', 'umit.gui.radialnet', 'umit.interfaceeditor',
@@ -548,7 +549,12 @@ options = dict(
             'umit.merger', 'umit.plugin', 'higwidgets', 'umit.core.qs',
             'umit.gui.qs', 'umit.scan', 'umit.scan.zion', 'umit.scan.zion.gui',
             'umit.libkeybinder', 'umit.nsefacilitator', 'umit.preferences',
-            'umit.preferences.conf', 'umit.preferences.widgets'],
+            'umit.preferences.conf', 'umit.preferences.widgets',
+            'umit.scan.bt', 'umit.scan.bt.core', 'umit.scan.bt.gui',
+            'umit.clann', 'umit.zion', 'umit.zion.scan', 'umit.zion.sp',
+            'umit.zion.db', 'umit.zion.core', 'umit.umpa', 'umit.umpa.utils', 
+            'umit.umpa.extensions', 'umit.umpa.protocols', 'umit.umpa.sniffing', 
+            'umit.umpa.sniffing.libpcap'],
         data_files = data_files,
         cmdclass = cmdclasses,
         classifiers = [
@@ -561,6 +567,7 @@ options = dict(
             'Programming Language :: Python :: 2.4',
             'Programming Language :: Python :: 2.5',
             'Programming Language :: Python :: 2.6',
+            'Programming Language :: Python :: 2.7',
             'Topic :: System :: Networking',
             ]
         )
