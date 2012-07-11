@@ -43,7 +43,7 @@ if os.name == 'nt':
     qs_launcher = __import__("quickscan_launcher")
     class QuickScanControl(object):
         def __getattr__(self, name):
-            return lambda *args, **kwargs: quickscan_launcher.main([name], False)
+            return lambda *args, **kwargs: qs_launcher.main([name], False)
 
 
 class QSControl(object):
