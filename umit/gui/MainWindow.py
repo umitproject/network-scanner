@@ -114,7 +114,7 @@ else:
 class MainWindow(UmitMainWindow):
     def __init__(self):
         UmitMainWindow.__init__(self)
-        self.set_title(_("Umit"))
+        self.set_title(_("Umit Network Scanner"))
 
         self._plugin_win = PluginWindow()
         self._icontheme = gtk.IconTheme()
