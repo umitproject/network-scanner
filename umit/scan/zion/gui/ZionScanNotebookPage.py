@@ -564,6 +564,8 @@ class ZionProfileOS(ZionProfile):
 		
 		#addr = iter(addr_list)
 		print addr_list
+		if len(addr_list) == 0:
+  			return
 		destaddr = addr_list[0]
 		# configure zion options
 		device = get_default_device(destaddr)
