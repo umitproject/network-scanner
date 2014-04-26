@@ -36,7 +36,10 @@ from umit.core.UmitLogging import file_log
 from umit.core.I18N import _
 from umit.core.CronParser import CronParser
 from umit.core.NmapCommand import NmapCommand
-from umit.core.Email import Email
+try:
+    from umit.core.Email import Email
+except ImportError, e:
+    print('Error importing Email: %s' % e)
 from umit.db.XMLStore import XMLStore
 
 NT = os.name == 'nt'
