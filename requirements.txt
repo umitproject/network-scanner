@@ -1,0 +1,5 @@
+PIL==1.1.7
+ipaddr==2.1.11
+netifaces==0.8
+pypcap==1.1.1
+
