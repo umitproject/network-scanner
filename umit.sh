@@ -36,12 +36,15 @@ then
 
 	cd ..
 
-	svn checkout http://pypcap.googlecode.com/svn/trunk/ pypcap-read-only
-	cd pypcap-read-only
-	make
-	sudo make install 
+	#install deps using pip
+	pip install -r requirements.txt
+	
+	#svn checkout http://pypcap.googlecode.com/svn/trunk/ pypcap-read-only
+	#cd pypcap-read-only
+	#make
+	#sudo make install 
 
-	cd..
+	#cd..
 
 	##############################################################
 	
